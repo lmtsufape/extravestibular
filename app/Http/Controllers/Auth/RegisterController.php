@@ -62,18 +62,7 @@ class RegisterController extends Controller
      * @return \extravestibular\User
      */
     protected function create(array $data)
-    {
-			/*$user = new User();
-			
-			$user->name = $data['name'];
-			$user->email = $data['email'];
-			$user->password = bcrypt($data['password']);
-			$user->rg = $data['rg'];
-			
-			$user->save();
-			return $user;    	  
-    	  dd($data['rg']);
-    	  */
+    {			
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

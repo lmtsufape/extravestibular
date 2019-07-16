@@ -1,5 +1,8 @@
 @extends('layouts.app')
-
+@section('titulo','Cadastrar')
+@section('navbar')
+    Cadastrar
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -24,12 +27,12 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('RG') }}</label>
 
                             <div class="col-md-6">
-                                <input id="rg" type="text" class="form-control @error('rg') is-invalid @enderror" name="rg" value="{{ old('rg') }}" required autocomplete="rg" autofocus>                                
+                                <input id="rg" type="text" class="form-control @error('rg') is-invalid @enderror" name="rg" value="{{ old('rg') }}" required autocomplete="rg" autofocus>
                             </div>
                         </div>
 
@@ -60,7 +63,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 

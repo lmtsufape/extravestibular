@@ -12,10 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('inscricao');
+    return redirect()->route('home');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/cadastroInscricao', 'InscricaoController@cadastroInscricao');
+Route::post('/listaEditais', 'InscricaoController@listaEditais')->name('listaEditais');
+Route::post('/cadastroInscricao', 'InscricaoController@cadastroInscricao')->name('cadastroInscricao');
+Route::post('/fazerInscricao', 'InscricaoController@editalEscolhido')->name('editalEscolhido');
+
+
+Route::post('/novoEdital', 'EditalController@novoEdital')->name('novoEdital');
+Route::post('/cadastroEdital', 'EditalController@cadastroEdital')->name('cadastroEdital');

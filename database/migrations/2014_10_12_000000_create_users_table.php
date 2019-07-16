@@ -22,12 +22,12 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('rg');
-            $table->string('orgaoEmissor');
-            $table->string('cpf');
-            $table->string('tituloEleitoral');
-            $table->string('filiacao');
-            $table->string('endereco');
-            $table->string('fone');
+            $table->string('orgaoEmissor')->nullable();
+            $table->string('cpf')->nullable();
+            $table->string('tituloEleitoral')->nullable();
+            $table->string('filiacao')->nullable();
+            $table->string('endereco')->nullable();
+            $table->string('fone')->nullable();
         });
     }
 
