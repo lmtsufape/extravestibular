@@ -80,6 +80,7 @@
            position: absolute;
            bottom: 0;
            width: 100%;
+           display: none;
         }
         #page-container {
           position: relative;
@@ -281,6 +282,7 @@
 
                     <form id="listaEditais-form" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
                         @csrf
+                        <input type="hidden" name="tipo" value="0">
                     </form>
                 </li>
 
@@ -293,6 +295,46 @@
 
                     <form id="novoEdital-form" action="{{ route('novoEdital') }}" method="POST" style="display: none;">
                         @csrf
+                    </form>
+                </li>
+
+                <li>
+                    <a href="{{ route('listaEditais') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('listaEditais-form2').submit();">
+                        {{ __('Homologar Inscrições Reintegração') }}
+                    </a>
+
+                    <form id="listaEditais-form2" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
+                        @csrf
+                        <input type="hidden" name="tipo" value="2">
+                    </form>
+                </li>
+                <li>
+                    <a href="{{ route('listaEditais') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('listaEditais-form3').submit();">
+                        {{ __('Classificar Inscrições') }}
+                    </a>
+
+                    <form id="listaEditais-form3" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
+                        @csrf
+                        <input type="hidden" name="tipo" value="3">
+                    </form>
+                </li>
+
+
+
+                <li>
+                    <a href="{{ route('listaEditais') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('listaEditais-form1').submit();">
+                        {{ __('Homologar Inscrições') }}
+                    </a>
+
+                    <form id="listaEditais-form1" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
+                        @csrf
+                        <input type="hidden" name="tipo" value="1">
                     </form>
                 </li>
 

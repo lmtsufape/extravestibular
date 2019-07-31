@@ -25,7 +25,7 @@
                         <form method="POST" action={{ route('cadastroInscricao') }} enctype="multipart/form-data">
                               @csrf
                           <input type="hidden" name="tipo" value="reintegracao" />
-                          <input type="hidden" name="editalId" value="1" />
+                          <input type="hidden" name="editalId" value="{{$editalId}}" />
                           <input id="tipo" type="hidden" name="tipo" value=""/>
 
                           <div id="historicoEscolar" class="form-group row" style="display: none">
@@ -73,21 +73,14 @@
 
                               <div class="col-md-6">
                                 <select name="curso">
-                                  <option value="Letras">Letras</option>
-                                  <option value="BCC">BCC</option>
-                                </select>
-                              </div>
-                          </div>
-
-                          <div class="form-group row">
-                              <label for="Unidade" class="col-md-4 col-form-label text-md-right">{{ __('Unidade') }}</label>
-
-                              <div class="col-md-6">
-                                <select name="unidade">
-                                  <option value="Sede">Sede</option>
-                                  <option value="UAEADtec">UAEADtec</option>
-                                  <option value="UAG">UAG</option>
-                                  <option value="UAST">UAST</option>
+                                  <?php foreach ($cursosDisponiveis as $curso) {
+                                    if($curso[0] != '#'){
+                                      if($curso[0] != ''){
+                                        echo('<option value=' . $curso[2] . '>' . $curso[0] . '</option>');
+                                      }
+                                    }
+                                  }
+                                  ?>
                                 </select>
                               </div>
                           </div>
@@ -167,47 +160,48 @@
         </div>
     </div>
 </div>
-@endsection
-  </div>
-    <script type="text/javascript" >
-    function tipo(x) {
-    	if (x == "reintegracao") {
-       document.getElementById("tipo").value = "reintegracao";
-       document.getElementById("formulario").style.display = "";
-       document.getElementById("historicoEscolar").style.display = "";
-       document.getElementById("declaracaoDeVinculo").style.display = "none";
-       document.getElementById("enem").style.display = "none";
-       document.getElementById("curriculo").style.display = "none";
-       document.getElementById("programaDasDisciplinas").style.display = "none";
-    	}
-    	if (x == "transferenciaInterna") {
-        document.getElementById("tipo").value = "transferenciaInterna";
-        document.getElementById("formulario").style.display = "";
-        document.getElementById("historicoEscolar").style.display = "";
-        document.getElementById("declaracaoDeVinculo").style.display = "";
-        document.getElementById("enem").style.display = "none";
-        document.getElementById("curriculo").style.display = "none";
-        document.getElementById("programaDasDisciplinas").style.display = "none";
-    	}
-    	if (x == "transferenciaExterna") {
-        document.getElementById("tipo").value = "transferenciaExterna";
-        document.getElementById("formulario").style.display = "";
-        document.getElementById("historicoEscolar").style.display = "";
-        document.getElementById("declaracaoDeVinculo").style.display = "";
-        document.getElementById("enem").style.display = "none";
-        document.getElementById("curriculo").style.display = "";
-        document.getElementById("programaDasDisciplinas").style.display = "";
-    	}
-    	if (x == "portadorDeDiploma") {
-        document.getElementById("tipo").value = "portadorDeDiploma";
-        document.getElementById("formulario").style.display = "";
-        document.getElementById("historicoEscolar").style.display = "";
-        document.getElementById("declaracaoDeVinculo").style.display = "none";
-        document.getElementById("enem").style.display = "";
-        document.getElementById("curriculo").style.display = "";
-        document.getElementById("programaDasDisciplinas").style.display = "";
-    	}
-    }
+<script type="text/javascript" >
+function tipo(x) {
+	if (x == "reintegracao") {
+   document.getElementById("tipo").value = "reintegracao";
+   document.getElementById("formulario").style.display = "";
+   document.getElementById("historicoEscolar").style.display = "";
+   document.getElementById("declaracaoDeVinculo").style.display = "none";
+   document.getElementById("enem").style.display = "none";
+   document.getElementById("curriculo").style.display = "none";
+   document.getElementById("programaDasDisciplinas").style.display = "none";
+	}
+	if (x == "transferenciaInterna") {
+    document.getElementById("tipo").value = "transferenciaInterna";
+    document.getElementById("formulario").style.display = "";
+    document.getElementById("historicoEscolar").style.display = "";
+    document.getElementById("declaracaoDeVinculo").style.display = "";
+    document.getElementById("enem").style.display = "none";
+    document.getElementById("curriculo").style.display = "none";
+    document.getElementById("programaDasDisciplinas").style.display = "none";
+	}
+	if (x == "transferenciaExterna") {
+    document.getElementById("tipo").value = "transferenciaExterna";
+    document.getElementById("formulario").style.display = "";
+    document.getElementById("historicoEscolar").style.display = "";
+    document.getElementById("declaracaoDeVinculo").style.display = "";
+    document.getElementById("enem").style.display = "none";
+    document.getElementById("curriculo").style.display = "";
+    document.getElementById("programaDasDisciplinas").style.display = "";
+	}
+	if (x == "portadorDeDiploma") {
+    document.getElementById("tipo").value = "portadorDeDiploma";
+    document.getElementById("formulario").style.display = "";
+    document.getElementById("historicoEscolar").style.display = "";
+    document.getElementById("declaracaoDeVinculo").style.display = "none";
+    document.getElementById("enem").style.display = "";
+    document.getElementById("curriculo").style.display = "";
+    document.getElementById("programaDasDisciplinas").style.display = "";
+	}
+}
 
 
-    </script>
+</script>
+
+
+    @endsection

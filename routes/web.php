@@ -18,10 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/listaEditais', 'InscricaoController@listaEditais')->name('listaEditais');
-Route::post('/cadastroInscricao', 'InscricaoController@cadastroInscricao')->name('cadastroInscricao');
-Route::post('/fazerInscricao', 'InscricaoController@editalEscolhido')->name('editalEscolhido');
 
+Route::post('/listaEditais',        'EditalController@listaEditais'           )->name('listaEditais');
+Route::post('/fazerInscricao',      'EditalController@editalEscolhido'        )->name('editalEscolhido');
+Route::post('/cadastroEdital',      'EditalController@cadastroEdital'         )->name('cadastroEdital');
+Route::post('/novoEdital',          'EditalController@novoEdital'             )->name('novoEdital');
 
-Route::post('/novoEdital', 'EditalController@novoEdital')->name('novoEdital');
-Route::post('/cadastroEdital', 'EditalController@cadastroEdital')->name('cadastroEdital');
+Route::post('/cadastroInscricao',   'InscricaoController@cadastroInscricao'   )->name('cadastroInscricao');
+Route::post('/homologarInscricao',  'InscricaoController@inscricaoEscolhida'  )->name('inscricaoEscolhida');
+Route::post('/inscricaoHomologada', 'InscricaoController@homologarInscricao'  )->name('homologarInscricao');
+Route::post('/classificarInscricao','InscricaoController@classificarInscricao')->name('classificarInscricao');

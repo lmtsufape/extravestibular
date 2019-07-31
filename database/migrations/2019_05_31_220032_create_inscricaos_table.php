@@ -20,19 +20,21 @@ class CreateInscricaosTable extends Migration
             $table->integer('editalId');
             $table->string('tipo');
             $table->string('declaracaoDeVinculo')->nullable();
-            $table->string('historicoEscolar')->nullable();            
-            $table->string('programaDasDisciplinas')->nullable();            
-				$table->string('curriculo')->nullable();				
-				$table->string('enem')->nullable();
-				$table->string('curso');
-				$table->string('polo');
-				$table->string('unidade');
-				$table->string('turno');
-				$table->string('cursoDeOrigem');
-				$table->string('instituicaoDeOrigem');
-				$table->string('naturezaDaIes');
-				$table->string('enderecoIes');               
-            
+            $table->string('historicoEscolar')->nullable();
+            $table->string('programaDasDisciplinas')->nullable();
+    				$table->string('curriculo')->nullable();
+    				$table->string('enem')->nullable();
+    				$table->string('curso');
+    				$table->string('polo')->nullable();
+    				$table->string('turno');
+    				$table->string('cursoDeOrigem');
+    				$table->string('instituicaoDeOrigem');
+    				$table->string('naturezaDaIes');
+    				$table->string('enderecoIes');
+            $table->string('homologado')->nullable();
+            $table->string('motivoRejeicao')->nullable();
+            $table->string('homologadoDrca')->nullable();
+
         });
     }
 

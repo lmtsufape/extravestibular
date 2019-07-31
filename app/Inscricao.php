@@ -13,14 +13,13 @@ class Inscricao extends Model
      * @var array
      */
     protected $fillable = [
-        'usuarioId',  'tipo', 'editalId', 
-        'declaracaoDeVinculo', 'historicoEscolar', 
+        'usuarioId',  'tipo', 'editalId',
+        'declaracaoDeVinculo', 'historicoEscolar',
         'programaDasDisciplinas', 'curriculo', 'enem',
-        'curso', 'polo', 'unidade', 'turno', 
-		  'cursoDeOrigem', 'instituicaoDeOrigem',
-		  'naturezaDaIes','enderecoIes',         
-        
-        
-        
+        'curso', 'polo', 'turno',
+		    'cursoDeOrigem', 'instituicaoDeOrigem',
+		    'naturezaDaIes','enderecoIes',
+        'homologado', 'motivoRejeicao',
+        'homologadoDrca',
     ];
 }
