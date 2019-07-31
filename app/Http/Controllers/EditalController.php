@@ -26,7 +26,7 @@ class EditalController extends Controller
           //     echo 'I completed! ' . $response->getBody();
           // });
           // $promise->wait();
-        $cursos = $client->get('lmts.api/api/curso/');
+        $cursos = $client->get('http://app.uag.ufrpe.br/api/api/curso/');
         if($cursos->getStatusCode() == 201){
           $cursos = json_decode($cursos->getBody(), true);
           return view('novoEdital', ['cursos' => $cursos]);
@@ -66,7 +66,7 @@ class EditalController extends Controller
     		$edital = Edital::find($request->editalId);
         if($request->tipo == '0'){
       		$client = new Client();
-      		$cursos = $client->get('lmts.api/api/curso/');
+      		$cursos = $client->get('http://app.uag.ufrpe.br/api/api/curso/');
       		$cursos = json_decode($cursos->getBody(), true);
       		$cursosDisponiveis = $edital->vagas;
       		$cursosDisponiveis = explode("!", $cursosDisponiveis);
