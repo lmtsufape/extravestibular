@@ -44,7 +44,7 @@ tr:nth-child(even) {
                             </td>
                             <div class="col-md-6">
                                 <td>
-                                  <a href="{{ $declaracaoDeVinculo }}" target="_blank">Abrir arquivo</a>
+                                  <a href="{{ route('download', ['file' => $declaracaoDeVinculo])}}" target="_blank">Abrir arquivo</a>
                                 </td>
                                 <td>
                                   <input onclick="selectCheck('aprovado')"  type="radio" name="radioDeclaracaoDeVinculo" id="selectDeclaracaoDeVinculoAprovado" <?php if($inscricao->declaracaoDeVinculo == ''){echo('checked="true"');} ?> >
@@ -62,7 +62,7 @@ tr:nth-child(even) {
                           </td>
                             <div class="col-md-6">
                               <td>
-                                <a href="{{ $historicoEscolar }}" target="_blank">Abrir arquivo</a>
+                                <a href="{{ route('download', ['file' => $historicoEscolar])}}" target="_new">Abrir arquivo</a>
                               </td>
                               <td>
                                 <input onclick="selectCheck('aprovado')"  type="radio" name="radioHistoricoEscolar" id="selectHistoricoEscolarAprovado" <?php if($inscricao->historicoEscolar == ''){echo('checked="true"');} ?> >
@@ -80,7 +80,7 @@ tr:nth-child(even) {
                           </td>
                             <div class="col-md-6">
                               <td>
-                                <a href="{{ $programaDasDisciplinas }}" target="_blank">Abir arquivo</a>
+                                <a href="{{ route('download', ['file' => $programaDasDisciplinas])}}" target="_blank">Abir arquivo</a>
                               </td>
                               <td>
                                 <input onclick="selectCheck('aprovado')"  type="radio" name="radioProgramaDasDisciplinas" id="selectProgramaDasDisciplinasAprovado" <?php if($inscricao->programaDasDisciplinas == ''){echo('checked="true"');} ?> >
@@ -98,7 +98,7 @@ tr:nth-child(even) {
                           </td>
                             <div class="col-md-6">
                               <td>
-                                <a href="{{ $curriculo }}" target="_blank">Abrir arquivo</a>
+                                <a href="{{ route('download', ['file' => $curriculo ])}}" target="_blank">Abrir arquivo</a>
                               </td>
                               <td>
                                 <input onclick="selectCheck('aprovado')"  type="radio" name="radioCurriculo" id="selectCurriculoAprovado" <?php if($inscricao->curriculo == ''){echo('checked="true"');} ?> >
@@ -116,7 +116,7 @@ tr:nth-child(even) {
                           </td>
                             <div class="col-md-6">
                               <td>
-                                <a href="{{ $enem }}" target="_blank">Abrir arquivo</a>
+                                <a href="{{ route('download', ['file' => $enem ])}}" target="_blank">Abrir arquivo</a>
                               </td>
                               <td>
                                 <input onclick="selectCheck('aprovado')"  type="radio" name="radioEnem" id="selectEnemAprovado" <?php if($inscricao->enem == ''){echo('checked="true"');} ?> >

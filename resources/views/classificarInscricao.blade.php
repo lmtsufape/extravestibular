@@ -34,7 +34,7 @@ tr:nth-child(even) {
               <th>Dados</th>
             </tr>
             <tr <?php if($inscricao->declaracaoDeVinculo    == ''){echo('style="display: none"');} ?> >
-              <form method="POST" action={{ route('homologarInscricao') }} enctype="multipart/form-data">
+              <form method="POST" action={{ route('cadastroClassificacao') }} enctype="multipart/form-data">
                     @csrf
               <div class="form-group row" >
                   <td>
@@ -97,12 +97,28 @@ tr:nth-child(even) {
             </tr>
           </table>
         </div>
+        <div class="form-group row" >
+            <label for="coeficienteDeRendimento" class="col-md-4 col-form-label text-md-right" >{{ __('Coeficiente de Rendimento')}}</label>
+            <div class="col-md-6">
+              <input id="coeficienteDeRendimento" type="text" name="coeficienteDeRendimento" autofocus>
+            </div>
+        </div>
+        <div class="form-group row" >
+            <label for="materias" class="col-md-4 col-form-label text-md-right" >{{ __('Materias Necessarias')}}</label>
+            <div class="col-md-6">
+              <input id="materias" type="text" name="materias" autofocus>
+            </div>
+        </div>
+        <div class="form-group row" >
+            <label for="completadas" class="col-md-4 col-form-label text-md-right" >{{ __('Materias Completadas')}}</label>
+            <div class="col-md-6">
+              <input id="completadas" type="text" name="completadas" autofocus>
+            </div>
+        </div>
           <div class="form-group row mb-0">
             <div class="col-md-8 offset-md-4">
                 <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
-                <input id="homologado" type="hidden" name="homologado" value="">
-                <input id="tipo" type="hidden" name="tipo" value="{{$tipo}}">
-                <button id="buttonFinalizar" type="submit" class="btn btn-primary" disabled="true">
+                <button id="buttonFinalizar" type="submit" class="btn btn-primary">
                     {{ __('Finalizar') }}
                 </button>
 
@@ -117,80 +133,5 @@ tr:nth-child(even) {
 
 
 <script type="text/javascript" >
-function checkFinalizar(){
-  if(document.getElementById("selectHistoricoEscolarAprovado").checked || document.getElementById("selectHistoricoEscolarRejeitado").checked){
-    if(document.getElementById("selectDeclaracaoDeVinculoAprovado").checked || document.getElementById("selectDeclaracaoDeVinculoRejeitado").checked){
-      if(document.getElementById("selectProgramaDasDisciplinasAprovado").checked || document.getElementById("selectProgramaDasDisciplinasRejeitado").checked){
-        if(document.getElementById("selectCurriculoAprovado").checked || document.getElementById("selectCurriculoRejeitado").checked){
-          if(document.getElementById("selectEnemAprovado").checked || document.getElementById("selectEnemRejeitado").checked){
-            if(document.getElementById("selectCursoAprovado").checked || document.getElementById("selectCursoRejeitado").checked){
-              if(document.getElementById("selectCursoDeOrigemAprovado").checked || document.getElementById("selectCursoDeOrigemRejeitado").checked){
-                if(document.getElementById("selectInstituicaoDeOrigemAprovado").checked || document.getElementById("selectInstituicaoDeOrigemRejeitado").checked){
-                  if(document.getElementById("selectPoloAprovado").checked || document.getElementById("selectPoloRejeitado").checked){
-                    if(document.getElementById("selectTurnoAprovado").checked || document.getElementById("selectTurnoRejeitado").checked){
-                      if(document.getElementById("selectNaturezaDaIesAprovado").checked || document.getElementById("selectNaturezaDaIesRejeitado").checked){
-                        if(document.getElementById("selectEnderecoDaIesAprovado").checked || document.getElementById("selectEnderecoDaIesRejeitado").checked){
-                          document.getElementById("buttonFinalizar").disabled = false;
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-function checkAprovado(){
-  if(document.getElementById("selectHistoricoEscolarAprovado").checked){
-    if(document.getElementById("selectDeclaracaoDeVinculoAprovado").checked){
-      if(document.getElementById("selectProgramaDasDisciplinasAprovado").checked){
-        if(document.getElementById("selectCurriculoAprovado").checked){
-          if(document.getElementById("selectEnemAprovado").checked){
-            if(document.getElementById("selectCursoAprovado").checked){
-              if(document.getElementById("selectCursoDeOrigemAprovado").checked){
-                if(document.getElementById("selectInstituicaoDeOrigemAprovado").checked){
-                  if(document.getElementById("selectPoloAprovado").checked){
-                    if(document.getElementById("selectTurnoAprovado").checked){
-                      if(document.getElementById("selectNaturezaDaIesAprovado").checked){
-                        if(document.getElementById("selectEnderecoDaIesAprovado").checked){
-                          document.getElementById("homologado").value = 'aprovado';
-                          document.getElementById("motivoRejeicao").value = '';
-                          document.getElementById("motivoRejeicao").style.display = 'none';
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-
-
-
-function selectCheck(x){
-  console.log('entrou');
-  if(x == 'rejeitado'){
-    document.getElementById("motivoRejeicao").style.display = '';
-    document.getElementById("homologado").value = 'rejeitado';
-  }
-  checkAprovado();
-  checkFinalizar();
-}
-
-
-
-
-
 </script>
 @endsection

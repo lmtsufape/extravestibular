@@ -10,6 +10,8 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use extravestibular\Edital;
 use Auth;
+use Illuminate\Support\Facades\Mail;
+use extravestibular\Mail\NovaInscricao;
 
 class InscricaoController extends Controller
 {
@@ -37,8 +39,10 @@ class InscricaoController extends Controller
 					  	'enderecoIes'						=> $request->enderecoIes,
 							'homologado'						=> 'nao',
 							'homologadoDrca'			 	=> 'nao',
+							'coeficienteDeRendimento'=> 'nao',
 					  ]);
-
+						$nomeEdital = Edital::find($request->editalId)->get('nome');
+						Mail::to('lucas.siqueira.araujo@gmail.com')->send(new NovaInscricao($nomeEdital));
 			      return view('home');
 	    	  }
 	    	  if(!strcmp($request->tipo, 'transferenciaInterna')) {
@@ -65,8 +69,10 @@ class InscricaoController extends Controller
 							'enderecoIes'						=> $request->enderecoIes,
 							'homologado'						=> 'nao',
 							'homologadoDrca'			 	=> 'nao',
+							'coeficienteDeRendimento'=> 'nao',
 						]);
-
+						$nomeEdital = Edital::find($request->editalId)->get('nome');
+						Mail::to('lucas.siqueira.araujo@gmail.com')->send(new NovaInscricao($nomeEdital));
 					  return view('home');
 	    	  }
 	    	  if(!strcmp($request->tipo, 'transferenciaExterna')) {
@@ -101,8 +107,10 @@ class InscricaoController extends Controller
 							'enderecoIes'						=> $request->enderecoIes,
 							'homologado'						=> 'nao',
 							'homologadoDrca'			 	=> 'nao',
+							'coeficienteDeRendimento'=> 'nao',
 					  ]);
-
+						$nomeEdital = Edital::find($request->editalId)->get('nome');
+						Mail::to('lucas.siqueira.araujo@gmail.com')->send(new NovaInscricao($nomeEdital));
 					  return view('home');
 	    	  }
 	    	  if(!strcmp($request->tipo, 'portadorDeDiploma')) {
@@ -136,8 +144,10 @@ class InscricaoController extends Controller
 							'enderecoIes'						=> $request->enderecoIes,
 							'homologado'						=> 'nao',
 							'homologadoDrca'			 	=> 'nao',
+							'coeficienteDeRendimento'=> 'nao',
 					  ]);
-
+						$nomeEdital = Edital::find($request->editalId)->get('nome');
+						Mail::to('lucas.siqueira.araujo@gmail.com')->send(new NovaInscricao($nomeEdital));
 					  return view('home');
 	    	  }
 		}
@@ -146,31 +156,31 @@ class InscricaoController extends Controller
 		$inscricao = Inscricao::find($request->inscricaoId);
 
 	  if(!strcmp($inscricao->tipo, 'reintegracao')){
-			$historicoEscolar = Storage::url('inscricao/' . Auth::user()->id . '/' . $inscricao->editalId .  '/historicoEscolar.pdf');
+			$historicoEscolar = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId .  '/historicoEscolar.pdf';
 			$declaracaoDeVinculo= '';
 			$programaDasDisciplinas = '';
 			$enem = '';
 			$curriculo = '';
 		}
 		if(!strcmp($inscricao->tipo, 'transferenciaInterna')){
-			$historicoEscolar = Storage::url('inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/historicoEscolar.pdf');
-			$declaracaoDeVinculo = Storage::url('inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/declaracaoDeVinculo.pdf');
+			$historicoEscolar = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/historicoEscolar.pdf';
+			$declaracaoDeVinculo = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/declaracaoDeVinculo.pdf';
 			$programaDasDisciplinas = '';
 			$enem = '';
 			$curriculo = '';
 		}
 		if(!strcmp($inscricao->tipo, 'transferenciaExterna')){
-			$historicoEscolar = Storage::url('inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/historicoEscolar.pdf');
-			$declaracaoDeVinculo = Storage::url('inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/declaracaoDeVinculo.pdf');
-			$programaDasDisciplinas = Storage::url('inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/programaDasDisciplinas.pdf');
-			$curriculo = Storage::url('inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/curriculo.pdf');
+			$historicoEscolar = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/historicoEscolar.pdf';
+			$declaracaoDeVinculo = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/declaracaoDeVinculo.pdf';
+			$programaDasDisciplinas = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/programaDasDisciplinas.pdf';
+			$curriculo = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/curriculo.pdf';
 			$enem = '';
 		}
 		if(!strcmp($inscricao->tipo, 'portadorDeDiploma')){
-			$historicoEscolar = Storage::url('inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/historicoEscolar.pdf');
-			$declaracaoDeVinculo = Storage::url('inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/declaracaoDeVinculo.pdf');
-			$programaDasDisciplinas = Storage::url('inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/programaDasDisciplinas.pdf');
-			$enem = Storage::url('inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/enem.pdf');
+			$historicoEscolar = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/historicoEscolar.pdf';
+			$declaracaoDeVinculo = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/declaracaoDeVinculo.pdf';
+			$programaDasDisciplinas = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/programaDasDisciplinas.pdf';
+			$enem = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/enem.pdf';
 			$curriculo = '';
 		}
 		if(!strcmp($request->tipo, 'homologacao')){
@@ -237,4 +247,24 @@ class InscricaoController extends Controller
 			}
 		}
 	}
+
+	public function downloadArquivo(Request $request){
+    return response()->download(storage_path('app/public/'.$request->file));
+	}
+
+	public function cadastroClassificacao(Request $request){
+		$inscricao = Inscricao::find($request->inscricaoId);
+		$coeficienteDeRendimento = str_replace(",",".",$request->coeficienteDeRendimento);
+		$inscricao->coeficienteDeRendimento = $coeficienteDeRendimento;
+		$completadas = floatval($request->completadas);
+		$materias = floatval($request->materias);
+		$completadas = $completadas * 100;
+		$conclusaoDoCurso = $completadas/$materias;
+		$conclusaoDoCurso = $conclusaoDoCurso/10;
+		$conclusaoDoCurso = number_format((float)$conclusaoDoCurso, 1, '.', '');
+		$inscricao->conclusaoDoCurso = (String) $conclusaoDoCurso;
+		$inscricao->save();
+		return view('home');
+	}
+
 }

@@ -17,14 +17,23 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home',                  'HomeController@index'                     )->name('home');
 
-Route::post('/listaEditais',        'EditalController@listaEditais'           )->name('listaEditais');
-Route::post('/fazerInscricao',      'EditalController@editalEscolhido'        )->name('editalEscolhido');
-Route::post('/cadastroEdital',      'EditalController@cadastroEdital'         )->name('cadastroEdital');
-Route::post('/novoEdital',          'EditalController@novoEdital'             )->name('novoEdital');
+Route::get('/download',              'InscricaoController@downloadArquivo'      )->name('download');
 
-Route::post('/cadastroInscricao',   'InscricaoController@cadastroInscricao'   )->name('cadastroInscricao');
-Route::post('/homologarInscricao',  'InscricaoController@inscricaoEscolhida'  )->name('inscricaoEscolhida');
-Route::post('/inscricaoHomologada', 'InscricaoController@homologarInscricao'  )->name('homologarInscricao');
-Route::post('/classificarInscricao','InscricaoController@classificarInscricao')->name('classificarInscricao');
+Route::post('/novoEdital',           'EditalController@novoEdital'              )->name('novoEdital');
+Route::post('/listaEditais',         'EditalController@listaEditais'            )->name('listaEditais');
+Route::post('/cadastroEdital',       'EditalController@cadastroEdital'          )->name('cadastroEdital');
+Route::post('/listaInscricoes',      'EditalController@editalEscolhido'         )->name('editalEscolhido');
+
+Route::post('/cadastroInscricao',    'InscricaoController@cadastroInscricao'    )->name('cadastroInscricao');
+Route::post('/homologarInscricao',   'InscricaoController@inscricaoEscolhida'   )->name('inscricaoEscolhida');
+Route::post('/inscricaoHomologada',  'InscricaoController@homologarInscricao'   )->name('homologarInscricao');
+Route::post('/classificarInscricao', 'InscricaoController@classificarInscricao' )->name('classificarInscricao');
+Route::post('/cadastroClassificacao','InscricaoController@cadastroClassificacao')->name('cadastroClassificacao');
+
+Route::post('/cadastroIsencao',      'IsencaoController@cadastroIsencao'        )->name('cadastroIsencao');
+
+Route::post('/cadastroRecurso',      'RecursoController@cadastroRecurso'        )->name('cadastroRecurso');
+Route::post('/homologarRecurso',     'RecursoController@recursoEscolhido'       )->name('recursoEscolhido');
+Route::post('/recursoHomologado',    'RecursoController@homologarRecurso'       )->name('homologarRecurso');

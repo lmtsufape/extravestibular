@@ -299,6 +299,19 @@
                 </li>
 
                 <li>
+                  <a href="{{ route('listaEditais') }}"
+                  onclick="event.preventDefault();
+                  document.getElementById('listaEditais-form1').submit();">
+                  {{ __('Homologar Inscrições') }}
+                </a>
+
+                <form id="listaEditais-form1" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
+                  @csrf
+                  <input type="hidden" name="tipo" value="1">
+                </form>
+                </li>
+
+                <li>
                     <a href="{{ route('listaEditais') }}"
                        onclick="event.preventDefault();
                                      document.getElementById('listaEditais-form2').submit();">
@@ -323,20 +336,34 @@
                     </form>
                 </li>
 
+                <li>
+                    <a href="{{ route('listaEditais') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('listaEditais-form4').submit();">
+                        {{ __('Requerimento de Recurso') }}
+                    </a>
 
+                    <form id="listaEditais-form4" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
+                        @csrf
+                        <input type="hidden" name="tipo" value="4">
+                    </form>
+                </li>
 
                 <li>
                     <a href="{{ route('listaEditais') }}"
                        onclick="event.preventDefault();
-                                     document.getElementById('listaEditais-form1').submit();">
-                        {{ __('Homologar Inscrições') }}
+                                     document.getElementById('listaEditais-form5').submit();">
+                        {{ __('Homologar Recursos') }}
                     </a>
 
-                    <form id="listaEditais-form1" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
+                    <form id="listaEditais-form5" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
                         @csrf
-                        <input type="hidden" name="tipo" value="1">
+                        <input type="hidden" name="tipo" value="5">
                     </form>
                 </li>
+
+
+
 
                 <?php /*<!--<li class="dropdown">
                   <a href="{{ route("grupoConsumo.listar") }}" class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

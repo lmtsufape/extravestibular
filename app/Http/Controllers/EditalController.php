@@ -5,9 +5,11 @@ namespace extravestibular\Http\Controllers;
 use Illuminate\Http\Request;
 use extravestibular\Edital;
 use extravestibular\Inscricao;
+use extravestibular\Recurso;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 
 class EditalController extends Controller
@@ -49,6 +51,9 @@ class EditalController extends Controller
           'pdfEdital'         => $path . $_FILES['pdfEdital']['name'],
           'inicioInscricoes'  => $request->inicioInscricoes,
           'fimInscricoes'     => $request->fimInscricoes,
+          'nome'              => $_FILES['pdfEdital']['name'],
+          'inicioRecurso'     => $request->inicioRecurso,
+          'fimRecurso'        => $request->fimRecurso,
 
         ]);
 
@@ -58,8 +63,25 @@ class EditalController extends Controller
       }
 
       public function listaEditais(Request $request){
-    		$editais = Edital::all();
-    		return view('listaEditais', ['editais' => $editais, 'tipo' => $request->tipo]);
+        $mytime = Carbon::now('America/Recife');
+        $mytime = $mytime->toDateString();
+        if($request->tipo == '4' || $request->tipo == '5'){
+          $editais = Edital::where('inicioRecurso', '<=', $mytime)
+                             ->where('fimRecurso', '>=', $mytime)
+                             ->get();
+          return view('listaEditais', ['editais' => $editais,
+                                       'tipo' => $request->tipo,
+                                      ]);
+
+        }
+        else{
+          $editais = Edital::where('inicioInscricoes', '<=', $mytime)
+                             ->where('fimInscricoes', '>=', $mytime)
+                             ->get();
+          return view('listaEditais', ['editais' => $editais,
+                                       'tipo' => $request->tipo,
+                                      ]);
+        }
     	}
 
     	public function editalEscolhido(Request $request){
@@ -101,16 +123,23 @@ class EditalController extends Controller
                                          ]);
         }
         if($request->tipo == '3'){
-          $inscricoesDisponiveis = Inscricao::where('editalId', $request->editalId)->where('homologado', 'aprovado')->where('tipo', 'reintegracao')->where('homologadoDrca', 'aprovado')->get();
-          $aux = Inscricao::where('editalId', $request->editalId)->where('homologado', 'aprovado')->where('tipo', 'transferenciaExterna')->get();
-          $aux1 = Inscricao::where('editalId', $request->editalId)->where('homologado', 'aprovado')->where('tipo', 'transferenciaInterna')->get();
-          $aux2 = Inscricao::where('editalId', $request->editalId)->where('homologado', 'aprovado')->where('tipo', 'portadorDeDiploma')->get();
+          $inscricoesDisponiveis = Inscricao::where('editalId', $request->editalId)->where('homologado', 'aprovado')->where('tipo', 'reintegracao')->where('homologadoDrca', 'aprovado')->where('coeficienteDeRendimento', 'nao')->get();
+          $aux = Inscricao::where('editalId', $request->editalId)->where('homologado', 'aprovado')->where('tipo', 'transferenciaExterna')->where('coeficienteDeRendimento', 'nao')->get();
+          $aux1 = Inscricao::where('editalId', $request->editalId)->where('homologado', 'aprovado')->where('tipo', 'transferenciaInterna')->where('coeficienteDeRendimento', 'nao')->get();
+          $aux2 = Inscricao::where('editalId', $request->editalId)->where('homologado', 'aprovado')->where('tipo', 'portadorDeDiploma')->where('coeficienteDeRendimento', 'nao')->get();
           $inscricoesDisponiveis = $inscricoesDisponiveis->merge($aux);
           $inscricoesDisponiveis = $inscricoesDisponiveis->merge($aux1);
           $inscricoesDisponiveis = $inscricoesDisponiveis->merge($aux2);
           return view('listaInscricoes', ['inscricoes' => $inscricoesDisponiveis,
                                           'tipo'       => 'classificacao',
                                          ]);
+        }
+        if($request->tipo == '4'){
+          return view('cadastrarRecurso', ['editalId' => $request->editalId]);
+        }
+        if($request->tipo == '5'){
+          $recursosDisponiveis = Recurso::where('editalId', $request->editalId)->where('homologado', 'nao')->get();
+          return view('listaRecursos', ['recursos' => $recursosDisponiveis]);
         }
       }
 
