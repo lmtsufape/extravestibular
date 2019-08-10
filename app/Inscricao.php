@@ -21,5 +21,7 @@ class Inscricao extends Model
 		    'naturezaDaIes','enderecoIes',
         'homologado', 'motivoRejeicao',
         'homologadoDrca',
+        'coeficienteDeRendimento',
+        'conclusaoDoCurso',
     ];
 }

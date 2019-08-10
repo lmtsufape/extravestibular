@@ -193,9 +193,9 @@ function tipo(x) {
     document.getElementById("tipo").value = "portadorDeDiploma";
     document.getElementById("formulario").style.display = "";
     document.getElementById("historicoEscolar").style.display = "";
-    document.getElementById("declaracaoDeVinculo").style.display = "none";
+    document.getElementById("declaracaoDeVinculo").style.display = "";
     document.getElementById("enem").style.display = "";
-    document.getElementById("curriculo").style.display = "";
+    document.getElementById("curriculo").style.display = "none";
     document.getElementById("programaDasDisciplinas").style.display = "";
 	}
 }

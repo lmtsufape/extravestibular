@@ -1,27 +1,26 @@
 @extends('layouts.app')
-@section('titulo','Editais')
+@section('titulo','Homologar Recurso')
 @section('navbar')
-    Inscrição
+    Homologar Recurso
 @endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Editais') }}</div>
+                <div class="card-header">{{ __('Recursos abertos') }}</div>
                   <div class="form-group row">
                       <?php
-                      foreach ($editais as $edital) {
+                      foreach ($recursos as $recurso) {
                         ?>
-                        <form method="POST" action={{ route('editalEscolhido') }} enctype="multipart/form-data">
+                        <form method="POST" action={{ route('recursoEscolhido') }} enctype="multipart/form-data">
                               @csrf
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                {{$edital->nome}}
-                                <input type="hidden" name="editalId" value="{{$edital->id}}">
-                                <input type="hidden" name="tipo" value="{{$tipo}}">
+                                {{$recurso->id}}
+                                <input type="hidden" name="recursoId" value="{{$recurso->id}}">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Selecionar este Edital') }}
+                                    {{ __('Selecionar este recurso') }}
                                 </button>
 
                             </div>

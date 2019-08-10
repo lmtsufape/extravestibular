@@ -53,6 +53,22 @@
                           </div>
 
                           <div  class="form-group row" >
+                              <label for="inicioRecurso" class="col-md-4 col-form-label text-md-right">{{ __('Inicio do Recurso:') }}</label>
+
+                              <div class="col-md-6">
+                                  <input type="date" name="inicioRecurso" >
+                              </div>
+                          </div>
+
+                          <div  class="form-group row" >
+                              <label for="fimRecurso" class="col-md-4 col-form-label text-md-right">{{ __('Fim do Recurso:') }}</label>
+
+                              <div class="col-md-6">
+                                  <input type="date" name="fimRecurso" >
+                              </div>
+                          </div>
+
+                          <div  class="form-group row" >
                               <label for="pdfEdital" class="col-md-4 col-form-label text-md-right">{{ __('Arquivo do Edital:') }}</label>
 
                               <div class="col-md-6">
