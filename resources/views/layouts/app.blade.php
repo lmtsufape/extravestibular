@@ -16,6 +16,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/select2-bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/field-animation.css') }}" rel="stylesheet">
 
     <script type="text/javascript">
 
@@ -26,6 +27,31 @@
             color: #fff;
             background-color: #1B2E4F;
             border-color: #d3e0e9;
+        }
+        .separador-lmts{
+          color: white;
+          font-weight: bold;
+          font-size: 20;
+          margin-top: 6px;
+        }
+        .btn-primary-lmts{
+          background-color: #1B2E4F;
+          border-color: #d3e0e9;
+          color: white;
+        }
+        .btn-primary-lmts:disabled{
+          background-color: #1B2E4F;
+          border-color: #d3e0e9;
+          color: white;
+        }
+        .btn-primary-lmts:hover{
+          background-color: #2c4e8a;
+          border-color: #d3e0e9;
+          color: white;
+        }
+
+        .nav-link {
+          color: white;
         }
         /* Select2 Selects CSS - Start */
         .select2-container--bootstrap .select2-selection--single .select2-selection__placeholder  {
@@ -80,7 +106,8 @@
            position: absolute;
            bottom: 0;
            width: 100%;
-           display: none;
+
+
         }
         #page-container {
           position: relative;
@@ -203,12 +230,12 @@
       </div>
 
       <!-- Barra de Logos -->
-      <div id="barra-logos" class-"container" style="background:#FFFFFF; margin-top: 1px; height: 200px; padding: 10px 0 10px 0">
+      <div id="barra-logos" lass-"container" style="background:#FFFFFF; margin-top: 1px; height: 200px; padding: 10px 0 10px 0">
         <ul id="logos" style="list-style:none;">
-            <li style="margin-right:140px; margin-left:110px; border-right:1px">
+            <li style="margin-right:140px; margin-left:110px; border-right:1px ;height: 150px">
                 <a href="{{ route("home") }}"><img src="{{asset('images/extraVestibular.png')}}" style = "margin-left: 8px; margin-top:5px " height="170px" align = "left" ></a>
 
-                <a target="_blank" href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts3.png')}}" style = "margin-left: 8px; margin-top:65px " height="80" align = "right" ></a>
+                <a target="_blank" href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts.jpg')}}" style = "margin-left: 8px; margin-top:65px " height="80" align = "right" ></a>
 
                 <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 65px" height="70" align = "right" >
                 <a target="_blank" href="http://ww3.uag.ufrpe.br/"><img src="{{asset('images/uag.png')}}" style = "margin-left: 10px; margin-top: 65px" height="80" width="70" align = "right" ></a>
@@ -218,198 +245,203 @@
             </li>
         </ul>
       </div>
-
       <!-- barra de menu -->
-      <nav class="navbar navbar-default" style="background-color: #1B2E4F; border-color: #d3e0e9" role="navigation">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-          </div>
+
+      <nav class="navbar navbar-expand-lg" style="background-color: #1B2E4F; border-color: #d3e0e9" role="navigation">
+        <a class="navbar-brand" href="{{ route('home') }}" style="color: white; font-weight: bold;">
+          <img src="{{asset('images/extraVestibularBranco.png')}}" height="30" class="d-inline-block align-top" alt="">
+
+        </a>
           <div class="collapse navbar-collapse" >
+            <ul class="navbar-nav mr-auto">
+              @if(Auth::check())
+                <!-- Visão Candidato -->
+                @if(Auth::user()->tipo == 'candidato')
+
+                  <li class="nav-item active"> <!-- Ver Editais -->
+                      <a class="nav-link" href="{{ route('home') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('VerEditais').submit();">
+                         {{ __('EDITAIS') }}
+                      </a>
+                      <form id="VerEditais" action="{{ route('home') }}" method="GET" style="display: none;">
+                          @csrf
+                      </form>
+                  </li>
+
+                  <li class="separador-lmts"> <!-- separador -->
+                    |
+                  </li>
+
+                  <li class="nav-item active"> <!-- Ver Dados do Perfil -->
+                      <a class="nav-link" href="{{ route('verDadosUsuario') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('cadastroDadosUsuario').submit();">
+                         {{ __('DADOS DE USUÁRIO') }}
+                      </a>
+                      <form id="cadastroDadosUsuario" action="{{ route('verDadosUsuario') }}" method="GET" style="display: none;">
+                          @csrf
+                      </form>
+                  </li>
+
+                @endif
+                @if(Auth::user()->tipo == 'PREG')
+                <!-- Visão PREG -->
+
+                  <li class="nav-item active"> <!-- Ver Editais -->
+                      <a class="nav-link" href="{{ route('home') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('VerEditais').submit();">
+                         {{ __('EDITAIS') }}
+                      </a>
+                      <form id="VerEditais" action="{{ route('home') }}" method="GET" style="display: none;">
+                          @csrf
+                      </form>
+                  </li>
+
+                  <li class="separador-lmts"> <!-- separador -->
+                    |
+                  </li>
+
+                  <li class="nav-item active"> <!-- Novo Edital -->
+                    <a class="nav-link" href="{{ route('novoEdital') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('novoEdital-form').submit();">
+                       {{ __('NOVO EDITAL') }}
+                    </a>
+                    <form id="novoEdital-form" action="{{ route('novoEdital') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                  </li>
+
+                  <li class="separador-lmts"> <!-- separador -->
+                    |
+                  </li>
+
+                  <li class="nav-item active"> <!-- Gerar Classificação -->
+                      <a class="nav-link" href="{{ route('listaEditais') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('listaEditais-form6').submit();">
+                         {{ __('GERAR CLASSIFICAÇÃO') }}
+                      </a>
+                      <form id="listaEditais-form6" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
+                          @csrf
+                          <input type="hidden" name="tipo" value="gerarClassificacao">
+                      </form>
+                  </li>
+
+                @endif
+                @if(Auth::user()->tipo == 'DRCA')
+                <!-- Visão DRCA -->
+
+                  <li class="nav-item active"> <!-- Ver Editais -->
+                      <a class="nav-link" href="{{ route('home') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('VerEditais').submit();">
+                         {{ __('Editais') }}
+                      </a>
+                      <form id="VerEditais" action="{{ route('home') }}" method="GET" style="display: none;">
+                          @csrf
+                      </form>
+                  </li>
+
+
+                @endif
+                @if(Auth::user()->tipo == 'coordenador')
+                <!-- Visão coordenador -->
+
+                  <li class="nav-item active"> <!-- Ver Editais -->
+                      <a class="nav-link" href="{{ route('home') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('VerEditais').submit();">
+                         {{ __('Editais') }}
+                      </a>
+                      <form id="VerEditais" action="{{ route('home') }}" method="GET" style="display: none;">
+                          @csrf
+                      </form>
+                  </li>
+
+                  <!-- <li class="nav-item active">  Classificar Inscrições
+                      <a class="nav-link" href="{{ route('listaEditais') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('listaEditais-form3').submit();">
+                         {{ __('Classificar Inscrições') }}
+                      </a>
+                      <form id="listaEditais-form3" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
+                          @csrf
+                          <input type="hidden" name="tipo" value="classificarInscricoes">
+                      </form>
+                  </li> -->
+
+                @endif
+              @endif
+            </ul>
+
+          </div>
+
+          <div class="nav navbar-nav navbar-right" >
             <ul class="nav navbar-nav">
                 @if(Auth::check())
-                    <?php /*<li><a class="menu-principal" href="{{ route("home") }}">Início</a></li>
-                    <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item" href="{{ route('fazerInscricao') }}"
-                           onclick="event.preventDefault();
-                                         document.getElementById('fazerInscricao-form').submit();">
-                            {{ __('Fazer Inscrição') }}
-                        </a>
-
-                        <form id="fazerInscricao-form" action="{{ route('fazerInscricao') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </li>
-                    */?>
                 @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
               @if(Auth::check())
-                <li>
-                    <a href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
-
-                <li>
-                    <a href="{{ route('listaEditais') }}"
-                       onclick="event.preventDefault();
-                                     document.getElementById('listaEditais-form').submit();">
-                        {{ __('Fazer Inscrição') }}
-                    </a>
-
-                    <form id="listaEditais-form" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
-                        @csrf
-                        <input type="hidden" name="tipo" value="0">
-                    </form>
-                </li>
-
-                <li>
-                    <a href="{{ route('novoEdital') }}"
-                       onclick="event.preventDefault();
-                                     document.getElementById('novoEdital-form').submit();">
-                        {{ __('Novo edital') }}
-                    </a>
-
-                    <form id="novoEdital-form" action="{{ route('novoEdital') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
-
-                <li>
-                  <a href="{{ route('listaEditais') }}"
-                  onclick="event.preventDefault();
-                  document.getElementById('listaEditais-form1').submit();">
-                  {{ __('Homologar Inscrições') }}
-                </a>
-
-                <form id="listaEditais-form1" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
-                  @csrf
-                  <input type="hidden" name="tipo" value="1">
-                </form>
-                </li>
-
-                <li>
-                    <a href="{{ route('listaEditais') }}"
-                       onclick="event.preventDefault();
-                                     document.getElementById('listaEditais-form2').submit();">
-                        {{ __('Homologar Inscrições Reintegração') }}
-                    </a>
-
-                    <form id="listaEditais-form2" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
-                        @csrf
-                        <input type="hidden" name="tipo" value="2">
-                    </form>
-                </li>
-                <li>
-                    <a href="{{ route('listaEditais') }}"
-                       onclick="event.preventDefault();
-                                     document.getElementById('listaEditais-form3').submit();">
-                        {{ __('Classificar Inscrições') }}
-                    </a>
-
-                    <form id="listaEditais-form3" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
-                        @csrf
-                        <input type="hidden" name="tipo" value="3">
-                    </form>
-                </li>
-
-                <li>
-                    <a href="{{ route('listaEditais') }}"
-                       onclick="event.preventDefault();
-                                     document.getElementById('listaEditais-form4').submit();">
-                        {{ __('Requerimento de Recurso') }}
-                    </a>
-
-                    <form id="listaEditais-form4" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
-                        @csrf
-                        <input type="hidden" name="tipo" value="4">
-                    </form>
-                </li>
-
-                <li>
-                    <a href="{{ route('listaEditais') }}"
-                       onclick="event.preventDefault();
-                                     document.getElementById('listaEditais-form5').submit();">
-                        {{ __('Homologar Recursos') }}
-                    </a>
-
-                    <form id="listaEditais-form5" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
-                        @csrf
-                        <input type="hidden" name="tipo" value="5">
-                    </form>
-                </li>
-
-
-
-
-                <?php /*<!--<li class="dropdown">
-                  <a href="{{ route("grupoConsumo.listar") }}" class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                      Grupos de Consumo <span class="caret"></span>
-                  </a>
-
-                  <ul class="dropdown-menu" role="menu">
-                      <li>
-                          <a href="{{ route("grupoConsumo.listar") }}">Meus Grupos de Consumo</a>
-                      </li>
-                      <li>
-                          <a href="{{ route("consumidor.grupo.buscar") }}">Entrar em Grupo de Consumo</a>
-                      </li>
-                  </ul>
-                </li>
-
-                <li class="dropdown">
-                  <a href="{{ route("loja") }}" class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                      Loja <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu" role="menu">
-                      <li>
-                          <a href="{{ route("loja") }}">Comprar</a>
-                      </li>
-                  </ul>
-                </li>
-
-                <li class="dropdown">
-                  <a href="#" class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                      {{ Auth::user()->name }} <span class="caret"></span>
-                  </a>
-                  <ul style="" class="dropdown-menu" role="menu">
-                    <li><a href="{{ route("consumidor.meusPedidos") }}">Meus Pedidos</a></li>
-                    <li><a href="{{ route("consumidor.editarCadastro") }}">Meus Dados</a></li>
-                    <li>
-                      <a href="{{ route('logout') }}"
-                          onclick="event.preventDefault();
-                                   document.getElementById('logout-form').submit();">
-                          Sair
+                <!-- Visão Candidato -->
+                @if(Auth::user()->tipo == 'candidato')
+                  <li> <!--  logout   -->
+                      <a class="nav-link"  href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                         {{ __('Sair') }}
                       </a>
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                          {{ csrf_field() }}
+                          @csrf
                       </form>
-                    </li>
-                  </ul>
-                </li>*/ ?>
+                  </li>
+
+                @endif
+                @if(Auth::user()->tipo == 'PREG')
+                <!-- Visão PREG -->
+                  <li> <!--  logout   -->
+                      <a class="nav-link"  href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                         {{ __('Sair') }}
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
+                  </li>
+
+                @endif
+                @if(Auth::user()->tipo == 'DRCA')
+                <!-- Visão DRCA -->
+                  <li> <!--  logout   -->
+                      <a class="nav-link"  href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                         {{ __('Sair') }}
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
+                  </li>
+
+                @endif
+                @if(Auth::user()->tipo == 'coordenador')
+                <!-- Visão coordenador -->
+                  <li> <!--  logout   -->
+                      <a class="nav-link"  href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                         {{ __('Sair') }}
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
+                  </li>
+
+                @endif
               @else
                 <li><a class="menu-principal" href="{{ route('login') }}">Entrar</a></li>
                 <li><a class="menu-principal" href="{{ route('register') }}">Cadastrar</a></li>
@@ -418,13 +450,14 @@
           </div>
         </nav>
 
+
       @php($url = str_replace(URL::to('/'),'',URL::current()))
 
       @if(!($url == '/home'))
         @if(!($url == '/login'))
           @if(!($url == '/register'))
 
-            <div style="margin-top: -30px" class="container">
+            <!-- <div style="margin-top: -30px" class="container">
               <hr>
                   <div class="row">
                       <div class="col-md-8 col-md-offset-2">
@@ -436,26 +469,28 @@
                       </div>
                   </div>
               <hr>
-            </div>
+            </div> -->
 
           @endif
         @endif
       @endif
-
+      <br>
       @yield('content')
 
     </div>
-
-    <div id="footer-brasil"></div>
-    <!-- <footer id="footer-brasil"></footer> -->
-
   </div>
+
+
+
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/bootstrap-filestyle.min.js')}}"> </script>
 
 </body>
 
+<!--- <div id="footer-brasil"></div>-->
 
 <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
+
 </html>

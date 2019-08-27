@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'tipo', 'rg'
+        'name', 'email', 'password', 'tipo', 'dados'
     ];
 
     /**
@@ -36,4 +36,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function dadosUsuario()
+    {
+        return $this->belongsTo('extravestibular\DadosUsuario', 'dados');
+    }
+
+    public function inscricao()
+    {
+        return $this->hasMany('extravestibular\Inscricao');
+    }
+
+    public function isencao()
+    {
+        return $this->hasMany('extravestibular\Isencao');
+    }
+
+    public function recurso()
+    {
+        return $this->hasMany('extravestibular\Recurso');
+    }
 }

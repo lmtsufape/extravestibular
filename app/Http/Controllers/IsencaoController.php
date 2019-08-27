@@ -4,82 +4,48 @@ namespace extravestibular\Http\Controllers;
 
 use extravestibular\Isencao;
 use Illuminate\Http\Request;
+use extravestibular\User;
+use Auth;
 
 class IsencaoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+  public function cadastroIsencao(Request $request){
+    Isencao::create([
+      'usuarioId'                        => Auth::user()->id,
+      'editalId'                         => $request->editalId,
+      'tipo'                             => $request->tipo,
+      'nomeDadoEconomico'                => $request->nomeDadoEconomico,
+      'cpfDadoEconomico'                 => $request->cpfDadoEconomico,
+      'parentescoDadoEconomico'          => $request->parentescoDadoEconomico,
+      'rendaDadoEconomico'               => $request->rendaDadoEconomico,
+      'fontePagadoraDadoEconomico'       => $request->fontePagadoraDadoEconomico,
+      'nomeNucleoFamiliar'               => $request->nomeNucleoFamiliar,
+      'cpfNucleoFamiliar'                => $request->cpfNucleoFamiliar,
+      'parentescoNucleoFamiliar'         => $request->parentescoNucleoFamiliar,
+      'rendaNucleoFamiliar'              => $request->rendaNucleoFamiliar,
+      'fontePagadoraNucleoFamiliar'      => $request->fontePagadoraNucleoFamiliar,
+      'nomeNucleoFamiliar1'              => $request->nomeNucleoFamiliar1,
+      'cpfNucleoFamiliar1'               => $request->cpfNucleoFamiliar1,
+      'parentescoNucleoFamiliar1'        => $request->parentescoNucleoFamiliar1,
+      'rendaNucleoFamiliar1'             => $request->rendaNucleoFamiliar1,
+      'fontePagadoraNucleoFamiliar1'     => $request->fontePagadoraNucleoFamiliar1,
+      'parecer'                          => 'nao',
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    ]);
+    return redirect()->route('home')->with('jsAlert', 'Isenção requerida com sucesso.');
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+  public function isencaoEscolhida(Request $request){
+    $isencao = Isencao::find($request->isencaoId);
+    return view('homologarIsencao', ['isencao' => $isencao]);
+  }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \extravestibular\Isencao  $isencao
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Isencao $isencao)
-    {
-        //
-    }
+  public function homologarIsencao(Request $request){
+    $isencao = Isencao::find($request->isencaoId);
+    $isencao->parecer = $request->resultado;
+    $isencao->save();
+    return redirect()->route('home')->with('jsAlert', 'Isenção homologada com sucesso.');
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \extravestibular\Isencao  $isencao
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Isencao $isencao)
-    {
-        //
-    }
+  }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \extravestibular\Isencao  $isencao
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Isencao $isencao)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \extravestibular\Isencao  $isencao
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Isencao $isencao)
-    {
-        //
-    }
 }

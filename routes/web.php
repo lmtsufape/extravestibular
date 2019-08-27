@@ -17,23 +17,30 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home',                  'HomeController@index'                     )->name('home');
+Route::get('/home',                  'HomeController@index'                       )->name('home');
 
-Route::get('/download',              'InscricaoController@downloadArquivo'      )->name('download');
+Route::get('/download',              'InscricaoController@downloadArquivo'        )->name('download');
 
-Route::post('/novoEdital',           'EditalController@novoEdital'              )->name('novoEdital');
-Route::post('/listaEditais',         'EditalController@listaEditais'            )->name('listaEditais');
-Route::post('/cadastroEdital',       'EditalController@cadastroEdital'          )->name('cadastroEdital');
-Route::post('/listaInscricoes',      'EditalController@editalEscolhido'         )->name('editalEscolhido');
+Route::post('/novoEdital',           'EditalController@novoEdital'                )->name('novoEdital');
+Route::post('/listaEditais',         'EditalController@listaEditais'              )->name('listaEditais');
+Route::post('/cadastroEdital',       'EditalController@cadastroEdital'            )->name('cadastroEdital');
+Route::get('/listaInscricoes',       'EditalController@editalEscolhido'           )->name('editalEscolhido');
+Route::post('/gerarClassificacao',   'EditalController@gerarClassificacao'        )->name('gerarClassificacao');
 
-Route::post('/cadastroInscricao',    'InscricaoController@cadastroInscricao'    )->name('cadastroInscricao');
-Route::post('/homologarInscricao',   'InscricaoController@inscricaoEscolhida'   )->name('inscricaoEscolhida');
-Route::post('/inscricaoHomologada',  'InscricaoController@homologarInscricao'   )->name('homologarInscricao');
-Route::post('/classificarInscricao', 'InscricaoController@classificarInscricao' )->name('classificarInscricao');
-Route::post('/cadastroClassificacao','InscricaoController@cadastroClassificacao')->name('cadastroClassificacao');
+Route::post('/cadastroInscricao',    'InscricaoController@cadastroInscricao'      )->name('cadastroInscricao');
+Route::post('/homologarInscricao',   'InscricaoController@inscricaoEscolhida'     )->name('inscricaoEscolhida');
+Route::post('/inscricaoHomologada',  'InscricaoController@homologarInscricao'     )->name('homologarInscricao');
+Route::post('/classificarInscricao', 'InscricaoController@classificarInscricao'   )->name('classificarInscricao');
+Route::post('/cadastroClassificacao','InscricaoController@cadastroClassificacao'  )->name('cadastroClassificacao');
 
-Route::post('/cadastroIsencao',      'IsencaoController@cadastroIsencao'        )->name('cadastroIsencao');
+Route::post('/cadastroIsencao',      'IsencaoController@cadastroIsencao'          )->name('cadastroIsencao');
+Route::post('/homologarIsencao',     'IsencaoController@isencaoEscolhida'         )->name('isencaoEscolhida');
+Route::post('/isencaoHomologada',    'IsencaoController@homologarIsencao'         )->name('homologarIsencao');
 
-Route::post('/cadastroRecurso',      'RecursoController@cadastroRecurso'        )->name('cadastroRecurso');
-Route::post('/homologarRecurso',     'RecursoController@recursoEscolhido'       )->name('recursoEscolhido');
-Route::post('/recursoHomologado',    'RecursoController@homologarRecurso'       )->name('homologarRecurso');
+
+Route::post('/cadastroRecurso',      'RecursoController@cadastroRecurso'          )->name('cadastroRecurso');
+Route::post('/homologarRecurso',     'RecursoController@recursoEscolhido'         )->name('recursoEscolhido');
+Route::post('/recursoHomologado',    'RecursoController@homologarRecurso'         )->name('homologarRecurso');
+
+Route::get('/dadosUsuario',          'DadosUsuarioController@verDadosUsuario'     )->name('verDadosUsuario');
+Route::post('/cadastroDadosUsuario', 'DadosUsuarioController@cadastroDadosUsuario')->name('cadastroDadosUsuario');

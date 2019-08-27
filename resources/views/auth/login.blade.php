@@ -7,64 +7,72 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card ">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                        <div class="form-group row justify-content-center">
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                              <label for="email" class="field a-field a-field_a3 page__field ">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror field__input a-field__input" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="E-Mail">
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <span class="a-field__label-wrap">
+                                  <span class="a-field__label">E-mail</span>
+                                </span>
+                              </label>
+                              @error('email')
+                              <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;">
+                                <strong>{{ $message }}</strong>
+                              </span>
+                              @enderror
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                        <div class="form-group row justify-content-center">
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                              <label for="password" class="field a-field a-field_a3 page__field" >
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror field__input a-field__input" name="password" required autocomplete="current-password" placeholder="Senha">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <span class="a-field__label-wrap">
+                                  <span class="a-field__label">Senha</span>
+                                </span>
+                              </label>
+                              @error('password')
+                              <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;">
+                                <strong>{{ $message }}</strong>
+                              </span>
+                              @enderror
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
+                        <div class="form-group row justify-content-center">
+                            <div class="col-md-6 ">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                        {{ __('Lembre-se de mim') }}
                                     </label>
                                 </div>
+                                @if (Route::has('password.request'))
+                                <a class="btn btn-link" href="{{ route('password.request') }}" style="color: #1B2E4F;">
+                                  {{ __('Esqueceu sua senha?   ') }}
+                                </a>
+                                @endif
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                        <div class="form-group row mb-0 justify-content-center">
+                            <div class="col-md-6">
+                              <a class="menu-principal" href="{{ route('register') }}" style="color: #1B2E4F;">Cadastrar</a>
+                                <button type="submit" class="btn btn-primary" style="margin-left: 100px;background-color: #1B2E4F; border-color: #d3e0e9">
+                                    {{ __('Entrar') }}
                                 </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
                             </div>
                         </div>
                     </form>

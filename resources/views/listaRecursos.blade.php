@@ -9,27 +9,40 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Recursos abertos') }}</div>
-                  <div class="form-group row">
-                      <?php
-                      foreach ($recursos as $recurso) {
-                        ?>
-                        <form method="POST" action={{ route('recursoEscolhido') }} enctype="multipart/form-data">
-                              @csrf
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                {{$recurso->id}}
-                                <input type="hidden" name="recursoId" value="{{$recurso->id}}">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Selecionar este recurso') }}
-                                </button>
+                <div class="card-body">
+                  <table class="table table-ordered table-hover">
+                    @foreach ($recursos as $recurso)
+                    <tr>
+                      <td> <!-- ID -->
+                       <a >
+                         {{$recurso->id}}
+                       </a>
+                      </td>
 
-                            </div>
-                        </div>
-                      </form>
-                    <?php } ?>
+                      <td> <!-- Tipo -->
+                       <a >
+                         {{$recurso->tipo}}
+                       </a>
+                      </td>
 
+                      <td> <!-- Isenção -->
+                        <form method="POST" action={{ route('recursoEscolhido') }} enctype="multipart/form-data"> <!-- Isenção -->
+                          @csrf
+                          <div class="col-md-8 offset-md-4">
+                            <input type="hidden" name="recursoId" value="{{$recurso->id}}">
+                            <button type="submit" class="btn btn-primary btn-primary-lmts">
+                                {{ __('Selecionar este recurso') }}
+                            </button>
 
-                  </div>
+                          </div>
+                        </form>
+                      </td>
+                    </tr>
+
+                    @endforeach
+
+                {{ $recursos->links() }}
+              </div>
             </div>
         </div>
     </div>

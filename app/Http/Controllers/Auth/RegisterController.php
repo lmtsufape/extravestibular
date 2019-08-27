@@ -62,12 +62,12 @@ class RegisterController extends Controller
      * @return \extravestibular\User
      */
     protected function create(array $data)
-    {			
+    {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'rg' => $data['rg'],
             'password' => Hash::make($data['password']),
+            'tipo' => 'candidato',
         ]);
     }
 }

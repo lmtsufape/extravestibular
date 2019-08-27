@@ -21,74 +21,105 @@ class InscricaoController extends Controller
 	  	 	  if(!strcmp($request->tipo, 'reintegracao')){
 
 		  	    $file = $request->historicoEscolar;
-		  	    $path = 'inscricao/' . Auth::user()->id . '/' . $request->editalId;
+		  	    $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
 					  Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
-					  																				//criar inscricao no banco
+						$comprovante = '';
+						if($request->comprovante == 'isento'){
+							$comprovante = 'isento';
+						}
+						else{
+							$file = $request->comprovante;
+							$path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
+							Storage::putFileAs($path, $file, 'comprovante.pdf');
+							$comprovante = $path . '/comprovante.pdf';
+						}																																									//criar inscricao no banco
 
 					  Inscricao::create([
-					  	'usuarioId'             => Auth::user()->id,
-					  	'tipo'					  			=> $request->tipo,
-					  	'editalId'              => $request->editalId,
-					  	'historicoEscolar'      => $path . '/historicoEscolar.pdf',
-					  	'curso'									=> $request->curso,
-					  	'polo'									=> $request->polo,
-					  	'turno'									=> $request->turno,
-					  	'cursoDeOrigem'					=> $request->cursoDeOrigem,
-					  	'instituicaoDeOrigem'   => $request->instituicaoDeOrigem,
-					  	'naturezaDaIes'					=> $request->naturezaDaIes,
-					  	'enderecoIes'						=> $request->enderecoIes,
-							'homologado'						=> 'nao',
-							'homologadoDrca'			 	=> 'nao',
+					  	'usuarioId'              => Auth::user()->id,
+					  	'tipo'					  			 => $request->tipo,
+					  	'editalId'               => $request->editalId,
+					  	'historicoEscolar'       => $path . '/historicoEscolar.pdf',
+					  	'curso'								 	 => $request->curso,
+					  	'polo'									 => $request->polo,
+					  	'turno'								   => $request->turno,
+					  	'cursoDeOrigem'					 => $request->cursoDeOrigem,
+					  	'instituicaoDeOrigem'    => $request->instituicaoDeOrigem,
+					  	'naturezaDaIes'					 => $request->naturezaDaIes,
+					  	'enderecoIes'						 => $request->enderecoIes,
+							'homologado'						 => 'nao',
+							'homologadoDrca'			 	 => 'nao',
 							'coeficienteDeRendimento'=> 'nao',
+							'comprovante'						 => $comprovante,
 					  ]);
 						$nomeEdital = Edital::find($request->editalId)->get('nome');
 						Mail::to('lucas.siqueira.araujo@gmail.com')->send(new NovaInscricao($nomeEdital));
-			      return view('home');
+			      return redirect()->route('home')->with('jsAlert', 'Inscrição criada com sucesso.');
 	    	  }
 	    	  if(!strcmp($request->tipo, 'transferenciaInterna')) {
 
 					  $file = $request->historicoEscolar;
-			  	  $path = 'inscricao/' . Auth::user()->id . '/' . $request->editalId;
+			  	  $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
 					  Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
 					  $file = $request->declaracaoDeVinculo;
-			  	  $path = 'inscricao/' . Auth::user()->id . '/' . $request->editalId;
+			  	  $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
 					  Storage::putFileAs($path, $file, 'declaracaoDeVinculo.pdf');
+						$comprovante = '';
+						if($request->comprovante == 'isento'){
+							$comprovante = 'isento';
+						}
+						else{
+							$file = $request->comprovante;
+							$path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
+							Storage::putFileAs($path, $file, 'comprovante.pdf');
+							$comprovante = $path . '/comprovante.pdf';
+						}
 
 					  Inscricao::create([
-					  	'usuarioId'             => Auth::user()->id,
-					  	'tipo'					   			=> $request->tipo,
-					  	'editalId'              => $request->editalId,
-					  	'historicoEscolar'      => $path . '/historicoEscolar.pdf',
-					  	'declaracaoDeVinculo'   => $path . '/declaracaoDeVinculo.pdf',
-							'curso'									=> $request->curso,
-							'polo'									=> $request->polo,
-							'turno'									=> $request->turno,
-							'cursoDeOrigem'					=> $request->cursoDeOrigem,
-							'instituicaoDeOrigem'   => $request->instituicaoDeOrigem,
-							'naturezaDaIes'					=> $request->naturezaDaIes,
-							'enderecoIes'						=> $request->enderecoIes,
-							'homologado'						=> 'nao',
-							'homologadoDrca'			 	=> 'nao',
+					  	'usuarioId'              => Auth::user()->id,
+					  	'tipo'					   			 => $request->tipo,
+					  	'editalId'               => $request->editalId,
+					  	'historicoEscolar'       => $path . '/historicoEscolar.pdf',
+					  	'declaracaoDeVinculo'    => $path . '/declaracaoDeVinculo.pdf',
+							'curso'									 => $request->curso,
+							'polo'									 => $request->polo,
+							'turno'									 => $request->turno,
+							'cursoDeOrigem'					 => $request->cursoDeOrigem,
+							'instituicaoDeOrigem'    => $request->instituicaoDeOrigem,
+							'naturezaDaIes'					 => $request->naturezaDaIes,
+							'enderecoIes'						 => $request->enderecoIes,
+							'homologado'						 => 'nao',
+							'homologadoDrca'			 	 => 'nao',
 							'coeficienteDeRendimento'=> 'nao',
+							'comprovante'						 => $comprovante,
 						]);
 						$nomeEdital = Edital::find($request->editalId)->get('nome');
 						Mail::to('lucas.siqueira.araujo@gmail.com')->send(new NovaInscricao($nomeEdital));
-					  return view('home');
+					  return redirect()->route('home')->with('jsAlert', 'Inscrição criada com sucesso.');
 	    	  }
 	    	  if(!strcmp($request->tipo, 'transferenciaExterna')) {
 
 					  $file = $request->historicoEscolar;
-			  	  $path = 'inscricao/' . Auth::user()->id . '/' . $request->editalId;
+			  	  $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
 					  Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
 					  $file = $request->declaracaoDeVinculo;
-			  	  $path = 'inscricao/' . Auth::user()->id . '/' . $request->editalId;
+			  	  $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
 					  Storage::putFileAs($path, $file, 'declaracaoDeVinculo.pdf');
 					  $file = $request->programaDasDisciplinas;
-			  	  $path = 'inscricao/' . Auth::user()->id . '/' . $request->editalId;
+			  	  $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
 					  Storage::putFileAs($path, $file, 'programaDasDisciplinas.pdf');
 					  $file = $request->curriculo;
-			  	  $path = 'inscricao/' . Auth::user()->id . '/' . $request->editalId;
+			  	  $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
 					  Storage::putFileAs($path, $file, 'curriculo.pdf');
+						$comprovante = '';
+						if($request->comprovante == 'isento'){
+							$comprovante = 'isento';
+						}
+						else{
+							$file = $request->comprovante;
+							$path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
+							Storage::putFileAs($path, $file, 'comprovante.pdf');
+							$comprovante = $path . '/comprovante.pdf';
+						}
 
 					  Inscricao::create([
 					  	'usuarioId'              => Auth::user()->id,
@@ -98,34 +129,45 @@ class InscricaoController extends Controller
 					  	'declaracaoDeVinculo'    => $path . '/declaracaoDeVinculo.pdf',
 					  	'programaDasDisciplinas' => $path . '/programaDasDisciplinas.pdf',
 					  	'curriculo'              => $path . '/curriculo.pdf',
-							'curso'									=> $request->curso,
-							'polo'									=> $request->polo,
-							'turno'									=> $request->turno,
-							'cursoDeOrigem'					=> $request->cursoDeOrigem,
-							'instituicaoDeOrigem'   => $request->instituicaoDeOrigem,
-							'naturezaDaIes'					=> $request->naturezaDaIes,
-							'enderecoIes'						=> $request->enderecoIes,
-							'homologado'						=> 'nao',
-							'homologadoDrca'			 	=> 'nao',
+							'curso'									 => $request->curso,
+							'polo'									 => $request->polo,
+							'turno'									 => $request->turno,
+							'cursoDeOrigem'					 => $request->cursoDeOrigem,
+							'instituicaoDeOrigem'    => $request->instituicaoDeOrigem,
+							'naturezaDaIes'					 => $request->naturezaDaIes,
+							'enderecoIes'						 => $request->enderecoIes,
+							'homologado'						 => 'nao',
+							'homologadoDrca'			 	 => 'nao',
 							'coeficienteDeRendimento'=> 'nao',
+							'comprovante'						 => $comprovante,
 					  ]);
 						$nomeEdital = Edital::find($request->editalId)->get('nome');
 						Mail::to('lucas.siqueira.araujo@gmail.com')->send(new NovaInscricao($nomeEdital));
-					  return view('home');
+					  return redirect()->route('home')->with('jsAlert', 'Inscrição criada com sucesso.');
 	    	  }
 	    	  if(!strcmp($request->tipo, 'portadorDeDiploma')) {
     	  	  $file = $request->historicoEscolar;
-		  	    $path = 'inscricao/' . Auth::user()->id . '/' . $request->editalId;
+		  	    $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
 					  Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
 					  $file = $request->declaracaoDeVinculo;
-		  	    $path = 'inscricao/' . Auth::user()->id . '/' . $request->editalId;
+		  	    $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
 					  Storage::putFileAs($path, $file, 'declaracaoDeVinculo.pdf');
 					  $file = $request->programaDasDisciplinas;
-		  	    $path = 'inscricao/' . Auth::user()->id . '/' . $request->editalId;
+		  	    $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
 					  Storage::putFileAs($path, $file, 'programaDasDisciplinas.pdf');
 					  $file = $request->enem;
-		  	    $path = 'inscricao/' . Auth::user()->id . '/' . $request->editalId;
+		  	    $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
 					  Storage::putFileAs($path, $file, 'enem.pdf');
+						$comprovante = '';
+						if($request->comprovante == 'isento'){
+							$comprovante = 'isento';
+						}
+						else{
+							$file = $request->comprovante;
+							$path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
+							Storage::putFileAs($path, $file, 'comprovante.pdf');
+							$comprovante = $path . '/comprovante.pdf';
+						}
 
 					  Inscricao::create([
 					  	'usuarioId'              => Auth::user()->id,
@@ -135,85 +177,55 @@ class InscricaoController extends Controller
 					  	'declaracaoDeVinculo'    => $path . '/declaracaoDeVinculo.pdf',
 					  	'programaDasDisciplinas' => $path . '/programaDasDisciplinas.pdf',
 					  	'enem'                   => $path . '/enem.pdf',
-							'curso'									=> $request->curso,
-							'polo'									=> $request->polo,
-							'turno'									=> $request->turno,
-							'cursoDeOrigem'					=> $request->cursoDeOrigem,
-							'instituicaoDeOrigem'   => $request->instituicaoDeOrigem,
-							'naturezaDaIes'					=> $request->naturezaDaIes,
-							'enderecoIes'						=> $request->enderecoIes,
-							'homologado'						=> 'nao',
-							'homologadoDrca'			 	=> 'nao',
+							'curso'									 => $request->curso,
+							'polo'									 => $request->polo,
+							'turno'									 => $request->turno,
+							'cursoDeOrigem'					 => $request->cursoDeOrigem,
+							'instituicaoDeOrigem'    => $request->instituicaoDeOrigem,
+							'naturezaDaIes'					 => $request->naturezaDaIes,
+							'enderecoIes'						 => $request->enderecoIes,
+							'homologado'						 => 'nao',
+							'homologadoDrca'			 	 => 'nao',
 							'coeficienteDeRendimento'=> 'nao',
+							'comprovante'						 => $comprovante,
 					  ]);
 						$nomeEdital = Edital::find($request->editalId)->get('nome');
 						Mail::to('lucas.siqueira.araujo@gmail.com')->send(new NovaInscricao($nomeEdital));
-					  return view('home');
+					  return redirect()->route('home')->with('jsAlert', 'Inscrição criada com sucesso.');
 	    	  }
 		}
 
 	public function inscricaoEscolhida(Request $request){
 		$inscricao = Inscricao::find($request->inscricaoId);
+		$client = new Client();
+		$cursos = $client->get('http://app.uag.ufrpe.br/api/api/curso/');
+		$cursos = json_decode($cursos->getBody(), true);
+		$curso = $inscricao->curso;
+		for($j = 0; $j < sizeof($cursos); $j++){
+			if($curso == $cursos[$j]['id']){
+				$curso = $cursos[$j]['nome'] . '/' . $cursos[$j]['unidade'];
+			}
+		}
 
-	  if(!strcmp($inscricao->tipo, 'reintegracao')){
-			$historicoEscolar = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId .  '/historicoEscolar.pdf';
-			$declaracaoDeVinculo= '';
-			$programaDasDisciplinas = '';
-			$enem = '';
-			$curriculo = '';
-		}
-		if(!strcmp($inscricao->tipo, 'transferenciaInterna')){
-			$historicoEscolar = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/historicoEscolar.pdf';
-			$declaracaoDeVinculo = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/declaracaoDeVinculo.pdf';
-			$programaDasDisciplinas = '';
-			$enem = '';
-			$curriculo = '';
-		}
-		if(!strcmp($inscricao->tipo, 'transferenciaExterna')){
-			$historicoEscolar = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/historicoEscolar.pdf';
-			$declaracaoDeVinculo = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/declaracaoDeVinculo.pdf';
-			$programaDasDisciplinas = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/programaDasDisciplinas.pdf';
-			$curriculo = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/curriculo.pdf';
-			$enem = '';
-		}
-		if(!strcmp($inscricao->tipo, 'portadorDeDiploma')){
-			$historicoEscolar = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/historicoEscolar.pdf';
-			$declaracaoDeVinculo = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/declaracaoDeVinculo.pdf';
-			$programaDasDisciplinas = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/programaDasDisciplinas.pdf';
-			$enem = 'inscricao/' . Auth::user()->id . '/' . $inscricao->editalId . '/enem.pdf';
-			$curriculo = '';
-		}
 		if(!strcmp($request->tipo, 'homologacao')){
 			return view('homologarInscricao', ['inscricao'  						 => $inscricao,
-																				 'historicoEscolar'			   => $historicoEscolar,
-																				 'declaracaoDeVinculo'		 => $declaracaoDeVinculo,
-																				 'programaDasDisciplinas'	 => $programaDasDisciplinas,
-																				 'enem' 									 => $enem,
-																				 'curriculo' 							 => $curriculo,
 																				 'tipo'										 => 'homologacao',
+																				 'curso'									 => $curso,
 																			  ]);
 
 		}
 		if(!strcmp($request->tipo, 'drca')){
 			return view('homologarInscricao', ['inscricao'  						 => $inscricao,
-																				 'historicoEscolar'			   => $historicoEscolar,
-																				 'declaracaoDeVinculo'		 => $declaracaoDeVinculo,
-																				 'programaDasDisciplinas'	 => $programaDasDisciplinas,
-																				 'enem' 									 => $enem,
-																				 'curriculo' 							 => $curriculo,
 																				 'tipo'										 => 'drca',
+																				 'curso'									 => $curso,
 																			  ]);
 		}
 
 		if(!strcmp($request->tipo, 'classificacao')){
-			return view('classificarInscricao', ['inscricao'  						 => $inscricao,
-																				 'historicoEscolar'			   => $historicoEscolar,
-																				 'declaracaoDeVinculo'		 => $declaracaoDeVinculo,
-																				 'programaDasDisciplinas'	 => $programaDasDisciplinas,
-																				 'enem' 									 => $enem,
-																				 'curriculo' 							 => $curriculo,
-																				 'tipo'										 => 'classificacao',
-																			  ]);
+			return view('cadastrarClassificacao', ['inscricao'  						 => $inscricao,
+																				 	   'tipo'										 => 'classificacao',
+																					   'curso'									 => $curso,
+																			     	]);
 		}
 
 	}
@@ -225,12 +237,15 @@ class InscricaoController extends Controller
 				$inscricao->homologado = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
 				$inscricao->save();
-				return view('home');
+				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso.');
 			}
 			else{
 				$inscricao->homologado = 'aprovado';
+				if($inscricao->tipo != 'reintegracao'){
+					$inscricao->homologadoDrca = 'aprovado';
+				}
 				$inscricao->save();
-				return view('home');
+				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso.');
 			}
 		}
 		if(!strcmp($request->tipo, 'drca')){
@@ -238,12 +253,12 @@ class InscricaoController extends Controller
 				$inscricao->homologadoDrca = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
 				$inscricao->save();
-				return view('home');
+				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso.');
 			}
 			else{
 				$inscricao->homologadoDrca = 'aprovado';
 				$inscricao->save();
-				return view('home');
+				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso.');
 			}
 		}
 	}
@@ -263,8 +278,11 @@ class InscricaoController extends Controller
 		$conclusaoDoCurso = $conclusaoDoCurso/10;
 		$conclusaoDoCurso = number_format((float)$conclusaoDoCurso, 1, '.', '');
 		$inscricao->conclusaoDoCurso = (String) $conclusaoDoCurso;
+		$nota =  ($conclusaoDoCurso + $coeficienteDeRendimento) / 2;
+		$nota = number_format((float)$nota, 1, '.', '');
+		$inscricao->nota = $nota;
 		$inscricao->save();
-		return view('home');
+		return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso.');
 	}
 
 }

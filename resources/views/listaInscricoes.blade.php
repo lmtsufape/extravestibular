@@ -9,29 +9,41 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Inscrições') }}</div>
-                  <div class="form-group row">
-                      <?php
-                      foreach ($inscricoes as $inscricao) {
-                        ?>
-                        <form method="POST" action={{ route('inscricaoEscolhida') }} enctype="multipart/form-data">
-                              @csrf
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                {{$inscricao->id}}
-                                <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
-                                <input type="hidden" name="tipo" value="{{$tipo}}">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Selecionar esta inscrição') }}
-                                </button>
+                <div class="card-body">
+                  <table class="table table-ordered table-hover">
+                    @foreach ($inscricoes as $inscricao)
+                    <tr>
+                      <td> <!-- ID -->
+                       <a >
+                         {{$inscricao->id}}
+                       </a>
+                      </td>
 
-                            </div>
-                        </div>
-                      </form>
-                    <?php } ?>
+                      <td> <!-- Tipo -->
+                       <a >
+                         {{$inscricao->tipo}}
+                       </a>
+                      </td>
 
+                      <td> <!-- Isenção -->
+                        <form method="POST" action={{ route('inscricaoEscolhida') }} enctype="multipart/form-data"> <!-- Isenção -->
+                          @csrf
+                          <div class="col-md-8 offset-md-4">
+                              <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
+                              <input type="hidden" name="tipo" value="{{$tipo}}">
+                              <button type="submit" class="btn btn-primary btn-primary-lmts">
+                                  {{ __('Selecionar esta inscrição') }}
+                              </button>
 
-                  </div>
-            </div>
+                          </div>
+                        </form>
+                      </td>
+                    </tr>
+
+                    @endforeach
+
+                {{ $inscricoes->links() }}
+              </div>
         </div>
     </div>
 </div>

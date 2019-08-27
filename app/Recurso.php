@@ -13,4 +13,14 @@ class Recurso extends Model
       'data', 'usuarioId',
       'homologado',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('extravestibular\User', 'usuarioId');
+    }
+
+    public function edital()
+    {
+        return $this->belongsTo('extravestibular\Edital', 'editalId');
+    }
 }

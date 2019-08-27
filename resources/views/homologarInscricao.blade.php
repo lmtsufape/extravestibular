@@ -5,21 +5,7 @@
 @endsection
 @section('content')
 <style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 5px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
 </style>
 <div class="container">
     <div class="row justify-content-center">
@@ -28,7 +14,7 @@ tr:nth-child(even) {
                 <div class="card-header">{{ __('Homologar inscrição') }}</div>
                 <div class="card-body">
                   <div class="form-group row">
-                    <table>
+                    <table class="table table-ordered table-hover">
                       <tr>
                         <th>Requisito</th>
                         <th>Dados</th>
@@ -36,7 +22,7 @@ tr:nth-child(even) {
                         <th>Rejeitado</th>
                       </tr>
                       <tr <?php if($inscricao->declaracaoDeVinculo == ''){echo('style="display: none"');} ?> >
-                        <form method="POST" action={{ route('homologarInscricao') }} enctype="multipart/form-data">
+                        <form method="POST" action={{ route('homologarInscricao') }} enctype="multipart/form-data" id="formHomologacao">
                               @csrf
                         <div class="form-group row" >
                             <td>
@@ -44,7 +30,7 @@ tr:nth-child(even) {
                             </td>
                             <div class="col-md-6">
                                 <td>
-                                  <a href="{{ route('download', ['file' => $declaracaoDeVinculo])}}" target="_blank">Abrir arquivo</a>
+                                  <a href="{{ route('download', ['file' => $inscricao->declaracaoDeVinculo])}}" target="_blank">Abrir arquivo</a>
                                 </td>
                                 <td>
                                   <input onclick="selectCheck('aprovado')"  type="radio" name="radioDeclaracaoDeVinculo" id="selectDeclaracaoDeVinculoAprovado" <?php if($inscricao->declaracaoDeVinculo == ''){echo('checked="true"');} ?> >
@@ -62,13 +48,13 @@ tr:nth-child(even) {
                           </td>
                             <div class="col-md-6">
                               <td>
-                                <a href="{{ route('download', ['file' => $historicoEscolar])}}" target="_new">Abrir arquivo</a>
+                                <a href="{{ route('download', ['file' => $inscricao->historicoEscolar])}}" target="_new">Abrir arquivo</a>
                               </td>
                               <td>
-                                <input onclick="selectCheck('aprovado')"  type="radio" name="radioHistoricoEscolar" id="selectHistoricoEscolarAprovado" <?php if($inscricao->historicoEscolar == ''){echo('checked="true"');} ?> >
+                                <input onclick=<?php if($tipo == 'drca'){echo("selectCheckDRCA('aprovado')");}else{ echo("selectCheck('aprovado')");} ?>  type="radio" name="radioHistoricoEscolar" id="selectHistoricoEscolarAprovado" <?php if($inscricao->historicoEscolar == ''){echo('checked="true"');} ?> >
                               </td>
                               <td>
-                                <input onclick="selectCheck('rejeitado')"  type="radio" name="radioHistoricoEscolar" id="selectHistoricoEscolarRejeitado" >
+                                <input onclick=<?php if($tipo == 'drca'){echo("selectCheckDRCA('aprovado')");}else{ echo("selectCheck('aprovado')");} ?>  type="radio" name="radioHistoricoEscolar" id="selectHistoricoEscolarRejeitado" >
                               </td>
                             </div>
                         </div>
@@ -80,7 +66,7 @@ tr:nth-child(even) {
                           </td>
                             <div class="col-md-6">
                               <td>
-                                <a href="{{ route('download', ['file' => $programaDasDisciplinas])}}" target="_blank">Abir arquivo</a>
+                                <a href="{{ route('download', ['file' => $inscricao->programaDasDisciplinas])}}" target="_blank">Abir arquivo</a>
                               </td>
                               <td>
                                 <input onclick="selectCheck('aprovado')"  type="radio" name="radioProgramaDasDisciplinas" id="selectProgramaDasDisciplinasAprovado" <?php if($inscricao->programaDasDisciplinas == ''){echo('checked="true"');} ?> >
@@ -98,7 +84,7 @@ tr:nth-child(even) {
                           </td>
                             <div class="col-md-6">
                               <td>
-                                <a href="{{ route('download', ['file' => $curriculo ])}}" target="_blank">Abrir arquivo</a>
+                                <a href="{{ route('download', ['file' => $inscricao->curriculo ])}}" target="_blank">Abrir arquivo</a>
                               </td>
                               <td>
                                 <input onclick="selectCheck('aprovado')"  type="radio" name="radioCurriculo" id="selectCurriculoAprovado" <?php if($inscricao->curriculo == ''){echo('checked="true"');} ?> >
@@ -116,13 +102,42 @@ tr:nth-child(even) {
                           </td>
                             <div class="col-md-6">
                               <td>
-                                <a href="{{ route('download', ['file' => $enem ])}}" target="_blank">Abrir arquivo</a>
+                                <a href="{{ route('download', ['file' => $inscricao->enem ])}}" target="_blank">Abrir arquivo</a>
                               </td>
                               <td>
                                 <input onclick="selectCheck('aprovado')"  type="radio" name="radioEnem" id="selectEnemAprovado" <?php if($inscricao->enem == ''){echo('checked="true"');} ?> >
                               </td>
                               <td>
                                 <input onclick="selectCheck('rejeitado')"  type="radio" name="radioEnem" id="selectEnemRejeitado">
+                              </td>
+                            </div>
+                        </div>
+                      </div>
+                      </tr>
+
+                      @if($tipo == 'homologacao')
+                      <tr>
+                        <div class="form-group row" >
+                          <td>
+                            <label for="comprovante" >{{ __('Comprovante') }}</label>
+                          </td>
+                            <div class="col-md-6">
+                              <td>
+                                <?php if($inscricao->comprovante == 'isento')
+                                {
+                                  ?><a>Isento</a><?php
+                                }
+                              else
+                                {
+                                  ?><a href="{{ route('download', ['file' => $inscricao->comprovante ])}}" target="_blank">Abrir arquivo</a><?php
+                                }
+                                ?>
+                              </td>
+                              <td>
+                                <input onclick="selectCheck('aprovado')"  type="radio" name="radioComprovante" id="selectComprovanteAprovado" <?php if($inscricao->comprovante == 'isento'){echo('checked="true"');} ?> >
+                              </td>
+                              <td>
+                                <input onclick="selectCheck('rejeitado')"  type="radio" name="radioComprovante" id="selectComprovanteRejeitado">
                               </td>
                             </div>
                         </div>
@@ -135,7 +150,7 @@ tr:nth-child(even) {
                           </td>
 
                           <td>
-                            <label for="cursoDado" >{{ __($inscricao->curso)}}</label>
+                            <label for="cursoDado" >{{ __($curso)}}</label>
                           </td>
                           <td>
                             <input onclick="selectCheck('aprovado')"  type="radio" name="radioCurso" id="selectCursoAprovado">
@@ -229,7 +244,8 @@ tr:nth-child(even) {
                             <input onclick="selectCheck('rejeitado')"  type="radio" name="radioNaturezaDaIes" id="selectNaturezaDaIesRejeitado">
                           </td>
                         </div>
-                      </tr><tr>
+                      </tr>
+                      <tr>
                         <div class="form-group row" >
                           <td>
                             <label for="enderecoDaIes" >{{ __('Endereço da IES')}}</label>
@@ -246,28 +262,30 @@ tr:nth-child(even) {
                           </td>
                         </div>
                       </tr>
+                      @endif
+
                     </table>
-                        <div class="form-group row" id="motivoRejeicao" style="display: none;" >
-                            <label for="motivosRejeicao" class="col-md-4 col-form-label text-md-right">{{ __('Motivos da Rejeição') }}</label>
+                        <div class="form-group" id="motivoRejeicao" style=" display: none;">
+                            <label for="motivo" class="col-md-4 col-form-label text-md-right"  style="margin-left: -60px;">{{ __('Motivos da Rejeição:') }}</label>
 
-                            <div class="col-md-6">
-                              <input type="text" name="motivoRejeicao" autofocus>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
-                                <input id="homologado" type="hidden" name="homologado" value="">
-                                <input id="tipo" type="hidden" name="tipo" value="{{$tipo}}">
-                                <button id="buttonFinalizar" type="submit" class="btn btn-primary" disabled="true">
-                                    {{ __('Finalizar') }}
-                                </button>
+                            <div class="col-md-6" style="margin-left: 10px">
+                              <textarea form ="formHomologacao" name="motivo" id="taid" cols="70" ></textarea>
 
                             </div>
                         </div>
-                        </form>
+
+                  </div>
+                  <div class="form-group row mb-0" style="margin-left: 5rem">
+                    <div class="col-md-8 offset-md-4">
+                      <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
+                      <input id="homologado" type="hidden" name="homologado" value="">
+                      <input id="tipo" type="hidden" name="tipo" value="{{$tipo}}">
+                      <button id="buttonFinalizar" type="submit" class="btn btn-primary btn-primary-lmts" disabled="true">
+                        {{ __('Finalizar') }}
+                      </button>
+
+                    </form>
+                    </div>
                   </div>
                 </div>
             </div>
@@ -335,11 +353,22 @@ function checkAprovado(){
   }
 }
 
-
+function selectCheckDRCA(x){
+  if(x == 'rejeitado'){
+    document.getElementById("motivoRejeicao").style.display = '';
+    document.getElementById("homologado").value = 'rejeitado';
+    document.getElementById("buttonFinalizar").disabled = false;
+  }
+  else{
+    document.getElementById("homologado").value = 'aprovado';
+    document.getElementById("motivoRejeicao").value = '';
+    document.getElementById("motivoRejeicao").style.display = 'none';
+    document.getElementById("buttonFinalizar").disabled = false;
+  }
+}
 
 
 function selectCheck(x){
-  console.log('entrou');
   if(x == 'rejeitado'){
     document.getElementById("motivoRejeicao").style.display = '';
     document.getElementById("homologado").value = 'rejeitado';

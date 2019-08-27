@@ -4,76 +4,62 @@
     Requerimento de Recurso
 @endsection
 @section('content')
-<div class="container">
+
+<div class="container" style="width: 100rem;margin-left: 200px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card" style="width: 70rem;">
                 <div class="card-header">{{ __('Requerimento de Recurso') }}</div>
-
                 <div class="card-body">
                       <div class="card-body">
-                        <form method="POST" action={{ route('cadastroRecurso') }} enctype="multipart/form-data">
+                        <form method="POST" action={{ route('cadastroRecurso') }} enctype="multipart/form-data" id="formRecurso">
                               @csrf
                           <input type="hidden" name="editalId" value="{{$editalId}}" />
+                          <input type="hidden" name="tipoRecurso" value="{{$tipoRecurso}}" />
 
-                          <div class="form-group row">
-                              <label for="nome" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
+                          <div class="form-group row justify-content-center">  <!-- Nome | CPF-->
+                            <label for="nome" class="field a-field a-field_a2 page__field">
+                                <input id="nome" type="text" name="nome" autofocus class="field__input a-field__input" placeholder="Nome" style="width: 45rem;">
+                                <span class="a-field__label-wrap">
+                                  <span class="a-field__label">Nome</span>
+                                </span>
+                            </label>
+                            <label for="cpf" class="field a-field a-field_a2 page__field" style=" margin-left: 30px;">
+                                <input id="cpf" type="text" name="cpf" autofocus class="field__input a-field__input" placeholder="CPF" style="width: 12rem;">
+                                <span class="a-field__label-wrap">
+                                  <span class="a-field__label">CPF</span>
+                                </span>
+                            </label>
+                          </div>
 
-                              <div class="col-md-6">
-                                <input id="nome" type="text" name="nome" autofocus>
+                            <div class="form-group row"> <!-- Processo Nº/Data-->
+                              <label for="nProcesso" class="field a-field a-field_a2 page__field" style="margin-left: 60px">
+                                  <input id="nProcesso" type="text" name="nProcesso" autofocus class="field__input a-field__input" placeholder="Processo Nº" style="width: 12rem;">
+                                  <span class="a-field__label-wrap">
+                                    <span class="a-field__label">Processo Nº</span>
+                                  </span>
+                              </label>
+                              <label for="data" class="field a-field a-field_a2 page__field" style=" margin-left: 30px;">
+                                  <input id="data" type="date" name="data" autofocus class="field__input a-field__input" placeholder="Data" style="width: 10rem;">
+                                  <span class="a-field__label-wrap">
+                                    <span class="a-field__label">Data</span>
+                                  </span>
+                              </label>
+                          </div>
+
+                          <div class="form-group">
+                              <label for="motivo" class="col-md-4 col-form-label text-md-right"  style="margin-left: -15rem">{{ __('Motivo:') }}</label>
+
+                              <div class="col-md-6" style="margin-left: 30px">
+                                <textarea form ="formRecurso" name="motivo" id="taid" cols="100" ></textarea>
 
                               </div>
                           </div>
 
-                          <div class="form-group row">
-                              <label for="cpf" class="col-md-4 col-form-label text-md-right">{{ __('CPF') }}</label>
-
-                              <div class="col-md-6">
-                                <input id="cpf" type="text" name="cpf" autofocus>
-
-                              </div>
-                          </div>
-
-                          <div class="form-group row">
-                              <label for="tipo" class="col-md-4 col-form-label text-md-right">{{ __('interpõe recurso contra o resultado:') }}</label>
-
-                              <div class="col-md-6">
-                                <select name="tipo">
-                                  <option value="taxa">Isenção da Taxa de Inscrição de Processo Seletivo</option>
-                                  <option value="classificacao">seleção para ingresso extra</option>
-                                </select>
-                              </div>
-                          </div>
-
-                          <div class="form-group row">
-                              <label for="nProcesso" class="col-md-4 col-form-label text-md-right">{{ __('Processo Nº') }}</label>
-
-                              <div class="col-md-6">
-                                <input id="nProcesso" type="text" name="nProcesso" autofocus>
-
-                              </div>
-                          </div>
-
-                          <div class="form-group row">
-                              <label for="motivo" class="col-md-4 col-form-label text-md-right">{{ __('Motivo') }}</label>
-
-                              <div class="col-md-6">
-                                <input id="motivo" type="text" name="motivo" autofocus>
-
-                              </div>
-                          </div>
-
-                          <div  class="form-group row" >
-                              <label for="data" class="col-md-4 col-form-label text-md-right">{{ __('Data') }}</label>
-
-                              <div class="col-md-6">
-                                  <input type="date" name="data" >
-                              </div>
-                          </div>
 
                           <div class="form-group row mb-0">
                               <div class="col-md-8 offset-md-4">
-                                  <button type="submit" class="btn btn-primary">
+                                  <button type="submit" class="btn btn-primary btn-primary-lmts">
                                       {{ __('Cadastrar Recurso') }}
                                   </button>
 
@@ -82,7 +68,6 @@
 
                         </form>
                       </div>
-                    </div>
                 </div>
             </div>
         </div>

@@ -22,6 +22,10 @@ class CreateEditalsTable extends Migration
             $table->date('fimInscricoes');
             $table->date('inicioRecurso');
             $table->date('fimRecurso');
+            $table->date('inicioIsencao');
+            $table->date('fimIsencao');
+            $table->date('inicioRecursoIsencao');
+            $table->date('fimRecursoIsencao');
             $table->string('nome');
         });
     }

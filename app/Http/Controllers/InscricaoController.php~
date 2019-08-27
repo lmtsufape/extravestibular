@@ -32,7 +32,7 @@ class InscricaoController extends Controller
 				  	'enderecoIes'				=> $request->enderecoIes,		  
 				  ]);					  
 				  	        
-		        return view('home');
+		        return redirect()->route('home');
 	    	  }
 	    	  if(!strcmp($request->tipo, 'transferenciaInterna')) {
 	    	  		
@@ -51,7 +51,7 @@ class InscricaoController extends Controller
 				  	'declaracaoDeVinculo'   => '/home/wteia/site/extravestibular/storage/app/' . $path . '/declaracaoDeVinculo.pdf',
 				  ]);	  
 				  
-				  return view('home');       
+				  return redirect()->route('home');       
 	    	  }
 	    	  if(!strcmp($request->tipo, 'transferenciaExterna')) {
 	    	  	
@@ -79,7 +79,7 @@ class InscricaoController extends Controller
 				  
 				  ]);	
 				  
-				  return view('home');   
+				  return redirect()->route('home');   
 	    	  }
 	    	  if(!strcmp($request->tipo, 'portadorDeDiploma')) {
 	    	  	  $file = $request->historicoEscolar;
@@ -106,7 +106,7 @@ class InscricaoController extends Controller
 				  
 				  ]);	
 				  
-				  return view('home'); 
+				  return redirect()->route('home'); 
 	    	  }	    	  
 		 }
 	    

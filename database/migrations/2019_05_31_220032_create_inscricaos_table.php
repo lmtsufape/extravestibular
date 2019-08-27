@@ -24,6 +24,7 @@ class CreateInscricaosTable extends Migration
             $table->string('programaDasDisciplinas')->nullable();
     				$table->string('curriculo')->nullable();
     				$table->string('enem')->nullable();
+            $table->string('comprovante');
     				$table->string('curso');
     				$table->string('polo')->nullable();
     				$table->string('turno');
@@ -36,6 +37,7 @@ class CreateInscricaosTable extends Migration
             $table->string('homologadoDrca')->nullable();
             $table->string('coeficienteDeRendimento')->nullable();
             $table->string('conclusaoDoCurso')->nullable();
+            $table->string('nota')->nullable();
 
         });
     }

@@ -14,14 +14,14 @@ class RecursoController extends Controller
         'editalId'        => $request->editalId,
         'nome'            => $request->nome,
         'cpf'             => $request->cpf,
-        'tipo'            => $request->tipo,
+        'tipo'            => $request->tipoRecurso,
         'motivo'          => $request->motivo,
         'nProcesso'       => $request->nProcesso,
         'data'            => $request->data,
         'homologado'      => 'nao',
 
       ]);
-      return view('home');
+      return redirect()->route('home')->with('jsAlert', 'Recurso enviado com sucesso.');
     }
 
     public function recursoEscolhido(Request $request){
@@ -31,16 +31,10 @@ class RecursoController extends Controller
 
     public function homologarRecurso(Request $request){
       $recurso = Recurso::find($request->recursoId);
-      if(!strcmp($request->radioRecurso, 'rejeitado')){
-        $recurso->homologado = 'rejeitado';
-        $recurso->save();
-        return view('home');
-      }
-      else{
-        $recurso->homologado = 'aprovado';
-        $recurso->save();
-        return view('home');
-      }
+      $recurso->homologado = $request->radioRecurso;
+      $recurso->save();
+      return redirect()->route('home')->with('jsAlert', 'Recurso homologada com sucesso.');
+
     }
 
 }
