@@ -21,7 +21,7 @@
 
                     @foreach ($editais as $edital)
                     <tr>
-                      <td> <!-- time line -->
+                      <td  style="width: 45rem">  <!-- time line -->
                         <div class="hover_img">
                              <a >
                                <?php

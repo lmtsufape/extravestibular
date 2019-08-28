@@ -8,6 +8,73 @@
 .hover_img a span { position:absolute; display:none; z-index:99; }
 .hover_img a:hover span { display:block; height: 100px; width: 300px; overflow: visible;}
 
+
+/* pagination */
+.pagination > .active > li > a
+{
+    background-color: #2c4e8a;
+    color: #1B2E4F;
+}
+
+.pagination > li > span
+{
+    background-color: #1B2E4F;
+    color: #1B2E4F;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: white;
+    background-color: #2c4e8a;
+    border-color: #d3e0e9;
+}
+
+.pagination > .active > a
+{
+    color: white;
+    background-color: #1B2E4F;
+    border: solid 1px #1B2E4F;
+}
+
+.pagination > .active > a:hover
+{
+    background-color: #1B2E4F;
+    border: solid 1px #1B2E4F;
+}
+
+
+
+
+
+
+/*
+<ul class="pagination" role="navigation">
+  <li class="page-item disabled" aria-disabled="true" aria-label="&laquo; Previous">
+    <span class="page-link" aria-hidden="true">
+      &lsaquo;
+    </span>
+  </li>
+  <li class="page-item active" aria-current="page">
+    <span class="page-link">
+      1
+    </span>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="http://extravestibular.site/home?page=2">
+      2
+    </a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="http://extravestibular.site/home?page=2" rel="next" aria-label="Next &raquo;">
+      &rsaquo;
+    </a>
+  </li>
+</ul> */
+
+
 </style>
 
 <div class="container" style="width: 100rem; margin-left: -50px;">
@@ -20,9 +87,9 @@
                   <table class="table table-ordered table-hover">
                     @foreach ($editais as $edital)
                     <tr>
-                      <td> <!-- time line -->
+                      <td   style="width: 45rem"> <!-- time line -->
                         <div class="hover_img">
-                             <a >
+                             <a>
                                <?php
                                  $nomeEdital = explode(".pdf", $edital->nome);
                                  echo ($nomeEdital[0]);
@@ -68,7 +135,7 @@
                       </td>
 
                       <td> <!-- Isenção -->
-                        <form method="POST" action="{{route('editalEscolhido')}}"> <!-- Isenção -->
+                        <form method="GET" action="{{route('editalEscolhido')}}"> <!-- Isenção -->
                           @csrf
                           <input type="hidden" name="editalId" value="{{$edital->id}}">
                           <input type="hidden" name="tipo" value="requerimentoDeIsencao">
@@ -92,7 +159,7 @@
                       </td>
 
                       <td> <!-- Recurso -->
-                        <form method="POST" action="{{route('editalEscolhido')}}"> <!-- Recurso -->
+                        <form method="GET" action="{{route('editalEscolhido')}}"> <!-- Recurso -->
                             @csrf
                             <input type="hidden" name="editalId" value="{{$edital->id}}">
                             <input type="hidden" name="tipo" value="requerimentoDeRecurso">
@@ -117,7 +184,7 @@
                       </td>
 
                       <td> <!-- Inscrição -->
-                        <form method="POST" action="{{route('editalEscolhido')}}">  <!-- Inscrição -->
+                        <form method="GET" action="{{route('editalEscolhido')}}">  <!-- Inscrição -->
                             @csrf
                             <input type="hidden" name="editalId" value="{{$edital->id}}">
                             <input type="hidden" name="tipo" value="fazerInscricao">
@@ -141,7 +208,7 @@
                       </td>
 
                       <td> <!-- Recurso -->
-                        <form method="POST" action="{{route('editalEscolhido')}}"> <!-- Recurso -->
+                        <form method="GET" action="{{route('editalEscolhido')}}"> <!-- Recurso -->
                             @csrf
                             <input type="hidden" name="editalId" value="{{$edital->id}}">
                             <input type="hidden" name="tipo" value="requerimentoDeRecurso">
@@ -171,9 +238,11 @@
                     </tr>
                     @endforeach
                   <!-- Exemplo de botão danger dividido -->
-                {{ $editais->links() }}
             </div>
         </div>
+    </div>
+    <div class="col-md-8">
+      {{ $editais->links() }}
     </div>
 </div>
 @if(session()->has('jsAlert'))

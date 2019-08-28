@@ -21,7 +21,7 @@
 
                     @foreach ($editais as $edital)
                     <tr>
-                      <td> <!-- time line -->
+                      <td  style="width: 45rem"> <!-- time line -->
                         <div class="hover_img">
                              <a >
                                <?php
@@ -68,13 +68,13 @@
                          </div>
                       </td>
                       <td>
-                        <form method="POST" action="{{route('editalEscolhido')}}">
+                        <form method="GET" action="{{route('editalEscolhido')}}">
                             @csrf
                             <input type="hidden" name="editalId" value="{{$edital->id}}">
                             <input type="hidden" name="tipo" value="homologarInscricoesReintegracao">
 
-                            @if($edital->inicioIsencao<= $mytime)
-                              @if($edital->fimIsencao >= $mytime)
+                            @if($edital->inicioInscricoes<= $mytime)
+                              @if($edital->fimInscricoes >= $mytime)
                                 <button type="submit" class="btn btn-primary btn-primary-lmts" >
                                     {{ __('Homologar Inscrições Reintegração') }}
                                 </button>

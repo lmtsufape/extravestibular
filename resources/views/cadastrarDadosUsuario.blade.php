@@ -13,6 +13,7 @@
             <div class="card" style="width: 70rem;">
               <div class="card-header">{{ __('Dados de Usuario') }}</div>
               <div class="card-body">
+
                 @error('nome')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                   <strong>{{ $message }}</strong>

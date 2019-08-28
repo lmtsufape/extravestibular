@@ -21,7 +21,7 @@
 
                     @foreach ($editais as $edital)
                     <tr>
-                      <td> <!-- time line -->
+                      <td  style="width: 45rem"> <!-- time line -->
                         <div class="hover_img">
                              <a >
                                <?php
@@ -69,21 +69,18 @@
                       </td>
 
                       <td>
-                        <form method="POST" action="{{route('editalEscolhido')}}">
+                        <form method="GET" action="{{route('editalEscolhido')}}">
                             @csrf
                             <input type="hidden" name="editalId" value="{{$edital->id}}">
                             <input type="hidden" name="tipo" value="classificarInscricoes">
 
-                            @if($edital->inicioIsencao<= $mytime)
-                              @if($edital->fimIsencao >= $mytime)
+                            @if($edital->inicioInscricoes<= $mytime)
+
                                 <button type="submit" class="btn btn-primary btn-primary-lmts" >
                                     {{ __('Classificar Inscrições') }}
                                 </button>
-                              @else
-                              <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
-                                  {{ __('Classificar Inscrições') }}
-                              </button>
-                              @endif
+
+
                             @else
                             <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
                                 {{ __('Classificar Inscrições') }}

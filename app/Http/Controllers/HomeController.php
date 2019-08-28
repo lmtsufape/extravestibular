@@ -36,7 +36,7 @@ class HomeController extends Controller
 
           $mytime = Carbon::now('America/Recife');
           $mytime = $mytime->toDateString();
-          $editais = Edital::orderBy('created_at', 'desc')->paginate(10);
+          $editais = Edital::orderBy('created_at', 'desc')->paginate(4);
           if(Auth::user()->tipo == 'candidato'){
             return view('homeCandidato', ['editais' => $editais,
                                  'mytime'  => $mytime,
