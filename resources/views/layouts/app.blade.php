@@ -32,7 +32,7 @@
           color: white;
           font-weight: bold;
           font-size: 20;
-          margin-top: 6px;
+          margin-top: 4px;
         }
         .btn-primary-lmts{
           background-color: #1B2E4F;
@@ -309,7 +309,7 @@
                                      document.getElementById('novoEdital-form').submit();">
                        {{ __('NOVO EDITAL') }}
                     </a>
-                    <form id="novoEdital-form" action="{{ route('novoEdital') }}" method="POST" style="display: none;">
+                    <form id="novoEdital-form" action="{{ route('novoEdital') }}" method="GET" style="display: none;">
                         @csrf
                     </form>
                   </li>
@@ -442,9 +442,6 @@
                   </li>
 
                 @endif
-              @else
-                <li><a class="menu-principal" href="{{ route('login') }}">Entrar</a></li>
-                <li><a class="menu-principal" href="{{ route('register') }}">Cadastrar</a></li>
               @endif
             </ul>
           </div>
@@ -457,19 +454,20 @@
         @if(!($url == '/login'))
           @if(!($url == '/register'))
 
-            <!-- <div style="margin-top: -30px" class="container">
+            <div style="margin-top: -30px" class="container">
               <hr>
                   <div class="row">
                       <div class="col-md-8 col-md-offset-2">
                           <div class="collapse navbar-collapse" >
                               <ul class="nav navbar-nav">
                                   @yield('navbar')
+                                  teste
                               </ul>
                           </div>
                       </div>
                   </div>
               <hr>
-            </div> -->
+            </div>
 
           @endif
         @endif

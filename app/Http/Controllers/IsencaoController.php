@@ -14,6 +14,7 @@ class IsencaoController extends Controller
       'usuarioId'                        => Auth::user()->id,
       'editalId'                         => $request->editalId,
       'tipo'                             => $request->tipo,
+      'historicoEscolar'
       'nomeDadoEconomico'                => $request->nomeDadoEconomico,
       'cpfDadoEconomico'                 => $request->cpfDadoEconomico,
       'parentescoDadoEconomico'          => $request->parentescoDadoEconomico,

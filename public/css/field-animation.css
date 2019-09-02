@@ -92,9 +92,10 @@ LEVEL 3. PRESENTATION STYLES
   transition: opacity .2s ease-out;
 }
 
-.a-field__input:not(:placeholder-shown) ~ .a-field__label-wrap .a-field__label{
-  opacity: 0;
-  bottom: var(--uiFieldPaddingBottom);
+
+.a-field__input:not(:placeholder-shown) ~ .a-field__label-wrap .a-field__label{ /* Função do label apos inserido algo no field */
+  opacity: 1;
+  bottom: 50px;
 }
 
 .a-field__input:focus::-webkit-input-placeholder{
@@ -130,7 +131,7 @@ LEVEL 3. PRESENTATION STYLES
 
   pointer-events: none;
   transition: bottom .2s cubic-bezier(0.9,-0.15, 0.1, 1.15), opacity .2s ease-out;
-  will-change: bottom, opacity;
+  will-change: bottom, opacity;           /*funcção que chama a de cima */
 }
 
 .a-field__input:focus ~ .a-field__label-wrap .a-field__label{

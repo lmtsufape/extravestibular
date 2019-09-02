@@ -39,9 +39,29 @@ class EditalController extends Controller
       }
 
       public function cadastroEdital(Request $request){
+        $validatedData = $request->validate(['nome'                  => ['required', 'string', 'max:255'],
+                                              'inicioInscricoes'     => ['required', 'date'],
+                                              'fimInscricoes'        => ['required', 'date'],
+                                              'pdfEdital'            => ['required', 'file'],
+                                              'inicioRecurso'        => ['required', 'date'],
+                                              'fimRecurso'           => ['required', 'date'],
+                                              'inicioIsencao'        => ['required', 'date'],
+                                              'fimIsencao'           => ['required', 'date'],
+                                              'inicioRecursoIsencao' => ['required', 'date'],
+                                              'fimRecursoIsencao'    => ['required', 'date'],
+                                              'inicioIsencao'        => ['required', 'date'],
+                                            ]);
+
+
+
+
+
+
+
         $file = $request->pdfEdital;
         $path = 'editais/';
-        Storage::putFileAs($path, $file, $_FILES['pdfEdital']['name']);
+        $nome = $request->nome . ".pdf";
+        Storage::putFileAs($path, $file, $nome);
         $vagas = "";
         for($i = 0; $i < $request->nCursos; $i++){
           $aux = "cursoId" . $i;
@@ -51,10 +71,10 @@ class EditalController extends Controller
 
         Edital::create([
           'vagas'                => $vagas,
-          'pdfEdital'            => $path . $_FILES['pdfEdital']['name'],
+          'pdfEdital'            => $path . $nome,
           'inicioInscricoes'     => $request->inicioInscricoes,
           'fimInscricoes'        => $request->fimInscricoes,
-          'nome'                 => $_FILES['pdfEdital']['name'],
+          'nome'                 => $nome,
           'inicioRecurso'        => $request->inicioRecurso,
           'fimRecurso'           => $request->fimRecurso,
           'inicioIsencao'        => $request->inicioIsencao,

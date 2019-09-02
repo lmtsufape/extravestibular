@@ -21,7 +21,7 @@ Route::get('/home',                  'HomeController@index'                     
 
 Route::get('/download',              'InscricaoController@downloadArquivo'        )->name('download');
 
-Route::post('/novoEdital',           'EditalController@novoEdital'                )->name('novoEdital');
+Route::get( '/novoEdital',           'EditalController@novoEdital'                )->name('novoEdital');
 Route::post('/listaEditais',         'EditalController@listaEditais'              )->name('listaEditais');
 Route::post('/cadastroEdital',       'EditalController@cadastroEdital'            )->name('cadastroEdital');
 Route::get('/listaInscricoes',       'EditalController@editalEscolhido'           )->name('editalEscolhido');

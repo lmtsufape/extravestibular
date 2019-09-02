@@ -1,5 +1,8 @@
 @extends('layouts.app')
-
+@section('titulo','Home')
+@section('navbar')
+    Home
+@endsection
 @section('content')
 
 <style type="text/css">
@@ -16,7 +19,7 @@
     color: #1B2E4F;
 }
 
-.pagination > li > span
+.pagination > .active > li > span
 {
     background-color: #1B2E4F;
     color: #1B2E4F;
@@ -44,8 +47,6 @@
     background-color: #1B2E4F;
     border: solid 1px #1B2E4F;
 }
-
-
 
 
 

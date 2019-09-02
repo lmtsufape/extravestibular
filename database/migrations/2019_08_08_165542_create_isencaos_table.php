@@ -19,11 +19,12 @@ class CreateIsencaosTable extends Migration
             $table->integer('usuarioId');
             $table->integer('editalId');
             $table->string('tipo');
-            $table->string('nomeDadoEconomico');
-            $table->string('cpfDadoEconomico');
-            $table->string('parentescoDadoEconomico');
-            $table->string('rendaDadoEconomico');
-            $table->string('fontePagadoraDadoEconomico');
+            $table->string('historicoEscolar')->nullable();
+            $table->string('nomeDadoEconomico')->nullable();
+            $table->string('cpfDadoEconomico')->nullable();
+            $table->string('parentescoDadoEconomico')->nullable();
+            $table->string('rendaDadoEconomico'->nullable());
+            $table->string('fontePagadoraDadoEconomico')->nullable();
             $table->string('nomeNucleoFamiliar')->nullable();
             $table->string('cpfNucleoFamiliar')->nullable();
             $table->string('parentescoNucleoFamiliar')->nullable();

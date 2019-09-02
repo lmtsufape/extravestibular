@@ -10,6 +10,7 @@ class Isencao extends Model
     'usuarioId',
     'editalId',
     'tipo',
+    'historicoEscolar',
     'nomeDadoEconomico',
     'cpfDadoEconomico',
     'parentescoDadoEconomico',
