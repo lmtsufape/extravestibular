@@ -17,18 +17,8 @@
                 <div class="card-header">{{ __('Inscrição') }}</div>
 
                 <div class="card-body">
-                      <div class="form-group row">
-                          <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Tipo de Inscrição:') }}</label>
-
-                          <div class="col-md-6">
-                            <input onclick="tipo('reintegracao')" 			   type="radio" name="tipoInscricao" > Reintegração <br>
-                            <input onclick="tipo('transferenciaInterna')"  type="radio" name="tipoInscricao" > Transferencia Interna <br>
-                            <input onclick="tipo('transferenciaExterna')"  type="radio" name="tipoInscricao" > Transferencia Externa <br>
-                            <input onclick="tipo('portadorDeDiploma')" 		 type="radio" name="tipoInscricao" > Portador de Diploma <br>
-                          </div>
-                      </div>
                       <form class="md-form" method="POST" action={{ route('cadastroInscricao') }} enctype="multipart/form-data">
-
+                          @csrf
                         @if($comprovante == 'deferida')
                         <div class="form-group row" >
                           <label for="ENEM" class="col-md-4 col-form-label text-md-right">{{ __('Comprovante: ') }}</label>
@@ -50,8 +40,19 @@
                         </div>
                         @endif
 
+
                         <div class="card-body" id="formulario" style="display: none;">
-                              @csrf
+
+                          <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right" >{{ __('Tipo de Inscrição:') }}</label>
+
+                            <div class="col-md-6">
+                              <input onclick="tipo('reintegracao')" 			   type="radio" name="tipoInscricao" > Reintegração <br>
+                              <input onclick="tipo('transferenciaInterna')"  type="radio" name="tipoInscricao" > Transferencia Interna <br>
+                              <input onclick="tipo('transferenciaExterna')"  type="radio" name="tipoInscricao" > Transferencia Externa <br>
+                              <input onclick="tipo('portadorDeDiploma')" 		 type="radio" name="tipoInscricao" > Portador de Diploma <br>
+                            </div>
+                          </div>
                           <input type="hidden" name="tipo" value="reintegracao" />
                           <input type="hidden" name="editalId" value="{{$editalId}}" />
                           <input id="tipo" type="hidden" name="tipo" value=""/>
@@ -198,7 +199,7 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('js/bootstrap-filestyle.min.js')}}"> </script>
+
 <script type="text/javascript" >
 
 function comprovanteSelecionado(){

@@ -1,5 +1,8 @@
 @extends('layouts.app')
-
+@section('titulo','Home')
+@section('navbar')
+    Home
+@endsection
 @section('content')
 
 <style type="text/css">

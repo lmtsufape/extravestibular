@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use extravestibular\Edital;
+use extravestibular\DadosUsuario;
 use Auth;
 use Illuminate\Support\Facades\Mail;
 use extravestibular\Mail\NovaInscricao;
@@ -34,6 +35,9 @@ class InscricaoController extends Controller
 							$comprovante = $path . '/comprovante.pdf';
 						}																																									//criar inscricao no banco
 
+
+						$dados = DadosUsuario::find(Auth::user()->dados);
+	
 					  Inscricao::create([
 					  	'usuarioId'              => Auth::user()->id,
 					  	'tipo'					  			 => $request->tipo,
@@ -50,6 +54,7 @@ class InscricaoController extends Controller
 							'homologadoDrca'			 	 => 'nao',
 							'coeficienteDeRendimento'=> 'nao',
 							'comprovante'						 => $comprovante,
+							'cpfCandidato'						 => $dados->cpf,
 					  ]);
 						$nomeEdital = Edital::find($request->editalId)->get('nome');
 						Mail::to('lucas.siqueira.araujo@gmail.com')->send(new NovaInscricao($nomeEdital));
@@ -74,6 +79,8 @@ class InscricaoController extends Controller
 							$comprovante = $path . '/comprovante.pdf';
 						}
 
+						$dados = DadosUsuario::find(Auth::user()->dados);
+
 					  Inscricao::create([
 					  	'usuarioId'              => Auth::user()->id,
 					  	'tipo'					   			 => $request->tipo,
@@ -90,6 +97,7 @@ class InscricaoController extends Controller
 							'homologado'						 => 'nao',
 							'homologadoDrca'			 	 => 'nao',
 							'coeficienteDeRendimento'=> 'nao',
+							'cpfCandidato'						 => $dados->cpf,
 							'comprovante'						 => $comprovante,
 						]);
 						$nomeEdital = Edital::find($request->editalId)->get('nome');
@@ -121,6 +129,7 @@ class InscricaoController extends Controller
 							$comprovante = $path . '/comprovante.pdf';
 						}
 
+						$dados = DadosUsuario::find(Auth::user()->dados);
 					  Inscricao::create([
 					  	'usuarioId'              => Auth::user()->id,
 					  	'tipo'         			 		 => $request->tipo,
@@ -139,6 +148,7 @@ class InscricaoController extends Controller
 							'homologado'						 => 'nao',
 							'homologadoDrca'			 	 => 'nao',
 							'coeficienteDeRendimento'=> 'nao',
+							'cpfCandidato'						 => $dados->cpf,
 							'comprovante'						 => $comprovante,
 					  ]);
 						$nomeEdital = Edital::find($request->editalId)->get('nome');
@@ -168,6 +178,7 @@ class InscricaoController extends Controller
 							Storage::putFileAs($path, $file, 'comprovante.pdf');
 							$comprovante = $path . '/comprovante.pdf';
 						}
+						$dados = DadosUsuario::find(Auth::user()->dados);
 
 					  Inscricao::create([
 					  	'usuarioId'              => Auth::user()->id,
@@ -187,6 +198,7 @@ class InscricaoController extends Controller
 							'homologado'						 => 'nao',
 							'homologadoDrca'			 	 => 'nao',
 							'coeficienteDeRendimento'=> 'nao',
+							'cpfCandidato'						 => $dados->cpf,
 							'comprovante'						 => $comprovante,
 					  ]);
 						$nomeEdital = Edital::find($request->editalId)->get('nome');

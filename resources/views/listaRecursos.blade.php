@@ -15,13 +15,7 @@
                     <tr>
                       <td> <!-- ID -->
                        <a >
-                         {{$recurso->id}}
-                       </a>
-                      </td>
-
-                      <td> <!-- Tipo -->
-                       <a >
-                         {{$recurso->tipo}}
+                         {{$recurso->cpfCandidato}}
                        </a>
                       </td>
 
@@ -31,7 +25,7 @@
                           <div class="col-md-8 offset-md-4">
                             <input type="hidden" name="recursoId" value="{{$recurso->id}}">
                             <button type="submit" class="btn btn-primary btn-primary-lmts">
-                                {{ __('Selecionar este recurso') }}
+                                {{ __('Selecionar') }}
                             </button>
 
                           </div>

@@ -1,4 +1,8 @@
 @extends('layouts.app')
+@section('titulo','Home')
+@section('navbar')
+    Home
+@endsection
 
 @section('content')
 

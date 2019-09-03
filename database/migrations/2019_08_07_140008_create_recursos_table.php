@@ -19,6 +19,7 @@ class CreateRecursosTable extends Migration
             $table->string('nome');
             $table->string('cpf');
             $table->string('tipo');
+            $table->string('cpfCandidato');
             $table->string('motivo');
             $table->string('nProcesso');
             $table->string('data');

@@ -9,6 +9,7 @@ use Auth;
 class RecursoController extends Controller
 {
     public function cadastroRecurso(Request $request){
+      $dados = DadosUsuario::find(Auth::user()->dados);
       Recurso::create([
         'usuarioId'       => Auth::user()->id,
         'editalId'        => $request->editalId,
@@ -18,6 +19,7 @@ class RecursoController extends Controller
         'motivo'          => $request->motivo,
         'nProcesso'       => $request->nProcesso,
         'data'            => $request->data,
+        'cpfCandidato'						 => $dados->cpf,
         'homologado'      => 'nao',
 
       ]);

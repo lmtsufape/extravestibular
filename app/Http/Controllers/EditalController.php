@@ -7,6 +7,9 @@ use extravestibular\Edital;
 use extravestibular\Inscricao;
 use extravestibular\Recurso;
 use extravestibular\Isencao;
+use extravestibular\User;
+use extravestibular\DadosUsuario;
+
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Storage;

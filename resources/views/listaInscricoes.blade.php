@@ -15,13 +15,7 @@
                     <tr>
                       <td> <!-- ID -->
                        <a >
-                         {{$inscricao->id}}
-                       </a>
-                      </td>
-
-                      <td> <!-- Tipo -->
-                       <a >
-                         {{$inscricao->tipo}}
+                         {{$inscricao->cpfCandidato}}
                        </a>
                       </td>
 
@@ -32,7 +26,7 @@
                               <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
                               <input type="hidden" name="tipo" value="{{$tipo}}">
                               <button type="submit" class="btn btn-primary btn-primary-lmts">
-                                  {{ __('Selecionar esta inscrição') }}
+                                  {{ __('Selecionar') }}
                               </button>
 
                           </div>

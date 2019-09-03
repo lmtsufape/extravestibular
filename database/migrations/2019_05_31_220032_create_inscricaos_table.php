@@ -19,6 +19,7 @@ class CreateInscricaosTable extends Migration
             $table->integer('usuarioId');
             $table->integer('editalId');
             $table->string('tipo');
+            $table->string('cpfCandidato');
             $table->string('declaracaoDeVinculo')->nullable();
             $table->string('historicoEscolar')->nullable();
             $table->string('programaDasDisciplinas')->nullable();

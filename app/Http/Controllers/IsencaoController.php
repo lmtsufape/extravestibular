@@ -5,16 +5,24 @@ namespace extravestibular\Http\Controllers;
 use extravestibular\Isencao;
 use Illuminate\Http\Request;
 use extravestibular\User;
+use extravestibular\DadosUsuario;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 
 class IsencaoController extends Controller
 {
   public function cadastroIsencao(Request $request){
+
+    $file = $request->historicoEscolar;
+    $path = 'insencoes/' . Auth::user()->id . '/' . $request->editalId;
+    Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
+    $dados = DadosUsuario::find(Auth::user()->dados);
+
     Isencao::create([
       'usuarioId'                        => Auth::user()->id,
       'editalId'                         => $request->editalId,
       'tipo'                             => $request->tipo,
-      'historicoEscolar'
+      'historicoEscolar'                 => $path . '/historicoEscolar.pdf',
       'nomeDadoEconomico'                => $request->nomeDadoEconomico,
       'cpfDadoEconomico'                 => $request->cpfDadoEconomico,
       'parentescoDadoEconomico'          => $request->parentescoDadoEconomico,
@@ -30,6 +38,7 @@ class IsencaoController extends Controller
       'parentescoNucleoFamiliar1'        => $request->parentescoNucleoFamiliar1,
       'rendaNucleoFamiliar1'             => $request->rendaNucleoFamiliar1,
       'fontePagadoraNucleoFamiliar1'     => $request->fontePagadoraNucleoFamiliar1,
+      'cpfCandidato'					          	 => $dados->cpf,
       'parecer'                          => 'nao',
 
     ]);

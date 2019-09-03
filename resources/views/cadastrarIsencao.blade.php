@@ -23,14 +23,34 @@
                               </a>
                               <br>
                               <br>
-                              <input value="rendaFamiliar" type="radio" name="tipo" > Renda familiar per capita igual ou inferior a um salário mínimo e meio <br>
-                              <input value="ensinoMedio" type="radio" name="tipo" > Ter cursado o ensino médio completo em escola da rede pública ou como bolsista integral em escola da rede privada. <br>
+                              <input onclick="escolher('renda')"  value="rendaFamiliar" type="radio" name="tipo" > Renda familiar per capita igual ou inferior a um salário mínimo e meio <br>
+                              <input onclick="escolher('ensino')"  value="ensinoMedio" type="radio" name="tipo" > Ter cursado o ensino médio completo em escola da rede pública ou como bolsista integral em escola da rede privada. <br>
                             </div>
                           </div>
                       </div>
                 </div>
             </div>
-            <div class="card" style="width: 70rem; margin-top: 10px;">
+
+            <div id="historicoEscolar" class="card" style="width: 70rem; margin-top: 10px; display: none">
+                <div class="card-header">{{ __('Historico Escolar (Obrigatório)') }}</div>
+                <div class="card-body">
+                      <div class="card-body">
+                        <div class="form-group row">      <!-- Arquivo historico escolar -->
+                          <label for="Historico escolar" class="col-md-4 col-form-label text-md-right">{{ __('Histórico escolar:') }}</label>
+
+                          <div class="col-md-6">
+                            <div class="custom-file">
+                              <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="historicoEscolar">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
+
+
+            <div id="dadosEconomicos" class="card" style="width: 70rem; margin-top: 10px; display: none">
                 <div class="card-header">{{ __('Dados Econômicos (Obrigatório)') }}</div>
                 <div class="card-body">
                       <div class="card-body">
@@ -72,7 +92,7 @@
                       </div>
                 </div>
             </div>
-            <div class="card" style="width: 70rem; margin-top: 10px;">
+            <div id="nucleo" class="card" style="width: 70rem; margin-top: 10px; display: none">
                 <div class="card-header">{{ __('Dados Econômicos do Núcleo Familiar (Opcional)') }}</div>
                 <div class="card-body">
                       <div class="card-body">
@@ -114,7 +134,7 @@
                       </div>
                 </div>
             </div>
-            <div class="card" style="width: 70rem; margin-top: 10px;">
+            <div id="nucleo1" class="card" style="width: 70rem; margin-top: 10px; display: none">
                 <div class="card-header">{{ __('Dados Econômicos do Núcleo Familiar (Opcional)') }}</div>
                 <div class="card-body">
                       <div class="card-body">
@@ -170,10 +190,24 @@
       </form>
     </div>
 </div>
+
 <script type="text/javascript" >
 
+function escolher(x) {
+	if (x == "renda") {
+    document.getElementById("dadosEconomicos").style.display = "";
+    document.getElementById("nucleo1").style.display = "";
+    document.getElementById("nucleo").style.display = "";
+    document.getElementById("historicoEscolar").style.display = "none";
+	}
+	if (x == "ensino") {
+    document.getElementById("dadosEconomicos").style.display = "none";
+    document.getElementById("nucleo1").style.display = "none";
+    document.getElementById("nucleo").style.display = "none";
+    document.getElementById("historicoEscolar").style.display = "";
+	}
+}
 
 </script>
 
-
-    @endsection
+@endsection

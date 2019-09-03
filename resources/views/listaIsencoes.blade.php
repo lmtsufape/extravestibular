@@ -15,15 +15,10 @@
                     <tr>
                       <td> <!-- ID -->
                        <a >
-                         {{$isencao->id}}
+                         {{$isencao->cpfCandidato}}
                        </a>
                       </td>
 
-                      <td> <!-- Tipo -->
-                       <a >
-                         {{$isencao->tipo}}
-                       </a>
-                      </td>
 
                       <td> <!-- Isenção -->
                         <form method="POST" action={{ route('isencaoEscolhida') }} enctype="multipart/form-data"> <!-- Isenção -->
@@ -31,7 +26,7 @@
                           <div class="col-md-8 offset-md-4">
                             <input type="hidden" name="isencaoId" value="{{$isencao->id}}">
                             <button type="submit" class="btn btn-primary btn-primary-lmts">
-                                {{ __('Selecionar esta Isenção') }}
+                                {{ __('Selecionar') }}
                             </button>
 
                           </div>

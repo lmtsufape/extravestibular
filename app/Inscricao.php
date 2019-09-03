@@ -35,6 +35,7 @@ class Inscricao extends Model
         'coeficienteDeRendimento',
         'conclusaoDoCurso',
         'nota',
+        'cpfCandidato'
     ];
 
     public function user()
