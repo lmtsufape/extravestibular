@@ -12,68 +12,7 @@
   .hover_img a:hover span { display:block; height: 100px; width: 300px; overflow: visible;}
 
 
-  /* pagination */
-  .pagination > .active > li > a
-  {
-      background-color: #2c4e8a;
-      color: #1B2E4F;
-  }
-
-  .pagination > .active > li > span
-  {
-      background-color: #1B2E4F;
-      color: #1B2E4F;
-  }
-
-  .pagination > li > a:focus,
-  .pagination > li > a:hover,
-  .pagination > li > span:focus,
-  .pagination > li > span:hover
-  {
-      color: white;
-      background-color: #2c4e8a;
-      border-color: #d3e0e9;
-  }
-
-  .pagination > .active > a
-  {
-      color: white;
-      background-color: #1B2E4F;
-      border: solid 1px #1B2E4F;
-  }
-
-  .pagination > .active > a:hover
-  {
-      background-color: #1B2E4F;
-      border: solid 1px #1B2E4F;
-  }
-
-
-
-
-  /*
-  <ul class="pagination" role="navigation">
-    <li class="page-item disabled" aria-disabled="true" aria-label="&laquo; Previous">
-      <span class="page-link" aria-hidden="true">
-        &lsaquo;
-      </span>
-    </li>
-    <li class="page-item active" aria-current="page">
-      <span class="page-link">
-        1
-      </span>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="http://extravestibular.site/home?page=2">
-        2
-      </a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="http://extravestibular.site/home?page=2" rel="next" aria-label="Next &raquo;">
-        &rsaquo;
-      </a>
-    </li>
-  </ul> */
+  
 
 
 </style>

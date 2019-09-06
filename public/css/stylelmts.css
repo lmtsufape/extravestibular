@@ -160,3 +160,46 @@ body{
   margin-top: 5px;
 
 }
+
+/* pagination */
+.pagination > .active > li > a
+{
+    background-color: #2c4e8a;
+    color: #1B2E4F;
+}
+
+.pagination > .active > li > span
+{
+    background-color: #1B2E4F;
+    color: #1B2E4F;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: white;
+    background-color: #2c4e8a;
+    border-color: #d3e0e9;
+}
+
+.pagination > .active > a
+{
+    color: white;
+    background-color: #1B2E4F;
+    border: solid 1px #1B2E4F;
+}
+
+.pagination > .active > a:hover
+{
+    background-color: #1B2E4F;
+    border: solid 1px #1B2E4F;
+}
+
+
+.page-item.active .page-link {
+  background-color: #1B2E4F;
+  border-color: #1B2E4F;
+
+}

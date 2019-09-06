@@ -191,7 +191,7 @@
         .dropdown:hover .dropbtn {
           background-color: #3097D1;
         }
-    </style>
+      </style>
 
 </head>
 <body>
@@ -245,7 +245,7 @@
                          {{ __('EDITAIS') }}
                       </a>
                       <form id="VerEditais" action="{{ route('home') }}" method="GET" style="display: none;">
-                          @csrf
+
                       </form>
                   </li>
 
@@ -260,7 +260,7 @@
                          {{ __('DADOS DE USUÁRIO') }}
                       </a>
                       <form id="cadastroDadosUsuario" action="{{ route('verDadosUsuario') }}" method="GET" style="display: none;">
-                          @csrf
+
                       </form>
                   </li>
 
@@ -275,7 +275,7 @@
                          {{ __('EDITAIS') }}
                       </a>
                       <form id="VerEditais" action="{{ route('home') }}" method="GET" style="display: none;">
-                          @csrf
+
                       </form>
                   </li>
 
@@ -290,7 +290,7 @@
                        {{ __('NOVO EDITAL') }}
                     </a>
                     <form id="novoEdital-form" action="{{ route('novoEdital') }}" method="GET" style="display: none;">
-                        @csrf
+
                     </form>
                   </li>
 
@@ -305,7 +305,7 @@
                          {{ __('GERAR CLASSIFICAÇÃO') }}
                       </a>
                       <form id="listaEditais-form6" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
-                          @csrf
+                            @csrf
                           <input type="hidden" name="tipo" value="gerarClassificacao">
                       </form>
                   </li>
@@ -321,7 +321,7 @@
                          {{ __('Editais') }}
                       </a>
                       <form id="VerEditais" action="{{ route('home') }}" method="GET" style="display: none;">
-                          @csrf
+
                       </form>
                   </li>
 
@@ -337,7 +337,7 @@
                          {{ __('Editais') }}
                       </a>
                       <form id="VerEditais" action="{{ route('home') }}" method="GET" style="display: none;">
-                          @csrf
+
                       </form>
                   </li>
 

@@ -67,7 +67,7 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
          @endif
          <div class="container justify-content-center" style="padding: 10px" >  <!-- form Isenção -->
            <form method="GET" action="{{route('editalEscolhido')}}">
-             @csrf
+
              <input type="hidden" name="editalId" value="{{$edital->id}}">
              <input type="hidden" name="tipo" value="requerimentoDeIsencao">
              @if(is_null($isencao))
@@ -131,7 +131,7 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
 
           <div class="container justify-content-center" style="padding: 10px" >
             <form method="GET" action="{{route('editalEscolhido')}}"> <!-- Recurso -->
-                @csrf
+
                 <input type="hidden" name="editalId" value="{{$edital->id}}">
                 <input type="hidden" name="tipo" value="requerimentoDeRecurso">
                 <input type="hidden" name="tipoRecurso" value="taxa" >
@@ -198,7 +198,7 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
              @endif
              <div class="container justify-content-center" style="padding: 10px" >
                <form method="GET" action="{{route('editalEscolhido')}}">  <!-- Inscrição -->
-                   @csrf
+
                    <input type="hidden" name="editalId" value="{{$edital->id}}">
                    <input type="hidden" name="tipo" value="fazerInscricao">
                    @if(is_null($inscricao))
@@ -261,7 +261,7 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
 
              <div class="container justify-content-center" style="padding: 10px" >
                <form method="GET" action="{{route('editalEscolhido')}}"> <!-- Recurso -->
-                   @csrf
+                   
                    <input type="hidden" name="editalId" value="{{$edital->id}}">
                    <input type="hidden" name="tipo" value="requerimentoDeRecurso">
                    <input type="hidden" name="tipoRecurso" value="classificacao" >

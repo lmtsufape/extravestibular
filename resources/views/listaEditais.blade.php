@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Editais')
 @section('navbar')
-    Inscrição
+    Home/Gerar Classificação
 @endsection
 @section('content')
 

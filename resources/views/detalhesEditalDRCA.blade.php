@@ -93,7 +93,7 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
 
              <div class="container justify-content-center" style="padding: 10px" >
                <form method="GET" action="{{route('editalEscolhido')}}">
-                   @csrf
+                   
                    <input type="hidden" name="editalId" value="{{$edital->id}}">
                    <input type="hidden" name="tipo" value="homologarInscricoesReintegracao">
 
