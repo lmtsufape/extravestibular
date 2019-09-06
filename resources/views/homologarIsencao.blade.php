@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Homologar Isencao')
 @section('navbar')
-    Homologar Isencao
+    Home/Detalhes do edital/Homologar Isenção/{{$isencao->cpfCandidato}}
 @endsection
 @section('content')
 
@@ -203,7 +203,7 @@
                   </div>
               </div>
             @endif
-            <form method="POST" action={{ route('homologarIsencao') }} enctype="multipart/form-data">
+            <form method="POST" action={{ route('homologarIsencao') }} enctype="multipart/form-data" id="formHomologacao">
               @csrf
               <div class="card" style="width: 70rem; margin-top: 10px; margin-left: -12rem">
                   <div class="card-header">{{ __('Parecer') }}</div>
@@ -214,8 +214,8 @@
 
                                 <div class="form-group row justify-content-center" style="margin-left: -5rem; font-weight: bold" >
                                   <div class="col-md-12">
-                                    <input type="radio" name="resultado" value="deferida"> Deferida
-                                    <input type="radio" name="resultado" value="indeferida"> Indeferida
+                                    <input onclick="selectCheck('aprovado')" type="radio" name="resultado" value="deferida"> Deferida
+                                    <input onclick="selectCheck('rejeitado')" type="radio" name="resultado" value="indeferida"> Indeferida
                                   </div>
                                 </div>
 
@@ -223,6 +223,14 @@
                         </div>
                     </div>
                   </div>
+              </div>
+              <div class="form-group" id="motivoRejeicao" style=" display: none; margin-left: -12rem">
+                <label for="motivoRejeicao" class="col-md-4 col-form-label text-md-right"  style="margin-left: -60px;">{{ __('Motivos da Rejeição:') }}</label>
+
+                <div class="col-md-6" style="margin-left: 10px">
+                  <textarea form ="formHomologacao" name="motivoRejeicao" id="taid" cols="115" ></textarea>
+
+                </div>
               </div>
               <div class="form-group row mb-0" style="margin-left: 3rem; margin-top: 10px">
                 <div class="col-md-8 offset-md-4">
@@ -240,6 +248,10 @@
 
 
 <script type="text/javascript" >
-
+function selectCheck(x){
+  if(x == 'rejeitado'){
+    document.getElementById("motivoRejeicao").style.display = ''
+  }
+}
 </script>
 @endsection

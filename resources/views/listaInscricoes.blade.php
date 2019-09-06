@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Homologar Inscrição')
 @section('navbar')
-    Homologar Inscrição
+    Home/Detalhes do edital/Homologar Inscrição
 @endsection
 @section('content')
 <div class="container">
@@ -20,7 +20,7 @@
                       </td>
 
                       <td> <!-- Isenção -->
-                        <form method="POST" action={{ route('inscricaoEscolhida') }} enctype="multipart/form-data"> <!-- Isenção -->
+                        <form method="get" action={{ route('inscricaoEscolhida') }} enctype="multipart/form-data"> <!-- Isenção -->
                           @csrf
                           <div class="col-md-8 offset-md-4">
                               <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">

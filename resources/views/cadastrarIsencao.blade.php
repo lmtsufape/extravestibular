@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Requerimento de Isenção')
 @section('navbar')
-    Isenção
+    Home/Detalhes do edital/Requerimento de Isenção
 @endsection
 @section('content')
 
@@ -181,7 +181,7 @@
                 <div class="col-md-8 offset-md-4">
                   <input type="hidden" name="editalId" value="{{$editalId}}">
                     <button type="submit" class="btn btn-primary btn-primary-lmts">
-                        {{ __('Salvar') }}
+                        {{ __('Finalizar') }}
                     </button>
 
                 </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Requerimento de Recurso')
 @section('navbar')
-    Requerimento de Recurso
+    Home/Detalhes do edital/Requerimento de Recurso
 @endsection
 @section('content')
 
@@ -60,7 +60,7 @@
                           <div class="form-group row mb-0">
                               <div class="col-md-8 offset-md-4">
                                   <button type="submit" class="btn btn-primary btn-primary-lmts">
-                                      {{ __('Cadastrar Recurso') }}
+                                      {{ __('Finalizar') }}
                                   </button>
 
                               </div>

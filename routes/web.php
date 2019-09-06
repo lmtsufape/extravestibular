@@ -24,13 +24,14 @@ Route::get('/download',              'InscricaoController@downloadArquivo'      
 Route::get( '/novoEdital',           'EditalController@novoEdital'                )->name('novoEdital');
 Route::post('/listaEditais',         'EditalController@listaEditais'              )->name('listaEditais');
 Route::post('/cadastroEdital',       'EditalController@cadastroEdital'            )->name('cadastroEdital');
-Route::get('/listaInscricoes',       'EditalController@editalEscolhido'           )->name('editalEscolhido');
+Route::get( '/detalhes/{edital}',    'EditalController@detalhesEdital'            )->name('detalhesEdital');
+Route::get( '/listaInscricoes',      'EditalController@editalEscolhido'           )->name('editalEscolhido');
 Route::post('/gerarClassificacao',   'EditalController@gerarClassificacao'        )->name('gerarClassificacao');
 
 Route::post('/cadastroInscricao',    'InscricaoController@cadastroInscricao'      )->name('cadastroInscricao');
-Route::post('/homologarInscricao',   'InscricaoController@inscricaoEscolhida'     )->name('inscricaoEscolhida');
+Route::get('/homologarInscricao',    'InscricaoController@inscricaoEscolhida'     )->name('inscricaoEscolhida');
 Route::post('/inscricaoHomologada',  'InscricaoController@homologarInscricao'     )->name('homologarInscricao');
-Route::post('/classificarInscricao', 'InscricaoController@classificarInscricao'   )->name('classificarInscricao');
+Route::get('/classificarInscricao',   'InscricaoController@classificarInscricao'  )->name('classificarInscricao');
 Route::post('/cadastroClassificacao','InscricaoController@cadastroClassificacao'  )->name('cadastroClassificacao');
 
 Route::post('/cadastroIsencao',      'IsencaoController@cadastroIsencao'          )->name('cadastroIsencao');

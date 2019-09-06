@@ -12,17 +12,43 @@ use Illuminate\Support\Facades\Storage;
 class IsencaoController extends Controller
 {
   public function cadastroIsencao(Request $request){
+    if(!is_null($request->historicoEscolar)){
 
-    $file = $request->historicoEscolar;
-    $path = 'insencoes/' . Auth::user()->id . '/' . $request->editalId;
-    Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
+      $file = $request->historicoEscolar;
+      $path = 'insencoes/' . Auth::user()->id . '/' . $request->editalId;
+      Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
+      $dados = DadosUsuario::find(Auth::user()->dados);
+      Isencao::create([
+        'usuarioId'                        => Auth::user()->id,
+        'editalId'                         => $request->editalId,
+        'tipo'                             => $request->tipo,
+        'historicoEscolar'                 => $path . '/historicoEscolar.pdf',
+        'nomeDadoEconomico'                => $request->nomeDadoEconomico,
+        'cpfDadoEconomico'                 => $request->cpfDadoEconomico,
+        'parentescoDadoEconomico'          => $request->parentescoDadoEconomico,
+        'rendaDadoEconomico'               => $request->rendaDadoEconomico,
+        'fontePagadoraDadoEconomico'       => $request->fontePagadoraDadoEconomico,
+        'nomeNucleoFamiliar'               => $request->nomeNucleoFamiliar,
+        'cpfNucleoFamiliar'                => $request->cpfNucleoFamiliar,
+        'parentescoNucleoFamiliar'         => $request->parentescoNucleoFamiliar,
+        'rendaNucleoFamiliar'              => $request->rendaNucleoFamiliar,
+        'fontePagadoraNucleoFamiliar'      => $request->fontePagadoraNucleoFamiliar,
+        'nomeNucleoFamiliar1'              => $request->nomeNucleoFamiliar1,
+        'cpfNucleoFamiliar1'               => $request->cpfNucleoFamiliar1,
+        'parentescoNucleoFamiliar1'        => $request->parentescoNucleoFamiliar1,
+        'rendaNucleoFamiliar1'             => $request->rendaNucleoFamiliar1,
+        'fontePagadoraNucleoFamiliar1'     => $request->fontePagadoraNucleoFamiliar1,
+        'cpfCandidato'					           => $dados->cpf,
+        'parecer'                          => 'nao',
+
+      ]);
+      return redirect()->route('home')->with('jsAlert', 'Isenção requerida com sucesso.');
+    }
     $dados = DadosUsuario::find(Auth::user()->dados);
-
     Isencao::create([
       'usuarioId'                        => Auth::user()->id,
       'editalId'                         => $request->editalId,
       'tipo'                             => $request->tipo,
-      'historicoEscolar'                 => $path . '/historicoEscolar.pdf',
       'nomeDadoEconomico'                => $request->nomeDadoEconomico,
       'cpfDadoEconomico'                 => $request->cpfDadoEconomico,
       'parentescoDadoEconomico'          => $request->parentescoDadoEconomico,
@@ -38,7 +64,7 @@ class IsencaoController extends Controller
       'parentescoNucleoFamiliar1'        => $request->parentescoNucleoFamiliar1,
       'rendaNucleoFamiliar1'             => $request->rendaNucleoFamiliar1,
       'fontePagadoraNucleoFamiliar1'     => $request->fontePagadoraNucleoFamiliar1,
-      'cpfCandidato'					          	 => $dados->cpf,
+      'cpfCandidato'					           => $dados->cpf,
       'parecer'                          => 'nao',
 
     ]);
@@ -53,6 +79,7 @@ class IsencaoController extends Controller
   public function homologarIsencao(Request $request){
     $isencao = Isencao::find($request->isencaoId);
     $isencao->parecer = $request->resultado;
+    $isencao->motivoRejeicao = $request->motivoRejeicao;
     $isencao->save();
     return redirect()->route('home')->with('jsAlert', 'Isenção homologada com sucesso.');
 

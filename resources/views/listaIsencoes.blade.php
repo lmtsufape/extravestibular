@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Homologar Isenção')
 @section('navbar')
-    Homologar Isenção
+    Home/Detalhes do edital/Homologar Isenção
 @endsection
 @section('content')
 <div class="container">

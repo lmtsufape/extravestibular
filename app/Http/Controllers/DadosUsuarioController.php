@@ -21,7 +21,7 @@ class DadosUsuarioController extends Controller
     // }
 
   public function cadastroDadosUsuario(Request $request){
-    $validatedData = $request->validate(['nome'               => ['required', 'string', 'max:255'],
+    $validatedData = $request->validate([ 'nome'              => ['required', 'string', 'max:255'],
                                           'cpf'               => ['required', 'size:11'],
                                           'rg'                => ['required', 'size:7'],
                                           'orgaoEmissor'      => ['required', 'min:3', 'max:5'],
@@ -33,9 +33,9 @@ class DadosUsuarioController extends Controller
                                           'bairro'            => ['required', 'max:255'],
                                           'cidade'            => ['required', 'max:255'],
                                           'uf'                => ['required', 'size:2'],
-                                          'foneResidencial'   => ['nullable','min:10', 'max:11'],
-                                          'foneCelular'       => ['nullable','min:10', 'max:11'],
-                                          'foneComercial'     => ['nullable','min:10', 'max:11'],
+                                          'foneResidencial'   => ['nullable','min:10', 'max:13'],
+                                          'foneCelular'       => ['nullable','min:10', 'max:13'],
+                                          'foneComercial'     => ['nullable','min:10', 'max:13'],
 
                                         ]);
 

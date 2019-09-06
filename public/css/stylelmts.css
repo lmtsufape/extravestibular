@@ -1,0 +1,162 @@
+body{
+    margin: 0px;
+    padding: 0px;
+
+}
+
+.info{
+    width: 100%;
+    height: 718px;
+}
+.info-texto{
+    width: 75%;
+    height: 718px;
+    background-color: #1B2E4F;
+    float: left;
+}
+.info-login{
+    width: 25%;
+    height: 718px;
+    background-color: white;
+    float: right;
+}
+.info-texto .texto{
+    padding: 50px;
+    color: white;
+}
+
+.texto p{
+    padding-left: 20px;
+    padding-left: 20px;
+    font-size: 20px;
+}
+.texto ul{
+    padding-left: 20px;
+    font-size: 16px;
+    font-size: 20px;
+}
+
+
+.text-center{
+    margin-top: 40px;
+    padding-top: 50px;
+
+}
+
+.botoes{
+    width: 300px;
+    margin: 0 auto;
+    height: 40px;
+
+}
+
+.info-login .btn{
+    float: right;
+
+}
+.formulario-centro{
+    text-align: right;
+}
+
+
+/*Tela Cadastro*/
+.background{
+    width: 100%;
+    height: 730px;
+    background-color: #1B2E4F;
+}
+.centro{
+    width: 25%;
+
+    margin: 0 auto;
+    height: 730px;
+    background-color: white;
+
+}
+.centro h2{
+
+    padding-top: 40px;
+}
+
+/*Home Servidor*/
+
+.tela-servidor{
+    width: 100%;
+    height: 730px;
+
+}
+
+
+.conteudo-central{
+    width: 1000px;
+    height: 300px;
+    margin: 0;
+    padding: 0;
+
+
+}
+
+.cartao{
+    margin: 30px;
+    width: 200px;
+    height: 250px;
+    float: left;
+    border-radius: 20px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.cartao h2{
+    color: #1B2E4F;
+}
+
+.cartao:hover{
+    box-shadow: 0 0 13px rgba(0,0,0,0.5); /*Valor1 = Posição y | Valor2 = Posição x | Valor3 = blur | Valor4 = CorP*/
+}
+
+.centro-cartao{
+    padding-top: 50px;
+
+    height: 730px;
+    background-color: #fff;
+}
+
+
+
+
+
+.separador-lmts{     /*       Separador de navbar */
+  color: white;
+  font-weight: bold;
+  font-size: 20;
+  margin-top: 6px;
+}
+
+/* Botão com cor padrão do lmts */
+
+.btn-primary-lmts{
+  background-color: #1B2E4F;
+  border-color: #d3e0e9;
+  color: white;
+}
+.btn-primary-lmts:disabled{
+  background-color: #1B2E4F;
+  border-color: #d3e0e9;
+  color: white;
+}
+.btn-primary-lmts:hover{
+  background-color: #2c4e8a;
+  border-color: #d3e0e9;
+  color: white;
+}
+
+/* badge lmts */
+
+.badge-lmts{
+  padding: 5px;
+  color: white;
+  font-size: 13px;
+  background-color: #67748B;
+  margin-left: 5px;
+  margin-top: 5px;
+
+}

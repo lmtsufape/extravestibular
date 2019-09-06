@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Classificar Inscrição')
 @section('navbar')
-    Classificar Inscrição
+    Home/Detalhes do edital/Classificar Inscrição/{{$inscricao->cpfCandidato}}
 @endsection
 @section('content')
 
@@ -81,35 +81,57 @@
             </tr >
           </table>
         </div>
-        <div >
-        <label for="coeficienteDeRendimento" class="field a-field a-field_a2 page__field">
-            <input id="coeficienteDeRendimento" type="text" name="coeficienteDeRendimento" autofocus class="field__input a-field__input" placeholder="Coeficiente de Rendimento" >
-            <span class="a-field__label-wrap">
-              <span class="a-field__label">Coeficiente de Rendimento</span>
+        <div class="form-group row" >
+          <div>
+            <label for="coeficienteDeRendimento" class="field a-field a-field_a2 page__field">
+                <input id="coeficienteDeRendimento" type="text" name="coeficienteDeRendimento" autofocus class="form-control @error('coeficienteDeRendimento') is-invalid @enderror field__input a-field__input" placeholder="Coeficiente de Rendimento"  value="{{ old('coeficienteDeRendimento') }}">
+                <span class="a-field__label-wrap">
+                  <span class="a-field__label">Coeficiente de Rendimento</span>
+                </span>
+            </label>
+            @error('coeficienteDeRendimento')
+            <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+              <strong>{{ $message }}</strong>
             </span>
-        </label>
-        <label for="materias" class="field a-field a-field_a2 page__field">
-            <input id="materias" type="text" name="materias" autofocus class="field__input a-field__input" placeholder="Materias Necessarias">
-            <span class="a-field__label-wrap">
-              <span class="a-field__label">Materias Necessarias</span>
-            </span>
-        </label>
-        <label for="completadas" class="field a-field a-field_a2 page__field">
-            <input id="completadas" type="text" name="completadas" autofocus class="field__input a-field__input" placeholder="Materias Completas">
-            <span class="a-field__label-wrap">
-              <span class="a-field__label">Materias Completas</span>
-            </span>
-        </label>
-        </div>
-        <div class="form-group row mb-0">
-          <div class="col-md-8 offset-md-4">
-            <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
-            <button id="buttonFinalizar" type="submit" class="btn btn-primary btn-primary-lmts">
-              {{ __('Finalizar') }}
-            </button>
-
+            @enderror
           </div>
+        <div>
+          <label for="materias" class="field a-field a-field_a2 page__field" style="margin-left: 20px">
+              <input id="materias" type="text" name="materias" autofocus class="form-control @error('materias') is-invalid @enderror field__input a-field__input" placeholder="Nº Disciplinas Obrigatórias"  value="{{ old('materias') }}">
+              <span class="a-field__label-wrap">
+                <span class="a-field__label">Nº Disciplinas Obrigatórias</span>
+              </span>
+          </label>
+          @error('materias')
+          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
         </div>
+        <div>
+          <label for="completadas" class="field a-field a-field_a2 page__field" style="margin-left: 20px">
+              <input id="completadas" type="text" name="completadas" autofocus class="form-control @error('completadas') is-invalid @enderror field__input a-field__input" placeholder="Nº Disciplinas Cursadas" value="{{ old('completadas') }}">
+              <span class="a-field__label-wrap">
+                <span class="a-field__label">Nº Disciplinas Cursadas</span>
+              </span>
+          </label>
+          @error('completadas')
+          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+        </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="form-group row mb-0">
+      <div class="col-md-8 offset-md-4" style="margin-top: 10px; margin-left: 20rem">
+        <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
+        <button id="buttonFinalizar" type="submit" class="btn btn-primary btn-primary-lmts">
+          {{ __('Finalizar') }}
+        </button>
+
       </div>
     </div>
   </div>

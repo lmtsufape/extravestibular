@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('titulo','Cadastro dos Dados de Usuario')
+@section('titulo','Editar Dados de Usuario')
 @section('navbar')
-    Dados de Usuario
+    Home/Editar Dados
 @endsection
 @section('content')
 
@@ -240,7 +240,7 @@
         <div class="form-group row mb-0" style="margin-top: 10px; margin-left: 10rem"> <!-- Button -->
           <div class="col-md-8 offset-md-4">
             <button type="submit" class="btn btn-primary btn-primary-lmts" >
-              {{ __('Salvar') }}
+              {{ __('Finalizar') }}
             </button>
 
           </div>

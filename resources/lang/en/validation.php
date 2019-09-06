@@ -79,7 +79,7 @@ return [
     'max' => [
         'numeric' => 'The :attribute may not be greater than :max.',
         'file' => 'The :attribute may not be greater than :max kilobytes.',
-        'string' => 'The :attribute may not be greater than :max characters.',
+        'string' => 'Este campo não pode ser maior que :max',
         'array' => 'The :attribute may not have more than :max items.',
     ],
     'mimes' => 'The :attribute must be a file of type: :values.',
@@ -87,12 +87,12 @@ return [
     'min' => [
         'numeric' => 'Este campo precisa de pelo menos :min',
         'file' => 'The :attribute must be at least :min kilobytes.',
-        'string' => 'Este campo precisa de pelo menos :min :min caracteres.',
+        'string' => 'Este campo precisa de pelo menos :min caracteres.',
         'array' => 'The :attribute must have at least :min items.',
     ],
     'not_in' => 'The selected :attribute is invalid.',
     'not_regex' => 'The :attribute format is invalid.',
-    'numeric' => 'The :attribute must be a number.',
+    'numeric' => 'Este campo deve ser um número.',
     'present' => 'The :attribute field must be present.',
     'regex' => 'The :attribute format is invalid.',
     'required' => 'Este campo é obrigatório.',

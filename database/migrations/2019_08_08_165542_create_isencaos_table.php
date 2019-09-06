@@ -39,6 +39,7 @@ class CreateIsencaosTable extends Migration
             $table->string('rendaFamiliarHomologacao')->nullable();
             $table->string('ensinoMedioHomologacao')->nullable();
             $table->string('parecer')->nullable();
+            $table->text('motivoRejeicao')->nullable();
         });
     }
 

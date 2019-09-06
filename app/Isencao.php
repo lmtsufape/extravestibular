@@ -29,7 +29,8 @@ class Isencao extends Model
     'rendaFamiliarHomologacao',
     'ensinoMedioHomologacao',
     'parecer',
-    'cpfCandidato'
+    'cpfCandidato',
+    'motivoRejeicao',
   ];
 
   public function edital()

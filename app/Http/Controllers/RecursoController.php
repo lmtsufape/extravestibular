@@ -3,6 +3,7 @@
 namespace extravestibular\Http\Controllers;
 
 use extravestibular\Recurso;
+use extravestibular\DadosUsuario;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -19,7 +20,7 @@ class RecursoController extends Controller
         'motivo'          => $request->motivo,
         'nProcesso'       => $request->nProcesso,
         'data'            => $request->data,
-        'cpfCandidato'						 => $dados->cpf,
+        'cpfCandidato'		=> $dados->cpf,
         'homologado'      => 'nao',
 
       ]);
@@ -34,6 +35,7 @@ class RecursoController extends Controller
     public function homologarRecurso(Request $request){
       $recurso = Recurso::find($request->recursoId);
       $recurso->homologado = $request->radioRecurso;
+      $recurso->motivoRejeicao = $request->motivoRejeicao;
       $recurso->save();
       return redirect()->route('home')->with('jsAlert', 'Recurso homologada com sucesso.');
 

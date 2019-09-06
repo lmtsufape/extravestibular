@@ -37,26 +37,30 @@ class HomeController extends Controller
           $mytime = Carbon::now('America/Recife');
           $mytime = $mytime->toDateString();
           $editais = Edital::orderBy('created_at', 'desc')->paginate(4);
-          if(Auth::user()->tipo == 'candidato'){
-            return view('homeCandidato', ['editais' => $editais,
-                                 'mytime'  => $mytime,
-                                ]);
-          }
-          if(Auth::user()->tipo == 'PREG'){
-            return view('homePREG', ['editais' => $editais,
-                                 'mytime'  => $mytime,
-                                ]);
-          }
-          if(Auth::user()->tipo == 'coordenador'){
-            return view('homeCoordenador', ['editais' => $editais,
-                                 'mytime'  => $mytime,
-                                ]);
-          }
-          if(Auth::user()->tipo == 'DRCA'){
-            return view('homeDRCA', ['editais' => $editais,
-                                 'mytime'  => $mytime,
-                                ]);
-          }
+          return view('home', ['editais' => $editais,
+                               'mytime'  => $mytime,
+                             ]);
+          
+          // if(Auth::user()->tipo == 'candidato'){
+          //   return view('homeCandidato', ['editais' => $editais,
+          //                        'mytime'  => $mytime,
+          //                       ]);
+          // }
+          // if(Auth::user()->tipo == 'PREG'){
+          //   return view('homePREG', ['editais' => $editais,
+          //                        'mytime'  => $mytime,
+          //                       ]);
+          // }
+          // if(Auth::user()->tipo == 'coordenador'){
+          //   return view('homeCoordenador', ['editais' => $editais,
+          //                        'mytime'  => $mytime,
+          //                       ]);
+          // }
+          // if(Auth::user()->tipo == 'DRCA'){
+          //   return view('homeDRCA', ['editais' => $editais,
+          //                        'mytime'  => $mytime,
+          //                       ]);
+          // }
         }
 
     }

@@ -18,8 +18,8 @@ class Inscricao extends Model
         'editalId',
         'declaracaoDeVinculo',
         'historicoEscolar',
-        'programaDasDisciplinas', '
-        curriculo',
+        'programaDasDisciplinas',
+        'curriculo',
         'enem',
         'comprovante',
         'curso',
@@ -28,14 +28,18 @@ class Inscricao extends Model
 		    'cursoDeOrigem',
         'instituicaoDeOrigem',
 		    'naturezaDaIes',
-        'enderecoIes',
+        'endereco',
+        'num',
+        'bairro',
+        'cidade',
+        'uf',
         'homologado',
         'motivoRejeicao',
         'homologadoDrca',
         'coeficienteDeRendimento',
         'conclusaoDoCurso',
         'nota',
-        'cpfCandidato'
+        'cpfCandidato',
     ];
 
     public function user()

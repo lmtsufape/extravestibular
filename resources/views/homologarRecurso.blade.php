@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('titulo','Homologar Recurso')
 @section('navbar')
-    Homologar Recurso
+    Home/Detalhes do edital/Homologar Recurso/{{$recurso->cpfEdital}}
 @endsection
 @section('content')
 
 <div class="container" style="width: 100rem;">
     <div class="row justify-content-center">
-      <form method="POST" action={{ route('homologarRecurso') }} enctype="multipart/form-data">
+      <form method="POST" action={{ route('homologarRecurso') }} enctype="multipart/form-data" id="formHomologacao">
         @csrf
         <div class="col-md-8">
             <div class="card" style="width: 70rem; margin-left: 0PX">
@@ -33,7 +33,7 @@
                                 @else
                                   da seleção para ingresso extra para UFRPE no curso {{$recurso->curso}}
                                 @endif
-                                processo Nº {{$recurso->processo}}.
+                                processo Nº {{$recurso->nProcesso}}.
                               </a>
                               <br>
                               <br>
@@ -50,11 +50,19 @@
                   <div class="form-group row justify-content-center" style="font-weight: bold; margin-left: 25.5rem;">
 
                     <div class="col-md-11">
-                        <input type="radio" name="radioRecurso" value="aprovado"> Aprovado
+                        <input onclick="selectCheck('aprovado')" type="radio" name="radioRecurso" value="aprovado"> Aprovado
                         <br>
-                        <input type="radio" name="radioRecurso" value="rejeitado"> Rejeitado
+                        <input onclick="selectCheck('rejeitado')" type="radio" name="radioRecurso" value="rejeitado"> Rejeitado
                     </div>
 
+                  </div>
+                  <div class="form-group" id="motivoRejeicao" style=" display: none;">
+                    <label for="motivoRejeicao" class="col-md-4 col-form-label text-md-right"  style="margin-left: -60px;">{{ __('Motivos da Rejeição:') }}</label>
+
+                    <div class="col-md-6" style="margin-left: 10px">
+                      <textarea form ="formHomologacao" name="motivoRejeicao" id="taid" cols="115" ></textarea>
+
+                    </div>
                   </div>
                 </div>
             </div>
@@ -74,6 +82,10 @@
 
 
 <script type="text/javascript" >
-
+function selectCheck(x){
+  if(x == 'rejeitado'){
+    document.getElementById("motivoRejeicao").style.display = ''
+  }
+}
 </script>
 @endsection

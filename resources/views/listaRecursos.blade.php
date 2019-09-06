@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Homologar Recurso')
 @section('navbar')
-    Homologar Recurso
+    Home/Detalhes do edital/Homologar Recurso
 @endsection
 @section('content')
 <div class="container">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Novo Edital')
 @section('navbar')
-    Novo Edital
+    Home/Novo Edital
 @endsection
 @section('content')
 
@@ -155,7 +155,7 @@
                 <div class="col-md-8 offset-md-4">
                     <input type="hidden" name="nCursos" value="{{$i}}">
                     <button type="submit" class="btn btn-primary btn-primary-lmts"  style="margin-top: 20px; margin-left: 15rem">
-                        {{ __('Cadastrar Novo Edital') }}
+                        {{ __('Finalizar') }}
                     </button>
 
                 </div>

@@ -32,9 +32,13 @@ class CreateInscricaosTable extends Migration
     				$table->string('cursoDeOrigem');
     				$table->string('instituicaoDeOrigem');
     				$table->string('naturezaDaIes');
-    				$table->string('enderecoIes');
+            $table->string('endereco');
+            $table->string('num');
+            $table->string('bairro');
+            $table->string('cidade');
+            $table->string('uf');
             $table->string('homologado')->nullable();
-            $table->string('motivoRejeicao')->nullable();
+            $table->text('motivoRejeicao')->nullable();
             $table->string('homologadoDrca')->nullable();
             $table->string('coeficienteDeRendimento')->nullable();
             $table->string('conclusaoDoCurso')->nullable();

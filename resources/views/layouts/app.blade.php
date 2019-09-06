@@ -17,6 +17,7 @@
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/select2-bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/field-animation.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/stylelmts.css') }}" rel="stylesheet">
 
     <script type="text/javascript">
 
@@ -27,27 +28,6 @@
             color: #fff;
             background-color: #1B2E4F;
             border-color: #d3e0e9;
-        }
-        .separador-lmts{
-          color: white;
-          font-weight: bold;
-          font-size: 20;
-          margin-top: 6px;
-        }
-        .btn-primary-lmts{
-          background-color: #1B2E4F;
-          border-color: #d3e0e9;
-          color: white;
-        }
-        .btn-primary-lmts:disabled{
-          background-color: #1B2E4F;
-          border-color: #d3e0e9;
-          color: white;
-        }
-        .btn-primary-lmts:hover{
-          background-color: #2c4e8a;
-          border-color: #d3e0e9;
-          color: white;
         }
 
         .nav-link {
@@ -233,7 +213,7 @@
       <div id="barra-logos" lass-"container" style="background:#FFFFFF; margin-top: 1px; height: 150px; padding: 10px 0 10px 0">
         <ul id="logos" style="list-style:none;">
             <li style="margin-right:140px; margin-left:110px; border-right:1px ;height: 120px">
-                <a href="{{ route("home") }}"><img src="{{asset('images/extraVestibular.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a>
+                <a href="{{ route("home") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a>
 
                 <a target="_blank" href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts.jpg')}}" style = "margin-left: 8px; margin-top:30px " height="70"  align = "right" ></a>
 
@@ -247,9 +227,9 @@
       </div>
       <!-- barra de menu -->
 
-      <nav class="navbar navbar-expand-lg" style="background-color: #1B2E4F; border-color: #d3e0e9" role="navigation">
+      <nav class="navbar navbar-expand-lg" style="background-color: #1B2E4F; border-color: #d3e0e9; box-shadow: 0 0 6px rgba(0,0,0,0.5);" role="navigation">
         <a class="navbar-brand" href="{{ route('home') }}" style="color: white; font-weight: bold;">
-          <img src="{{asset('images/extraVestibularBranco.png')}}" height="30" class="d-inline-block align-top" alt="">
+          <img src="{{asset('images/logoBranco.png')}}" height="30" class="d-inline-block align-top" alt="">
 
         </a>
           <div class="collapse navbar-collapse" >
@@ -400,8 +380,8 @@
                   </li>
 
                 @endif
-                @if(Auth::user()->tipo == 'PREG')
                 <!-- Visão PREG -->
+                @if(Auth::user()->tipo == 'PREG')
                   <li> <!--  logout   -->
                       <a class="nav-link"  href="{{ route('logout') }}"
                          onclick="event.preventDefault();
@@ -414,8 +394,8 @@
                   </li>
 
                 @endif
-                @if(Auth::user()->tipo == 'DRCA')
                 <!-- Visão DRCA -->
+                @if(Auth::user()->tipo == 'DRCA')
                   <li> <!--  logout   -->
                       <a class="nav-link"  href="{{ route('logout') }}"
                          onclick="event.preventDefault();
@@ -428,8 +408,8 @@
                   </li>
 
                 @endif
-                @if(Auth::user()->tipo == 'coordenador')
                 <!-- Visão coordenador -->
+                @if(Auth::user()->tipo == 'coordenador')
                   <li> <!--  logout   -->
                       <a class="nav-link"  href="{{ route('logout') }}"
                          onclick="event.preventDefault();
@@ -450,28 +430,13 @@
 
       @php($url = str_replace(URL::to('/'),'',URL::current()))
 
-      @if(!($url == '/home'))
-        @if(!($url == '/login'))
-          @if(!($url == '/register'))
 
-            <div style="margin-top: -30px" class="container">
-              <hr>
-                  <div class="row">
-                      <div class="col-md-8 col-md-offset-2">
-                          <div class="collapse navbar-collapse" >
-                              <ul class="nav navbar-nav">
-                                  @yield('navbar')
-                                  teste
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-              <hr>
-            </div>
-
-          @endif
+      @if(!($url == '/login'))
+        @if(!($url == '/register'))
+          <a class="badge badge-primary badge-lmts" style="color:white"> @yield('navbar') </a>
         @endif
       @endif
+
       <br>
       @yield('content')
 

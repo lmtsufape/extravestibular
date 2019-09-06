@@ -12,7 +12,8 @@ class Recurso extends Model
       'motivo', 'nProcesso',
       'data', 'usuarioId',
       'homologado',
-      'cpfCandidato'
+      'cpfCandidato',
+      'motivoRejeicao',
     ];
 
     public function user()

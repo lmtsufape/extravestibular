@@ -20,12 +20,13 @@ class CreateRecursosTable extends Migration
             $table->string('cpf');
             $table->string('tipo');
             $table->string('cpfCandidato');
-            $table->string('motivo');
+            $table->text('motivo');
             $table->string('nProcesso');
             $table->string('data');
             $table->integer('usuarioId');
             $table->integer('editalId');
             $table->string('homologado');
+            $table->text('motivoRejeicao')->nullable();
         });
     }
 

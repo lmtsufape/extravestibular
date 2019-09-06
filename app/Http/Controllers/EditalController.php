@@ -180,7 +180,7 @@ class EditalController extends Controller
                                     'comprovante'       => $comprovante->parecer,
                                   ]);
         }
-        if($request->tipo == 'homologarInscricoes'){
+        if($request->tipo == 'homologarInscricoes'){          
           $inscricoesDisponiveis = Inscricao::where('editalId', $request->editalId)
                                               ->where('homologado', 'nao')
                                               ->paginate(10);
@@ -243,5 +243,69 @@ class EditalController extends Controller
         $data = ['lista' => $lista];
         $pdf = PDF::loadView('classificacao', $data);
         return $pdf->download('classificacao.pdf');
+      }
+
+      public function detalhesEdital(Request $request){
+        $inscricao = Inscricao::where('usuarioId', Auth::user()->id)
+        ->where('editalId', $request->editalId)
+        ->first();
+        $isencao = Isencao::where('usuarioId', Auth::user()->id)
+        ->where('editalId', $request->editalId)
+        ->first();
+        $recursoIsencao = Recurso::where('usuarioId', Auth::user()->id)
+        ->where('editalId', $request->editalId)
+        ->where('tipo', 'taxa')
+        ->first();
+        $recursoInscricao = Recurso::where('usuarioId', Auth::user()->id)
+        ->where('editalId', $request->editalId)
+        ->where('tipo', 'classificacao')
+        ->first();
+        $edital = Edital::find($request->editalId);
+        if(Auth::user()->tipo == 'candidato'){
+          return view('detalhesEditalCandidato', ['editalId'          => $request->editalId,
+                                                  'inscricao'         => $inscricao,
+                                                  'isencao'           => $isencao,
+                                                  'recursoIsencao'    => $recursoIsencao,
+                                                  'recursoInscricao'  => $recursoInscricao,
+                                                  'edital'            => $edital,
+                                                  'mytime'            => $request->mytime,
+                                                ]);
+
+        }
+        if(Auth::user()->tipo == 'PREG'){
+          return view('detalhesEditalPREG', ['editalId'          => $request->editalId,
+                                                  'inscricao'         => $inscricao,
+                                                  'isencao'           => $isencao,
+                                                  'recursoIsencao'    => $recursoIsencao,
+                                                  'recursoInscricao'  => $recursoInscricao,
+                                                  'edital'            => $edital,
+                                                  'mytime'            => $request->mytime,
+                                                ]);
+
+        }
+        if(Auth::user()->tipo == 'DRCA'){
+          return view('detalhesEditalDRCA', ['editalId'          => $request->editalId,
+                                                  'inscricao'         => $inscricao,
+                                                  'isencao'           => $isencao,
+                                                  'recursoIsencao'    => $recursoIsencao,
+                                                  'recursoInscricao'  => $recursoInscricao,
+                                                  'edital'            => $edital,
+                                                  'mytime'            => $request->mytime,
+                                                ]);
+
+        }
+        if(Auth::user()->tipo == 'coordenador'){
+          return view('detalhesEditalCoordenador', ['editalId'          => $request->editalId,
+                                                  'inscricao'         => $inscricao,
+                                                  'isencao'           => $isencao,
+                                                  'recursoIsencao'    => $recursoIsencao,
+                                                  'recursoInscricao'  => $recursoInscricao,
+                                                  'edital'            => $edital,
+                                                  'mytime'            => $request->mytime,
+                                                ]);
+
+        }
+
+
       }
 }
