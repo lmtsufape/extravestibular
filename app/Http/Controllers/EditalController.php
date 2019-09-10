@@ -180,7 +180,7 @@ class EditalController extends Controller
                                     'comprovante'       => $comprovante->parecer,
                                   ]);
         }
-        if($request->tipo == 'homologarInscricoes'){          
+        if($request->tipo == 'homologarInscricoes'){
           $inscricoesDisponiveis = Inscricao::where('editalId', $request->editalId)
                                               ->where('homologado', 'nao')
                                               ->paginate(10);
@@ -217,8 +217,10 @@ class EditalController extends Controller
                                          ]);
         }
         if($request->tipo == 'requerimentoDeRecurso'){
+          $dados = DadosUsuario::find(Auth::user()->dados);
           return view('cadastrarRecurso', ['editalId'    => $request->editalId,
                                            'tipoRecurso' => $request->tipoRecurso,
+                                           'dados'       => $dados,
                                           ]);
         }
         if($request->tipo == 'homologarRecursos'){
@@ -239,7 +241,11 @@ class EditalController extends Controller
       }
 
       public function gerarClassificacao(Request $request){
-        $lista = Inscricao::where('editalId', $request->editalId)->orderBy('nota', 'desc')->get();
+        $lista = Inscricao::where('editalId', $request->editalId)
+                            ->select('id')
+                            ->orderBy('curso')
+                            ->orderBy('nota', 'desc')
+                            ->get();
         $data = ['lista' => $lista];
         $pdf = PDF::loadView('classificacao', $data);
         return $pdf->download('classificacao.pdf');

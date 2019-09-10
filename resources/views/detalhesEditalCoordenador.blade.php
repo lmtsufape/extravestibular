@@ -34,45 +34,9 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
       </div>
       </div>
       <div class="conteudo-central d-flex justify-content-center" style="width: 80rem">  <!-- opções -->
-        <div class="card cartao text-center " style="border-radius: 20px">    <!-- Isenção -->
 
-         <div class="card-body d-flex justify-content-center">
-           <h2 style="margin-top: -50px; font-weight: bold">Isenção</h2>
-         </div>
-         <div class="card-body d-flex justify-content-center">
-             <h5 style="margin-top: -50px;">
-              Aberto de: <br>
-                <a style="font-weight: bold">
-                  {{$edital->inicioIsencao}}
-                </a>
-                 até
-                <a style="font-weight: bold">
-                  {{$edital->fimIsencao}}
-                </a>
-             </h5>
-         </div>
 
-        </div>
 
-        <div class="card cartao text-center " style="border-radius: 20px"> <!-- Recurso Isenção -->
-
-          <div class="card-body d-flex justify-content-center">
-            <h2 style="margin-top: -50px; font-weight: bold">Recurso Isenção</h2>
-          </div>
-
-          <div class="card-body d-flex justify-content-center">
-              <h5 style="margin-top: -50px;">
-               Aberto de: <br>
-                 <a style="font-weight: bold">
-                   {{$edital->inicioRecursoIsencao}}
-                 </a>
-                  até
-                 <a style="font-weight: bold">
-                   {{$edital->fimRecursoIsencao}}
-                 </a>
-              </h5>
-          </div>
-        </div>
 
         <div class="card cartao text-center " style="border-radius: 20px">   <!-- Inscrição -->
              <div class="card-body d-flex justify-content-center">
@@ -82,18 +46,18 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                  <h5 style="margin-top: -50px;">
                   Aberto de: <br>
                     <a style="font-weight: bold">
-                      {{$edital->inicioInscricoes}}
+                      {{date_format(date_create($edital->inicioInscricoes), 'd/m/y')}}
                     </a>
                      até
                     <a style="font-weight: bold">
-                      {{$edital->fimInscricoes}}
+                      {{date_format(date_create($edital->fimInscricoes), 'd/m/y')}}
                     </a>
                  </h5>
              </div>
 
              <div class="container justify-content-center" style="padding: 10px" >
                <form method="GET" action="{{route('editalEscolhido')}}">
-                   
+
                    <input type="hidden" name="editalId" value="{{$edital->id}}">
                    <input type="hidden" name="tipo" value="classificarInscricoes">
 
@@ -114,24 +78,7 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
         </div>
 
 
-        <div class="card cartao text-center " style="border-radius: 20px">   <!-- Recuso Inscrição -->
-             <div class="card-body d-flex justify-content-center">
-                 <h2 style="margin-top: -50px; font-weight: bold">Recurso Inscrição</h2>
-             </div>
 
-             <div class="card-body d-flex justify-content-center">
-                 <h5 style="margin-top: -50px;">
-                  Aberto de: <br>
-                    <a style="font-weight: bold">
-                      {{$edital->inicioRecurso}}
-                    </a>
-                     até
-                    <a style="font-weight: bold">
-                      {{$edital->fimRecurso}}
-                    </a>
-                 </h5>
-             </div>
-        </div>
 
     </div>
   </div>

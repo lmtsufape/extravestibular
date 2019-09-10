@@ -43,11 +43,11 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
              <h5 style="margin-top: -50px;">
               Aberto de: <br>
                 <a style="font-weight: bold">
-                  {{$edital->inicioIsencao}}
+                  {{date_format(date_create($edital->inicioIsencao), 'd/m/y')}}
                 </a>
                  até
                 <a style="font-weight: bold">
-                  {{$edital->fimIsencao}}
+                  {{date_format(date_create($edital->fimIsencao), 'd/m/y')}}
                 </a>
              </h5>
          </div>
@@ -106,11 +106,11 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
               <h5 style="margin-top: -50px;">
                Aberto de: <br>
                  <a style="font-weight: bold">
-                   {{$edital->inicioRecursoIsencao}}
+                   {{date_format(date_create($edital->inicioRecursoIsencao), 'd/m/y')}}
                  </a>
                   até
                  <a style="font-weight: bold">
-                   {{$edital->fimRecursoIsencao}}
+                   {{date_format(date_create($edital->fimRecursoIsencao), 'd/m/y')}}
                  </a>
               </h5>
           </div>
@@ -168,11 +168,11 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                  <h5 style="margin-top: -50px;">
                   Aberto de: <br>
                     <a style="font-weight: bold">
-                      {{$edital->inicioInscricoes}}
+                      {{date_format(date_create($edital->inicioInscricoes), 'd/m/y')}}
                     </a>
                      até
                     <a style="font-weight: bold">
-                      {{$edital->fimInscricoes}}
+                      {{date_format(date_create($edital->fimInscricoes), 'd/m/y')}}
                     </a>
                  </h5>
              </div>
@@ -236,11 +236,11 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                  <h5 style="margin-top: -50px;">
                   Aberto de: <br>
                     <a style="font-weight: bold">
-                      {{$edital->inicioRecurso}}
+                      {{date_format(date_create($edital->inicioRecurso), 'd/m/y')}}
                     </a>
                      até
                     <a style="font-weight: bold">
-                      {{$edital->fimRecurso}}
+                      {{date_format(date_create($edital->fimRecurso), 'd/m/y')}}
                     </a>
                  </h5>
              </div>
@@ -261,7 +261,7 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
 
              <div class="container justify-content-center" style="padding: 10px" >
                <form method="GET" action="{{route('editalEscolhido')}}"> <!-- Recurso -->
-                   
+
                    <input type="hidden" name="editalId" value="{{$edital->id}}">
                    <input type="hidden" name="tipo" value="requerimentoDeRecurso">
                    <input type="hidden" name="tipoRecurso" value="classificacao" >

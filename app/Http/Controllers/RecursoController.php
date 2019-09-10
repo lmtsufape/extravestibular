@@ -5,22 +5,23 @@ namespace extravestibular\Http\Controllers;
 use extravestibular\Recurso;
 use extravestibular\DadosUsuario;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Auth;
 
 class RecursoController extends Controller
 {
     public function cadastroRecurso(Request $request){
       $dados = DadosUsuario::find(Auth::user()->dados);
+      $mytime = Carbon::now('America/Recife');
+      $mytime = $mytime->toDateString();
       Recurso::create([
         'usuarioId'       => Auth::user()->id,
         'editalId'        => $request->editalId,
-        'nome'            => $request->nome,
-        'cpf'             => $request->cpf,
+        'nome'            => $dados->nome,
+        'cpf'             => $dados->cpf,
         'tipo'            => $request->tipoRecurso,
         'motivo'          => $request->motivo,
-        'nProcesso'       => $request->nProcesso,
-        'data'            => $request->data,
-        'cpfCandidato'		=> $dados->cpf,
+        'data'            => $mytime,
         'homologado'      => 'nao',
 
       ]);

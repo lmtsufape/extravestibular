@@ -14,6 +14,8 @@ class Inscricao extends Model
      */
     protected $fillable = [
         'usuarioId',
+        'nomeCandidato',
+        'cpfCandidato',
         'tipo',
         'editalId',
         'declaracaoDeVinculo',
@@ -39,7 +41,6 @@ class Inscricao extends Model
         'coeficienteDeRendimento',
         'conclusaoDoCurso',
         'nota',
-        'cpfCandidato',
     ];
 
     public function user()

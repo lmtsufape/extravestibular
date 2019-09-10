@@ -12,7 +12,7 @@
   .hover_img a:hover span { display:block; height: 100px; width: 300px; overflow: visible;}
 
 
-  
+
 
 
 </style>
@@ -28,7 +28,7 @@
                     @foreach ($editais as $edital)
                     <tr>
                       <td   style="width: 60rem">
-                        <div class="hover_img">   <!-- time line -->
+                        <div >   <!-- time line  class="hover_img"-->
                          <a href="detalhes/{{$edital->nome}}" onclick="event.preventDefault(); document.getElementById('detalhesEdital').submit();" >
                            <?php
                              $nomeEdital = explode(".pdf", $edital->nome);
@@ -73,15 +73,15 @@
                          <form id="detalhesEdital" action="detalhes/{{$edital->nome}}" method="GET" style="display: none;">
                            <input type="hidden" name="editalId" value="{{$edital->id}}">
                            <input type="hidden" name="mytime" value="{{$mytime}}">
-                           @csrf
+
                          </form>
                         </div>
                       </td>
                       <td> <!-- data -->
-                      <a>{{$edital->created_at}}</a>
+                      <a>{{date_format($edital->created_at, 'd/m/y')}}</a>
                       </td>
                       <td> <!-- Download -->
-                      <a href="{{ route('download', ['file' => $edital->pdfEdital])}}" target="_new">Download</a>
+                      <a href="{{ route('download', ['file' => $edital->pdfEdital])}}" target="_new">Baixar Edital</a>
                       </td>
 
                     </tr>

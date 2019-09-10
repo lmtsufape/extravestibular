@@ -19,33 +19,19 @@
 
                           <div class="form-group row justify-content-center">  <!-- Nome | CPF-->
                             <label for="nome" class="field a-field a-field_a2 page__field">
-                                <input id="nome" type="text" name="nome" autofocus class="field__input a-field__input" placeholder="Nome" style="width: 45rem;">
+                                <input id="nome" type="text" name="nome" autofocus class="field__input a-field__input" disabled value="{{$dados->nome}}" placeholder="Nome" style="width: 45rem;">
                                 <span class="a-field__label-wrap">
                                   <span class="a-field__label">Nome</span>
                                 </span>
                             </label>
                             <label for="cpf" class="field a-field a-field_a2 page__field" style=" margin-left: 30px;">
-                                <input id="cpf" type="text" name="cpf" autofocus class="field__input a-field__input" placeholder="CPF" style="width: 12rem;">
+                                <input id="cpf" type="text" name="cpf" autofocus class="field__input a-field__input" disabled value="{{$dados->cpf}}" placeholder="CPF" style="width: 12rem;">
                                 <span class="a-field__label-wrap">
                                   <span class="a-field__label">CPF</span>
                                 </span>
                             </label>
                           </div>
 
-                            <div class="form-group row"> <!-- Processo Nº/Data-->
-                              <label for="nProcesso" class="field a-field a-field_a2 page__field" style="margin-left: 60px">
-                                  <input id="nProcesso" type="text" name="nProcesso" autofocus class="field__input a-field__input" placeholder="Processo Nº" style="width: 12rem;">
-                                  <span class="a-field__label-wrap">
-                                    <span class="a-field__label">Processo Nº</span>
-                                  </span>
-                              </label>
-                              <label for="data" class="field a-field a-field_a2 page__field" style=" margin-left: 30px;">
-                                  <input id="data" type="date" name="data" autofocus class="field__input a-field__input" placeholder="Data" style="width: 10rem;">
-                                  <span class="a-field__label-wrap">
-                                    <span class="a-field__label">Data</span>
-                                  </span>
-                              </label>
-                          </div>
 
                           <div class="form-group">
                               <label for="motivo" class="col-md-4 col-form-label text-md-right"  style="margin-left: -15rem">{{ __('Motivo:') }}</label>

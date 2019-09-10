@@ -82,6 +82,7 @@ class InscricaoController extends Controller
 							'coeficienteDeRendimento'=> 'nao',
 							'comprovante'						 => $comprovante,
 							'cpfCandidato'					 => $dados->cpf,
+							'nomeCandidato'					 => $dados->nome,
 					  ]);
 						$nomeEdital = Edital::find($request->editalId)->get('nome');
 						Mail::to('lucas.siqueira.araujo@gmail.com')->send(new NovaInscricao($nomeEdital));
@@ -129,6 +130,7 @@ class InscricaoController extends Controller
 							'homologadoDrca'			 	 => 'nao',
 							'coeficienteDeRendimento'=> 'nao',
 							'cpfCandidato'					 => $dados->cpf,
+							'nomeCandidato'					 => $dados->nome,
 							'comprovante'						 => $comprovante,
 						]);
 						$nomeEdital = Edital::find($request->editalId)->get('nome');
@@ -183,7 +185,8 @@ class InscricaoController extends Controller
 							'homologado'						 => 'nao',
 							'homologadoDrca'			 	 => 'nao',
 							'coeficienteDeRendimento'=> 'nao',
-							'cpfCandidato'						 => $dados->cpf,
+							'nomeCandidato'					 => $dados->nome,
+							'cpfCandidato'					 => $dados->cpf,
 							'comprovante'						 => $comprovante,
 					  ]);
 						$nomeEdital = Edital::find($request->editalId)->get('nome');
@@ -237,7 +240,8 @@ class InscricaoController extends Controller
 							'homologado'						 => 'nao',
 							'homologadoDrca'			 	 => 'nao',
 							'coeficienteDeRendimento'=> 'nao',
-							'cpfCandidato'						 => $dados->cpf,
+							'nomeCandidato'					 => $dados->nome,
+							'cpfCandidato'					 => $dados->cpf,
 							'comprovante'						 => $comprovante,
 					  ]);
 						$nomeEdital = Edital::find($request->editalId)->get('nome');

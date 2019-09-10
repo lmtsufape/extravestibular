@@ -36,47 +36,48 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
       <div class="conteudo-central d-flex justify-content-center" style="width: 80rem">  <!-- opções -->
         <div class="card cartao text-center " style="border-radius: 20px">    <!-- Isenção -->
 
-         <div class="card-body d-flex justify-content-center">
-           <h2 style="margin-top: -50px; font-weight: bold">Isenção</h2>
-         </div>
-         <div class="card-body d-flex justify-content-center">
-             <h5 style="margin-top: -50px;">
+          <div class="card-body d-flex justify-content-center">
+            <h2 style="margin-top: -50px; font-weight: bold">Isenção</h2>
+          </div>
+          <div class="card-body d-flex justify-content-center">
+            <h5 style="margin-top: -50px;">
               Aberto de: <br>
                 <a style="font-weight: bold">
-                  {{$edital->inicioIsencao}}
+                  {{date_format(date_create($edital->inicioIsencao), 'd/m/y')}}
                 </a>
                  até
                 <a style="font-weight: bold">
-                  {{$edital->fimIsencao}}
+                  {{date_format(date_create($edital->fimIsencao), 'd/m/y')}}
                 </a>
-             </h5>
-         </div>
+            </h5>
+          </div>
 
-         <div class="container justify-content-center" style="padding: 10px" >  <!-- form Isenção -->
-           <form method="GET" action="{{route('editalEscolhido')}}">
+          <div class="container justify-content-center" style="padding: 10px" >  <!-- form Isenção -->
+            <form method="GET" action="{{route('editalEscolhido')}}">
 
-             <input type="hidden" name="editalId" value="{{$edital->id}}">
-             <input type="hidden" name="tipo" value="homologarIsencao">
+              <input type="hidden" name="editalId" value="{{$edital->id}}">
+              <input type="hidden" name="tipo" value="homologarIsencao">
 
-             @if($edital->inicioIsencao<= $mytime)
-             @if($edital->fimIsencao >= $mytime)
-             <button type="submit" class="btn btn-primary btn-primary-lmts" >
-               {{ __('Homologar Isenção') }}
-             </button>
-             @else
-             <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
-               {{ __('Homologar Isenção') }}
-             </button>
-             @endif
-             @else
-             <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
-               {{ __('Homologar Isenção') }}
-             </button>
-             @endif
-           </form>
-         </div>
+              @if($edital->inicioIsencao<= $mytime)
+              @if($edital->fimIsencao >= $mytime)
+              <button type="submit" class="btn btn-primary btn-primary-lmts" >
+                {{ __('Homologar Isenção') }}
+              </button>
+              @else
+              <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
+                {{ __('Homologar Isenção') }}
+              </button>
+              @endif
+              @else
+              <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
+                {{ __('Homologar Isenção') }}
+              </button>
+              @endif
+            </form>
+          </div>
 
         </div>
+
 
         <div class="card cartao text-center " style="border-radius: 20px"> <!-- Recurso Isenção -->
 
@@ -88,11 +89,11 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
               <h5 style="margin-top: -50px;">
                Aberto de: <br>
                  <a style="font-weight: bold">
-                   {{$edital->inicioRecursoIsencao}}
+                   {{date_format(date_create($edital->inicioRecursoIsencao), 'd/m/y')}}
                  </a>
                   até
                  <a style="font-weight: bold">
-                   {{$edital->fimRecursoIsencao}}
+                   {{date_format(date_create($edital->fimRecursoIsencao), 'd/m/y')}}
                  </a>
               </h5>
           </div>
@@ -132,11 +133,11 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                  <h5 style="margin-top: -50px;">
                   Aberto de: <br>
                     <a style="font-weight: bold">
-                      {{$edital->inicioInscricoes}}
+                      {{date_format(date_create($edital->inicioInscricoes), 'd/m/y')}}
                     </a>
                      até
                     <a style="font-weight: bold">
-                      {{$edital->fimInscricoes}}
+                      {{date_format(date_create($edital->fimInscricoes), 'd/m/y')}}
                     </a>
                  </h5>
              </div>
@@ -176,11 +177,11 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                  <h5 style="margin-top: -50px;">
                   Aberto de: <br>
                     <a style="font-weight: bold">
-                      {{$edital->inicioRecurso}}
+                      {{date_format(date_create($edital->inicioRecurso), 'd/m/y')}}
                     </a>
                      até
                     <a style="font-weight: bold">
-                      {{$edital->fimRecurso}}
+                      {{date_format(date_create($edital->fimRecurso), 'd/m/y')}}
                     </a>
                  </h5>
              </div>
@@ -188,7 +189,7 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
 
              <div class="container justify-content-center" style="padding: 10px" >
                <form method="GET" action="{{route('editalEscolhido')}}">
-                   
+
                    <input type="hidden" name="editalId" value="{{$edital->id}}">
                    <input type="hidden" name="tipo" value="homologarRecursos">
 
@@ -210,7 +211,10 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
 
                </form>
              </div>
-        </div>
+           </div>
+
+
+
 
     </div>
   </div>
