@@ -11,14 +11,23 @@
                 <div class="card-header">{{ __('Recursos abertos') }}</div>
                 <div class="card-body">
                   <table class="table table-ordered table-hover">
+                    <tr>
+                      <th> Nome </th>
+                      <th> CPF </th>
+                      <th> </th>
+                    </tr>
                     @foreach ($recursos as $recurso)
                     <tr>
                       <td> <!-- ID -->
                        <a >
-                         {{$recurso->cpfCandidato}}
+                         {{$recurso->user->dadosUsuario->cpf}}
                        </a>
                       </td>
-
+                      <td> <!-- ID -->
+                       <a >
+                         {{$recurso->user->dadosUsuario->cpf}}
+                       </a>
+                      </td>
                       <td> <!-- Isenção -->
                         <form method="POST" action={{ route('recursoEscolhido') }} enctype="multipart/form-data"> <!-- Isenção -->
                           @csrf

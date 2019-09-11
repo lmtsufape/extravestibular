@@ -23,8 +23,8 @@
                               </a>
                               <br>
                               <br>
-                              <input onclick="escolher('renda')"  value="rendaFamiliar" type="radio" name="tipo" > Renda familiar per capita igual ou inferior a um salário mínimo e meio <br>
-                              <input onclick="escolher('ensino')"  value="ensinoMedio" type="radio" name="tipo" > Ter cursado o ensino médio completo em escola da rede pública ou como bolsista integral em escola da rede privada. <br>
+                              <input id="checkboxRenda" onclick="escolher('renda')"  value="rendaFamiliar" type="checkbox" > Renda familiar per capita igual ou inferior a um salário mínimo e meio <br>
+                              <input id="checkboxEnsino" onclick="escolher('ensino')"  value="ensinoMedio" type="checkbox" > Ter cursado o ensino médio completo em escola da rede pública ou como bolsista integral em escola da rede privada. <br>
                             </div>
                           </div>
                       </div>
@@ -180,6 +180,7 @@
             <div class="form-group row mb-0" style="margin-left: 20rem; margin-top: 10px">
                 <div class="col-md-8 offset-md-4">
                   <input type="hidden" name="editalId" value="{{$editalId}}">
+                  <input id="tipo" type="hidden" name="tipo" value="">
                     <button type="submit" class="btn btn-primary btn-primary-lmts">
                         {{ __('Finalizar') }}
                     </button>
@@ -195,17 +196,36 @@
 
 function escolher(x) {
 	if (x == "renda") {
-    document.getElementById("dadosEconomicos").style.display = "";
-    document.getElementById("nucleo1").style.display = "";
-    document.getElementById("nucleo").style.display = "";
-    document.getElementById("historicoEscolar").style.display = "none";
+    if(document.getElementById("checkboxRenda").checked == true){
+      document.getElementById("dadosEconomicos").style.display = "";
+      document.getElementById("nucleo").style.display = "";
+      document.getElementById("nucleo1").style.display = "";
+    }
+    else{
+      document.getElementById("dadosEconomicos").style.display = "none";
+      document.getElementById("nucleo").style.display = "none";
+      document.getElementById("nucleo1").style.display = "none";
+    }
+
 	}
 	if (x == "ensino") {
-    document.getElementById("dadosEconomicos").style.display = "none";
-    document.getElementById("nucleo1").style.display = "none";
-    document.getElementById("nucleo").style.display = "none";
-    document.getElementById("historicoEscolar").style.display = "";
+    if(document.getElementById("checkboxEnsino").checked == true){
+      document.getElementById("historicoEscolar").style.display = "";
+    }
+    else{
+      document.getElementById("historicoEscolar").style.display = "none";
+
+    }
 	}
+  if(document.getElementById("checkboxRenda").checked == true && document.getElementById("checkboxEnsino").checked == true){
+    document.getElementById("tipo").value = "ambos";
+  }
+  else if (document.getElementById("checkboxRenda").checked == true ) {
+    document.getElementById("tipo").value = "rendaFamiliar";
+  }
+  else{
+    document.getElementById("tipo").value = "ensinoMedio";
+  }
 }
 
 </script>

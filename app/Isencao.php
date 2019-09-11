@@ -28,8 +28,7 @@ class Isencao extends Model
     'fontePagadoraNucleoFamiliar1',
     'rendaFamiliarHomologacao',
     'ensinoMedioHomologacao',
-    'parecer',
-    'cpfCandidato',
+    'parecer',    
     'motivoRejeicao',
   ];
 

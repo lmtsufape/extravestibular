@@ -11,14 +11,11 @@ use Auth;
 class RecursoController extends Controller
 {
     public function cadastroRecurso(Request $request){
-      $dados = DadosUsuario::find(Auth::user()->dados);
       $mytime = Carbon::now('America/Recife');
       $mytime = $mytime->toDateString();
       Recurso::create([
         'usuarioId'       => Auth::user()->id,
         'editalId'        => $request->editalId,
-        'nome'            => $dados->nome,
-        'cpf'             => $dados->cpf,
         'tipo'            => $request->tipoRecurso,
         'motivo'          => $request->motivo,
         'data'            => $mytime,

@@ -203,3 +203,12 @@ body{
   border-color: #1B2E4F;
 
 }
+
+.ajuda-lmts {
+  width: 20px;
+}
+
+.ajuda-lmts:hover {
+  border-radius: 20px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}

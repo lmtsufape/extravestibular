@@ -17,7 +17,6 @@ class IsencaoController extends Controller
       $file = $request->historicoEscolar;
       $path = 'insencoes/' . Auth::user()->id . '/' . $request->editalId;
       Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
-      $dados = DadosUsuario::find(Auth::user()->dados);
       Isencao::create([
         'usuarioId'                        => Auth::user()->id,
         'editalId'                         => $request->editalId,
@@ -38,13 +37,11 @@ class IsencaoController extends Controller
         'parentescoNucleoFamiliar1'        => $request->parentescoNucleoFamiliar1,
         'rendaNucleoFamiliar1'             => $request->rendaNucleoFamiliar1,
         'fontePagadoraNucleoFamiliar1'     => $request->fontePagadoraNucleoFamiliar1,
-        'cpfCandidato'					           => $dados->cpf,
         'parecer'                          => 'nao',
 
       ]);
       return redirect()->route('home')->with('jsAlert', 'Isenção requerida com sucesso.');
     }
-    $dados = DadosUsuario::find(Auth::user()->dados);
     Isencao::create([
       'usuarioId'                        => Auth::user()->id,
       'editalId'                         => $request->editalId,
@@ -64,7 +61,6 @@ class IsencaoController extends Controller
       'parentescoNucleoFamiliar1'        => $request->parentescoNucleoFamiliar1,
       'rendaNucleoFamiliar1'             => $request->rendaNucleoFamiliar1,
       'fontePagadoraNucleoFamiliar1'     => $request->fontePagadoraNucleoFamiliar1,
-      'cpfCandidato'					           => $dados->cpf,
       'parecer'                          => 'nao',
 
     ]);

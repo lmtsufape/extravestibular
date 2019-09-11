@@ -11,15 +11,25 @@
                 <div class="card-header">{{ __('Inscrições') }}</div>
                 <div class="card-body">
                   <table class="table table-ordered table-hover">
+                    <tr>
+                      <th> Nome </th>
+                      <th> CPF </th>
+                      <th> </th>
+                    </tr>
                     @foreach ($inscricoes as $inscricao)
                     <tr>
-                      <td> <!-- ID -->
+                      <td>
                        <a >
-                         {{$inscricao->cpfCandidato}}
+                         {{$inscricao->user->dadosUsuario->nome}}
+                       </a>
+                      </td>
+                      <td>
+                       <a >
+                         {{$inscricao->user->dadosUsuario->cpf}}
                        </a>
                       </td>
 
-                      <td> <!-- Isenção -->
+                      <td>
                         <form method="get" action={{ route('inscricaoEscolhida') }} enctype="multipart/form-data"> <!-- Isenção -->
                           @csrf
                           <div class="col-md-8 offset-md-4">

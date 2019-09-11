@@ -7,6 +7,14 @@
 
 <style type="text/css">
 
+.hover_img a { position:relative; }
+.hover_img a span { position:absolute; display:none; z-index:99; }
+.hover_img a:hover span { display:block; overflow: visible; width: 25rem}
+
+
+
+
+
 </style>
 
 <div class="tela-servidor ">
@@ -56,11 +64,21 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
             <h5>
               Status da Isenção: <br>
               @if($isencao->parecer == 'deferida')
-                <a style="font-weight: bold">Aprovado</a>
+                <a style="font-weight: bold; color: green">Aprovado</a>
               @elseif($isencao->parecer == 'nao')
                 <a style="font-weight: bold">Processando</a>
               @else
-                <a style="font-weight: bold">Rejeitado</a>
+                <div class="hover_img">
+                  <a style="font-weight: bold; color: red">Rejeitado</a>
+                  <a style="color:white">
+                    <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
+                    <span style="background-color: #1B2E4F; color: white; border-radius: 5px; padding: 5px; size: 5rem" >
+                        Motivo:
+                        <br>
+                          {{$isencao->motivoRejeicao}}
+                    </span>
+                  </a>
+                </div>
               @endif
             </h5>
           </div>
@@ -76,21 +94,9 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                    <button type="submit" class="btn btn-primary btn-primary-lmts" >
                      {{ __('Preencher formulário') }}
                    </button>
-                 @else
-                   <button type="submit" disabled class="btn btn-primary btn-primary-lmts " >
-                     {{ __('Preencher formulário') }}
-                   </button>
                  @endif
-               @else
-                 <button type="submit" disabled class="btn btn-primary btn-primary-lmts " >
-                   {{ __('Preencher formulário') }}
-                 </button>
                @endif
-              @else
-                <button type="submit" disabled class="btn btn-primary btn-primary-lmts " >
-                  {{ __('Preencher formulário') }}
-                </button>
-              @endif
+             @endif
           </form>
          </div>
 
@@ -117,13 +123,23 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
           @if(!is_null($recursoIsencao))
             <div class="container justify-content-center" style="margin-top: -15px" >
               <h5>
-                Status da Isenção: <br>
+                Status do Recurso: <br>
                 @if($recursoIsencao->homologado == 'aprovado')
-                  <a style="font-weight: bold">Aprovado</a>
+                  <a style="font-weight: bold;color: green">Aprovado</a>
                 @elseif($recursoIsencao->homologado == 'nao')
                   <a style="font-weight: bold">Processando</a>
                 @else
-                  <a style="font-weight: bold">Rejeitado</a>
+                <div class="hover_img">
+                  <a style="font-weight: bold; color: red">Rejeitado</a>
+                  <a style="color:white">
+                    <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}"/>
+                    <span style="background-color: #1B2E4F; color: white; border-radius: 5px; padding: 5px; size: 5rem" >
+                        Motivo:
+                        <br>
+                          {{$recursoIsencao->motivoRejeicao}}
+                    </span>
+                  </a>
+                </div>
                 @endif
               </h5>
             </div>
@@ -141,20 +157,8 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                       <button type="submit" class="btn btn-primary btn-primary-lmts" >
                           {{ __('Preencher formulário') }}
                       </button>
-                    @else
-                    <button type="submit" disabled class="btn btn-primary btn-primary-lmts">
-                        {{ __('Preencher formulário') }}
-                    </button>
                     @endif
-                  @else
-                  <button type="submit" disabled class="btn btn-primary btn-primary-lmts">
-                      {{ __('Preencher formulário') }}
-                  </button>
                   @endif
-                @else
-                <button type="submit" disabled class="btn btn-primary btn-primary-lmts">
-                    {{ __('Preencher formulário') }}
-                </button>
                 @endif
             </form>
           </div>
@@ -182,16 +186,36 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                   Status da Inscrição: <br>
                   @if($inscricao->homologado == 'aprovado')
                     @if($inscricao->homologadoDrca == 'aprovado')
-                      <a style="font-weight: bold">Aprovado</a>
+                      <a style="font-weight: bold;color: green">Aprovado</a>
                     @elseif($inscricao->homologadoDrca == 'nao')
                       <a style="font-weight: bold">Processando</a>
                     @else
-                      <a style="font-weight: bold">Rejeitado</a>
+                      <div class="hover_img">
+                        <a style="font-weight: bold; color: red">Rejeitado</a>
+                        <a style="color:white">
+                          <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
+                          <span style="background-color: #1B2E4F; color: white; border-radius: 5px; padding: 5px; size: 5rem" >
+                              Motivo:
+                              <br>
+                                {{$inscricao->motivoRejeicao}}
+                          </span>
+                        </a>
+                      </div>
                     @endif
                   @elseif($inscricao->homologado == 'nao')
                     <a style="font-weight: bold">Processando</a>
                   @else
-                    <a style="font-weight: bold">Rejeitado</a>
+                    <div class="hover_img">
+                      <a style="font-weight: bold; color: red">Rejeitado</a>
+                      <a style="color:white">
+                        <img src="{{asset('images/iconAjuda.png')}}" style="width: 20px"/>
+                        <span style="background-color: #1B2E4F; color: white; border-radius: 5px; padding: 5px; size: 5rem" >
+                            Motivo:
+                            <br>
+                              {{$inscricao->motivoRejeicao}}
+                        </span>
+                      </a>
+                    </div>
                   @endif
                 </h5>
               </div>
@@ -207,20 +231,8 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                          <button type="submit" class="btn btn-primary btn-primary-lmts" >
                              {{ __('Preencher formulário') }}
                          </button>
-                       @else
-                       <button type="submit" disabled class="btn btn-primary btn-primary-lmts">
-                           {{ __('Preencher formulário') }}
-                       </button>
                        @endif
-                     @else
-                     <button type="submit" disabled class="btn btn-primary btn-primary-lmts">
-                         {{ __('Preencher formulário') }}
-                     </button>
                      @endif
-                  @else
-                    <button type="submit" disabled class="btn btn-primary btn-primary-lmts">
-                        {{ __('Preencher formulário') }}
-                    </button>
                   @endif
                </form>
              </div>
@@ -249,11 +261,21 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                  <h5>
                    Status da Isenção: <br>
                    @if($recursoInscricao->homologado == 'aprovado')
-                     <a style="font-weight: bold">Aprovado</a>
+                     <a style="font-weight: bold;color: green">Aprovado</a>
                    @elseif($recursoInscricao->homologado == 'nao')
                      <a style="font-weight: bold">Processando</a>
                    @else
-                     <a style="font-weight: bold">Rejeitado</a>
+                     <div class="hover_img">
+                       <a style="font-weight: bold; color: red">Rejeitado</a>
+                       <a style="color:white">
+                         <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
+                         <span style="background-color: #1B2E4F; color: white; border-radius: 5px; padding: 5px; size: 5rem" >
+                             Motivo:
+                             <br>
+                               {{$recursoInscricao->motivoRejeicao}}
+                         </span>
+                       </a>
+                     </div>
                    @endif
                  </h5>
                </div>
@@ -271,20 +293,8 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                          <button type="submit" class="btn btn-primary btn-primary-lmts" >
                              {{ __('Preencher formulário') }}
                          </button>
-                       @else
-                       <button type="submit" disabled class="btn btn-primary btn-primary-lmts">
-                           {{ __('Preencher formulário') }}
-                       </button>
                        @endif
-                     @else
-                     <button type="submit" disabled class="btn btn-primary btn-primary-lmts">
-                         {{ __('Preencher formulário') }}
-                     </button>
                      @endif
-                   @else
-                   <button type="submit" disabled class="btn btn-primary btn-primary-lmts">
-                       {{ __('Preencher formulário') }}
-                   </button>
                    @endif
                </form>
              </div>

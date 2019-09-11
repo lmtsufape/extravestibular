@@ -11,11 +11,21 @@
                 <div class="card-header">{{ __('Pedidos de isenções abertas') }}</div>
                 <div class="card-body">
                   <table class="table table-ordered table-hover">
+                    <tr>
+                      <th> Nome </th>
+                      <th> CPF </th>
+                      <th> </th>
+                    </tr>
                     @foreach ($isencoes as $isencao)
                     <tr>
                       <td> <!-- ID -->
                        <a >
-                         {{$isencao->cpfCandidato}}
+                         {{$isencao->user->dadosUsuario->nome}}
+                       </a>
+                      </td>
+                      <td> <!-- ID -->
+                       <a >
+                         {{$isencao->user->dadosUsuario->cpf}}
                        </a>
                       </td>
 

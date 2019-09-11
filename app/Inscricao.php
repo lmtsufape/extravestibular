@@ -14,8 +14,6 @@ class Inscricao extends Model
      */
     protected $fillable = [
         'usuarioId',
-        'nomeCandidato',
-        'cpfCandidato',
         'tipo',
         'editalId',
         'declaracaoDeVinculo',

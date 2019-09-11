@@ -11,7 +11,7 @@
         @csrf
         <div class="col-md-8">
             <div class="card" style="width: 70rem;">
-              <div class="card-header">{{ __('Dados de Usuario') }}</div>
+              <div class="card-header">{{ __('Dados de Usuário') }}</div>
               <div class="card-body">
                     <div class="card-body">
                       <div class="form-group row justify-content-center ">  <!-- Nome | CPF-->
@@ -121,10 +121,14 @@
               <div class="card-header">{{ __('Endereço') }}</div>
               <div class="card-body">
                     <div class="card-body">
-                      <label>Cep:
-                        <input name="cep" type="text" id="cep" value="" size="10" maxlength="9"
-                        onblur="pesquisacep(this.value);" />
-                      </label>
+                      <div class="form-group row justify-content-left">
+                        <label for="endereco" class="field a-field a-field_a3 page__field" style="margin-left: 65px;">
+                            <input onblur="pesquisacep(this.value);" id="cep" type="text" name="cep" autofocus class="field__input a-field__input" placeholder="CEP" size="10" maxlength="9" >
+                            <span class="a-field__label-wrap">
+                              <span class="a-field__label">CEP</span>
+                            </span>
+                        </label>
+                      </div>
                       <div class="form-group row justify-content-center">  <!-- Endereço/Nº -->
                         <div>
                           <label for="endereco" class="field a-field a-field_a2 page__field">
@@ -199,9 +203,9 @@
                       <div class="form-group row">  <!-- Fone Residencial/Celular/Comercial -->
                         <div>
                           <label for="foneResidencial" class="field a-field a-field_a2 page__field" style=" margin-left: 60px;">
-                              <input id="foneResidencial" type="text" name="foneResidencial" autofocus class="form-control @error('foneResidencial') is-invalid @enderror field__input a-field__input" placeholder="Fone Residencial*" style="width: 15rem;" value="{{ old('foneResidencial') }}">
+                              <input id="foneResidencial" type="text" name="foneResidencial" autofocus class="form-control @error('foneResidencial') is-invalid @enderror field__input a-field__input" placeholder="Telefone Residencial*" style="width: 15rem;" value="{{ old('foneResidencial') }}">
                               <span class="a-field__label-wrap">
-                                <span class="a-field__label">Fone Residencial*</span>
+                                <span class="a-field__label">Telefone Residencial*</span>
                               </span>
                           </label>
                           @error('foneResidencial')
@@ -212,9 +216,9 @@
                         </div>
                         <div>
                           <label for="foneCelular" class="field a-field a-field_a2 page__field" style=" margin-left: 30px;">
-                              <input id="foneCelular" type="text" name="foneCelular" autofocus class="form-control @error('foneCelular') is-invalid @enderror field__input a-field__input" placeholder="Fone Celular" style="width: 15rem;" value="{{ old('foneCelular') }}">
+                              <input id="foneCelular" type="text" name="foneCelular" autofocus class="form-control @error('foneCelular') is-invalid @enderror field__input a-field__input" placeholder="Telefone Celular*" style="width: 15rem;" value="{{ old('foneCelular') }}">
                               <span class="a-field__label-wrap">
-                                <span class="a-field__label">Fone Celular</span>
+                                <span class="a-field__label">Telefone Celular*</span>
                               </span>
                           </label>
                           @error('foneCelular')
@@ -225,9 +229,9 @@
                         </div>
                         <div>
                           <label for="foneComercial" class="field a-field a-field_a2 page__field" style=" margin-left: 30px;">
-                              <input id="foneComercial" type="text" name="foneComercial" autofocus class="form-control @error('foneComercial') is-invalid @enderror field__input a-field__input" placeholder="Fone Comercial*" style="width: 15rem;" value="{{ old('foneComercial') }}">
+                              <input id="foneComercial" type="text" name="foneComercial" autofocus class="form-control @error('foneComercial') is-invalid @enderror field__input a-field__input" placeholder="Telefone Comercial*" style="width: 15rem;" value="{{ old('foneComercial') }}">
                               <span class="a-field__label-wrap">
-                                <span class="a-field__label">Fone Comercial*</span>
+                                <span class="a-field__label">Telefone Comercial*</span>
                               </span>
                           </label>
                           @error('foneComercial')

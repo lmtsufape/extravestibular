@@ -25,66 +25,88 @@
 
                 <div class="card-body">
                   <table class="table table-ordered table-hover">
+                    <?php $editaisAbertos = true;
+                          $editaisAbertosFlag = true;
+                          $editaisFinalizadosFlag = true; ?>
                     @foreach ($editais as $edital)
-                    <tr>
-                      <td   style="width: 60rem">
-                        <div >   <!-- time line  class="hover_img"-->
-                         <a href="detalhes/{{$edital->nome}}" onclick="event.preventDefault(); document.getElementById('detalhesEdital').submit();" >
-                           <?php
-                             $nomeEdital = explode(".pdf", $edital->nome);
-                             echo ($nomeEdital[0]);
-                            ?>
-                           <span>
-                             <img src="<?php
-                              if($edital->inicioIsencao > $mytime){
-                                echo (asset('images/timeline1.png'));
-                              }
+                      <?php if($edital->fimRecurso <= $mytime){
+                        $editaisAbertos = false;
+                      }
+                      else{
+                        $editaisAbertos = true;
+                      }
+                      ?>
+                      @if($editaisAbertos)
+                        @if($editaisAbertosFlag)
+                          <tr>
+                            <th> Editais Abertos</th><?php $editaisAbertosFlag = false;?>
+                            <th> Publicado em </th>
+                            <th> Arquivo </th>
+                          </tr>
+                        @endif
+                      @else
+                        @if($editaisFinalizadosFlag)
+                          <tr>
+                            <th> Editais finalizados</th><?php $editaisFinalizadosFlag = false;?>
+                            <th> Publicado em </th>
+                            <th> Arquivo </th>
+                          </tr>
+                        @endif
+                      @endif
+                      <tr>
 
-                              if($edital->inicioIsencao <= $mytime){
-                                if($edital->fimIsencao >= $mytime){
-                                  echo (asset('images/timeline2.png'));
+                        <td style="width: 60rem">
+                          <div class="hover_img">   <!-- time line  class="hover_img"-->
+                           <a href="detalhes/{{$edital->nome}}" onclick="event.preventDefault(); document.getElementById('detalhesEdital{{$edital->id}}').submit();" >
+                             <?php
+                               $nomeEdital = explode(".pdf", $edital->nome);
+                               echo ($nomeEdital[0]);
+                              ?>
+                             <span>
+                               <img src="<?php
+                                if($edital->inicioIsencao > $mytime){
+                                  echo (asset('images/timeline1.png'));
                                 }
-                              }
 
-                              if($edital->inicioRecursoIsencao <= $mytime){
-                                if($edital->fimRecursoIsencao >= $mytime){
-                                  echo (asset('images/timeline3.png'));
+                                elseif(($edital->inicioIsencao <= $mytime) && ($edital->fimIsencao >= $mytime)){
+                                    echo (asset('images/timeline2.png'));
                                 }
-                              }
 
-                              if($edital->inicioInscricoes <= $mytime){
-                                if($edital->fimInscricoes >= $mytime){
-                                  echo (asset('images/timeline4.png'));
+                                elseif(($edital->inicioRecursoIsencao <= $mytime) && ($edital->fimRecursoIsencao >= $mytime)){
+                                    echo (asset('images/timeline3.png'));
+
                                 }
-                              }
-                              if($edital->inicioRecurso <= $mytime){
-                                if($edital->fimRecurso >= $mytime){
-                                  echo (asset('images/timeline5.png'));
+
+                                elseif(($edital->inicioInscricoes <= $mytime) && ($edital->fimInscricoes >= $mytime)){
+                                    echo (asset('images/timeline4.png'));
+
                                 }
-                              }
-                              if($edital->fimRecurso <= $mytime){
-                                echo (asset('images/timeline6.png'));
-                              }
+                                elseif(($edital->inicioRecurso <= $mytime) && ($edital->fimRecurso >= $mytime)){
+                                    echo (asset('images/timeline5.png'));
+                                }
+                                elseif($edital->fimRecurso <= $mytime){
+                                  echo (asset('images/timeline6.png'));
+                                }
 
 
-                             ?>" alt="image" height="140"/>
-                           </span>
-                         </a>
-                         <form id="detalhesEdital" action="detalhes/{{$edital->nome}}" method="GET" style="display: none;">
-                           <input type="hidden" name="editalId" value="{{$edital->id}}">
-                           <input type="hidden" name="mytime" value="{{$mytime}}">
+                               ?>" alt="image" height="140"/>
+                             </span>
+                           </a>
+                           <form id="detalhesEdital{{$edital->id}}" action="detalhes/{{$edital->nome}}" method="GET" style="display: none;">
+                             <input type="hidden" name="editalId" value="{{$edital->id}}">
+                             <input type="hidden" name="mytime" value="{{$mytime}}">
 
-                         </form>
-                        </div>
-                      </td>
-                      <td> <!-- data -->
-                      <a>{{date_format($edital->created_at, 'd/m/y')}}</a>
-                      </td>
-                      <td> <!-- Download -->
-                      <a href="{{ route('download', ['file' => $edital->pdfEdital])}}" target="_new">Baixar Edital</a>
-                      </td>
+                           </form>
+                          </div>
+                        </td>
+                        <td> <!-- data -->
+                        <a>{{date_format($edital->created_at, 'd/m/y')}}</a>
+                        </td>
+                        <td> <!-- Download -->
+                        <a href="{{ route('download', ['file' => $edital->pdfEdital])}}" target="_new">Baixar Edital</a>
+                        </td>
 
-                    </tr>
+                      </tr>
                     @endforeach
                   <!-- Exemplo de botão danger dividido -->
             </div>

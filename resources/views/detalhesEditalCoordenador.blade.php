@@ -34,7 +34,52 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
       </div>
       </div>
       <div class="conteudo-central d-flex justify-content-center" style="width: 80rem">  <!-- opções -->
+        <div class="card cartao text-center " style="border-radius: 20px; opacity: 0">    <!-- Isenção -->
 
+         <div class="card-body d-flex justify-content-center">
+           <h2 style="margin-top: -50px; font-weight: bold">Isenção</h2>
+         </div>
+         <div class="card-body d-flex justify-content-center">
+             <h5 style="margin-top: -50px;">
+              Aberto de: <br>
+                <a style="font-weight: bold">
+                  {{date_format(date_create($edital->inicioIsencao), 'd/m/y')}}
+                </a>
+                 até
+                <a style="font-weight: bold">
+                  {{date_format(date_create($edital->fimIsencao), 'd/m/y')}}
+                </a>
+             </h5>
+         </div>
+
+         <div class="container justify-content-center" style="padding: 10px" >  <!-- form Isenção -->
+
+         </div>
+
+        </div>
+        <div class="card cartao text-center " style="border-radius: 20px; opacity: 0">    <!-- Isenção -->
+
+         <div class="card-body d-flex justify-content-center">
+           <h2 style="margin-top: -50px; font-weight: bold">Isenção</h2>
+         </div>
+         <div class="card-body d-flex justify-content-center">
+             <h5 style="margin-top: -50px;">
+              Aberto de: <br>
+                <a style="font-weight: bold">
+                  {{date_format(date_create($edital->inicioIsencao), 'd/m/y')}}
+                </a>
+                 até
+                <a style="font-weight: bold">
+                  {{date_format(date_create($edital->fimIsencao), 'd/m/y')}}
+                </a>
+             </h5>
+         </div>
+
+         <div class="container justify-content-center" style="padding: 10px" >  <!-- form Isenção -->
+
+         </div>
+
+        </div>
 
 
 
@@ -75,6 +120,29 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                    @endif
                </form>
              </div>
+        </div>
+        <div class="card cartao text-center " style="border-radius: 20px; opacity: 0">    <!-- Isenção -->
+
+         <div class="card-body d-flex justify-content-center">
+           <h2 style="margin-top: -50px; font-weight: bold">Isenção</h2>
+         </div>
+         <div class="card-body d-flex justify-content-center">
+             <h5 style="margin-top: -50px;">
+              Aberto de: <br>
+                <a style="font-weight: bold">
+                  {{date_format(date_create($edital->inicioIsencao), 'd/m/y')}}
+                </a>
+                 até
+                <a style="font-weight: bold">
+                  {{date_format(date_create($edital->fimIsencao), 'd/m/y')}}
+                </a>
+             </h5>
+         </div>
+
+         <div class="container justify-content-center" style="padding: 10px" >  <!-- form Isenção -->
+
+         </div>
+
         </div>
 
 

@@ -16,7 +16,11 @@
                             <div class="col-md-12">
                               <a style="margin-left: 15rem">DECLARAÇÃO DO CANDIDATO NOS TERMOS DA LEI:</a><br>
                               <a style="font-weight: bold">
-                              @if($isencao->tipo == "renda")
+                              @if($isencao->tipo == "ambos")
+                                I - o candidato declarar-se impossibilitado de arcar com o pagamento da taxa de inscrição e comprovar renda familiar mensal igual inferior a um salário mínimo e meio.
+                                <br>
+                                II – ter cursado o ensino médio completo em escola da rede pública ou como bolsista integral em escola da rede privada.
+                              @elseif($isencao->tipo == "renda")
                                 I - o candidato declarar-se impossibilitado de arcar com o pagamento da taxa de inscrição e comprovar renda familiar mensal igual inferior a um salário mínimo e meio.
                               @else
                                 II – ter cursado o ensino médio completo em escola da rede pública ou como bolsista integral em escola da rede privada.
@@ -28,7 +32,181 @@
                   </div>
                 </div>
             </div>
-            @if($isencao->tipo == "ensinoMedio")
+            @if($isencao->tipo == "ambos")
+              <div class="card" style="width: 70rem; margin-top: 10px; margin-left: -12rem">
+                  <div class="card-header">{{ __('Arquivos') }}</div>
+                  <div class="card-body">
+                    <div class="form-group row  justify-content-center">
+                        <div class="form-group row" >
+                            <label for="historicoEscolar" style="font-weight: bold; margin-left: -5rem">{{ __('Historico Escolar:') }}</label>
+                            <div >
+                                <a style="margin-left: 10px" href="{{ route('download', ['file' => $isencao->historicoEscolar])}}" target="_new">Abrir arquivo</a>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="card" style="width: 70rem; margin-top: 10px; margin-left: -12rem">
+                  <div class="card-header">{{ __('Dados economicos') }}</div>
+                  <div class="card-body">
+                    <div class="form-group row  justify-content-left">
+                      <div class="form-group row"   style="margin-left: 15px">
+                        <table class="table table-ordered table-hover">
+                          <tr>
+                            <tr>
+                              <td style="width: 13rem">
+                                Nome:
+                              </td>
+                              <td style="width: 55rem">
+                                <a style="font-weight: bold;"> {{$isencao->nomeDadoEconomico}} </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                CPF:
+                              </td>
+                              <td>
+                                <a style="font-weight: bold"> {{$isencao->cpfDadoEconomico}} </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                Parentesco:
+                              </td>
+                              <td>
+                                <a style="font-weight: bold"> {{$isencao->parentescoDadoEconomico}} </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                Renda mensal:
+                              </td>
+                              <td>
+                                <a style="font-weight: bold"> {{$isencao->rendaDadoEconomico}} </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                Fonte pagadora:
+                              </td>
+                              <td>
+                                <a style="font-weight: bold"> {{$isencao->fontePagadoraDadoEconomico}} </a>
+                              </td>
+                            </tr>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="card" style="width: 70rem; margin-top: 10px; margin-left: -12rem">
+                  <div class="card-header">{{ __('Dados economicos do nucleo familiar') }}</div>
+                  <div class="card-body">
+                    <div class="form-group row  justify-content-left">
+                      <div class="form-group row"   style="margin-left: 15px">
+                        <table class="table table-ordered table-hover">
+                          <tr>
+                            <tr>
+                              <td style="width: 13rem">
+                                Nome:
+                              </td>
+                              <td style="width: 55rem">
+                                <a style="font-weight: bold"> {{$isencao->nomeNucleoFamiliar}} </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                CPF:
+                              </td>
+                              <td>
+                                <a style="font-weight: bold"> {{$isencao->cpfNucleoFamiliar}} </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                Parentesco:
+                              </td>
+                              <td>
+                                <a style="font-weight: bold"> {{$isencao->parentescoNucleoFamiliar}} </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                Renda mensal:
+                              </td>
+                              <td>
+                                <a style="font-weight: bold"> {{$isencao->rendaNucleoFamiliar}} </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                Fonte pagadora:
+                              </td>
+                              <td>
+                                <a style="font-weight: bold"> {{$isencao->fontePagadoraNucleoFamiliar}} </a>
+                              </td>
+                            </tr>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="card" style="width: 70rem; margin-top: 10px; margin-left: -12rem">
+                  <div class="card-header">{{ __('Dados economicos do nucleo familiar') }}</div>
+                  <div class="card-body">
+                    <div class="form-group row  justify-content-left">
+                      <div class="form-group row"   style="margin-left: 15px">
+                        <table class="table table-ordered table-hover">
+                          <tr>
+                            <tr>
+                              <td style="width: 13rem">
+                                Nome:
+                              </td>
+                              <td style="width: 55rem">
+                                <a style="font-weight: bold"> {{$isencao->nomeNucleoFamiliar1}} </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                CPF:
+                              </td>
+                              <td>
+                                <a style="font-weight: bold"> {{$isencao->cpfNucleoFamiliar1}} </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                Parentesco:
+                              </td>
+                              <td>
+                                <a style="font-weight: bold"> {{$isencao->parentescoNucleoFamiliar1}} </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                Renda mensal:
+                              </td>
+                              <td>
+                                <a style="font-weight: bold"> {{$isencao->rendaNucleoFamiliar1}} </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                Fonte pagadora:
+                              </td>
+                              <td>
+                                <a style="font-weight: bold"> {{$isencao->fontePagadoraNucleoFamiliar1}} </a>
+                              </td>
+                            </tr>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
+            @elseif($isencao->tipo == "ensinoMedio")
               <div class="card" style="width: 70rem; margin-top: 10px; margin-left: -12rem">
                   <div class="card-header">{{ __('Arquivos') }}</div>
                   <div class="card-body">
