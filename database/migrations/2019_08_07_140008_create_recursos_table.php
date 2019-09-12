@@ -16,11 +16,8 @@ class CreateRecursosTable extends Migration
         Schema::create('recursos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->string('nome');
-            $table->string('cpf');
             $table->string('tipo');
             $table->text('motivo');
-            $table->string('nProcesso');
             $table->string('data');
             $table->integer('usuarioId');
             $table->integer('editalId');

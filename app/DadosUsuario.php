@@ -9,6 +9,7 @@ class DadosUsuario extends Model
     protected $fillable = [
       'nome',
       'rg',
+      'nascimento',
       'orgaoEmissor',
       'orgaoEmissorUF',
       'cpf',

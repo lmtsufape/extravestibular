@@ -20,7 +20,7 @@
                               <br>
                               <br>
                               <a style="font-weight: bold">
-                                {{$recurso->nome}}, CPF {{$recurso->cpf}},
+                                {{$recurso->user->dadosUsuario->nome}}, CPF {{$recurso->user->dadosUsuario->cpf}},
                               </a>
                               <br>
                               <br>
@@ -33,7 +33,7 @@
                                 @else
                                   da seleção para ingresso extra para UFRPE no curso {{$recurso->curso}}
                                 @endif
-                                processo Nº {{$recurso->nProcesso}}.
+                                .
                               </a>
                               <br>
                               <br>

@@ -18,6 +18,7 @@ class CreateDadosUsuariosTable extends Migration
             $table->timestamps();
             $table->string('nome');
             $table->string('rg');
+            $table->date('nascimento');
             $table->string('orgaoEmissor');
             $table->string('orgaoEmissorUF');
             $table->string('cpf')->unique();

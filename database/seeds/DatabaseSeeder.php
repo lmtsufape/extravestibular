@@ -15,12 +15,49 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         for($i = 1; $i < 21; $i++){
-          DB::table('users')->insert([
-              'email' => 'teste'.Str::random(5).'@gmail.com',
-              'password' => bcrypt('password'),
-              'tipo' => 'candidato',
+          DB::table('dados_usuarios')->insert([
+            'nome' => 'teste'.Str::random(5),
+            'rg' => 'seed',
+            'nascimento' => '2019-09-10',
+            'orgaoEmissor' =>  'seed',
+            'orgaoEmissorUF' =>  'seed',
+            'cpf' =>  'seed'.Str::random(5),
+            'tituloEleitoral' =>  'seed',
+            'filiacao' =>  'seed',
+            'endereco' =>  'seed',
+            'num' =>  'seed',
+            'bairro' =>  'seed',
+            'cidade' =>  'seed',
+            'uf' =>  'seed',
+            'foneResidencial' =>  'seed',
+            'foneCelular' =>  'seed',
+            'foneComercial' =>  'seed',
           ]);
         }
+        for($i = 1; $i < 21; $i++){
+          DB::table('users')->insert([
+            'email' => 'teste'.Str::random(5).'@gmail.com',
+            'password' => bcrypt('password'),
+            'tipo' => 'candidato',
+            'dados' => $i,
+          ]);
+        }
+        DB::table('editals')->insert([
+          'pdfEdital' => 'seed',
+          'vagas' => '1:10!2:10!3:10!',
+          'inicioInscricoes' => '2019-09-01',
+          'fimInscricoes' => '2019-09-02',
+          'inicioRecurso' => '2019-09-03',
+          'fimRecurso' => '2019-10-04',
+          'inicioIsencao' => '2019-09-05',
+          'fimIsencao' => '2019-09-06',
+          'inicioRecursoIsencao' => '2019-09-07',
+          'fimRecursoIsencao' => '2019-09-08',
+          'nome' => 'Edital para teste de classificação',
+          'created_at' => '2019-09-10 18:15:48',
+
+        ]);
+
         DB::table('users')->insert([
             'email' => 'preg@teste.com',
             'password' => bcrypt('12345678'),
@@ -84,6 +121,7 @@ class DatabaseSeeder extends Seeder
             'created_at' => '2019-09-10 18:15:48',
 
         ]);
+
         DB::table('editals')->insert([
             'pdfEdital' => 'seed',
             'vagas' => '1:10!2:10!3:10!',
@@ -124,7 +162,7 @@ class DatabaseSeeder extends Seeder
                 'editalId' => '1',
                 'tipo' => 'reintegracao',
                 'comprovante' => 'isento',
-                'curso' => '1',
+                'curso' => 'BCC/UAG',
                 'turno' => 'manhã',
                 'cursoDeOrigem' => 'seed',
                 'instituicaoDeOrigem' => 'seed',
@@ -132,6 +170,8 @@ class DatabaseSeeder extends Seeder
                 'endereco' => 'seed',
                 'num' => 'seed',
                 'bairro' => 'seed',
+                'homologado' => 'aprovado',
+                'homologadoDrca' => 'aprovado',
                 'cidade' => 'seed',
                 'uf' => 'seed',
                 'nota' => $i,
@@ -145,7 +185,7 @@ class DatabaseSeeder extends Seeder
                 'editalId' => '1',
                 'tipo' => 'reintegracao',
                 'comprovante' => 'isento',
-                'curso' => '2',
+                'curso' => 'VET/UAG',
                 'turno' => 'manhã',
                 'cursoDeOrigem' => 'seed',
                 'instituicaoDeOrigem' => 'seed',
@@ -153,6 +193,8 @@ class DatabaseSeeder extends Seeder
                 'endereco' => 'seed',
                 'num' => 'seed',
                 'bairro' => 'seed',
+                'homologado' => 'aprovado',
+                'homologadoDrca' => 'aprovado',
                 'cidade' => 'seed',
                 'uf' => 'seed',
                 'nota' => $i,

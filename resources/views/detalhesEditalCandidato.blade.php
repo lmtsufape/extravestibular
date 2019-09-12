@@ -7,9 +7,7 @@
 
 <style type="text/css">
 
-.hover_img a { position:relative; }
-.hover_img a span { position:absolute; display:none; z-index:99; }
-.hover_img a:hover span { display:block; overflow: visible; width: 25rem}
+.hover-popup-lmts a:hover span { width: 25rem}
 
 
 
@@ -68,12 +66,12 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
               @elseif($isencao->parecer == 'nao')
                 <a style="font-weight: bold">Processando</a>
               @else
-                <div class="hover_img">
+                <div class="hover-popup-lmts">
                   <a style="font-weight: bold; color: red">Rejeitado</a>
                   <a style="color:white">
                     <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
-                    <span style="background-color: #1B2E4F; color: white; border-radius: 5px; padding: 5px; size: 5rem" >
-                        Motivo:
+                    <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
+                        <b style="font-weight: bold">Motivo</b>
                         <br>
                           {{$isencao->motivoRejeicao}}
                     </span>
@@ -129,12 +127,12 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                 @elseif($recursoIsencao->homologado == 'nao')
                   <a style="font-weight: bold">Processando</a>
                 @else
-                <div class="hover_img">
+                <div class="hover-popup-lmts">
                   <a style="font-weight: bold; color: red">Rejeitado</a>
                   <a style="color:white">
                     <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}"/>
-                    <span style="background-color: #1B2E4F; color: white; border-radius: 5px; padding: 5px; size: 5rem" >
-                        Motivo:
+                    <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
+                        <b style="font-weight: bold">Motivo</b>
                         <br>
                           {{$recursoIsencao->motivoRejeicao}}
                     </span>
@@ -190,12 +188,12 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                     @elseif($inscricao->homologadoDrca == 'nao')
                       <a style="font-weight: bold">Processando</a>
                     @else
-                      <div class="hover_img">
+                      <div class="hover-popup-lmts">
                         <a style="font-weight: bold; color: red">Rejeitado</a>
                         <a style="color:white">
                           <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
-                          <span style="background-color: #1B2E4F; color: white; border-radius: 5px; padding: 5px; size: 5rem" >
-                              Motivo:
+                          <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
+                              <b style="font-weight: bold">Motivo</b>
                               <br>
                                 {{$inscricao->motivoRejeicao}}
                           </span>
@@ -205,12 +203,12 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                   @elseif($inscricao->homologado == 'nao')
                     <a style="font-weight: bold">Processando</a>
                   @else
-                    <div class="hover_img">
+                    <div class="hover-popup-lmts">
                       <a style="font-weight: bold; color: red">Rejeitado</a>
                       <a style="color:white">
                         <img src="{{asset('images/iconAjuda.png')}}" style="width: 20px"/>
-                        <span style="background-color: #1B2E4F; color: white; border-radius: 5px; padding: 5px; size: 5rem" >
-                            Motivo:
+                        <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
+                            <b style="font-weight: bold">Motivo</b>
                             <br>
                               {{$inscricao->motivoRejeicao}}
                         </span>
@@ -265,12 +263,12 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                    @elseif($recursoInscricao->homologado == 'nao')
                      <a style="font-weight: bold">Processando</a>
                    @else
-                     <div class="hover_img">
+                     <div class="hover-popup-lmts">
                        <a style="font-weight: bold; color: red">Rejeitado</a>
                        <a style="color:white">
                          <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
-                         <span style="background-color: #1B2E4F; color: white; border-radius: 5px; padding: 5px; size: 5rem" >
-                             Motivo:
+                         <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
+                             <b style="font-weight: bold">Motivo</b>
                              <br>
                                {{$recursoInscricao->motivoRejeicao}}
                          </span>

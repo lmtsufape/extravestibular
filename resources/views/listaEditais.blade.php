@@ -7,9 +7,9 @@
 
 <style type="text/css">
 
-.hover_img a { position:relative; }
-.hover_img a span { position:absolute; display:none; z-index:99; }
-.hover_img a:hover span { display:block; height: 100px; width: 300px; overflow: visible;}
+.hover-popup-lmts a { position:relative; }
+.hover-popup-lmts a span { position:absolute; display:none; z-index:99; }
+.hover-popup-lmts a:hover span { display:block; height: 100px; width: 300px; overflow: visible;}
 
 </style>
 
@@ -25,7 +25,7 @@
                     @foreach ($editais as $edital)
                     <tr>
                       <td> <!-- time line -->
-                        <div class="hover_img">
+                        <div class="hover-popup-lmts">
                              <a >
                                <?php
                                  $nomeEdital = explode(".pdf", $edital->nome);

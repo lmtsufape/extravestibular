@@ -5,16 +5,7 @@
 @endsection
 @section('content')
 
-  <style type="text/css">
-
-  .hover_img a { position:relative; }
-  .hover_img a span { position:absolute; display:none; z-index:99; }
-  .hover_img a:hover span { display:block; height: 100px; width: 300px; overflow: visible;}
-
-
-
-
-
+<style type="text/css">
 </style>
 
 <div class="container" style="width: 100rem; margin-left: -50px;">
@@ -56,7 +47,7 @@
                       <tr>
 
                         <td style="width: 60rem">
-                          <div class="hover_img">   <!-- time line  class="hover_img"-->
+                          <div class="hover-popup-lmts">   <!-- time line  class="hover-popup-lmts"-->
                            <a href="detalhes/{{$edital->nome}}" onclick="event.preventDefault(); document.getElementById('detalhesEdital{{$edital->id}}').submit();" >
                              <?php
                                $nomeEdital = explode(".pdf", $edital->nome);

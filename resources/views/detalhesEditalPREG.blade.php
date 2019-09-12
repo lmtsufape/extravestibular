@@ -12,7 +12,7 @@
 <div class="tela-servidor ">
   <div class="centro-cartao" >
     <div class="card-deck d-flex justify-content-center">
-      <div class="conteudo-central d-flex justify-content-center"  style="width: 80rem">  <!-- info edital -->
+      <div class="conteudo-central d-flex justify-content-center"  style="width: 100rem">  <!-- info edital -->
         <div class="card cartao text-top " style="border-radius: 20px">    <!-- Info -->
 
          <div class="card-header d-flex justify-content-center" style="background-color: white;margin-top: 10px">
@@ -33,14 +33,14 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
          </a>
         </div>
       </div>
-      <div class="conteudo-central d-flex justify-content-center" style="width: 80rem">  <!-- opções -->
-        <div class="card cartao text-center " style="border-radius: 20px">    <!-- Isenção -->
+      <div class="conteudo-central d-flex justify-content-center" style="width: 100rem">  <!-- opções -->
+        <div class="card cartao text-center " style="border-radius: 20px; height: 30rem;">    <!-- Isenção -->
 
-          <div class="card-body d-flex justify-content-center">
-            <h2 style="margin-top: -50px; font-weight: bold">Isenção</h2>
+          <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+            <h2 style="font-weight: bold">Isenção</h2>
           </div>
-          <div class="card-body d-flex justify-content-center">
-            <h5 style="margin-top: -50px;">
+          <div class="card-header d-flex justify-content-center">
+            <h5>
               Aberto de: <br>
                 <a style="font-weight: bold">
                   {{date_format(date_create($edital->inicioIsencao), 'd/m/y')}}
@@ -51,8 +51,10 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                 </a>
             </h5>
           </div>
+          <div class="container justify-content-center" style="height: 20rem; background-color: #F7F7F7;">
+          </div>
 
-          <div class="container justify-content-center" style="padding: 10px" >  <!-- form Isenção -->
+          <div class="container justify-content-center" style="padding: 10px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >  <!-- form Isenção -->
             <form method="GET" action="{{route('editalEscolhido')}}">
 
               <input type="hidden" name="editalId" value="{{$edital->id}}">
@@ -81,12 +83,12 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
 
         <div class="card cartao text-center " style="border-radius: 20px"> <!-- Recurso Isenção -->
 
-          <div class="card-body d-flex justify-content-center">
-            <h2 style="margin-top: -50px; font-weight: bold">Recurso Isenção</h2>
+          <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+            <h2 style="font-weight: bold">Recurso Isenção</h2>
           </div>
 
-          <div class="card-body d-flex justify-content-center">
-              <h5 style="margin-top: -50px;">
+          <div class="card-header d-flex justify-content-center">
+              <h5>
                Aberto de: <br>
                  <a style="font-weight: bold">
                    {{date_format(date_create($edital->inicioRecursoIsencao), 'd/m/y')}}
@@ -124,13 +126,12 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
             </form>
           </div>
         </div>
-
         <div class="card cartao text-center " style="border-radius: 20px">   <!-- Inscrição -->
-             <div class="card-body d-flex justify-content-center">
-                 <h2 style="margin-top: -50px; font-weight: bold">Inscrição</h2>
+             <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+                 <h2 style="font-weight: bold">Inscrição</h2>
              </div>
-             <div class="card-body d-flex justify-content-center">
-                 <h5 style="margin-top: -50px;">
+             <div class="card-header d-flex justify-content-center">
+                 <h5>
                   Aberto de: <br>
                     <a style="font-weight: bold">
                       {{date_format(date_create($edital->inicioInscricoes), 'd/m/y')}}
@@ -169,14 +170,14 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
 
 
         <div class="card cartao text-center " style="border-radius: 20px">   <!-- Recuso Inscrição -->
-             <div class="card-body d-flex justify-content-center">
-                 <h2 style="margin-top: -50px; font-weight: bold">Recurso Inscrição</h2>
+             <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+                 <h2 style="font-weight: bold">Recurso Inscrição</h2>
              </div>
 
-             <div class="card-body d-flex justify-content-center">
-                 <h5 style="margin-top: -50px;">
+             <div class="card-header d-flex justify-content-center">
+                 <h5>
                   Aberto de: <br>
-                    <a style="font-weight: bold">
+                    <a style="font-weight: bold;">
                       {{date_format(date_create($edital->inicioRecurso), 'd/m/y')}}
                     </a>
                      até
@@ -212,6 +213,39 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                </form>
              </div>
            </div>
+           <div class="card cartao text-center " style="border-radius: 20px; height: 30rem">    <!-- Classificação -->
+
+             <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+               <h2 style="font-weight: bold">Classificação</h2>
+             </div>
+
+
+             <div class="container justify-content-center" style="padding: 10px" >  <!-- form Classificação -->
+               <form method="GET" action="{{route('editalEscolhido')}}">
+
+                 <input type="hidden" name="editalId" value="{{$edital->id}}">
+                 <input type="hidden" name="tipo" value="homologarIsencao">
+
+                 @if($edital->inicioIsencao<= $mytime)
+                 @if($edital->fimIsencao >= $mytime)
+                 <button type="submit" class="btn btn-primary btn-primary-lmts" >
+                   {{ __('Homologar Isenção') }}
+                 </button>
+                 @else
+                 <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
+                   {{ __('Homologar Isenção') }}
+                 </button>
+                 @endif
+                 @else
+                 <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
+                   {{ __('Homologar Isenção') }}
+                 </button>
+                 @endif
+               </form>
+             </div>
+
+           </div>
+
 
 
 

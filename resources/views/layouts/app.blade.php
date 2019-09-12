@@ -261,7 +261,7 @@
                       <a class="nav-link" href="{{ route('verDadosUsuario') }}"
                          onclick="event.preventDefault();
                                        document.getElementById('cadastroDadosUsuario').submit();">
-                         {{ __('DADOS DE USUÁRIO') }}
+                         {{ __('EDITAR DADOS DE USUÁRIO') }}
                       </a>
                       <form id="cadastroDadosUsuario" action="{{ route('verDadosUsuario') }}" method="GET" style="display: none;">
 

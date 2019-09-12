@@ -7,11 +7,34 @@ use Illuminate\Http\Request;
 use extravestibular\User;
 use extravestibular\DadosUsuario;
 use Auth;
+use extravestibular\Edital;
 use Illuminate\Support\Facades\Storage;
 
 class IsencaoController extends Controller
 {
   public function cadastroIsencao(Request $request){
+
+
+
+
+
+
+
+    $mytime = Carbon::now('America/Recife');
+    $mytime = $mytime->toDateString();
+    $edital = Edital::find($request->editalId);
+    $existeIsencao = Isencao::where('editalId', $request->editalId)
+                                  ->where('usuarioId', Auth::user()->id)
+                                  ->first();
+    if(!is_null($existeIsencao)){
+      return redirect()->route('home')->with('jsAlert', 'Você já possui uma isenção cadastrada no edital.');
+    }
+    if(!(($edital->inicioIsencao <= $mytime) && ($edital->fimIsencao >= $mytime))){
+      return redirect()->route('home')->with('jsAlert', 'Este edital não está no periodo correto.');
+    }
+
+
+
     if(!is_null($request->historicoEscolar)){
 
       $file = $request->historicoEscolar;

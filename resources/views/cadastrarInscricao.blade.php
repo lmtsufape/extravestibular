@@ -142,7 +142,7 @@
                               <?php foreach ($cursosDisponiveis as $curso) {
                                 if($curso[0] != '#'){
                                   if($curso[0] != ''){
-                                    echo('<option value=' . $curso[2] . '>' . $curso[0] . '</option>');
+                                    echo('<option value=' . $curso[0] . '>' . $curso[0] . '</option>');
                                   }
                                 }
                               }

@@ -36,6 +36,7 @@ class DadosUsuarioController extends Controller
                                           'foneResidencial'   => ['nullable','min:10', 'max:13'],
                                           'foneCelular'       => ['nullable','min:10', 'max:13'],
                                           'foneComercial'     => ['nullable','min:10', 'max:13'],
+                                          'nascimento'        => ['required', 'date'],
 
                                         ]);
 
@@ -58,6 +59,7 @@ class DadosUsuarioController extends Controller
       'foneResidencial'       => $request->foneResidencial,
       'foneCelular'           => $request->foneCelular,
       'foneComercial'         => $request->foneComercial,
+      'nascimento'            => $request->nascimento,
     ]);
     $usuario = User::find(Auth::user()->id);
     $aux = DadosUsuario::where('cpf', $request->cpf)->first();

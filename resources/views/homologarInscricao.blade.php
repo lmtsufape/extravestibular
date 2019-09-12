@@ -325,7 +325,7 @@
                       <div class="form-group row " style="margin-left: 1rem;">  <!-- RG Orgao Emissor/UF/Titulo Eleitoral-->
                           <div>
                             <label for="rg" class="field a-field a-field_a2 page__field" >
-                                <input disabled id="rg" type="text" name="rg" autofocus class="form-control field__input a-field__input" placeholder="RG" style="width: 12rem;" value="{{ $dados->rg }}">
+                                <input disabled id="rg" type="text" name="rg" autofocus class="form-control field__input a-field__input" placeholder="RG" style="width: 6rem;" value="{{ $dados->rg }}">
                                 <span class="a-field__label-wrap">
                                   <span class="a-field__label">RG</span>
                                 </span>
@@ -353,18 +353,26 @@
                           </div>
                           <div>
                             <label for="tituloEleitoral" class="field a-field a-field_a2 page__field" style=" margin-left: 25px;">
-                                <input disabled id="tituloEleitoral" type="text" name="tituloEleitoral" autofocus class="form-control field__input a-field__input" placeholder="Título Eleitoral" style="width: 12rem;" value="{{ $dados->tituloEleitoral }}">
+                                <input disabled id="tituloEleitoral" type="text" name="tituloEleitoral" autofocus class="form-control field__input a-field__input" placeholder="Título Eleitoral" style="width: 8rem;" value="{{ $dados->tituloEleitoral }}">
                                 <span class="a-field__label-wrap">
                                   <span class="a-field__label">Título Eleitoral</span>
                                 </span>
                             </label>
 
                           </div>
+                          <div>
+                            <label for="nascimento" class="field a-field a-field_a1 page__field" style=" margin-left: 25px;">
+                                <input disabled id="nascimento" type="date" name="nascimento" autofocus class=" field__input a-field__input" placeholder="Data de Nascimento" style="width: 9rem;" value="{{ $dados->nascimento }}">
+                                <span class="a-field__label-wrap">
+                                  <span class="a-field__label">Data de Nascimento</span>
+                                </span>
+                            </label>
+                          </div>
                       </div>
 
                       <div class="form-group row" style="margin-left: 1rem;">  <!-- Filiação -->
                           <div>
-                            <label for="filiacao" class="field a-field a-field_a1 page__field" style="margin-left: 30px;">
+                            <label for="filiacao" class="field a-field a-field_a1 page__field" style="margin-left: 25px;">
                                 <input disabled id="filiacao" type="text" name="filiacao" autofocus class="form-control field__input a-field__input" placeholder="Filiação" style="width: 25.2rem;" value="{{ $dados->filiacao }}">
                                 <span class="a-field__label-wrap">
                                   <span class="a-field__label">Filiação</span>

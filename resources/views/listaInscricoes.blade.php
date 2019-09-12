@@ -31,7 +31,7 @@
 
                       <td>
                         <form method="get" action={{ route('inscricaoEscolhida') }} enctype="multipart/form-data"> <!-- Isenção -->
-                          @csrf
+                          
                           <div class="col-md-8 offset-md-4">
                               <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
                               <input type="hidden" name="tipo" value="{{$tipo}}">

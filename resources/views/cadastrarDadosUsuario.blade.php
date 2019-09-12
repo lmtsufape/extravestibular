@@ -58,7 +58,7 @@
                             @enderror
                           </div>
                           <div>
-                            <label for="orgaoEmissor" class="field a-field a-field_a2 page__field" style=" margin-left: 25px;">
+                            <label for="orgaoEmissor" class="field a-field a-field_a2 page__field" style=" margin-left: 50px;">
                                 <input id="orgaoEmissor" type="text" name="orgaoEmissor" autofocus class="form-control @error('orgaoEmissor') is-invalid @enderror field__input a-field__input" placeholder="Orgão Emissor" style="width: 5rem;" value="{{ old('orgaoEmissor') }}">
                                 <span class="a-field__label-wrap">
                                   <span class="a-field__label">Orgão Emissor</span>
@@ -71,7 +71,7 @@
                             @enderror
                           </div>
                           <div>
-                            <label for="orgaoEmissorUF" class="field a-field a-field_a2 page__field" style=" margin-left: 25px;">
+                            <label for="orgaoEmissorUF" class="field a-field a-field_a2 page__field" style=" margin-left: 50px;">
                                 <input id="orgaoEmissorUF" type="text" name="orgaoEmissorUF" autofocus class="form-control @error('orgaoEmissorUF') is-invalid @enderror field__input a-field__input" placeholder="UF" style="width: 5rem;" value="{{ old('orgaoEmissorUF') }}">
                                 <span class="a-field__label-wrap">
                                   <span class="a-field__label">UF</span>
@@ -84,13 +84,26 @@
                             @enderror
                           </div>
                           <div>
-                            <label for="tituloEleitoral" class="field a-field a-field_a2 page__field" style=" margin-left: 25px;">
+                            <label for="tituloEleitoral" class="field a-field a-field_a2 page__field" style=" margin-left: 50px;">
                                 <input id="tituloEleitoral" type="text" name="tituloEleitoral" autofocus class="form-control @error('tituloEleitoral') is-invalid @enderror field__input a-field__input" placeholder="Título Eleitoral" style="width: 12rem;" value="{{ old('tituloEleitoral') }}">
                                 <span class="a-field__label-wrap">
                                   <span class="a-field__label">Título Eleitoral</span>
                                 </span>
                             </label>
                             @error('tituloEleitoral')
+                            <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                          </div>
+                          <div>
+                            <label for="nascimento" class="field a-field a-field_a2 page__field" style=" margin-left: 55px;">
+                                <input id="nascimento" type="date" name="nascimento" autofocus class="form-control @error('nascimento') is-invalid @enderror field__input a-field__input" placeholder="Data de Nascimento" style="width: 12rem;" value="{{ old('tituloEleitoral') }}">
+                                <span class="a-field__label-wrap">
+                                  <span class="a-field__label">Data de Nascimento</span>
+                                </span>
+                            </label>
+                            @error('nascimento')
                             <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                               <strong>{{ $message }}</strong>
                             </span>

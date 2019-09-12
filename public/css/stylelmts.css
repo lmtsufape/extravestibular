@@ -212,3 +212,17 @@ body{
   border-radius: 20px;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
+
+
+.hover-popup-lmts a {
+  position:relative;
+}
+
+.hover-popup-lmts a span {
+  position:absolute; display:none; z-index:99;
+}
+
+.hover-popup-lmts a:hover span {
+  display:block; height: 100px;
+  overflow: visible;
+}

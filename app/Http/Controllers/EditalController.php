@@ -241,12 +241,14 @@ class EditalController extends Controller
       }
 
       public function gerarClassificacao(Request $request){
-        $lista = Inscricao::where('editalId', $request->editalId)
-                            ->select('id')
-                            ->orderBy('curso')
-                            ->orderBy('nota', 'desc')
-                            ->get();
-        $data = ['lista' => $lista];
+        $inscricoes = Inscricao::where('editalId', $request->editalId)
+                                 ->orderBy('curso', 'desc')
+                                 ->orderBy('nota', 'desc')
+                                 ->get();
+        $edital = Edital::find($request->editalId);
+        $data = ['inscricoes' => $inscricoes,
+                 'edital'     => $edital,
+                ];
         $pdf = PDF::loadView('classificacao', $data);
         return $pdf->download('classificacao.pdf');
       }
