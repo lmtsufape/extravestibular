@@ -10,11 +10,11 @@
             <div class="card ">
                 <div class="card-header">{{ __('Entrar') }}</div>
 
-                <div class="card-body">
+                <div class="card-body " style="margin-left: 3rem">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <div class="form-group row justify-content-center">
+                        <div class="form-group row justify-content-center" >
 
                             <div class="col-md-6">
                               <label for="email" class="field a-field a-field_a3 page__field ">

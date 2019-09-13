@@ -281,14 +281,65 @@ class EditalController extends Controller
 
         }
         if(Auth::user()->tipo == 'PREG'){
-          return view('detalhesEditalPREG', ['editalId'          => $request->editalId,
-                                                  'inscricao'         => $inscricao,
-                                                  'isencao'           => $isencao,
-                                                  'recursoIsencao'    => $recursoIsencao,
-                                                  'recursoInscricao'  => $recursoInscricao,
-                                                  'edital'            => $edital,
-                                                  'mytime'            => $request->mytime,
-                                                ]);
+          $inscricoesHomologadas = Inscricao::where('editalId', $request->editalId)
+                                              ->where('homologado', 'aprovado')
+                                              ->orWhere('homologado', 'rejeitado')
+                                              ->where('homologadoDrca', 'aprovado')
+                                              ->orWhere('homologadoDrca', 'rejeitado')
+                                              ->get();
+          $inscricoesNaoHomologadas = Inscricao::where('editalId', $request->editalId)
+                                                 ->where('homologado', 'nao')
+                                                 ->where('homologadoDrca', 'nao')
+                                                 ->get();
+          $recursosTaxaHomologados = Recurso::where('editalId', $request->editalId)
+                                              ->where('homologado', 'aprovado')
+                                              ->orWhere('homologado', 'rejeitado')
+                                              ->where('tipo', 'taxa')
+                                              ->get();
+          $recursosTaxaNaoHomologados = Recurso::where('editalId', $request->editalId)
+                                                 ->where('tipo', 'taxa')
+                                                 ->where('homologado', 'nao')
+                                                 ->get();
+          $recursosClassificacaoHomologados = Recurso::where('editalId', $request->editalId)
+                                              ->where('homologado', 'aprovado')
+                                              ->orWhere('homologado', 'rejeitado')
+                                              ->where('tipo', 'classificacao')
+                                              ->get();
+          $recursosClassificacaoNaoHomologados = Recurso::where('editalId', $request->editalId)
+                                                 ->where('tipo', 'classificacao')
+                                                 ->where('homologado', 'nao')
+                                                 ->get();
+          $isencoesHomologadas = Isencao::where('editalId', $request->editalId)
+                                          ->where('parecer', 'deferida')
+                                          ->orWhere('parecer', 'indeferida')
+                                          ->get();
+          $isencoesNaoHomologadas = Isencao::where('editalId', $request->editalId)
+                                             ->where('parecer', 'nao')
+                                             ->get();
+          $inscricoesHomologadas = json_decode($inscricoesHomologadas);
+          $inscricoesNaoHomologadas = json_decode($inscricoesNaoHomologadas);
+          $isencoesHomologadas = json_decode($isencoesHomologadas);
+          $isencoesNaoHomologadas = json_decode($isencoesNaoHomologadas);
+          $recursosTaxaHomologados = json_decode($recursosTaxaHomologados);
+          $recursosTaxaNaoHomologados = json_decode($recursosTaxaNaoHomologados);
+          $recursosClassificacaoHomologados = json_decode($recursosClassificacaoHomologados);
+          $recursosClassificacaoNaoHomologados = json_decode($recursosClassificacaoNaoHomologados);
+          return view('detalhesEditalPREG', ['editalId'                             => $request->editalId,
+                                             'inscricao'                            => null,
+                                             'isencao'                              => null,
+                                             'recursoIsencao'                       => null,
+                                             'recursoInscricao'                     => null,
+                                             'inscricoesHomologadas'                => sizeof($inscricoesHomologadas),
+                                             'inscricoesNaoHomologadas'             => sizeof($inscricoesNaoHomologadas),
+                                             'isencoesHomologadas'                  => sizeof($isencoesHomologadas),
+                                             'isencoesNaoHomologadas'               => sizeof($isencoesNaoHomologadas),
+                                             'recursosTaxaHomologados'              => sizeof($recursosTaxaHomologados),
+                                             'recursosTaxaNaoHomologados'           => sizeof($recursosTaxaNaoHomologados),
+                                             'recursosClassificacaoHomologados'      => sizeof($recursosClassificacaoHomologados),
+                                             'recursosClassificacaoNaoHomologados'   => sizeof($recursosClassificacaoNaoHomologados),
+                                             'edital'                               => $edital,
+                                             'mytime'                               => $request->mytime,
+                                            ]);
 
         }
         if(Auth::user()->tipo == 'DRCA'){

@@ -226,10 +226,10 @@
 						<th> NOME </th>
 						<th> CPF </th>
 						<th> MODALIDADE </th>
-						<th> CURSO PRETENDIDO </th>
-						<th> CAMPUS </th>
+						<th> CURSO PRETENDIDO/CAMPUS </th>
+						<!-- <th> CAMPUS </th> -->
 						<th> SITUAÇÃO </th>
-						<th> Col. </th>
+						<!-- <th> Col. </th> -->
 						<th> TURNO </th>
 					</tr>
 
@@ -240,8 +240,8 @@
 					<td> {{$inscricao->user->dadosUsuario->cpf}} </td>
 					<td> {{$inscricao->tipo}} </td>
 					<td> {{$inscricao->curso}} </td>
-					<td> {{$inscricao->curso}} </td>
-					<td style="background-color: lightgreen"> hmm </td>
+					<!-- <td> {{$inscricao->curso}} </td> -->
+					<!-- <td style="background-color: lightgreen"> hmm </td> -->
 					<td> {{$i}} </td>
 					<td> {{$inscricao->turno}} </td>
 				</tr>

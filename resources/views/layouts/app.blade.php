@@ -298,22 +298,6 @@
                     </form>
                   </li>
 
-                  <li class="separador-lmts"> <!-- separador -->
-                    |
-                  </li>
-
-                  <li class="nav-item active"> <!-- Gerar Classificação -->
-                      <a class="nav-link" href="{{ route('listaEditais') }}"
-                         onclick="event.preventDefault();
-                                       document.getElementById('listaEditais-form6').submit();">
-                         {{ __('GERAR CLASSIFICAÇÃO') }}
-                      </a>
-                      <form id="listaEditais-form6" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
-                            @csrf
-                          <input type="hidden" name="tipo" value="gerarClassificacao">
-                      </form>
-                  </li>
-
                 @endif
                 @if(Auth::user()->tipo == 'DRCA')
                 <!-- Visão DRCA -->

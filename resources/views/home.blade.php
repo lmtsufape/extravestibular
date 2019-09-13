@@ -29,7 +29,7 @@
                       ?>
                       @if($editaisAbertos)
                         @if($editaisAbertosFlag)
-                          <tr>
+                          <tr style="background-color: #F7F7F7">
                             <th> Editais Abertos</th><?php $editaisAbertosFlag = false;?>
                             <th> Publicado em </th>
                             <th> Arquivo </th>
@@ -37,7 +37,7 @@
                         @endif
                       @else
                         @if($editaisFinalizadosFlag)
-                          <tr>
+                          <tr style="background-color: #F7F7F7">
                             <th> Editais finalizados</th><?php $editaisFinalizadosFlag = false;?>
                             <th> Publicado em </th>
                             <th> Arquivo </th>

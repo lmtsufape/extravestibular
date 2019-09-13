@@ -98,7 +98,7 @@
                           </div>
                           <div>
                             <label for="nascimento" class="field a-field a-field_a2 page__field" style=" margin-left: 55px;">
-                                <input id="nascimento" type="date" name="nascimento" autofocus class="form-control @error('nascimento') is-invalid @enderror field__input a-field__input" placeholder="Data de Nascimento" style="width: 12rem;" value="{{ old('tituloEleitoral') }}">
+                                <input id="nascimento" type="date" name="nascimento" autofocus class="form-control @error('nascimento') is-invalid @enderror field__input a-field__input" placeholder="Data de Nascimento" style="width: 12rem;" value="{{ old('nascimento') }}">
                                 <span class="a-field__label-wrap">
                                   <span class="a-field__label">Data de Nascimento</span>
                                 </span>

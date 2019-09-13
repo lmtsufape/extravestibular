@@ -34,7 +34,7 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
         </div>
       </div>
       <div class="conteudo-central d-flex justify-content-center" style="width: 100rem">  <!-- opções -->
-        <div class="card cartao text-center " style="border-radius: 20px; height: 30rem;">    <!-- Isenção -->
+        <div class="card cartao text-center " style="border-radius: 20px; height: 21rem;">    <!-- Isenção -->
 
           <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
             <h2 style="font-weight: bold">Isenção</h2>
@@ -51,29 +51,54 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                 </a>
             </h5>
           </div>
-          <div class="container justify-content-center" style="height: 20rem; background-color: #F7F7F7;">
+          <div class="container justify-content-center" style="height: 8rem; background-color: #F7F7F7; padding: 10px">
+            <h4>
+              <?php
+                $porcentagem = $isencoesHomologadas * 100;
+                if(($isencoesHomologadas + $isencoesNaoHomologadas)>0){
+                  $porcentagem = $porcentagem / ($isencoesHomologadas + $isencoesNaoHomologadas);
+                }
+                else{
+                  $porcentagem = 0;
+                }
+               ?>
+               @if(($isencoesHomologadas + $isencoesNaoHomologadas) > 0 )
+                <a style="font-weight: bold">Etapa {{{$porcentagem}}}% finalizada.</a>
+               @endif
+            </h4>
+            <h5>
+
+                Total de matrículas: <a style="font-weight: bold">{{($isencoesHomologadas + $isencoesNaoHomologadas)}}.</a>
+
+            </h5>
+              <h5>
+                Matrículas homologadas: <a style="font-weight: bold">{{$isencoesHomologadas}}.</a>
+              </h5>
+              <h5>
+                Matrículas em espera: <a style="font-weight: bold">{{$isencoesNaoHomologadas}}.</a>
+              </h5>
           </div>
 
-          <div class="container justify-content-center" style="padding: 10px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >  <!-- form Isenção -->
+          <div class="container justify-content-center" style="padding: 13px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >  <!-- form Isenção -->
             <form method="GET" action="{{route('editalEscolhido')}}">
 
               <input type="hidden" name="editalId" value="{{$edital->id}}">
               <input type="hidden" name="tipo" value="homologarIsencao">
 
               @if($edital->inicioIsencao<= $mytime)
-              @if($edital->fimIsencao >= $mytime)
-              <button type="submit" class="btn btn-primary btn-primary-lmts" >
-                {{ __('Homologar Isenção') }}
-              </button>
+                @if($edital->fimIsencao >= $mytime)
+                  <button type="submit" class="btn btn-primary btn-primary-lmts" >
+                    {{ __('Homologar Isenção') }}
+                  </button>
+                @else
+                  <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
+                    {{ __('Homologar Isenção') }}
+                  </button>
+                @endif
               @else
-              <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
-                {{ __('Homologar Isenção') }}
-              </button>
-              @endif
-              @else
-              <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
-                {{ __('Homologar Isenção') }}
-              </button>
+                <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
+                  {{ __('Homologar Isenção') }}
+                </button>
               @endif
             </form>
           </div>
@@ -81,7 +106,7 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
         </div>
 
 
-        <div class="card cartao text-center " style="border-radius: 20px"> <!-- Recurso Isenção -->
+        <div class="card cartao text-center " style="border-radius: 20px;height: 21rem;"> <!-- Recurso Isenção -->
 
           <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
             <h2 style="font-weight: bold">Recurso Isenção</h2>
@@ -99,9 +124,36 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                  </a>
               </h5>
           </div>
+          <div class="container justify-content-center" style="height: 8rem; background-color: #F7F7F7; padding: 10px">
+            <h4>
+              <?php
+                $porcentagem = $recursosTaxaHomologados * 100;
+                if(($recursosTaxaHomologados + $recursosTaxaNaoHomologados)>0){
+                  $porcentagem = $porcentagem / ($recursosTaxaHomologados + $recursosTaxaNaoHomologados);
+                }
+                else{
+                  $porcentagem = 0;
+                }
+               ?>
+               @if(($recursosTaxaHomologados + $recursosTaxaNaoHomologados) > 0 )
+                <a style="font-weight: bold">Etapa {{{$porcentagem}}}% finalizada.</a>
+               @endif
+            </h4>
+            <h5>
+
+                Total de matrículas: <a style="font-weight: bold">{{($recursosTaxaHomologados + $recursosTaxaNaoHomologados)}}.</a>
+
+            </h5>
+              <h5>
+                Matrículas homologadas: <a style="font-weight: bold">{{$recursosTaxaHomologados}}.</a>
+              </h5>
+              <h5>
+                Matrículas em espera: <a style="font-weight: bold">{{$recursosTaxaNaoHomologados}}.</a>
+              </h5>
+          </div>
 
 
-          <div class="container justify-content-center" style="padding: 10px" >
+          <div class="container justify-content-center" style="padding: 13px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
             <form method="GET" action="{{route('editalEscolhido')}}">
 
               <input type="hidden" name="editalId" value="{{$edital->id}}">
@@ -126,7 +178,7 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
             </form>
           </div>
         </div>
-        <div class="card cartao text-center " style="border-radius: 20px">   <!-- Inscrição -->
+        <div class="card cartao text-center " style="border-radius: 20px; height: 21rem">   <!-- Inscrição -->
              <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
                  <h2 style="font-weight: bold">Inscrição</h2>
              </div>
@@ -142,8 +194,34 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                     </a>
                  </h5>
              </div>
+             <div class="container justify-content-center" style="height: 8rem; background-color: #F7F7F7; padding: 10px">
+               <h4>
+                 <?php
+                   $porcentagem = $inscricoesHomologadas * 100;
+                   if(($inscricoesHomologadas + $inscricoesNaoHomologadas)>0){
+                     $porcentagem = $porcentagem / ($inscricoesHomologadas + $inscricoesNaoHomologadas);
+                   }
+                   else{
+                     $porcentagem = 0;
+                   }
+                  ?>
+                  @if(($inscricoesHomologadas + $inscricoesNaoHomologadas) > 0 )
+                   <a style="font-weight: bold">Etapa {{{$porcentagem}}}% finalizada.</a>
+                  @endif
+               </h4>
+               <h5>
 
-             <div class="container justify-content-center" style="padding: 10px" >
+                   Total de matrículas: <a style="font-weight: bold">{{($inscricoesHomologadas + $inscricoesNaoHomologadas)}}.</a>
+
+               </h5>
+                 <h5>
+                   Matrículas homologadas: <a style="font-weight: bold">{{$inscricoesHomologadas}}.</a>
+                 </h5>
+                 <h5>
+                   Matrículas em espera: <a style="font-weight: bold">{{$inscricoesNaoHomologadas}}.</a>
+                 </h5>
+             </div>
+            <div class="container justify-content-center" style="padding: 13px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
                <form method="GET" action="{{route('editalEscolhido')}}">
 
                    <input type="hidden" name="editalId" value="{{$edital->id}}">
@@ -169,7 +247,7 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
         </div>
 
 
-        <div class="card cartao text-center " style="border-radius: 20px">   <!-- Recuso Inscrição -->
+        <div class="card cartao text-center " style="border-radius: 20px;height: 21rem">   <!-- Recuso Inscrição -->
              <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
                  <h2 style="font-weight: bold">Recurso Inscrição</h2>
              </div>
@@ -186,9 +264,34 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                     </a>
                  </h5>
              </div>
+             <div class="container justify-content-center" style="height: 8rem; background-color: #F7F7F7; padding: 10px">
+               <h4>
+                 <?php
+                   $porcentagem = $recursosClassificacaoHomologados * 100;
+                   if(($recursosClassificacaoHomologados + $recursosClassificacaoNaoHomologados)>0){
+                     $porcentagem = $porcentagem / ($recursosClassificacaoHomologados + $recursosClassificacaoNaoHomologados);
+                   }
+                   else{
+                     $porcentagem = 0;
+                   }
+                  ?>
+                  @if(($recursosClassificacaoHomologados + $recursosClassificacaoNaoHomologados) > 0 )
+                   <a style="font-weight: bold">Etapa {{{$porcentagem}}}% finalizada.</a>
+                  @endif
+               </h4>
+               <h5>
 
+                   Total de matrículas: <a style="font-weight: bold">{{($recursosClassificacaoHomologados + $recursosClassificacaoNaoHomologados)}}.</a>
 
-             <div class="container justify-content-center" style="padding: 10px" >
+               </h5>
+                 <h5>
+                   Matrículas homologadas: <a style="font-weight: bold">{{$recursosClassificacaoHomologados}}.</a>
+                 </h5>
+                 <h5>
+                   Matrículas em espera: <a style="font-weight: bold">{{$recursosClassificacaoNaoHomologados}}.</a>
+                 </h5>
+             </div>
+             <div class="container justify-content-center" style="padding: 13px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
                <form method="GET" action="{{route('editalEscolhido')}}">
 
                    <input type="hidden" name="editalId" value="{{$edital->id}}">
@@ -213,38 +316,61 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                </form>
              </div>
            </div>
-           <div class="card cartao text-center " style="border-radius: 20px; height: 30rem">    <!-- Classificação -->
+           <div class="card cartao text-center " style="border-radius: 20px;height: 21rem">    <!-- Classificação -->
 
              <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
                <h2 style="font-weight: bold">Classificação</h2>
              </div>
+             <div class="container justify-content-center" style="height: 13rem; background-color: #F7F7F7; padding: 10px">
+               <h4>
+                 <?php
+                   $porcentagem = $inscricoesHomologadas * 100;
+                   if(($inscricoesHomologadas + $inscricoesNaoHomologadas)>0){
+                     $porcentagem = $porcentagem / ($inscricoesHomologadas + $inscricoesNaoHomologadas);
+                   }
+                   else{
+                     $porcentagem = 0;
+                   }
+                  ?>
+                  @if(($inscricoesHomologadas + $inscricoesNaoHomologadas) > 0 )
+                   <a style="font-weight: bold">Etapa {{{$porcentagem}}}% finalizada.</a>
+                  @endif
+               </h4>
+               <h5>
 
+                   Total de matrículas: <a style="font-weight: bold">{{($inscricoesHomologadas + $inscricoesNaoHomologadas)}}.</a>
 
-             <div class="container justify-content-center" style="padding: 10px" >  <!-- form Classificação -->
-               <form method="GET" action="{{route('editalEscolhido')}}">
+               </h5>
+                 <h5>
+                   Matrículas homologadas: <a style="font-weight: bold">{{$inscricoesHomologadas}}.</a>
+                 </h5>
+                 <h5>
+                   Matrículas em espera: <a style="font-weight: bold">{{$inscricoesNaoHomologadas}}.</a>
+                 </h5>
+             </div>
 
+             <div class="container justify-content-center" style="padding: 10px;;background-color: #F7F7F7;" >  <!-- form Classificação -->
+               <form method="POST" action="{{route('gerarClassificacao')}}" target="_blank" enctype="multipart/form-data">
+                 @csrf
                  <input type="hidden" name="editalId" value="{{$edital->id}}">
                  <input type="hidden" name="tipo" value="homologarIsencao">
 
-                 @if($edital->inicioIsencao<= $mytime)
-                 @if($edital->fimIsencao >= $mytime)
-                 <button type="submit" class="btn btn-primary btn-primary-lmts" >
-                   {{ __('Homologar Isenção') }}
-                 </button>
+                 @if($edital->fimRecurso<= $mytime)
+                   <button type="submit" class="btn btn-primary btn-primary-lmts" >
+                     {{ __('Gerar Resultado') }}
+                   </button>
                  @else
-                 <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
-                   {{ __('Homologar Isenção') }}
-                 </button>
-                 @endif
-                 @else
-                 <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
-                   {{ __('Homologar Isenção') }}
-                 </button>
+                   <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
+                     {{ __('Gerar Resultado') }}
+                   </button>
                  @endif
                </form>
              </div>
 
            </div>
+
+
+
 
 
 
