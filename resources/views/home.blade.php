@@ -99,7 +99,8 @@
 
                       </tr>
                     @endforeach
-                  <!-- Exemplo de botão danger dividido -->
+
+                  </table>
             </div>
         </div>
     </div>

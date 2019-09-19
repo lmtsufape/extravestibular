@@ -83,43 +83,57 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
 
 
 
-        <div class="card cartao text-center " style="border-radius: 20px">   <!-- Inscrição -->
-             <div class="card-body d-flex justify-content-center">
-                 <h2 style="margin-top: -50px; font-weight: bold">Inscrição</h2>
-             </div>
-             <div class="card-body d-flex justify-content-center">
-                 <h5 style="margin-top: -50px;">
-                  Aberto de: <br>
-                    <a style="font-weight: bold">
-                      {{date_format(date_create($edital->inicioInscricoes), 'd/m/y')}}
-                    </a>
-                     até
-                    <a style="font-weight: bold">
-                      {{date_format(date_create($edital->fimInscricoes), 'd/m/y')}}
-                    </a>
-                 </h5>
-             </div>
+        <div class="card cartao text-center " style="border-radius: 20px;height: 21rem">    <!-- Inscrição -->
+          <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+            <h2 style="font-weight: bold">Classificação</h2>
+          </div>
+          <div class="container justify-content-center" style="height: 13rem; background-color: #F7F7F7; padding: 10px">
+            <h4>
+              <?php
+                $porcentagem = $inscricoesClassificadas * 100;
+                if(($inscricoesClassificadas + $inscricoesNaoClassificadas)>0){
+                  $porcentagem = $porcentagem / ($inscricoesClassificadas + $inscricoesNaoClassificadas);
+                }
+                else{
+                  $porcentagem = 0;
+                }
+               ?>
+               @if(($inscricoesClassificadas + $inscricoesNaoClassificadas) > 0 )
+                <a style="font-weight: bold">Etapa {{{$porcentagem}}}% finalizada.</a>
+               @endif
+            </h4>
+            <h5>
 
-             <div class="container justify-content-center" style="padding: 10px" >
-               <form method="GET" action="{{route('editalEscolhido')}}">
+                Total de Inscrições: <a style="font-weight: bold">{{($inscricoesClassificadas + $inscricoesNaoClassificadas)}}.</a>
 
-                   <input type="hidden" name="editalId" value="{{$edital->id}}">
-                   <input type="hidden" name="tipo" value="classificarInscricoes">
+            </h5>
+              <h5>
+                Inscrições homologadas: <a style="font-weight: bold">{{$inscricoesClassificadas}}.</a>
+              </h5>
+              <h5>
+                Inscrições em espera: <a style="font-weight: bold">{{$inscricoesNaoClassificadas}}.</a>
+              </h5>
+          </div>
+         <div class="container justify-content-center" style="padding: 10px" >
+           <form method="GET" action="{{route('editalEscolhido')}}">
 
-                   @if($edital->inicioInscricoes<= $mytime)
+               <input type="hidden" name="editalId" value="{{$edital->id}}">
+               <input type="hidden" name="tipo" value="classificarInscricoes">
 
-                       <button type="submit" class="btn btn-primary btn-primary-lmts" >
-                           {{ __('Classificar Inscrições') }}
-                       </button>
+               @if($edital->inicioInscricoes<= $mytime)
 
-
-                   @else
-                   <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
+                   <button type="submit" class="btn btn-primary btn-primary-lmts" >
                        {{ __('Classificar Inscrições') }}
                    </button>
-                   @endif
-               </form>
-             </div>
+
+
+               @else
+               <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
+                   {{ __('Classificar Inscrições') }}
+               </button>
+               @endif
+           </form>
+         </div>
         </div>
         <div class="card cartao text-center " style="border-radius: 20px; opacity: 0">    <!-- Isenção -->
 

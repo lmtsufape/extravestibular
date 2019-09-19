@@ -210,7 +210,7 @@
       </div>
 
       <!-- Barra de Logos -->
-      <div id="barra-logos" lass-"container" style="background:#FFFFFF; margin-top: 1px; height: 150px; padding: 10px 0 10px 0">
+      <div id="barra-logos" lass-"container" style="background:#FFFFFF; margin-top: 1px; height: 150px; padding: 10px 0 10px 0;">
         <ul id="logos" style="list-style:none;">
             <li style="margin-right:140px; margin-left:110px; border-right:1px ;height: 120px">
                 <a href="{{ route("home") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a>
@@ -229,6 +229,7 @@
             </li>
         </ul>
       </div>
+@if(Auth::check())
       <!-- barra de menu -->
 
       <nav class="navbar navbar-expand-lg" style="background-color: #1B2E4F; border-color: #d3e0e9; box-shadow: 0 0 6px rgba(0,0,0,0.5);" role="navigation">
@@ -426,11 +427,12 @@
       @endif
 
       <br>
+@endif
+    
       @yield('content')
 
     </div>
   </div>
-
 
 
 

@@ -42,17 +42,18 @@ class EditalController extends Controller
       }
 
       public function cadastroEdital(Request $request){
-        $validatedData = $request->validate(['nome'                  => ['required', 'string', 'max:255'],
-                                              'inicioInscricoes'     => ['required', 'date'],
-                                              'fimInscricoes'        => ['required', 'date'],
+        $mytime = Carbon::now('America/Recife');
+        $mytime = $mytime->toDateString();
+        $validatedData = $request->validate([ 'nome'                 => ['required', 'string', 'max:255'],
                                               'pdfEdital'            => ['required', 'file'],
-                                              'inicioRecurso'        => ['required', 'date'],
-                                              'fimRecurso'           => ['required', 'date'],
-                                              'inicioIsencao'        => ['required', 'date'],
-                                              'fimIsencao'           => ['required', 'date'],
-                                              'inicioRecursoIsencao' => ['required', 'date'],
-                                              'fimRecursoIsencao'    => ['required', 'date'],
-                                              'inicioIsencao'        => ['required', 'date'],
+                                              'inicioIsencao'        => ['required', 'date', 'after:'.$mytime],
+                                              'fimIsencao'           => ['required', 'date', 'after:'.$request->inicioIsencao, 'before:'.$request->inicioRecursoIsencao],
+                                              'inicioRecursoIsencao' => ['required', 'date', 'after:'.$request->fimIsencao, 'before:'.$request->fimRecursoIsencao],
+                                              'fimRecursoIsencao'    => ['required', 'date', 'after:'.$request->inicioRecursoIsencao, 'before:'.$request->inicioInscricoes],
+                                              'inicioInscricoes'     => ['required', 'date', 'after:'.$request->fimRecursoIsencao, 'before:'.$request->fimInscricoes],
+                                              'fimInscricoes'        => ['required', 'date', 'after:'.$request->inicioInscricoes, 'before:'.$request->inicioRecurso],
+                                              'inicioRecurso'        => ['required', 'date', 'after:'.$request->fimInscricoes, 'before:'.$request->fimRecurso],
+                                              'fimRecurso'           => ['required', 'date', 'after:'.$request->inicioRecurso],
                                             ]);
 
 
@@ -254,29 +255,51 @@ class EditalController extends Controller
       }
 
       public function detalhesEdital(Request $request){
+        $mytime = Carbon::now('America/Recife');
+        $mytime = $mytime->toDateString();
         $inscricao = Inscricao::where('usuarioId', Auth::user()->id)
-        ->where('editalId', $request->editalId)
-        ->first();
+                                ->where('editalId', $request->editalId)
+                                ->first();
         $isencao = Isencao::where('usuarioId', Auth::user()->id)
-        ->where('editalId', $request->editalId)
-        ->first();
+                            ->where('editalId', $request->editalId)
+                            ->first();
         $recursoIsencao = Recurso::where('usuarioId', Auth::user()->id)
-        ->where('editalId', $request->editalId)
-        ->where('tipo', 'taxa')
-        ->first();
+                                   ->where('editalId', $request->editalId)
+                                   ->where('tipo', 'taxa')
+                                   ->first();
         $recursoInscricao = Recurso::where('usuarioId', Auth::user()->id)
-        ->where('editalId', $request->editalId)
-        ->where('tipo', 'classificacao')
-        ->first();
+                                     ->where('editalId', $request->editalId)
+                                     ->where('tipo', 'classificacao')
+                                     ->first();
+        $inscricoesClassificadas = Inscricao::where('editalId', $request->editalId)
+                                              ->where('nota', '!=', null)
+                                              ->get();
+        $inscricoesNaoClassificadas = Inscricao::where('editalId', $request->editalId)
+                                              ->whereNull('nota')
+                                              ->get();
+        $inscricoesClassificadas = json_decode($inscricoesClassificadas);
+        $inscricoesNaoClassificadas = json_decode($inscricoesNaoClassificadas);
         $edital = Edital::find($request->editalId);
         if(Auth::user()->tipo == 'candidato'){
+          if($edital->fimIsencao > $mytime){
+            $isencao = 'processando';
+          }
+          if($edital->fimRecursoIsencao > $mytime){
+            $recursoIsencao = 'processando';
+          }
+          if($edital->fimInscricoes > $mytime){
+            $inscricao = 'processando';
+          }
+          if($edital->fimRecurso > $mytime){
+            $recursoInscricao = 'processando';
+          }
           return view('detalhesEditalCandidato', ['editalId'          => $request->editalId,
                                                   'inscricao'         => $inscricao,
                                                   'isencao'           => $isencao,
                                                   'recursoIsencao'    => $recursoIsencao,
                                                   'recursoInscricao'  => $recursoInscricao,
                                                   'edital'            => $edital,
-                                                  'mytime'            => $request->mytime,
+                                                  'mytime'            => $mytime,
                                                 ]);
 
         }
@@ -335,36 +358,50 @@ class EditalController extends Controller
                                              'isencoesNaoHomologadas'               => sizeof($isencoesNaoHomologadas),
                                              'recursosTaxaHomologados'              => sizeof($recursosTaxaHomologados),
                                              'recursosTaxaNaoHomologados'           => sizeof($recursosTaxaNaoHomologados),
-                                             'recursosClassificacaoHomologados'      => sizeof($recursosClassificacaoHomologados),
-                                             'recursosClassificacaoNaoHomologados'   => sizeof($recursosClassificacaoNaoHomologados),
+                                             'recursosClassificacaoHomologados'     => sizeof($recursosClassificacaoHomologados),
+                                             'recursosClassificacaoNaoHomologados'  => sizeof($recursosClassificacaoNaoHomologados),
+                                             'inscricoesClassificadas'              => sizeof($inscricoesClassificadas),
+                                             'inscricoesNaoClassificadas'           => sizeof($inscricoesNaoClassificadas),
                                              'edital'                               => $edital,
-                                             'mytime'                               => $request->mytime,
+                                             'mytime'                               => $mytime,
                                             ]);
 
         }
         if(Auth::user()->tipo == 'DRCA'){
-          return view('detalhesEditalDRCA', ['editalId'          => $request->editalId,
-                                                  'inscricao'         => $inscricao,
-                                                  'isencao'           => $isencao,
-                                                  'recursoIsencao'    => $recursoIsencao,
-                                                  'recursoInscricao'  => $recursoInscricao,
-                                                  'edital'            => $edital,
-                                                  'mytime'            => $request->mytime,
-                                                ]);
+          return view('detalhesEditalDRCA', [ 'editalId'          => $request->editalId,
+                                              'inscricao'         => $inscricao,
+                                              'isencao'           => $isencao,
+                                              'recursoIsencao'    => $recursoIsencao,
+                                              'recursoInscricao'  => $recursoInscricao,
+                                              'edital'            => $edital,
+                                              'mytime'            => $mytime,
+                                            ]);
 
         }
         if(Auth::user()->tipo == 'coordenador'){
           return view('detalhesEditalCoordenador', ['editalId'          => $request->editalId,
-                                                  'inscricao'         => $inscricao,
-                                                  'isencao'           => $isencao,
-                                                  'recursoIsencao'    => $recursoIsencao,
-                                                  'recursoInscricao'  => $recursoInscricao,
-                                                  'edital'            => $edital,
-                                                  'mytime'            => $request->mytime,
+                                                    'inscricao'         => $inscricao,
+                                                    'isencao'           => $isencao,
+                                                    'recursoIsencao'    => $recursoIsencao,
+                                                    'recursoInscricao'  => $recursoInscricao,
+                                                    'inscricoesClassificadas'              => sizeof($inscricoesClassificadas),
+                                                    'inscricoesNaoClassificadas'           => sizeof($inscricoesNaoClassificadas),
+                                                    'edital'                               => $edital,
+                                                    'edital'            => $edital,
+                                                    'mytime'            => $mytime,
                                                 ]);
 
         }
 
 
+      }
+
+      public function iframeEditais(Request $request){
+        $mytime = Carbon::now('America/Recife');
+        $mytime = $mytime->toDateString();
+        $editais = Edital::orderBy('created_at', 'desc')->paginate(10);
+        return view('iframeEditais', ['editais' => $editais,
+                                      'mytime'  => $mytime,
+                                      ]);
       }
 }

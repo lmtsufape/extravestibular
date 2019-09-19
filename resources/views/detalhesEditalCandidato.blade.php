@@ -61,22 +61,26 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
           <div class="container justify-content-center" style="margin-top: -15px" >
             <h5>
               Status da Isenção: <br>
-              @if($isencao->parecer == 'deferida')
-                <a style="font-weight: bold; color: green">Aprovado</a>
-              @elseif($isencao->parecer == 'nao')
-                <a style="font-weight: bold">Processando</a>
+              @if($isencao != 'processando')
+                @if($isencao->parecer == 'deferida')
+                  <a style="font-weight: bold; color: green">Aprovado</a>
+                @elseif($isencao->parecer == 'nao')
+                  <a style="font-weight: bold">Processando</a>
+                @else
+                  <div class="hover-popup-lmts">
+                    <a style="font-weight: bold; color: red">Rejeitado</a>
+                    <a style="color:white">
+                      <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
+                      <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
+                          <b style="font-weight: bold">Motivo</b>
+                          <br>
+                            {{$isencao->motivoRejeicao}}
+                      </span>
+                    </a>
+                  </div>
+                @endif
               @else
-                <div class="hover-popup-lmts">
-                  <a style="font-weight: bold; color: red">Rejeitado</a>
-                  <a style="color:white">
-                    <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
-                    <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
-                        <b style="font-weight: bold">Motivo</b>
-                        <br>
-                          {{$isencao->motivoRejeicao}}
-                    </span>
-                  </a>
-                </div>
+                <a style="font-weight: bold">Processando</a>
               @endif
             </h5>
           </div>
@@ -122,22 +126,26 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
             <div class="container justify-content-center" style="margin-top: -15px" >
               <h5>
                 Status do Recurso: <br>
-                @if($recursoIsencao->homologado == 'aprovado')
-                  <a style="font-weight: bold;color: green">Aprovado</a>
-                @elseif($recursoIsencao->homologado == 'nao')
-                  <a style="font-weight: bold">Processando</a>
+                @if($recursoIsencao != 'processando')
+                  @if($recursoIsencao->homologado == 'aprovado')
+                    <a style="font-weight: bold;color: green">Aprovado</a>
+                  @elseif($recursoIsencao->homologado == 'nao')
+                    <a style="font-weight: bold">Processando</a>
+                  @else
+                  <div class="hover-popup-lmts">
+                    <a style="font-weight: bold; color: red">Rejeitado</a>
+                    <a style="color:white">
+                      <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}"/>
+                      <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
+                          <b style="font-weight: bold">Motivo</b>
+                          <br>
+                            {{$recursoIsencao->motivoRejeicao}}
+                      </span>
+                    </a>
+                  </div>
+                  @endif
                 @else
-                <div class="hover-popup-lmts">
-                  <a style="font-weight: bold; color: red">Rejeitado</a>
-                  <a style="color:white">
-                    <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}"/>
-                    <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
-                        <b style="font-weight: bold">Motivo</b>
-                        <br>
-                          {{$recursoIsencao->motivoRejeicao}}
-                    </span>
-                  </a>
-                </div>
+                  <a style="font-weight: bold">Processando</a>
                 @endif
               </h5>
             </div>
@@ -182,16 +190,32 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
               <div class="container justify-content-center" style="margin-top: -15px" >
                 <h5>
                   Status da Inscrição: <br>
-                  @if($inscricao->homologado == 'aprovado')
-                    @if($inscricao->homologadoDrca == 'aprovado')
-                      <a style="font-weight: bold;color: green">Aprovado</a>
-                    @elseif($inscricao->homologadoDrca == 'nao')
+                  @if($inscricao != 'processando')
+                    @if($inscricao->homologado == 'aprovado')
+                      @if($inscricao->homologadoDrca == 'aprovado')
+                        <a style="font-weight: bold;color: green">Aprovado</a>
+                      @elseif($inscricao->homologadoDrca == 'nao')
+                        <a style="font-weight: bold">Processando</a>
+                      @else
+                        <div class="hover-popup-lmts">
+                          <a style="font-weight: bold; color: red">Rejeitado</a>
+                          <a style="color:white">
+                            <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
+                            <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
+                                <b style="font-weight: bold">Motivo</b>
+                                <br>
+                                  {{$inscricao->motivoRejeicao}}
+                            </span>
+                          </a>
+                        </div>
+                      @endif
+                    @elseif($inscricao->homologado == 'nao')
                       <a style="font-weight: bold">Processando</a>
                     @else
                       <div class="hover-popup-lmts">
                         <a style="font-weight: bold; color: red">Rejeitado</a>
                         <a style="color:white">
-                          <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
+                          <img src="{{asset('images/iconAjuda.png')}}" style="width: 20px"/>
                           <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
                               <b style="font-weight: bold">Motivo</b>
                               <br>
@@ -200,20 +224,8 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                         </a>
                       </div>
                     @endif
-                  @elseif($inscricao->homologado == 'nao')
-                    <a style="font-weight: bold">Processando</a>
                   @else
-                    <div class="hover-popup-lmts">
-                      <a style="font-weight: bold; color: red">Rejeitado</a>
-                      <a style="color:white">
-                        <img src="{{asset('images/iconAjuda.png')}}" style="width: 20px"/>
-                        <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
-                            <b style="font-weight: bold">Motivo</b>
-                            <br>
-                              {{$inscricao->motivoRejeicao}}
-                        </span>
-                      </a>
-                    </div>
+                    <a style="font-weight: bold">Processando</a>
                   @endif
                 </h5>
               </div>
@@ -257,24 +269,28 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
              @if(!is_null($recursoInscricao))
                <div class="container justify-content-center" style="margin-top: -15px" >
                  <h5>
-                   Status da Isenção: <br>
-                   @if($recursoInscricao->homologado == 'aprovado')
-                     <a style="font-weight: bold;color: green">Aprovado</a>
-                   @elseif($recursoInscricao->homologado == 'nao')
-                     <a style="font-weight: bold">Processando</a>
-                   @else
-                     <div class="hover-popup-lmts">
-                       <a style="font-weight: bold; color: red">Rejeitado</a>
-                       <a style="color:white">
-                         <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
-                         <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
-                             <b style="font-weight: bold">Motivo</b>
-                             <br>
-                               {{$recursoInscricao->motivoRejeicao}}
-                         </span>
-                       </a>
-                     </div>
-                   @endif
+                   Status do Recurso: <br>
+                   @if($recursoInscricao != 'processando')
+                     @if($recursoInscricao->homologado == 'aprovado')
+                       <a style="font-weight: bold;color: green">Aprovado</a>
+                     @elseif($recursoInscricao->homologado == 'nao')
+                       <a style="font-weight: bold">Processando</a>
+                     @else
+                       <div class="hover-popup-lmts">
+                         <a style="font-weight: bold; color: red">Rejeitado</a>
+                         <a style="color:white">
+                           <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
+                           <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
+                               <b style="font-weight: bold">Motivo</b>
+                               <br>
+                                 {{$recursoInscricao->motivoRejeicao}}
+                           </span>
+                         </a>
+                       </div>
+                     @endif
+                    @else
+                      <a style="font-weight: bold">Processando</a>
+                    @endif
                  </h5>
                </div>
              @endif

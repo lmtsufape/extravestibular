@@ -18,20 +18,23 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home',                  'HomeController@index'                       )->name('home');
+Route::get('/loginhome',             'HomeController@loginComEditais'             )->middleware('auth');
+Route::get('/listarEditais',         'EditalController@iframeEditais'             )->name('iframeEditais');
 
-Route::get('/download',              'InscricaoController@downloadArquivo'        )->name('download');
 
-Route::get( '/novoEdital',           'EditalController@novoEdital'                )->name('novoEdital');
+Route::get('/download',              'InscricaoController@downloadArquivo'        )->name('download')->middleware('auth');
+
+Route::get( '/novoEdital',           'EditalController@novoEdital'                )->name('novoEdital')->middleware('auth');
 Route::post('/listaEditais',         'EditalController@listaEditais'              )->name('listaEditais');
 Route::post('/cadastroEdital',       'EditalController@cadastroEdital'            )->name('cadastroEdital');
-Route::get( '/detalhes/{edital}',    'EditalController@detalhesEdital'            )->name('detalhesEdital');
-Route::get( '/listaInscricoes',      'EditalController@editalEscolhido'           )->name('editalEscolhido');
+Route::get( '/detalhes/{edital}',    'EditalController@detalhesEdital'            )->name('detalhesEdital')->middleware('auth');
+Route::get( '/listaInscricoes',      'EditalController@editalEscolhido'           )->name('editalEscolhido')->middleware('auth');
 Route::post('/gerarClassificacao',   'EditalController@gerarClassificacao'        )->name('gerarClassificacao');
 
 Route::post('/cadastroInscricao',    'InscricaoController@cadastroInscricao'      )->name('cadastroInscricao');
-Route::get('/homologarInscricao',    'InscricaoController@inscricaoEscolhida'     )->name('inscricaoEscolhida');
+Route::get('/homologarInscricao',    'InscricaoController@inscricaoEscolhida'     )->name('inscricaoEscolhida')->middleware('auth');
 Route::post('/inscricaoHomologada',  'InscricaoController@homologarInscricao'     )->name('homologarInscricao');
-Route::get('/classificarInscricao',   'InscricaoController@classificarInscricao'  )->name('classificarInscricao');
+Route::get('/classificarInscricao',   'InscricaoController@classificarInscricao'  )->name('classificarInscricao')->middleware('auth');
 Route::post('/cadastroClassificacao','InscricaoController@cadastroClassificacao'  )->name('cadastroClassificacao');
 
 Route::post('/cadastroIsencao',      'IsencaoController@cadastroIsencao'          )->name('cadastroIsencao');
@@ -43,5 +46,5 @@ Route::post('/cadastroRecurso',      'RecursoController@cadastroRecurso'        
 Route::post('/homologarRecurso',     'RecursoController@recursoEscolhido'         )->name('recursoEscolhido');
 Route::post('/recursoHomologado',    'RecursoController@homologarRecurso'         )->name('homologarRecurso');
 
-Route::get('/dadosUsuario',          'DadosUsuarioController@verDadosUsuario'     )->name('verDadosUsuario');
+Route::get('/dadosUsuario',          'DadosUsuarioController@verDadosUsuario'     )->name('verDadosUsuario')->middleware('auth');
 Route::post('/cadastroDadosUsuario', 'DadosUsuarioController@cadastroDadosUsuario')->name('cadastroDadosUsuario');
