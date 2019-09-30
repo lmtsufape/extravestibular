@@ -18,7 +18,7 @@ class CreateInscricaosTable extends Migration
             $table->timestamps();
             $table->integer('usuarioId');
             $table->integer('editalId');
-            $table->string('tipo');            
+            $table->string('tipo');
             $table->string('declaracaoDeVinculo')->nullable();
             $table->string('historicoEscolar')->nullable();
             $table->string('programaDasDisciplinas')->nullable();
@@ -42,6 +42,7 @@ class CreateInscricaosTable extends Migration
             $table->string('coeficienteDeRendimento')->nullable();
             $table->string('conclusaoDoCurso')->nullable();
             $table->string('nota')->nullable();
+            $table->string('situacao')->nullable();
 
         });
     }

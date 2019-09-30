@@ -197,7 +197,7 @@
 <body>
 
   <div class="card" style="width: 100%;">
-      <div class="card-header">Editais</div>
+
 
       <div class="card-body">
         <table class="table table-ordered table-hover">
@@ -233,7 +233,7 @@
 
               <td style="width: 60rem">
                 <div class="hover-popup-lmts">   <!-- time line  class="hover-popup-lmts"-->
-                 <a href="detalhes/{{$edital->nome}}" onclick="event.preventDefault(); document.getElementById('detalhesEdital{{$edital->id}}').submit();" >
+                 <a>
                    <?php
                      $nomeEdital = explode(".pdf", $edital->nome);
                      echo ($nomeEdital[0]);
@@ -272,10 +272,13 @@
                 </div>
               </td>
               <td> <!-- data -->
-              <a>{{date_format($edital->created_at, 'd/m/y')}}</a>
+                <?php
+                  $date = date_create($edital->dataPublicacao);
+                 ?>
+                <a>{{ date_format($date , 'd/m/y')  }}</a>
               </td>
               <td> <!-- Download -->
-              <a href="{{ route('download', ['file' => $edital->pdfEdital])}}" target="_new">Baixar Edital</a>
+                <a href="{{ route('download', ['file' => $edital->pdfEdital])}}" target="_parent">Baixar Edital</a>
               </td>
 
             </tr>

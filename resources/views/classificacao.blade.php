@@ -228,8 +228,8 @@
 						<th> MODALIDADE </th>
 						<th> CURSO PRETENDIDO/CAMPUS </th>
 						<!-- <th> CAMPUS </th> -->
+            <th> Col. </th>
 						<th> SITUAÇÃO </th>
-						<!-- <th> Col. </th> -->
 						<th> TURNO </th>
 					</tr>
 
@@ -241,8 +241,8 @@
 					<td> {{$inscricao->tipo}} </td>
 					<td> {{$inscricao->curso}} </td>
 					<!-- <td> {{$inscricao->curso}} </td> -->
-					<!-- <td style="background-color: lightgreen"> hmm </td> -->
 					<td> {{$i}} </td>
+					<td style="background-color: <?php if($inscricao->situacao == 'Aprovado'){echo ('lightgreen'); } else{ echo('lightyellow');} ?>"> {{$inscricao->situacao}} </td>
 					<td> {{$inscricao->turno}} </td>
 				</tr>
 

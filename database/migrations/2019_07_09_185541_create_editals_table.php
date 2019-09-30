@@ -16,8 +16,9 @@ class CreateEditalsTable extends Migration
         Schema::create('editals', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->softDeletes();
             $table->string('pdfEdital');
-            $table->string('vagas');
+            $table->text('vagas');
             $table->date('inicioInscricoes');
             $table->date('fimInscricoes');
             $table->date('inicioRecurso');
@@ -27,6 +28,8 @@ class CreateEditalsTable extends Migration
             $table->date('inicioRecursoIsencao');
             $table->date('fimRecursoIsencao');
             $table->string('nome');
+            $table->string('publicado')->nullable();
+            $table->date('dataPublicacao')->nullable();
         });
     }
 

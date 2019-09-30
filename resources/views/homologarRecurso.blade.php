@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Homologar Recurso')
 @section('navbar')
-    Home/Detalhes do edital/Homologar Recurso/{{$recurso->cpfEdital}}
+    Home / Detalhes do edital / Homologar Recurso / {{$recurso->cpfEdital}}
 @endsection
 @section('content')
 

@@ -12,6 +12,8 @@ class Inscricao extends Model
      *
      * @var array
      */
+    
+
     protected $fillable = [
         'usuarioId',
         'tipo',

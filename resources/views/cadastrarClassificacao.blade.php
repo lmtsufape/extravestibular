@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Classificar Inscrição')
 @section('navbar')
-    Home/Detalhes do edital/Classificar Inscrição/{{$inscricao->cpfCandidato}}
+    Home / Detalhes do edital / Classificar Inscrição / {{$inscricao->user->dadosUsuario->cpf}}
 @endsection
 @section('content')
 

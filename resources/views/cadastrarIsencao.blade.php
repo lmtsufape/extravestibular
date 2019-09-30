@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Requerimento de Isenção')
 @section('navbar')
-    Home/Detalhes do edital/Requerimento de Isenção
+    Home / Detalhes do edital / Requerimento de Isenção
 @endsection
 @section('content')
 

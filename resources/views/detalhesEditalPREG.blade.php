@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Detalhes do Edital')
 @section('navbar')
-    Home/Detalhes do edital/
+    Home / Detalhes do edital
 @endsection
 @section('content')
 
@@ -331,6 +331,15 @@
               ?>
               @if(($inscricoesClassificadas + $inscricoesNaoClassificadas) > 0 )
                <a style="font-weight: bold">Etapa {{{$porcentagem}}}% finalizada.</a>
+               <a href="{{ route('detalhesPorcentagem') }}"
+                  onclick="event.preventDefault();
+                                document.getElementById('detalhesPorcentagem-form').submit();">
+                  {{ __('Detalhes') }}
+               </a>
+               <form id="detalhesPorcentagem-form" target="_blank" action="{{ route('detalhesPorcentagem') }}" method="get" style="display: none;">
+
+                 <input type="hidden" name="editalId" value="{{$edital->id}}">
+               </form>
               @endif
            </h4>
            <h5>
@@ -365,6 +374,7 @@
          </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>

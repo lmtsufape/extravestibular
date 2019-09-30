@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Editais')
 @section('navbar')
-    Home/Gerar Classificação
+    Home / Gerar Classificação
 @endsection
 @section('content')
 

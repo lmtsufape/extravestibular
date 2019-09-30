@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
         }
         DB::table('editals')->insert([
           'pdfEdital' => 'seed',
-          'vagas' => '1:10!2:10!3:10!',
+          'vagas' => '1:1!2:10!3:10!',
           'inicioInscricoes' => '2019-09-01',
           'fimInscricoes' => '2019-09-02',
           'inicioRecurso' => '2019-09-03',
@@ -55,6 +55,8 @@ class DatabaseSeeder extends Seeder
           'fimRecursoIsencao' => '2019-09-08',
           'nome' => 'Edital para teste de classificação',
           'created_at' => '2019-09-02 18:15:48',
+          'publicado' => 'sim',
+          'dataPublicacao' => '2019-09-02',
 
         ]);
 
@@ -89,6 +91,8 @@ class DatabaseSeeder extends Seeder
             'fimRecursoIsencao' => '2019-09-07',
             'nome' => 'Inscrição aberta',
             'created_at' => '2019-09-10 18:15:48',
+            'publicado' => 'sim',
+            'dataPublicacao' => '2019-09-10',
 
         ]);
         DB::table('editals')->insert([
@@ -104,6 +108,8 @@ class DatabaseSeeder extends Seeder
             'fimRecursoIsencao' => '2019-10-08',
             'nome' => 'Isençao aberta',
             'created_at' => '2019-09-10 18:15:48',
+            'publicado' => 'sim',
+            'dataPublicacao' => '2019-09-10',
 
         ]);
         DB::table('editals')->insert([
@@ -119,6 +125,8 @@ class DatabaseSeeder extends Seeder
             'fimRecursoIsencao' => '2019-10-08',
             'nome' => 'Recurso Isençao aberta',
             'created_at' => '2019-09-10 18:15:48',
+            'publicado' => 'sim',
+            'dataPublicacao' => '2019-09-10',
 
         ]);
 
@@ -135,6 +143,8 @@ class DatabaseSeeder extends Seeder
             'fimRecursoIsencao' => '2019-09-08',
             'nome' => 'Recurso Inscrição aberta',
             'created_at' => '2019-09-10 18:15:48',
+            'publicado' => 'sim',
+            'dataPublicacao' => '2019-09-10',
 
         ]);
         for($i = 1; $i < 7; $i++){
@@ -151,6 +161,8 @@ class DatabaseSeeder extends Seeder
               'fimRecursoIsencao' => '2019-09-08',
               'nome' => 'editalTeste'.$i,
               'created_at' => '2019-09-01 18:15:48',
+              'publicado' => 'sim',
+              'dataPublicacao' => '2019-09-01',
 
           ]);
         }
@@ -174,19 +186,20 @@ class DatabaseSeeder extends Seeder
                 'homologadoDrca' => 'aprovado',
                 'cidade' => 'seed',
                 'uf' => 'seed',
-                'coeficienteDeRendimento' => 'nao',
+                'coeficienteDeRendimento' => '9',
+                'nota' => $i
 
 
 
             ]);
           }
-          if($i >= 15){
+          if($i >= 19){
             DB::table('inscricaos')->insert([
                 'usuarioId' => $i,
                 'editalId' => '1',
                 'tipo' => 'reintegracao',
                 'comprovante' => 'isento',
-                'curso' => 'VET/UAG',
+                'curso' => '1',
                 'turno' => 'manhã',
                 'cursoDeOrigem' => 'seed',
                 'instituicaoDeOrigem' => 'seed',
@@ -199,7 +212,6 @@ class DatabaseSeeder extends Seeder
                 'cidade' => 'seed',
                 'uf' => 'seed',
                 'coeficienteDeRendimento' => 'nao',
-
 
             ]);
           }

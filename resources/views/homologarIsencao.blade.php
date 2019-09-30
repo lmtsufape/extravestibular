@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Homologar Isencao')
 @section('navbar')
-    Home/Detalhes do edital/Homologar Isenção/{{$isencao->cpfCandidato}}
+    Home / Detalhes do edital / Homologar Isenção / {{$isencao->cpfCandidato}}
 @endsection
 @section('content')
 

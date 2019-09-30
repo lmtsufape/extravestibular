@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Requerimento de Recurso')
 @section('navbar')
-    Home/Detalhes do edital/Requerimento de Recurso
+    Home / Detalhes do edital / Requerimento de Recurso
 @endsection
 @section('content')
 

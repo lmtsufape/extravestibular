@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Detalhes do Edital')
 @section('navbar')
-    Home/Detalhes do edital/
+    Home / Detalhes do edital
 @endsection
 @section('content')
 

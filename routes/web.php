@@ -25,13 +25,18 @@ Route::get('/listarEditais',         'EditalController@iframeEditais'           
 Route::get('/download',              'InscricaoController@downloadArquivo'        )->name('download')->middleware('auth');
 
 Route::get( '/novoEdital',           'EditalController@novoEdital'                )->name('novoEdital')->middleware('auth');
+Route::post('/excluirEdital',        'EditalController@deleteEdital'              )->name('apagarEdital');
+Route::post('/editarEdital/{edital}','EditalController@editarEdital'              )->name('editarEdital');
+Route::post('/editarEdital'        ,'EditalController@cadastroEditarEdital'       )->name('cadastroEditarEdital');
 Route::post('/listaEditais',         'EditalController@listaEditais'              )->name('listaEditais');
 Route::post('/cadastroEdital',       'EditalController@cadastroEdital'            )->name('cadastroEdital');
 Route::get( '/detalhes/{edital}',    'EditalController@detalhesEdital'            )->name('detalhesEdital')->middleware('auth');
+Route::get( '/detalhesPorcentagem',  'EditalController@detalhesPorcentagem'       )->name('detalhesPorcentagem')->middleware('auth');
 Route::get( '/listaInscricoes',      'EditalController@editalEscolhido'           )->name('editalEscolhido')->middleware('auth');
 Route::post('/gerarClassificacao',   'EditalController@gerarClassificacao'        )->name('gerarClassificacao');
 
 Route::post('/cadastroInscricao',    'InscricaoController@cadastroInscricao'      )->name('cadastroInscricao');
+Route::post('/cadastroDesempate',    'InscricaoController@cadastroDesempate'      )->name('cadastroDesempate');
 Route::get('/homologarInscricao',    'InscricaoController@inscricaoEscolhida'     )->name('inscricaoEscolhida')->middleware('auth');
 Route::post('/inscricaoHomologada',  'InscricaoController@homologarInscricao'     )->name('homologarInscricao');
 Route::get('/classificarInscricao',   'InscricaoController@classificarInscricao'  )->name('classificarInscricao')->middleware('auth');

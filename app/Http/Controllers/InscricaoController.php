@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Mail;
 use extravestibular\Mail\NovaInscricao;
 use Carbon\Carbon;
 
+
+
 class InscricaoController extends Controller
 {
 
@@ -250,11 +252,20 @@ class InscricaoController extends Controller
 	    	  }
 		}
 
+	public function cadastroDesempate(Request $request){
+		$inscricaoAprovada = Inscricao::find($request->inscricaoAprovada);
+		$inscricaoClassificavel = Inscricao::find($request->inscricaoClassificavel);
+		$inscricaoAprovada->situacao = 'Aprovado';
+		$inscricaoClassificavel->situacao = 'Classificável';
+		$inscricaoAprovada->save();
+		$inscricaoClassificavel->save();
+		return redirect()->route('home')->with('jsAlert', 'Desempate realizado com sucesso.');
+	}
+
 	public function inscricaoEscolhida(Request $request){
 		$inscricao = Inscricao::find($request->inscricaoId);
-		$client = new Client();
-		$cursos = $client->get('http://app.uag.ufrpe.br/api/api/curso/');
-		$cursos = json_decode($cursos->getBody(), true);
+		$api = new ApiLmts();
+		$cursos = $api->getCursos();
 		$curso = $inscricao->curso;
 		for($j = 0; $j < sizeof($cursos); $j++){
 			if($curso == $cursos[$j]['id']){
@@ -328,6 +339,59 @@ class InscricaoController extends Controller
     return response()->download(storage_path('app/public/'.$request->file));
 	}
 
+	private function aprovarInscricoes($editalId, $curso){
+		$edital = Edital::find($editalId);
+		$vagas = explode('!',$edital->vagas);
+		for($i = 0; $i < sizeof($vagas); $i++){
+			$vagas[$i] = explode(":",$vagas[$i]);
+		}
+		for($i = 0; $i < sizeof($vagas); $i++){
+			if($vagas[$i][0] == $curso){
+				$vagas = $vagas[$i][1];
+				break;
+			}
+		}
+
+		$inscricoesOrderByDesc = Inscricao::where('editalId', $editalId)
+																				->where('homologado' , 'aprovado')
+																				->where('homologadoDrca', 'aprovado')
+																				->whereNotNull('nota')
+																				->where('curso', $curso)
+																				->orderBy('nota', 'desc')
+																				->get();
+		$aux = 1;
+		$ultimaNota = 0;
+		$ultimoId = 0;
+		$idEmpate1 = 0;
+		$idEmpate2 = 0;
+		$flagEmpate = false;
+		foreach ($inscricoesOrderByDesc as $inscricao) {
+			if($aux <= $vagas){
+				$inscricao->situacao = 'Aprovado';
+				$ultimaNota = $inscricao->nota;
+				$ultimoId = $inscricao->id;
+				$inscricao->save();
+			}
+			else{
+				$aux = $ultimaNota . "!";
+				$aux1 = $inscricao->nota . "!";
+				if($aux = $aux1){
+					$idEmpate1 = $ultimoId;
+					$idEmpate2 = $inscricao->id;
+					$flagEmpate = true;
+
+				}
+				$inscricao->situacao = 'Classificável';
+				$inscricao->save();
+			}
+			$aux++;
+		}
+
+		if ($flagEmpate) {
+			return $ids = [$idEmpate1, $idEmpate2];
+		}
+	}
+
 	public function cadastroClassificacao(Request $request){
 		$inscricao = Inscricao::find($request->inscricaoId);
 		$validatedData = $request->validate([ 'coeficienteDeRendimento' 		=> ['required', 'numeric'],
@@ -350,7 +414,25 @@ class InscricaoController extends Controller
 		$nota = number_format((float)$nota, 1, '.', '');
 		$inscricao->nota = $nota;
 		$inscricao->save();
-		return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso.');
+		$inscricoesQueFaltamClassificar = Inscricao::where('editalId' , $inscricao->editalId)
+																								 ->where('homologado' , 'aprovado')
+																								 ->where('homologadoDrca', 'aprovado')
+																								 ->whereNull('nota')
+																								 ->first();
+
+
+		if(is_null($inscricoesQueFaltamClassificar)){
+			$ids = $this->aprovarInscricoes($inscricao->editalId, $inscricao->curso);
+			$empate1 = Inscricao::find($ids[0]);
+			$empate2 = Inscricao::find($ids[1]);
+			return view('desempate', [
+																'inscricao1' => $empate1,
+																'inscricao2' => $empate2,
+															 ]);
+		}
+		else{
+			return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso.');
+		}
 	}
 
 }

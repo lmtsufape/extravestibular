@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Inscrição')
 @section('navbar')
-    Home/Detalhes do Edital/Fazer Inscrição
+    Home / Detalhes do Edital / Fazer Inscrição
 @endsection
 @section('content')
 
@@ -47,7 +47,7 @@
                   <div class="card-body">
                     <div class="card-body">
                       <div class="form-group row">
-                        <label for="email" class="col-md-4 col-form-label text-md-right" >{{ __('Tipo de Inscrição:') }}</label>
+                        <label for="email" class="col-md-4 col-form-label text-md-right" >{{ __('Tipo de Inscrição*:') }}</label>
                         <div class="col-md-6">
                           <input onclick="escolherTipo('reintegracao')" 			   type="radio" name="tipoInscricao" > Reintegração <br>
                           <input onclick="escolherTipo('transferenciaInterna')"  type="radio" name="tipoInscricao" > Transferencia Interna <br>
@@ -135,7 +135,7 @@
                       </div>
 
                       <div class="form-group row">                                                   <!-- Curso -->
-                          <label for="Curso" class="col-md-4 col-form-label text-md-right">{{ __('Curso pretendido:') }}</label>
+                          <label for="Curso" class="col-md-4 col-form-label text-md-right">{{ __('Curso pretendido*:') }}</label>
 
                           <div class="col-md-6">
                             <select name="curso">
@@ -152,7 +152,7 @@
                       </div>
 
                       <div class="form-group row">                                                   <!-- Turno -->
-                          <label for="Turno" class="col-md-4 col-form-label text-md-right">{{ __('Turno:') }}</label>
+                          <label for="Turno" class="col-md-4 col-form-label text-md-right">{{ __('Turno*:') }}</label>
 
                           <div class="col-md-6">
                             <select name="turno">
@@ -187,9 +187,9 @@
                     <div class="card-body">
                       <div class="form-group row">                                                   <!-- Curso de origem -->
                         <label for="cursoDeOrigem" class="field a-field a-field_a2 page__field" style="margin-left: 100px; width: 55rem">
-                          <input id="cursoDeOrigem" type="text" name="cursoDeOrigem" autofocus class="form-control @error('cursoDeOrigem') is-invalid @enderror field__input a-field__input" placeholder="Curso de Origem:" style="width: 55rem;" value="{{ old('cursoDeOrigem') }}">
+                          <input id="cursoDeOrigem" type="text" name="cursoDeOrigem" autofocus class="form-control @error('cursoDeOrigem') is-invalid @enderror field__input a-field__input" placeholder="Curso de Origem*:" style="width: 55rem;" value="{{ old('cursoDeOrigem') }}">
                           <span class="a-field__label-wrap">
-                            <span class="a-field__label">Curso de Origem:</span>
+                            <span class="a-field__label">Curso de Origem*:</span>
                           </span>
                         </label>
                         @error('cursoDeOrigem')
@@ -201,9 +201,9 @@
 
                       <div class="form-group row">                                                   <!-- Instituição de origem -->
                         <label for="instituicaoDeOrigem" class="field a-field a-field_a2 page__field" style="margin-left: 100px; width: 55rem">
-                          <input id="instituicaoDeOrigem" type="text" name="instituicaoDeOrigem" autofocus class="form-control @error('instituicaoDeOrigem') is-invalid @enderror field__input a-field__input" placeholder="Instituição de Origem:" style="width: 55rem;" value="{{ old('instituicaoDeOrigem') }}">
+                          <input id="instituicaoDeOrigem" type="text" name="instituicaoDeOrigem" autofocus class="form-control @error('instituicaoDeOrigem') is-invalid @enderror field__input a-field__input" placeholder="Instituição de Origem*:" style="width: 55rem;" value="{{ old('instituicaoDeOrigem') }}">
                           <span class="a-field__label-wrap">
-                            <span class="a-field__label">Instituição de Origem:</span>
+                            <span class="a-field__label">Instituição de Origem*:</span>
                           </span>
                         </label>
                         @error('instituicaoDeOrigem')
@@ -215,9 +215,9 @@
 
                       <div class="form-group row">                                                   <!-- Natureza da IES -->
                         <label for="naturezaDaIes" class="field a-field a-field_a2 page__field" style="margin-left: 100px; width: 55rem">
-                          <input id="naturezaDaIes" type="text" name="naturezaDaIes" autofocus class="form-control @error('naturezaDaIes') is-invalid @enderror field__input a-field__input" placeholder="Natureza da IES:" style="width: 55rem;"  value="{{ old('naturezaDaIes') }}">
+                          <input id="naturezaDaIes" type="text" name="naturezaDaIes" autofocus class="form-control @error('naturezaDaIes') is-invalid @enderror field__input a-field__input" placeholder="Natureza da IES*:" style="width: 55rem;"  value="{{ old('naturezaDaIes') }}">
                           <span class="a-field__label-wrap">
-                            <span class="a-field__label">Natureza da IES:</span>
+                            <span class="a-field__label">Natureza da IES*:</span>
                           </span>
                         </label>
                         @error('naturezaDaIes')
@@ -239,9 +239,9 @@
                       <div class="form-group row justify-content-center">  <!-- Endereço/Nº -->
                         <div>
                           <label for="endereco" class="field a-field a-field_a2 page__field">
-                              <input id="rua" type="text" name="endereco" autofocus class="form-control @error('endereco') is-invalid @enderror field__input a-field__input" placeholder="Endereço" style="width: 53rem;" value="{{ old('endereco') }}">
+                              <input id="rua" type="text" name="endereco" autofocus class="form-control @error('endereco') is-invalid @enderror field__input a-field__input" placeholder="Endereço*" style="width: 53rem;" value="{{ old('endereco') }}">
                               <span class="a-field__label-wrap">
-                                <span class="a-field__label">Endereço</span>
+                                <span class="a-field__label">Endereço*</span>
                               </span>
                           </label>
                           @error('endereco')
@@ -252,9 +252,9 @@
                         </div>
                         <div>
                           <label for="num" class="field a-field a-field_a2 page__field" style=" margin-left: 30px;">
-                              <input id="num" type="text" name="num" autofocus class="form-control @error('num') is-invalid @enderror field__input a-field__input" placeholder="Nº" style="width: 4rem;" value="{{ old('num') }}">
+                              <input id="num" type="text" name="num" autofocus class="form-control @error('num') is-invalid @enderror field__input a-field__input" placeholder="Número*" style="width: 4rem;" value="{{ old('num') }}">
                               <span class="a-field__label-wrap">
-                                <span class="a-field__label">Nº</span>
+                                <span class="a-field__label">Número*</span>
                               </span>
                           </label>
                           @error('num')
@@ -268,9 +268,9 @@
                       <div class="form-group row justify-content-center">  <!-- Bairro/Cidade/Uf -->
                         <div>
                           <label for="bairro" class="field a-field a-field_a2 page__field" >
-                              <input id="bairro" type="text" name="bairro" autofocus class="form-control @error('bairro') is-invalid @enderror field__input a-field__input" placeholder="Bairro" style="width: 27rem;" value="{{ old('bairro') }}">
+                              <input id="bairro" type="text" name="bairro" autofocus class="form-control @error('bairro') is-invalid @enderror field__input a-field__input" placeholder="Bairro*" style="width: 27rem;" value="{{ old('bairro') }}">
                               <span class="a-field__label-wrap">
-                                <span class="a-field__label">Bairro</span>
+                                <span class="a-field__label">Bairro*</span>
                               </span>
                           </label>
                           @error('bairro')
@@ -281,9 +281,9 @@
                         </div>
                         <div>
                           <label for="cidade" class="field a-field a-field_a2 page__field" style=" margin-left: 25px;">
-                              <input id="cidade" type="text" name="cidade" autofocus class="form-control @error('cidade') is-invalid @enderror field__input a-field__input" placeholder="Cidade" style="width: 25rem;" value="{{ old('cidade') }}">
+                              <input id="cidade" type="text" name="cidade" autofocus class="form-control @error('cidade') is-invalid @enderror field__input a-field__input" placeholder="Cidade*" style="width: 25rem;" value="{{ old('cidade') }}">
                               <span class="a-field__label-wrap">
-                                <span class="a-field__label">Cidade</span>
+                                <span class="a-field__label">Cidade*</span>
                               </span>
                           </label>
                           @error('cidade')
@@ -294,9 +294,9 @@
                         </div>
                         <div>
                           <label for="uf" class="field a-field a-field_a2 page__field" style=" margin-left: 25px;">
-                              <input id="uf" type="text" name="uf" autofocus class="form-control @error('uf') is-invalid @enderror field__input a-field__input" placeholder="UF" style="width: 4rem;" value="{{ old('uf') }}">
+                              <input id="uf" type="text" name="uf" autofocus class="form-control @error('uf') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="width: 4rem;" value="{{ old('uf') }}">
                               <span class="a-field__label-wrap">
-                                <span class="a-field__label">UF</span>
+                                <span class="a-field__label">UF*</span>
                               </span>
                           </label>
                           @error('uf')

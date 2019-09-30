@@ -3,10 +3,14 @@
 namespace extravestibular;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Edital extends Model
 {
     //
+
+    use SoftDeletes;
+
     protected $fillable = [
       'vagas',
       'inicioInscricoes',
@@ -19,6 +23,8 @@ class Edital extends Model
       'fimIsencao',
       'inicioRecursoIsencao',
       'fimRecursoIsencao',
+      'publicado',
+      'dataPublicacao',
     ];
 
     public function inscricao()

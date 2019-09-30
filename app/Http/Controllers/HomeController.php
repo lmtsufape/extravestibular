@@ -36,11 +36,25 @@ class HomeController extends Controller
 
           $mytime = Carbon::now('America/Recife');
           $mytime = $mytime->toDateString();
-          $editais = Edital::orderBy('created_at', 'desc')->paginate(10);
-          return view('home', ['editais' => $editais,
-                               'mytime'  => $mytime,
-                             ]);
-
+          $editais = Edital::where('publicado', 'sim')
+                              ->orderBy('created_at', 'desc')
+                              ->paginate(10);
+          $editaisNaoPublicados = 'nao';
+          if(Auth::user()->tipo == 'PREG'){
+            $editaisNaoPublicados = Edital::whereNull('publicado')
+                                            ->orderBy('created_at', 'desc')
+                                            ->paginate(10);
+            return view('home', ['editais'              => $editais,
+                                 'mytime'               => $mytime,
+                                 'editaisNaoPublicados' => $editaisNaoPublicados,
+                                ]);
+          }
+          else{
+            return view('home', ['editais'              => $editais,
+                                 'mytime'               => $mytime,
+                                 'editaisNaoPublicados' => $editaisNaoPublicados,
+                                ]);
+          }
 
         }
 
@@ -48,7 +62,7 @@ class HomeController extends Controller
 
     public function loginComEditais(){
       $editais = Edital::orderBy('created_at', 'desc')->paginate(10);
-      return view('auth.login', ['editais' => $editais,                        
+      return view('auth.login', ['editais' => $editais,
                          ]);
     }
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('titulo','Home')
 @section('navbar')
-    Home/
+    Home
 @endsection
 @section('content')
 
@@ -15,6 +15,52 @@
                 <div class="card-header">Editais</div>
 
                 <div class="card-body">
+                  @if(Auth::user()->tipo == 'PREG')
+                    <table class="table table-ordered table-hover">
+                      <tr style="background-color: #F7F7F7">
+                        <th style="width: 60rem"> Editais Não Publicados</th><?php $editaisAbertosFlag = false;?>
+                        <th> Excluir </th>
+                        <th> Editar </th>
+                        <th> Arquivo </th>
+                      </tr>
+                      @foreach($editaisNaoPublicados as $edital)
+                        <tr>
+                          <td style="width: 60rem">
+                            <?php
+                              $nomeEdital = explode(".pdf", $edital->nome);
+                              echo ($nomeEdital[0]);
+                             ?>
+                          </td>
+                          <td>
+                            <a href="{{ route('apagarEdital') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('apagarEdital-form').submit();">
+                               {{ __('Excluir') }}
+                            </a>
+                            <form id="apagarEdital-form" action="{{ route('apagarEdital') }}" method="post" style="display: none;">
+                              @csrf
+                              <input type="hidden" name="editalId" value="{{$edital->id}}">
+                            </form>
+
+                          </td>
+                          <td>
+                            <a href="/editarEdital/{{$edital->nome}}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('editarEdital-form').submit();">
+                               {{ __('Editar') }}
+                            </a>
+                            <form id="editarEdital-form" action="/editarEdital/{{$edital->nome}}" method="post" style="display: none;">
+                              @csrf
+                              <input type="hidden" name="editalId" value="{{$edital->id}}">
+                            </form>
+                          </td>
+                          <td>
+                            <a href="{{ route('download', ['file' => $edital->pdfEdital])}}" target="_new">Baixar Edital</a>
+                          </td>
+                        </tr>
+                      @endforeach
+                    </table>
+                  @endif
                   <table class="table table-ordered table-hover">
                     <?php $editaisAbertos = true;
                           $editaisAbertosFlag = true;
@@ -91,10 +137,13 @@
                           </div>
                         </td>
                         <td> <!-- data -->
-                        <a>{{date_format($edital->created_at, 'd/m/y')}}</a>
+                          <?php
+                            $date = date_create($edital->dataPublicacao);
+                           ?>
+                          <a>{{ date_format($date , 'd/m/y')  }}</a>
                         </td>
                         <td> <!-- Download -->
-                        <a href="{{ route('download', ['file' => $edital->pdfEdital])}}" target="_new">Baixar Edital</a>
+                          <a href="{{ route('download', ['file' => $edital->pdfEdital])}}" target="_new">Baixar Edital</a>
                         </td>
 
                       </tr>
