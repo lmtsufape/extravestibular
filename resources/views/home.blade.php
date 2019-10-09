@@ -1,7 +1,17 @@
 @extends('layouts.app')
 @section('titulo','Home')
 @section('navbar')
-    Home
+  <li class="nav-item active">
+    <a class="nav-link" style="color: black" href="{{ route('home') }}"
+       onclick="event.preventDefault();
+                     document.getElementById('VerEditais').submit();">
+       {{ __('Home') }}
+    </a>
+    <form id="VerEditais" action="{{ route('home') }}" method="GET" style="display: none;">
+
+    </form>
+  </li>
+
 @endsection
 @section('content')
 
@@ -15,13 +25,15 @@
                 <div class="card-header">Editais</div>
 
                 <div class="card-body">
-                  @if(Auth::user()->tipo == 'PREG')
+
+                  @if(session('tipo') == 'PREG')
                     <table class="table table-ordered table-hover">
                       <tr style="background-color: #F7F7F7">
-                        <th style="width: 60rem"> Editais Não Publicados</th><?php $editaisAbertosFlag = false;?>
+                        <th style="width: 50rem"> Editais Não Publicados</th><?php $editaisAbertosFlag = false;?>
                         <th> Excluir </th>
+                        <th> Publicar </th>
                         <th> Editar </th>
-                        <th> Arquivo </th>
+                        <th style="width: 8rem"> Arquivo </th>
                       </tr>
                       @foreach($editaisNaoPublicados as $edital)
                         <tr>
@@ -44,13 +56,25 @@
 
                           </td>
                           <td>
+                            <a href="{{ route('publicarEdital') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('publicarEdital-form').submit();">
+                               {{ __('Publicar') }}
+                            </a>
+                            <form id="publicarEdital-form" action="{{ route('publicarEdital') }}" method="post" style="display: none;">
+                              @csrf
+                              <input type="hidden" name="editalId" value="{{$edital->id}}">
+                            </form>
+
+                          </td>
+                          <td>
                             <a href="/editarEdital/{{$edital->nome}}"
                                onclick="event.preventDefault();
                                              document.getElementById('editarEdital-form').submit();">
                                {{ __('Editar') }}
                             </a>
-                            <form id="editarEdital-form" action="/editarEdital/{{$edital->nome}}" method="post" style="display: none;">
-                              @csrf
+                            <form id="editarEdital-form" action="{{route('editarEdital')}}" method="GET" style="display: none;">
+
                               <input type="hidden" name="editalId" value="{{$edital->id}}">
                             </form>
                           </td>
@@ -61,12 +85,13 @@
                       @endforeach
                     </table>
                   @endif
+
                   <table class="table table-ordered table-hover">
                     <?php $editaisAbertos = true;
                           $editaisAbertosFlag = true;
                           $editaisFinalizadosFlag = true; ?>
                     @foreach ($editais as $edital)
-                      <?php if($edital->fimRecurso <= $mytime){
+                      <?php if($edital->resultado <= $mytime){
                         $editaisAbertos = false;
                       }
                       else{
@@ -111,17 +136,17 @@
 
                                 elseif(($edital->inicioRecursoIsencao <= $mytime) && ($edital->fimRecursoIsencao >= $mytime)){
                                     echo (asset('images/timeline3.png'));
-
                                 }
 
                                 elseif(($edital->inicioInscricoes <= $mytime) && ($edital->fimInscricoes >= $mytime)){
                                     echo (asset('images/timeline4.png'));
-
                                 }
+
                                 elseif(($edital->inicioRecurso <= $mytime) && ($edital->fimRecurso >= $mytime)){
                                     echo (asset('images/timeline5.png'));
                                 }
-                                elseif($edital->fimRecurso <= $mytime){
+
+                                elseif($edital->resultado <= $mytime){
                                   echo (asset('images/timeline6.png'));
                                 }
 
@@ -129,7 +154,11 @@
                                ?>" alt="image" height="140"/>
                              </span>
                            </a>
-                           <form id="detalhesEdital{{$edital->id}}" action="detalhes/{{$edital->nome}}" method="GET" style="display: none;">
+                         @if(Auth::check())
+                           <form id="detalhesEdital{{$edital->id}}" action="{{route('detalhesEdital')}}" method="GET" style="display: none;">
+                         @else
+                           <form id="detalhesEdital{{$edital->id}}" action="{{route('detalhesEditalServidor')}}" method="GET" style="display: none;">
+                         @endif
                              <input type="hidden" name="editalId" value="{{$edital->id}}">
                              <input type="hidden" name="mytime" value="{{$mytime}}">
 

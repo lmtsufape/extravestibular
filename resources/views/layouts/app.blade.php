@@ -48,8 +48,11 @@
       <div id="barra-logos" lass-"container" style="background:#FFFFFF; margin-top: 1px; height: 150px; padding: 10px 0 10px 0;">
         <ul id="logos" style="list-style:none;">
             <li style="margin-right:140px; margin-left:110px; border-right:1px ;height: 120px">
+              @if(Auth::check())
                 <a href="{{ route("home") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a>
-
+              @else
+                <a href="{{ route("homeApi") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a>
+              @endif
                 <a target="_blank" href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts.jpg')}}" style = "margin-left: 8px; margin-top:30px " height="70"  align = "right" ></a>
 
                 <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 30px" height="70" align = "right" >
@@ -93,17 +96,18 @@
                     |
                   </li>
 
-                  <li class="nav-item active"> <!-- Ver Dados do Perfil -->
-                      <a class="nav-link" href="{{ route('verDadosUsuario') }}"
-                         onclick="event.preventDefault();
-                                       document.getElementById('cadastroDadosUsuario').submit();">
-                         {{ __('EDITAR DADOS DE USUÁRIO') }}
-                      </a>
-                      <form id="cadastroDadosUsuario" action="{{ route('verDadosUsuario') }}" method="GET" style="display: none;">
-
-                      </form>
-                  </li>
-
+                  @if(!is_null(Auth::user()->dados))
+                    <li class="nav-item active"> <!-- Ver Dados do Perfil -->
+                        <a class="nav-link" href="{{ route('editarDadosUsuario') }}"
+                           onclick="event.preventDefault();
+                                         document.getElementById('cadastroDadosUsuario').submit();">
+                           {{ __('EDITAR DADOS DE USUÁRIO') }}
+                        </a>
+                        <form id="cadastroDadosUsuario" action="{{ route('editarDadosUsuario') }}" method="POST" style="display: none;">
+                          @csrf
+                        </form>
+                    </li>
+                  @endif
                 @endif
                 @if(Auth::user()->tipo == 'PREG')
                 <!-- Visão PREG -->
@@ -257,7 +261,176 @@
 
       @if(!($url == '/login'))
         @if(!($url == '/register'))
-          <a class="badge badge-primary badge-lmts" style="color:white"> @yield('navbar') </a>
+
+          <nav class="navbar navbar-expand-lg" role="navigation">
+            <div class="collapse navbar-collapse" >
+              <ul class="navbar-nav mr-auto">
+                @yield('navbar')
+              </ul>
+            </div>
+          </nav>
+
+        @endif
+      @endif
+
+      <br>
+@endif
+
+@if(!is_null(session('tipo')))
+      <!-- barra de menu -->
+
+      <nav class="navbar navbar-expand-lg" style="background-color: #1B2E4F; border-color: #d3e0e9; box-shadow: 0 0 6px rgba(0,0,0,0.5);" role="navigation">
+        <a class="navbar-brand" href="{{ route('homeApi') }}" style="color: white; font-weight: bold;">
+          <img src="{{asset('images/logoBranco.png')}}" height="30" class="d-inline-block align-top" alt="">
+
+        </a>
+          <div class="collapse navbar-collapse" >
+            <ul class="navbar-nav mr-auto">
+
+              <!-- Visão PREG -->
+                @if(session('tipo') == 'PREG')
+
+                  <li class="nav-item active"> <!-- Ver Editais -->
+                      <a class="nav-link" href="{{ route('homeApi') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('VerEditais').submit();">
+                         {{ __('EDITAIS PUBLICADOS') }}
+                      </a>
+                      <form id="VerEditais" action="{{ route('homeApi') }}" method="GET" style="display: none;">
+
+                      </form>
+                  </li>
+
+                  <li class="separador-lmts"> <!-- separador -->
+                    |
+                  </li>
+
+                  <li class="nav-item active"> <!-- Novo Edital -->
+                    <a class="nav-link" href="{{ route('novoEdital') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('novoEdital-form').submit();">
+                       {{ __('NOVO EDITAL') }}
+                    </a>
+                    <form id="novoEdital-form" action="{{ route('novoEdital') }}" method="GET" style="display: none;">
+
+                    </form>
+                  </li>
+
+                @endif
+                @if(session('tipo') == 'DRCA')
+                  <!-- Visão DRCA -->
+
+                  <li class="nav-item active"> <!-- Ver Editais -->
+                      <a class="nav-link" href="{{ route('homeApi') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('VerEditais').submit();">
+                         {{ __('EDITAIS PUBLICADOS') }}
+                      </a>
+                      <form id="VerEditais" action="{{ route('homeApi') }}" method="GET" style="display: none;">
+
+                      </form>
+                  </li>
+
+                @endif
+                @if(session('tipo') == 'coordenador')
+                  <!-- Visão coordenador -->
+
+                  <li class="nav-item active"> <!-- Ver Editais -->
+                      <a class="nav-link" href="{{ route('homeApi') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('VerEditais').submit();">
+                         {{ __('EDITAIS PUBLICADOS') }}
+                      </a>
+                      <form id="VerEditais" action="{{ route('homeApi') }}" method="GET" style="display: none;">
+
+                      </form>
+                  </li>
+
+                  <!-- <li class="nav-item active">  Classificar Inscrições
+                      <a class="nav-link" href="{{ route('listaEditais') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('listaEditais-form3').submit();">
+                         {{ __('Classificar Inscrições') }}
+                      </a>
+                      <form id="listaEditais-form3" action="{{ route('listaEditais') }}" method="POST" style="display: none;">
+                          @csrf
+                          <input type="hidden" name="tipo" value="classificarInscricoes">
+                      </form>
+                  </li> -->
+
+                @endif
+
+            </ul>
+
+          </div>
+
+          <div class="nav navbar-nav navbar-right" >
+            <ul class="nav navbar-nav">
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+
+                <!-- Visão PREG -->
+                @if(session('tipo') == 'PREG')
+                  <li> <!--  logout   -->
+                      <a class="nav-link"  href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                         {{ __('Sair') }}
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
+                  </li>
+
+                @endif
+                <!-- Visão DRCA -->
+                @if(session('tipo') == 'DRCA')
+                  <li> <!--  logout   -->
+                      <a class="nav-link"  href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                         {{ __('Sair') }}
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
+                  </li>
+
+                @endif
+                <!-- Visão coordenador -->
+                @if(session('tipo') == 'coordenador')
+                  <li> <!--  logout   -->
+                      <a class="nav-link"  href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                         {{ __('Sair') }}
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
+                  </li>
+
+                @endif
+
+            </ul>
+          </div>
+        </nav>
+
+
+      @php($url = str_replace(URL::to('/'),'',URL::current()))
+
+
+      @if(!($url == '/login'))
+        @if(!($url == '/register'))
+        <nav class="navbar navbar-expand-lg" role="navigation" style="font-size: 12px">
+          <div class="collapse navbar-collapse" >
+            <ul class="navbar-nav mr-auto">
+              @yield('navbar')
+            </ul>
+          </div>
+        </nav>
         @endif
       @endif
 

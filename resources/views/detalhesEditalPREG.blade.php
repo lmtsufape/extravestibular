@@ -1,7 +1,28 @@
 @extends('layouts.app')
 @section('titulo','Detalhes do Edital')
 @section('navbar')
-    Home / Detalhes do edital
+    <!-- Home / Detalhes do edital -->
+    <li class="nav-item active">
+      <a class="nav-link" style="color: black" href="{{ route('home') }}"
+         onclick="event.preventDefault();
+                       document.getElementById('VerEditais').submit();">
+         {{ __('Home') }}
+      </a>
+      <form id="VerEditais" action="{{ route('home') }}" method="GET" style="display: none;">
+
+      </form>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link">/</a>
+    </li>
+
+    <li class="nav-item active">
+      <a class="nav-link" >
+        {{ __('Detalhes do Edital')}}
+      </a>
+
+    </li>
+
 @endsection
 @section('content')
 
@@ -318,7 +339,16 @@
          <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
            <h2 style="font-weight: bold">Classificação</h2>
          </div>
-         <div class="container justify-content-center" style="height: 13rem; background-color: #F7F7F7; padding: 10px">
+         <div class="card-header d-flex justify-content-center">
+             <h5>
+              Data de divulgação: <br>
+                <a style="font-weight: bold;">
+                  {{date_format(date_create($edital->resultado), 'd/m/y')}}
+                </a>
+
+             </h5>
+         </div>
+         <div class="container justify-content-center" style="height: 8rem; background-color: #F7F7F7; padding: 10px">
            <h4>
              <?php
                $porcentagem = $inscricoesClassificadas * 100;
@@ -334,7 +364,7 @@
                <a href="{{ route('detalhesPorcentagem') }}"
                   onclick="event.preventDefault();
                                 document.getElementById('detalhesPorcentagem-form').submit();">
-                  {{ __('Detalhes') }}
+                  ?
                </a>
                <form id="detalhesPorcentagem-form" target="_blank" action="{{ route('detalhesPorcentagem') }}" method="get" style="display: none;">
 
@@ -361,7 +391,7 @@
              <input type="hidden" name="editalId" value="{{$edital->id}}">
              <input type="hidden" name="tipo" value="homologarIsencao">
 
-             @if(($edital->fimRecurso<= $mytime) && ($porcentagem == 100))
+             @if(($edital->resultado <= $mytime) && ($porcentagem == 100))
                <button type="submit" class="btn btn-primary btn-primary-lmts" >
                  {{ __('Gerar Resultado') }}
                </button>

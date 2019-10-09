@@ -7,21 +7,20 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-
-class NovaInscricao extends Mailable
+class ResultadosForamDivulgados extends Mailable
 {
-    public $edital;
     use Queueable, SerializesModels;
-
+    public $edital;
+    
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(String $edital)
-    {
-        $this->edital = $edital;
-    }
+     public function __construct(String $edital)
+     {
+         $this->edital = $edital;
+     }
 
     /**
      * Build the message.
@@ -30,6 +29,6 @@ class NovaInscricao extends Mailable
      */
     public function build()
     {
-        return $this->view('emailNovaInscricao');
+        return $this->view('emailResultadosForamDivulgados');
     }
 }

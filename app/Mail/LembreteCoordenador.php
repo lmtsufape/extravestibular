@@ -7,12 +7,11 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-
-class NovaInscricao extends Mailable
+class LembreteCoordenador extends Mailable
 {
-    public $edital;
     use Queueable, SerializesModels;
-
+    public $edital;
+    
     /**
      * Create a new message instance.
      *
@@ -30,6 +29,6 @@ class NovaInscricao extends Mailable
      */
     public function build()
     {
-        return $this->view('emailNovaInscricao');
+        return $this->view('emailLembreteCoordenador');
     }
 }

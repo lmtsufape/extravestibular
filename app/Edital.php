@@ -23,6 +23,7 @@ class Edital extends Model
       'fimIsencao',
       'inicioRecursoIsencao',
       'fimRecursoIsencao',
+      'resultado',
       'publicado',
       'dataPublicacao',
     ];

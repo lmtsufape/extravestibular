@@ -11,9 +11,14 @@ use GuzzleHttp\Client;
 use extravestibular\Edital;
 use extravestibular\DadosUsuario;
 use extravestibular\User;
+use extravestibular\ApiLmts;
 use Auth;
 use Illuminate\Support\Facades\Mail;
 use extravestibular\Mail\NovaInscricao;
+use extravestibular\Mail\ClassificacaoCompleta;
+use extravestibular\Mail\LembreteCoordenador;
+
+
 use Carbon\Carbon;
 
 
@@ -72,8 +77,6 @@ class InscricaoController extends Controller
 							$comprovante = $path . '/comprovante.pdf';
 						}																																									//criar inscricao no banco
 
-
-
 					  Inscricao::create([
 					  	'usuarioId'              => Auth::user()->id,
 					  	'tipo'					  			 => $request->tipo,
@@ -95,12 +98,9 @@ class InscricaoController extends Controller
 							'coeficienteDeRendimento'=> 'nao',
 							'comprovante'						 => $comprovante,
 					  ]);
-						$nomeEdital = Edital::find($request->editalId)->get('nome');
-						Mail::to('lucas.siqueira.araujo@gmail.com')->send(new NovaInscricao($nomeEdital));
-			      return redirect()->route('home')->with('jsAlert', 'Inscrição criada com sucesso.');
 	    	  }
-	    	  if(!strcmp($request->tipo, 'transferenciaInterna')) {
 
+	    	  elseif(!strcmp($request->tipo, 'transferenciaInterna')) {
 					  $file = $request->historicoEscolar;
 			  	  $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
 					  Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
@@ -141,12 +141,10 @@ class InscricaoController extends Controller
 							'coeficienteDeRendimento'=> 'nao',
 							'comprovante'						 => $comprovante,
 						]);
-						$nomeEdital = Edital::find($request->editalId)->get('nome');
-						Mail::to('lucas.siqueira.araujo@gmail.com')->send(new NovaInscricao($nomeEdital));
-					  return redirect()->route('home')->with('jsAlert', 'Inscrição criada com sucesso.');
-	    	  }
-	    	  if(!strcmp($request->tipo, 'transferenciaExterna')) {
 
+	    	  }
+
+	    	  elseif(!strcmp($request->tipo, 'transferenciaExterna')) {
 					  $file = $request->historicoEscolar;
 			  	  $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
 					  Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
@@ -194,11 +192,10 @@ class InscricaoController extends Controller
 							'coeficienteDeRendimento'=> 'nao',
 							'comprovante'						 => $comprovante,
 					  ]);
-						$nomeEdital = Edital::find($request->editalId)->get('nome');
-						Mail::to('lucas.siqueira.araujo@gmail.com')->send(new NovaInscricao($nomeEdital));
-					  return redirect()->route('home')->with('jsAlert', 'Inscrição criada com sucesso.');
+
 	    	  }
-	    	  if(!strcmp($request->tipo, 'portadorDeDiploma')) {
+
+	    	  elseif(!strcmp($request->tipo, 'portadorDeDiploma')) {
     	  	  $file = $request->historicoEscolar;
 		  	    $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
 					  Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
@@ -246,10 +243,17 @@ class InscricaoController extends Controller
 							'coeficienteDeRendimento'=> 'nao',
 							'comprovante'						 => $comprovante,
 					  ]);
-						$nomeEdital = Edital::find($request->editalId)->get('nome');
-						Mail::to('lucas.siqueira.araujo@gmail.com')->send(new NovaInscricao($nomeEdital));
-					  return redirect()->route('home')->with('jsAlert', 'Inscrição criada com sucesso.');
+
 	    	  }
+
+					$edital = Edital::find($request->editalId);
+					$nomeEdital = explode(".pdf", $edital->nome);
+					$api = new ApiLmts();
+					$emails = $api->getEmailsPreg();
+					foreach ($emails as $key) {
+						Mail::to($key['email'])->send(new NovaInscricao($nomeEdital[0]));
+					}
+					return redirect()->route('home')->with('jsAlert', 'Inscrição criada com sucesso.');
 		}
 
 	public function cadastroDesempate(Request $request){
@@ -274,12 +278,15 @@ class InscricaoController extends Controller
 		}
 		$usuario = User::find($inscricao->usuarioId);
 		$dados = DadosUsuario::find($usuario->dados);
-
+		$mytime = Carbon::now('America/Recife');
+		$mytime = $mytime->toDateString();
 		if(!strcmp($request->tipo, 'homologacao')){
 			return view('homologarInscricao', ['inscricao'  						 => $inscricao,
 																				 'tipo'										 => 'homologacao',
 																				 'curso'									 => $curso,
 																				 'dados'									 => $dados,
+																				 'editalId'								 => $inscricao->editalId,
+																				 'mytime'									 => $mytime,
 																			  ]);
 
 		}
@@ -288,6 +295,8 @@ class InscricaoController extends Controller
 																				 'tipo'										 => 'drca',
 																				 'curso'									 => $curso,
 																				 'dados'									 => $dados,
+																				 'editalId'								 => $inscricao->editalId,
+																				 'mytime'									 => $mytime,
 																			  ]);
 		}
 
@@ -296,6 +305,8 @@ class InscricaoController extends Controller
 																				 	   'tipo'										 => 'classificacao',
 																					   'curso'									 => $curso,
 																						 'dados'									 => $dados,
+																						 'editalId'								 => $inscricao->editalId,
+																						 'mytime'									 => $mytime,
 																			     	]);
 		}
 
@@ -365,6 +376,7 @@ class InscricaoController extends Controller
 		$idEmpate1 = 0;
 		$idEmpate2 = 0;
 		$flagEmpate = false;
+
 		foreach ($inscricoesOrderByDesc as $inscricao) {
 			if($aux <= $vagas){
 				$inscricao->situacao = 'Aprovado';
@@ -373,9 +385,7 @@ class InscricaoController extends Controller
 				$inscricao->save();
 			}
 			else{
-				$aux = $ultimaNota . "!";
-				$aux1 = $inscricao->nota . "!";
-				if($aux = $aux1){
+				if($ultimaNota == $inscricao->nota){
 					$idEmpate1 = $ultimoId;
 					$idEmpate2 = $inscricao->id;
 					$flagEmpate = true;
@@ -389,6 +399,26 @@ class InscricaoController extends Controller
 
 		if ($flagEmpate) {
 			return $ids = [$idEmpate1, $idEmpate2];
+		}
+		else{
+			return null;
+		}
+	}
+
+	private function verificarCompletudoClassificacoes($editalId){
+		$naoClassificadas = Inscricao::where('editalId', $editalId)
+																		->whereNull('nota')
+																		->first();
+
+		if(is_null($naoClassificadas)){
+			$edital = Edital::find($editalId);
+			$nomeEdital = explode(".pdf", $edital->nome);
+			$api = new ApiLmts();
+			$emails = $api->getEmailsPreg();
+			foreach ($emails as $key) {
+				Mail::to($key['email'])->send(new ClassificacaoCompleta($nomeEdital[0]));
+			}
+
 		}
 	}
 
@@ -417,22 +447,37 @@ class InscricaoController extends Controller
 		$inscricoesQueFaltamClassificar = Inscricao::where('editalId' , $inscricao->editalId)
 																								 ->where('homologado' , 'aprovado')
 																								 ->where('homologadoDrca', 'aprovado')
+																								 ->where('curso', $inscricao->curso)
 																								 ->whereNull('nota')
 																								 ->first();
-
-
 		if(is_null($inscricoesQueFaltamClassificar)){
 			$ids = $this->aprovarInscricoes($inscricao->editalId, $inscricao->curso);
-			$empate1 = Inscricao::find($ids[0]);
-			$empate2 = Inscricao::find($ids[1]);
-			return view('desempate', [
-																'inscricao1' => $empate1,
-																'inscricao2' => $empate2,
-															 ]);
+			if(!is_null($ids)){
+				$empate1 = Inscricao::find($ids[0]);
+				$empate2 = Inscricao::find($ids[1]);
+				return view('desempate', [
+					'inscricao1' => $empate1,
+					'inscricao2' => $empate2,
+				]);
+			}
+			$this->verificarCompletudoClassificacoes($inscricao->editalId);
+
+			return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso.');
 		}
 		else{
 			return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso.');
 		}
+	}
+
+	public function notificarCoordenador(Request $request){
+		$edital = Edital::find($request->editalId);
+		$nomeEdital = explode(".pdf", $edital->nome);
+		$api = new ApiLmts();
+		$emails = $api->getEmailsCoordenadorPorCurso($request->cursoId);
+		foreach ($emails as $key) {
+			Mail::to($key['email'])->send(new LembreteCoordenador($nomeEdital[0]));
+		}
+		return null;
 	}
 
 }

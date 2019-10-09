@@ -1,7 +1,29 @@
 @extends('layouts.app')
 @section('titulo','Detalhes do Edital')
 @section('navbar')
-    Home / Detalhes do edital
+    <!-- Home / Detalhes do edital
+   -->
+   <li class="nav-item active">
+     <a class="nav-link" style="color: black" href="{{ route('home') }}"
+        onclick="event.preventDefault();
+                      document.getElementById('VerEditais').submit();">
+        {{ __('Home') }}
+     </a>
+     <form id="VerEditais" action="{{ route('home') }}" method="GET" style="display: none;">
+
+     </form>
+   </li>
+   <li class="nav-item active">
+     <a class="nav-link">/</a>
+   </li>
+
+   <li class="nav-item active">
+     <a class="nav-link" >
+       {{ __('Detalhes do Edital')}}
+     </a>
+
+   </li>
+
 @endsection
 @section('content')
 

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="Logo SGIE.svg">
+  <defs
+     id="defs2">
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter4157">
+      <feFlood
+         flood-opacity="0.498039"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood4147" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="out"
+         result="composite1"
+         id="feComposite4149" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="2.1"
+         result="blur"
+         id="feGaussianBlur4151" />
+      <feOffset
+         dx="16.0428"
+         dy="0.3"
+         result="offset"
+         id="feOffset4153" />
+      <feComposite
+         in="offset"
+         in2="SourceGraphic"
+         operator="atop"
+         result="composite2"
+         id="feComposite4155" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.25"
+     inkscape:cx="-212.42783"
+     inkscape:cy="567.65929"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1296"
+     inkscape:window-height="704"
+     inkscape:window-x="70"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="opacity:1;fill:#000051;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter4157)"
+       d="m 158.6879,101.27032 2.79421,13.87894 0.50073,10.9085 -177.866351,0.11303 -2e-6,-24.22752 z"
+       id="path858"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       transform="matrix(0.45306553,-0.26157751,0.26157751,0.45306553,-124.86874,110.93002)"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:13.84181023;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:20.70000076;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+       id="path815"
+       sodipodi:type="arc"
+       sodipodi:cx="-130.37941"
+       sodipodi:cy="99.63192"
+       sodipodi:rx="44.689274"
+       sodipodi:ry="44.689274"
+       sodipodi:start="0.46700027"
+       sodipodi:end="0"
+       d="m -90.475338,119.75147 a 44.689274,44.689274 0 0 1 -55.238432,21.8565 44.689274,44.689274 0 0 1 -28.14216,-52.316437 44.689274,44.689274 0 0 1 48.68215,-34.044662 44.689274,44.689274 0 0 1 39.483644,44.385049"
+       sodipodi:open="true"
+       transform="rotate(-30)" />
+    <path
+       inkscape:connector-curvature="0"
+       style="opacity:1;fill:#000051;fill-opacity:1;stroke:none;stroke-width:0.11337797px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -26.357154,115.23044 -17.06344,9.98363 7.528886,10.55592 17.490692,-10.10169 -0.182877,-0.31897 -0.656199,-1.08304 -0.161954,-0.2605 -0.366014,-0.57285 -0.174724,-0.26749 -0.184612,-0.26677 -1.424683,-2.05723 -0.375074,-0.49177 -0.659163,-0.86374 -0.457589,-0.56494 -0.481815,-0.5831 -0.64962,-0.76561 -0.430403,-0.49136 -0.04133,-0.0348 -0.03461,-0.0378 -0.03114,-0.0345 -0.04331,-0.0496 -0.06059,-0.0671 -0.04245,-0.0454 -0.06413,-0.0716 -0.05789,-0.0624 -0.06535,-0.0737 -0.0839,-0.0902 -0.08578,-0.0913 -0.153857,-0.15997 -0.208114,-0.22043 -0.229881,-0.24407 -0.297918,-0.30405 z"
+       id="path824"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:43.92203522px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.09805095"
+       x="-4.5159502"
+       y="136.94098"
+       id="text4166"><tspan
+         sodipodi:role="line"
+         id="tspan4164"
+         x="-4.5159502"
+         y="136.94098"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:start;text-anchor:start;stroke-width:1.09805095">Sistema de Gestão</tspan><tspan
+         sodipodi:role="line"
+         x="-4.5159502"
+         y="191.84352"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:start;text-anchor:start;stroke-width:1.09805095"
+         id="tspan4168">Integrado de Editais</tspan></text>
+  </g>
+</svg>

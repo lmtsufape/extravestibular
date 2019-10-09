@@ -1,7 +1,41 @@
 @extends('layouts.app')
 @section('titulo','Inscrição')
 @section('navbar')
-    Home / Detalhes do Edital / Fazer Inscrição
+    <!-- Home / Detalhes do Edital / Fazer Inscrição -->
+    <li class="nav-item active">
+      <a class="nav-link" style="color: black" href="{{ route('home') }}"
+         onclick="event.preventDefault();
+                       document.getElementById('VerEditais').submit();">
+         {{ __('Home') }}
+      </a>
+      <form id="VerEditais" action="{{ route('home') }}" method="GET" style="display: none;">
+
+      </form>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link">/</a>
+    </li>
+
+    <li class="nav-item active">
+      <a class="nav-link" href="detalhes" style="color: black" onclick="event.preventDefault(); document.getElementById('detalhesEdital').submit();" >
+        {{ __('Detalhes do Edital')}}
+      </a>
+      @if(Auth::check())
+        <form id="detalhesEdital" action="{{route('detalhesEdital')}}" method="GET" style="display: none;">
+      @else
+        <form id="detalhesEdital" action="{{route('detalhesEditalServidor')}}" method="GET" style="display: none;">
+      @endif
+          <input type="hidden" name="editalId" value="{{$editalId}}">
+          <input type="hidden" name="mytime" value="{{$mytime}}">
+
+        </form>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link">/</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link">Fazer Inscrição</a>
+    </li>
 @endsection
 @section('content')
 

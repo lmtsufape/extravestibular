@@ -1,7 +1,20 @@
 @extends('layouts.app')
 @section('titulo','Editais')
 @section('navbar')
-    Home / Gerar Classificação
+    <!-- Home / Gerar Classificação -->
+    <li class="nav-item active">
+      <a class="nav-link" style="color: black" href="{{ route('home') }}"
+         onclick="event.preventDefault();
+                       document.getElementById('VerEditais').submit();">
+         {{ __('Home') }}
+      </a>
+      <form id="VerEditais" action="{{ route('home') }}" method="GET" style="display: none;">
+
+      </form>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link">/</a>
+    </li>
 @endsection
 @section('content')
 

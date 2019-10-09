@@ -1,7 +1,27 @@
 @extends('layouts.app')
 @section('titulo','Novo Edital')
 @section('navbar')
-    Home / Novo Edital
+    <!-- Home / Novo Edital -->
+    <li class="nav-item active">
+      <a class="nav-link" style="color: black" href="{{ route('home') }}"
+         onclick="event.preventDefault();
+                       document.getElementById('VerEditais').submit();">
+         {{ __('Home') }}
+      </a>
+      <form id="VerEditais" action="{{ route('home') }}" method="GET" style="display: none;">
+
+      </form>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link">/</a>
+    </li>
+
+    <li class="nav-item active">
+      <a class="nav-link" >
+        {{ __('Novo Edital')}}
+      </a>
+
+    </li>
 @endsection
 @section('content')
 
@@ -47,7 +67,7 @@
                           </div>
                           <div  class="form-group row justify-content-center" >  <!-- PDF -->
                             <label for="pdfEdital" class="col-md-4 col-form-label text-md-right" style="margin-left: -12rem; margin-top: -5px; font-weight: bold">{{ __('Publicar o Edital*:') }}</label>
-                            <input name="publicado" type="checkbox" value="Si">
+                            <input name="publicado" type="checkbox" value="sim">
                           </div>
                   </div>
                 </div>
@@ -55,131 +75,159 @@
 
             <div class="card" style="width: 70rem; margin-top: 15px"> <!-- Card Datas -->
                 <div class="card-header">{{ __('Datas') }}</div>
-                <div class="card-body">
-                  <div class="card-body justify-content-center">
-                    <div  class="form-group row justify-content-center" style="margin-top: 0rem; margin-left: 1px"> <!-- Isenção -->
-                      <a style="font-weight: bold; margin-top: 22px;">{{__('Período de Isenção da Taxa de Inscrição*: ')}}</a>
-                      <div>
-                        <label for="inicioIsencao" class="field a-field a-field_a2 page__field">
-                          <input value="{{ old('inicioIsencao') }}" id="inicioIsencao" type="date" name="inicioIsencao" autofocus class="form-control @error('inicioIsencao') is-invalid @enderror field__input a-field__input" placeholder="Inicio da Isenção" style="width: 10rem;">
-                          <span class="a-field__label-wrap">
-                            <span class="a-field__label">Data de Início</span>
+                <div class="card-body justify-content-left">
+                  <div class="card-body ">
+                    <table class="table table-ordered table-hover justify-content-center">
+                      <tr>
+                        <th style="width: 40rem;"> Descrição </th>
+                        <th> Data de Início </th>
+                        <th> Data de Encerramento </th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <a style="font-weight: bold;">{{__('Período de Isenção da Taxa de Inscrição*: ')}}</a>
+                        </td>
+                        <td>
+                          <label for="inicioIsencao" class="field a-field a-field_a2 page__field">
+                            <input value="{{ old('inicioIsencao') }}" id="inicioIsencao" type="date" name="inicioIsencao" autofocus class="form-control @error('inicioIsencao') is-invalid @enderror field__input a-field__input" style="width: 10rem; height:100%">
+                            <span class="a-field__label-wrap">
+                              <span class="a-field__label"></span>
+                            </span>
+                          </label>
+                          @error('inicioIsencao')
+                          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                            <strong>{{ $message }}</strong>
                           </span>
-                        </label>
-                        @error('inicioIsencao')
-                        <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                          <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                      </div>
-                      <a style="font-weight: bold; margin-top: 22px;margin-left: 20px;">{{__('até')}}</a>
-                      <div>
-                        <label for="fimIsencao" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
-                          <input value="{{ old('fimIsencao') }}" id="fimIsencao" type="date" name="fimIsencao" autofocus class="form-control @error('fimIsencao') is-invalid @enderror field__input a-field__input" placeholder="Fim do Recurso" style="width: 10rem;">
-                          <span class="a-field__label-wrap">
-                            <span class="a-field__label">Data do Encerramento</span>
+                          @enderror
+                        </td>
+                        <td>
+                          <label for="fimIsencao" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
+                            <input value="{{ old('fimIsencao') }}" id="fimIsencao" type="date" name="fimIsencao" autofocus class="form-control @error('fimIsencao') is-invalid @enderror field__input a-field__input" style="width: 10rem; height:100%">
+                            <span class="a-field__label-wrap">
+                              <span class="a-field__label"></span>
+                            </span>
+                          </label>
+                          @error('fimIsencao')
+                          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;margin-left: 25px;" >
+                            <strong>{{ $message }}</strong>
                           </span>
-                        </label>
-                        @error('fimIsencao')
-                        <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;margin-left: 25px;" >
-                          <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                      </div>
-                    </div>
-
-                    <div  class="form-group row justify-content-center" style="margin-left: -85px; margin-top: 3rem"> <!-- Recurso Isenção -->
-                      <a style="font-weight: bold; margin-top: 22px;">{{__('Período de Recurso da Isenção da Taxa de Inscrição*: ')}}</a>
-                      <div>
-                        <label for="inicioRecursoIsencao" class="field a-field a-field_a2 page__field">
-                          <input value="{{ old('inicioRecursoIsencao') }}" id="inicioRecursoIsencao" type="date" name="inicioRecursoIsencao" autofocus class="form-control @error('inicioRecursoIsencao') is-invalid @enderror field__input a-field__input" placeholder="Inicio do Recurso da Isenção" style="width: 10rem;">
-                          <span class="a-field__label-wrap">
-                            <span class="a-field__label">Data de Início</span>
+                          @enderror
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <a style="font-weight: bold;">{{__('Período de Recurso da Isenção da Taxa de Inscrição*: ')}}</a>
+                        </td>
+                        <td>
+                          <label for="inicioRecursoIsencao" class="field a-field a-field_a2 page__field">
+                            <input value="{{ old('inicioRecursoIsencao') }}" id="inicioRecursoIsencao" type="date" name="inicioRecursoIsencao" autofocus class="form-control @error('inicioRecursoIsencao') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                            <span class="a-field__label-wrap">
+                              <span class="a-field__label"></span>
+                            </span>
+                          </label>
+                          @error('inicioRecursoIsencao')
+                          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                            <strong>{{ $message }}</strong>
                           </span>
-                        </label>
-                        @error('inicioRecursoIsencao')
-                        <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                          <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                      </div>
-                      <a style="font-weight: bold; margin-top: 22px;margin-left: 20px;">{{__('até')}}</a>
-                      <div>
-                        <label for="fimRecursoIsencao" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
-                          <input value="{{ old('fimRecursoIsencao') }}" id="fimRecursoIsencao" type="date" name="fimRecursoIsencao" autofocus class="form-control @error('fimRecursoIsencao') is-invalid @enderror field__input a-field__input" placeholder="Fim do Recurso da Isenção:" style="width: 10rem;">
-                          <span class="a-field__label-wrap">
-                            <span class="a-field__label">Data do Encerramento</span>
+                          @enderror
+                        </td>
+                        <td>
+                          <label for="fimRecursoIsencao" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
+                            <input value="{{ old('fimRecursoIsencao') }}" id="fimRecursoIsencao" type="date" name="fimRecursoIsencao" autofocus class="form-control @error('fimRecursoIsencao') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                            <span class="a-field__label-wrap">
+                              <span class="a-field__label"></span>
+                            </span>
+                          </label>
+                          @error('fimRecursoIsencao')
+                          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;margin-left: 25px;">
+                            <strong>{{ $message }}</strong>
                           </span>
-                        </label>
-                        @error('fimRecursoIsencao')
-                        <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;margin-left: 25px;">
-                          <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                      </div>
-                    </div>
-
-                    <div  class="form-group row justify-content-center" style="margin-top: 3rem" > <!-- Inscrições -->
-                      <a style="font-weight: bold; margin-top: 22px;">{{__('Período de Inscrições*: ')}}</a>
-                      <div>
-                        <label for="inicioInscricoes" class="field a-field a-field_a2 page__field">
-                          <input value="{{ old('inicioInscricoes') }}" id="inicioInscricoes" type="date" name="inicioInscricoes" autofocus class="form-control @error('inicioInscricoes') is-invalid @enderror field__input a-field__input" placeholder="Inicio das Inscrições" style="width: 10rem;">
-                          <span class="a-field__label-wrap">
-                            <span class="a-field__label">Data de Início</span>
+                          @enderror
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <a style="font-weight: bold;">{{__('Período de Inscrições*: ')}}</a>
+                        </td>
+                        <td>
+                          <label for="inicioInscricoes" class="field a-field a-field_a2 page__field">
+                            <input value="{{ old('inicioInscricoes') }}" id="inicioInscricoes" type="date" name="inicioInscricoes" autofocus class="form-control @error('inicioInscricoes') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                            <span class="a-field__label-wrap">
+                              <span class="a-field__label"></span>
+                            </span>
+                          </label>
+                          @error('inicioInscricoes')
+                          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                            <strong>{{ $message }}</strong>
                           </span>
-                        </label>
-                        @error('inicioInscricoes')
-                        <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                          <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                      </div>
-                      <a style="font-weight: bold; margin-top: 22px;margin-left: 20px;">{{__('até')}}</a>
-                      <div>
-                        <label for="fimInscricoes" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
-                          <input value="{{ old('fimInscricoes') }}" id="fimInscricoes" type="date" name="fimInscricoes" autofocus class="form-control @error('fimInscricoes') is-invalid @enderror field__input a-field__input" placeholder="Fim das Inscrições" style="width: 10rem;">
-                          <span class="a-field__label-wrap">
-                            <span class="a-field__label">Data do Encerramento</span>
+                          @enderror
+                        </td>
+                        <td>
+                          <label for="fimInscricoes" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
+                            <input value="{{ old('fimInscricoes') }}" id="fimInscricoes" type="date" name="fimInscricoes" autofocus class="form-control @error('fimInscricoes') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                            <span class="a-field__label-wrap">
+                              <span class="a-field__label"></span>
+                            </span>
+                          </label>
+                          @error('fimInscricoes')
+                          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;margin-left: 25px;">
+                            <strong>{{ $message }}</strong>
                           </span>
-                        </label>
-                        @error('fimInscricoes')
-                        <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;margin-left: 25px;">
-                          <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                      </div>
-                    </div>
-
-                    <div  class="form-group row justify-content-center" style="margin-left: -90px; margin-top: 3rem"> <!-- Recurso -->
-                      <a style="font-weight: bold; margin-top: 22px;">{{__('Período de Recurso da Inscrição*: ')}}</a>
-                      <div>
-                        <label for="inicioRecurso" class="field a-field a-field_a2 page__field">
-                          <input value="{{ old('inicioRecurso') }}" id="inicioRecurso" type="date" name="inicioRecurso" autofocus class="form-control @error('inicioRecurso') is-invalid @enderror field__input a-field__input" placeholder="Inicio do Recurso" style="width: 10rem;">
-                          <span class="a-field__label-wrap">
-                            <span class="a-field__label">Data de Início</span>
+                          @enderror
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <a style="font-weight: bold;">{{__('Período de Recurso da Inscrição*: ')}}</a>
+                        </td>
+                        <td>
+                          <label for="inicioRecurso" class="field a-field a-field_a2 page__field">
+                            <input value="{{ old('inicioRecurso') }}" id="inicioRecurso" type="date" name="inicioRecurso" autofocus class="form-control @error('inicioRecurso') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                            <span class="a-field__label-wrap">
+                              <span class="a-field__label"></span>
+                            </span>
+                          </label>
+                          @error('inicioRecurso')
+                          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                            <strong>{{ $message }}</strong>
                           </span>
-                        </label>
-                        @error('inicioRecurso')
-                        <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                          <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                      </div>
-                      <a style="font-weight: bold; margin-top: 22px;margin-left: 20px;">{{__('até')}}</a>
-                      <div>
-                        <label for="fimRecurso" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
-                          <input value="{{ old('fimRecurso') }}" id="fimRecurso" type="date" name="fimRecurso" autofocus class="form-control @error('fimRecurso') is-invalid @enderror field__input a-field__input" placeholder="Fim do Recurso" style="width: 10rem;">
-                          <span class="a-field__label-wrap">
-                            <span class="a-field__label">Data do Encerramento</span>
+                          @enderror
+                        </td>
+                        <td>
+                          <label for="fimRecurso" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
+                            <input value="{{ old('fimRecurso') }}" id="fimRecurso" type="date" name="fimRecurso" autofocus class="form-control @error('fimRecurso') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                            <span class="a-field__label-wrap">
+                              <span class="a-field__label"></span>
+                            </span>
+                          </label>
+                          @error('fimRecurso')
+                          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;margin-left: 25px;">
+                            <strong>{{ $message }}</strong>
                           </span>
-                        </label>
-                        @error('fimRecurso')
-                        <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;margin-left: 25px;">
-                          <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                      </div>
-                    </div>
+                          @enderror
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <a style="font-weight: bold;">{{__('Data do Resultado*: ')}}</a>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                          <label for="resultado" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
+                            <input value="{{ old('resultado') }}" id="fimRecurso" type="date" name="resultado" autofocus class="form-control @error('resultado') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                            <span class="a-field__label-wrap">
+                              <span class="a-field__label"></span>
+                            </span>
+                          </label>
+                          @error('resultado')
+                          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;margin-left: 25px;">
+                            <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                        </td>
+                      </tr>
+                    </table>
 
                   </div>
                 </div>
