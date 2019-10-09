@@ -18,8 +18,8 @@ class ApiLmts
      * @return mixed
      */
 
-    public $api = 'lmts.api/api/';
-    // public $api = 'http://app.uag.ufrpe.br/api/api/';
+    // public $api = 'lmts.api/api/';
+    public $api = 'http://app.uag.ufrpe.br/api/api/';
 
 
     public function handle($request, Closure $next)
@@ -42,7 +42,7 @@ class ApiLmts
             } catch (ClientException $e) {
               session(['tipo' => null, 'token_type' => null, 'name' => null, 'id' => null, 'email' => null, 'cursoId' => null]);
               return redirect('login');
-              }          
+              }
           session(['tipo' => null, 'token_type' => null, 'name' => null, 'id' => null, 'email' => null, 'cursoId' => null]);
           return redirect('login');
         }
