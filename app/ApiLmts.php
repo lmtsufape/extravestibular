@@ -8,8 +8,8 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Client;
 
 class ApiLmts extends Model{
-  // public $api = 'http://app.uag.ufrpe.br/api/api/';
-  public $api = 'lmts.api/api/';
+  public $api = 'http://app.uag.ufrpe.br/api/api/';
+  // public $api = 'lmts.api/api/';
 
   public function getCursos(){
     $client = new Client(); //GuzzleHttp\Client
