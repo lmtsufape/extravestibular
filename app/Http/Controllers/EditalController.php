@@ -250,7 +250,7 @@ class EditalController extends Controller{
       			for($j = 0; $j < sizeof($cursos); $j++){
       				if($idCurso == $cursos[$j]['id']){
       					$cursosDisponiveis[$i][2] = $idCurso;
-      					$cursosDisponiveis[$i][0] = $cursos[$j]['nome'] . '/' . $cursos[$j]['unidade'];
+      					$cursosDisponiveis[$i][0] = $cursos[$j]['nome'] . '/' . $cursos[$j]['departamento'];
        				}
       			}
       		}
@@ -345,9 +345,10 @@ class EditalController extends Controller{
         $edital = Edital::find($request->editalId);
         $api = new ApiLmts();
         $cursos = $api->getCursos();
-        // dd($cursos);
-        $data = ['inscricoes' => $inscricoes,
+        $data = [
+                 'inscricoes' => $inscricoes,
                  'edital'     => $edital,
+                 'cursos'     => $cursos,
                 ];
         $pdf = PDF::loadView('classificacao', $data);
         return $pdf->download('classificacao.pdf');
@@ -563,7 +564,7 @@ class EditalController extends Controller{
               array_push($vagasInscricoesPorCurso, [
                       'id'   => $cursos[$j]['id'],
                       'curso' => $cursos[$j]['nome'],
-                      'unidade' => $cursos[$j]['unidade'],
+                      'departamento' => $cursos[$j]['departamento'],
                       'classificadas' => 0,
                       'naoClassificadas' => 0,
                     ]);

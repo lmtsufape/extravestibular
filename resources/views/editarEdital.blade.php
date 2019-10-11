@@ -246,7 +246,7 @@
                     <table class="table table-ordered table-hover justify-content-center">
                       <tr>
                         <th> Curso </th>
-                        <th> Unidade </th>
+                        <th> Departamento </th>
                         <th> Vagas Disponíveis </th>
                         <th style="width: 15rem;"> Número de Vagas </th>
                       </tr>
@@ -259,7 +259,7 @@
                           {{ $curso['nome'] }}
                         </td>
                         <td>
-                          {{ $curso['unidade'] }}
+                          {{ $curso['departamento'] }}
                         </td>
                         <td>
                           <input onclick="vagas({{$i}})"  type="checkbox" value="{{$curso['id']}}">

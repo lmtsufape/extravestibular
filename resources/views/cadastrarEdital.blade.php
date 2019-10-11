@@ -239,24 +239,31 @@
                   <div class="card-body">
                     <table class="table table-ordered table-hover justify-content-center">
                       <tr>
+                        <th> Campus </th>
+                        <th> Departamento </th>
                         <th> Curso </th>
-                        <th> Unidade </th>
                         <th> Vagas Disponíveis </th>
-                        <th style="width: 15rem;"> Número de Vagas </th>
+                        <th style="width: 10rem;"> Número de Vagas </th>
                       </tr>
                       <?php //cursos
+                      // dd($cursos);
                       $i = 0;
+
                       foreach ($cursos as $curso):
+
                       ?>
                       <tr>
+                        <td>
+                          {{ $curso['campus'] }}
+                        </td>
+                        <td>
+                          {{ $curso['departamento'] }}
+                        </td>
                         <td>
                           {{ $curso['nome'] }}
                         </td>
                         <td>
-                          {{ $curso['unidade'] }}
-                        </td>
-                        <td>
-                          <input onclick="vagas({{$i}})"  type="checkbox" value="{{$curso['id']}}">
+                          <input id="checkbox{{$i}}" onclick="vagas({{$i}})"  type="checkbox" value="{{$curso['id']}}">
                           <input type="hidden" name="cursoId{{$i}}" value="{{$curso['id']}}">
                         </td>
                         <td>
@@ -294,7 +301,7 @@
       function vagas(x) {
         var str = "label";
         var res = str.concat(x);
-      	if (document.getElementById(String(x)).style.display == "none") {
+      	if (document.getElementById("checkbox" + x).checked == true) {
           document.getElementById(String(x)).style.display = "";
           document.getElementById(res).style.display = "";
           document.getElementById(String(x)).value = "";

@@ -58,7 +58,7 @@
    <table class="table table-ordered table-hover" style=" overflow: auto;">
      <tr style="background-color: #F7F7F7">
        <th> Curso </th>
-       <th> Unidade </th>
+       <th> Departamento </th>
        <th> Progresso </th>
        <th> Completas </th>
        <th> Pendentes </th>
@@ -67,7 +67,7 @@
      @for($i = 0; $i < sizeof($vagasInscricoesPorCurso); $i++)
       <tr>
         <td>{{$vagasInscricoesPorCurso[$i]['curso']}}</td>
-        <td>{{$vagasInscricoesPorCurso[$i]['unidade']}}</td>
+        <td>{{$vagasInscricoesPorCurso[$i]['departamento']}}</td>
         <td>
           <?php
             $porcentagem = $vagasInscricoesPorCurso[$i]['classificadas'] * 100;
@@ -78,7 +78,7 @@
               $porcentagem = 0;
             }
            ?>
-           {{$porcentagem}}%
+           {{number_format($porcentagem, 0)}}%
         </td>
         <td>{{$vagasInscricoesPorCurso[$i]['classificadas']}}</td>
         <td>{{$vagasInscricoesPorCurso[$i]['naoClassificadas']}}</td>

@@ -273,7 +273,7 @@ class InscricaoController extends Controller
 		$curso = $inscricao->curso;
 		for($j = 0; $j < sizeof($cursos); $j++){
 			if($curso == $cursos[$j]['id']){
-				$curso = $cursos[$j]['nome'] . '/' . $cursos[$j]['unidade'];
+				$curso = $cursos[$j]['nome'] . '/' . $cursos[$j]['departamento'];
 			}
 		}
 		$usuario = User::find($inscricao->usuarioId);

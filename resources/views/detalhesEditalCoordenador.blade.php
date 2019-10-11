@@ -120,7 +120,7 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                 }
                ?>
                @if(($inscricoesClassificadas + $inscricoesNaoClassificadas) > 0 )
-                <a style="font-weight: bold">Etapa {{{$porcentagem}}}% finalizada.</a>
+                <a style="font-weight: bold">Etapa {{number_format($porcentagem, 0)}}% finalizada.</a>
                @endif
             </h4>
             <h5>

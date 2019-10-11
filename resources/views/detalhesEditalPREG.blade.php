@@ -83,7 +83,7 @@
                 }
                ?>
                @if(($isencoesHomologadas + $isencoesNaoHomologadas) > 0 )
-                <a style="font-weight: bold">Etapa {{{$porcentagem}}}% finalizada.</a>
+                <a style="font-weight: bold">Etapa {{number_format($porcentagem, 0)}}% finalizada.</a>
                @endif
             </h4>
             <h5>
@@ -154,7 +154,7 @@
                 }
                ?>
                @if(($recursosTaxaHomologados + $recursosTaxaNaoHomologados) > 0 )
-                <a style="font-weight: bold">Etapa {{{$porcentagem}}}% finalizada.</a>
+                <a style="font-weight: bold">Etapa {{number_format($porcentagem, 0)}}% finalizada.</a>
                @endif
             </h4>
             <h5>
@@ -225,7 +225,7 @@
                    }
                   ?>
                   @if(($inscricoesHomologadas + $inscricoesNaoHomologadas) > 0 )
-                   <a style="font-weight: bold">Etapa {{{$porcentagem}}}% finalizada.</a>
+                   <a style="font-weight: bold">Etapa {{number_format($porcentagem, 0)}}% finalizada.</a>
                   @endif
                </h4>
                <h5>
@@ -294,7 +294,7 @@
                    }
                   ?>
                   @if(($recursosClassificacaoHomologados + $recursosClassificacaoNaoHomologados) > 0 )
-                   <a style="font-weight: bold">Etapa {{{$porcentagem}}}% finalizada.</a>
+                   <a style="font-weight: bold">Etapa {{number_format($porcentagem, 0)}}% finalizada.</a>
                   @endif
                </h4>
                <h5>
@@ -360,7 +360,7 @@
                }
               ?>
               @if(($inscricoesClassificadas + $inscricoesNaoClassificadas) > 0 )
-               <a style="font-weight: bold">Etapa {{{$porcentagem}}}% finalizada.</a>
+               <a style="font-weight: bold">Etapa {{number_format($porcentagem, 0)}}% finalizada.</a>
                <a href="{{ route('detalhesPorcentagem') }}"
                   onclick="event.preventDefault();
                                 document.getElementById('detalhesPorcentagem-form').submit();">

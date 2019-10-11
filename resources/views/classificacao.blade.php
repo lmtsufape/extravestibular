@@ -220,28 +220,38 @@
 			@if(!$primeiroCurso)
 				</table>
 			@endif
-			<table class="table table-bordered">
+			<table class="table table-bordered" width="100%" style="font-size: 6px;">
 
 					<tr>
 						<th> NOME </th>
 						<th> CPF </th>
 						<th> MODALIDADE </th>
-						<th> CURSO PRETENDIDO/CAMPUS </th>
-						<!-- <th> CAMPUS </th> -->
+						<th> CURSO PRETENDIDO</th>
+						<th> CAMPUS </th>
             <th> Col. </th>
 						<th> SITUAÇÃO </th>
 						<th> TURNO </th>
 					</tr>
 
 		@endif
+      <?php
+        $nomeCurso = '';
+        $campus = '';
+        foreach ($cursos as $key) {
+          if($key['id'] == $inscricao->curso){
+            $nomeCurso = $key['nome'];
+            $campus = $key['departamento'];
+          }
+        }
+      ?>
 
 				<tr>
 					<td> {{$inscricao->user->dadosUsuario->nome}} </td>
 					<td> {{$inscricao->user->dadosUsuario->cpf}} </td>
 					<td> {{$inscricao->tipo}} </td>
-					<td> {{$inscricao->curso}} </td>
-					<!-- <td> {{$inscricao->curso}} </td> -->
-					<td> {{$i}} </td>
+					<td> {{$nomeCurso}} </td>
+					<td> {{$campus}} </td>
+          <td> {{$i}} </t>
 					<td style="background-color: <?php if($inscricao->situacao == 'Aprovado'){echo ('lightgreen'); } else{ echo('lightyellow');} ?>"> {{$inscricao->situacao}} </td>
 					<td> {{$inscricao->turno}} </td>
 				</tr>
