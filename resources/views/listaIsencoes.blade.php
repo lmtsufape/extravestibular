@@ -69,6 +69,7 @@
                           @csrf
                           <div class="col-md-8 offset-md-4">
                             <input type="hidden" name="isencaoId" value="{{$isencao->id}}">
+                            <input type="hidden" name="editalId" value="{{$editalId}}">
                             <button type="submit" class="btn btn-primary btn-primary-lmts">
                                 {{ __('Selecionar') }}
                             </button>

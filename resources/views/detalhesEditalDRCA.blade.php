@@ -103,23 +103,49 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
 
         </div>
 
-        <div class="card cartao text-center " style="border-radius: 20px;">   <!-- Inscrição -->
-             <div class="card-body d-flex justify-content-center">
-                 <h2 style="margin-top: -50px; font-weight: bold">Inscrição</h2>
-             </div>
-             <div class="card-body d-flex justify-content-center">
-                 <h5 style="margin-top: -50px;">
-                  Aberto de: <br>
-                    <a style="font-weight: bold">
-                      {{date_format(date_create($edital->inicioInscricoes), 'd/m/y')}}
-                    </a>
-                     até
-                    <a style="font-weight: bold">
-                      {{date_format(date_create($edital->fimInscricoes), 'd/m/y')}}
-                    </a>
-                 </h5>
-             </div>
+        <div class="card cartao text-center "  style="border-radius: 20px; height: 21rem">   <!-- Inscrição -->
+          <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+              <h2 style="font-weight: bold">Inscrição</h2>
+          </div>
+          <div class="card-header d-flex justify-content-center">
+              <h5>
+               Aberto de: <br>
+                 <a style="font-weight: bold">
+                   {{date_format(date_create($edital->inicioInscricoes), 'd/m/y')}}
+                 </a>
+                  até
+                 <a style="font-weight: bold">
+                   {{date_format(date_create($edital->fimInscricoes), 'd/m/y')}}
+                 </a>
+              </h5>
+          </div>
+          <div class="container justify-content-center" style="height: 8rem; background-color: #F7F7F7; padding: 10px">
+            <h4>
+              <?php
+                $porcentagem = $inscricoesHomologadas * 100;
+                if(($inscricoesHomologadas + $inscricoesNaoHomologadas)>0){
+                  $porcentagem = $porcentagem / ($inscricoesHomologadas + $inscricoesNaoHomologadas);
+                }
+                else{
+                  $porcentagem = 0;
+                }
+               ?>
+               @if(($inscricoesHomologadas + $inscricoesNaoHomologadas) > 0 )
+                <a style="font-weight: bold">Etapa {{number_format($porcentagem, 0)}}% finalizada.</a>
+               @endif
+            </h4>
+            <h5>
 
+                Total de Inscrições: <a style="font-weight: bold">{{($inscricoesHomologadas + $inscricoesNaoHomologadas)}}.</a>
+
+            </h5>
+              <h5>
+                Inscrições homologadas: <a style="font-weight: bold">{{$inscricoesHomologadas}}.</a>
+              </h5>
+              <h5>
+                Inscrições em espera: <a style="font-weight: bold">{{$inscricoesNaoHomologadas}}.</a>
+              </h5>
+          </div>
              <div class="container justify-content-center" style="padding: 10px" >
                <form method="GET" action="{{route('editalEscolhido')}}">
 

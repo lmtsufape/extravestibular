@@ -88,9 +88,9 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                   <a style="font-weight: bold">Processando</a>
                 @else
                   <div class="hover-popup-lmts">
-                    <a style="font-weight: bold; color: red">Indeferido</a>
-                    <a style="font-weight: bold">Motivo:</a>
-                    <a> {{$inscricao->motivoRejeicao}} </a>
+                    <a style="font-weight: bold; color: red">Indeferido</a><br>
+                    <a style="font-weight: bold">Motivo:</a><br>
+                    <a> {{$isencao->motivoRejeicao}} </a>
                     <!-- <a style="color:white">
                       <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
                       <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
@@ -181,7 +181,7 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                 <input type="hidden" name="editalId" value="{{$edital->id}}">
                 <input type="hidden" name="tipo" value="requerimentoDeRecurso">
                 <input type="hidden" name="tipoRecurso" value="taxa" >
-                @if(is_null($recursoIsencao))
+                @if(is_null($recursoIsencao) && !is_null($isencao))
                   @if($edital->inicioRecursoIsencao <= $mytime)
                     @if($edital->fimRecursoIsencao >= $mytime)
                       <button type="submit" class="btn btn-primary btn-primary-lmts" >
@@ -331,7 +331,7 @@ semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/
                    <input type="hidden" name="editalId" value="{{$edital->id}}">
                    <input type="hidden" name="tipo" value="requerimentoDeRecurso">
                    <input type="hidden" name="tipoRecurso" value="classificacao" >
-                   @if(is_null($recursoInscricao))
+                   @if(is_null($recursoInscricao) && !is_null($inscricao))
                      @if($edital->inicioRecurso <= $mytime)
                        @if($edital->fimRecurso >= $mytime)
                          <button type="submit" class="btn btn-primary btn-primary-lmts" >

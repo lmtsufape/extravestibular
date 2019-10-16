@@ -9,17 +9,11 @@ use extravestibular\DadosUsuario;
 use Auth;
 use extravestibular\Edital;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class IsencaoController extends Controller
 {
   public function cadastroIsencao(Request $request){
-
-
-
-
-
-
-
     $mytime = Carbon::now('America/Recife');
     $mytime = $mytime->toDateString();
     $edital = Edital::find($request->editalId);
@@ -92,7 +86,9 @@ class IsencaoController extends Controller
 
   public function isencaoEscolhida(Request $request){
     $isencao = Isencao::find($request->isencaoId);
-    return view('homologarIsencao', ['isencao' => $isencao]);
+    $mytime = Carbon::now('America/Recife');
+    $mytime = $mytime->toDateString();
+    return view('homologarIsencao', ['isencao' => $isencao, 'editalId' => $request->editalId, 'mytime' => $mytime]);
   }
 
   public function homologarIsencao(Request $request){
