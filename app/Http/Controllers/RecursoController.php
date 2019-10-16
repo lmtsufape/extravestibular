@@ -35,7 +35,7 @@ class RecursoController extends Controller
         $existeRecursoTipoClassificacao = Recurso::where('editalId', $request->editalId)
                                                    ->where('usuarioId', Auth::user()->id)
                                                    ->where('tipo', 'classificacao')
-                                                   ->first();                                                   
+                                                   ->first();
         if(!is_null($existeRecursoTipoClassificacao)){
           return redirect()->route('home')->with('jsAlert', 'Você já possui um recurso cadastrada no edital.');
         }
@@ -65,7 +65,9 @@ class RecursoController extends Controller
 
     public function recursoEscolhido(Request $request){
       $recurso = Recurso::find($request->recursoId);
-      return view('homologarRecurso', ['recurso' => $recurso]);
+      $mytime = Carbon::now('America/Recife');
+      $mytime = $mytime->toDateString();
+      return view('homologarRecurso', ['recurso' => $recurso, 'editalId' => $request->editalId, 'mytime' => $mytime]);
     }
 
     public function homologarRecurso(Request $request){

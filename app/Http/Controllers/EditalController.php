@@ -502,6 +502,16 @@ class EditalController extends Controller{
 
         }
         if(session('tipo') == 'DRCA'){
+          $inscricoesHomologadas = Inscricao::where('editalId', $request->editalId)
+                                              ->where('homologado', 'aprovado')
+                                              ->orWhere('homologado', 'rejeitado')
+                                              ->where('homologadoDrca', 'aprovado')
+                                              ->orWhere('homologadoDrca', 'rejeitado')
+                                              ->get();
+          $inscricoesNaoHomologadas = Inscricao::where('editalId', $request->editalId)
+                                                 ->where('homologado', 'aprovado')
+                                                 ->where('homologadoDrca', 'nao')
+                                                 ->get();
           return view('detalhesEditalDRCA', [ 'editalId'          => $request->editalId,
                                               'inscricao'         => $inscricao,
                                               'isencao'           => $isencao,
@@ -509,6 +519,8 @@ class EditalController extends Controller{
                                               'recursoInscricao'  => $recursoInscricao,
                                               'edital'            => $edital,
                                               'mytime'            => $mytime,
+                                              'inscricoesHomologadas'                => sizeof($inscricoesHomologadas),
+                                              'inscricoesNaoHomologadas'             => sizeof($inscricoesNaoHomologadas),
                                             ]);
 
         }

@@ -49,7 +49,7 @@
       <a class="nav-link">/</a>
     </li>
     <li class="nav-item active">
-      <a class="nav-link">{{$inscricao->user->dadosUsuario->cpf}}</a>
+      <a class="nav-link">{{$isencao->user->dadosUsuario->cpf}}</a>
     </li>
 @endsection
 @section('content')
