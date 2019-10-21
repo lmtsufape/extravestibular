@@ -545,7 +545,7 @@ class EditalController extends Controller{
                                                 ->whereNull('nota')
                                                 ->get();
           $erratas = $edital->errata;
-        
+
           return view('detalhesEditalCoordenador', ['editalId'                             => $request->editalId,
                                                     'inscricao'                            => $inscricao,
                                                     'isencao'                              => $isencao,
