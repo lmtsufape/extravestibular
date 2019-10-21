@@ -243,7 +243,10 @@
                         <th> Departamento </th>
                         <th> Curso </th>
                         <th> Vagas Disponíveis </th>
-                        <th style="width: 10rem;"> Número de Vagas </th>
+                        <th style="width: 10rem;"> Manhã </th>
+                        <th style="width: 10rem;"> Tarde </th>
+                        <th style="width: 10rem;"> Noite </th>
+                        <th style="width: 10rem;"> Integral </th>
                       </tr>
                       <?php //cursos
                       // dd($cursos);
@@ -263,12 +266,27 @@
                           {{ $curso['nome'] }}
                         </td>
                         <td>
-                          <input id="checkbox{{$i}}" onclick="vagas({{$i}})"  type="checkbox" value="{{$curso['id']}}">
-                          <input type="hidden" name="cursoId{{$i}}" value="{{$curso['id']}}">
+                          <input id="checkbox{{$curso['id']}}" onclick="vagas({{$curso['id']}})"  type="checkbox" value="{{$curso['id']}}">
+                          <input type="hidden" name="cursoId{{$curso['id']}}" value="{{$curso['id']}}">
                         </td>
                         <td>
-                          <label for="{{$i}}" class="field a-field a-field_a2 page__field" id="label{{$i}}" style="display: none; margin-top: -10px" >
-                            <input value="#" id="{{$i}}" type="text" name="{{$i}}" class="field__input a-field__input" style="width: 10rem; display: none;">
+                          <label for="manha{{$curso['id']}}" class="field a-field a-field_a2 page__field" id="labelManha{{$curso['id']}}" style="display: none; margin-top: -10px" >
+                            <input value="#" id="manha{{$curso['id']}}" type="text" name="manha{{$curso['id']}}" class="field__input a-field__input" style="width: 5rem; display: none;">
+                          </label>
+                        </td>
+                        <td>
+                          <label for="tarde{{$curso['id']}}" class="field a-field a-field_a2 page__field" id="labelTarde{{$curso['id']}}" style="display: none; margin-top: -10px" >
+                            <input value="#" id="tarde{{$curso['id']}}" type="text" name="tarde{{$curso['id']}}" class="field__input a-field__input" style="width: 5rem; display: none;">
+                          </label>
+                        </td>
+                        <td>
+                          <label for="noite{{$curso['id']}}" class="field a-field a-field_a2 page__field" id="labelNoite{{$curso['id']}}" style="display: none; margin-top: -10px" >
+                            <input value="#" id="noite{{$curso['id']}}" type="text" name="noite{{$curso['id']}}" class="field__input a-field__input" style="width: 5rem; display: none;">
+                          </label>
+                        </td>
+                        <td>
+                          <label for="integral{{$curso['id']}}" class="field a-field a-field_a2 page__field" id="labelIntegral{{$curso['id']}}" style="display: none; margin-top: -10px" >
+                            <input value="#" id="integral{{$curso['id']}}" type="text" name="integral{{$curso['id']}}" class="field__input a-field__input" style="width: 5rem; display: none;">
                           </label>
                         </td>
                       </tr>
@@ -299,18 +317,54 @@
 
     <script type="text/javascript" >
       function vagas(x) {
-        var str = "label";
-        var res = str.concat(x);
+        var str = "labelManha";
+        var labelManha = str.concat(x);
+        var str = "labelTarde";
+        var labelTarde = str.concat(x);
+        var str = "labelNoite";
+        var labelNoite = str.concat(x);
+        var str = "labelIntegral";
+        var labelIntegral = str.concat(x);
+        str = "manha";
+        var manha = str.concat(x);
+        str = "tarde";
+        var tarde = str.concat(x);
+        str = "noite";
+        var noite = str.concat(x);
+        str = "integral";
+        var integral = str.concat(x);
       	if (document.getElementById("checkbox" + x).checked == true) {
-          document.getElementById(String(x)).style.display = "";
-          document.getElementById(res).style.display = "";
-          document.getElementById(String(x)).value = "";
+          document.getElementById(manha).style.display = "";
+          document.getElementById(tarde).style.display = "";
+          document.getElementById(noite).style.display = "";
+          document.getElementById(integral).style.display = "";
+
+          document.getElementById(labelManha).style.display = "";
+          document.getElementById(labelTarde).style.display = "";
+          document.getElementById(labelNoite).style.display = "";
+          document.getElementById(labelIntegral).style.display = "";
+
+          document.getElementById(manha).value = "";
+          document.getElementById(tarde).value = "";
+          document.getElementById(noite).value = "";
+          document.getElementById(integral).value = "";
 
       	}
         else{
-          document.getElementById(String(x)).style.display = "none";
-          document.getElementById(res).style.display = "none";
-          document.getElementById(String(x)).value = "#";
+          document.getElementById(manha).style.display = "none";
+          document.getElementById(tarde).style.display = "none";
+          document.getElementById(noite).style.display = "none";
+          document.getElementById(integral).style.display = "none";
+
+          document.getElementById(labelManha).style.display = "none";
+          document.getElementById(labelTarde).style.display = "none";
+          document.getElementById(labelNoite).style.display = "none";
+          document.getElementById(labelIntegral).style.display = "none";
+
+          document.getElementById(manha).value = "#";
+          document.getElementById(tarde).value = "#";
+          document.getElementById(noite).value = "#";
+          document.getElementById(integral).value = "#";          
         }
 
       }

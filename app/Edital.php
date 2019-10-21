@@ -42,4 +42,9 @@ class Edital extends Model
     {
         return $this->hasMany('extravestibular\Recurso');
     }
+
+    public function errata()
+    {
+        return $this->hasMany('extravestibular\Errata', 'editalId');
+    }
 }

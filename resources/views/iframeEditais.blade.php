@@ -223,7 +223,7 @@
             @else
               @if($editaisFinalizadosFlag)
                 <tr style="background-color: #F7F7F7">
-                  <th> Editais finalizados</th><?php $editaisFinalizadosFlag = false;?>
+                  <th> Editais Finalizados</th><?php $editaisFinalizadosFlag = false;?>
                   <th> Publicado em </th>
                   <th> Arquivo </th>
                 </tr>

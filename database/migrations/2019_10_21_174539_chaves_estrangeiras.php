@@ -31,6 +31,9 @@ class ChavesEstrangeiras extends Migration
       Schema::table('users', function (Blueprint $table) {
           $table->foreign('dados')->references('id')->on('dados_usuarios')->nullable();
       });
+      Schema::table('erratas', function (Blueprint $table) {
+          $table->foreign('editalId')->references('id')->on('editals');
+      });
     }
 
     /**

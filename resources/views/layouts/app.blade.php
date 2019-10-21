@@ -424,7 +424,7 @@
 
       @if(!($url == '/login'))
         @if(!($url == '/register'))
-        <nav class="navbar navbar-expand-lg" role="navigation" style="font-size: 12px">
+        <nav class="navbar navbar-expand-lg" role="navigation" style="font-size: 12px; background-color: gray">
           <div class="collapse navbar-collapse" >
             <ul class="navbar-nav mr-auto">
               @yield('navbar')
@@ -450,7 +450,7 @@
 
 </body>
 
-<!--- <div id="footer-brasil"></div>-->
+ <!-- <div id="footer-brasil"></div> -->
 
 <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
 

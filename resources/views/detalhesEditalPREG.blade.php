@@ -30,11 +30,62 @@
 
 </style>
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form method="POST" action="{{ route('cadastroErrata') }}" enctype="multipart/form-data" id="formErrata">
+    @csrf
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nova Errata</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <div>
+           <input type="hidden" name="editalId" value="{{$edital->id}}" />
+
+           <div class="form-group row justify-content-left" style="margin-left: 1%">  <!-- Nome -->
+             <label for="nome" class="field a-field a-field_a2 page__field">
+               <input id="nome" type="text" name="nome" class="field__input a-field__input" placeholder="Nome" style="width: 200%">
+               <span class="a-field__label-wrap">
+                 <span class="a-field__label">Nome</span>
+               </span>
+             </label>
+           </div>
+
+           <div class="form-group">
+              <label for="exampleFormControlTextarea1">Descrição:</label>
+              <textarea form="formErrata" name="descricao" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+           </div>
+
+           <div  class="form-group" >  <!-- PDF -->
+             <label for="pdfEdital">{{ __('Marque se existir mudança nas datas:') }}</label>
+             <input name="editarEdital" type="checkbox" value="sim">
+           </div>
+
+         </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary btn-primary-lmts">
+          {{ __('Finalizar') }}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+
 <div class="tela-servidor ">
   <div class="centro-cartao" >
     <div class="card-deck d-flex justify-content-center">
-      <div class="conteudo-central d-flex justify-content-center"  style="width: 100rem">  <!-- info edital -->
-        <div class="card cartao text-top " style="border-radius: 20px">    <!-- Info -->
+      <div class="conteudo-central d-flex justify-content-center"  style="width: 100rem; ">  <!-- info edital -->
+        <div class="card cartao text-top " style="border-radius: 20px; height: 100%" >    <!-- Info -->
 
          <div class="card-header d-flex justify-content-center" style="background-color: white;margin-top: 10px">
            <h2 style="font-weight: bold">
@@ -43,18 +94,45 @@
              echo ($nomeEdital[0]);
             ?>
           </h2>
-
          </div>
-         <a style="padding: 15px">
-          A Pró-Reitora de Ensino de Graduação torna público para conhecimento dos interessados que, no
-          PERÍODO DE 29/05 a 05/06 DE 2019, estarão abertas às inscrições para o Processo Seletivo Extra que
-          visa o preenchimento de vagas para Ingresso via Processo Seletivo Extra nos Cursos de Graduação no 2o
-          semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/2007; 354/2008;
-          34/2008181/91)
-         </a>
+         <div class="card-body justify-content-center" style="height: 100%">
+               <div class="card-body justify-content-center">
+                 <a style="padding: 15px">
+                  A Pró-Reitora de Ensino de Graduação torna público para conhecimento dos interessados que, no
+                  PERÍODO DE 29/05 a 05/06 DE 2019, estarão abertas às inscrições para o Processo Seletivo Extra que
+                  visa o preenchimento de vagas para Ingresso via Processo Seletivo Extra nos Cursos de Graduação no 2o
+                  semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/2007; 354/2008;
+                  34/2008181/91)
+                 </a>
+
+                 @if($erratas->isNotEmpty())
+                   <div class="justify-content-center" style="padding-top: 2%">
+                     <a style="font-size: 25px; font-weight: bold"> Erratas: </a>
+
+                     <table class="table table-ordered table-hover">
+
+                       @foreach($erratas as $errata)
+                         <tr>
+                          <td>
+                            <a class="row" style="margin-left: 1%;font-weight: bold; font-size: 15px">{{$errata->nome}}</a>
+                            <a class="row" style="margin-left: 1%; font-size: 15px">{{$errata->descricao}}</a>
+                          </td>
+                         </tr>
+                       @endforeach
+                     </table>
+                   </div>
+                 @endif
+                 <!-- Button trigger modal -->
+                 <div  class="form-group row justify-content-center" style="padding-top: 1%;" >
+                   <button type="button" class="btn btn-primary btn-primary-lmts" data-toggle="modal" data-target="#exampleModal">
+                     Nova Errata
+                   </button>
+                 </div>
+             </div>
+         </div>
         </div>
       </div>
-      <div class="conteudo-central d-flex justify-content-center" style="width: 100rem">  <!-- opções -->
+      <div class="conteudo-central d-flex justify-content-center" style="width: 100rem; padding-top: 1%">  <!-- opções -->
         <div class="card cartao text-center " style="border-radius: 20px; height: 21rem;">    <!-- Isenção -->
           <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
             <h2 style="font-weight: bold">Isenção</h2>
@@ -415,6 +493,10 @@
     </script>
 @endif
 
-
+<script type="text/javascript" >
+  function novaErrata() {
+    document.getElementById("novaErrata").style.display = "block";
+  }
+</script>
 
 @endsection

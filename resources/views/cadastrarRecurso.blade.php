@@ -46,7 +46,7 @@
                 <div class="card-header">{{ __('Requerimento de Recurso') }}</div>
                 <div class="card-body">
                       <div class="card-body">
-                        <form method="POST" action={{ route('cadastroRecurso') }} enctype="multipart/form-data" id="formRecurso">
+                        <form method="POST" action="{{ route('cadastroRecurso') }}" enctype="multipart/form-data" id="formRecurso">
                               @csrf
                           <input type="hidden" name="editalId" value="{{$editalId}}" />
                           <input type="hidden" name="tipoRecurso" value="{{$tipoRecurso}}" />

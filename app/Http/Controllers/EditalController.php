@@ -7,6 +7,7 @@ use extravestibular\Edital;
 use extravestibular\Inscricao;
 use extravestibular\Recurso;
 use extravestibular\Isencao;
+use extravestibular\Erratas;
 use extravestibular\User;
 use extravestibular\DadosUsuario;
 use extravestibular\ApiLmts;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use PDF;
 use Auth;
+use Session;
 
 
 class EditalController extends Controller{
@@ -33,7 +35,13 @@ class EditalController extends Controller{
       }
 
       public function editarEdital(Request $request){
-        $edital = Edital::find($request->editalId);
+        $edital = [];
+        if(is_null($request->editalId)){
+          $edital = Edital::find(Session::get('editalId'));
+        }
+        else{
+          $edital = Edital::find($request->editalId);
+        }
         $api = new ApiLmts();
         $cursos = $api->getCursos();
         if(!is_null($cursos)){
@@ -42,10 +50,6 @@ class EditalController extends Controller{
         else{
           return redirect()->route('home')->with('jsAlert', 'Serviço indisponivel no momento.');
         }
-
-
-
-
       }
 
       public function cadastroEditarEdital(Request $request){
@@ -111,6 +115,7 @@ class EditalController extends Controller{
       public function cadastroEdital(Request $request){
         $mytime = Carbon::now('America/Recife');
         $mytime = $mytime->toDateString();
+
         $validatedData = $request->validate([ 'nome'                 => ['required', 'string', 'max:255', 'unique:editals'],
                                               'pdfEdital'            => ['required', 'file'],
                                               'inicioIsencao'        => ['required', 'date', 'after:'.$mytime],
@@ -421,6 +426,7 @@ class EditalController extends Controller{
             if(($edital->fimRecurso > $mytime) && (!is_null($recursoInscricao))){
               $recursoInscricao = 'processando';
             }
+            $erratas = $edital->errata;
             return view('detalhesEditalCandidato', ['editalId'          => $request->editalId,
                                                     'inscricao'         => $inscricao,
                                                     'isencao'           => $isencao,
@@ -428,6 +434,7 @@ class EditalController extends Controller{
                                                     'recursoInscricao'  => $recursoInscricao,
                                                     'edital'            => $edital,
                                                     'mytime'            => $mytime,
+                                                    'erratas'           => $erratas,
                                                   ]);
 
           }
@@ -479,6 +486,7 @@ class EditalController extends Controller{
           $recursosTaxaNaoHomologados = json_decode($recursosTaxaNaoHomologados);
           $recursosClassificacaoHomologados = json_decode($recursosClassificacaoHomologados);
           $recursosClassificacaoNaoHomologados = json_decode($recursosClassificacaoNaoHomologados);
+          $erratas = $edital->errata;
 
           return view('detalhesEditalPREG', ['editalId'                             => $request->editalId,
                                              'inscricao'                            => null,
@@ -497,6 +505,7 @@ class EditalController extends Controller{
                                              'inscricoesNaoClassificadas'           => sizeof($inscricoesNaoClassificadas),
                                              'edital'                               => $edital,
                                              'mytime'                               => $mytime,
+                                             'erratas'                              => $erratas,
                                              //'vagasInscricoesPorCurso'              => $vagasInscricoesPorCurso,
                                             ]);
 
@@ -512,6 +521,7 @@ class EditalController extends Controller{
                                                  ->where('homologado', 'aprovado')
                                                  ->where('homologadoDrca', 'nao')
                                                  ->get();
+          $erratas = $edital->errata;
           return view('detalhesEditalDRCA', [ 'editalId'          => $request->editalId,
                                               'inscricao'         => $inscricao,
                                               'isencao'           => $isencao,
@@ -521,6 +531,7 @@ class EditalController extends Controller{
                                               'mytime'            => $mytime,
                                               'inscricoesHomologadas'                => sizeof($inscricoesHomologadas),
                                               'inscricoesNaoHomologadas'             => sizeof($inscricoesNaoHomologadas),
+                                              'erratas'            => $erratas,
                                             ]);
 
         }
@@ -533,6 +544,8 @@ class EditalController extends Controller{
                                                 ->where('curso', session('cursoId'))
                                                 ->whereNull('nota')
                                                 ->get();
+          $erratas = $edital->errata;
+        
           return view('detalhesEditalCoordenador', ['editalId'                             => $request->editalId,
                                                     'inscricao'                            => $inscricao,
                                                     'isencao'                              => $isencao,
@@ -542,6 +555,7 @@ class EditalController extends Controller{
                                                     'inscricoesNaoClassificadas'           => sizeof($inscricoesNaoClassificadas),
                                                     'edital'                               => $edital,
                                                     'mytime'                               => $mytime,
+                                                    'erratas'                               => $erratas
                                                 ]);
 
         }
