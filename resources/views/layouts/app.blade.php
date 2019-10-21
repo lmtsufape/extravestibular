@@ -424,7 +424,7 @@
 
       @if(!($url == '/login'))
         @if(!($url == '/register'))
-        <nav class="navbar navbar-expand-lg" role="navigation" style="font-size: 12px; background-color: gray">
+        <nav class="navbar navbar-expand-lg" role="navigation" style="height: 30px;font-size: 12px; background-color: #EEEEEE"><!-- Navegação -->
           <div class="collapse navbar-collapse" >
             <ul class="navbar-nav mr-auto">
               @yield('navbar')

@@ -41,7 +41,7 @@
       <div class="conteudo-central d-flex justify-content-center"  style="width: 80rem">  <!-- info edital -->
         <div class="card cartao text-top " style="border-radius: 20px; height: 100%" >    <!-- Info -->
 
-         <div class="card-header d-flex justify-content-center" style="background-color: white;margin-top: 10px">
+         <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: 10px">
            <h2 style="font-weight: bold">
             <?php
              $nomeEdital = explode(".pdf", $edital->nome);

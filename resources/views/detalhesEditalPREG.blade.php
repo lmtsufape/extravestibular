@@ -134,7 +134,7 @@
       </div>
       <div class="conteudo-central d-flex justify-content-center" style="width: 100rem; padding-top: 1%">  <!-- opções -->
         <div class="card cartao text-center " style="border-radius: 20px; height: 21rem;">    <!-- Isenção -->
-          <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+          <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
             <h2 style="font-weight: bold">Isenção</h2>
           </div>
           <div class="card-header d-flex justify-content-center">
@@ -204,7 +204,7 @@
         </div>
 
         <div class="card cartao text-center " style="border-radius: 20px;height: 21rem;"> <!-- Recurso Isenção -->
-          <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+          <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
             <h2 style="font-weight: bold">Recurso Isenção</h2>
           </div>
 
@@ -276,7 +276,7 @@
         </div>
 
         <div class="card cartao text-center " style="border-radius: 20px; height: 21rem">   <!-- Inscrição -->
-             <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+             <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
                  <h2 style="font-weight: bold">Inscrição</h2>
              </div>
              <div class="card-header d-flex justify-content-center">
@@ -344,7 +344,7 @@
         </div>
 
         <div class="card cartao text-center " style="border-radius: 20px;height: 21rem">   <!-- Recuso Inscrição -->
-             <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+             <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
                  <h2 style="font-weight: bold">Recurso Inscrição</h2>
              </div>
 
@@ -414,7 +414,7 @@
            </div>
 
         <div class="card cartao text-center " style="border-radius: 20px;height: 21rem">    <!-- Classificação -->
-         <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+         <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
            <h2 style="font-weight: bold">Classificação</h2>
          </div>
          <div class="card-header d-flex justify-content-center">
