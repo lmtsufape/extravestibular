@@ -24,7 +24,7 @@
 
     </script>
 
-    
+
 
 </head>
 <body>
@@ -32,6 +32,9 @@
   <div class="card" style="width: 100%;">
 
 
+      <div class="titulo-tabela-lmts">
+        <h2>Editais Abertos</h2>
+      </div>
       <div class="card-body">
         <table class="table table-ordered table-hover">
           <?php $editaisAbertos = true;
@@ -48,7 +51,7 @@
             @if($editaisAbertos)
               @if($editaisAbertosFlag)
                 <tr style="background-color: #F7F7F7">
-                  <th> Editais Abertos</th><?php $editaisAbertosFlag = false;?>
+                  <th> Nome do Edital</th><?php $editaisAbertosFlag = false;?>
                   <th> Publicado em </th>
                   <th> Arquivo </th>
                 </tr>
