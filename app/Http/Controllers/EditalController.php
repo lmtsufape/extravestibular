@@ -153,13 +153,14 @@ class EditalController extends Controller{
             $vagas = $vagas . $request->$manha . "?";
             $vagas = $vagas . $request->$tarde . "?";
             $vagas = $vagas . $request->$noite . "?";
-            $vagas = $vagas . $request->$integral . "!";
+            $vagas = $vagas . $request->$integral . "?";
+            $vagas = $vagas . $request->especial . "!";
           }
 
         }
         if($request->publicado == 'sim'){
           $dataPublicacao = $mytime;
-        }       
+        }
 
 
         Edital::create([
