@@ -198,7 +198,9 @@
 
   <div class="card" style="width: 100%;">
 
-
+    <div class="titulo-tabela-lmts">
+      <h2>Editais Abertos</h2>
+    </div>
       <div class="card-body">
         <table class="table table-ordered table-hover">
           <?php $editaisAbertos = true;
