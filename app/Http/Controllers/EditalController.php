@@ -141,10 +141,22 @@ class EditalController extends Controller{
         $nome = $request->nome . ".pdf";
         Storage::putFileAs($path, $file, $nome);
         $vagas = "";
-        for($i = 0; $i < $request->nCursos; $i++){
-          $aux = "cursoId" . $i;
-          $vagas = $vagas . $request->$aux . ":";
-          $vagas = $vagas . $request->$i . "!";
+        for($i = 1; $i < $request->nCursos; $i++){
+          $aux = "checkbox" . $i;
+          if($request->$aux != null){
+
+            $manha = 'manha' . $i;
+            $tarde = 'tarde' . $i;
+            $noite = 'noite' . $i;
+            $integral = 'integral' . $i;
+            $vagas = $vagas . $request->$aux . ":";
+            $vagas = $vagas . $request->$manha . "?";
+            $vagas = $vagas . $request->$tarde . "?";
+            $vagas = $vagas . $request->$noite . "?";
+            $vagas = $vagas . $request->$integral . "?";
+            $vagas = $vagas . $request->especial . "!";
+          }
+
         }
         if($request->publicado == 'sim'){
           $dataPublicacao = $mytime;

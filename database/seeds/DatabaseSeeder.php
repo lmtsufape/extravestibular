@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
         }
         DB::table('editals')->insert([
           'pdfEdital' => 'seed',
-          'vagas' => '1:1!2:10!3:10!',
+          'vagas' => '1:1?1?1?1?1!2:10?10?10?10?1!3:10?10?10?10?1!',
           'inicioInscricoes' => '2019-09-01',
           'fimInscricoes' => '2019-09-02',
           'inicioRecurso' => '2019-09-03',
@@ -105,7 +105,7 @@ class DatabaseSeeder extends Seeder
             'inicioRecurso' => '2019-11-03',
             'fimRecurso' => '2019-11-04',
             'inicioIsencao' => '2019-09-10',
-            'fimIsencao' => '2019-10-06',
+            'fimIsencao' => '2019-11-06',
             'inicioRecursoIsencao' => '2019-10-07',
             'fimRecursoIsencao' => '2019-10-08',
             'nome' => 'Isençao aberta',
@@ -125,7 +125,7 @@ class DatabaseSeeder extends Seeder
             'inicioIsencao' => '2019-09-05',
             'fimIsencao' => '2019-09-06',
             'inicioRecursoIsencao' => '2019-09-07',
-            'fimRecursoIsencao' => '2019-10-08',
+            'fimRecursoIsencao' => '2019-11-08',
             'nome' => 'Recurso Isençao aberta',
             'created_at' => '2019-09-10 18:15:48',
             'publicado' => 'sim',
@@ -140,7 +140,7 @@ class DatabaseSeeder extends Seeder
             'inicioInscricoes' => '2019-09-01',
             'fimInscricoes' => '2019-11-02',
             'inicioRecurso' => '2019-09-03',
-            'fimRecurso' => '2019-10-04',
+            'fimRecurso' => '2019-11-04',
             'inicioIsencao' => '2019-09-05',
             'fimIsencao' => '2019-09-06',
             'inicioRecursoIsencao' => '2019-09-07',
@@ -152,7 +152,7 @@ class DatabaseSeeder extends Seeder
             'resultado' => '2019-11-10',
 
         ]);
-        
+
 
         for($i = 1; $i < 21; $i++){
           if( $i < 15){

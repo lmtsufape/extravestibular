@@ -250,7 +250,7 @@
                       </tr>
                       <?php //cursos
                       // dd($cursos);
-                      $i = 0;
+                      $i = 1;
 
                       foreach ($cursos as $curso):
 
@@ -266,27 +266,26 @@
                           {{ $curso['nome'] }}
                         </td>
                         <td>
-                          <input id="checkbox{{$curso['id']}}" onclick="vagas({{$curso['id']}})"  type="checkbox" value="{{$curso['id']}}">
-                          <input type="hidden" name="cursoId{{$curso['id']}}" value="{{$curso['id']}}">
+                          <input id="checkbox{{$i}}" onclick="vagas({{$i}})" name="checkbox{{$i}}"  type="checkbox" value="{{$curso['id']}}">
                         </td>
                         <td>
-                          <label for="manha{{$curso['id']}}" class="field a-field a-field_a2 page__field" id="labelManha{{$curso['id']}}" style="display: none; margin-top: -10px" >
-                            <input value="#" id="manha{{$curso['id']}}" type="text" name="manha{{$curso['id']}}" class="field__input a-field__input" style="width: 5rem; display: none;">
+                          <label for="manha{{$i}}" class="field a-field a-field_a2 page__field" id="labelManha{{$curso['id']}}" style="display: none; margin-top: -10px" >
+                            <input disabled value="#" id="manha{{$curso['id']}}" type="text" name="manha{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;">
                           </label>
                         </td>
                         <td>
-                          <label for="tarde{{$curso['id']}}" class="field a-field a-field_a2 page__field" id="labelTarde{{$curso['id']}}" style="display: none; margin-top: -10px" >
-                            <input value="#" id="tarde{{$curso['id']}}" type="text" name="tarde{{$curso['id']}}" class="field__input a-field__input" style="width: 5rem; display: none;">
+                          <label for="tarde{{$i}}" class="field a-field a-field_a2 page__field" id="labelTarde{{$curso['id']}}" style="display: none; margin-top: -10px" >
+                            <input disabled value="#" id="tarde{{$curso['id']}}" type="text" name="tarde{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;">
                           </label>
                         </td>
                         <td>
-                          <label for="noite{{$curso['id']}}" class="field a-field a-field_a2 page__field" id="labelNoite{{$curso['id']}}" style="display: none; margin-top: -10px" >
-                            <input value="#" id="noite{{$curso['id']}}" type="text" name="noite{{$curso['id']}}" class="field__input a-field__input" style="width: 5rem; display: none;">
+                          <label for="noite{{$i}}" class="field a-field a-field_a2 page__field" id="labelNoite{{$curso['id']}}" style="display: none; margin-top: -10px" >
+                            <input disabled value="#" id="noite{{$curso['id']}}" type="text" name="noite{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;">
                           </label>
                         </td>
                         <td>
-                          <label for="integral{{$curso['id']}}" class="field a-field a-field_a2 page__field" id="labelIntegral{{$curso['id']}}" style="display: none; margin-top: -10px" >
-                            <input value="#" id="integral{{$curso['id']}}" type="text" name="integral{{$curso['id']}}" class="field__input a-field__input" style="width: 5rem; display: none;">
+                          <label for="integral{{$i}}" class="field a-field a-field_a2 page__field" id="labelIntegral{{$curso['id']}}" style="display: none; margin-top: -10px" >
+                            <input disabled value="#" id="integral{{$curso['id']}}" type="text" name="integral{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;">
                           </label>
                         </td>
                       </tr>
@@ -349,6 +348,11 @@
           document.getElementById(noite).value = "";
           document.getElementById(integral).value = "";
 
+          document.getElementById(manha).disabled = "";
+          document.getElementById(tarde).disabled = "";
+          document.getElementById(noite).disabled = "";
+          document.getElementById(integral).disabled = "";
+
       	}
         else{
           document.getElementById(manha).style.display = "none";
@@ -364,7 +368,12 @@
           document.getElementById(manha).value = "#";
           document.getElementById(tarde).value = "#";
           document.getElementById(noite).value = "#";
-          document.getElementById(integral).value = "#";          
+          document.getElementById(integral).value = "#";
+
+          document.getElementById(manha).disabled = "true";
+          document.getElementById(tarde).disabled = "true";
+          document.getElementById(noite).disabled = "true";
+          document.getElementById(integral).disabled = "true";
         }
 
       }
