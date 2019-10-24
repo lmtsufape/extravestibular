@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
         }
         DB::table('editals')->insert([
           'pdfEdital' => 'seed',
-          'vagas' => '1:1!2:10!3:10!',
+          'vagas' => '1:1?1?1?1?1!2:10?10?10?10?1!3:10?10?10?10?1!',
           'inicioInscricoes' => '2019-09-01',
           'fimInscricoes' => '2019-09-02',
           'inicioRecurso' => '2019-09-03',
