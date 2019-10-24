@@ -3,24 +3,7 @@ body{
     padding: 0px;
 
 }
-/* ----------- Tabela lmts ----------------*/
-.titulo-tabela-lmts{
 
-  height: 40px;
-  width: 97%;
-  margin-top: 20px;
-  margin-left: 20px;
-  border-bottom: #1b2e4f solid 2px;
-
-
-}
-.table th{
-      background-color: #1B2E4F;
-      color: #FFF;
-
-}
-
-/* --------------------------------------- */
 .info{
     width: 100%;
     height: 718px;

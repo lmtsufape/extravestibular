@@ -82,7 +82,7 @@
 </div>
 
 <div class="tela-servidor ">
-  <div class="" >
+  <div class="centro-cartao" >
     <div class="card-deck d-flex justify-content-center">
       <div class="conteudo-central d-flex justify-content-center"  style="width: 100rem; ">  <!-- info edital -->
         <div class="card cartao text-top " style="border-radius: 20px; height: 100%" >    <!-- Info -->

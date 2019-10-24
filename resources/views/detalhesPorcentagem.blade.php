@@ -44,7 +44,7 @@
 </style>
 
 <div class="tela-servidor ">
-  <div class="" >
+  <div class="centro-cartao" >
     <div class="card-deck d-flex justify-content-center">
       <div class="conteudo-central d-flex justify-content-center"  style="width: 100rem; display: ; padding-top: 1rem; padding-bottom: 1rem">  <!-- info porcentagem -->
   <div class="card cartao text-top " >    <!-- Info -->
