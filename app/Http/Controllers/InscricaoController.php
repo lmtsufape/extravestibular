@@ -1433,11 +1433,20 @@ class InscricaoController extends Controller
 		if(is_null($inscricoesQueFaltamClassificar)){
 			$ids = $this->aprovarInscricoes($inscricao->editalId, $inscricao->curso);
 			if(!is_null($ids)){
-				$inscricoesEmpatadas = Inscricao::find($ids);
+				$inscricoesManha 	  = Inscricao::where('turno', 'manhã')->whereIn('id',$ids)->get();
+				$inscricoesTarde 	  = Inscricao::where('turno', 'tarde')->whereIn('id',$ids)->get();
+				$inscricoesNoite 	  = Inscricao::where('turno', 'noite')->whereIn('id',$ids)->get();
+				$inscricoesIntegral = Inscricao::where('turno', 'integral')->whereIn('id',$ids)->get();
+				$inscricoesEspecial = Inscricao::where('turno', 'especial')->whereIn('id',$ids)->get();
 				$mytime = Carbon::now('America/Recife');
 				$mytime = $mytime->toDateString();
+				
 				return view('cadastrarDesempate', [
-					'inscricoes' => $inscricoesEmpatadas,
+					'inscricoesManha' => $inscricoesManha,
+					'inscricoesTarde' => $inscricoesTarde,
+					'inscricoesNoite' => $inscricoesNoite,
+					'inscricoesIntegral' => $inscricoesIntegral,
+					'inscricoesEspecial' => $inscricoesEspecial,
 					'idsEmpatados' => $ids,
 					'editalId' => $inscricao->editalId,
 					'mytime' => $mytime,

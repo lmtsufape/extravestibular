@@ -54,6 +54,11 @@
     color: #000;
     background-color: #fff;
 }
+
+#footer {
+    background-color: #1B2E4F;
+}
+
 #footer-brasil {
    background: none repeat scroll 0% 0% #1B2E4F;
    min-width: 100%;
@@ -68,7 +73,7 @@
   min-height: 100vh;
 }
 #content-wrap {
-  padding-bottom: 2.5rem;    /* Footer height */
+  padding-bottom: 0rem;    /* Footer height */
 }
 @media (max-width: 1024px) {
   #barra-logos{display: none;}

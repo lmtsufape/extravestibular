@@ -250,3 +250,7 @@ body{
   color: white;
   font-size: 20px;
 }
+
+.disabled-lmts{
+  background-color: #67748B;
+}

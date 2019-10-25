@@ -80,10 +80,13 @@
                     </tr>
 
                     @endforeach
+                  </table>
 
                 {{ $inscricoes->links() }}
-              </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 @endsection

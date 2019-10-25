@@ -436,8 +436,14 @@
 
       <br>
 @endif
+      <div id="page-container" style="background-color:#FFFFFF">
+        <div id="content-wrap">
+          @yield('content')
+        </div>
+        <div id="footer-brasil"></div>
+      </div>
 
-      @yield('content')
+
 
     </div>
   </div>
