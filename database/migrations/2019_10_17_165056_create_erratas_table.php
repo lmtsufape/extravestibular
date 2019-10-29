@@ -17,7 +17,7 @@ class CreateErratasTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->softDeletes();
-            $table->text('descricao');
+            $table->text('arquivo');
             $table->string('nome');
             $table->integer('editalId');
         });

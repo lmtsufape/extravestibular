@@ -209,7 +209,7 @@
                       </tr>
                       <tr>
                         <td>
-                          <a style="font-weight: bold;">{{__('Data do Resultado*: ')}}</a>
+                          <a style="font-weight: bold;">{{__('Data do Resultado Preliminar*: ')}}</a>
                         </td>
                         <td>
                         </td>
@@ -221,6 +221,57 @@
                             </span>
                           </label>
                           @error('resultado')
+                          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;margin-left: 25px;">
+                            <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <a style="font-weight: bold;">{{__('Período do Recurso do Resultado*: ')}}</a>
+                        </td>
+                        <td>
+                          <label for="inicioRecursoResultado" class="field a-field a-field_a2 page__field">
+                            <input value="{{ old('inicioRecursoResultado') }}" id="inicioRecursoResultado" type="date" name="inicioRecursoResultado" autofocus class="form-control @error('inicioRecursoResultado') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                            <span class="a-field__label-wrap">
+                              <span class="a-field__label"></span>
+                            </span>
+                          </label>
+                          @error('inicioRecursoResultado')
+                          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                            <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                        </td>
+                        <td>
+                          <label for="fimRecursoResultado" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
+                            <input value="{{ old('fimRecursoResultado') }}" id="fimRecurso" type="date" name="fimRecursoResultado" autofocus class="form-control @error('fimRecursoResultado') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                            <span class="a-field__label-wrap">
+                              <span class="a-field__label"></span>
+                            </span>
+                          </label>
+                          @error('fimRecursoResultado')
+                          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;margin-left: 25px;">
+                            <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <a style="font-weight: bold;">{{__('Data do Resultado*: ')}}</a>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                          <label for="resultadoFinal" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
+                            <input value="{{ old('resultadoFinal') }}" id="fimRecurso" type="date" name="resultadoFinal" autofocus class="form-control @error('resultadoFinal') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                            <span class="a-field__label-wrap">
+                              <span class="a-field__label"></span>
+                            </span>
+                          </label>
+                          @error('resultadoFinal')
                           <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;margin-left: 25px;">
                             <strong>{{ $message }}</strong>
                           </span>
@@ -299,10 +350,10 @@
                 </div>
             </div>
 
-            <div class="form-group row mb-0 justify-content-center"> <!-- button -->
+            <div class="form-group row mb-0 justify-content-center" style="padding-bottom: 5rem"> <!-- button -->
                 <div class="col-md-8 offset-md-4">
                     <input type="hidden" name="nCursos" value="{{$i}}">
-                    <button type="submit" class="btn btn-primary btn-primary-lmts"  style="margin-top: 20px; margin-left: 15rem">
+                    <button type="submit" class="btn btn-primary btn-primary-lmts"  style="margin-top: 20px; margin-left: 15rem; ">
                         {{ __('Finalizar') }}
                     </button>
 

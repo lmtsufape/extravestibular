@@ -22,14 +22,17 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="width: 80rem;margin-left: 10rem;">
-                <div class="card-header">Editais</div>
 
-                <div class="card-body">
 
-                  @if(session('tipo') == 'PREG')
+
+                @if(session('tipo') == 'PREG')
+                  <div class="titulo-tabela-lmts">
+                    <h2>Editais Não Publicados</h2>
+                  </div>
+                  <div class="card-body">
                     <table class="table table-ordered table-hover">
                       <tr style="background-color: #F7F7F7">
-                        <th style="width: 50rem"> Editais Não Publicados</th><?php $editaisAbertosFlag = false;?>
+                        <th style="width: 50rem"> Nome</th><?php $editaisAbertosFlag = false;?>
                         <th> Excluir </th>
                         <th> Publicar </th>
                         <th> Editar </th>
@@ -84,14 +87,18 @@
                         </tr>
                       @endforeach
                     </table>
-                  @endif
-
+                  </div>
+                @endif
+                <div class="titulo-tabela-lmts">
+                  <h2>Editais Abertos</h2>
+                </div>
+                <div class="card-body">
                   <table class="table table-ordered table-hover">
                     <?php $editaisAbertos = true;
                           $editaisAbertosFlag = true;
                           $editaisFinalizadosFlag = true; ?>
                     @foreach ($editais as $edital)
-                      <?php if($edital->resultado <= $mytime){
+                      <?php if($edital->resultadoFinal <= $mytime){
                         $editaisAbertos = false;
                       }
                       else{
@@ -101,15 +108,22 @@
                       @if($editaisAbertos)
                         @if($editaisAbertosFlag)
                           <tr style="background-color: #F7F7F7">
-                            <th> Editais Abertos</th><?php $editaisAbertosFlag = false;?>
+                            <th> Nome</th><?php $editaisAbertosFlag = false;?>
                             <th> Publicado em </th>
                             <th> Arquivo </th>
                           </tr>
                         @endif
                       @else
                         @if($editaisFinalizadosFlag)
+                        </table>
+                        </div>
+                        <div class="titulo-tabela-lmts">
+                          <h2>Editais Finalizados</h2>
+                        </div>
+                        <div class="card-body">
+                        <table class="table table-ordered table-hover">
                           <tr style="background-color: #F7F7F7">
-                            <th> Editais finalizados</th><?php $editaisFinalizadosFlag = false;?>
+                            <th> Nome</th><?php $editaisFinalizadosFlag = false;?>
                             <th> Publicado em </th>
                             <th> Arquivo </th>
                           </tr>

@@ -9,7 +9,7 @@ class Errata extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['descricao', 'nome', 'editalId'];
+    protected $fillable = ['arquivo', 'nome', 'editalId'];
 
     public function edital(){
       return $this->belongsTo('extravestibular\Edital', 'editalId');

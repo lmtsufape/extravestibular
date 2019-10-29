@@ -257,22 +257,40 @@ class InscricaoController extends Controller
 		}
 
 	public function cadastroDesempate(Request $request){
-		$inscricaoAprovadaManha 	 = Inscricao::find($request->inscricaoAprovadaManha);
-		$inscricaoAprovadaTarde 	 = Inscricao::find($request->inscricaoAprovadaTarde);
-		$inscricaoAprovadaNoite 	 = Inscricao::find($request->inscricaoAprovadaNoite);
-		$inscricaoAprovadaIntegral = Inscricao::find($request->inscricaoAprovadaIntegrao);
-		$inscricaoAprovadaEspecial = Inscricao::find($request->$inscricaoAprovadaEspecial);
-
-		$inscricaoAprovadaManha->situacao = 'Aprovado';
-		$inscricaoAprovadaTarde->situacao = 'Aprovado';
-		$inscricaoAprovadaNoite->situacao = 'Aprovado';
-		$inscricaoAprovadaIntegral->situacao = 'Aprovado';
-		$inscricaoAprovadaEspecial->situacao = 'Aprovado';
-		$inscricaoAprovadaManha->save();
-		$inscricaoAprovadaTarde->save();
-		$inscricaoAprovadaNoite->save();
-		$inscricaoAprovadaIntegral->save();
-		$inscricaoAprovadaEspecial->save();
+		$idsEmpatados = explode(',',$request->idsEmpatados);
+		foreach ($idsEmpatados as $key) {
+			if($key == ''){
+				continue;
+			}
+			$inscricaoEmpatada = Inscricao::find($key);
+			$inscricaoEmpatada->situacao = 'Classificável';
+			$inscricaoEmpatada->save();
+		}
+		$inscricaoAprovadaManha 	 = Inscricao::find($request->aprovadoManha);
+		$inscricaoAprovadaTarde 	 = Inscricao::find($request->aprovadoTarde);
+		$inscricaoAprovadaNoite 	 = Inscricao::find($request->aprovadoNoite);
+		$inscricaoAprovadaIntegral = Inscricao::find($request->aprovadoIntegrao);
+		$inscricaoAprovadaEspecial = Inscricao::find($request->aprovadoEspecial);
+		if(!empty($inscricaoAprovadaManha)){
+			$inscricaoAprovadaManha->situacao = 'Aprovado';
+			$inscricaoAprovadaManha->save();
+		}
+		if(!empty($inscricaoAprovadaTarde)){
+			$inscricaoAprovadaTarde->situacao = 'Aprovado';
+			$inscricaoAprovadaTarde->save();
+		}
+		if(!empty($inscricaoAprovadaNoite)){
+			$inscricaoAprovadaNoite->situacao = 'Aprovado';
+			$inscricaoAprovadaNoite->save();
+		}
+		if(!empty($inscricaoAprovadaIntegral)){
+			$inscricaoAprovadaIntegral->situacao = 'Aprovado';
+			$inscricaoAprovadaIntegral->save();
+		}
+		if(!empty($inscricaoAprovadaEspecial)){
+			$inscricaoAprovadaEspecial->situacao = 'Aprovado';
+			$inscricaoAprovadaEspecial->save();
+		}
 
 		return redirect()->route('home')->with('jsAlert', 'Desempate realizado com sucesso.');
 	}
@@ -1440,7 +1458,7 @@ class InscricaoController extends Controller
 				$inscricoesEspecial = Inscricao::where('turno', 'especial')->whereIn('id',$ids)->get();
 				$mytime = Carbon::now('America/Recife');
 				$mytime = $mytime->toDateString();
-				
+
 				return view('cadastrarDesempate', [
 					'inscricoesManha' => $inscricoesManha,
 					'inscricoesTarde' => $inscricoesTarde,

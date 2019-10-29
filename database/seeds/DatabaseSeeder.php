@@ -58,6 +58,9 @@ class DatabaseSeeder extends Seeder
           'publicado' => 'sim',
           'dataPublicacao' => '2019-09-02',
           'resultado' => '2019-09-10',
+          'inicioRecursoResultado' => '2019-10-11',
+          'fimRecursoResultado' => '2019-11-12',
+          'resultadoFinal' => '2019-11-13',
 
         ]);
 
@@ -94,7 +97,10 @@ class DatabaseSeeder extends Seeder
             'created_at' => '2019-09-10 18:15:48',
             'publicado' => 'sim',
             'dataPublicacao' => '2019-09-10',
-            'resultado' => '2019-11-10',
+            'resultado' => '2019-09-10',
+            'inicioRecursoResultado' => '2019-09-11',
+            'fimRecursoResultado' => '2019-09-12',
+            'resultadoFinal' => '2019-11-13',
 
         ]);
         DB::table('editals')->insert([
@@ -112,7 +118,10 @@ class DatabaseSeeder extends Seeder
             'created_at' => '2019-09-10 18:15:48',
             'publicado' => 'sim',
             'dataPublicacao' => '2019-09-10',
-            'resultado' => '2019-11-10',
+            'resultado' => '2019-09-10',
+            'inicioRecursoResultado' => '2019-09-11',
+            'fimRecursoResultado' => '2019-09-12',
+            'resultadoFinal' => '2019-11-13',
 
         ]);
         DB::table('editals')->insert([
@@ -130,7 +139,10 @@ class DatabaseSeeder extends Seeder
             'created_at' => '2019-09-10 18:15:48',
             'publicado' => 'sim',
             'dataPublicacao' => '2019-09-10',
-            'resultado' => '2019-11-10',
+            'resultado' => '2019-09-10',
+            'inicioRecursoResultado' => '2019-09-11',
+            'fimRecursoResultado' => '2019-09-12',
+            'resultadoFinal' => '2019-11-13',
 
         ]);
 
@@ -149,7 +161,10 @@ class DatabaseSeeder extends Seeder
             'created_at' => '2019-09-10 18:15:48',
             'publicado' => 'sim',
             'dataPublicacao' => '2019-09-10',
-            'resultado' => '2019-11-10',
+            'resultado' => '2019-09-10',
+            'inicioRecursoResultado' => '2019-09-11',
+            'fimRecursoResultado' => '2019-09-12',
+            'resultadoFinal' => '2019-11-13',
 
         ]);
 

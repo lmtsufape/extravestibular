@@ -139,7 +139,7 @@
                       </div>
 
                       <div id="curriculo" class="form-group row" style="display: none">              <!-- Arquivo curriculo -->
-                          <label for="Curriculo" class="col-md-4 col-form-label text-md-right">{{ __('Currículo:') }}</label>
+                          <label for="Curriculo" class="col-md-4 col-form-label text-md-right">{{ __('Perfil Currícular:') }}</label>
 
                           <div class="col-md-6">
                             <div class="custom-file">

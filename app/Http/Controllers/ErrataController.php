@@ -17,9 +17,18 @@ class ErrataController extends Controller
     }
 
     public function cadastroErrata(Request $request){
+      $file = $request->arquivo;
+      $path = 'erratas/' . $request->editalId;
+      $edital = Edital::find($request->editalId);
+      $erratas = $edital->errata;
+      $numErratas = count($erratas);
+      $numErratas++;
+      $nomeErrata = 'errata' . $numErratas . '.pdf';
+      Storage::putFileAs($path, $file, $nomeErrata);
+
       Errata::create([
         'nome'       => $request->nome,
-        'descricao'        => $request->descricao,
+        'arquivo'    => $path . $nomeErrata,
         'editalId'   => $request->editalId,
       ]);
       if($request->editarEdital == 'sim'){

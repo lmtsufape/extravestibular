@@ -38,7 +38,7 @@
                 $editaisAbertosFlag = true;
                 $editaisFinalizadosFlag = true; ?>
           @foreach ($editais as $edital)
-            <?php if($edital->fimRecurso <= $mytime){
+            <?php if($edital->resultadoFinal <= $mytime){
               $editaisAbertos = false;
             }
             else{

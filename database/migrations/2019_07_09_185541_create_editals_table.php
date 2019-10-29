@@ -28,6 +28,9 @@ class CreateEditalsTable extends Migration
             $table->date('inicioRecursoIsencao');
             $table->date('fimRecursoIsencao');
             $table->date('resultado');
+            $table->date('inicioRecursoResultado');
+            $table->date('fimRecursoResultado');
+            $table->date('resultadoFinal');
             $table->string('nome');
             $table->string('publicado')->nullable();
             $table->date('dataPublicacao')->nullable();

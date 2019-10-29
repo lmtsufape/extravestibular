@@ -48,6 +48,7 @@
       <div class="card-body" >
           <div class="container" style="width: 70%;">
             @if($inscricoesManha->count() > 0)
+              <input disabled type="hidden" id="auxManha" name="auxManha" value="1">
               <div class="card" style=" margin-top: 1%;"> <!-- card manha -->
                   <div class="card-header">{{ __('Manhã') }}</div>
                   <div class="card-body">
@@ -121,6 +122,7 @@
               </div>
             @endif
             @if($inscricoesTarde->count() > 0)
+              <input disabled type="hidden" id="auxTarde" name="auxTarde" value="1">
               <div class="card" style=" margin-top: 1%;"> <!-- card tarde -->
                   <div class="card-header">{{ __('Tarde') }}</div>
                   <div class="card-body">
@@ -128,7 +130,7 @@
                     @foreach($inscricoesTarde as $key)
                       <div class="container" style="width: 70%;">
                         <div class="form-check" style="margin-left: -25%; margin-top: 5%; font-size: 100%">
-                          <input class="form-check-input" name="aprovadoTarde" type="radio" value="{{$key->id}}" style="transform: scale(1.5%)">
+                          <input id="aprovadoTarde" onclick="checkRadios(); changeHeaderColor('{{ 'Tarde' . $i}}');" class="form-check-input" name="aprovadoTarde" type="radio" value="{{$key->id}}" style="transform: scale(1.5%)">
                           <label class="form-check-label" for="exampleRadios1">
                             Aprovar Candidato
                           </label>
@@ -194,6 +196,7 @@
               </div>
             @endif
             @if($inscricoesNoite->count() > 0)
+              <input disabled type="hidden" id="auxNoite" name="aauxNoite" value="1">
               <div class="card" style=" margin-top: 1%;"> <!-- card noite -->
                   <div class="card-header">{{ __('Noite') }}</div>
                   <div class="card-body">
@@ -201,7 +204,7 @@
                     @foreach($inscricoesNoite as $key)
                       <div class="container" style="width: 70%;">
                         <div class="form-check" style="margin-left: -25%; margin-top: 5%; font-size: 100%">
-                          <input class="form-check-input" name="aprovadoNoite" type="radio" value="{{$key->id}}" style="transform: scale(1.5%)">
+                          <input id="aprovadoNoite" onclick="checkRadios(); changeHeaderColor('{{ 'Noite' . $i}}');" class="form-check-input" name="aprovadoNoite" type="radio" value="{{$key->id}}" style="transform: scale(1.5%)">
                           <label class="form-check-label" for="exampleRadios1">
                             Aprovar Candidato
                           </label>
@@ -267,6 +270,7 @@
               </div>
             @endif
             @if($inscricoesIntegral->count() > 0)
+              <input disabled type="hidden" id="auxIntegral" name="auxIntegral" value="1">
               <div class="card" style=" margin-top: 1%;"> <!-- card integral -->
                   <div class="card-header">{{ __('Integral') }}</div>
                   <div class="card-body">
@@ -274,7 +278,7 @@
                     @foreach($inscricoesIntegral as $key)
                       <div class="container" style="width: 70%;">
                         <div class="form-check" style="margin-left: -25%; margin-top: 5%; font-size: 100%">
-                          <input class="form-check-input" name="aprovadoIntegral" type="radio" value="{{$key->id}}" style="transform: scale(1.5%)">
+                          <input id="aprovadoIntegral" onclick="checkRadios(); changeHeaderColor('{{ 'Integral' . $i}}');" class="form-check-input" name="aprovadoIntegral" type="radio" value="{{$key->id}}" style="transform: scale(1.5%)">
                           <label class="form-check-label" for="exampleRadios1">
                             Aprovar Candidato
                           </label>
@@ -340,6 +344,7 @@
               </div>
             @endif
             @if($inscricoesEspecial->count() > 0)
+              <input type="hidden" id="auxEspecial" name="auxEspecial" value="1">
               <div class="card" style=" margin-top: 1%;"> <!-- card especial -->
                   <div class="card-header">{{ __('Especial') }}</div>
                   <div class="card-body">
@@ -347,7 +352,7 @@
                     @foreach($inscricoesEspecial as $key)
                       <div class="container" style="width: 70%;">
                         <div class="form-check" style="margin-left: -25%; margin-top: 5%; font-size: 100%">
-                          <input class="form-check-input" name="aprovadoEspecial" type="radio" value="{{$key->id}}" style="transform: scale(1.5%)">
+                          <input id="aprovadoEspecial" onclick="checkRadios(); changeHeaderColor('{{ 'Especial' . $i}}');" class="form-check-input" name="aprovadoEspecial" type="radio" value="{{$key->id}}" style="transform: scale(1.5%)">
                           <label class="form-check-label" for="exampleRadios1">
                             Aprovar Candidato
                           </label>
@@ -419,7 +424,9 @@
   <div class="form-group row mb-0 justify-content-center">
     <div class="row" style="margin-top: 10px; padding-bottom: 5rem">
 
-      <input type="hidden" name="idsEmpatados" value="">
+      <input type="hidden" name="idsEmpatados" value="<?php foreach ($idsEmpatados as $key) {
+        echo($key . ',');
+      } ?>">
       <button id="buttonFinalizar" disabled type="submit" class="btn btn-primary btn-primary-lmts">
         {{ __('Finalizar') }}
       </button>
@@ -437,14 +444,52 @@
 
 <script type="text/javascript" >
   function checkRadios(){
-    if(document.getElementById("aprovadoManha").checked == true){
+    var radioManha = $("input[name=aprovadoManha]");
+    var radioTarde = $("input[name=aprovadoTarde]");
+    var radioNoite = $("input[name=aprovadoNoite]");
+    var radioIntegral = $("input[name=aprovadoIntegral]");
+    var radioEspecial = $("input[name=aprovadoEspecial]");
+    var flagEnableButton = true;
+    if(document.getElementById("auxManha") != null){
+      if(radioManha.filter(":checked").val() == undefined){
+        var flagEnableButton = false;
+      }
+      // console.log(radioManha.filter(":checked").val());
+    }
+    if(document.getElementById("auxTarde") != null){
+      if(radioTarde.filter(":checked").val() == undefined){
+        var flagEnableButton = false;
+      }
+      // console.log(radioTarde.filter(":checked").val());
+    }
+    if(document.getElementById("auxNoite") != null){
+      if(radioNoite.filter(":checked").val() == undefined){
+        var flagEnableButton = false;
+      }
+      // console.log(radioNoite.filter(":checked").val());
+    }
+    if(document.getElementById("auxIntegral") != null){
+      if(radioIntegral.filter(":checked").val() == undefined){
+        var flagEnableButton = false;
+      }
+      // console.log(radioIntegral.filter(":checked").val());
+    }
+    if(document.getElementById("auxEspecial") != null){
+      if(radioEspecial.filter(":checked").val() == undefined){
+        var flagEnableButton = false;
+      }
+      // console.log(radioEspecial.filter(":checked").val());
+    }
+
+    if(flagEnableButton == true){
       document.getElementById("buttonFinalizar").disabled = false;
     }
+
   }
   function changeHeaderColor(x){
     var str = "header";
     str = str.concat(x);
-    document.getElementById(str).class = "card-header";
+    document.getElementById(str).className = "card-header";
   }
 </script>
 

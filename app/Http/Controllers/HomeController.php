@@ -31,14 +31,9 @@ class HomeController extends Controller
     {
         $mytime = Carbon::now('America/Recife');
         $mytime = $mytime->toDateString();
-        $editaisAbertos = Edital::where('publicado', 'sim')
-                           ->orderBy('created_at', 'desc')
-                           ->where('resultado', '>', $mytime)
-                           ->paginate(10);
-        $editaisFinalizados = Edital::where('publicado', 'sim')
-                          ->orderBy('created_at', 'desc')
-                          ->where('resultado', '<=', $mytime)
-                          ->paginate(10);
+        $editais = Edital::where('publicado', 'sim')
+                            ->orderBy('created_at', 'desc')
+                            ->paginate(10);
         $editaisNaoPublicados = 'nao';
         if(Auth::check()){
           if(!(Auth::user()->tipo != 'candidato')){
@@ -56,8 +51,7 @@ class HomeController extends Controller
             $editaisNaoPublicados = Edital::whereNull('publicado')
                                             ->orderBy('dataPublicacao', 'desc')
                                             ->paginate(10);
-            return view('home', ['editaisAbertos'              => $editaisAbertos,
-            
+            return view('home', ['editais'              => $editais,
                                  'mytime'               => $mytime,
                                  'editaisNaoPublicados' => $editaisNaoPublicados,
                                 ]);
@@ -74,7 +68,6 @@ class HomeController extends Controller
                                  'editaisNaoPublicados' => $editaisNaoPublicados,
                                 ]);
           }
-
         }
         return redirect()->route('login');
 
