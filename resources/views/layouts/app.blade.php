@@ -47,7 +47,7 @@
       <!-- Barra de Logos -->
       <div id="barra-logos" lass-"container" style="background:#FFFFFF; margin-top: 1px; height: 150px; padding: 10px 0 10px 0;">
         <ul id="logos" style="list-style:none;">
-            <li style="margin-right:140px; margin-left:2%; border-right:1px ;height: 120px">
+            <li style="margin-right: 0%; margin-left: -2%; border-right:1px ;height: 120px">
               @if(Auth::check())
                 <a href="{{ route("home") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="100%" align = "left" ></a>
               @else
@@ -110,7 +110,7 @@
                   @endif
                 @endif
                 @if(Auth::user()->tipo == 'PREG')
-                <!-- Visão PREG -->
+                  <!-- Visão PREG -->
 
                   <li class="nav-item active"> <!-- Ver Editais -->
                       <a class="nav-link" href="{{ route('home') }}"
@@ -137,10 +137,9 @@
 
                     </form>
                   </li>
-
                 @endif
                 @if(Auth::user()->tipo == 'DRCA')
-                <!-- Visão DRCA -->
+                  <!-- Visão DRCA -->
 
                   <li class="nav-item active"> <!-- Ver Editais -->
                       <a class="nav-link" href="{{ route('home') }}"
@@ -152,11 +151,9 @@
 
                       </form>
                   </li>
-
-
                 @endif
                 @if(Auth::user()->tipo == 'coordenador')
-                <!-- Visão coordenador -->
+                  <!-- Visão coordenador -->
 
                   <li class="nav-item active"> <!-- Ver Editais -->
                       <a class="nav-link" href="{{ route('home') }}"
@@ -180,7 +177,6 @@
                           <input type="hidden" name="tipo" value="classificarInscricoes">
                       </form>
                   </li> -->
-
                 @endif
               @endif
             </ul>
@@ -262,13 +258,13 @@
       @if(!($url == '/login'))
         @if(!($url == '/register'))
 
-          <nav class="navbar navbar-expand-lg" role="navigation">
-            <div class="collapse navbar-collapse" >
-              <ul class="navbar-nav mr-auto">
-                @yield('navbar')
-              </ul>
-            </div>
-          </nav>
+        <nav class="navbar navbar-expand-lg" role="navigation" style="height: 30px;font-size: 12px; background-color: #EEEEEE"><!-- Navegação -->
+          <div class="collapse navbar-collapse" >
+            <ul class="navbar-nav mr-auto">
+              @yield('navbar')
+            </ul>
+          </div>
+        </nav>
 
         @endif
       @endif
@@ -440,7 +436,7 @@
         <div id="content-wrap">
           @yield('content')
         </div>
-        <div id="footer-brasil" style="margin-top:5%"></div>
+        <div id="footer-brasil"></div>
       </div>
 
 

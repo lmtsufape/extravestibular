@@ -33,7 +33,7 @@
                         <th> Excluir </th>
                         <th> Publicar </th>
                         <th> Editar </th>
-                        <th style="width: 8rem"> Arquivo </th>
+                        <th style="width: 10%"> Arquivo </th>
                       </tr>
                       @foreach($editaisNaoPublicados as $edital)
                         <tr>
@@ -105,7 +105,7 @@
                       @if($editaisAbertos)
                         @if($editaisAbertosFlag)
                           <tr style="background-color: #F7F7F7">
-                            <th> Nome</th><?php $editaisAbertosFlag = false;?>
+                            <th style="width: 70%"> Nome</th><?php $editaisAbertosFlag = false;?>
                             <th> Publicado em </th>
                             <th> Arquivo </th>
                           </tr>

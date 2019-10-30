@@ -30,6 +30,13 @@
 
 .hover-popup-lmts a:hover span { width: 25rem}
 
+.btn-primary {
+  margin-top: 8%;
+}
+
+.h2 {
+  font-size: 110%;
+}
 
 
 
@@ -38,16 +45,16 @@
 <div class="tela-servidor ">
   <div class="centro-cartao" >
     <div class="card-deck d-flex justify-content-center">
-      <div class="conteudo-central d-flex justify-content-center"  style="width: 80rem">  <!-- info edital -->
+      <div class="conteudo-central d-flex justify-content-center"  style="width: 75%">  <!-- info edital -->
         <div class="card cartao text-top " style="border-radius: 20px; height: 100%" >    <!-- Info -->
 
-         <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: 10px">
-           <h2 style="font-weight: bold">
-            <?php
+         <div class="card-header d-flex justify-content-center" style="margin-top: 0px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+           <h2 style="font-weight: bold; color: white">
+             <?php
              $nomeEdital = explode(".pdf", $edital->nome);
              echo ($nomeEdital[0]);
-            ?>
-          </h2>
+             ?>
+           </h2>
          </div>
          <div class="card-body justify-content-center" style="height: 100%">
                <div class="card-body justify-content-center">
@@ -76,24 +83,20 @@
                      </table>
                    </div>
                  @endif
-                 <!-- Button trigger modal -->
-                 <div  class="form-group row justify-content-center" style="padding-top: 1%;" >
-                   <button type="button" class="btn btn-primary btn-primary-lmts" data-toggle="modal" data-target="#exampleModal">
-                     Nova Errata
-                   </button>
-                 </div>
+
              </div>
          </div>
         </div>
       </div>
-      <div class="conteudo-central d-flex justify-content-center" style="width: 80rem">  <!-- opções -->
+      <div class="conteudo-central d-flex justify-content-center" style="width: 75%; padding-top: 1%">  <!-- opções -->
         <div class="card cartao text-center " style="border-radius: 20px">    <!-- Isenção -->
 
-         <div class="card-body d-flex justify-content-center">
-           <h2 style="margin-top: -50px; font-weight: bold">Isenção</h2>
-         </div>
-         <div class="card-body d-flex justify-content-center">
-             <h5 style="margin-top: -50px;">
+          <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+            <h2 class="h2"style="font-weight: bold">Isenção</h2>
+
+          </div>
+          <div class="card-header d-flex justify-content-center">
+            <h5>
               Aberto de: <br>
                 <a style="font-weight: bold">
                   {{date_format(date_create($edital->inicioIsencao), 'd/m/y')}}
@@ -102,10 +105,10 @@
                 <a style="font-weight: bold">
                   {{date_format(date_create($edital->fimIsencao), 'd/m/y')}}
                 </a>
-             </h5>
-         </div>
+            </h5>
+          </div>
          @if(!is_null($isencao))
-          <div class="container justify-content-center" style="margin-top: -15px;overflow: auto" >
+          <div class="container justify-content-center card-lmts-options">
             <h5>
               Status da Isenção: <br>
               @if($isencao != 'processando')
@@ -115,8 +118,8 @@
                   <a style="font-weight: bold">Processando</a>
                 @else
                   <div class="hover-popup-lmts">
-                    <a style="font-weight: bold; color: red">Indeferido</a><br>
-                    <a style="font-weight: bold">Motivo:</a><br>
+                    <a style="font-weight: bold; color: red">Indeferido</a> <br>
+                    <a style="font-weight: bold">Motivo:</a> <br>
                     <a> {{$isencao->motivoRejeicao}} </a>
                     <!-- <a style="color:white">
                       <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
@@ -155,12 +158,13 @@
 
         <div class="card cartao text-center " style="border-radius: 20px"> <!-- Recurso Isenção -->
 
-          <div class="card-body d-flex justify-content-center">
-            <h2 style="margin-top: -50px; font-weight: bold">Recurso Isenção</h2>
+          <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+            <h2 class="h2"style="font-weight: bold">Recurso Isenção</h2>
+
           </div>
 
-          <div class="card-body d-flex justify-content-center">
-              <h5 style="margin-top: -50px;">
+          <div class="card-header d-flex justify-content-center">
+              <h5>
                Aberto de: <br>
                  <a style="font-weight: bold">
                    {{date_format(date_create($edital->inicioRecursoIsencao), 'd/m/y')}}
@@ -172,7 +176,7 @@
               </h5>
           </div>
           @if(!is_null($recursoIsencao))
-            <div class="container justify-content-center" style="margin-top: -15px;overflow: auto" >
+            <div class="container justify-content-center card-lmts-options">
               <h5>
                 Status do Recurso: <br>
                 @if($recursoIsencao != 'processando')
@@ -182,9 +186,9 @@
                     <a style="font-weight: bold">Processando</a>
                   @else
                   <div class="hover-popup-lmts">
-                    <a style="font-weight: bold; color: red">Indeferido</a>
-                    <a style="font-weight: bold">Motivo:</a>
-                    <a> {{$inscricao->motivoRejeicao}} </a>
+                    <a style="font-weight: bold; color: red">Indeferido</a> <br>
+                    <a style="font-weight: bold">Motivo:</a> <br>
+                    <a> {{$recursoIsencao->motivoRejeicao}} </a>
                     <!-- <a style="color:white">
                       <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}"/>
                       <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
@@ -222,23 +226,24 @@
         </div>
 
         <div class="card cartao text-center " style="border-radius: 20px;">   <!-- Inscrição -->
-             <div class="card-body d-flex justify-content-center">
-                 <h2 style="margin-top: -50px; font-weight: bold">Inscrição</h2>
-             </div>
-             <div class="card-body d-flex justify-content-center">
-                 <h5 style="margin-top: -50px;">
-                  Aberto de: <br>
-                    <a style="font-weight: bold">
-                      {{date_format(date_create($edital->inicioInscricoes), 'd/m/y')}}
-                    </a>
-                     até
-                    <a style="font-weight: bold">
-                      {{date_format(date_create($edital->fimInscricoes), 'd/m/y')}}
-                    </a>
-                 </h5>
-             </div>
+            <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+                <h2 class="h2"style="font-weight: bold">Inscrição</h2>
+
+            </div>
+            <div class="card-header d-flex justify-content-center">
+                <h5>
+                 Aberto de: <br>
+                   <a style="font-weight: bold">
+                     {{date_format(date_create($edital->inicioInscricoes), 'd/m/y')}}
+                   </a>
+                    até
+                   <a style="font-weight: bold">
+                     {{date_format(date_create($edital->fimInscricoes), 'd/m/y')}}
+                   </a>
+                </h5>
+            </div>
              @if(!is_null($inscricao))
-              <div class="container justify-content-center" style="margin-top: -15px;overflow: auto" >
+              <div class="container justify-content-center card-lmts-options">
                 <h5>
                   Status da Inscrição: <br>
                   @if($inscricao != 'processando')
@@ -249,8 +254,8 @@
                         <a style="font-weight: bold">Processando</a>
                       @else
                         <div>
-                          <a style="font-weight: bold; color: red">Indeferido</a>
-                          <a style="font-weight: bold">Motivo:</a>
+                          <a style="font-weight: bold; color: red">Indeferido</a> <br>
+                          <a style="font-weight: bold">Motivo:</a> <br>
                           <a> {{$inscricao->motivoRejeicao}} </a>
                           <!-- <a style="color:white">
                             <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
@@ -267,7 +272,7 @@
                     @else
                       <div class="hover-popup-lmts">
                         <a style="font-weight: bold; color: red">Indeferido</a> <br>
-                        <a style="font-weight: bold">Motivo:</a>
+                        <a style="font-weight: bold">Motivo:</a> <br>
                         <div style="display:flex; "> {{$inscricao->motivoRejeicao}} </div>
                         <!-- <a style="color:white">
                           <img src="{{asset('images/iconAjuda.png')}}" style="width: 20px"/>
@@ -303,16 +308,17 @@
              </div>
         </div>
 
-
         <div class="card cartao text-center " style="border-radius: 20px">   <!-- Recuso Inscrição -->
-             <div class="card-body d-flex justify-content-center">
-                 <h2 style="margin-top: -50px; font-weight: bold">Recurso Inscrição</h2>
+
+             <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+                 <h2 class="h2"style="font-weight: bold">Recurso Inscrição</h2>
+
              </div>
 
-             <div class="card-body d-flex justify-content-center">
-                 <h5 style="margin-top: -50px;">
+             <div class="card-header d-flex justify-content-center">
+                 <h5>
                   Aberto de: <br>
-                    <a style="font-weight: bold">
+                    <a style="font-weight: bold;">
                       {{date_format(date_create($edital->inicioRecurso), 'd/m/y')}}
                     </a>
                      até
@@ -322,7 +328,7 @@
                  </h5>
              </div>
              @if(!is_null($recursoInscricao))
-               <div class="container justify-content-center" style="margin-top: -15px;overflow: auto" >
+               <div class="container justify-content-center card-lmts-options">
                  <h5>
                    Status do Recurso: <br>
                    @if($recursoInscricao != 'processando')
@@ -332,8 +338,8 @@
                        <a style="font-weight: bold">Processando</a>
                      @else
                        <div class="hover-popup-lmts">
-                         <a style="font-weight: bold; color: red">Indeferido</a>
-                         <a style="font-weight: bold">Motivo:</a>
+                         <a style="font-weight: bold; color: red">Indeferido</a> <br>
+                         <a style="font-weight: bold">Motivo:</a> <br>
                          <a> {{$inscricao->motivoRejeicao}} </a>
                          <!-- <a style="color:white">
                            <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
@@ -369,6 +375,75 @@
                    @endif
                </form>
              </div>
+        </div>
+
+        <div class="card cartao text-center " style="border-radius: 20px"> <!-- Recurso Isenção -->
+
+          <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+            <h2 class="h2"style="font-weight: bold">Recurso Resultado</h2>
+
+          </div>
+
+          <div class="card-header d-flex justify-content-center">
+              <h5>
+               Aberto de: <br>
+                 <a style="font-weight: bold">
+                   {{date_format(date_create($edital->inicioRecursoResultado), 'd/m/y')}}
+                 </a>
+                  até
+                 <a style="font-weight: bold">
+                   {{date_format(date_create($edital->fimRecursoResultado), 'd/m/y')}}
+                 </a>
+              </h5>
+          </div>
+          @if(!is_null($recursoResultado))
+            <div class="container justify-content-center card-lmts-options">
+              <h5>
+                Status do Recurso: <br>
+                @if($recursoResultado != 'processando')
+                  @if($recursoResultado->homologado == 'aprovado')
+                    <a style="font-weight: bold;color: green">Aprovado</a>
+                  @elseif($recursoResultado->homologado == 'nao')
+                    <a style="font-weight: bold">Processando</a>
+                  @else
+                  <div class="hover-popup-lmts">
+                    <a style="font-weight: bold; color: red">Indeferido</a> <br>
+                    <a style="font-weight: bold">Motivo:</a> <br>
+                    <a> {{$recursoResultado->motivoRejeicao}} </a>
+                    <!-- <a style="color:white">
+                      <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}"/>
+                      <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
+                          <b style="font-weight: bold">Motivo</b>
+                          <br>
+                            {{$recursoIsencao->motivoRejeicao}}
+                      </span>
+                    </a> -->
+                  </div>
+                  @endif
+                @else
+                  <a style="font-weight: bold">Processando</a>
+                @endif
+              </h5>
+            </div>
+          @endif
+
+          <div class="container justify-content-center" style="padding: 10px" >
+            <form method="GET" action="{{route('editalEscolhido')}}"> <!-- Recurso -->
+
+                <input type="hidden" name="editalId" value="{{$edital->id}}">
+                <input type="hidden" name="tipo" value="requerimentoDeRecurso">
+                <input type="hidden" name="tipoRecurso" value="resultado" >
+                @if(is_null($recursoIsencao) && !is_null($isencao))
+                  @if($edital->inicioRecursoResultado <= $mytime)
+                    @if($edital->fimRecursoResultado >= $mytime)
+                      <button type="submit" class="btn btn-primary btn-primary-lmts" >
+                          {{ __('Preencher formulário') }}
+                      </button>
+                    @endif
+                  @endif
+                @endif
+            </form>
+          </div>
         </div>
 
     </div>

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('titulo','Entrar')
-<?php //dd(session()->all()); ?>
+
 @section('content')
-<div class="info">
+<div class="info" >
     <div class="info-texto" >
         <div style="height: 100%">
           <iframe src="{{route('iframeEditais')}}" width="100%" height="100%"></iframe>
@@ -76,7 +76,7 @@
                                 </label>
                             </div>
                             @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="#" style="color: #1B2E4F;">
+                            <a class="btn btn-link" href="#" style="color: #1B2E4F; opacity: 0">
                               {{ __('Esqueceu sua senha?   ') }}
                             </a>
                             @endif

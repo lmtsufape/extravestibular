@@ -254,3 +254,10 @@ body{
 .disabled-lmts{
   background-color: #67748B;
 }
+
+/* detalhes edital */
+
+.card-lmts-options{
+  margin-top: 8%;
+  overflow: auto;
+}
