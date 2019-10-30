@@ -143,7 +143,7 @@
          </div>
         </div>
       </div>
-      <div class="conteudo-central d-flex justify-content-center" style="width: 100rem; padding-top: 1%">  <!-- opções -->
+      <div class="conteudo-central d-flex justify-content-center" style="width: 100rem; padding-top: 1%;">  <!-- opções -->
         <div class="card cartao text-center " style="border-radius: 20px; height: 21rem;">    <!-- Isenção -->
 
           <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
@@ -198,11 +198,11 @@
 
               @if($edital->inicioIsencao<= $mytime)
                 @if($edital->fimIsencao >= $mytime)
-                  <button type="submit" class="btn btn-primary btn-primary-lmts" >
+                  <button type="submit" class="btn btn-primary btn-primary-lmts"  >
                     {{ __('Homologar Isenção') }}
                   </button>
                 @else
-                  <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
+                  <button type="submit" disabled class="btn btn-primary btn-primary-lmts">
                     {{ __('Homologar Isenção') }}
                   </button>
                 @endif
