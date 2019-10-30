@@ -50,7 +50,9 @@
             @if($inscricoesManha->count() > 0)
               <input disabled type="hidden" id="auxManha" name="auxManha" value="1">
               <div class="card" style=" margin-top: 1%;"> <!-- card manha -->
-                  <div class="card-header">{{ __('Manhã') }}</div>
+                  <div class="titulo-tabela-lmts" style="width: 94%">
+                    <h2>Manhã</h2>
+                  </div>
                   <div class="card-body">
                     @php $i = 0 @endphp
                     @foreach($inscricoesManha as $key)
@@ -124,7 +126,9 @@
             @if($inscricoesTarde->count() > 0)
               <input disabled type="hidden" id="auxTarde" name="auxTarde" value="1">
               <div class="card" style=" margin-top: 1%;"> <!-- card tarde -->
-                  <div class="card-header">{{ __('Tarde') }}</div>
+                  <div class="titulo-tabela-lmts" style="width: 94%">
+                    <h2>Tarde</h2>
+                  </div>
                   <div class="card-body">
                     @php $i = 0 @endphp
                     @foreach($inscricoesTarde as $key)
@@ -198,7 +202,9 @@
             @if($inscricoesNoite->count() > 0)
               <input disabled type="hidden" id="auxNoite" name="aauxNoite" value="1">
               <div class="card" style=" margin-top: 1%;"> <!-- card noite -->
-                  <div class="card-header">{{ __('Noite') }}</div>
+                  <div class="titulo-tabela-lmts" style="width: 94%">
+                    <h2>Noite</h2>
+                  </div>
                   <div class="card-body">
                     @php $i = 0 @endphp
                     @foreach($inscricoesNoite as $key)
@@ -272,7 +278,10 @@
             @if($inscricoesIntegral->count() > 0)
               <input disabled type="hidden" id="auxIntegral" name="auxIntegral" value="1">
               <div class="card" style=" margin-top: 1%;"> <!-- card integral -->
-                  <div class="card-header">{{ __('Integral') }}</div>
+                  <div class="titulo-tabela-lmts" style="width: 94%">
+                    <h2>Integral</h2>
+                  </div>
+
                   <div class="card-body">
                     @php $i = 0 @endphp
                     @foreach($inscricoesIntegral as $key)
@@ -346,7 +355,10 @@
             @if($inscricoesEspecial->count() > 0)
               <input type="hidden" id="auxEspecial" name="auxEspecial" value="1">
               <div class="card" style=" margin-top: 1%;"> <!-- card especial -->
-                  <div class="card-header">{{ __('Especial') }}</div>
+                  <div class="titulo-tabela-lmts" style="width: 94%">
+                    <h2>Especial</h2>
+                  </div>
+
                   <div class="card-body">
                     @php $i = 0 @endphp
                     @foreach($inscricoesEspecial as $key)

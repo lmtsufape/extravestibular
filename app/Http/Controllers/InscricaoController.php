@@ -398,7 +398,6 @@ class InscricaoController extends Controller
 		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'manhã')
 																						 ->where('tipo', 'reintegracao')
@@ -440,6 +439,7 @@ class InscricaoController extends Controller
 																							  ->where('tipo', 'reintegracao')
 																							  ->orderBy('nota', 'desc')
 																							  ->get();
+		dd($inscricoesManhaOrderByDesc);
 
 		$aux = 1;
 		$ultimaNota = 0;

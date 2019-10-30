@@ -42,7 +42,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Pedidos de isenções abertas') }}</div>
+                <div class="titulo-tabela-lmts" style="width: 94%">
+                  <h2>Pedidos de isenções abertas</h2>
+                </div>
                 <div class="card-body">
                   <table class="table table-ordered table-hover">
                     <tr>

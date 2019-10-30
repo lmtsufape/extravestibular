@@ -41,7 +41,7 @@ class CreateInscricaosTable extends Migration
             $table->string('homologadoDrca')->nullable();
             $table->string('coeficienteDeRendimento')->nullable();
             $table->string('conclusaoDoCurso')->nullable();
-            $table->string('nota')->nullable();
+            $table->float('nota')->nullable();
             $table->string('situacao')->nullable();
 
         });
