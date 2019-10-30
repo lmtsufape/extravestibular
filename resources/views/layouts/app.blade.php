@@ -440,7 +440,7 @@
         <div id="content-wrap">
           @yield('content')
         </div>
-        <div id="footer-brasil"></div>
+        <div id="footer-brasil" style="margin-top:5%"></div>
       </div>
 
 

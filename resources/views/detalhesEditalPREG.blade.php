@@ -52,18 +52,27 @@
              <label for="nome" class="field a-field a-field_a2 page__field">
                <input id="nome" type="text" name="nome" class="field__input a-field__input" placeholder="Nome" style="width: 200%">
                <span class="a-field__label-wrap">
-                 <span class="a-field__label">Nome</span>
+                 <span class="a-field__label">Nome*</span>
                </span>
              </label>
            </div>
 
-           <div class="form-group">
-              <label for="exampleFormControlTextarea1">Descrição:</label>
-              <textarea form="formErrata" name="descricao" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+           <div  class="form-group row justify-content-left" >  <!-- PDF -->
+             <label for="arquivo" class="col-md-4 col-form-label text-md-right">{{ __('Arquivo*') }}</label>
+             <div class="col-md-6" style="margin-top: 20px;">
+               <div class="custom-file">
+                 <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="arquivo">
+               </div>
+               @error('arquivo')
+               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                 <strong>{{ $message }}</strong>
+               </span>
+               @enderror
+             </div>
            </div>
 
-           <div  class="form-group" >  <!-- PDF -->
-             <label for="pdfEdital">{{ __('Marque se existir mudança nas datas:') }}</label>
+           <div  class="form-group" >
+             <label for="editarEdital">{{ __('Marque se existir mudança nas datas:') }}</label>
              <input name="editarEdital" type="checkbox" value="sim">
            </div>
 
@@ -78,7 +87,7 @@
       </div>
     </div>
   </div>
-</form>
+  </form>
 </div>
 
 <div class="tela-servidor ">
@@ -115,7 +124,9 @@
                          <tr>
                           <td>
                             <a class="row" style="margin-left: 1%;font-weight: bold; font-size: 15px">{{$errata->nome}}</a>
-                            <a class="row" style="margin-left: 1%; font-size: 15px">{{$errata->descricao}}</a>
+                          </td>
+                          <td> <!-- Download -->
+                            <a href="{{ route('download', ['file' => $errata->arquivo])}}" target="_new">Baixar Errata</a>
                           </td>
                          </tr>
                        @endforeach

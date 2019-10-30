@@ -5,6 +5,7 @@ namespace extravestibular\Http\Controllers;
 use extravestibular\Errata;
 use Illuminate\Http\Request;
 use extravestibular\Edital;
+use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
 class ErrataController extends Controller
@@ -18,7 +19,7 @@ class ErrataController extends Controller
 
     public function cadastroErrata(Request $request){
       $file = $request->arquivo;
-      $path = 'erratas/' . $request->editalId;
+      $path = 'erratas/' . $request->editalId . '/';
       $edital = Edital::find($request->editalId);
       $erratas = $edital->errata;
       $numErratas = count($erratas);
