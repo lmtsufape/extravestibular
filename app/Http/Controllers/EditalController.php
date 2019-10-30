@@ -165,6 +165,7 @@ class EditalController extends Controller{
             $tarde = 'tarde' . $i;
             $noite = 'noite' . $i;
             $integral = 'integral' . $i;
+            $integral = 'especial' . $i;
             $vagas = $vagas . $request->$aux . ":";
             $vagas = $vagas . $request->$manha . "?";
             $vagas = $vagas . $request->$tarde . "?";

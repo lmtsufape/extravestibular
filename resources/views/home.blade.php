@@ -18,21 +18,18 @@
 <style type="text/css">
 </style>
 
-<div class="container" style="width: 100rem; margin-left: -50px;">
+<div class="container" style="width: 100%; background-color: ">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card" style="width: 80rem;margin-left: 10rem;">
-
-
-
+        <div class="col-md-0">
+            <div class="card" style="width: 100vh;margin-left: 0%;">
                 @if(session('tipo') == 'PREG')
-                  <div class="titulo-tabela-lmts">
+                  <div class="titulo-tabela-lmts" style="width: 95vh">
                     <h2>Editais Não Publicados</h2>
                   </div>
                   <div class="card-body">
                     <table class="table table-ordered table-hover">
                       <tr style="background-color: #F7F7F7">
-                        <th style="width: 50rem"> Nome</th><?php $editaisAbertosFlag = false;?>
+                        <th style="width: 50%"> Nome</th><?php $editaisAbertosFlag = false;?>
                         <th> Excluir </th>
                         <th> Publicar </th>
                         <th> Editar </th>
@@ -40,7 +37,7 @@
                       </tr>
                       @foreach($editaisNaoPublicados as $edital)
                         <tr>
-                          <td style="width: 60rem">
+                          <td style="width: 50%">
                             <?php
                               $nomeEdital = explode(".pdf", $edital->nome);
                               echo ($nomeEdital[0]);
@@ -89,7 +86,7 @@
                     </table>
                   </div>
                 @endif
-                <div class="titulo-tabela-lmts">
+                <div class="titulo-tabela-lmts" style="width: 95vh">
                   <h2>Editais Abertos</h2>
                 </div>
                 <div class="card-body">

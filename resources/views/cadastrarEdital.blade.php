@@ -298,6 +298,7 @@
                         <th style="width: 10rem;"> Tarde </th>
                         <th style="width: 10rem;"> Noite </th>
                         <th style="width: 10rem;"> Integral </th>
+                        <th style="width: 10rem;"> Especial </th>
                       </tr>
                       <?php //cursos
                       // dd($cursos);
@@ -339,6 +340,11 @@
                             <input disabled value="#" id="integral{{$curso['id']}}" type="text" name="integral{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;">
                           </label>
                         </td>
+                        <td>
+                          <label for="especial{{$i}}" class="field a-field a-field_a2 page__field" id="labelEspecial{{$curso['id']}}" style="display: none; margin-top: -10px" >
+                            <input disabled value="#" id="especial{{$curso['id']}}" type="text" name="especial{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;">
+                          </label>
+                        </td>
                       </tr>
                       <?php
                       $i++;
@@ -375,6 +381,8 @@
         var labelNoite = str.concat(x);
         var str = "labelIntegral";
         var labelIntegral = str.concat(x);
+        var str = "labelEspecial";
+        var labelEspecial = str.concat(x);
         str = "manha";
         var manha = str.concat(x);
         str = "tarde";
@@ -383,26 +391,32 @@
         var noite = str.concat(x);
         str = "integral";
         var integral = str.concat(x);
+        str = "especial";
+        var especial = str.concat(x);
       	if (document.getElementById("checkbox" + x).checked == true) {
           document.getElementById(manha).style.display = "";
           document.getElementById(tarde).style.display = "";
           document.getElementById(noite).style.display = "";
           document.getElementById(integral).style.display = "";
+          document.getElementById(especial).style.display = "";
 
           document.getElementById(labelManha).style.display = "";
           document.getElementById(labelTarde).style.display = "";
           document.getElementById(labelNoite).style.display = "";
           document.getElementById(labelIntegral).style.display = "";
+          document.getElementById(labelEspecial).style.display = "";
 
           document.getElementById(manha).value = "";
           document.getElementById(tarde).value = "";
           document.getElementById(noite).value = "";
           document.getElementById(integral).value = "";
+          document.getElementById(especial).value = "";
 
           document.getElementById(manha).disabled = "";
           document.getElementById(tarde).disabled = "";
           document.getElementById(noite).disabled = "";
           document.getElementById(integral).disabled = "";
+          document.getElementById(especial).disabled = "";
 
       	}
         else{
@@ -410,21 +424,25 @@
           document.getElementById(tarde).style.display = "none";
           document.getElementById(noite).style.display = "none";
           document.getElementById(integral).style.display = "none";
+          document.getElementById(especial).style.display = "none";
 
           document.getElementById(labelManha).style.display = "none";
           document.getElementById(labelTarde).style.display = "none";
           document.getElementById(labelNoite).style.display = "none";
           document.getElementById(labelIntegral).style.display = "none";
+          document.getElementById(labelEspecial).style.display = "none";
 
           document.getElementById(manha).value = "#";
           document.getElementById(tarde).value = "#";
           document.getElementById(noite).value = "#";
           document.getElementById(integral).value = "#";
+          document.getElementById(especial).value = "#";
 
           document.getElementById(manha).disabled = "true";
           document.getElementById(tarde).disabled = "true";
           document.getElementById(noite).disabled = "true";
           document.getElementById(integral).disabled = "true";
+          document.getElementById(especial).disabled = "true";
         }
 
       }

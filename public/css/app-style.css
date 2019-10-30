@@ -64,7 +64,7 @@
    min-width: 100%;
    position: absolute;
    bottom: 0;
-   width: 100%;
+   width: 70%;
 
 
 }
@@ -73,7 +73,7 @@
   min-height: 100vh;
 }
 #content-wrap {
-  padding-bottom: 0rem;    /* Footer height */
+  padding-bottom: 0%;    /* Footer height */
 }
 @media (max-width: 1024px) {
   #barra-logos{display: none;}

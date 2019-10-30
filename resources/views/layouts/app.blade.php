@@ -47,23 +47,23 @@
       <!-- Barra de Logos -->
       <div id="barra-logos" lass-"container" style="background:#FFFFFF; margin-top: 1px; height: 150px; padding: 10px 0 10px 0;">
         <ul id="logos" style="list-style:none;">
-            <li style="margin-right:140px; margin-left:110px; border-right:1px ;height: 120px">
+            <li style="margin-right:140px; margin-left:2%; border-right:1px ;height: 120px">
               @if(Auth::check())
-                <a href="{{ route("home") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a>
+                <a href="{{ route("home") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="100%" align = "left" ></a>
               @else
-                <a href="{{ route("homeApi") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a>
+                <a href="{{ route("homeApi") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="100%" align = "left" ></a>
               @endif
-                <a target="_blank" href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts.jpg')}}" style = "margin-left: 8px; margin-top:30px " height="70"  align = "right" ></a>
+                <a target="_blank" href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts.jpg')}}" style = "margin-left: 8px; margin-top:30px " height="70%"  align = "right" ></a>
 
-                <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 30px" height="70" align = "right" >
-                <a target="_blank" href="http://www.preg.ufrpe.br/"><img src="{{asset('images/logoPreg.png')}}" style = "margin-left: 10px; margin-top: 30px" height="70" width="150" align = "right" ></a>
+                <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 30px" height="70%" align = "right" >
+                <a target="_blank" href="http://www.preg.ufrpe.br/"><img src="{{asset('images/logoPreg.png')}}" style = "margin-left: 10px; margin-top: 30px" height="70%" width="10%" align = "right" ></a>
 
 
-                <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 30px" height="70" align = "right" >
-                <a target="_blank" href="http://ww3.uag.ufrpe.br/"><img src="{{asset('images/uag.png')}}" style = "margin-left: 10px; margin-top: 30px" height="70" width="50" align = "right" ></a>
+                <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 30px" height="70%" align = "right" >
+                <a target="_blank" href="http://ww3.uag.ufrpe.br/"><img src="{{asset('images/uag.png')}}" style = "margin-left: 10px; margin-top: 30px" height="60%" width="5%" align = "right" ></a>
 
-                <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 30px" height="70" align = "right" >
-                <a target="_blank" href="http://www.ufrpe.br/"><img src="{{asset('images/ufrpe.png')}}" style = "margin-left: 15px; margin-right: -10px; margin-top: 30px " height="70" width="50" align = "right"></a>
+                <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 30px" height="70%" align = "right" >
+                <a target="_blank" href="http://www.ufrpe.br/"><img src="{{asset('images/ufrpe.png')}}" style = "margin-left: 15px; margin-right: -10px; margin-top: 30px " height="70%" width="5%" align = "right"></a>
             </li>
         </ul>
       </div>

@@ -31,10 +31,22 @@ class RecursoController extends Controller
           return redirect()->route('home')->with('jsAlert', 'Este edital não está no periodo correto.');
         }
       }
-      else{
+      elseif($request->tipoRecurso == 'classificacao'){
         $existeRecursoTipoClassificacao = Recurso::where('editalId', $request->editalId)
                                                    ->where('usuarioId', Auth::user()->id)
                                                    ->where('tipo', 'classificacao')
+                                                   ->first();
+        if(!is_null($existeRecursoTipoClassificacao)){
+          return redirect()->route('home')->with('jsAlert', 'Você já possui um recurso cadastrada no edital.');
+        }
+        if(!(($edital->inicioRecurso <= $mytime) && ($edital->fimRecurso >= $mytime))){
+          return redirect()->route('home')->with('jsAlert', 'Este edital não está no periodo correto.');
+        }
+      }
+      elseif($request->tipoRecurso == 'resultado'){
+        $existeRecursoTipoClassificacao = Recurso::where('editalId', $request->editalId)
+                                                   ->where('usuarioId', Auth::user()->id)
+                                                   ->where('tipo', 'resultado')
                                                    ->first();
         if(!is_null($existeRecursoTipoClassificacao)){
           return redirect()->route('home')->with('jsAlert', 'Você já possui um recurso cadastrada no edital.');

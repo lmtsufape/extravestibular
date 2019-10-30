@@ -18,6 +18,10 @@ class ErrataController extends Controller
     }
 
     public function cadastroErrata(Request $request){
+      $validatedData = $request->validate([ 'nome'    => ['required', 'string', 'max:255'],
+                                            'arquivo' => ['required', 'mimes:pdf', 'max:20000'],
+
+                                          ]);
       $file = $request->arquivo;
       $path = 'erratas/' . $request->editalId . '/';
       $edital = Edital::find($request->editalId);
