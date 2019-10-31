@@ -278,7 +278,7 @@
               </div>
             </div>
         </div>
-        <div class="form-group row mb-0" style="margin-top: 10px; margin-left: 10rem"> <!-- Button -->
+        <div class="form-group row mb-0" style="margin-top: 10px; margin-left: 10rem; padding-bottom: 5%"> <!-- Button -->
           <div class="col-md-8 offset-md-4">
             <button type="submit" class="btn btn-primary btn-primary-lmts" >
               {{ __('Finalizar') }}

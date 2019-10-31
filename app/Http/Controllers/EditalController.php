@@ -406,6 +406,10 @@ class EditalController extends Controller{
                                        ->where('editalId', $request->editalId)
                                        ->where('tipo', 'classificacao')
                                        ->first();
+          $recursoResultado = Recurso::where('usuarioId', Auth::user()->id)
+                                      ->where('editalId', $request->editalId)
+                                      ->where('tipo', 'resultado')
+                                      ->first();
           $inscricoesClassificadas = Inscricao::where('editalId', $request->editalId)
                                                 ->where('nota', '!=', null)
                                                 ->get();
@@ -431,6 +435,10 @@ class EditalController extends Controller{
                                        ->where('editalId', $request->editalId)
                                        ->where('tipo', 'classificacao')
                                        ->first();
+          $recursoResultado = Recurso::where('usuarioId', session('id'))
+                                      ->where('editalId', $request->editalId)
+                                      ->where('tipo', 'resultado')
+                                      ->first();
           $inscricoesClassificadas = Inscricao::where('editalId', $request->editalId)
                                                 ->where('nota', '!=', null)
                                                 ->get();
@@ -461,6 +469,7 @@ class EditalController extends Controller{
                                                     'isencao'           => $isencao,
                                                     'recursoIsencao'    => $recursoIsencao,
                                                     'recursoInscricao'  => $recursoInscricao,
+                                                    'recursoResultado'  => $recursoResultado,
                                                     'edital'            => $edital,
                                                     'mytime'            => $mytime,
                                                     'erratas'           => $erratas,
