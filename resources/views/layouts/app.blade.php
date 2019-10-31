@@ -49,9 +49,9 @@
         <ul id="logos" style="list-style:none;">
             <li style="margin-right: 0%; margin-left: -2%; border-right:1px ;height: 120px">
               @if(Auth::check())
-                <a href="{{ route("home") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="100%" align = "left" ></a>
+                <a href="{{ route("home") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 15px ; margin-top:1.2% " height="70%" align = "left" ></a>
               @else
-                <a href="{{ route("homeApi") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="100%" align = "left" ></a>
+                <a href="{{ route("homeApi") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 15px; margin-top:1.2% " height="70%" align = "left" ></a>
               @endif
                 <a target="_blank" href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts.jpg')}}" style = "margin-left: 8px; margin-top:30px " height="70%"  align = "right" ></a>
 
@@ -72,7 +72,7 @@
 
       <nav class="navbar navbar-expand-lg" style="background-color: #1B2E4F; border-color: #d3e0e9; box-shadow: 0 0 6px rgba(0,0,0,0.5);" role="navigation">
         <a class="navbar-brand" href="{{ route('home') }}" style="color: white; font-weight: bold;">
-          <img src="{{asset('images/logoBranco.png')}}" height="30" class="d-inline-block align-top" alt="">
+          <img src="{{asset('images/home.png')}}" height="30" class="d-inline-block align-top" alt="">
 
         </a>
           <div class="collapse navbar-collapse" >
@@ -277,7 +277,7 @@
 
       <nav class="navbar navbar-expand-lg" style="background-color: #1B2E4F; border-color: #d3e0e9; box-shadow: 0 0 6px rgba(0,0,0,0.5);" role="navigation">
         <a class="navbar-brand" href="{{ route('homeApi') }}" style="color: white; font-weight: bold;">
-          <img src="{{asset('images/logoBranco.png')}}" height="30" class="d-inline-block align-top" alt="">
+          <img src="{{asset('images/home.png')}}" height="30" class="d-inline-block align-top" alt="">
 
         </a>
           <div class="collapse navbar-collapse" >
