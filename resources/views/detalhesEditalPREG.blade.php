@@ -27,6 +27,14 @@
 @section('content')
 
 <style type="text/css">
+.btn-primary {
+  margin-top: 8%;
+}
+
+.h2 {
+  font-size: 110%;
+}
+
 
 </style>
 
@@ -90,14 +98,14 @@
   </form>
 </div>
 
-<div class="tela-servidor ">
-  <div class="centro-cartao" >
+
+  <div class="centro-cartao"  style=" height: 110vh; padding-bottom: 5%" >
     <div class="card-deck d-flex justify-content-center">
-      <div class="conteudo-central d-flex justify-content-center"  style="width: 100rem; ">  <!-- info edital -->
+      <div class="conteudo-central d-flex justify-content-center"  style="width: 100rem; width: 80%; ">  <!-- info edital -->
         <div class="card cartao text-top " style="border-radius: 20px; height: 100%" >    <!-- Info -->
 
          <div class="card-header d-flex justify-content-center" style="margin-top: 0px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-           <h2 style="font-weight: bold; color: white">
+           <h2 class="h2" style="font-weight: bold; color: white">
             <?php
              $nomeEdital = explode(".pdf", $edital->nome);
              echo ($nomeEdital[0]);
@@ -143,11 +151,13 @@
          </div>
         </div>
       </div>
+
       <div class="conteudo-central d-flex justify-content-center" style="width: 100rem; padding-top: 1%;">  <!-- opções -->
         <div class="card cartao text-center " style="border-radius: 20px; height: 21rem;">    <!-- Isenção -->
 
+
           <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-            <h2 style="font-weight: bold">Isenção</h2>
+            <h2 class="h2" style="font-weight: bold">Isenção</h2>
 
           </div>
           <div class="card-header d-flex justify-content-center">
@@ -162,7 +172,7 @@
                 </a>
             </h5>
           </div>
-          <div class="container justify-content-center" style="height: 8rem; background-color: #F7F7F7; padding: 10px">
+          <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
             <h4>
               <?php
                 $porcentagem = $isencoesHomologadas * 100;
@@ -216,10 +226,10 @@
 
         </div>
 
-        <div class="card cartao text-center " style="border-radius: 20px;height: 21rem;"> <!-- Recurso Isenção -->
+        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem; width: 5000px"> <!-- Recurso Isenção -->
 
           <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-            <h2 style="font-weight: bold">Recurso Isenção</h2>
+            <h2 class="h2" style="font-weight: bold">Recurso Isenção</h2>
 
           </div>
 
@@ -235,7 +245,7 @@
                  </a>
               </h5>
           </div>
-          <div class="container justify-content-center" style="height: 8rem; background-color: #F7F7F7; padding: 10px">
+          <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
             <h4>
               <?php
                 $porcentagem = $recursosTaxaHomologados * 100;
@@ -290,10 +300,10 @@
           </div>
         </div>
 
-        <div class="card cartao text-center " style="border-radius: 20px; height: 21rem">   <!-- Inscrição -->
+        <div class="card cartao text-center " style="border-radius: 20px; height: 22.5rem; width: 5000px">   <!-- Inscrição -->
 
              <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-                 <h2 style="font-weight: bold">Inscrição</h2>
+                 <h2 class="h2" style="font-weight: bold">Inscrição</h2>
 
              </div>
              <div class="card-header d-flex justify-content-center">
@@ -308,7 +318,7 @@
                     </a>
                  </h5>
              </div>
-             <div class="container justify-content-center" style="height: 8rem; background-color: #F7F7F7; padding: 10px">
+             <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
                <h4>
                  <?php
                    $porcentagem = $inscricoesHomologadas * 100;
@@ -360,9 +370,9 @@
              </div>
         </div>
 
-        <div class="card cartao text-center " style="border-radius: 20px;height: 21rem">   <!-- Recuso Inscrição -->
+        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem; width: 5000px">   <!-- Recuso Inscrição -->
              <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-                 <h2 style="font-weight: bold">Recurso Inscrição</h2>
+                 <h2 class="h2" style="font-weight: bold">Recurso Inscrição</h2>
 
              </div>
 
@@ -378,7 +388,7 @@
                     </a>
                  </h5>
              </div>
-             <div class="container justify-content-center" style="height: 8rem; background-color: #F7F7F7; padding: 10px">
+             <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
                <h4>
                  <?php
                    $porcentagem = $recursosClassificacaoHomologados * 100;
@@ -431,21 +441,95 @@
              </div>
            </div>
 
-        <div class="card cartao text-center " style="border-radius: 20px;height: 21rem">    <!-- Classificação -->
+        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem; width: 5000px">   <!-- Recuso Inscrição -->
+            <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+                <h2 class="h2" style="font-weight: bold">Recurso Resultado</h2>
+
+            </div>
+
+            <div class="card-header d-flex justify-content-center">
+                <h5>
+                 Aberto de: <br>
+                   <a style="font-weight: bold;">
+                     {{date_format(date_create($edital->inicioRecursoResultado), 'd/m/y')}}
+                   </a>
+                    até
+                   <a style="font-weight: bold">
+                     {{date_format(date_create($edital->fimRecursoResultado), 'd/m/y')}}
+                   </a>
+                </h5>
+            </div>
+            <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
+              <h4>
+                <?php
+                  $porcentagem = $recursosResultadoHomologados * 100;
+                  if(($recursosResultadoHomologados + $recursosResultadoNaoHomologados)>0){
+                    $porcentagem = $porcentagem / ($recursosResultadoHomologados + $recursosResultadoNaoHomologados);
+                  }
+                  else{
+                    $porcentagem = 0;
+                  }
+                 ?>
+                 @if(($recursosResultadoHomologados + $recursosResultadoNaoHomologados) > 0 )
+                  <a style="font-weight: bold">Etapa {{number_format($porcentagem, 0)}}% finalizada.</a>
+                 @endif
+              </h4>
+              <h5>
+
+                  Total de Inscrições: <a style="font-weight: bold">{{($recursosResultadoHomologados + $recursosResultadoNaoHomologados)}}.</a>
+
+              </h5>
+                <h5>
+                  Inscrições homologadas: <a style="font-weight: bold">{{$recursosResultadoHomologados}}.</a>
+                </h5>
+                <h5>
+                  Inscrições em espera: <a style="font-weight: bold">{{$recursosResultadoNaoHomologados}}.</a>
+                </h5>
+            </div>
+            <div class="container justify-content-center" style="padding: 13px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
+              <form method="GET" action="{{route('editalEscolhido')}}">
+
+                  <input type="hidden" name="editalId" value="{{$edital->id}}">
+                  <input type="hidden" name="tipo" value="homologarRecursos">
+
+                  @if($edital->inicioRecursoResultado <= $mytime)
+                    @if($edital->fimRecursoResultado >= $mytime)
+                      <button type="submit" class="btn btn-primary btn-primary-lmts" >
+                          {{ __('Homologar Recursos Resultado') }}
+                      </button>
+                    @else
+                    <button type="submit" disabled class="btn btn-primary btn-primary-lmts">
+                        {{ __('Homologar Recursos Resultado') }}
+                    </button>
+                    @endif
+                  @else
+                  <button type="submit" disabled class="btn btn-primary btn-primary-lmts">
+                      {{ __('Homologar Recursos Resultado') }}
+                  </button>
+                  @endif
+
+              </form>
+            </div>
+          </div>
+
+        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem; width: 5000px">    <!-- Classificação -->
          <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-           <h2 style="font-weight: bold">Classificação</h2>
+           <h2 class="h2" style="font-weight: bold">Classificação</h2>
 
          </div>
          <div class="card-header d-flex justify-content-center">
              <h5>
-              Data de divulgação: <br>
+              Aberto de: <br>
                 <a style="font-weight: bold;">
+                  {{date_format(date_create($edital->fimInscricoes), 'd/m/y')}}
+                </a>
+                 até
+                <a style="font-weight: bold">
                   {{date_format(date_create($edital->resultado), 'd/m/y')}}
                 </a>
-
              </h5>
          </div>
-         <div class="container justify-content-center" style="height: 8rem; background-color: #F7F7F7; padding: 10px">
+         <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
            <h4>
              <?php
                $porcentagem = $inscricoesClassificadas * 100;
@@ -500,11 +584,12 @@
            </form>
          </div>
         </div>
+
       </div>
 
     </div>
   </div>
-</div>
+
 
 @if(session()->has('jsAlert'))
     <script>

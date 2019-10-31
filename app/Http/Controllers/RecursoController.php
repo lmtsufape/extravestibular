@@ -87,6 +87,11 @@ class RecursoController extends Controller
       $recurso->homologado = $request->radioRecurso;
       $recurso->motivoRejeicao = $request->motivoRejeicao;
       $recurso->save();
+      if ($recurso->tipo == 'resultado') {
+        $inscricao = Inscricao::where('usuarioId', $recurso->usuarioId)->where('editalId', $recurso->editalId)->first();
+        $inscricao->coeficienteDeRendimento = 'nao';
+        $inscricao->save();
+      }
       return redirect()->route('home')->with('jsAlert', 'Recurso homologada com sucesso.');
 
     }

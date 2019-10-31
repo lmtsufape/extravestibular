@@ -439,7 +439,6 @@ class InscricaoController extends Controller
 																							  ->where('tipo', 'reintegracao')
 																							  ->orderBy('nota', 'desc')
 																							  ->get();
-		dd($inscricoesManhaOrderByDesc);
 
 		$aux = 1;
 		$ultimaNota = 0;
