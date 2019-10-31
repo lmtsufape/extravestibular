@@ -53,7 +53,7 @@
 @endsection
 @section('content')
 
-<div class="container" style="width: 100rem;">
+<div class="container" style="width: 100rem; padding-bottom: 5%">
     <div class="row justify-content-center">
       <form method="POST" action={{ route('homologarRecurso') }} enctype="multipart/form-data" id="formHomologacao">
         @csrf

@@ -309,7 +309,8 @@ class InscricaoController extends Controller
 		$dados = DadosUsuario::find($usuario->dados);
 		$mytime = Carbon::now('America/Recife');
 		$mytime = $mytime->toDateString();
-		if(!strcmp($request->tipo, 'homologacao')){
+		// dd($request);
+		if($request->tipo == 'homologacao'){
 			return view('homologarInscricao', ['inscricao'  						 => $inscricao,
 																				 'tipo'										 => 'homologacao',
 																				 'curso'									 => $curso,
@@ -319,7 +320,7 @@ class InscricaoController extends Controller
 																			  ]);
 
 		}
-		if(!strcmp($request->tipo, 'drca')){
+		if($request->tipo == 'drca'){
 			return view('homologarInscricao', ['inscricao'  						 => $inscricao,
 																				 'tipo'										 => 'drca',
 																				 'curso'									 => $curso,
@@ -328,15 +329,32 @@ class InscricaoController extends Controller
 																				 'mytime'									 => $mytime,
 																			  ]);
 		}
-
-		if(!strcmp($request->tipo, 'classificacao')){
-			return view('cadastrarClassificacao', ['inscricao'  						 => $inscricao,
-																				 	   'tipo'										 => 'classificacao',
-																					   'curso'									 => $curso,
-																						 'dados'									 => $dados,
-																						 'editalId'								 => $inscricao->editalId,
-																						 'mytime'									 => $mytime,
-																			     	]);
+		if($request->tipo == 'classificacao'){
+			return view('homologarInscricaoCoordenador', [
+																										 'inscricao'  						 => $inscricao,
+																								 	   'tipo'										 => 'classificacao',
+																									   'curso'									 => $curso,
+																										 'dados'									 => $dados,
+																										 'editalId'								 => $inscricao->editalId,
+																										 'mytime'									 => $mytime,
+																							     ]);
+		}
+		if($request->tipo == 'seguirParaClassificacao'){
+			if($request->homologado == 'rejeitado'){
+				$inscricao = Inscricao::find($request->inscricaoId);
+				$inscricao->homologado = 'rejeitado';
+				$inscricao->motivoRejeicao = $request->motivoRejeicao;
+				$inscricao->save();
+				return redirect()->route('home')->with('jsAlert', 'Inscrição indeferida com sucesso.');
+			}
+			return view('cadastrarClassificacao', [
+																										 'inscricao'  						 => $inscricao,
+																								 	   'tipo'										 => 'classificacao',
+																									   'curso'									 => $curso,
+																										 'dados'									 => $dados,
+																										 'editalId'								 => $inscricao->editalId,
+																										 'mytime'									 => $mytime,
+																							     ]);
 		}
 
 	}

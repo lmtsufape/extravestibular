@@ -38,13 +38,13 @@
 
 </style>
 
-<div class="tela-servidor ">
-  <div class="centro-cartao" >
+<div class="centro-cartao"  style=" height: 110vh; padding-bottom: 5%" >
+
     <div class="card-deck d-flex justify-content-center">
-      <div class="conteudo-central d-flex justify-content-center"  style="width: 100rem; ">  <!-- info edital -->
+      <div class="conteudo-central d-flex justify-content-center"  style="width: 100rem; width: 80%;">  <!-- info edital -->
         <div class="card cartao text-top " style="border-radius: 20px; height: 100%" >    <!-- Info -->
          <div class="card-header d-flex justify-content-center" style="margin-top: 0px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-           <h2 style="font-weight: bold; color: white">
+           <h2 class="h2" style="font-weight: bold; color: white">
             <?php
              $nomeEdital = explode(".pdf", $edital->nome);
              echo ($nomeEdital[0]);
@@ -85,12 +85,13 @@
          </div>
         </div>
       </div>
-      <div class="conteudo-central d-flex justify-content-center" style="width: 100rem; padding-top: 1%">  <!-- opções -->
-        
-        <div class="card cartao text-center " style="border-radius: 20px; height: 21rem;">    <!-- Isenção -->
+
+      <div class="conteudo-central d-flex justify-content-center" style="width: 97%; padding-top: 1%;">  <!-- opções -->
+
+        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem;">    <!-- Isenção -->
 
           <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-            <h2 style="font-weight: bold">Isenção</h2>
+            <h2 class="h2" style="font-weight: bold">Isenção</h2>
 
           </div>
           <div class="card-header d-flex justify-content-center disabled-lmts">
@@ -107,10 +108,10 @@
           </div>
         </div>
 
-        <div class="card cartao text-center " style="border-radius: 20px;height: 21rem;"> <!-- Recurso Isenção -->
+        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem;"> <!-- Recurso Isenção -->
 
           <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-            <h2 style="font-weight: bold">Recurso Isenção</h2>
+            <h2 class="h2" style="font-weight: bold">Recurso Isenção</h2>
 
           </div>
 
@@ -129,10 +130,10 @@
 
         </div>
 
-        <div class="card cartao text-center " style="border-radius: 20px; height: 21rem">   <!-- Inscrição -->
+        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem;">   <!-- Inscrição -->
 
              <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-                 <h2 style="font-weight: bold">Inscrição</h2>
+                 <h2 class="h2" style="font-weight: bold">Inscrição</h2>
 
              </div>
              <div class="card-header d-flex justify-content-center disabled-lmts">
@@ -150,9 +151,9 @@
 
         </div>
 
-        <div class="card cartao text-center " style="border-radius: 20px;height: 21rem">   <!-- Recuso Inscrição -->
+        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem;">   <!-- Recuso Inscrição -->
              <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-                 <h2 style="font-weight: bold">Recurso Inscrição</h2>
+                 <h2 class="h2" style="font-weight: bold">Recurso Inscrição</h2>
 
              </div>
 
@@ -171,9 +172,9 @@
 
         </div>
 
-        <div class="card cartao text-center " style="border-radius: 20px;height: 21rem">    <!-- Classificação -->
+        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem;">    <!-- Classificação -->
           <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-            <h2 style="font-weight: bold">Classificação</h2>
+            <h2 class="h2" style="font-weight: bold">Classificação</h2>
           </div>
           <div class="card-header d-flex justify-content-center">
               <h5>
@@ -239,8 +240,8 @@
       </div>
     </div>
 
-  </div>
 </div>
+
 
 @if(session()->has('jsAlert'))
     <script>

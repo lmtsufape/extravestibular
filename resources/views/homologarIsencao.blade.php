@@ -54,7 +54,7 @@
 @endsection
 @section('content')
 
-<div class="container " style="width: 100rem;">
+<div class="container " style="width: 100rem; padding-bottom: 5%">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="width: 70rem; margin-left: -12rem">

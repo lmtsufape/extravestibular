@@ -67,7 +67,7 @@
 
 
                       <td> <!-- Isenção -->
-                        <form method="POST" action={{ route('isencaoEscolhida') }} enctype="multipart/form-data"> <!-- Isenção -->
+                        <form method="POST" action="{{ route('isencaoEscolhida') }}" enctype="multipart/form-data"> <!-- Isenção -->
                           @csrf
                           <div class="col-md-8 offset-md-4">
                             <input type="hidden" name="isencaoId" value="{{$isencao->id}}">

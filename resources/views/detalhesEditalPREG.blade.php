@@ -152,8 +152,8 @@
         </div>
       </div>
 
-      <div class="conteudo-central d-flex justify-content-center" style="width: 100rem; padding-top: 1%;">  <!-- opções -->
-        <div class="card cartao text-center " style="border-radius: 20px; height: 21rem;">    <!-- Isenção -->
+      <div class="conteudo-central d-flex justify-content-center" style="width: 97%; padding-top: 1%;">  <!-- opções -->
+        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem;">    <!-- Isenção -->
 
 
           <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
@@ -226,7 +226,7 @@
 
         </div>
 
-        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem; width: 5000px"> <!-- Recurso Isenção -->
+        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem;"> <!-- Recurso Isenção -->
 
           <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
             <h2 class="h2" style="font-weight: bold">Recurso Isenção</h2>
@@ -300,7 +300,7 @@
           </div>
         </div>
 
-        <div class="card cartao text-center " style="border-radius: 20px; height: 22.5rem; width: 5000px">   <!-- Inscrição -->
+        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem;">   <!-- Inscrição -->
 
              <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
                  <h2 class="h2" style="font-weight: bold">Inscrição</h2>
@@ -370,7 +370,7 @@
              </div>
         </div>
 
-        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem; width: 5000px">   <!-- Recuso Inscrição -->
+        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem;">   <!-- Recuso Inscrição -->
              <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
                  <h2 class="h2" style="font-weight: bold">Recurso Inscrição</h2>
 
@@ -441,7 +441,7 @@
              </div>
            </div>
 
-        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem; width: 5000px">   <!-- Recuso Inscrição -->
+        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem;">   <!-- Recuso Resultado -->
             <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
                 <h2 class="h2" style="font-weight: bold">Recurso Resultado</h2>
 
@@ -462,6 +462,7 @@
             <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
               <h4>
                 <?php
+                
                   $porcentagem = $recursosResultadoHomologados * 100;
                   if(($recursosResultadoHomologados + $recursosResultadoNaoHomologados)>0){
                     $porcentagem = $porcentagem / ($recursosResultadoHomologados + $recursosResultadoNaoHomologados);
@@ -512,7 +513,7 @@
             </div>
           </div>
 
-        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem; width: 5000px">    <!-- Classificação -->
+        <div class="card cartao text-center " style="border-radius: 20px;height: 22.5rem;">    <!-- Classificação -->
          <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
            <h2 class="h2" style="font-weight: bold">Classificação</h2>
 

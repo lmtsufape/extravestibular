@@ -338,7 +338,7 @@ class EditalController extends Controller{
           return view('listaInscricoes', ['inscricoes' => $inscricoesDisponiveis,
                                           'tipo'       => 'classificacao',
                                           'editalId'   => $request->editalId,
-                                          'mytime'            => $mytime,
+                                          'mytime'     => $mytime,
                                          ]);
         }
         if($request->tipo == 'requerimentoDeRecurso'){
@@ -463,6 +463,9 @@ class EditalController extends Controller{
             if(($edital->fimRecurso > $mytime) && (!is_null($recursoInscricao))){
               $recursoInscricao = 'processando';
             }
+            if(($edital->fimRecursoResultado > $mytime) && (!is_null($recursoResultado))){
+              $recursoResultado = 'processando';
+            }
             $erratas = $edital->errata;
             return view('detalhesEditalCandidato', ['editalId'          => $request->editalId,
                                                     'inscricao'         => $inscricao,
@@ -550,8 +553,8 @@ class EditalController extends Controller{
                                              'recursosTaxaNaoHomologados'           => sizeof($recursosTaxaNaoHomologados),
                                              'recursosClassificacaoHomologados'     => sizeof($recursosClassificacaoHomologados),
                                              'recursosClassificacaoNaoHomologados'  => sizeof($recursosClassificacaoNaoHomologados),
-                                             'recursosResultadoHomologados'     => sizeof($recursosResultadoHomologados),
-                                             'recursosResultadoNaoHomologados'  => sizeof($recursosResultadoNaoHomologados),
+                                             'recursosResultadoHomologados'         => sizeof($recursosResultadoHomologados),
+                                             'recursosResultadoNaoHomologados'      => sizeof($recursosResultadoNaoHomologados),
                                              'inscricoesClassificadas'              => sizeof($inscricoesClassificadas),
                                              'inscricoesNaoClassificadas'           => sizeof($inscricoesNaoClassificadas),
                                              'edital'                               => $edital,

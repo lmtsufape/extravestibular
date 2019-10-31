@@ -67,7 +67,7 @@
                       </td>
 
                       <td>
-                        <form method="get" action={{ route('inscricaoEscolhida') }} enctype="multipart/form-data"> <!-- Isenção -->
+                        <form method="get" action="{{ route('inscricaoEscolhida') }}" enctype="multipart/form-data"> <!-- Isenção -->
 
                           <div class="col-md-8 offset-md-4">
                               <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">

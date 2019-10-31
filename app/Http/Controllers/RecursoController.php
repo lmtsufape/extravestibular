@@ -4,6 +4,7 @@ namespace extravestibular\Http\Controllers;
 
 use extravestibular\Recurso;
 use extravestibular\DadosUsuario;
+use extravestibular\Inscricao;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use extravestibular\Edital;
@@ -51,7 +52,7 @@ class RecursoController extends Controller
         if(!is_null($existeRecursoTipoClassificacao)){
           return redirect()->route('home')->with('jsAlert', 'Você já possui um recurso cadastrada no edital.');
         }
-        if(!(($edital->inicioRecurso <= $mytime) && ($edital->fimRecurso >= $mytime))){
+        if(!(($edital->inicioRecursoResultado <= $mytime) && ($edital->fimRecursoResultado >= $mytime))){
           return redirect()->route('home')->with('jsAlert', 'Este edital não está no periodo correto.');
         }
       }
@@ -90,6 +91,7 @@ class RecursoController extends Controller
       if ($recurso->tipo == 'resultado') {
         $inscricao = Inscricao::where('usuarioId', $recurso->usuarioId)->where('editalId', $recurso->editalId)->first();
         $inscricao->coeficienteDeRendimento = 'nao';
+        $inscricao->nota = null;
         $inscricao->save();
       }
       return redirect()->route('home')->with('jsAlert', 'Recurso homologada com sucesso.');
