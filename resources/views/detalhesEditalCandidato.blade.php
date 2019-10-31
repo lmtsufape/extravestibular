@@ -377,7 +377,7 @@
              </div>
         </div>
 
-        <div class="card cartao text-center " style="border-radius: 20px"> <!-- Recurso Isenção -->
+        <div class="card cartao text-center " style="border-radius: 20px"> <!-- Recurso Resultado -->
 
           <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
             <h2 class="h2"style="font-weight: bold">Recurso Resultado</h2>
@@ -433,7 +433,7 @@
                 <input type="hidden" name="editalId" value="{{$edital->id}}">
                 <input type="hidden" name="tipo" value="requerimentoDeRecurso">
                 <input type="hidden" name="tipoRecurso" value="resultado" >
-                @if(is_null($recursoIsencao) && !is_null($isencao))
+                @if(is_null($recursoResultado))
                   @if($edital->inicioRecursoResultado <= $mytime)
                     @if($edital->fimRecursoResultado >= $mytime)
                       <button type="submit" class="btn btn-primary btn-primary-lmts" >

@@ -27,17 +27,24 @@
 @section('content')
 
 <style type="text/css">
+.btn-primary {
+  margin-top: 8%;
+}
+
+.h2 {
+  font-size: 110%;
+}
+
 
 </style>
 
 <div class="tela-servidor ">
   <div class="centro-cartao" >
     <div class="card-deck d-flex justify-content-center">
-      <div class="conteudo-central d-flex justify-content-center"  style="width: 80rem">  <!-- info edital -->
+      <div class="conteudo-central d-flex justify-content-center"  style="width: 100rem; ">  <!-- info edital -->
         <div class="card cartao text-top " style="border-radius: 20px; height: 100%" >    <!-- Info -->
-
-         <div class="card-header d-flex justify-content-center" style="background-color: white;margin-top: 10px">
-           <h2 style="font-weight: bold">
+         <div class="card-header d-flex justify-content-center" style="margin-top: 0px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+           <h2 style="font-weight: bold; color: white">
             <?php
              $nomeEdital = explode(".pdf", $edital->nome);
              echo ($nomeEdital[0]);
@@ -64,31 +71,30 @@
                          <tr>
                           <td>
                             <a class="row" style="margin-left: 1%;font-weight: bold; font-size: 15px">{{$errata->nome}}</a>
-                            <a class="row" style="margin-left: 1%; font-size: 15px">{{$errata->descricao}}</a>
+                          </td>
+                          <td> <!-- Download -->
+                            <a href="{{ route('download', ['file' => $errata->arquivo])}}" target="_new">Baixar Errata</a>
                           </td>
                          </tr>
                        @endforeach
                      </table>
                    </div>
                  @endif
-                 <!-- Button trigger modal -->
-                 <div  class="form-group row justify-content-center" style="padding-top: 1%;" >
-                   <button type="button" class="btn btn-primary btn-primary-lmts" data-toggle="modal" data-target="#exampleModal">
-                     Nova Errata
-                   </button>
-                 </div>
+
              </div>
          </div>
         </div>
       </div>
-      <div class="conteudo-central d-flex justify-content-center" style="width: 80rem">  <!-- opções -->
-        <div class="card cartao text-center " style="border-radius: 20px; opacity: 0">    <!-- Isenção -->
+      <div class="conteudo-central d-flex justify-content-center" style="width: 100rem; padding-top: 1%">  <!-- opções -->
+        
+        <div class="card cartao text-center " style="border-radius: 20px; height: 21rem;">    <!-- Isenção -->
 
-         <div class="card-body d-flex justify-content-center">
-           <h2 style="margin-top: -50px; font-weight: bold">Isenção</h2>
-         </div>
-         <div class="card-body d-flex justify-content-center">
-             <h5 style="margin-top: -50px;">
+          <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+            <h2 style="font-weight: bold">Isenção</h2>
+
+          </div>
+          <div class="card-header d-flex justify-content-center disabled-lmts">
+            <h5>
               Aberto de: <br>
                 <a style="font-weight: bold">
                   {{date_format(date_create($edital->inicioIsencao), 'd/m/y')}}
@@ -97,43 +103,89 @@
                 <a style="font-weight: bold">
                   {{date_format(date_create($edital->fimIsencao), 'd/m/y')}}
                 </a>
-             </h5>
-         </div>
-
-         <div class="container justify-content-center" style="padding: 10px" >  <!-- form Isenção -->
-
-         </div>
-
+            </h5>
+          </div>
         </div>
-        <div class="card cartao text-center " style="border-radius: 20px; opacity: 0">    <!-- Isenção -->
 
-         <div class="card-body d-flex justify-content-center">
-           <h2 style="margin-top: -50px; font-weight: bold">Isenção</h2>
-         </div>
-         <div class="card-body d-flex justify-content-center">
-             <h5 style="margin-top: -50px;">
-              Aberto de: <br>
-                <a style="font-weight: bold">
-                  {{date_format(date_create($edital->inicioIsencao), 'd/m/y')}}
-                </a>
-                 até
-                <a style="font-weight: bold">
-                  {{date_format(date_create($edital->fimIsencao), 'd/m/y')}}
-                </a>
-             </h5>
-         </div>
+        <div class="card cartao text-center " style="border-radius: 20px;height: 21rem;"> <!-- Recurso Isenção -->
 
-         <div class="container justify-content-center" style="padding: 10px" >  <!-- form Isenção -->
+          <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+            <h2 style="font-weight: bold">Recurso Isenção</h2>
 
-         </div>
+          </div>
+
+          <div class="card-header d-flex justify-content-center disabled-lmts">
+              <h5>
+               Aberto de: <br>
+                 <a style="font-weight: bold">
+                   {{date_format(date_create($edital->inicioRecursoIsencao), 'd/m/y')}}
+                 </a>
+                  até
+                 <a style="font-weight: bold">
+                   {{date_format(date_create($edital->fimRecursoIsencao), 'd/m/y')}}
+                 </a>
+              </h5>
+          </div>
 
         </div>
 
+        <div class="card cartao text-center " style="border-radius: 20px; height: 21rem">   <!-- Inscrição -->
 
+             <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+                 <h2 style="font-weight: bold">Inscrição</h2>
 
-        <div class="card cartao text-center " style="border-radius: 20px;height: 21rem">    <!-- Inscrição -->
-          <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+             </div>
+             <div class="card-header d-flex justify-content-center disabled-lmts">
+                 <h5>
+                  Aberto de: <br>
+                    <a style="font-weight: bold">
+                      {{date_format(date_create($edital->inicioInscricoes), 'd/m/y')}}
+                    </a>
+                     até
+                    <a style="font-weight: bold">
+                      {{date_format(date_create($edital->fimInscricoes), 'd/m/y')}}
+                    </a>
+                 </h5>
+             </div>
+
+        </div>
+
+        <div class="card cartao text-center " style="border-radius: 20px;height: 21rem">   <!-- Recuso Inscrição -->
+             <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+                 <h2 style="font-weight: bold">Recurso Inscrição</h2>
+
+             </div>
+
+             <div class="card-header d-flex justify-content-center disabled-lmts">
+                 <h5>
+                  Aberto de: <br>
+                    <a style="font-weight: bold;">
+                      {{date_format(date_create($edital->inicioRecurso), 'd/m/y')}}
+                    </a>
+                     até
+                    <a style="font-weight: bold">
+                      {{date_format(date_create($edital->fimRecurso), 'd/m/y')}}
+                    </a>
+                 </h5>
+             </div>
+
+        </div>
+
+        <div class="card cartao text-center " style="border-radius: 20px;height: 21rem">    <!-- Classificação -->
+          <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
             <h2 style="font-weight: bold">Classificação</h2>
+          </div>
+          <div class="card-header d-flex justify-content-center">
+              <h5>
+               Aberto de: <br>
+                 <a style="font-weight: bold;">
+                   {{date_format(date_create($edital->fimInscricoes), 'd/m/y')}}
+                 </a>
+                  até
+                 <a style="font-weight: bold">
+                   {{date_format(date_create($edital->resultado), 'd/m/y')}}
+                 </a>
+              </h5>
           </div>
           <div class="container justify-content-center" style="height: 13rem; background-color: #F7F7F7; padding: 10px">
             <h4>
@@ -162,7 +214,7 @@
                 Inscrições em espera: <a style="font-weight: bold">{{$inscricoesNaoClassificadas}}.</a>
               </h5>
           </div>
-         <div class="container justify-content-center" style="padding: 10px" >
+         <div class="container justify-content-center" style="margin-top: -10%" >
            <form method="GET" action="{{route('editalEscolhido')}}">
 
                <input type="hidden" name="editalId" value="{{$edital->id}}">
@@ -183,34 +235,10 @@
            </form>
          </div>
         </div>
-        <div class="card cartao text-center " style="border-radius: 20px; opacity: 0">    <!-- Isenção -->
 
-         <div class="card-body d-flex justify-content-center">
-           <h2 style="margin-top: -50px; font-weight: bold">Isenção</h2>
-         </div>
-         <div class="card-body d-flex justify-content-center">
-             <h5 style="margin-top: -50px;">
-              Aberto de: <br>
-                <a style="font-weight: bold">
-                  {{date_format(date_create($edital->inicioIsencao), 'd/m/y')}}
-                </a>
-                 até
-                <a style="font-weight: bold">
-                  {{date_format(date_create($edital->fimIsencao), 'd/m/y')}}
-                </a>
-             </h5>
-         </div>
-
-         <div class="container justify-content-center" style="padding: 10px" >  <!-- form Isenção -->
-
-         </div>
-
-        </div>
-
-
-
-
+      </div>
     </div>
+
   </div>
 </div>
 
@@ -219,7 +247,5 @@
         alert('{{ session()->get('jsAlert') }}');
     </script>
 @endif
-
-
 
 @endsection

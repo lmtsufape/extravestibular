@@ -346,7 +346,7 @@ class EditalController extends Controller{
           return view('cadastrarRecurso', ['editalId'    => $request->editalId,
                                            'tipoRecurso' => $request->tipoRecurso,
                                            'dados'       => $dados,
-                                           'mytime'            => $mytime,
+                                           'mytime'      => $mytime,
                                           ]);
         }
         if($request->tipo == 'homologarRecursos'){
@@ -509,6 +509,15 @@ class EditalController extends Controller{
                                                  ->where('tipo', 'classificacao')
                                                  ->where('homologado', 'nao')
                                                  ->get();
+          $recursosResultadoHomologados = Recurso::where('editalId', $request->editalId)
+                                             ->where('homologado', 'aprovado')
+                                             ->orWhere('homologado', 'rejeitado')
+                                             ->where('tipo', 'resultado')
+                                             ->get();
+          $recursosResultadoNaoHomologados = Recurso::where('editalId', $request->editalId)
+                                                ->where('tipo', 'resultado')
+                                                ->where('homologado', 'nao')
+                                                ->get();
           $isencoesHomologadas = Isencao::where('editalId', $request->editalId)
                                           ->where('parecer', 'deferida')
                                           ->orWhere('parecer', 'indeferida')
@@ -524,6 +533,8 @@ class EditalController extends Controller{
           $recursosTaxaNaoHomologados = json_decode($recursosTaxaNaoHomologados);
           $recursosClassificacaoHomologados = json_decode($recursosClassificacaoHomologados);
           $recursosClassificacaoNaoHomologados = json_decode($recursosClassificacaoNaoHomologados);
+          $recursosResultadoHomologados = json_decode($recursosResultadoHomologados);
+          $recursosResultadoNaoHomologados = json_decode($recursosResultadoNaoHomologados);
           $erratas = $edital->errata;
 
           return view('detalhesEditalPREG', ['editalId'                             => $request->editalId,
@@ -539,6 +550,8 @@ class EditalController extends Controller{
                                              'recursosTaxaNaoHomologados'           => sizeof($recursosTaxaNaoHomologados),
                                              'recursosClassificacaoHomologados'     => sizeof($recursosClassificacaoHomologados),
                                              'recursosClassificacaoNaoHomologados'  => sizeof($recursosClassificacaoNaoHomologados),
+                                             'recursosResultadoHomologados'     => sizeof($recursosResultadoHomologados),
+                                             'recursosResultadoNaoHomologados'  => sizeof($recursosResultadoNaoHomologados),
                                              'inscricoesClassificadas'              => sizeof($inscricoesClassificadas),
                                              'inscricoesNaoClassificadas'           => sizeof($inscricoesNaoClassificadas),
                                              'edital'                               => $edital,
