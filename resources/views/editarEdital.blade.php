@@ -36,6 +36,7 @@
             <div class="card" style="width: 70rem;"> <!-- Card Arquivo -->
                 <div class="card-header">{{ __('Arquivo') }}</div>
 
+                
                 <div class="card-body">
                   <div class="card-body">
                           <div  class="form-group row justify-content-center" >  <!-- Nome do Edital -->
