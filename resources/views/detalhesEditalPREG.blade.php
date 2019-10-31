@@ -102,7 +102,7 @@
   <div class="centro-cartao"  style=" height: 110vh; padding-bottom: 5%" >
     <div class="card-deck d-flex justify-content-center">
       <div class="conteudo-central d-flex justify-content-center"  style="width: 100rem; width: 80%; ">  <!-- info edital -->
-        <div class="card cartao text-top " style="border-radius: 20px; height: 100%" >    <!-- Info -->
+        <div class="card cartao text-top " style="border-radius: 20px; height: 90%;" >    <!-- Info -->
 
          <div class="card-header d-flex justify-content-center" style="margin-top: 0px; border-top-left-radius: 20px; border-top-right-radius: 20px">
            <h2 class="h2" style="font-weight: bold; color: white">
@@ -112,7 +112,7 @@
             ?>
           </h2>
          </div>
-         <div class="card-body justify-content-center" style="height: 100%">
+         <div class="card-body justify-content-center" style="height: 22rem; overflow:auto">
                <div class="card-body justify-content-center">
                  <a style="padding: 15px">
                   A Pró-Reitora de Ensino de Graduação torna público para conhecimento dos interessados que, no
@@ -122,11 +122,18 @@
                   34/2008181/91)
                  </a>
 
+                 <!-- Button trigger modal -->
+                 <div  class="form-group row justify-content-center" style="" >
+                   <button type="button" class="btn btn-primary btn-primary-lmts" data-toggle="modal" data-target="#exampleModal">
+                     Nova Errata
+                   </button>
+                 </div>
+
                  @if($erratas->isNotEmpty())
-                   <div class="justify-content-center" style="padding-top: 2%">
+                   <div class="justify-content-center">
                      <a style="font-size: 25px; font-weight: bold"> Erratas: </a>
 
-                     <table class="table table-ordered table-hover">
+                     <table class="table table-ordered table-hover" >
 
                        @foreach($erratas as $errata)
                          <tr>
@@ -141,12 +148,7 @@
                      </table>
                    </div>
                  @endif
-                 <!-- Button trigger modal -->
-                 <div  class="form-group row justify-content-center" style="padding-top: 1%;" >
-                   <button type="button" class="btn btn-primary btn-primary-lmts" data-toggle="modal" data-target="#exampleModal">
-                     Nova Errata
-                   </button>
-                 </div>
+
              </div>
          </div>
         </div>
