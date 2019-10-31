@@ -30,8 +30,12 @@
       <form method="POST" action={{ route('cadastroEdital') }} enctype="multipart/form-data">
         @csrf
         <div class="col-md-8">
-            <div class="card" style="width: 70rem;"> <!-- Card Arquivo -->
-                <div class="card-header">{{ __('Arquivo') }}</div>
+          <!-- Arquivo -->
+          <div class="titulo-tabela-lmts" style="margin-left: 0;width: 152%">
+            <h2>Arquivo</h2>
+          </div>
+            <div class="card" style="width: 70rem;margin-top:10px;"> <!-- Card Arquivo -->
+
 
                 <div class="card-body">
                   <div class="card-body">
@@ -73,8 +77,13 @@
                 </div>
             </div>
 
+
+            <!-- Datas -->
+            <div class="titulo-tabela-lmts" style="margin-left: 0;width: 152%">
+              <h2>Datas</h2>
+            </div>
+
             <div class="card" style="width: 70rem; margin-top: 15px"> <!-- Card Datas -->
-                <div class="card-header">{{ __('Datas') }}</div>
                 <div class="card-body justify-content-left">
                   <div class="card-body ">
                     <table class="table table-ordered table-hover justify-content-center">
@@ -284,8 +293,12 @@
                 </div>
             </div>
 
+            <!-- Vagas por Curso -->
+            <div class="titulo-tabela-lmts" style="margin-left: 0;width: 152%">
+              <h2>Vagas por Curso</h2>
+            </div>
+
             <div class="card" style="width: 70rem; margin-top: 15px"> <!-- Card Cursos -->
-                <div class="card-header">{{ __('Vagas por Curso') }}</div>
                 <div class="card-body">
                   <div class="card-body">
                     <table class="table table-ordered table-hover justify-content-center">
@@ -359,7 +372,7 @@
             <div class="form-group row mb-0 justify-content-center" style="padding-bottom: 5rem"> <!-- button -->
                 <div class="col-md-8 offset-md-4">
                     <input type="hidden" name="nCursos" value="{{$i}}">
-                    <button type="submit" class="btn btn-primary btn-primary-lmts"  style="margin-top: 20px; margin-left: 15rem; ">
+                    <button type="submit" class="btn btn-primary btn-primary-lmts"  style="height: 50px;width: 120px;margin-top: 20px; margin-left: 15rem; ">
                         {{ __('Finalizar') }}
                     </button>
 
