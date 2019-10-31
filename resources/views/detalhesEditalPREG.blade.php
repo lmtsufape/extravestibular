@@ -80,7 +80,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 50px;">Close</button>
         <button type="submit" class="btn btn-primary btn-primary-lmts">
           {{ __('Finalizar') }}
         </button>
@@ -198,16 +198,16 @@
 
               @if($edital->inicioIsencao<= $mytime)
                 @if($edital->fimIsencao >= $mytime)
-                  <button type="submit" class="btn btn-primary btn-primary-lmts"  >
+                  <button type="submit" class="btn btn-primary btn-primary-lmts "  >
                     {{ __('Homologar Isenção') }}
                   </button>
                 @else
-                  <button type="submit" disabled class="btn btn-primary btn-primary-lmts">
+                  <button type="submit" disabled class="btn btn-primary btn-primary-lmts ">
                     {{ __('Homologar Isenção') }}
                   </button>
                 @endif
               @else
-                <button type="submit" disabled class="btn btn-primary btn-primary-lmts"  >
+                <button type="submit" disabled class="btn btn-primary btn-primary-lmts "  >
                   {{ __('Homologar Isenção') }}
                 </button>
               @endif
