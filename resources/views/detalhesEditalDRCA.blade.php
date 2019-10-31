@@ -34,11 +34,11 @@
 <div class="tela-servidor ">
   <div class="centro-cartao" >
     <div class="card-deck d-flex justify-content-center">
-      <div class="conteudo-central d-flex justify-content-center"  style="width: 80rem">  <!-- info edital -->
+      <div class="conteudo-central d-flex justify-content-center"  style="width: 100rem">  <!-- info edital -->
         <div class="card cartao text-top " style="border-radius: 20px; height: 100%" >    <!-- Info -->
 
-         <div class="card-header d-flex justify-content-center" style="background-color: white;margin-top: 10px">
-           <h2 style="font-weight: bold">
+         <div class="card-header d-flex justify-content-center" style="margin-top: 0px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+           <h2 style="font-weight: bold; color:white">
             <?php
              $nomeEdital = explode(".pdf", $edital->nome);
              echo ($nomeEdital[0]);
@@ -47,13 +47,13 @@
          </div>
          <div class="card-body justify-content-center" style="height: 100%">
                <div class="card-body justify-content-center">
-                 <a style="padding: 15px">
+                 <p style="padding: 15px">
                   A Pró-Reitora de Ensino de Graduação torna público para conhecimento dos interessados que, no
                   PERÍODO DE 29/05 a 05/06 DE 2019, estarão abertas às inscrições para o Processo Seletivo Extra que
                   visa o preenchimento de vagas para Ingresso via Processo Seletivo Extra nos Cursos de Graduação no 2o
                   semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/2007; 354/2008;
                   34/2008181/91)
-                 </a>
+                </p>
 
                  @if($erratas->isNotEmpty())
                    <div class="justify-content-center" style="padding-top: 2%">
@@ -82,7 +82,7 @@
          </div>
         </div>
       </div>
-      <div class="conteudo-central d-flex justify-content-center" style="width: 80rem">  <!-- opções -->
+      <div class="conteudo-central d-flex justify-content-center" style="margin-top:20px;width: 80rem">  <!-- opções -->
         <div class="card cartao text-center " style="border-radius: 20px; opacity: 0">    <!-- Isenção -->
 
          <div class="card-body d-flex justify-content-center">
@@ -131,7 +131,7 @@
         </div>
 
         <div class="card cartao text-center "  style="border-radius: 20px; height: 21rem">   <!-- Inscrição -->
-          <div class="card-header d-flex justify-content-center" style="margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
+          <div class="card-header d-flex justify-content-center" style="background-color: white;margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
               <h2 style="font-weight: bold">Inscrição</h2>
           </div>
           <div class="card-header d-flex justify-content-center">
