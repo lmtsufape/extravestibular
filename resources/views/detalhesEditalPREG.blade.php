@@ -88,7 +88,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 50px;">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 50px;margin-top:40px;">Close</button>
         <button type="submit" class="btn btn-primary btn-primary-lmts">
           {{ __('Finalizar') }}
         </button>
@@ -464,7 +464,7 @@
             <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
               <h4>
                 <?php
-                
+
                   $porcentagem = $recursosResultadoHomologados * 100;
                   if(($recursosResultadoHomologados + $recursosResultadoNaoHomologados)>0){
                     $porcentagem = $porcentagem / ($recursosResultadoHomologados + $recursosResultadoNaoHomologados);
