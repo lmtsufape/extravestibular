@@ -434,11 +434,14 @@
 
       <br>
 @endif
-      <div id="page-container" style="background-color:#FFFFFF">
+<!-- page-container -->
+      <div id="container-fluid" style="background-color:#FFFFFF">
         <div id="content-wrap">
           @yield('content')
-        </div>
-        <div id="footer-brasil"></div>
+        <!-- <div id="footer-brasil"></div> -->
+      </div>
+        @component('components.footer-brasil')
+        @endcomponent
       </div>
 
 
@@ -455,6 +458,6 @@
 </body>
 
 
-<script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
+<!-- <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script> -->
 
 </html>
