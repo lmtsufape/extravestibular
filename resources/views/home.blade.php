@@ -16,14 +16,28 @@
 @section('content')
 
 <style type="text/css">
+
+@@media screen and (max-width: 576px) {
+  .titulo-tabela-lmts{
+    margin-right: 20px;
+  }
+
+}
+
 </style>
 
-<div class="container" style="width: 100%; background-color: ">
-    <div class="row justify-content-center">
-        <div class="col-md-0">
-            <div class="card" style="width: 100vh;margin-left: 0%;">
+<div class="container">
+
+
+            <!-- div contem as tabelas -->
+            <div id="tabelas" class="col-sm-9" style="width: 100%;margin: auto; background-color: #white">
                 @if(session('tipo') == 'PREG')
-                  <div class="titulo-tabela-lmts" style="width: 95vh">
+
+<div class="row">
+
+
+                <!-- Título: EDITAIS NÃO PUBLICADOS -->
+                  <div class="titulo-tabela-lmts" style="width: 95%">
                     <h2>Editais Não Publicados</h2>
                   </div>
                   <div class="card-body">
@@ -85,8 +99,15 @@
                       @endforeach
                     </table>
                   </div>
+</div>
                 @endif
-                <div class="titulo-tabela-lmts" style="width: 95vh">
+
+
+
+<div class="row">
+
+
+                <div class="titulo-tabela-lmts" style="width: 95%">
                   <h2>Editais Abertos</h2>
                 </div>
                 <div class="card-body">
@@ -191,12 +212,14 @@
 
                   </table>
             </div>
-        </div>
+</div>
     </div>
     <div class="col-md-8">
       {{ $editais->links() }}
-    </div>
+
 </div>
+
+
 @if(session()->has('jsAlert'))
     <script>
         alert('{{ session()->get('jsAlert') }}');
