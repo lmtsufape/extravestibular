@@ -41,7 +41,7 @@
 <div class="container" style="padding-bottom: 5%">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card" >
+            <!-- <div class="card" > -->
                 <div class="titulo-tabela-lmts" style="width: 94%">
                   <h2>Recursos abertos</h2>
                 </div>
@@ -78,10 +78,10 @@
                         </td>
                       </tr>
                     @endforeach
-
+                  </table>
                 {{ $recursos->links() }}
               </div>
-            </div>
+            <!-- </div> -->
         </div>
     </div>
 </div>
