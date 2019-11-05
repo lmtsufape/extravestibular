@@ -439,9 +439,11 @@
         <div id="content-wrap">
           @yield('content')
         <!-- <div id="footer-brasil"></div> -->
-      </div>
-        @component('components.footer-brasil')
-        @endcomponent
+        </div>
+        <div style="padding-top: 3%">
+          @component('components.footer-brasil')
+          @endcomponent
+        </div>
       </div>
 
 

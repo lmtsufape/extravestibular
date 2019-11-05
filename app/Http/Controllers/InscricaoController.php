@@ -339,6 +339,16 @@ class InscricaoController extends Controller
 																										 'mytime'									 => $mytime,
 																							     ]);
 		}
+		if($request->tipo == 'editarClassificacao'){
+			return view('editarClassificacao', 			 		[
+																										 'inscricao'  						 => $inscricao,
+																										 'tipo'										 => 'classificacao',
+																										 'curso'									 => $curso,
+																										 'dados'									 => $dados,
+																										 'editalId'								 => $inscricao->editalId,
+																										 'mytime'									 => $mytime,
+																									]);
+		}
 		if($request->tipo == 'seguirParaClassificacao'){
 			if($request->homologado == 'rejeitado'){
 				$inscricao = Inscricao::find($request->inscricaoId);

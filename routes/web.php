@@ -42,7 +42,7 @@ Route::group(['middleware' => 'lmts'], function(){
 
   Route::post('/cadastroClassificacao',      'InscricaoController@cadastroClassificacao'        )->name('cadastroClassificacao');
   Route::get('/homologarCoordenador',        'InscricaoController@classificarInscricao'         )->name('classificarInscricao');
-  Route::post('/classificarInscricao',       'InscricaoController@inscricaoEscolhida'           )->name('seguirParaClassificacao');  
+  Route::post('/classificarInscricao',       'InscricaoController@inscricaoEscolhida'           )->name('seguirParaClassificacao');
   Route::post('/notificarCoordenador',       'InscricaoController@notificarCoordenador'         )->name('notificarCoordenador');
   Route::get('/homologarInscricao',          'InscricaoController@inscricaoEscolhida'           )->name('inscricaoEscolhida');
   Route::post('/inscricaoHomologada',        'InscricaoController@homologarInscricao'           )->name('homologarInscricao');

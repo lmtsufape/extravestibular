@@ -331,17 +331,25 @@ class EditalController extends Controller{
                                          ]);
         }
         if($request->tipo == 'classificarInscricoes'){
-
+          $inscricoesClassificadas = Inscricao::where('editalId', $request->editalId)
+                                                ->where('homologado', 'aprovado')
+                                                ->where('homologadoDrca', 'aprovado')
+                                                ->whereNotNull('nota')
+                                                ->orderBy('id')
+                                                ->where('curso', session('cursoId'))
+                                                ->paginate(10);
           $inscricoesDisponiveis = Inscricao::where('editalId', $request->editalId)
                                               ->where('homologado', 'aprovado')
                                               ->where('homologadoDrca', 'aprovado')
                                               ->where('coeficienteDeRendimento', 'nao')
                                               ->where('curso', session('cursoId'))
                                               ->paginate(10);
-          return view('listaInscricoes', ['inscricoes' => $inscricoesDisponiveis,
-                                          'tipo'       => 'classificacao',
-                                          'editalId'   => $request->editalId,
-                                          'mytime'     => $mytime,
+          return view('listaInscricoes', [
+                                          'inscricoes'              => $inscricoesDisponiveis,
+                                          'inscricoesClassificadas' => $inscricoesClassificadas,
+                                          'tipo'                    => 'classificacao',
+                                          'editalId'                => $request->editalId,
+                                          'mytime'                  => $mytime,
                                          ]);
         }
         if($request->tipo == 'requerimentoDeRecurso'){
