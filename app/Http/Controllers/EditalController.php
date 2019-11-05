@@ -181,20 +181,23 @@ class EditalController extends Controller{
 
 
         Edital::create([
-          'vagas'                => $vagas,
-          'pdfEdital'            => $path . $nome,
-          'inicioInscricoes'     => $request->inicioInscricoes,
-          'fimInscricoes'        => $request->fimInscricoes,
-          'nome'                 => $nome,
-          'inicioRecurso'        => $request->inicioRecurso,
-          'fimRecurso'           => $request->fimRecurso,
-          'inicioIsencao'        => $request->inicioIsencao,
-          'fimIsencao'           => $request->fimIsencao,
-          'inicioRecursoIsencao' => $request->inicioRecursoIsencao,
-          'fimRecursoIsencao'    => $request->fimRecursoIsencao,
-          'publicado'            => $request->publicado,
-          'dataPublicacao'       => $dataPublicacao,
-          'resultado'            => $request->resultado,
+          'vagas'                  => $vagas,
+          'pdfEdital'              => $path . $nome,
+          'inicioInscricoes'       => $request->inicioInscricoes,
+          'fimInscricoes'          => $request->fimInscricoes,
+          'nome'                   => $nome,
+          'inicioRecurso'          => $request->inicioRecurso,
+          'fimRecurso'             => $request->fimRecurso,
+          'inicioIsencao'          => $request->inicioIsencao,
+          'fimIsencao'             => $request->fimIsencao,
+          'inicioRecursoIsencao'   => $request->inicioRecursoIsencao,
+          'fimRecursoIsencao'      => $request->fimRecursoIsencao,
+          'inicioRecursoResultado' => $request->inicioRecursoResultado,
+          'fimRecursoResultado'    => $request->fimRecursoResultado,
+          'resultadoFinal'         => $request->resultadoFinal,
+          'publicado'              => $request->publicado,
+          'dataPublicacao'         => $dataPublicacao,
+          'resultado'              => $request->resultado,
 
 
         ]);
