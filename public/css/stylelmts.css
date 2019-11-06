@@ -8,9 +8,10 @@ body{
 .titulo-tabela-lmts{
 
 
-  width: 97%;
+  width: 100%;
   margin-top: 20px;
-  margin-left: 20px;
+  margin-bottom: 1%;
+  /* margin-left: 20px; */
   border-bottom: #1b2e4f solid 2px;
 
 

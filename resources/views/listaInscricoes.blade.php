@@ -43,7 +43,7 @@
     <div class="row justify-content-center">
         <div class="col-sm-8">
             <div class="card">
-                <div class="titulo-tabela-lmts" style="width: 94%">
+                <div class="titulo-tabela-lmts">
                   <h2>Inscrições Pendentes</h2>
                 </div>
                 <div class="card-body">
@@ -89,7 +89,7 @@
             </div>
 
             <div class="card">
-                <div class="titulo-tabela-lmts" style="width: 94%">
+                <div class="titulo-tabela-lmts">
                   <h2>Inscrições Classificadas</h2>
                 </div>
                 <div class="card-body">

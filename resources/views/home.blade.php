@@ -37,7 +37,7 @@
 
 
                 <!-- Título: EDITAIS NÃO PUBLICADOS -->
-                  <div class="titulo-tabela-lmts" style="width: 95%">
+                  <div class="titulo-tabela-lmts">
                     <h2>Editais Não Publicados</h2>
                   </div>
                   <div class="card-body">
@@ -107,7 +107,7 @@
 <div class="row">
 
 
-                <div class="titulo-tabela-lmts" style="width: 95%">
+                <div class="titulo-tabela-lmts">
                   <h2>Editais Abertos</h2>
                 </div>
                 <div class="card-body">

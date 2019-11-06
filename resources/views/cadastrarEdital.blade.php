@@ -31,7 +31,7 @@
         @csrf
         <div class="col-md-8">
           <!-- Arquivo -->
-          <div class="titulo-tabela-lmts" style="margin-left: 0;width: 152%">
+          <div class="titulo-tabela-lmts">
             <h2>Arquivo</h2>
           </div>
             <div class="card" style="width: 70rem;margin-top:10px;"> <!-- Card Arquivo -->
@@ -79,7 +79,7 @@
 
 
             <!-- Datas -->
-            <div class="titulo-tabela-lmts" style="margin-left: 0;width: 152%">
+            <div class="titulo-tabela-lmts">
               <h2>Datas</h2>
             </div>
 
@@ -294,7 +294,7 @@
             </div>
 
             <!-- Vagas por Curso -->
-            <div class="titulo-tabela-lmts" style="margin-left: 0;width: 152%">
+            <div class="titulo-tabela-lmts">
               <h2>Vagas por Curso</h2>
             </div>
 
