@@ -34,7 +34,11 @@
       <a class="nav-link">/</a>
     </li>
     <li class="nav-item active">
-      <a class="nav-link">Homologar Inscrição</a>
+      @if($tipo == 'classificacao')
+        <a class="nav-link">Classificar Inscrições</a>
+      @else
+        <a class="nav-link">Homologar Inscrição</a>
+      @endif
     </li>
 
 @endsection
