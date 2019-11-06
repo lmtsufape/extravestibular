@@ -20,9 +20,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/login',                         'InscricaoController@entrar'                       )->name('login');
+
+
 Route::get('/listarEditais',                 'EditalController@iframeEditais'                   )->name('iframeEditais');
 
-Route::group(['middleware' => 'lmts'], function(){
+Route::group(['middleware' => ['lmts']], function(){
   Route::get('/home',                        'HomeController@index'                             )->name('home');
   Route::get('/home/servidor',               'HomeController@homeApi'                           )->name('homeApi');
   Route::post('/loginApi',                   'HomeController@loginApi'                          )->name('loginApi')->middleware('guest');

@@ -4,8 +4,109 @@
 @section('content')
 <div class="info" >
     <div class="info-texto" >
-        <div style="height: 100%">
-          <iframe src="{{route('iframeEditais')}}" width="100%" height="100%"></iframe>
+        <div style="">
+          <div class="card">
+              <div class="titulo-tabela-lmts">
+                <h2>Editais Abertos</h2>
+              </div>
+              <div class="card-body">
+                <table class="table table-ordered table-hover">
+                  <?php $editaisAbertos = true;
+                        $editaisAbertosFlag = true;
+                        $editaisFinalizadosFlag = true; ?>
+                  @foreach ($editais as $edital)
+                    <?php if($edital->resultadoFinal <= $mytime){
+                      $editaisAbertos = false;
+                    }
+                    else{
+                      $editaisAbertos = true;
+                    }
+                    ?>
+                    @if($editaisAbertos)
+                      @if($editaisAbertosFlag)
+                        <tr style="background-color: #F7F7F7">
+                          <th> Nome</th><?php $editaisAbertosFlag = false;?>
+                          <th> Publicado em </th>
+                          <th> Arquivo </th>
+                        </tr>
+                      @endif
+                    @else
+                      @if($editaisFinalizadosFlag)
+                      </table>
+                      </div>
+                      <div class="titulo-tabela-lmts">
+                        <h2>Editais Finalizados</h2>
+                      </div>
+                      <div class="card-body">
+                      <table class="table table-ordered table-hover">
+                        <tr style="background-color: #F7F7F7">
+                          <th> Nome</th><?php $editaisFinalizadosFlag = false;?>
+                          <th> Publicado em </th>
+                          <th> Arquivo </th>
+                        </tr>
+                      @endif
+                    @endif
+                    <tr>
+
+                      <td style="width: 60rem">
+                        <div class="hover-popup-lmts">   <!-- time line  class="hover-popup-lmts"-->
+                         <a>
+                           <?php
+                             $nomeEdital = explode(".pdf", $edital->nome);
+                             echo ($nomeEdital[0]);
+                            ?>
+                           <span>
+                             <img src="<?php
+                              if($edital->inicioIsencao > $mytime){
+                                echo (asset('images/timeline1.png'));
+                              }
+
+                              elseif(($edital->inicioIsencao <= $mytime) && ($edital->fimIsencao >= $mytime)){
+                                  echo (asset('images/timeline2.png'));
+                              }
+
+                              elseif(($edital->inicioRecursoIsencao <= $mytime) && ($edital->fimRecursoIsencao >= $mytime)){
+                                  echo (asset('images/timeline3.png'));
+
+                              }
+
+                              elseif(($edital->inicioInscricoes <= $mytime) && ($edital->fimInscricoes >= $mytime)){
+                                  echo (asset('images/timeline4.png'));
+
+                              }
+                              elseif(($edital->inicioRecurso <= $mytime) && ($edital->fimRecurso >= $mytime)){
+                                  echo (asset('images/timeline5.png'));
+                              }
+                              elseif($edital->fimRecurso <= $mytime){
+                                echo (asset('images/timeline6.png'));
+                              }
+
+
+                             ?>" alt="image" height="140"/>
+                           </span>
+                         </a>
+
+                        </div>
+                      </td>
+                      <td> <!-- data -->
+                        <?php
+                          $date = date_create($edital->dataPublicacao);
+                         ?>
+                        <a>{{ date_format($date , 'd/m/y')  }}</a>
+                      </td>
+                      <td> <!-- Download -->
+                        <a href="{{ route('download', ['file' => $edital->pdfEdital])}}" target="_parent">Baixar Edital</a>
+                      </td>
+
+                    </tr>
+                  @endforeach
+
+                </table>
+              </div>
+              <div class="card-body">
+                {{ $editais->links() }}
+              </div>
+          </div>
         </div>
 
 

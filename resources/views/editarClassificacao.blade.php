@@ -57,7 +57,7 @@
 
 <div class="container">
 <div class="row justify-content-center">
-  <form method="POST" action={{ route('cadastroClassificacao') }} enctype="multipart/form-data">
+  <form method="POST" action="{{ route('cadastroClassificacao') }}" enctype="multipart/form-data">
     @csrf
   <div class="col-md-8">
     <div class="card" style="width: 50rem">
@@ -138,7 +138,7 @@
                 <span class="a-field__label-wrap">
                   <span class="a-field__label">Antiga Nota</span>
                 </span>
-            </label>            
+            </label>
           </div>
           <div>
             <label for="coeficienteDeRendimento" class="field a-field a-field_a2 page__field">

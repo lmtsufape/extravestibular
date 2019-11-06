@@ -1517,4 +1517,17 @@ class InscricaoController extends Controller
 		return null;
 	}
 
+	public function entrar(Request $request){
+		$mytime = Carbon::now('America/Recife');
+		$mytime = $mytime->toDateString();
+		$editais = Edital::where('publicado', 'sim')
+												->orderBy('created_at', 'desc')
+												->paginate(10);
+		return view('auth.login',     [
+																	'editais' => $editais,
+																	'mytime'  => $mytime,
+																	]);
+	}
+
+
 }
