@@ -118,6 +118,6 @@ class DadosUsuarioController extends Controller
   }
   public function editarDadosUsuario(Request $request){
     $dados = DadosUsuario::find(Auth::user()->dados);
-    return view('cadastrarEditarDadosUsuario',['dados' => $dados]);
+    return view('editarDadosUsuario',['dados' => $dados]);
   }
 }

@@ -41,10 +41,10 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-sm-8">
             <div class="card">
                 <div class="titulo-tabela-lmts" style="width: 94%">
-                  <h2>Inscrições</h2>
+                  <h2>Inscrições Pendentes</h2>
                 </div>
                 <div class="card-body">
                   <table class="table table-ordered table-hover">
@@ -74,6 +74,52 @@
                               <input type="hidden" name="tipo" value="{{$tipo}}">
                               <button type="submit" class="btn btn-primary btn-primary-lmts">
                                   {{ __('Selecionar') }}
+                              </button>
+
+                          </div>
+                        </form>
+                      </td>
+                    </tr>
+
+                    @endforeach
+                  </table>
+
+                {{ $inscricoes->links() }}
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="titulo-tabela-lmts" style="width: 94%">
+                  <h2>Inscrições Classificadas</h2>
+                </div>
+                <div class="card-body">
+                  <table class="table table-ordered table-hover">
+                    <tr>
+                      <th> Nome </th>
+                      <th> CPF </th>
+                      <th> </th>
+                    </tr>
+                    @foreach ($inscricoesClassificadas as $inscricao)
+                    <tr>
+                      <td>
+                       <a >
+                         {{$inscricao->user->dadosUsuario->nome}}
+                       </a>
+                      </td>
+                      <td>
+                       <a >
+                         {{$inscricao->user->dadosUsuario->cpf}}
+                       </a>
+                      </td>
+
+                      <td>
+                        <form method="get" action="{{ route('inscricaoEscolhida') }}" enctype="multipart/form-data"> <!-- Isenção -->
+
+                          <div class="col-md-8 offset-md-4">
+                              <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
+                              <input type="hidden" name="tipo" value="editarClassificacao">
+                              <button type="submit" class="btn btn-primary btn-primary-lmts">
+                                  {{ __('Editar') }}
                               </button>
 
                           </div>

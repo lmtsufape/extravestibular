@@ -40,10 +40,10 @@ class ApiLmts
                 return $next($request);
               }
             } catch (ClientException $e) {
-              session(['tipo' => null, 'token_type' => null, 'name' => null, 'id' => null, 'email' => null, 'cursoId' => null]);
+              session(['tipo' => null, 'token_type' => null, 'name' => null, 'id' => null, 'email' => null, 'cursoId' => null, 'access_token' => null]);
               return redirect('login');
               }
-          session(['tipo' => null, 'token_type' => null, 'name' => null, 'id' => null, 'email' => null, 'cursoId' => null]);
+          session(['tipo' => null, 'token_type' => null, 'name' => null, 'id' => null, 'email' => null, 'cursoId' => null, 'access_token' => null]);
           return redirect('login');
         }
     }

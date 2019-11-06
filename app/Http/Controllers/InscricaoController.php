@@ -339,6 +339,16 @@ class InscricaoController extends Controller
 																										 'mytime'									 => $mytime,
 																							     ]);
 		}
+		if($request->tipo == 'editarClassificacao'){
+			return view('editarClassificacao', 			 		[
+																										 'inscricao'  						 => $inscricao,
+																										 'tipo'										 => 'classificacao',
+																										 'curso'									 => $curso,
+																										 'dados'									 => $dados,
+																										 'editalId'								 => $inscricao->editalId,
+																										 'mytime'									 => $mytime,
+																									]);
+		}
 		if($request->tipo == 'seguirParaClassificacao'){
 			if($request->homologado == 'rejeitado'){
 				$inscricao = Inscricao::find($request->inscricaoId);
@@ -1506,5 +1516,18 @@ class InscricaoController extends Controller
 		}
 		return null;
 	}
+
+	public function entrar(Request $request){
+		$mytime = Carbon::now('America/Recife');
+		$mytime = $mytime->toDateString();
+		$editais = Edital::where('publicado', 'sim')
+												->orderBy('created_at', 'desc')
+												->paginate(10);
+		return view('auth.login',     [
+																	'editais' => $editais,
+																	'mytime'  => $mytime,
+																	]);
+	}
+
 
 }
