@@ -255,7 +255,7 @@
       </form>
     </div>
 
-  </div>
+  </div> <!-- END Isenção-->
 
   <div class="card text-center " style="border-radius: 20px;height: 22.5rem;"> <!-- Recurso Isenção -->
 
@@ -329,7 +329,7 @@
 
       </form>
     </div>
-  </div>
+  </div><!-- END Recurso Isenção -->
 
   <div class="card text-center " style="border-radius: 20px;height: 22.5rem;">   <!-- Inscrição -->
 
@@ -399,7 +399,7 @@
              @endif
          </form>
        </div>
-  </div>
+  </div> <!-- END Inscrição -->
 
   <div class="card text-center " style="border-radius: 20px;height: 22.5rem;">   <!-- Recuso Inscrição -->
        <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
@@ -470,7 +470,7 @@
 
          </form>
        </div>
-     </div>
+     </div> <!-- END Recuso Inscrição -->
 
   <div class="card text-center " style="border-radius: 20px;height: 22.5rem;">   <!-- Recuso Resultado -->
       <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
@@ -542,7 +542,7 @@
 
         </form>
       </div>
-    </div>
+    </div><!-- END Recuso Resultado -->
 
   <div class="card text-center " style="border-radius: 20px;height: 22.5rem;">    <!-- Classificação -->
    <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
@@ -615,7 +615,7 @@
        @endif
      </form>
    </div>
-  </div>
+ </div><!-- END Classificação -->
 
 </div>
 
