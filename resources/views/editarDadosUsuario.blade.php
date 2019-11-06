@@ -8,7 +8,7 @@
                        document.getElementById('VerEditais').submit();">
          {{ __('Home') }}
       </a>
-      <form id="VerEditais" action="{{ route('home') }}" method="GET" style="display: none;">
+      <form id="VerEditais" action="{{ route('home') }}" method="POST" style="display: none;">
 
       </form>
     </li>
@@ -41,6 +41,9 @@
 </style>
 <!-- container -->
 <div class="container">
+  <!-- form -->
+  <form method="POST" action="{{ route('cadastroEditarDadosUsuario') }}" enctype="multipart/form-data">
+    @csrf
   <!-- row dados de usuário-->
   <div class="row " style="margin-bottom: 20px;">
     <!-- card dados de usuário -->
@@ -51,9 +54,6 @@
       </div>  <!--end card-header -->
       <!-- card-body -->
       <div class="card-body">
-        <!-- form -->
-        <form method="POST" action={{ route('cadastroEditarDadosUsuario') }} enctype="multipart/form-data">
-          @csrf
           <div class="row"> <!-- row nome cpf -->
             <!-- Nome -->
             <div id="margin" class="col-sm-9">
@@ -173,9 +173,6 @@
               @enderror
             </div>
           </div><!-- end Filiação -->
-        </form><!-- end form -->
-
-
 
       </div><!-- end card-body -->
     </div><!-- end card dados de usuário -->
@@ -192,9 +189,6 @@
       </div><!-- end card-header endereço -->
       <!-- card-body -->
       <div class="card-body">
-        <!-- Form Endereço -->
-        <form method="POST" action={{ route('cadastroEditarDadosUsuario') }} enctype="multipart/form-data">
-          @csrf
           <!-- row cep -->
           <div  class="row">
             <div id="margin" class="col-sm-9">

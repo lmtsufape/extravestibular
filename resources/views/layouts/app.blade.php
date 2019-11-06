@@ -105,8 +105,8 @@
                                          document.getElementById('cadastroDadosUsuario').submit();">
                            {{ __('EDITAR DADOS DE USUÁRIO') }}
                         </a>
-                        <form id="cadastroDadosUsuario" action="{{ route('editarDadosUsuario') }}" method="POST" style="display: none;">
-                          @csrf
+                        <form id="cadastroDadosUsuario" action="{{ route('editarDadosUsuario') }}" method="GET" style="display: none;">
+                          
                         </form>
                     </li>
                   @endif
