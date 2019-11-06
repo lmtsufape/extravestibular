@@ -39,6 +39,64 @@
 @endsection
 @section('content')
 
+<!-- container -->
+<div class="container">
+  <!-- row titulo dados de usuário -->
+  <div class="row " style="margin-bottom: 20px;">
+    <!-- título Dados de Usuário-->
+    <div class="titulo-tabela-lmts">
+        <h3>
+          Declaração do Candidato nos Termos da Lei (Obrigatório)
+        </h3>
+    </div><!-- end título Dados de Usuário-->
+  </div><!-- end row titulo dados de usuário-->
+
+  <!-- form -->
+  <form method="POST" action={{ route('cadastroIsencao') }} enctype="multipart/form-data">
+    <!-- row parágrafo -->
+    <div class="row">
+      <div class="col-sm-12">
+        <p><strong>O(a) candidato(a) declara, sob as penas da lei e da perda dos direitos decorrentes da sua inscrição,
+        serem verdadeiras as informações, os dados e os documentos apresentados, prontificando-se a fornecer outros
+        documentos comprobatórios, sempre que solicitados pela Universidade Federal Rural de Pernambuco.Nos termos da lei, o candidato se enquadra na situação:</strong></p>
+      </div>
+    </div><!-- end row parágrafo -->
+
+    <!-- checkboxRenda -->
+    <div class="row justify-content-center">
+      <div class="col-sm-10">
+        <input id="checkboxRenda" onclick="escolher('renda')"  value="rendaFamiliar" type="checkbox" > Renda familiar per capita igual ou inferior a um salário mínimo e meio <br>
+      </div>
+    </div><!-- end checkboxRenda -->
+    <!-- checkboxEnsino -->
+    <div class="row justify-content-center">
+      <div class="col-sm-10">
+        <input id="checkboxEnsino" onclick="escolher('ensino')"  value="ensinoMedio" type="checkbox" > Ter cursado o ensino médio completo em escola da rede pública ou como bolsista integral em escola da rede privada. <br>
+      </div>
+    </div><!-- end checkboxEnsino -->
+
+<!-- card Histórico escolar -->
+    <div class="row justify-content-center" style="">
+      <div id="historicoEscolar" class="card col-sm-12" style="margin-top: 10px; display:block;">
+          <div class="card-header" style="width: 100%">
+            {{ __('Historico Escolar (Obrigatório)') }}
+          </div>
+            <div class="card-body" style="width: 100%;">
+              <div class="form-group row">      <!-- Arquivo historico escolar -->
+                <label for="Historico escolar" class="col-md-4 col-form-label text-md-right">{{ __('Histórico escolar:') }}</label>
+                <div class="col-md-6">
+                  <div class="custom-file">
+                    <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="historicoEscolar">
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div><!-- end card Histórico escolar -->
+
+  </form><!-- end form -->
+</div><!-- end container -->
+
 <div class="container"  style="width: 100rem;">
     <div class="row justify-content-center">
       <form method="POST" action={{ route('cadastroIsencao') }} enctype="multipart/form-data">
@@ -57,6 +115,7 @@
                               </a>
                               <br>
                               <br>
+
                               <input id="checkboxRenda" onclick="escolher('renda')"  value="rendaFamiliar" type="checkbox" > Renda familiar per capita igual ou inferior a um salário mínimo e meio <br>
                               <input id="checkboxEnsino" onclick="escolher('ensino')"  value="ensinoMedio" type="checkbox" > Ter cursado o ensino médio completo em escola da rede pública ou como bolsista integral em escola da rede privada. <br>
                             </div>
