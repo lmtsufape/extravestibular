@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.viewLogin')
 @section('titulo','Cadastrar')
 
 @section('content')
