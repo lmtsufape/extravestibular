@@ -41,7 +41,7 @@ Route::group(['middleware' => ['lmts']], function(){
   Route::get( '/listaInscricoes',            'EditalController@editalEscolhido'                 )->name('editalEscolhido');
   Route::post('/gerarClassificacao',         'EditalController@gerarClassificacao'              )->name('gerarClassificacao');
   Route::get( '/detalhesPorcentagem',        'EditalController@detalhesPorcentagem'             )->name('detalhesPorcentagem');
-  Route::post('/cadastroeditarEdital' ,      'EditalController@cadastroEditarEdital'            )->name('cadastroEditarEdital');
+  Route::post('/cadastroEditarEdital' ,      'EditalController@cadastroEditarEdital'            )->name('cadastroEditarEdital');
 
   Route::post('/cadastroClassificacao',      'InscricaoController@cadastroClassificacao'        )->name('cadastroClassificacao');
   Route::get('/homologarCoordenador',        'InscricaoController@classificarInscricao'         )->name('classificarInscricao');
@@ -65,7 +65,7 @@ Route::group(['middleware' => ['lmts']], function(){
   Route::post('/recursoHomologado',          'RecursoController@homologarRecurso'               )->name('homologarRecurso');
 
   Route::get('/dadosUsuario',                'DadosUsuarioController@verDadosUsuario'           )->name('verDadosUsuario')->middleware('auth');
-  Route::post('/editarDadosUsuario',         'DadosUsuarioController@editarDadosUsuario'        )->name('editarDadosUsuario');
+  Route::get('/editarDadosUsuario',         'DadosUsuarioController@editarDadosUsuario'         )->name('editarDadosUsuario');
   Route::post('/cadastroDadosUsuario',       'DadosUsuarioController@cadastroDadosUsuario'      )->name('cadastroDadosUsuario');
   Route::post('/cadastroEditarDadosUsuario', 'DadosUsuarioController@cadastroEditarDadosUsuario')->name('cadastroEditarDadosUsuario');
 
