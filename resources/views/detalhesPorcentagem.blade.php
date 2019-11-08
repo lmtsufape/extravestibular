@@ -43,67 +43,52 @@
 
 </style>
 
-<div class="tela-servidor ">
-  <div class="centro-cartao" >
-    <div class="card-deck d-flex justify-content-center">
-      <div class="conteudo-central d-flex justify-content-center"  style="width: 100rem; display: ; padding-top: 1rem; padding-bottom: 1rem">  <!-- info porcentagem -->
-  <div class="card" style="align-items: center;">    <!-- Info -->
+<div class="container">
+  <!-- div contem as tabelas -->
+  <div id="tabelas" class="col-sm-12" style="width: 100%;margin: auto; background-color: #white">
+    <div class="row">
+      <div class="titulo-tabela-lmts">
+        <h2>Detalhes</h2>
+      </div>
+      <table class="table table-ordered table-hover" style="">
+        <tr style="background-color: #F7F7F7">
+          <th> Curso </th>
+          <th> Departamento </th>
+          <th> Progresso </th>
+          <th> Completas </th>
+          <th> Pendentes </th>
+          <th> Notificar </th>
+        </tr>
+        @for($i = 0; $i < sizeof($vagasInscricoesPorCurso); $i++)
+         <tr>
+           <td>{{$vagasInscricoesPorCurso[$i]['curso']}}</td>
+           <td>{{$vagasInscricoesPorCurso[$i]['departamento']}}</td>
+           <td>
+             <?php
+               $porcentagem = $vagasInscricoesPorCurso[$i]['classificadas'] * 100;
+               if(($vagasInscricoesPorCurso[$i]['classificadas'] + $vagasInscricoesPorCurso[$i]['naoClassificadas'])>0){
+                 $porcentagem = $porcentagem / ($vagasInscricoesPorCurso[$i]['classificadas'] + $vagasInscricoesPorCurso[$i]['naoClassificadas']);
+               }
+               else{
+                 $porcentagem = 0;
+               }
+              ?>
+              {{number_format($porcentagem, 0)}}%
+           </td>
+           <td>{{$vagasInscricoesPorCurso[$i]['classificadas']}}</td>
+           <td>{{$vagasInscricoesPorCurso[$i]['naoClassificadas']}}</td>
+           <td> <a href="" onclick="event.preventDefault(); document.getElementById('form{{$i}}').submit();" >Notificar Coordenador</a> </td>
+           <form id="form{{$i}}" action="{{route('notificarCoordenador')}}" method="POST" target="_blank">
+             @csrf
+             <input type="hidden" name="cursoId" value="{{$vagasInscricoesPorCurso[$i]['id']}}">
+             <input type="hidden" name="editalId" value="{{$editalId}}">
+           </form>
+         </tr>
+        @endfor
 
-   <!-- <div class="card-header d-flex justify-content-center" style="background-color: white;margin-top: 10px;">
-     <h2 style="font-weight: bold">
-      Detalhes
-    </h2>
-
-   </div> -->
-
-   <div class="titulo-tabela-lmts">
-     <h2>Detalhes</h2>
-   </div>
-   <table class="table table-ordered table-hover" style=" overflow: auto; margin:1%;width:95%">
-     <tr style="background-color: #F7F7F7">
-       <th> Curso </th>
-       <th> Departamento </th>
-       <th> Progresso </th>
-       <th> Completas </th>
-       <th> Pendentes </th>
-       <th> Notificar </th>
-     </tr>
-     @for($i = 0; $i < sizeof($vagasInscricoesPorCurso); $i++)
-      <tr>
-        <td>{{$vagasInscricoesPorCurso[$i]['curso']}}</td>
-        <td>{{$vagasInscricoesPorCurso[$i]['departamento']}}</td>
-        <td>
-          <?php
-            $porcentagem = $vagasInscricoesPorCurso[$i]['classificadas'] * 100;
-            if(($vagasInscricoesPorCurso[$i]['classificadas'] + $vagasInscricoesPorCurso[$i]['naoClassificadas'])>0){
-              $porcentagem = $porcentagem / ($vagasInscricoesPorCurso[$i]['classificadas'] + $vagasInscricoesPorCurso[$i]['naoClassificadas']);
-            }
-            else{
-              $porcentagem = 0;
-            }
-           ?>
-           {{number_format($porcentagem, 0)}}%
-        </td>
-        <td>{{$vagasInscricoesPorCurso[$i]['classificadas']}}</td>
-        <td>{{$vagasInscricoesPorCurso[$i]['naoClassificadas']}}</td>
-        <td> <a href="" onclick="event.preventDefault(); document.getElementById('form{{$i}}').submit();" >Notificar Coordenador</a> </td>
-        <form id="form{{$i}}" action="{{route('notificarCoordenador')}}" method="POST" target="_blank">
-          @csrf
-          <input type="hidden" name="cursoId" value="{{$vagasInscricoesPorCurso[$i]['id']}}">
-          <input type="hidden" name="editalId" value="{{$editalId}}">
-        </form>
-      </tr>
-     @endfor
-
-   </table>
-
-  </div>
-</div>
+      </table>
     </div>
   </div>
 </div>
-
-
-
 
 @endsection

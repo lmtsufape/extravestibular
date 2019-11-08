@@ -237,7 +237,7 @@
                 <div class="titulo-tabela-lmts" style="width: 100%; margin-left: 0px; <?php if(!$primeiroCurso){ echo('margin-top: 10%');} ?>">
                   <h4>{{$nomeCurso}}</h4>
                 </div>
-          			<table class="table table-bordered" width="100%" style="font-size: 6px;">
+          			<table class="table table-sm table-striped" width="100%" style="font-size: 6px;">
         					<tr>
                     <th style="width: 20%; height: 10px"> NOME </th>
                     <th style="width: 10%; height: 10px"> CPF </th>
@@ -254,7 +254,22 @@
           				<tr>
           					<td> {{$inscricao->user->dadosUsuario->nome}} </td>
           					<td> {{$inscricao->user->dadosUsuario->cpf}} </td>
-          					<td> {{$inscricao->tipo}} </td>
+          					<td>
+                      <?php
+                       if($inscricao->tipo == 'reintegracao'){
+                         echo('Reintegração');
+                       }
+                       elseif($inscricao->tipo == 'transferenciaInterna'){
+                         echo('Transferência Interna');
+                       }
+                       elseif($inscricao->tipo == 'transferenciaExterna'){
+                         echo('Transferência Externa');
+                       }
+                       elseif($inscricao->tipo == 'portadorDeDiploma'){
+                         echo('Portador de Diploma');
+                       }
+                      ?>
+                    </td>
           					<td> {{$nomeCurso}} </td>
           					<td> {{$campus}} </td>
                     <td> {{$i}} </t>
@@ -305,7 +320,7 @@
               <div class="titulo-tabela-lmts" style="width: 100%; margin-left: 0px; <?php if(!$primeiroCurso){ echo('margin-top: 10%');} else{echo('margin-top: 100vh');} ?>">
                 <h4>{{$nomeCurso}}</h4>
               </div>
-              <table class="table table-bordered" width="100%" style="font-size: 6px;">
+              <table class="table table-sm table-striped" width="100%" style="font-size: 6px;">
                 <tr>
                   <th style="width: 20%; height: 10px"> NOME </th>
                   <th style="width: 10%; height: 10px"> CPF </th>
@@ -321,7 +336,22 @@
                 <tr>
                   <td> {{$inscricao->user->dadosUsuario->nome}} </td>
                   <td> {{$inscricao->user->dadosUsuario->cpf}} </td>
-                  <td> {{$inscricao->tipo}} </td>
+                  <td>
+                   <?php
+                    if($inscricao->tipo == 'reintegracao'){
+                      echo('Reintegração');
+                    }
+                    elseif($inscricao->tipo == 'transferenciaInterna'){
+                      echo('Transferência Interna');
+                    }
+                    elseif($inscricao->tipo == 'transferenciaExterna'){
+                      echo('Transferência Externa');
+                    }
+                    elseif($inscricao->tipo == 'portadorDeDiploma'){
+                      echo('Portador de Diploma');
+                    }
+                   ?>
+                  </td>
                   <td> {{$nomeCurso}} </td>
                   <td> {{$campus}} </td>
                   <td> {{$i}} </t>
