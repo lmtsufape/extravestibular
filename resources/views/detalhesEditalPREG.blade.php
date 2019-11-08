@@ -41,6 +41,10 @@
 
 }
 
+#label{
+  margin-left: 3%;
+}
+
 @media screen and (max-width: 576px){
   #finalizarModal{
     margin-top: 40px;
@@ -52,6 +56,9 @@
   .titulo-tabela-lmts {
     margin-right: 5%;
 
+  }
+  #label{
+    margin-left: 4%;
   }
 
 }
@@ -76,32 +83,40 @@
          <div>
            <input type="hidden" name="editalId" value="{{$edital->id}}" />
 
-           <div class="form-group row justify-content-left" style="margin-left: 1%">  <!-- Nome -->
-             <label for="nome" class="field a-field a-field_a2 page__field">
-               <input id="nome" type="text" name="nome" class="field__input a-field__input" placeholder="Nome" style="width: 200%">
-               <span class="a-field__label-wrap">
-                 <span class="a-field__label">Nome*</span>
-               </span>
-             </label>
-           </div>
+           <div class="row justify-content-center" style="">  <!-- Nome -->
+             <div class="col-sm-12">
+               <label for="nome" class="field a-field a-field_a2 page__field" style="width:100%">
+                 <input id="nome" type="text" name="nome" class="field__input a-field__input" placeholder="Nome">
+                 <span class="a-field__label-wrap">
+                   <span class="a-field__label">Nome*</span>
+                 </span>
+               </label>
+              </div>
+            </div><!--end Nome -->
 
-           <div  class="form-group row justify-content-left" >  <!-- PDF -->
-             <label for="arquivo" class="col-md-4 col-form-label text-md-right">{{ __('Arquivo*') }}</label>
-             <div class="col-md-6" style="margin-top: 20px;">
-               <div class="custom-file">
-                 <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="arquivo">
-               </div>
-               @error('arquivo')
-               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                 <strong>{{ $message }}</strong>
-               </span>
-               @enderror
+
+             <div id="label" class="row">
+               <label  for="arquivo" class="col-form-label text-sm-right">{{ __('Arquivo*') }}</label>
              </div>
-           </div>
+             <div  class="row justify-content-left" >  <!-- PDF -->
 
-           <div  class="form-group" >
-             <label for="editarEdital">{{ __('Marque se existir mudança nas datas:') }}</label>
-             <input name="editarEdital" type="checkbox" value="sim">
+               <div class="col-md-12" style="">
+                 <div class="custom-file">
+                   <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="arquivo">
+                 </div>
+                 @error('arquivo')
+                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                   <strong>{{ $message }}</strong>
+                 </span>
+                 @enderror
+               </div>
+          </div><!-- end PDF -->
+
+           <div  class="row" style="margin-top:10px;">
+             <div class="col-sm-10">
+               <input name="editarEdital" type="checkbox" value="sim">
+             <label for="editarEdital">{{ __('Marque se existir mudança nas datas') }}</label>
+           </div>
            </div>
 
          </div>
