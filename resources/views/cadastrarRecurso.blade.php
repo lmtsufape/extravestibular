@@ -38,61 +38,96 @@
     </li>
 @endsection
 @section('content')
+<style media="screen">
+  .textbox{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 20px;
+  }
+  #label{
+    margin-left: 1.5%;
+  }
+  @media screen and (max-width: 576px){
 
-<div class="container" style="width: 100rem;margin-left: 200px;">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card" style="width: 70rem;">
-                <div class="card-header">{{ __('Requerimento de Recurso') }}</div>
-                <div class="card-body">
-                      <div class="card-body">
-                        <form method="POST" action="{{ route('cadastroRecurso') }}" enctype="multipart/form-data" id="formRecurso">
-                              @csrf
-                          <input type="hidden" name="editalId" value="{{$editalId}}" />
-                          <input type="hidden" name="tipoRecurso" value="{{$tipoRecurso}}" />
+    #margin{
+      margin-bottom:20px;
+    }
+    .textbox{
+      margin-left: 5%;
+      margin-right: 5%;
+      margin-bottom: 20px;
+    }
+    #label{
+      margin-left: 5%;
+    }
 
-                          <div class="form-group row justify-content-center">  <!-- Nome | CPF-->
-                            <label for="nome" class="field a-field a-field_a2 page__field">
-                                <input id="nome" type="text" name="nome" autofocus class="field__input a-field__input" disabled value="{{$dados->nome}}" placeholder="Nome" style="width: 45rem;">
-                                <span class="a-field__label-wrap">
-                                  <span class="a-field__label">Nome</span>
-                                </span>
-                            </label>
-                            <label for="cpf" class="field a-field a-field_a2 page__field" style=" margin-left: 30px;">
-                                <input id="cpf" type="text" name="cpf" autofocus class="field__input a-field__input" disabled value="{{$dados->cpf}}" placeholder="CPF" style="width: 12rem;">
-                                <span class="a-field__label-wrap">
-                                  <span class="a-field__label">CPF</span>
-                                </span>
-                            </label>
-                          </div>
+  }
+</style>
+<div class="container">
+  <div class="row">
+    <div class="card" style="width:100%; ">
+      <div class="card-header">
+        {{ __('Requerimento de Recurso') }}
+      </div>
 
+      <div class="card-body" >
+        <form method="POST" action="{{ route('cadastroRecurso') }}" enctype="multipart/form-data" id="formRecurso">
+          @csrf
+          <div class="row">
+            <input type="hidden" name="editalId" value="{{$editalId}}" />
+            <input type="hidden" name="tipoRecurso" value="{{$tipoRecurso}}" />
+          </div>
 
-                          <div class="form-group">
-                              <label for="motivo" class="col-md-4 col-form-label text-md-right"  style="margin-left: -15rem">{{ __('Motivo:') }}</label>
+          <!-- row nome | cpf -->
+          <div class="row justify-content-center">
+            <!-- nome -->
+            <div id="margin" class="col-sm-7">
+              <label for="nome" class="field a-field a-field_a2 page__field" style="width:100%;">
+                  <input id="nome" type="text" name="nome" autofocus class="field__input a-field__input" disabled value="{{$dados->nome}}" placeholder="Nome">
+                  <span class="a-field__label-wrap">
+                    <span class="a-field__label">Nome</span>
+                  </span>
+              </label>
+            </div><!-- end nome -->
 
-                              <div class="col-md-6" style="margin-left: 30px">
-                                <textarea form ="formRecurso" name="motivo" id="taid" cols="100" ></textarea>
+            <!-- cpf -->
+            <div class="col-sm-3">
+              <label for="cpf" class="field a-field a-field_a2 page__field" style="width:100%;">
+                  <input id="cpf" type="text" name="cpf" autofocus class="field__input a-field__input" disabled value="{{$dados->cpf}}" placeholder="CPF" >
+                  <span class="a-field__label-wrap">
+                    <span class="a-field__label">CPF</span>
+                  </span>
+              </label>
+            </div><!-- end cpf -->
+          </div><!-- end row nome | cpf -->
 
-                              </div>
-                          </div>
+          <!-- label | textarea -->
+          <div class="textbox" style="">
 
-
-                          <div class="form-group row mb-0">
-                              <div class="col-md-8 offset-md-4">
-                                  <button type="submit" class="btn btn-primary btn-primary-lmts">
-                                      {{ __('Finalizar') }}
-                                  </button>
-
-                              </div>
-                          </div>
-
-                        </form>
-                      </div>
-                </div>
+            <div class="row">
+              <label id="label" for="motivo" class=" col-form-label" >{{ __('Motivo:') }}</label>
             </div>
-        </div>
-    </div>
-</div>
+
+            <div class="row">
+              <textarea form ="formRecurso" name="motivo" id="taid" cols="100" ></textarea>
+            </div>
+          </div><!-- end label | textarea -->
+
+          <div class="row justify-content-center">
+            <button type="submit" class="btn btn-primary btn-primary-lmts">
+                {{ __('Finalizar') }}
+            </button>
+          </div>
+        </form>
+
+      </div><!-- end card-body -->
+
+    </div><!-- end card -->
+  </div><!-- end row-->
+</div><!-- end container -->
+
+
+
 <script type="text/javascript" >
 function tipo(x) {
 	if (x == "reintegracao") {

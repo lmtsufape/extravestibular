@@ -38,50 +38,52 @@
     </li>
 @endsection
 @section('content')
-<div class="container" style="padding-bottom: 5%">
+<div class="container" style="">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <!-- <div class="card" > -->
-                <div class="titulo-tabela-lmts">
-                  <h2>Recursos abertos</h2>
-                </div>
-                <div class="card-body">
-                  <table class="table table-ordered table-hover">
-                    <tr>
-                      <th> Nome </th>
-                      <th> CPF </th>
-                      <th> </th>
-                    </tr>
-                    @foreach ($recursos as $recurso)
-                      <tr>
-                        <td> <!--  -->
-                         <a >
-                           {{$recurso->user->dadosUsuario->cpf}}
-                         </a>
-                        </td>
-                        <td> <!--  -->
-                         <a >
-                           {{$recurso->user->dadosUsuario->cpf}}
-                         </a>
-                        </td>
-                        <td> <!--  -->
-                          <form method="POST" action="{{ route('recursoEscolhido') }}" enctype="multipart/form-data"> <!-- Isenção -->
-                            @csrf
-                            <div class="col-md-8 offset-md-4">
-                              <input type="hidden" name="recursoId" value="{{$recurso->id}}">
-                              <button type="submit" class="btn btn-primary btn-primary-lmts">
-                                  {{ __('Selecionar') }}
-                              </button>
 
-                            </div>
-                          </form>
-                        </td>
-                      </tr>
-                    @endforeach
-                  </table>
-                {{ $recursos->links() }}
-              </div>
-            <!-- </div> -->
+        <div class="col-md-10">
+
+          <div class="titulo-tabela-lmts" style="margin-bottom:20px; width:100%;margin-left:0;">
+            <h2>Recursos abertos</h2>
+          </div>
+
+          <table class="table table-ordered table-hover">
+            <tr>
+              <th> Nome </th>
+              <th> CPF </th>
+              <th> </th>
+            </tr>
+            @foreach ($recursos as $recurso)
+              <tr>
+                <td> <!--  -->
+                 <a >
+                   {{$recurso->user->dadosUsuario->cpf}}
+                 </a>
+                </td>
+                <td> <!--  -->
+                 <a >
+                   {{$recurso->user->dadosUsuario->cpf}}
+                 </a>
+                </td>
+                <td> <!--  -->
+                  <form method="POST" action="{{ route('recursoEscolhido') }}" enctype="multipart/form-data"> <!-- Isenção -->
+                    @csrf
+                    <div class="col-md-8 offset-md-4">
+                      <input type="hidden" name="recursoId" value="{{$recurso->id}}">
+                      <button type="submit" class="btn btn-primary btn-primary-lmts">
+                          {{ __('Selecionar') }}
+                      </button>
+
+                    </div>
+                  </form>
+                </td>
+              </tr>
+            @endforeach
+          </table>
+          {{ $recursos->links() }}
+
+
+
         </div>
     </div>
 </div>

@@ -195,7 +195,6 @@
 	<title>
 		Resultados Classificação do
 		<?php
-
 			$nomeEdital = explode(".pdf", $edital->nome);
 			echo ($nomeEdital[0]);
 	  ?>
@@ -204,66 +203,143 @@
 </head>
 
 <body>
-	<?php
-		$i = 1;
-		$primeiroCurso = true;
-		$cursoAtual = '';
-		foreach ($inscricoes as $inscricao):
-
-	?>
-
-		@if($cursoAtual != $inscricao->curso)
-			<?php
-				$i = 1;
-				$cursoAtual =  $inscricao->curso;
-			?>
-			@if(!$primeiroCurso)
-				</table>
-			@endif
-			<table class="table table-bordered" width="100%" style="font-size: 6px;">
-
-					<tr>
-						<th> NOME </th>
-						<th> CPF </th>
-						<th> MODALIDADE </th>
-						<th> CURSO PRETENDIDO</th>
-						<th> CAMPUS </th>
-            <th> Col. </th>
-						<th> SITUAÇÃO </th>
-						<th> TURNO </th>
-					</tr>
-
-		@endif
+  <div class="container-fluid justify-content-left">
+    <!-- aprovados -->
       <?php
-        $nomeCurso = '';
-        $campus = '';
-        foreach ($cursos as $key) {
-          if($key['id'] == $inscricao->curso){
-            $nomeCurso = $key['nome'];
-            $campus = $key['departamento'];
-          }
-        }
+        $i = 1;
+        $primeiroCurso = true;
+        $cursoAtual = '';
       ?>
+      <div class="row">
+        <div class="col-sm-12">
+          @foreach ($inscricoes as $inscricao)
+              <!-- Pega o nome e departamento do curso da api-->
+              <?php
+                $nomeCurso = '';
+                $campus = '';
+                foreach ($cursos as $key) {
+                  if($key['id'] == $inscricao->curso){
+                    $nomeCurso = $key['nome'];
+                    $campus = $key['departamento'];
+                  }
+                }
+              ?>
+              <!-- Começar uma nova tabela sempre que achar um curso diferente -->
+          		@if($cursoAtual != $inscricao->curso)
+          			<?php
+          				$i = 1;
+          				$cursoAtual =  $inscricao->curso;
+          			?>
+                <!-- Não fechar tabela do curso anterior caso seja o primeiro curso -->
+          			@if(!$primeiroCurso)
+          				</table>
+          			@endif
+                <div class="titulo-tabela-lmts" style="width: 100%; margin-left: 0px; <?php if(!$primeiroCurso){ echo('margin-top: 10%');} ?>">
+                  <h4>{{$nomeCurso}}</h4>
+                </div>
+          			<table class="table table-bordered" width="100%" style="font-size: 6px;">
+        					<tr>
+                    <th style="width: 20%; height: 10px"> NOME </th>
+                    <th style="width: 10%; height: 10px"> CPF </th>
+                    <th style="width: 10%; height: 10px"> MODALIDADE </th>
+                    <th style="width: 15%; height: 10px"> CURSO PRETENDIDO</th>
+                    <th style="width: 15%; height: 10px"> CAMPUS </th>
+                    <th style="width: 5% ; height: 10px"> Col. </th>
+                    <th style="width: 8% ; height: 10px"> SITUAÇÃO </th>
+                    <th style="width: 7% ; height: 10px"> TURNO </th>
+        					</tr>
+          		@endif
 
-				<tr>
-					<td> {{$inscricao->user->dadosUsuario->nome}} </td>
-					<td> {{$inscricao->user->dadosUsuario->cpf}} </td>
-					<td> {{$inscricao->tipo}} </td>
-					<td> {{$nomeCurso}} </td>
-					<td> {{$campus}} </td>
-          <td> {{$i}} </t>
-					<td style="background-color: <?php if($inscricao->situacao == 'Aprovado'){echo ('lightgreen'); } else{ echo('lightyellow');} ?>"> {{$inscricao->situacao}} </td>
-					<td> {{$inscricao->turno}} </td>
-				</tr>
+              @if($inscricao->situacao == 'Aprovado')
+          				<tr>
+          					<td> {{$inscricao->user->dadosUsuario->nome}} </td>
+          					<td> {{$inscricao->user->dadosUsuario->cpf}} </td>
+          					<td> {{$inscricao->tipo}} </td>
+          					<td> {{$nomeCurso}} </td>
+          					<td> {{$campus}} </td>
+                    <td> {{$i}} </t>
+          					<td style="background-color: <?php if($inscricao->situacao == 'Aprovado'){echo ('lightgreen'); } else{ echo('lightyellow');} ?>"> {{$inscricao->situacao}} </td>
+          					<td> {{$inscricao->turno}} </td>
+          				</tr>
+              @endif
 
-	 	<?php
-			$i++;
-			$primeiroCurso = false;
-			endforeach;
-		?>
+          	 	<?php
+          			$i++;
+          			$primeiroCurso = false;
+          		?>
+          @endforeach
+          <!-- Fechar ultima tabela -->
+          </table>
+        </div>
+      </div>
+    <!-- Classificaveis -->
+    <?php
+      $i = 1;
+      $primeiroCurso = true;
+      $cursoAtual = '';
+    ?>
+    <div class="row">
+      <div class="col-sm-12">
+        @foreach ($inscricoes as $inscricao)
+            <!-- Pega o nome e departamento do curso da api-->
+            <?php
+            $nomeCurso = '';
+            $campus = '';
+            foreach ($cursos as $key) {
+              if($key['id'] == $inscricao->curso){
+                $nomeCurso = $key['nome'];
+                $campus = $key['departamento'];
+              }
+            }
+            ?>
+            <!-- Começar uma nova tabela sempre que achar um curso diferente -->
+            @if($cursoAtual != $inscricao->curso)
+              <?php
+                $i = 1;
+                $cursoAtual =  $inscricao->curso;
+              ?>
+              <!-- Não fechar tabela do curso anterior caso seja o primeiro curso -->
+              @if(!$primeiroCurso)
+                </table>
+              @endif
+              <div class="titulo-tabela-lmts" style="width: 100%; margin-left: 0px; <?php if(!$primeiroCurso){ echo('margin-top: 10%');} else{echo('margin-top: 100vh');} ?>">
+                <h4>{{$nomeCurso}}</h4>
+              </div>
+              <table class="table table-bordered" width="100%" style="font-size: 6px;">
+                <tr>
+                  <th style="width: 20%; height: 10px"> NOME </th>
+                  <th style="width: 10%; height: 10px"> CPF </th>
+                  <th style="width: 10%; height: 10px"> MODALIDADE </th>
+                  <th style="width: 15%; height: 10px"> CURSO PRETENDIDO</th>
+                  <th style="width: 15%; height: 10px"> CAMPUS </th>
+                  <th style="width: 5% ; height: 10px"> Col. </th>
+                  <th style="width: 8% ; height: 10px"> SITUAÇÃO </th>
+                  <th style="width: 7% ; height: 10px"> TURNO </th>
+                </tr>
+            @endif
+            @if($inscricao->situacao == 'Classificável')
+                <tr>
+                  <td> {{$inscricao->user->dadosUsuario->nome}} </td>
+                  <td> {{$inscricao->user->dadosUsuario->cpf}} </td>
+                  <td> {{$inscricao->tipo}} </td>
+                  <td> {{$nomeCurso}} </td>
+                  <td> {{$campus}} </td>
+                  <td> {{$i}} </t>
+                  <td style="background-color: <?php if($inscricao->situacao == 'Aprovado'){echo ('lightgreen'); } else{ echo('lightyellow');} ?>"> {{$inscricao->situacao}} </td>
+                  <td> {{$inscricao->turno}} </td>
+                </tr>
+              <?php $i++; ?>
+            @endif
 
-
-	</table>
+            <?php
+              $primeiroCurso = false;
+            ?>
+        @endforeach
+        <!-- Fechar ultima tabela -->
+        </table>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

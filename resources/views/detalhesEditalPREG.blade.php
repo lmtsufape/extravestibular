@@ -41,6 +41,10 @@
 
 }
 
+#label{
+  margin-left: 3%;
+}
+
 @media screen and (max-width: 576px){
   #finalizarModal{
     margin-top: 40px;
@@ -52,6 +56,9 @@
   .titulo-tabela-lmts {
     margin-right: 5%;
 
+  }
+  #label{
+    margin-left: 4%;
   }
 
 }
@@ -76,32 +83,40 @@
          <div>
            <input type="hidden" name="editalId" value="{{$edital->id}}" />
 
-           <div class="form-group row justify-content-left" style="margin-left: 1%">  <!-- Nome -->
-             <label for="nome" class="field a-field a-field_a2 page__field">
-               <input id="nome" type="text" name="nome" class="field__input a-field__input" placeholder="Nome" style="width: 200%">
-               <span class="a-field__label-wrap">
-                 <span class="a-field__label">Nome*</span>
-               </span>
-             </label>
-           </div>
+           <div class="row justify-content-center" style="">  <!-- Nome -->
+             <div class="col-sm-12">
+               <label for="nome" class="field a-field a-field_a2 page__field" style="width:100%">
+                 <input id="nome" type="text" name="nome" class="field__input a-field__input" placeholder="Nome">
+                 <span class="a-field__label-wrap">
+                   <span class="a-field__label">Nome*</span>
+                 </span>
+               </label>
+              </div>
+            </div><!--end Nome -->
 
-           <div  class="form-group row justify-content-left" >  <!-- PDF -->
-             <label for="arquivo" class="col-md-4 col-form-label text-md-right">{{ __('Arquivo*') }}</label>
-             <div class="col-md-6" style="margin-top: 20px;">
-               <div class="custom-file">
-                 <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="arquivo">
-               </div>
-               @error('arquivo')
-               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                 <strong>{{ $message }}</strong>
-               </span>
-               @enderror
+
+             <div id="label" class="row">
+               <label  for="arquivo" class="col-form-label text-sm-right">{{ __('Arquivo*') }}</label>
              </div>
-           </div>
+             <div  class="row justify-content-left" >  <!-- PDF -->
 
-           <div  class="form-group" >
-             <label for="editarEdital">{{ __('Marque se existir mudança nas datas:') }}</label>
-             <input name="editarEdital" type="checkbox" value="sim">
+               <div class="col-md-12" style="">
+                 <div class="custom-file">
+                   <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="arquivo">
+                 </div>
+                 @error('arquivo')
+                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                   <strong>{{ $message }}</strong>
+                 </span>
+                 @enderror
+               </div>
+          </div><!-- end PDF -->
+
+           <div  class="row" style="margin-top:10px;">
+             <div class="col-sm-10">
+               <input name="editarEdital" type="checkbox" value="sim">
+             <label for="editarEdital">{{ __('Marque se existir mudança nas datas') }}</label>
+           </div>
            </div>
 
          </div>
@@ -185,8 +200,6 @@
 <!-- CARDS -->
 <div class="row justify-content-center" style="width: 97%; padding-top: 1%;">  <!-- opções -->
   <div class="card text-center" style="border-radius: 20px;height: 22.5rem;">    <!-- Isenção -->
-
-
     <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
       <h2 class="h2" style="font-weight: bold">Isenção</h2>
 
@@ -203,7 +216,7 @@
           </a>
       </h5>
     </div>
-    <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
+    <div class="container justify-content-center" style="height: 100%; margin-top: 2%">
       <h4>
         <?php
           $porcentagem = $isencoesHomologadas * 100;
@@ -231,7 +244,7 @@
         </h5>
     </div>
 
-    <div class="container justify-content-center" style="padding: 13px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >  <!-- form Isenção -->
+    <div class="container justify-content-center" style="padding: 13px;border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >  <!-- form Isenção -->
       <form method="GET" action="{{route('editalEscolhido')}}">
 
         <input type="hidden" name="editalId" value="{{$edital->id}}">
@@ -276,7 +289,7 @@
            </a>
         </h5>
     </div>
-    <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
+    <div class="container justify-content-center" style="height: 100%;  margin-top: 2%">
       <h4>
         <?php
           $porcentagem = $recursosTaxaHomologados * 100;
@@ -305,7 +318,7 @@
     </div>
 
 
-    <div class="container justify-content-center" style="padding: 13px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
+    <div class="container justify-content-center" style="padding: 13px;border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
       <form method="GET" action="{{route('editalEscolhido')}}">
 
         <input type="hidden" name="editalId" value="{{$edital->id}}">
@@ -349,7 +362,7 @@
               </a>
            </h5>
        </div>
-       <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
+       <div class="container justify-content-center" style="height: 100%; margin-top: 2%">
          <h4>
            <?php
              $porcentagem = $inscricoesHomologadas * 100;
@@ -376,7 +389,7 @@
              Inscrições em espera: <a style="font-weight: bold">{{$inscricoesNaoHomologadas}}</a>
            </h5>
        </div>
-      <div class="container justify-content-center" style="padding: 13px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
+      <div class="container justify-content-center" style="padding: 13px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
          <form method="GET" action="{{route('editalEscolhido')}}">
 
              <input type="hidden" name="editalId" value="{{$edital->id}}">
@@ -419,7 +432,7 @@
               </a>
            </h5>
        </div>
-       <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
+       <div class="container justify-content-center" style="height: 100%;  margin-top: 2%">
          <h4>
            <?php
              $porcentagem = $recursosClassificacaoHomologados * 100;
@@ -446,7 +459,7 @@
              Inscrições em espera: <a style="font-weight: bold">{{$recursosClassificacaoNaoHomologados}}</a>
            </h5>
        </div>
-       <div class="container justify-content-center" style="padding: 13px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
+       <div class="container justify-content-center" style="padding: 13px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
          <form method="GET" action="{{route('editalEscolhido')}}">
 
              <input type="hidden" name="editalId" value="{{$edital->id}}">
@@ -490,7 +503,7 @@
              </a>
           </h5>
       </div>
-      <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
+      <div class="container justify-content-center" style="height: 100%; margin-top: 2%">
         <h4>
           <?php
 
@@ -518,7 +531,7 @@
             Inscrições em espera: <a style="font-weight: bold">{{$recursosResultadoNaoHomologados}}</a>
           </h5>
       </div>
-      <div class="container justify-content-center" style="padding: 13px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
+      <div class="container justify-content-center" style="padding: 13px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
         <form method="GET" action="{{route('editalEscolhido')}}">
 
             <input type="hidden" name="editalId" value="{{$edital->id}}">
@@ -561,7 +574,7 @@
           </a>
        </h5>
    </div>
-   <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
+   <div class="container justify-content-center" style="height: 100%; margin-top: 2%">
      <h4>
        <?php
          $porcentagem = $inscricoesClassificadas * 100;
@@ -577,7 +590,7 @@
          <a href="{{ route('detalhesPorcentagem') }}"
             onclick="event.preventDefault();
                           document.getElementById('detalhesPorcentagem-form').submit();">
-              <img src="{{asset('images/iconAjuda.png')}}" alt="">
+              <img src="{{asset('images/eye.png')}}" alt="">
          </a>
          <form id="detalhesPorcentagem-form" target="_blank" action="{{ route('detalhesPorcentagem') }}" method="get" style="display: none;">
 
@@ -598,7 +611,7 @@
        </h5>
    </div>
 
-   <div class="container justify-content-center" style="padding: 13px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px"   <!-- form Classificação -->
+   <div class="container justify-content-center" style="padding: 13px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px"   <!-- form Classificação -->
      <form method="POST" action="{{route('gerarClassificacao')}}" target="_blank" enctype="multipart/form-data">
        @csrf
        <input type="hidden" name="editalId" value="{{$edital->id}}">

@@ -38,11 +38,11 @@
       <a class="nav-link" style="color: black" href="classificar"
          onclick="event.preventDefault();
                        document.getElementById('classificar').submit();">
-         {{ __('Homologar Inscrições') }}
+         {{ __('Classificar Inscrições') }}
       </a>
       <form id="classificar" method="GET" action="{{route('editalEscolhido')}}">
           <input type="hidden" name="editalId" value="{{$editalId}}">
-          <input type="hidden" name="tipo" value="homologarInscricoes">
+          <input type="hidden" name="tipo" value="classificarInscricoes">
       </form>
     </li>
     <li class="nav-item active">
