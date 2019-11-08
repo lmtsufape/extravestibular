@@ -200,8 +200,6 @@
 <!-- CARDS -->
 <div class="row justify-content-center" style="width: 97%; padding-top: 1%;">  <!-- opções -->
   <div class="card text-center" style="border-radius: 20px;height: 22.5rem;">    <!-- Isenção -->
-
-
     <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
       <h2 class="h2" style="font-weight: bold">Isenção</h2>
 
