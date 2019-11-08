@@ -216,7 +216,7 @@
           </a>
       </h5>
     </div>
-    <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
+    <div class="container justify-content-center" style="height: 100%; margin-top: 2%">
       <h4>
         <?php
           $porcentagem = $isencoesHomologadas * 100;
@@ -244,7 +244,7 @@
         </h5>
     </div>
 
-    <div class="container justify-content-center" style="padding: 13px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >  <!-- form Isenção -->
+    <div class="container justify-content-center" style="padding: 13px;border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >  <!-- form Isenção -->
       <form method="GET" action="{{route('editalEscolhido')}}">
 
         <input type="hidden" name="editalId" value="{{$edital->id}}">
@@ -289,7 +289,7 @@
            </a>
         </h5>
     </div>
-    <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
+    <div class="container justify-content-center" style="height: 100%;  margin-top: 2%">
       <h4>
         <?php
           $porcentagem = $recursosTaxaHomologados * 100;
@@ -318,7 +318,7 @@
     </div>
 
 
-    <div class="container justify-content-center" style="padding: 13px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
+    <div class="container justify-content-center" style="padding: 13px;border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
       <form method="GET" action="{{route('editalEscolhido')}}">
 
         <input type="hidden" name="editalId" value="{{$edital->id}}">
@@ -362,7 +362,7 @@
               </a>
            </h5>
        </div>
-       <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
+       <div class="container justify-content-center" style="height: 100%; margin-top: 2%">
          <h4>
            <?php
              $porcentagem = $inscricoesHomologadas * 100;
@@ -389,7 +389,7 @@
              Inscrições em espera: <a style="font-weight: bold">{{$inscricoesNaoHomologadas}}</a>
            </h5>
        </div>
-      <div class="container justify-content-center" style="padding: 13px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
+      <div class="container justify-content-center" style="padding: 13px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
          <form method="GET" action="{{route('editalEscolhido')}}">
 
              <input type="hidden" name="editalId" value="{{$edital->id}}">
@@ -432,7 +432,7 @@
               </a>
            </h5>
        </div>
-       <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
+       <div class="container justify-content-center" style="height: 100%;  margin-top: 2%">
          <h4>
            <?php
              $porcentagem = $recursosClassificacaoHomologados * 100;
@@ -459,7 +459,7 @@
              Inscrições em espera: <a style="font-weight: bold">{{$recursosClassificacaoNaoHomologados}}</a>
            </h5>
        </div>
-       <div class="container justify-content-center" style="padding: 13px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
+       <div class="container justify-content-center" style="padding: 13px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
          <form method="GET" action="{{route('editalEscolhido')}}">
 
              <input type="hidden" name="editalId" value="{{$edital->id}}">
@@ -503,7 +503,7 @@
              </a>
           </h5>
       </div>
-      <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
+      <div class="container justify-content-center" style="height: 100%; margin-top: 2%">
         <h4>
           <?php
 
@@ -531,7 +531,7 @@
             Inscrições em espera: <a style="font-weight: bold">{{$recursosResultadoNaoHomologados}}</a>
           </h5>
       </div>
-      <div class="container justify-content-center" style="padding: 13px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
+      <div class="container justify-content-center" style="padding: 13px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
         <form method="GET" action="{{route('editalEscolhido')}}">
 
             <input type="hidden" name="editalId" value="{{$edital->id}}">
@@ -574,7 +574,7 @@
           </a>
        </h5>
    </div>
-   <div class="container justify-content-center" style="height: 100%; background-color: #F7F7F7; margin-top: 2%">
+   <div class="container justify-content-center" style="height: 100%; margin-top: 2%">
      <h4>
        <?php
          $porcentagem = $inscricoesClassificadas * 100;
@@ -590,7 +590,7 @@
          <a href="{{ route('detalhesPorcentagem') }}"
             onclick="event.preventDefault();
                           document.getElementById('detalhesPorcentagem-form').submit();">
-              <img src="{{asset('images/iconAjuda.png')}}" alt="">
+              <img src="{{asset('images/eye.png')}}" alt="">
          </a>
          <form id="detalhesPorcentagem-form" target="_blank" action="{{ route('detalhesPorcentagem') }}" method="get" style="display: none;">
 
@@ -611,7 +611,7 @@
        </h5>
    </div>
 
-   <div class="container justify-content-center" style="padding: 13px;background-color: #F7F7F7; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px"   <!-- form Classificação -->
+   <div class="container justify-content-center" style="padding: 13px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px"   <!-- form Classificação -->
      <form method="POST" action="{{route('gerarClassificacao')}}" target="_blank" enctype="multipart/form-data">
        @csrf
        <input type="hidden" name="editalId" value="{{$edital->id}}">
