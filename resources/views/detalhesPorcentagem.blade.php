@@ -56,7 +56,7 @@
 
    </div> -->
 
-   <div class="titulo-tabela-lmts" style="margin-left: 0%;width: 95%">
+   <div class="titulo-tabela-lmts">
      <h2>Detalhes</h2>
    </div>
    <table class="table table-ordered table-hover" style=" overflow: auto; margin:1%;width:95%">

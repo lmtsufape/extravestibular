@@ -40,6 +40,7 @@
 @section('content')
 <div class="container" style="">
     <div class="row justify-content-center">
+
         <div class="col-md-10">
 
           <div class="titulo-tabela-lmts" style="margin-bottom:20px; width:100%;margin-left:0;">
@@ -80,6 +81,7 @@
             @endforeach
           </table>
           {{ $recursos->links() }}
+
 
 
         </div>

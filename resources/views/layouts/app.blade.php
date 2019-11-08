@@ -106,7 +106,7 @@
                            {{ __('EDITAR DADOS DE USUÁRIO') }}
                         </a>
                         <form id="cadastroDadosUsuario" action="{{ route('editarDadosUsuario') }}" method="GET" style="display: none;">
-                          
+
                         </form>
                     </li>
                   @endif
@@ -440,7 +440,7 @@
           @yield('content')
         <!-- <div id="footer-brasil"></div> -->
         </div>
-        <div style="padding-top: 3%">
+        <div style="padding-top: 5%">
           @component('components.footer-brasil')
           @endcomponent
         </div>

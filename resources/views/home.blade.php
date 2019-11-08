@@ -27,6 +27,7 @@
 </style>
 
 <div class="container">
+
   <!-- div contem as tabelas -->
   <div id="tabelas" class="col-sm-9" style="width: 100%;margin: auto; background-color: #white">
     @if(session('tipo') == 'PREG')
