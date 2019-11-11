@@ -107,6 +107,27 @@
       <div class="row justify-content-center" style="margin-top:50px">
         <form action="{{ route('register') }}" method="POST">
           @csrf
+
+          <!-- Form Nome -->
+
+          <div class="form-group row formulario-centro" style="display:none">
+              <div class="col-md-9">
+                  <label for="name" class="field a-field a-field_a3 page__field ">
+                  <input id="name" type="name" class="form-control @error('name') is-invalid @enderror field__input a-field__input"
+                  name="name" value=".">
+
+                  <span class="a-field__label-wrap">
+                      <span class="a-field__label">Nome</span>
+                  </span>
+                  </label>
+                  @error('email')
+                  <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                  <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+              </div>
+          </div>
+
           <!-- Form E-mail -->
           <div id="margin" class="row">
               <div class="col-sm-12">
