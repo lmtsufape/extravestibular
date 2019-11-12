@@ -74,7 +74,7 @@
   <!-- row card Dados da Inscrição -->
   <div class="row justify-content-center">
     <!-- card -->
-    <div id="margin" class="card">
+    <div id="margin" class="card" style="margin-top:20px">
       <div class="card-header">{{ __('Dados da Inscrição') }}</div>
       <div class="card-body">
         <!-- row tipo de Matricula -->
