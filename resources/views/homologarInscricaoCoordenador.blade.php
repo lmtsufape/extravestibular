@@ -403,10 +403,8 @@ function checkFinalizar(){
           if(document.getElementById("selectEnemAprovado").checked || document.getElementById("selectEnemRejeitado").checked){
             if(document.getElementById("selectDadosPessoaisAprovado").checked || document.getElementById("selectDadosPessoaisRejeitado").checked){
               if(document.getElementById("selectDadosDoCursoAprovado").checked || document.getElementById("selectDadosDoCursoRejeitado").checked){
-                if(document.getElementById("selectInscricaoAprovado").checked || document.getElementById("selectInscricaoRejeitado").checked){
-                  if(document.getElementById("selectComprovanteAprovado").checked || document.getElementById("selectComprovanteRejeitado").checked){
-                    document.getElementById("buttonFinalizar").disabled = false;
-                  }
+                if(document.getElementById("selectComprovanteAprovado").checked || document.getElementById("selectComprovanteRejeitado").checked){
+                  document.getElementById("buttonFinalizar").disabled = false;
                 }
               }
             }
@@ -425,12 +423,10 @@ function checkAprovado(){
           if(document.getElementById("selectEnemAprovado").checked){
             if(document.getElementById("selectDadosPessoaisAprovado").checked){
               if(document.getElementById("selectDadosDoCursoAprovado").checked){
-                if(document.getElementById("selectInscricaoAprovado").checked){
-                  if(document.getElementById("selectComprovanteAprovado").checked){
-                    document.getElementById("homologado").value = 'aprovado';
-                    document.getElementById("motivoRejeicao").value = '';
-                    document.getElementById("motivoRejeicao").style.display = 'none';
-                  }
+                if(document.getElementById("selectComprovanteAprovado").checked){
+                  document.getElementById("homologado").value = 'aprovado';
+                  document.getElementById("motivoRejeicao").value = '';
+                  document.getElementById("motivoRejeicao").style.display = 'none';
                 }
               }
             }
