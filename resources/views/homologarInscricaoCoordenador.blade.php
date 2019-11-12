@@ -121,7 +121,7 @@
     <!-- row card Dados de curso -->
     <div class="row justify-content-center">
         <!-- card dados do Curso -->
-        <div class="card">
+        <div id="margin" class="card">
           <div class="card-header">{{ __('Dados do Curso e Instituição de Origem') }}</div>
           <!-- card-body -->
           <div class="card-body">
@@ -238,151 +238,159 @@
   <!-- row Documentos -->
   <div class="row justify-content-center">
     <!-- card Documentos -->
-    <div class="card">
+    <div id="margin" class="card">
         <div class="card-header">{{ __('Documentos') }}</div>
 
         <!-- card-body -->
         <div class="card-body">
+          <div class="row justify-content-center">
+            <table class="table table-ordered table-hover">
+              <tr>
+                <th>Requisito</th>
+                <th>Dados</th>
+                <th style="text-align: center">Aprovado</th>
+                <th style="text-align: center">Rejeitado</th>
+              </tr>
+              <tr <?php if($inscricao->declaracaoDeVinculo == ''){echo('style="display: none"');} ?> >
+                <div class="form-group row" >
+                    <td>
+                      <label for="declaracaoDeVinculo" >{{ __('Declaração de Vinculo') }}</label>
+                    </td>
+                    <div class="col-md-6">
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->declaracaoDeVinculo])}}" target="_blank">Abrir arquivo</a>
+                        </td>
+                        <td style="text-align: center">
+                          <input onclick="selectCheck('aprovado')"  type="radio" name="radioDeclaracaoDeVinculo" id="selectDeclaracaoDeVinculoAprovado" <?php if($inscricao->declaracaoDeVinculo == ''){echo('checked="true"');} ?> >
+                        </td>
+                        <td style="text-align: center">
+                          <input onclick="selectCheck('rejeitado')"  type="radio" name="radioDeclaracaoDeVinculo" id="selectDeclaracaoDeVinculoRejeitado">
+                        </td>
+                    </div>
+                </div>
+              </tr>
+              <tr <?php if($inscricao->historicoEscolar == ''){echo('style="display: none"');} ?> >
+                <div class="form-group row" >
+                  <td>
+                    <label for="historicoEscolar" >{{ __('Historico Escolar') }}</label>
+                  </td>
+                    <div class="col-md-6">
+                      <td>
+                        <a href="{{ route('download', ['file' => $inscricao->historicoEscolar])}}" target="_new">Abrir arquivo</a>
+                      </td>
+                      <td style="text-align: center">
+                        <input onclick=<?php if($tipo == 'drca'){echo("selectCheckDRCA('aprovado')");}else{ echo("selectCheck('aprovado')");} ?>  type="radio" name="radioHistoricoEscolar" id="selectHistoricoEscolarAprovado" <?php if($inscricao->historicoEscolar == ''){echo('checked="true"');} ?> >
+                      </td>
+                      <td style="text-align: center">
+                        <input onclick=<?php if($tipo == 'drca'){echo("selectCheckDRCA('rejeitado')");}else{ echo("selectCheck('rejeitado')");} ?>  type="radio" name="radioHistoricoEscolar" id="selectHistoricoEscolarRejeitado" >
+                      </td>
+                    </div>
+                </div>
+              </tr>
+              <tr <?php if($inscricao->programaDasDisciplinas == ''){echo('style="display: none"');} ?> >
+                <div class="form-group row" >
+                  <td>
+                    <label for="programaDasDisciplinas" >{{ __('Programa das Disciplinas') }}</label>
+                  </td>
+                    <div class="col-md-6">
+                      <td>
+                        <a href="{{ route('download', ['file' => $inscricao->programaDasDisciplinas])}}" target="_blank">Abir arquivo</a>
+                      </td>
+                      <td style="text-align: center">
+                        <input onclick="selectCheck('aprovado')"  type="radio" name="radioProgramaDasDisciplinas" id="selectProgramaDasDisciplinasAprovado" <?php if($inscricao->programaDasDisciplinas == ''){echo('checked="true"');} ?> >
+                      </td>
+                      <td style="text-align: center">
+                        <input onclick="selectCheck('rejeitado')"  type="radio" name="radioProgramaDasDisciplinas" id="selectProgramaDasDisciplinasRejeitado">
+                      </td>
+                    </div>
+                </div>
+              </tr>
+              <tr <?php if($inscricao->curriculo == ''){echo('style="display: none"');} ?> >
+                <div class="form-group row" >
+                  <td>
+                    <label for="curriculo" >{{ __('Curriculo') }}</label>
+                  </td>
+                    <div class="col-md-6">
+                      <td>
+                        <a href="{{ route('download', ['file' => $inscricao->curriculo ])}}" target="_blank">Abrir arquivo</a>
+                      </td>
+                      <td style="text-align: center">
+                        <input onclick="selectCheck('aprovado')"  type="radio" name="radioCurriculo" id="selectCurriculoAprovado" <?php if($inscricao->curriculo == ''){echo('checked="true"');} ?> >
+                      </td>
+                      <td style="text-align: center">
+                        <input onclick="selectCheck('rejeitado')"  type="radio" name="radioCurriculo" id="selectCurriculoRejeitado">
+                      </td>
+                    </div>
+                </div>
+              </tr>
+              <tr <?php if($inscricao->enem == ''){echo('style="display: none"');} ?> >
+                <div class="form-group row" >
+                  <td>
+                    <label for="enem" >{{ __('ENEM') }}</label>
+                  </td>
+                    <div class="col-md-6">
+                      <td>
+                        <a href="{{ route('download', ['file' => $inscricao->enem ])}}" target="_blank">Abrir arquivo</a>
+                      </td>
+                      <td style="text-align: center">
+                        <input onclick="selectCheck('aprovado')"  type="radio" name="radioEnem" id="selectEnemAprovado" <?php if($inscricao->enem == ''){echo('checked="true"');} ?> >
+                      </td>
+                      <td style="text-align: center">
+                        <input onclick="selectCheck('rejeitado')"  type="radio" name="radioEnem" id="selectEnemRejeitado">
+                      </td>
+                    </div>
+                </div>
+              </tr>
+
+              <input style="display: none" checked type="radio" name="radioComprovante" id="selectComprovanteAprovado">
+              <input style="display: none"  type="radio" name="radioComprovante" id="selectComprovanteRejeitado">
+
+
+            </table>
+          </div>
 
         </div><!-- end card-body -->
-
     </div><!-- end card Documentos -->
   </div><!-- end row Documentos -->
 
-            <div class="card" style="width: 70rem; margin-top: 15px"> <!-- Documentos -->
-                <div class="card-header">{{ __('Documentos') }}</div>
-                <div class="card-body">
-                  <div class="form-group row">
-                    <table class="table table-ordered table-hover">
-                      <tr>
-                        <th>Requisito</th>
-                        <th>Dados</th>
-                        <th style="text-align: center">Aprovado</th>
-                        <th style="text-align: center">Rejeitado</th>
-                      </tr>
-                      <tr <?php if($inscricao->declaracaoDeVinculo == ''){echo('style="display: none"');} ?> >
-                        <div class="form-group row" >
-                            <td>
-                              <label for="declaracaoDeVinculo" >{{ __('Declaração de Vinculo') }}</label>
-                            </td>
-                            <div class="col-md-6">
-                                <td>
-                                  <a href="{{ route('download', ['file' => $inscricao->declaracaoDeVinculo])}}" target="_blank">Abrir arquivo</a>
-                                </td>
-                                <td style="text-align: center">
-                                  <input onclick="selectCheck('aprovado')"  type="radio" name="radioDeclaracaoDeVinculo" id="selectDeclaracaoDeVinculoAprovado" <?php if($inscricao->declaracaoDeVinculo == ''){echo('checked="true"');} ?> >
-                                </td>
-                                <td style="text-align: center">
-                                  <input onclick="selectCheck('rejeitado')"  type="radio" name="radioDeclaracaoDeVinculo" id="selectDeclaracaoDeVinculoRejeitado">
-                                </td>
-                            </div>
-                        </div>
-                      </tr>
-                      <tr <?php if($inscricao->historicoEscolar == ''){echo('style="display: none"');} ?> >
-                        <div class="form-group row" >
-                          <td>
-                            <label for="historicoEscolar" >{{ __('Historico Escolar') }}</label>
-                          </td>
-                            <div class="col-md-6">
-                              <td>
-                                <a href="{{ route('download', ['file' => $inscricao->historicoEscolar])}}" target="_new">Abrir arquivo</a>
-                              </td>
-                              <td style="text-align: center">
-                                <input onclick=<?php if($tipo == 'drca'){echo("selectCheckDRCA('aprovado')");}else{ echo("selectCheck('aprovado')");} ?>  type="radio" name="radioHistoricoEscolar" id="selectHistoricoEscolarAprovado" <?php if($inscricao->historicoEscolar == ''){echo('checked="true"');} ?> >
-                              </td>
-                              <td style="text-align: center">
-                                <input onclick=<?php if($tipo == 'drca'){echo("selectCheckDRCA('rejeitado')");}else{ echo("selectCheck('rejeitado')");} ?>  type="radio" name="radioHistoricoEscolar" id="selectHistoricoEscolarRejeitado" >
-                              </td>
-                            </div>
-                        </div>
-                      </tr>
-                      <tr <?php if($inscricao->programaDasDisciplinas == ''){echo('style="display: none"');} ?> >
-                        <div class="form-group row" >
-                          <td>
-                            <label for="programaDasDisciplinas" >{{ __('Programa das Disciplinas') }}</label>
-                          </td>
-                            <div class="col-md-6">
-                              <td>
-                                <a href="{{ route('download', ['file' => $inscricao->programaDasDisciplinas])}}" target="_blank">Abir arquivo</a>
-                              </td>
-                              <td style="text-align: center">
-                                <input onclick="selectCheck('aprovado')"  type="radio" name="radioProgramaDasDisciplinas" id="selectProgramaDasDisciplinasAprovado" <?php if($inscricao->programaDasDisciplinas == ''){echo('checked="true"');} ?> >
-                              </td>
-                              <td style="text-align: center">
-                                <input onclick="selectCheck('rejeitado')"  type="radio" name="radioProgramaDasDisciplinas" id="selectProgramaDasDisciplinasRejeitado">
-                              </td>
-                            </div>
-                        </div>
-                      </tr>
-                      <tr <?php if($inscricao->curriculo == ''){echo('style="display: none"');} ?> >
-                        <div class="form-group row" >
-                          <td>
-                            <label for="curriculo" >{{ __('Curriculo') }}</label>
-                          </td>
-                            <div class="col-md-6">
-                              <td>
-                                <a href="{{ route('download', ['file' => $inscricao->curriculo ])}}" target="_blank">Abrir arquivo</a>
-                              </td>
-                              <td style="text-align: center">
-                                <input onclick="selectCheck('aprovado')"  type="radio" name="radioCurriculo" id="selectCurriculoAprovado" <?php if($inscricao->curriculo == ''){echo('checked="true"');} ?> >
-                              </td>
-                              <td style="text-align: center">
-                                <input onclick="selectCheck('rejeitado')"  type="radio" name="radioCurriculo" id="selectCurriculoRejeitado">
-                              </td>
-                            </div>
-                        </div>
-                      </tr>
-                      <tr <?php if($inscricao->enem == ''){echo('style="display: none"');} ?> >
-                        <div class="form-group row" >
-                          <td>
-                            <label for="enem" >{{ __('ENEM') }}</label>
-                          </td>
-                            <div class="col-md-6">
-                              <td>
-                                <a href="{{ route('download', ['file' => $inscricao->enem ])}}" target="_blank">Abrir arquivo</a>
-                              </td>
-                              <td style="text-align: center">
-                                <input onclick="selectCheck('aprovado')"  type="radio" name="radioEnem" id="selectEnemAprovado" <?php if($inscricao->enem == ''){echo('checked="true"');} ?> >
-                              </td>
-                              <td style="text-align: center">
-                                <input onclick="selectCheck('rejeitado')"  type="radio" name="radioEnem" id="selectEnemRejeitado">
-                              </td>
-                            </div>
-                        </div>
-                      </tr>
+  <form method="POST" action="{{ route('seguirParaClassificacao') }}" enctype="multipart/form-data" id="formHomologacao">
+    @csrf
+    <div class="row justify-content-center">
+      <div class="card" style="width:100%;display: none; margin-bottom: 20px;" id="motivoRejeicao">
+        <div class="card-header">
+          {{ __('Motivos da Rejeição') }}
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <label for="motivoRejeicao" class="col-form-label text-md-right" style="margin-left: 1.5%;">{{ __('Motivos da Rejeição') }}</label>
+          </div><!-- end row div-->
 
-                      <input style="display: none" checked type="radio" name="radioComprovante" id="selectComprovanteAprovado">
-                      <input style="display: none"  type="radio" name="radioComprovante" id="selectComprovanteRejeitado">
+          <div class="row justify-content-center">
+            <div class="col-sm-12">
+              <textarea form ="formHomologacao" name="motivoRejeicao" id="taid" cols="115" style="width:100%"></textarea>
 
-
-                    </table>
-                  </div>
-                </div>
             </div>
-            <form method="POST" action="{{ route('seguirParaClassificacao') }}" enctype="multipart/form-data" id="formHomologacao">
-              @csrf
-              <div class="form-group" id="motivoRejeicao" style=" display: none;">
-                <label for="motivoRejeicao" class="col-md-4 col-form-label text-md-right"  style="margin-left: -60px;">{{ __('Motivos da Rejeição:') }}</label>
+          </div><!-- end row text area-->
 
-                <div class="col-md-6" style="margin-left: 10px">
-                  <textarea form ="formHomologacao" name="motivoRejeicao" id="taid" cols="115" ></textarea>
 
-                </div>
-              </div>
-              <div class="form-group row mb-0" style="margin-left: 23rem; margin-top: 10px">
-                <div class="col-md-8 offset-md-4">
-                  <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
-                  <input id="homologado" type="hidden" name="homologado" value="">
-                  <input id="tipo" type="hidden" name="tipo" value="seguirParaClassificacao">
-                  <button id="buttonFinalizar" type="submit" class="btn btn-primary btn-primary-lmts" disabled="true">
-                    {{ __('Continuar') }}
-                  </button>
-                </div>
-              </div>
-            </form>
+
+        </div><!-- end card-body-->
+      </div><!-- end card-->
+    </div><!-- end row -->
+
+    <div class="form-group row justify-content-center">
+
+        <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
+        <input id="homologado" type="hidden" name="homologado" value="">
+        <input id="tipo" type="hidden" name="tipo" value="seguirParaClassificacao">
+        <div class="row justify-content-center">
+          <button id="buttonFinalizar" type="submit" class="btn btn-primary btn-primary-lmts" disabled="true">
+            {{ __('Continuar') }}
+          </button>
         </div>
 
     </div>
+  </form>
 </div>
 
 
