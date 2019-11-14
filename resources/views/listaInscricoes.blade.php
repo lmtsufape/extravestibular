@@ -93,15 +93,16 @@
   {{ $inscricoes->links() }}
   </div><!-- end tabela -->
 
-  <!-- titulo -->
-  <div class="row justify-content-center">
-    <div class="col-sm-9 titulo-tabela-lmts">
-      <h2>Inscrições Classificadas</h2>
-    </div>
-  </div><!-- end titulo -->
+  @if($tipo == 'classificacao')
+    <!-- titulo -->
+    <div class="row justify-content-center">
+      <div class="col-sm-9 titulo-tabela-lmts">
+        <h2>Inscrições Classificadas</h2>
+      </div>
+    </div><!-- end titulo -->
 
-  <!-- tabela -->
-  <div class="row justify-content-center">
+    <!-- tabela -->
+    <div class="row justify-content-center">
     <table class="table table-ordered table-hover col-sm-9">
       <tr>
         <th> Nome </th>
@@ -141,6 +142,7 @@
 
     {{ $inscricoes->links() }}
   </div><!-- end tabela -->
+  @endif
 </div><!-- end container-->
 
 @endsection
