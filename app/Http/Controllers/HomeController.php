@@ -108,6 +108,12 @@ class HomeController extends Controller
         $request->session()->put('cursoId', $user[0]['cursoId']);
         $request->session()->put('tipo', $user[0]['tipo']);
 
+        $acl = $api->getAcl($user[0]['tipoUsuario']);
+        $stringAcl = '';
+        foreach($acl as $key){
+          $stringAcl = $stringAcl . $key . ';';
+        }
+        $request->session()->put('acl', $stringAcl);
         return redirect()->route('homeApi');
       }
 

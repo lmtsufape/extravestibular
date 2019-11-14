@@ -76,6 +76,21 @@ class ApiLmts extends Model{
     }
   }
 
+  public function getAcl($tipoUsusario){
+    $client = new Client(); //GuzzleHttp\Client
+    $response = $client->request('GET',$this->api . '1/getAcl/' . $tipoUsusario, [
+                                                             'headers' => [
+                                                                           'Authorization' => session('token_type').' '.session('access_token'),
+                                                                           'Content-Type' => 'application/json',
+                                                                           'X-Requested-With' => 'XMLHttpRequest'
+                                                                          ]
+                                                            ]);
+    if($response->getStatusCode() == 200){
+      $response = json_decode($response->getBody(), true);
+    }
+    return $response;
+  }
+
   public function loginApi($email, $password){
     $client = new Client(); //GuzzleHttp\Client
     try{
