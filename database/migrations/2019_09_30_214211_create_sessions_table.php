@@ -22,6 +22,7 @@ class CreateSessionsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('tipo');
+            $table->text('acl');
         });
     }
 

@@ -51,7 +51,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'lmts' => \extravestibular\Http\Middleware\ApiLmts::class,
+        'lmts' => \extravestibular\Http\Middleware\ApiAuth::class,
         'auth' => \extravestibular\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
