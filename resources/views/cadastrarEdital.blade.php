@@ -353,28 +353,28 @@
                 <input id="checkbox{{$curso['id']}}" onclick="vagas({{$curso['id']}})" name="checkbox{{$curso['id']}}"  type="checkbox" value="{{$curso['id']}}">
               </td>
               <td>
-                <label for="manha{{$i}}" class="field a-field a-field_a2 page__field" id="labelManha{{$curso['id']}}" style="display: none; margin-top: -10px" >
-                  <input disabled value="#" id="manha{{$curso['id']}}" type="text" name="manha{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;">
+                <label for="manha{{$i}}" class="field a-field a-field_a2 page__field" id="labelManha{{$curso['id']}}" style="display: none; margin-top: 10px" >
+                  <input disabled value="#" id="manha{{$curso['id']}}" type="text" name="manha{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;" placeholder="Manhã">
                 </label>
               </td>
               <td>
-                <label for="tarde{{$i}}" class="field a-field a-field_a2 page__field" id="labelTarde{{$curso['id']}}" style="display: none; margin-top: -10px" >
-                  <input disabled value="#" id="tarde{{$curso['id']}}" type="text" name="tarde{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;">
+                <label for="tarde{{$i}}" class="field a-field a-field_a2 page__field" id="labelTarde{{$curso['id']}}" style="display: none; margin-top: 10px" >
+                  <input disabled value="#" id="tarde{{$curso['id']}}" type="text" name="tarde{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;" placeholder="Tarde">
                 </label>
               </td>
               <td>
-                <label for="noite{{$i}}" class="field a-field a-field_a2 page__field" id="labelNoite{{$curso['id']}}" style="display: none; margin-top: -10px" >
-                  <input disabled value="#" id="noite{{$curso['id']}}" type="text" name="noite{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;">
+                <label for="noite{{$i}}" class="field a-field a-field_a2 page__field" id="labelNoite{{$curso['id']}}" style="display: none; margin-top: 10px" >
+                  <input disabled value="#" id="noite{{$curso['id']}}" type="text" name="noite{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;" placeholder="Noite">
                 </label>
               </td>
               <td>
-                <label for="integral{{$i}}" class="field a-field a-field_a2 page__field" id="labelIntegral{{$curso['id']}}" style="display: none; margin-top: -10px" >
-                  <input disabled value="#" id="integral{{$curso['id']}}" type="text" name="integral{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;">
+                <label for="integral{{$i}}" class="field a-field a-field_a2 page__field" id="labelIntegral{{$curso['id']}}" style="display: none; margin-top: 10px" >
+                  <input disabled value="#" id="integral{{$curso['id']}}" type="text" name="integral{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;" placeholder="Integral">
                 </label>
               </td>
               <td>
-                <label for="especial{{$i}}" class="field a-field a-field_a2 page__field" id="labelEspecial{{$curso['id']}}" style="display: none; margin-top: -10px" >
-                  <input disabled value="#" id="especial{{$curso['id']}}" type="text" name="especial{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;">
+                <label for="especial{{$i}}" class="field a-field a-field_a2 page__field" id="labelEspecial{{$curso['id']}}" style="display: none; margin-top: 10px" >
+                  <input disabled value="#" id="especial{{$curso['id']}}" type="text" name="especial{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;" placeholder="Especial">
                 </label>
               </td>
             </tr>
