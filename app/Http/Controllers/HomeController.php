@@ -8,6 +8,9 @@ use extravestibular\User;
 use Carbon\Carbon;
 use extravestibular\ApiLmts;
 use Auth;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Client;
 
 class HomeController extends Controller
 {
@@ -93,12 +96,11 @@ class HomeController extends Controller
     }
 
     public function loginApi(Request $request){
-
       $api = new ApiLmts();
       $user = $api->loginApi($request->email, $request->password);
       if(is_null($user)){
         Auth::attempt(['email' => $request->email, 'password' => $request->password]);
-        return redirect()->intended('home');
+        return view('auth.login')->withInput(['old' =>['email' => $request->email]]);
       }
       else{
         $request->session()->put('id', $user[0]['id']);
@@ -106,13 +108,17 @@ class HomeController extends Controller
         $request->session()->put('cursoId', $user[0]['cursoId']);
         $request->session()->put('tipo', $user[0]['tipo']);
 
-
-
+        $acl = $api->getAcl($user[0]['tipoUsuario']);
+        $stringAcl = '';
+        foreach($acl as $key){
+          $stringAcl = $stringAcl . $key . ';';
+        }
+        $request->session()->put('acl', $stringAcl);
         return redirect()->route('homeApi');
       }
 
     }
 
-    
+
 
 }
