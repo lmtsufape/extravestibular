@@ -25,9 +25,25 @@
     </script>
     <!-- responsividade separador navbar -->
     <style type="text/css">
+    #footer-lmts{
+      padding-top: 5%;
+    }
+
       @media screen and (max-width: 576px) {
         .separador-lmts{
           display: none;
+        }
+        #footer-lmts{
+          padding-top: 20%;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .separador-lmts{
+          display: none;
+        }
+        #footer-lmts{
+          padding-top: 20%;
         }
       }
     </style>
@@ -224,7 +240,7 @@
         <div id="content-wrap">
           @yield('content')
         </div>
-        <div style="padding-top: 5%">
+        <div id="footer-lmts">
           @component('components.footer-brasil')
           @endcomponent
         </div>

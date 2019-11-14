@@ -122,12 +122,12 @@
         <div class="row justify-content-center" style="">
           <div class="col-md-8">
               <label for="email" class="field a-field a-field_a3 page__field" style="width:100%">
+                <span class="a-field__label-wrap">
+                  <span class="a-field__label">E-mail</span>
+                </span>
               <input id="email" type="email" class="form-control @error('email') is-invalid @enderror field__input a-field__input"
               name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="E-Mail">
 
-              <span class="a-field__label-wrap">
-                  <span class="a-field__label">E-mail</span>
-              </span>
               </label>
               @error('email')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -141,12 +141,12 @@
         <div class="row justify-content-center">
           <div class="col-md-8">
               <label for="password" class="field a-field a-field_a3 page__field" style="width:100%" >
+                <span class="a-field__label-wrap">
+                  <span class="a-field__label">Senha</span>
+                </span>
               <input id="password" type="password" class="form-control @error('password') is-invalid @enderror field__input a-field__input"
               name="password" required autocomplete="current-password" placeholder="Senha">
 
-              <span class="a-field__label-wrap">
-                  <span class="a-field__label">Senha</span>
-              </span>
               </label>
               @error('password')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;">

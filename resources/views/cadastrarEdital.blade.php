@@ -52,10 +52,10 @@
             <!-- nome -->
             <div class="col-sm-9">
               <label for="nome" class="field a-field a-field_a2 page__field" style="width: 100%;">
+                <span class="a-field__label-wrap">
+                  <span class="a-field__label">Nome do edital*</span>
+                </span>
                   <input value="{{ old('nome') }}"  id="nome" type="text" name="nome" autofocus class="form-control @error('nome') is-invalid @enderror field__input a-field__input" placeholder="Nome do edital*">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">Nome do edital*</span>
-                  </span>
               </label>
               @error('nome')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -104,11 +104,11 @@
         </div>
         <div class="card-body">
           <!-- table datas -->
-          <table class="table table-ordered table-hover justify-content-center">
+          <table class="table-responsive table table-ordered table-hover justify-content-center">
             <tr>
-              <th> Descrição </th>
-              <th> Data de Início </th>
-              <th> Data de Encerramento </th>
+              <th style="width: 50rem"> Descrição </th>
+              <th style="width: 20rem"> Data de Início </th>
+              <th style="width: 20rem"> Data de Encerramento </th>
             </tr>
             <tr>
               <td>
@@ -320,7 +320,7 @@
           Vagas por Curso
         </div>
         <div class="card-body">
-          <table class="table table-ordered table-hover justify-content-center" style="width:100%">
+          <table class="table table-responsive table-ordered table-hover justify-content-center" style="width:100%">
             <tr>
               <th> Campus </th>
               <th> Departamento </th>
