@@ -83,19 +83,22 @@
          <div>
            <input type="hidden" name="editalId" value="{{$edital->id}}" />
 
+           <div class="row" style="margin-left: 0.5%;">
+             <label for="nome" class="field a-field a-field_a2 page__field" style="width:100%">
+               <span class="a-field__label-wrap">
+                 <span class="a-field__label">Nome*</span>
+               </span>
+           </div>
            <div class="row justify-content-center" style="">  <!-- Nome -->
              <div class="col-sm-12">
-               <label for="nome" class="field a-field a-field_a2 page__field" style="width:100%">
+
                  <input id="nome" type="text" name="nome" class="field__input a-field__input" placeholder="Nome">
-                 <span class="a-field__label-wrap">
-                   <span class="a-field__label">Nome*</span>
-                 </span>
                </label>
               </div>
             </div><!--end Nome -->
 
 
-             <div id="label" class="row">
+             <div id="label" class="row" style="margin-left:0.5%">
                <label  for="arquivo" class="col-form-label text-sm-right">{{ __('Arquivo*') }}</label>
              </div>
              <div  class="row justify-content-left" >  <!-- PDF -->
