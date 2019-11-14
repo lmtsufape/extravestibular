@@ -29,6 +29,9 @@
     margin-bottom: 20px;
   }
 
+  /* span{
+    font-weight: bold;
+  } */
   @media screen and (max-width:576px) {
     #largura{
       width: 100%;
@@ -37,6 +40,7 @@
     .titulo-tabela-lmts{
       width: 90%;
     }
+
   }
 </style>
 <div class="container">
@@ -56,10 +60,10 @@
                 <!-- Nome -->
                 <div id="margin" class="col-sm-9">
                   <label id="largura" for="nome" class="field a-field a-field_a2 page__field" style="width:100%">
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">Nome*</span>
+                    </span>
                       <input id="nome" type="text" name="nome" autofocus class="form-control @error('nome') is-invalid @enderror field__input a-field__input" placeholder="Nome*"  style="" value="{{ old('nome') }}">
-                      <span class="a-field__label-wrap">
-                        <span class="a-field__label">Nome*</span>
-                      </span>
                   </label>
                   @error('nome')
                   <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -72,10 +76,10 @@
               <!-- cpf -->
               <div id="margin" class="col-sm-3">
                 <label id="largura" for="cpf" class="field a-field a-field_a2 page__field" style="width:100%">
+                  <span class="a-field__label-wrap">
+                    <span class="a-field__label">CPF*</span>
+                  </span>
                     <input id="cpf" type="text" name="cpf" autofocus class="form-control @error('cpf') is-invalid @enderror field__input a-field__input" placeholder="CPF*" style="" value="{{ old('cpf') }}">
-                    <span class="a-field__label-wrap">
-                      <span class="a-field__label">CPF*</span>
-                    </span>
                 </label>
                 @error('cpf')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -90,12 +94,12 @@
             <div class="row justify-content-center">
 
               <!-- RG -->
-              <div id="margin" class="col-sm-4">
+              <div id="margin" class="col-sm-3">
                 <label id="largura" for="rg" class="field a-field a-field_a2 page__field" style="width:100%" >
+                  <span class="a-field__label-wrap">
+                    <span class="a-field__label">RG*</span>
+                  </span>
                     <input id="rg" type="text" name="rg" autofocus class="form-control @error('rg') is-invalid @enderror field__input a-field__input" placeholder="RG*" style="" value="{{ old('rg') }}">
-                    <span class="a-field__label-wrap">
-                      <span class="a-field__label">RG*</span>
-                    </span>
                 </label>
                 @error('rg')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -105,12 +109,12 @@
               </div><!-- end RG -->
 
               <!-- Orgao Emissor -->
-              <div id="margin" class="col-sm-1">
+              <div id="margin" class="col-sm-2">
                 <label id="largura" for="orgaoEmissor" class="field a-field a-field_a2 page__field" style="width:100%">
+                  <span class="a-field__label-wrap">
+                    <span class="a-field__label">Orgão Emissor*</span>
+                  </span>
                     <input id="orgaoEmissor" type="text" name="orgaoEmissor" autofocus class="form-control @error('orgaoEmissor') is-invalid @enderror field__input a-field__input" placeholder="Orgão Emissor*" style="" value="{{ old('orgaoEmissor') }}">
-                    <span class="a-field__label-wrap">
-                      <span class="a-field__label">Orgão Emissor*</span>
-                    </span>
                 </label>
                 @error('orgaoEmissor')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -122,10 +126,10 @@
               <!-- uf -->
               <div id="margin" class="col-sm-1">
                 <label id="largura" for="orgaoEmissorUF" class="field a-field a-field_a2 page__field" style="width:100%">
+                  <span class="a-field__label-wrap">
+                    <span class="a-field__label">UF*</span>
+                  </span>
                     <input id="orgaoEmissorUF" type="text" name="orgaoEmissorUF" autofocus class="form-control @error('orgaoEmissorUF') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="" value="{{ old('orgaoEmissorUF') }}">
-                    <span class="a-field__label-wrap">
-                      <span class="a-field__label">UF*</span>
-                    </span>
                 </label>
                 @error('orgaoEmissorUF')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -137,10 +141,10 @@
               <!-- titulo eleitoral -->
               <div id="margin" class="col-sm-3">
                 <label id="largura" for="tituloEleitoral" class="field a-field a-field_a2 page__field" style="width:100%">
+                  <span class="a-field__label-wrap">
+                    <span class="a-field__label">Título Eleitoral*</span>
+                  </span>
                     <input id="tituloEleitoral" type="text" name="tituloEleitoral" autofocus class="form-control @error('tituloEleitoral') is-invalid @enderror field__input a-field__input" placeholder="Título Eleitoral*" style="" value="{{ old('tituloEleitoral') }}">
-                    <span class="a-field__label-wrap">
-                      <span class="a-field__label">Título Eleitoral*</span>
-                    </span>
                 </label>
                 @error('tituloEleitoral')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -152,10 +156,10 @@
               <!-- data nascimento -->
               <div class="col-sm-3">
                 <label id="largura" for="nascimento" class="field a-field a-field_a2 page__field" style="width:100%">
+                  <span class="a-field__label-wrap">
+                    <span class="a-field__label">Data de Nascimento*</span>
+                  </span>
                     <input id="nascimento" type="date" name="nascimento" autofocus class="form-control @error('nascimento') is-invalid @enderror field__input a-field__input" placeholder="Data de Nascimento*" style="" value="{{ old('nascimento') }}">
-                    <span class="a-field__label-wrap">
-                      <span class="a-field__label">Data de Nascimento*</span>
-                    </span>
                 </label>
                 @error('nascimento')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -170,10 +174,10 @@
             <div class="row">
               <div id="margin" class="col-sm-9">
                 <label for="filiacao" class="field a-field a-field_a1 page__field" style="width:100%">
+                  <span class="a-field__label-wrap">
+                    <span class="a-field__label">Filiação*</span>
+                  </span>
                     <input id="filiacao" type="text" name="filiacao" autofocus class="form-control @error('filiacao') is-invalid @enderror field__input a-field__input" placeholder="Filiação*" value="{{ old('filiacao') }}">
-                    <span class="a-field__label-wrap">
-                      <span class="a-field__label">Filiação*</span>
-                    </span>
                 </label>
                 @error('filiacao')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -200,10 +204,10 @@
           <div class="row">
             <div id="margin" class="col-sm-9">
               <label id="largura" for="endereco" class="field a-field a-field_a3 page__field" style="">
-                  <input onblur="pesquisacep(this.value);" id="cep" type="text" name="cep" autofocus class="field__input a-field__input" placeholder="CEP" size="10" maxlength="9" >
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">CEP</span>
-                  </span>
+                <span class="a-field__label-wrap">
+                  <span class="a-field__label">CEP</span>
+                </span>
+                  <input onblur="pesquisacep(this.value);" id="cep" type="text" name="cep" autofocus class="form-control field__input a-field__input" placeholder="CEP" size="10" maxlength="9" >
               </label>
             </div>
           </div><!-- end row cep -->
@@ -213,10 +217,10 @@
             <!-- rua -->
             <div id="margin" class="col-sm-9">
               <label for="endereco" class="field a-field a-field_a2 page__field" style="width:100%">
+                <span class="a-field__label-wrap">
+                  <span class="a-field__label">Rua*</span>
+                </span>
                   <input id="rua" type="text" name="endereco" autofocus class="form-control @error('endereco') is-invalid @enderror field__input a-field__input" placeholder="Endereço*" style="" value="{{ old('endereco') }}">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">Rua*</span>
-                  </span>
               </label>
               @error('endereco')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -228,10 +232,10 @@
             <!-- numero -->
             <div id="margin" class="col-sm-3">
               <label id="largura" for="num" class="field a-field a-field_a2 page__field" style="width:100%">
+                <span class="a-field__label-wrap">
+                  <span class="a-field__label">Número*</span>
+                </span>
                   <input id="num" type="text" name="num" autofocus class="form-control @error('num') is-invalid @enderror field__input a-field__input" placeholder="Número*" style="" value="{{ old('num') }}">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">Número*</span>
-                  </span>
               </label>
               @error('num')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -247,10 +251,10 @@
             <!-- bairro -->
             <div id="margin" class="col-sm-5">
               <label for="bairro" class="field a-field a-field_a2 page__field" style="width:100%">
+                <span class="a-field__label-wrap">
+                  <span class="a-field__label">Bairro*</span>
+                </span>
                   <input id="bairro" type="text" name="bairro" autofocus class="form-control @error('bairro') is-invalid @enderror field__input a-field__input" placeholder="Bairro*" style="" value="{{ old('bairro') }}">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">Bairro*</span>
-                  </span>
               </label>
               @error('bairro')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -262,10 +266,10 @@
             <!-- cidade -->
             <div id="margin" class="col-sm-5">
               <label for="cidade" class="field a-field a-field_a2 page__field" style="width:100%">
+                <span class="a-field__label-wrap">
+                  <span class="a-field__label">Cidade*</span>
+                </span>
                   <input id="cidade" type="text" name="cidade" autofocus class="form-control @error('cidade') is-invalid @enderror field__input a-field__input" placeholder="Cidade*" style="" value="{{ old('cidade') }}">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">Cidade*</span>
-                  </span>
               </label>
               @error('cidade')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -277,10 +281,10 @@
             <!-- uf -->
             <div id="margin" class="col-sm-2">
               <label for="uf" class="field a-field a-field_a2 page__field" style="width:100%">
+                <span class="a-field__label-wrap">
+                  <span class="a-field__label">UF*</span>
+                </span>
                   <input id="uf" type="text" name="uf" autofocus class="form-control @error('uf') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="" value="{{ old('uf') }}">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">UF*</span>
-                  </span>
               </label>
               @error('uf')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -295,10 +299,10 @@
             <!-- telefone residencial -->
             <div id="margin" class="col-sm-4">
               <label for="foneResidencial" class="field a-field a-field_a2 page__field" style="width:100%">
+                <span class="a-field__label-wrap">
+                  <span class="a-field__label">Telefone Residencial</span>
+                </span>
                   <input id="foneResidencial" type="text" name="foneResidencial" autofocus class="form-control @error('foneResidencial') is-invalid @enderror field__input a-field__input" placeholder="Telefone Residencial" value="{{ old('foneResidencial') }}">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">Telefone Residencial</span>
-                  </span>
               </label>
               @error('foneResidencial')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -309,10 +313,10 @@
             <!-- telefone celular -->
             <div id="margin" class="col-sm-4">
               <label for="foneCelular" class="field a-field a-field_a2 page__field" style="width:100%">
+                <span class="a-field__label-wrap">
+                  <span class="a-field__label">Telefone Celular</span>
+                </span>
                   <input id="foneCelular" type="text" name="foneCelular" autofocus class="form-control @error('foneCelular') is-invalid @enderror field__input a-field__input" placeholder="Telefone Celular" value="{{ old('foneCelular') }}">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">Telefone Celular</span>
-                  </span>
               </label>
               @error('foneCelular')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -323,10 +327,10 @@
             <!-- telefone comercial -->
             <div id="margin" class="col-sm-4">
               <label for="foneComercial" class="field a-field a-field_a2 page__field" style="width:100%">
+                <span class="a-field__label-wrap">
+                  <span class="a-field__label">Telefone Comercial</span>
+                </span>
                   <input id="foneComercial" type="text" name="foneComercial" autofocus class="form-control @error('foneComercial') is-invalid @enderror field__input a-field__input" placeholder="Telefone Comercial" value="{{ old('foneComercial') }}">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">Telefone Comercial</span>
-                  </span>
               </label>
               @error('foneComercial')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">

@@ -113,12 +113,12 @@
           <div class="form-group row formulario-centro" style="display:none">
               <div class="col-md-9">
                   <label for="name" class="field a-field a-field_a3 page__field ">
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">Nome</span>
+                    </span>
                   <input id="name" type="name" class="form-control @error('name') is-invalid @enderror field__input a-field__input"
                   name="name" value=".">
 
-                  <span class="a-field__label-wrap">
-                      <span class="a-field__label">Nome</span>
-                  </span>
                   </label>
                   @error('email')
                   <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -132,12 +132,12 @@
           <div id="margin" class="row">
               <div class="col-sm-12">
                   <label for="email" class="field a-field a-field_a3 page__field ">
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">E-mail</span>
+                    </span>
                   <input id="email" type="email" class="form-control @error('email') is-invalid @enderror field__input a-field__input"
                   name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="E-Mail">
 
-                  <span class="a-field__label-wrap">
-                      <span class="a-field__label">E-mail</span>
-                  </span>
                   </label>
                   @error('email')
                   <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -151,12 +151,12 @@
           <div id="margin" class="row">
             <div class="col-md-12">
                 <label for="password" class="field a-field a-field_a3 page__field" >
+                  <span class="a-field__label-wrap">
+                    <span class="a-field__label">Senha</span>
+                  </span>
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror field__input a-field__input"
                 name="password" required autocomplete="current-password" placeholder="Senha">
 
-                <span class="a-field__label-wrap">
-                    <span class="a-field__label">Senha</span>
-                </span>
                 </label>
                 @error('password')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;">
@@ -170,12 +170,12 @@
           <div id="margin" class="row">
             <div class="col-md-12">
                 <label for="password-confirm" class="field a-field a-field_a3 page__field" >
+                  <span class="a-field__label-wrap">
+                    <span class="a-field__label">Confirmar Senha</span>
+                  </span>
                 <input id="password-confirm" type="password" class="form-control @error('password-confirm') is-invalid @enderror field__input a-field__input"
                 name="password_confirmation" required autocomplete="new-password" placeholder="Confirmar Senha">
 
-                <span class="a-field__label-wrap">
-                    <span class="a-field__label">Confirmar Senha</span>
-                </span>
                 </label>
                 @error('password')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;">
