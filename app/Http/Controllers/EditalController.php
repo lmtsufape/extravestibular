@@ -210,7 +210,7 @@ class EditalController extends Controller{
       public function deleteEdital(Request $request){
         $edital = Edital::find($request->editalId);
         $edital->delete();
-        return redirect()->route('home')->with('jsAlert', 'Edital excluido com suceso.');
+        return redirect()->route('home')->with('jsAlert', 'Edital excluído com sucesso.');
       }
 
       public function listaEditais(Request $request){

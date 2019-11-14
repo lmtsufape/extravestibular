@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
           'resultado' => '2019-09-10',
           'inicioRecursoResultado' => '2019-10-11',
           'fimRecursoResultado' => '2019-11-12',
-          'resultadoFinal' => '2019-11-13',
+          'resultadoFinal' => '2019-12-13',
 
         ]);
 
@@ -100,7 +100,7 @@ class DatabaseSeeder extends Seeder
             'resultado' => '2019-09-10',
             'inicioRecursoResultado' => '2019-09-11',
             'fimRecursoResultado' => '2019-09-12',
-            'resultadoFinal' => '2019-11-13',
+            'resultadoFinal' => '2019-12-13',
 
         ]);
         DB::table('editals')->insert([
@@ -121,7 +121,7 @@ class DatabaseSeeder extends Seeder
             'resultado' => '2019-09-10',
             'inicioRecursoResultado' => '2019-09-11',
             'fimRecursoResultado' => '2019-09-12',
-            'resultadoFinal' => '2019-11-13',
+            'resultadoFinal' => '2019-12-13',
 
         ]);
         DB::table('editals')->insert([
@@ -142,7 +142,7 @@ class DatabaseSeeder extends Seeder
             'resultado' => '2019-09-10',
             'inicioRecursoResultado' => '2019-09-11',
             'fimRecursoResultado' => '2019-09-12',
-            'resultadoFinal' => '2019-11-13',
+            'resultadoFinal' => '2019-12-13',
 
         ]);
 
@@ -164,7 +164,7 @@ class DatabaseSeeder extends Seeder
             'resultado' => '2019-09-10',
             'inicioRecursoResultado' => '2019-09-11',
             'fimRecursoResultado' => '2019-09-12',
-            'resultadoFinal' => '2019-11-13',
+            'resultadoFinal' => '2019-12-13',
 
         ]);
 

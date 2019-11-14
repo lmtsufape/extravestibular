@@ -350,7 +350,7 @@
                 {{ $curso['nome'] }}
               </td>
               <td>
-                <input id="checkbox{{$i}}" onclick="vagas({{$i}})" name="checkbox{{$i}}"  type="checkbox" value="{{$curso['id']}}">
+                <input id="checkbox{{$curso['id']}}" onclick="vagas({{$curso['id']}})" name="checkbox{{$curso['id']}}"  type="checkbox" value="{{$curso['id']}}">
               </td>
               <td>
                 <label for="manha{{$i}}" class="field a-field a-field_a2 page__field" id="labelManha{{$curso['id']}}" style="display: none; margin-top: -10px" >
