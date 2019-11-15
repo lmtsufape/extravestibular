@@ -38,7 +38,9 @@
     </li>
 @endsection
 @section('content')
-
+<style>
+  
+</style>
 
 <!-- container -->
 <div class="container">
@@ -79,14 +81,14 @@
 
 <!-- card Histórico escolar -->
     <div class="row justify-content-center" style="">
-      <div id="historicoEscolar" class="card" style="width: 100%;margin-top: 10px; display:block;">
+      <div id="historicoEscolar" class="card" style="width: 100%;margin-top: 10px; display:none;">
           <div class="card-header" style="width: 100%">
             {{ __('Historico Escolar (Obrigatório)') }}
           </div>
 
           <div class="card-body" style="width: 100%;">
             <div class="form-group row">      <!-- Arquivo historico escolar -->
-              <label for="Historico escolar" class="col-sm-12">{{ __('Histórico escolar:') }}</label>
+              <label for="Historico escolar" class="col-sm-12">{{ __('Histórico escolar*') }}</label>
 
               <div class="custom-file col-sm-12">
                 <input id="input" type="file" class="filestyle rounded-pill" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="historicoEscolar">
@@ -111,7 +113,7 @@
                     <div class="col-sm-12">
                       <label for="nomeDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
                         <span class="a-field__label-wrap">
-                          <span class="a-field__label">Nome</span>
+                          <span class="a-field__label">Nome*</span>
                         </span>
                       </label>
                     </div>
@@ -131,7 +133,7 @@
                     <div class="col-sm-12">
                       <label for="cpfDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
                       <span class="a-field__label-wrap">
-                        <span class="a-field__label">CPF</span>
+                        <span class="a-field__label">CPF*</span>
                       </span>
                       
                     </label>
@@ -156,7 +158,7 @@
                     <div class="col-sm-12">
                       <label for="parentescoDadoEconomico" class="field a-field a-field_a2 page__field" style=" width:100%">
                         <span class="a-field__label-wrap">
-                          <span class="a-field__label">Parentesco</span>
+                          <span class="a-field__label">Parentesco*</span>
                         </span>
                       </label>
                     </div>
@@ -174,7 +176,7 @@
                     <div class="col-sm-12">
                       <label for="rendaDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
                       <span class="a-field__label-wrap">
-                        <span class="a-field__label">Renda</span>
+                        <span class="a-field__label">Renda*</span>
                       </span>
                       
                     </label>
@@ -195,7 +197,7 @@
                     <div class="col-sm-12">
                     <label for="fontePagadoraDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Fonte Pagadora</span>
+                      <span class="a-field__label">Fonte Pagadora*</span>
                     </span>
                     
                   </label>
@@ -236,7 +238,7 @@
                     <label for="nomeNucleoFamiliar" class="field a-field a-field_a2 page__field" style="width:100%">
                       
                       <span class="a-field__label-wrap">
-                        <span class="a-field__label">Nome</span>
+                        <span class="a-field__label">Nome*</span>
                       </span>
                   </label>
                   </div>
@@ -254,7 +256,7 @@
                   <div class="col-sm-12">
                     <label for="cpfNucleoFamiliar" class="field a-field a-field_a2 page__field" style="width:100%">
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">CPF</span>
+                      <span class="a-field__label">CPF*</span>
                     </span>
                   </label>
                   </div>
@@ -278,7 +280,7 @@
                     <label for="parentescoNucleoFamiliar" class="field a-field a-field_a2 page__field" style=" width: 100%;">
                     
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Parentesco</span>
+                      <span class="a-field__label">Parentesco*</span>
                     </span>
                   </label>
                   </div>
@@ -298,7 +300,7 @@
                   <div class="col-sm-12">
                   <label for="parentescoNucleoFamiliar" class="field a-field a-field_a2 page__field" style=" width: 100%;">
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Parentesco</span>
+                      <span class="a-field__label">Parentesco*</span>
                     </span>
                   </label>
                   </div>
@@ -319,7 +321,7 @@
                     <label for="rendaNucleoFamiliar" class="field a-field a-field_a2 page__field" style=" width: 100%;">
                     
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Renda</span>
+                      <span class="a-field__label">Renda*</span>
                     </span>
                   </label>
                   </div>
@@ -337,7 +339,7 @@
                   <div class="col-sm-12">
                     <label for="fontePagadoraNucleoFamiliar" class="field a-field a-field_a2 page__field" style=" width: 100%;">
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Fonte Pagadora</span>
+                      <span class="a-field__label">Fonte Pagadora*</span>
                     </span>
                   </label>
                   </div>
@@ -373,7 +375,7 @@
                     <label for="nomeNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%">
                       
                       <span class="a-field__label-wrap">
-                        <span class="a-field__label">Nome</span>
+                        <span class="a-field__label">Nome*</span>
                       </span>
                   </label>
                   </div>
@@ -393,7 +395,7 @@
                     <label for="cpfNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%">
                     
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">CPF</span>
+                      <span class="a-field__label">CPF*</span>
                     </span>
                   </label>
                   </div>
@@ -417,7 +419,7 @@
                     <label for="parentescoNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%;">
                     
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Parentesco</span>
+                      <span class="a-field__label">Parentesco*</span>
                     </span>
                   </label>
                   </div>
@@ -435,7 +437,7 @@
                   <div class="col-sm-12">
                     <label for="rendaNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%">
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Renda</span>
+                      <span class="a-field__label">Renda*</span>
                     </span>
                   </label>
                   </div>
@@ -453,7 +455,7 @@
                   <div class="col-sm-12">
                     <label for="fontePagadoraNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%;">
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Fonte Pagadora</span>
+                      <span class="a-field__label">Fonte Pagadora*</span>
                     </span>
                   </label>
                   </div>
