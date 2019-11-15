@@ -62,8 +62,9 @@
       <div class="card " style="width: 100%;">
           <div class="card-header">{{ __('Comprovante') }}</div>
           <div class="card-body">
+          
             @if($comprovante == 'deferida')
-              <div class="row" >
+              <div class="row justify-content-center" >
                 <label for="comprovante" class="">{{ __('Comprovante: ') }}</label>
 
                 <div class="col-sm-12">
@@ -73,12 +74,14 @@
               </div>
             @else
               <div class="row justify-content-center">
-                <div class="">
+                
+                <div class="col-sm-10">
                   <label for="comprovante" style="font-weight: bold">Selecione o comprovante gerado pelo pagamento da taxa do tipo de inscrição:</label>
                 </div>
+                
               </div>
               <div class="row justify-content-center">
-                <div class="col-sm-8">
+                <div class="col-sm-10">
                   <div class="custom-file" style="width: 100%;">
                     <input id='elementoComprovante'  onclick="comprovanteSelecionado()"  type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="comprovante" >
                   </div>
@@ -110,12 +113,12 @@
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="historicoEscolar">
                       </div>
+                      @error('historicoEscolar')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
-                    @error('historicoEscolar')
-                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
                 </div>
 
                 <div id="declaracaoDeVinculo" class="form-group row" style="display: none">    <!-- Arquivo declaração de vinculo -->
@@ -125,12 +128,12 @@
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="declaracaoDeVinculo">
                       </div>
+                      @error('declaracaoDeVinculo')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
-                    @error('declaracaoDeVinculo')
-                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
                 </div>
 
                 <div id="programaDasDisciplinas" class="form-group row" style="display: none"> <!-- Arquivo programa das disciplinas -->
@@ -140,12 +143,12 @@
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="programaDasDisciplinas" >
                       </div>
+                      @error('programaDasDisciplinas')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
-                    @error('programaDasDisciplinas')
-                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
                 </div>
 
                 <div id="curriculo" class="form-group row" style="display: none">              <!-- Arquivo curriculo -->
@@ -155,13 +158,13 @@
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="curriculo" >
                       </div>
+                      @error('curriculo')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                  </div>
                     </div>
-                    @error('curriculo')
-                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
 
                 <div id="enem" class="form-group row" style="display: none">                   <!-- Arquivo enenm -->
                     <label for="ENEM" class="col-sm-4 col-form-label text-md-right">{{ __('Nota no Exame Nacional do Ensino Médio (ENEM): ') }}</label>
@@ -170,19 +173,20 @@
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="enem" >
                       </div>
+                      @error('enem')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
-                    @error('enem')
-                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
                 </div>
 
                 <div class="form-group row">                                                   <!-- Curso -->
                     <label for="Curso" class="col-sm-4 col-form-label text-md-right">{{ __('Curso pretendido*:') }}</label>
 
                     <div class="col-sm-8" id="selectCurso">
-                      <select name="curso" style="width: 100%">
+                      
+                      <select class="form-control col-sm-10" name="curso" style="width: 100%">
                         <?php foreach ($cursosDisponiveis as $curso) {
                           if($curso[0] != '#'){
                             if($curso[0] != ''){
@@ -198,8 +202,8 @@
                 <div class="form-group row">                                                   <!-- Turno -->
                     <label for="Turno" class="col-sm-4 col-form-label text-md-right">{{ __('Turno*:') }}</label>
 
-                    <div class="col-sm-6">
-                      <select name="turno">
+                    <div class="col-sm-8">
+                      <select class="form-control col-sm-10" name="turno">
                         <option value="Manhã">Manhã</option>
                         <option value="Tarde">Tarde</option>
                         <option value="Noite">Noite</option>
@@ -208,14 +212,24 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
-                  <div class="col-sm-12">                                                   <!-- Polo -->
-                    <label for="polo" class="field a-field a-field_a2 page__field" style="width: 100%">
-                        <input id="polo" type="text" name="polo" autofocus class="form-control @error('polo') is-invalid @enderror field__input a-field__input" placeholder="Polo (apenas aluno EAD):" style="width: 100%;" value="{{ old('polo') }}">
-                        <span class="a-field__label-wrap">
-                          <span class="a-field__label">Polo (apenas aluno EAD):</span>
-                        </span>
-                    </label>
+                <div class="form-group row justify-content-center">
+                  <div class="col-sm-10">                                                   <!-- Polo -->
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <label for="polo" class="field a-field a-field_a2 page__field" style="width: 100%">
+                          <span class="a-field__label-wrap">
+                            <span class="a-field__label">Polo (apenas aluno EAD):</span>
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                          <input id="polo" type="text" name="polo" autofocus class="form-control @error('polo') is-invalid @enderror field__input a-field__input" placeholder="Polo (apenas aluno EAD):" style="width: 100%;" value="{{ old('polo') }}" style="width:100%">
+                          
+                      </div>
+                    </div>
+                    
                     @error('polo')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                       <strong>{{ $message }}</strong>
@@ -233,12 +247,14 @@
             <div class="card-body">
               <div class="card-body">
                 <div class="form-group row">                                                   <!-- Curso de origem -->
+
+                
                   <label for="cursoDeOrigem" class="field a-field a-field_a2 page__field" style="width: 100%">
-                    <input id="cursoDeOrigem" type="text" name="cursoDeOrigem" class="form-control @error('cursoDeOrigem') is-invalid @enderror field__input a-field__input" placeholder="Curso de Origem*:" style="width: 100%;" value="{{ old('cursoDeOrigem') }}">
                     <span class="a-field__label-wrap">
                       <span class="a-field__label">Curso de Origem*:</span>
                     </span>
                   </label>
+                    <input id="cursoDeOrigem" type="text" name="cursoDeOrigem" class="form-control @error('cursoDeOrigem') is-invalid @enderror field__input a-field__input" placeholder="Curso de Origem*:" style="width: 100%;" value="{{ old('cursoDeOrigem') }}">
                   @error('cursoDeOrigem')
                   <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                     <strong>{{ $message }}</strong>
@@ -248,11 +264,11 @@
 
                 <div class="form-group row">                                                   <!-- Instituição de origem -->
                   <label for="instituicaoDeOrigem" class="field a-field a-field_a2 page__field" style="width: 100%">
-                    <input id="instituicaoDeOrigem" type="text" name="instituicaoDeOrigem" autofocus class="form-control @error('instituicaoDeOrigem') is-invalid @enderror field__input a-field__input" placeholder="Instituição de Origem*:" style="width: 100%;" value="{{ old('instituicaoDeOrigem') }}">
                     <span class="a-field__label-wrap">
                       <span class="a-field__label">Instituição de Origem*:</span>
                     </span>
                   </label>
+                    <input id="instituicaoDeOrigem" type="text" name="instituicaoDeOrigem" autofocus class="form-control @error('instituicaoDeOrigem') is-invalid @enderror field__input a-field__input" placeholder="Instituição de Origem*:" style="width: 100%;" value="{{ old('instituicaoDeOrigem') }}">
                   @error('instituicaoDeOrigem')
                   <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                     <strong>{{ $message }}</strong>
@@ -262,11 +278,11 @@
 
                 <div class="form-group row">                                                   <!-- Natureza da IES -->
                   <label for="naturezaDaIes" class="field a-field a-field_a2 page__field" style="width: 100%">
-                    <input id="naturezaDaIes" type="text" name="naturezaDaIes" autofocus class="form-control @error('naturezaDaIes') is-invalid @enderror field__input a-field__input" placeholder="Natureza da IES*:" style="width: 100%;"  value="{{ old('naturezaDaIes') }}">
                     <span class="a-field__label-wrap">
                       <span class="a-field__label">Natureza da IES*:</span>
                     </span>
                   </label>
+                    <input id="naturezaDaIes" type="text" name="naturezaDaIes" autofocus class="form-control @error('naturezaDaIes') is-invalid @enderror field__input a-field__input" placeholder="Natureza da IES*:" style="width: 100%;"  value="{{ old('naturezaDaIes') }}">
                   @error('naturezaDaIes')
                   <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                     <strong>{{ $message }}</strong>
@@ -276,21 +292,31 @@
                 <div class="form-group row">
                   <div class="" style="">
                     <label for="endereco" class="field a-field a-field_a3 page__field" style="width: 100%;">
-                      <input onblur="pesquisacep(this.value);" id="cep" type="text" name="cep" autofocus class="field__input a-field__input" placeholder="CEP" size="10" maxlength="9" >
                       <span class="a-field__label-wrap">
                         <span class="a-field__label">CEP</span>
                       </span>
                     </label>
+                      <input onblur="pesquisacep(this.value);" id="cep" type="text" name="cep" autofocus class="form-control field__input a-field__input" placeholder="CEP" maxlength="9" >
                   </div>
                 </div>
                 <div class="form-group row">  <!-- Endereço/Nº -->
+                        
                   <div class="col-sm-10">
-                    <label for="endereco" class="field a-field a-field_a2 page__field" style="width: 100%">
-                        <input id="rua" type="text" name="endereco" autofocus class="form-control @error('endereco') is-invalid @enderror field__input a-field__input" placeholder="Endereço*" style="width: 100%;" value="{{ old('endereco') }}">
-                        <span class="a-field__label-wrap">
-                          <span class="a-field__label">Endereço*</span>
-                        </span>
-                    </label>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <label for="endereco" class="field a-field a-field_a2 page__field" style="width: 100%">
+                          <span class="a-field__label-wrap">
+                            <span class="a-field__label">Rua*</span>
+                          </span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                        <input id="rua" type="text" name="endereco" autofocus class="form-control @error('endereco') is-invalid @enderror field__input a-field__input" placeholder="Rua*" style="width: 100%;" value="{{ old('endereco') }}">
+                    </div>
+                  </div>
+                    
                     @error('endereco')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                       <strong>{{ $message }}</strong>
@@ -298,12 +324,14 @@
                     @enderror
                   </div>
                   <div class="col-sm-2">
+                        
+                    
                     <label for="num" class="field a-field a-field_a2 page__field" style="">
-                        <input id="num" type="text" name="num" autofocus class="form-control @error('num') is-invalid @enderror field__input a-field__input" placeholder="Número*" style="width: 100%;" value="{{ old('num') }}">
                         <span class="a-field__label-wrap">
                           <span class="a-field__label">Número*</span>
                         </span>
                     </label>
+                        <input id="num" type="text" name="num" autofocus class="form-control @error('num') is-invalid @enderror field__input a-field__input" placeholder="Número*" style="width: 100%;" value="{{ old('num') }}">
                     @error('num')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                       <strong>{{ $message }}</strong>
@@ -315,11 +343,11 @@
                 <div class="form-group row">  <!-- Bairro/Cidade/Uf -->
                   <div class="col-sm-5" id="divBairro">
                     <label for="bairro" class="field a-field a-field_a2 page__field" style="width: 100%">
-                        <input id="bairro" type="text" name="bairro" autofocus class="form-control @error('bairro') is-invalid @enderror field__input a-field__input" placeholder="Bairro*" style="width: 100%" value="{{ old('bairro') }}">
                         <span class="a-field__label-wrap">
                           <span class="a-field__label">Bairro*</span>
                         </span>
                     </label>
+                        <input id="bairro" type="text" name="bairro" autofocus class="form-control @error('bairro') is-invalid @enderror field__input a-field__input" placeholder="Bairro*" style="width: 100%" value="{{ old('bairro') }}">
                     @error('bairro')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                       <strong>{{ $message }}</strong>
@@ -328,11 +356,11 @@
                   </div>
                   <div class="col-sm-5" id="divCidade">
                     <label for="cidade" class="field a-field a-field_a2 page__field" style="width: 100%">
-                        <input id="cidade" type="text" name="cidade" autofocus class="form-control @error('cidade') is-invalid @enderror field__input a-field__input" placeholder="Cidade*" style="width: 100%" value="{{ old('cidade') }}">
                         <span class="a-field__label-wrap">
                           <span class="a-field__label">Cidade*</span>
                         </span>
                     </label>
+                        <input id="cidade" type="text" name="cidade" autofocus class="form-control @error('cidade') is-invalid @enderror field__input a-field__input" placeholder="Cidade*" style="width: 100%" value="{{ old('cidade') }}">
                     @error('cidade')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                       <strong>{{ $message }}</strong>
@@ -341,11 +369,11 @@
                   </div>
                   <div class="col-sm-2" id="divUf">
                     <label for="uf" class="field a-field a-field_a2 page__field" style="width: 100%">
-                        <input id="uf" type="text" name="uf" autofocus class="form-control @error('uf') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="width: 100%" value="{{ old('uf') }}">
                         <span class="a-field__label-wrap">
                           <span class="a-field__label">UF*</span>
                         </span>
                     </label>
+                        <input id="uf" type="text" name="uf" autofocus class="form-control @error('uf') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="width: 100%" value="{{ old('uf') }}">
                     @error('uf')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                       <strong>{{ $message }}</strong>
@@ -358,14 +386,16 @@
             </div>
         </div>
       </div>
-      <div class="form-group row mb-0">                                              <!-- BUTTON -->
-        <div class="col-md-8 offset-md-4" style="margin-left: 30rem; margin-top: 10px">
-          <button id="button" type="submit" class="btn btn-primary btn-primary-lmts">
-            {{ __('Finalizar') }}
-          </button>
 
-        </div>
+      <div class="row justify-content-center">
+          <div class="">
+            <button id="button" type="submit" class="btn btn-primary btn-primary-lmts" style="margin-top:20px;">
+              {{ __('Finalizar') }}
+            </button>
+          </div>
       </div>
+
+    
     </div>
   </form>
 </div>
