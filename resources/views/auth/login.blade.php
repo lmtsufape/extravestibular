@@ -9,10 +9,11 @@
   }
   #btn{
     margin-top: -12%;
-    margin-left: 50%;
+    margin-left: 60%;
   }
   #link{
-    margin-left: 15%;
+    margin-left: 12%;
+    margin-top: 5%;
   }
   @media screen and (max-width: 576px){
     #login{
