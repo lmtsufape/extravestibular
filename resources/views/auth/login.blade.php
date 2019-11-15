@@ -9,10 +9,11 @@
   }
   #btn{
     margin-top: -12%;
-    margin-left: 50%;
+    margin-left: 60%;
   }
   #link{
-    margin-left: 15%;
+    margin-left: 12%;
+    margin-top: 5%;
   }
   @media screen and (max-width: 576px){
     #login{
@@ -181,7 +182,7 @@
             <a class="menu-principal" href="{{route('register')}}" style="color: #1B2E4F; ">Cadastrar</a>
           </div>
 
-          <div id="btn" class="col-sm-3">
+          <div id="btn" class="col-sm-3" style="margin-top: -25px">
               <button type="submit" class="btn btn-primary"  style="background-color: #1B2E4F; border-color: #d3e0e9">
                   {{ __('Entrar') }}
               </button>

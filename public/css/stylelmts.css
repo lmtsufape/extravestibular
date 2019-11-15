@@ -3,6 +3,9 @@ body{
     padding: 0px;
 
 }
+input{
+  margin-bottom: 20px;
+}
 
 /* ----------- Tabela lmts ----------------*/
 .titulo-tabela-lmts{
@@ -248,7 +251,6 @@ border-radius: 70px;
   display:block; height: 100px;
   overflow: visible;
 }
-
 
 .card-header{
   background-color: #1B2E4F;

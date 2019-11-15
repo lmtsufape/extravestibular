@@ -38,7 +38,9 @@
     </li>
 @endsection
 @section('content')
-
+<style>
+  
+</style>
 
 <!-- container -->
 <div class="container">
@@ -60,14 +62,15 @@
       <div class="col-sm-12">
         <p><strong>O(a) candidato(a) declara, sob as penas da lei e da perda dos direitos decorrentes da sua inscrição,
         serem verdadeiras as informações, os dados e os documentos apresentados, prontificando-se a fornecer outros
-        documentos comprobatórios, sempre que solicitados pela Universidade Federal Rural de Pernambuco.Nos termos da lei, o candidato se enquadra na situação:</strong></p>
+        documentos comprobatórios, sempre que solicitados pela Universidade Federal Rural de Pernambuco. Nos termos da lei, 
+        o candidato se enquadra na situação:</strong></p>
       </div>
     </div><!-- end row parágrafo -->
 
     <!-- checkboxRenda -->
     <div class="row justify-content-center">
       <div class="col-sm-10">
-        <input id="checkboxRenda" onclick="escolher('renda')"  value="rendaFamiliar" type="checkbox" > Renda familiar per capita igual ou inferior a um salário mínimo e meio <br>
+        <input id="checkboxRenda" onclick="escolher('renda')"  value="rendaFamiliar" type="checkbox" > Renda familiar per capita igual ou inferior a um salário mínimo e meio. <br>
       </div>
     </div><!-- end checkboxRenda -->
     <!-- checkboxEnsino -->
@@ -79,14 +82,14 @@
 
 <!-- card Histórico escolar -->
     <div class="row justify-content-center" style="">
-      <div id="historicoEscolar" class="card" style="width: 100%;margin-top: 10px; display:block;">
+      <div id="historicoEscolar" class="card" style="width: 100%;margin-top: 10px; display:none;">
           <div class="card-header" style="width: 100%">
-            {{ __('Historico Escolar (Obrigatório)') }}
+            {{ __('Histórico Escolar (Obrigatório)') }}
           </div>
 
           <div class="card-body" style="width: 100%;">
             <div class="form-group row">      <!-- Arquivo historico escolar -->
-              <label for="Historico escolar" class="col-sm-12">{{ __('Histórico escolar:') }}</label>
+              <label for="Historico escolar" class="col-sm-12">{{ __('Histórico escolar*') }}</label>
 
               <div class="custom-file col-sm-12">
                 <input id="input" type="file" class="filestyle rounded-pill" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="historicoEscolar">
@@ -111,7 +114,7 @@
                     <div class="col-sm-12">
                       <label for="nomeDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
                         <span class="a-field__label-wrap">
-                          <span class="a-field__label">Nome</span>
+                          <span class="a-field__label">Nome*</span>
                         </span>
                       </label>
                     </div>
@@ -131,7 +134,7 @@
                     <div class="col-sm-12">
                       <label for="cpfDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
                       <span class="a-field__label-wrap">
-                        <span class="a-field__label">CPF</span>
+                        <span class="a-field__label">CPF*</span>
                       </span>
                       
                     </label>
@@ -156,7 +159,7 @@
                     <div class="col-sm-12">
                       <label for="parentescoDadoEconomico" class="field a-field a-field_a2 page__field" style=" width:100%">
                         <span class="a-field__label-wrap">
-                          <span class="a-field__label">Parentesco</span>
+                          <span class="a-field__label">Parentesco*</span>
                         </span>
                       </label>
                     </div>
@@ -174,7 +177,7 @@
                     <div class="col-sm-12">
                       <label for="rendaDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
                       <span class="a-field__label-wrap">
-                        <span class="a-field__label">Renda</span>
+                        <span class="a-field__label">Renda*</span>
                       </span>
                       
                     </label>
@@ -195,7 +198,7 @@
                     <div class="col-sm-12">
                     <label for="fontePagadoraDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Fonte Pagadora</span>
+                      <span class="a-field__label">Fonte Pagadora*</span>
                     </span>
                     
                   </label>

@@ -189,13 +189,13 @@
 
           <!-- botoes -->
           <div id="margin" class="row">
-            <div class="" style="margin-left:5%;">
+            <div class="offset-sm-1" style="margin-top:5px">
                 <a class="menu-principal" href="{{  route('login')}}" style="color: #1B2E4F;">Voltar</a>
             </div>
 
-            <div class="" style="margin-left:50%;">
+            <div class="offset-sm-4" style="">
                 <button type="submit" class="btn btn-primary"  style="background-color: #1B2E4F; border-color: #d3e0e9">
-                    {{ __('Entrar') }}
+                    {{ __('Cadastrar') }}
                 </button>
             </div>
           </div><!-- botoes -->
