@@ -83,7 +83,7 @@
     <div class="row justify-content-center" style="">
       <div id="historicoEscolar" class="card" style="width: 100%;margin-top: 10px; display:none;">
           <div class="card-header" style="width: 100%">
-            {{ __('Historico Escolar (Obrigatório)') }}
+            {{ __('Histórico Escolar (Obrigatório)') }}
           </div>
 
           <div class="card-body" style="width: 100%;">
