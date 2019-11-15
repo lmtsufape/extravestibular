@@ -35,7 +35,7 @@ class InscricaoController extends Controller
 																						     'curriculo' 				 			=> ['nullable', 'mimes:pdf','max:20000'],
 																						     'enem' 						 			=> ['nullable', 'mimes:pdf','max:20000'],
 																								 'endereco'          			=> ['required', 'string', 'max:255'],
-																								 'num'               			=> ['required'],
+																								 'num'               			=> ['required', 'integer'],
 																								 'bairro'            			=> ['required', 'max:255'],
 																								 'cidade'            			=> ['required', 'max:255'],
 																								 'uf'                			=> ['required', 'size:2'],
