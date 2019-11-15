@@ -39,6 +39,7 @@
 @endsection
 @section('content')
 
+
 <!-- container -->
 <div class="container">
   <!-- row titulo dados de usuário -->
@@ -85,10 +86,10 @@
 
           <div class="card-body" style="width: 100%;">
             <div class="form-group row">      <!-- Arquivo historico escolar -->
-              <label for="Historico escolar" class="col-sm-2">{{ __('Histórico escolar:') }}</label>
+              <label for="Historico escolar" class="col-sm-12">{{ __('Histórico escolar:') }}</label>
 
-              <div class="custom-file col-sm-10">
-                <input type="file" class="filestyle rounded-pill" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="historicoEscolar">
+              <div class="custom-file col-sm-12">
+                <input id="input" type="file" class="filestyle rounded-pill" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="historicoEscolar">
               </div>
             </div>
           </div>
@@ -106,21 +107,43 @@
               <div class="row justify-content-center">  <!-- row Nome | CPF-->
                 <!-- nome -->
                 <div class="col-sm-8">
-                  <label for="nomeDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
-                      <input id="nomeDadoEconomico" type="text" name="nomeDadoEconomico" autofocus class="field__input a-field__input" placeholder="Nome" style="width:100%">
-                      <span class="a-field__label-wrap">
-                        <span class="a-field__label">Nome</span>
-                      </span>
-                  </label>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <label for="nomeDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
+                        <span class="a-field__label-wrap">
+                          <span class="a-field__label">Nome</span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                        <input id="nomeDadoEconomico" type="text" name="nomeDadoEconomico" autofocus class="field__input a-field__input" placeholder="Nome" style="width:100%">
+
+                    </div>
+                  </div>
+
+                  
                 </div><!-- end nome -->
 
                 <div class="col-sm-4">
-                  <label for="cpfDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <label for="cpfDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
+                      <span class="a-field__label-wrap">
+                        <span class="a-field__label">CPF</span>
+                      </span>
+                      
+                    </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
                     <input id="cpfDadoEconomico" type="text" name="cpfDadoEconomico" autofocus class="field__input a-field__input" placeholder="CPF" style="width: 100%;">
-                    <span class="a-field__label-wrap">
-                      <span class="a-field__label">CPF</span>
-                    </span>
-                  </label>
+                    </div>
+                  </div>
+
+                  
                 </div>
 
               </div> <!-- end row Nome | CPF-->
@@ -129,30 +152,62 @@
               <div class="row justify-content-center">
                 <!-- parentesco -->
                 <div class="col-sm-4">
-                  <label for="parentescoDadoEconomico" class="field a-field a-field_a2 page__field" style=" width:100%">
-                    <input id="parentescoDadoEconomico" type="text" name="parentescoDadoEconomico" autofocus class="field__input a-field__input" placeholder="Parentesco" style="">
-                    <span class="a-field__label-wrap">
-                      <span class="a-field__label">Parentesco</span>
-                    </span>
-                  </label>
+                  <div class="row justify-content-center">
+                    <div class="col-sm-12">
+                      <label for="parentescoDadoEconomico" class="field a-field a-field_a2 page__field" style=" width:100%">
+                        <span class="a-field__label-wrap">
+                          <span class="a-field__label">Parentesco</span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <input id="parentescoDadoEconomico" type="text" name="parentescoDadoEconomico" autofocus class="field__input a-field__input" placeholder="Parentesco" style=" width:100%">
+                    </div>
+                  </div>
+                  
                 </div><!-- end parentesco -->
                 <!-- renda -->
                 <div class="col-sm-4">
-                  <label for="rendaDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
-                    <input id="rendaDadoEconomico" type="text" name="rendaDadoEconomico" autofocus class="field__input a-field__input" placeholder="Renda" style="">
-                    <span class="a-field__label-wrap">
-                      <span class="a-field__label">Renda</span>
-                    </span>
-                  </label>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <label for="rendaDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
+                      <span class="a-field__label-wrap">
+                        <span class="a-field__label">Renda</span>
+                      </span>
+                      
+                    </label>
+                    
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <input id="rendaDadoEconomico" type="text" name="rendaDadoEconomico" autofocus class="field__input a-field__input" placeholder="Renda" style="width:100%">
+                    </div>
+                  </div>
+
+                  
                 </div><!-- end renda -->
                 <!-- fonte pagadora -->
                 <div class="col-sm-4">
-                  <label for="fontePagadoraDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
-                    <input id="fontePagadoraDadoEconomico" type="text" name="fontePagadoraDadoEconomico" autofocus class="field__input a-field__input" placeholder="Fonte Pagadora" style="">
+                  <div class="row">
+                    <div class="col-sm-12">
+                    <label for="fontePagadoraDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
                     <span class="a-field__label-wrap">
                       <span class="a-field__label">Fonte Pagadora</span>
                     </span>
+                    
                   </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                    <input id="fontePagadoraDadoEconomico" type="text" name="fontePagadoraDadoEconomico" autofocus class="field__input a-field__input" placeholder="Fonte Pagadora" style="width:100%">
+                    </div>
+                  </div>
+
+                  
                 </div><!-- end fonte pagadora -->
 
 
@@ -175,21 +230,41 @@
             <div class="row justify-content-center">  <!-- row Nome | CPF-->
               <!-- nome -->
               <div class="col-sm-8">
-                <label for="nomeNucleoFamiliar" class="field a-field a-field_a2 page__field" style="width:100%">
-                    <input id="nomeNucleoFamiliar" type="text" name="nomeNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Nome">
-                    <span class="a-field__label-wrap">
-                      <span class="a-field__label">Nome</span>
-                    </span>
-                </label>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label for="nomeNucleoFamiliar" class="field a-field a-field_a2 page__field" style="width:100%">
+                      
+                      <span class="a-field__label-wrap">
+                        <span class="a-field__label">Nome</span>
+                      </span>
+                  </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <input id="nomeNucleoFamiliar" type="text" name="nomeNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Nome" style="width:100%">
+                  </div>
+                </div>
+                
               </div><!--end nome -->
 
               <div class="col-sm-4">
-                <label for="cpfNucleoFamiliar" class="field a-field a-field_a2 page__field" style="width:100%">
-                  <input id="cpfNucleoFamiliar" type="text" name="cpfNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="CPF">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">CPF</span>
-                  </span>
-                </label>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label for="cpfNucleoFamiliar" class="field a-field a-field_a2 page__field" style="width:100%">
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">CPF</span>
+                    </span>
+                  </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <input id="cpfNucleoFamiliar" type="text" name="cpfNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="CPF" style="width:100%">
+                  </div>
+                </div>
+                
               </div>
 
             </div><!-- end row Nome | CPF-->
@@ -198,39 +273,81 @@
             <div class="row" style="">
               <!-- parentesco -->
               <div class="col-sm-3">
-                <label for="parentescoNucleoFamiliar" class="field a-field a-field_a2 page__field" style=" width: 100%;">
-                  <input id="parentescoNucleoFamiliar" type="text" name="parentescoNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Parentesco">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">Parentesco</span>
-                  </span>
-                </label>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label for="parentescoNucleoFamiliar" class="field a-field a-field_a2 page__field" style=" width: 100%;">
+                    
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">Parentesco</span>
+                    </span>
+                  </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                  <input id="parentescoNucleoFamiliar" type="text" name="parentescoNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Parentesco" style="width:100%">
+                  </div>
+                </div>
+
+                
               </div><!-- end parentesco -->
               <!-- fonte pagadora -->
               <div class="col-sm-3">
-                <label for="parentescoNucleoFamiliar" class="field a-field a-field_a2 page__field" style=" width: 100%;">
-                  <input id="parentescoNucleoFamiliar" type="text" name="parentescoNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Parentesco">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">Parentesco</span>
-                  </span>
-                </label>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                  <label for="parentescoNucleoFamiliar" class="field a-field a-field_a2 page__field" style=" width: 100%;">
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">Parentesco</span>
+                    </span>
+                  </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <input id="parentescoNucleoFamiliar" type="text" name="parentescoNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Parentesco" style="width:100%">
+                  
+                  </div>
+                </div>
+                
               </div><!-- end fonte pagadora -->
               <!-- renda -->
               <div class="col-sm-3">
-                <label for="rendaNucleoFamiliar" class="field a-field a-field_a2 page__field" style=" width: 100%;">
-                  <input id="rendaNucleoFamiliar" type="text" name="rendaNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Renda">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">Renda</span>
-                  </span>
-                </label>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label for="rendaNucleoFamiliar" class="field a-field a-field_a2 page__field" style=" width: 100%;">
+                    
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">Renda</span>
+                    </span>
+                  </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <input id="rendaNucleoFamiliar" type="text" name="rendaNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Renda" style="width:100%">
+                  </div>
+                </div>
+                
               </div><!-- end renda -->
 
               <div class="col-sm-3">
-                <label for="fontePagadoraNucleoFamiliar" class="field a-field a-field_a2 page__field" style=" width: 100%;">
-                  <input id="fontePagadoraNucleoFamiliar" type="text" name="fontePagadoraNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Fonte Pagadora">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">Fonte Pagadora</span>
-                  </span>
-                </label>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label for="fontePagadoraNucleoFamiliar" class="field a-field a-field_a2 page__field" style=" width: 100%;">
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">Fonte Pagadora</span>
+                    </span>
+                  </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                  <input id="fontePagadoraNucleoFamiliar" type="text" name="fontePagadoraNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Fonte Pagadora" style="width:100%">
+                  </div>
+                </div>
+                
               </div>
             </div><!-- end row Parentesco/Renda/Fonte -->
           </div><!-- end card-body -->
@@ -251,21 +368,42 @@
             <div class="row justify-content-center">
               <!-- nome -->
               <div class="col-sm-8">
-                <label for="nomeNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%">
-                    <input id="nomeNucleoFamiliar1" type="text" name="nomeNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="Nome">
-                    <span class="a-field__label-wrap">
-                      <span class="a-field__label">Nome</span>
-                    </span>
-                </label>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label for="nomeNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%">
+                      
+                      <span class="a-field__label-wrap">
+                        <span class="a-field__label">Nome</span>
+                      </span>
+                  </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                  <input id="nomeNucleoFamiliar1" type="text" name="nomeNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="Nome" style="width:100%">
+                  </div>
+                </div>
+
+                
               </div><!-- end nome -->
               <!-- cpf -->
               <div class="col-sm-4">
-                <label for="cpfNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%">
-                  <input id="cpfNucleoFamiliar1" type="text" name="cpfNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="CPF">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">CPF</span>
-                  </span>
-                </label>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label for="cpfNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%">
+                    
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">CPF</span>
+                    </span>
+                  </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                  <input id="cpfNucleoFamiliar1" type="text" name="cpfNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="CPF" style="width:100%">
+                  </div>
+                </div>
+                
               </div><!-- end cpf -->
 
 
@@ -274,29 +412,59 @@
             <div class="row justify-content-center">  <!-- Parentesco/Renda/Fonte -->
               <!-- parentesco -->
               <div class="col-sm-4">
-                <label for="parentescoNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%;">
-                  <input id="parentescoNucleoFamiliar1" type="text" name="parentescoNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="Parentesco" style="width: 22rem;">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">Parentesco</span>
-                  </span>
-                </label>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label for="parentescoNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%;">
+                    
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">Parentesco</span>
+                    </span>
+                  </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <input id="parentescoNucleoFamiliar1" type="text" name="parentescoNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="Parentesco" style="width: 100%;">
+                  </div>
+                </div>
+                
               </div><!-- end parentesco -->
               <!-- renda -->
               <div class="col-sm-4">
-                <label for="rendaNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%">
-                  <input id="rendaNucleoFamiliar1" type="text" name="rendaNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="Renda">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">Renda</span>
-                  </span>
-                </label>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label for="rendaNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%">
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">Renda</span>
+                    </span>
+                  </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <input id="rendaNucleoFamiliar1" type="text" name="rendaNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="Renda" style="width:100%">
+                  
+                  </div>
+                </div>
+                
               </div><!-- end renda -->
               <div class="col-sm-4">
-                <label for="fontePagadoraNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%;">
-                  <input id="fontePagadoraNucleoFamiliar1" type="text" name="fontePagadoraNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="Fonte Pagadora">
-                  <span class="a-field__label-wrap">
-                    <span class="a-field__label">Fonte Pagadora</span>
-                  </span>
-                </label>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label for="fontePagadoraNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%;">
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">Fonte Pagadora</span>
+                    </span>
+                  </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <input id="fontePagadoraNucleoFamiliar1" type="text" name="fontePagadoraNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="Fonte Pagadora" style="width:100%">
+                  
+                  </div>
+                </div>
+                
               </div>
             </div><!-- end Parentesco/Renda/Fonte -->
           </div><!-- end card-body -->
