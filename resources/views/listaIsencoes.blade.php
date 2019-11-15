@@ -46,7 +46,7 @@
       <!-- col titulo tabela lmts -->
       <div class="col-sm-12">
         <div class="titulo-tabela-lmts">
-          <h2>Pedidos de isenções abertas</h2>
+          <h2>Pedidos de isenção abertos.</h2>
         </div>
       </div><!-- end col titulo tabela lmts -->
     </div><!-- end row -->
