@@ -100,7 +100,12 @@ class HomeController extends Controller
       $user = $api->loginApi($request->email, $request->password);
       if(is_null($user)){
         Auth::attempt(['email' => $request->email, 'password' => $request->password]);
-        return view('auth.login')->withInput(['old' =>['email' => $request->email]]);
+        if(Auth::check()){
+          return redirect()->route('home');
+        }
+        else{
+          return redirect()->route('loginApi');
+        }
       }
       else{
         $request->session()->put('id', $user['id']);
