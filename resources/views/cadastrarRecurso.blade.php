@@ -83,21 +83,21 @@
             <!-- nome -->
             <div id="margin" class="col-sm-7">
               <label for="nome" class="field a-field a-field_a2 page__field" style="width:100%;">
-                  <input id="nome" type="text" name="nome" autofocus class="field__input a-field__input" disabled value="{{$dados->nome}}" placeholder="Nome">
                   <span class="a-field__label-wrap">
                     <span class="a-field__label">Nome</span>
                   </span>
               </label>
+                  <input id="nome" type="text" name="nome" autofocus class="form-control field__input a-field__input" disabled value="{{$dados->nome}}" placeholder="Nome">
             </div><!-- end nome -->
 
             <!-- cpf -->
             <div class="col-sm-3">
               <label for="cpf" class="field a-field a-field_a2 page__field" style="width:100%;">
-                  <input id="cpf" type="text" name="cpf" autofocus class="field__input a-field__input" disabled value="{{$dados->cpf}}" placeholder="CPF" >
                   <span class="a-field__label-wrap">
                     <span class="a-field__label">CPF</span>
                   </span>
               </label>
+                  <input id="cpf" type="text" name="cpf" autofocus class="form-control field__input a-field__input" disabled value="{{$dados->cpf}}" placeholder="CPF" >
             </div><!-- end cpf -->
           </div><!-- end row nome | cpf -->
 
@@ -109,7 +109,9 @@
             </div>
 
             <div class="row">
-              <textarea form ="formRecurso" name="motivo" id="taid" cols="100" ></textarea>
+              <div class="col-sm-12">
+                <textarea form ="formRecurso" name="motivo" id="taid" style="width:100%"></textarea>
+              </div>
             </div>
           </div><!-- end label | textarea -->
 
