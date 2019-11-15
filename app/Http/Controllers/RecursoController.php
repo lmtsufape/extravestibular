@@ -14,8 +14,6 @@ class RecursoController extends Controller
 {
     public function cadastroRecurso(Request $request){
 
-
-
       $mytime = Carbon::now('America/Recife');
       $mytime = $mytime->toDateString();
       $edital = Edital::find($request->editalId);
@@ -58,6 +56,8 @@ class RecursoController extends Controller
       }
 
 
+     $validatedData = $request->validate([ 'motivo'              => ['required', 'string',],
+                                         ]);
 
 
 

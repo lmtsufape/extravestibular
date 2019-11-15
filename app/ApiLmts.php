@@ -21,7 +21,6 @@ class ApiLmts extends Model{
                                                                           ]
                                                             ]);
     if($response->getStatusCode() == 201){
-
       return true;
     }
     else{
@@ -41,7 +40,7 @@ class ApiLmts extends Model{
     if($response->getStatusCode() == 200){
       $response = json_decode($response->getBody(), true);
       $aux = [];
-
+      // dd($response);
       for($i = 0; $i < sizeof($response); $i++){
         $nomeCampus = '';
         $nomeDep = '';
@@ -87,8 +86,9 @@ class ApiLmts extends Model{
                                                             ]);
     if($response->getStatusCode() == 200){
       $response = json_decode($response->getBody(), true);
+      return $response;
     }
-    return $response;
+    return [''];
   }
 
   public function loginApi($email, $password){

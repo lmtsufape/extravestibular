@@ -103,17 +103,18 @@ class HomeController extends Controller
         return view('auth.login')->withInput(['old' =>['email' => $request->email]]);
       }
       else{
-        $request->session()->put('id', $user[0]['id']);
-        $request->session()->put('email', $user[0]['email']);
-        $request->session()->put('cursoId', $user[0]['cursoId']);
-        $request->session()->put('tipo', $user[0]['tipo']);
-
-        $acl = $api->getAcl($user[0]['tipoUsuario']);
-        $stringAcl = '';
-        foreach($acl as $key){
-          $stringAcl = $stringAcl . $key . ';';
-        }
-        $request->session()->put('acl', $stringAcl);
+        $request->session()->put('id', $user['id']);
+        $request->session()->put('email', $user['email']);
+        $request->session()->put('cursoId', $user['cursoId']);
+        $request->session()->put('tipo', $user['tipo']);
+        // dd(session()->all());
+        // dd(session()->all());
+        // $acl = $api->getAcl($user['tipoUsuario']);
+        // $stringAcl = '';
+        // foreach($acl as $key){
+        //   $stringAcl = $stringAcl . $key . ';';
+        // }
+        // $request->session()->put('acl', $stringAcl);
         return redirect()->route('homeApi');
       }
 
