@@ -69,7 +69,7 @@
     <!-- checkboxRenda -->
     <div class="row justify-content-center">
       <div class="col-sm-10">
-        <input id="checkboxRenda" onclick="escolher('renda')"  value="rendaFamiliar" type="checkbox" > Renda familiar per capita igual ou inferior a um salário mínimo e meio <br>
+        <input id="checkboxRenda" onclick="escolher('renda')"  value="rendaFamiliar" type="checkbox" > Renda familiar per capita igual ou inferior a um salário mínimo e meio. <br>
       </div>
     </div><!-- end checkboxRenda -->
     <!-- checkboxEnsino -->
