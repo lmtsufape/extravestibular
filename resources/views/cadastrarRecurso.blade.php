@@ -106,12 +106,18 @@
 
             <div class="row">
               <label id="label" for="motivo" class=" col-form-label" style="margin-left:0%" >{{ __('Justificativa:') }}</label>
+
             </div>
 
             <div class="row">
-              
-                <textarea form ="formRecurso" name="motivo" id="taid" style="width:100%"></textarea>
-              
+
+                <textarea class=" form-control @error('motivo') is-invalid @enderror"  form ="formRecurso" name="motivo" id="taid" style="width:100%"></textarea>
+                @error('motivo')
+                  <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+
             </div>
           </div><!-- end label | textarea -->
 

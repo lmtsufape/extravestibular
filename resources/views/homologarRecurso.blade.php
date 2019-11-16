@@ -100,15 +100,20 @@
                     <div class="col-md-11">
                         <input onclick="selectCheck('aprovado')" type="radio" name="radioRecurso" value="aprovado"> Aprovado
                         <br>
-                        <input onclick="selectCheck('rejeitado')" type="radio" name="radioRecurso" value="rejeitado"> Rejeitado
+                        <input id="radioIndeferida" @error('motivoRejeicao') checked @enderror onclick="selectCheck('rejeitado')" type="radio" name="radioRecurso" value="rejeitado"> Rejeitado
                     </div>
 
                   </div>
                   <div class="form-group" id="motivoRejeicao" style=" display: none;">
                     <label for="motivoRejeicao" class="col-md-4 col-form-label text-md-right"  style="margin-left: -60px;">{{ __('Motivos da Rejeição:') }}</label>
 
-                    <div class="col-md-6" style="margin-left: 10px">
-                      <textarea form ="formHomologacao" name="motivoRejeicao" id="taid" cols="115" ></textarea>
+                    <div class="col-md-12" style="margin-left: 10px">
+                      <textarea class=" form-control @error('motivoRejeicao') is-invalid @enderror" form ="formHomologacao" name="motivoRejeicao" id="taid" style="width:100%" ></textarea>
+                      @error('motivoRejeicao')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
 
                     </div>
                   </div>
@@ -134,6 +139,17 @@ function selectCheck(x){
   if(x == 'rejeitado'){
     document.getElementById("motivoRejeicao").style.display = ''
   }
+  if(x == 'aprovado'){
+    document.getElementById("motivoRejeicao").style.display = 'none'
+  }
 }
+function checkIndeferido(){
+  if(document.getElementById("radioIndeferida").checked == true){
+    document.getElementById("motivoRejeicao").style.display = ''
+
+  }
+}
+
+checkIndeferido();
 </script>
 @endsection
