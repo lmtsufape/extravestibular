@@ -1494,6 +1494,9 @@ class InscricaoController extends Controller
 		$inscricao->conclusaoDoCurso = (String) $conclusaoDoCurso;
 		$nota =  ($conclusaoDoCurso + $coeficienteDeRendimento) / 2;
 		$nota = number_format((float)$nota, 1, '.', '');
+		if($coeficienteDeRendimento < 6){
+			$nota = 0;
+		}
 		$inscricao->nota = $nota;
 		$inscricao->save();
 		$inscricoesQueFaltamClassificar = Inscricao::where('editalId' , $inscricao->editalId)
