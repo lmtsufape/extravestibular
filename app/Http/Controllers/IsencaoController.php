@@ -17,7 +17,21 @@ class IsencaoController extends Controller
 
     if($request->checkboxRenda == 'rendaFamiliar'){
       $validatedData = $request->validate([
-                                            // 'nome' => ['required', 'string', 'max:255'],
+                                            'nomeDadoEconomico' => ['required', 'string', 'max:255'],
+                                            'cpfDadoEconomico' => ['required', 'cpf'],
+                                            'parentescoDadoEconomico' => ['required', 'string', 'max:255'],
+                                            'rendaDadoEconomico' => ['required', 'string', 'max:255'],
+                                            'fontePagadoraDadoEconomico' => ['required', 'string', 'max:255'],
+                                            'nomeNucleoFamiliar' => ['nullable', 'string', 'max:255'],
+                                            'cpfNucleoFamiliar' => ['nullable', 'cpf'],
+                                            'parentescoNucleoFamiliar' => ['nullable', 'string', 'max:255'],
+                                            'rendaNucleoFamiliar' => ['nullable', 'string', 'max:255'],
+                                            'fontePagadoraNucleoFamiliar'=> ['nullable', 'string', 'max:255'],
+                                            'nomeNucleoFamiliar1' => ['nullable', 'string', 'max:255'],
+                                            'cpfNucleoFamiliar1' => ['nullable', 'cpf'],
+                                            'parentescoNucleoFamiliar1'=> ['nullable', 'string', 'max:255'],
+                                            'rendaNucleoFamiliar1' => ['nullable', 'string', 'max:255'],
+                                            'fontePagadoraNucleoFamiliar1 '=> ['nullable', 'string', 'max:255'],
                                           ]);
     }
     if($request->checkboxEnsino == 'ensinoMedio'){

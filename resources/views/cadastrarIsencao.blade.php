@@ -70,17 +70,17 @@
     <!-- checkboxRenda -->
     <div class="row justify-content-center">
       <div class="col-sm-10">
-        <input id="checkboxRenda" onclick="escolher('renda')" name="checkboxRenda"  value="rendaFamiliar" type="checkbox" > Renda familiar per capita igual ou inferior a um salário mínimo e meio. <br>
+        <input <?php if(old('checkboxRenda')){echo('checked');} ?> id="checkboxRenda" onclick="escolher('renda')" name="checkboxRenda"  value="rendaFamiliar" type="checkbox" > Renda familiar per capita igual ou inferior a um salário mínimo e meio. <br>
       </div>
     </div><!-- end checkboxRenda -->
     <!-- checkboxEnsino -->
     <div class="row justify-content-center">
       <div class="col-sm-10">
-        <input id="checkboxEnsino" onclick="escolher('ensino')" name="checkboxEnsino" value="ensinoMedio" type="checkbox" > Ter cursado o ensino médio completo em escola da rede pública ou como bolsista integral em escola da rede privada. <br>
+        <input <?php if(old('checkboxEnsino')){echo('checked');}?> id="checkboxEnsino" onclick="escolher('ensino')" name="checkboxEnsino" value="ensinoMedio" type="checkbox" > Ter cursado o ensino médio completo em escola da rede pública ou como bolsista integral em escola da rede privada. <br>
       </div>
     </div><!-- end checkboxEnsino -->
 
-<!-- card Histórico escolar -->
+    <!-- card Histórico escolar -->
     <div class="row justify-content-center" style="">
       <div id="historicoEscolar" class="card" style="width: 100%;margin-top: 10px; display:none;">
           <div class="card-header" style="width: 100%">
@@ -126,8 +126,12 @@
                   </div>
                   <div class="row">
                     <div class="col-sm-12">
-                        <input id="nomeDadoEconomico" type="text" name="nomeDadoEconomico" autofocus class="field__input a-field__input" placeholder="Nome" style="width:100%">
-
+                        <input value="{{ old('nomeDadoEconomico') }}" id="nomeDadoEconomico" type="text" name="nomeDadoEconomico" autofocus class="field__input a-field__input form-control @error('nomeDadoEconomico') is-invalid @enderror" placeholder="Nome" style="width:100%">
+                        @error('nomeDadoEconomico')
+                        <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                     </div>
                   </div>
 
@@ -147,7 +151,12 @@
                   </div>
                   <div class="row">
                     <div class="col-sm-12">
-                    <input id="cpfDadoEconomico" type="text" name="cpfDadoEconomico" autofocus class="field__input a-field__input" placeholder="CPF" style="width: 100%;">
+                      <input maxlength="11" value="{{ old('cpfDadoEconomico') }}" id="cpfDadoEconomico" type="text" name="cpfDadoEconomico" autofocus class="field__input a-field__input form-control @error('cpfDadoEconomico') is-invalid @enderror" placeholder="CPF" style="width: 100%;">
+                      @error('cpfDadoEconomico')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
                   </div>
 
@@ -171,7 +180,12 @@
                   </div>
                   <div class="row">
                     <div class="col-sm-12">
-                      <input id="parentescoDadoEconomico" type="text" name="parentescoDadoEconomico" autofocus class="field__input a-field__input" placeholder="Parentesco" style=" width:100%">
+                      <input value="{{ old('parentescoDadoEconomico') }}" id="parentescoDadoEconomico" type="text" name="parentescoDadoEconomico" autofocus class="field__input a-field__input form-control @error('parentescoDadoEconomico') is-invalid @enderror" placeholder="Parentesco" style=" width:100%">
+                      @error('parentescoDadoEconomico')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
                   </div>
 
@@ -191,7 +205,12 @@
                   </div>
                   <div class="row">
                     <div class="col-sm-12">
-                      <input id="rendaDadoEconomico" type="text" name="rendaDadoEconomico" autofocus class="field__input a-field__input" placeholder="Renda" style="width:100%">
+                      <input value="{{ old('rendaDadoEconomico') }}" id="rendaDadoEconomico" type="text" name="rendaDadoEconomico" autofocus class="field__input a-field__input form-control @error('rendaDadoEconomico') is-invalid @enderror" placeholder="Renda" style="width:100%">
+                      @error('rendaDadoEconomico')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
                   </div>
 
@@ -211,7 +230,12 @@
                   </div>
                   <div class="row">
                     <div class="col-sm-12">
-                    <input id="fontePagadoraDadoEconomico" type="text" name="fontePagadoraDadoEconomico" autofocus class="field__input a-field__input" placeholder="Fonte Pagadora" style="width:100%">
+                    <input value="{{ old('fontePagadoraDadoEconomico') }}" id="fontePagadoraDadoEconomico" type="text" name="fontePagadoraDadoEconomico" autofocus class="field__input a-field__input form-control @error('fontePagadoraDadoEconomico') is-invalid @enderror" placeholder="Fonte Pagadora" style="width:100%">
+                    @error('fontePagadoraDadoEconomico')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                     </div>
                   </div>
 
@@ -250,7 +274,12 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <input id="nomeNucleoFamiliar" type="text" name="nomeNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Nome" style="width:100%">
+                    <input value="{{ old('nomeNucleoFamiliar') }}" id="nomeNucleoFamiliar" type="text" name="nomeNucleoFamiliar" autofocus class="field__input a-field__input form-control @error('nomeNucleoFamiliar') is-invalid @enderror" placeholder="Nome" style="width:100%">
+                    @error('nomeNucleoFamiliar')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
                 </div>
 
@@ -268,7 +297,12 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <input id="cpfNucleoFamiliar" type="text" name="cpfNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="CPF" style="width:100%">
+                    <input maxlength="11" value="{{ old('cpfNucleoFamiliar') }}" id="cpfNucleoFamiliar" type="text" name="cpfNucleoFamiliar" autofocus class="field__input a-field__input form-control @error('cpfNucleoFamiliar') is-invalid @enderror" placeholder="CPF" style="width:100%">
+                    @error('cpfNucleoFamiliar')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
                 </div>
 
@@ -279,7 +313,7 @@
             <!-- row Parentesco/Renda/Fonte -->
             <div class="row" style="">
               <!-- parentesco -->
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <div class="row">
                   <div class="col-sm-12">
                     <label for="parentescoNucleoFamiliar" class="field a-field a-field_a2 page__field" style=" width: 100%;">
@@ -292,34 +326,20 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                  <input id="parentescoNucleoFamiliar" type="text" name="parentescoNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Parentesco" style="width:100%">
+                    <input value="{{ old('parentescoNucleoFamiliar') }}" id="parentescoNucleoFamiliar" type="text" name="parentescoNucleoFamiliar" autofocus class="field__input a-field__input form-control @error('parentescoNucleoFamiliar') is-invalid @enderror" placeholder="Parentesco" style="width:100%">
+                    @error('parentescoNucleoFamiliar')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
                 </div>
 
 
               </div><!-- end parentesco -->
-              <!-- fonte pagadora -->
-              <div class="col-sm-3">
 
-                <div class="row">
-                  <div class="col-sm-12">
-                  <label for="parentescoNucleoFamiliar" class="field a-field a-field_a2 page__field" style=" width: 100%;">
-                    <span class="a-field__label-wrap">
-                      <span class="a-field__label">Parentesco</span>
-                    </span>
-                  </label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <input id="parentescoNucleoFamiliar" type="text" name="parentescoNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Parentesco" style="width:100%">
-
-                  </div>
-                </div>
-
-              </div><!-- end fonte pagadora -->
               <!-- renda -->
-              <div class="col-sm-3">
+              <div class="col-sm-4">
 
                 <div class="row">
                   <div class="col-sm-12">
@@ -333,13 +353,18 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <input id="rendaNucleoFamiliar" type="text" name="rendaNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Renda" style="width:100%">
+                    <input value="{{ old('rendaNucleoFamiliar') }}" id="rendaNucleoFamiliar" type="text" name="rendaNucleoFamiliar" autofocus class="field__input a-field__input form-control @error('rendaNucleoFamiliar') is-invalid @enderror" placeholder="Renda" style="width:100%">
+                    @error('rendaNucleoFamiliar')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
                 </div>
 
               </div><!-- end renda -->
 
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <div class="row">
                   <div class="col-sm-12">
                     <label for="fontePagadoraNucleoFamiliar" class="field a-field a-field_a2 page__field" style=" width: 100%;">
@@ -351,7 +376,12 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                  <input id="fontePagadoraNucleoFamiliar" type="text" name="fontePagadoraNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Fonte Pagadora" style="width:100%">
+                    <input value="{{ old('fontePagadoraNucleoFamiliar') }}" id="fontePagadoraNucleoFamiliar" type="text" name="fontePagadoraNucleoFamiliar" autofocus class="field__input a-field__input form-control @error('fontePagadoraNucleoFamiliar') is-invalid @enderror" placeholder="Fonte Pagadora" style="width:100%">
+                    @error('fontePagadoraNucleoFamiliar')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
                 </div>
 
@@ -387,7 +417,12 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                  <input id="nomeNucleoFamiliar1" type="text" name="nomeNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="Nome" style="width:100%">
+                    <input value="{{ old('nomeNucleoFamiliar1') }}" id="nomeNucleoFamiliar1" type="text" name="nomeNucleoFamiliar1" autofocus class="field__input a-field__input form-control @error('nomeNucleoFamiliar1') is-invalid @enderror" placeholder="Nome" style="width:100%">
+                    @error('nomeNucleoFamiliar1')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
                 </div>
 
@@ -407,7 +442,12 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                  <input id="cpfNucleoFamiliar1" type="text" name="cpfNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="CPF" style="width:100%">
+                    <input maxlength="11" value="{{ old('cpfNucleoFamiliar1') }}" id="cpfNucleoFamiliar1" type="text" name="cpfNucleoFamiliar1" autofocus class="field__input a-field__input form-control @error('cpfNucleoFamiliar1') is-invalid @enderror" placeholder="CPF" style="width:100%">
+                    @error('cpfNucleoFamiliar1')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
                 </div>
 
@@ -431,7 +471,12 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <input id="parentescoNucleoFamiliar1" type="text" name="parentescoNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="Parentesco" style="width: 100%;">
+                    <input value="{{ old('parentescoNucleoFamiliar1') }}" id="parentescoNucleoFamiliar1" type="text" name="parentescoNucleoFamiliar1" autofocus class="field__input a-field__input form-control @error('parentescoNucleoFamiliar1') is-invalid @enderror" placeholder="Parentesco" style="width: 100%;">
+                    @error('parentescoNucleoFamiliar1')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
                 </div>
 
@@ -449,8 +494,12 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <input id="rendaNucleoFamiliar1" type="text" name="rendaNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="Renda" style="width:100%">
-
+                    <input value="{{ old('rendaNucleoFamiliar1') }}" id="rendaNucleoFamiliar1" type="text" name="rendaNucleoFamiliar1" autofocus class="field__input a-field__input form-control @error('rendaNucleoFamiliar1') is-invalid @enderror" placeholder="Renda" style="width:100%">
+                    @error('rendaNucleoFamiliar1')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
                 </div>
 
@@ -467,8 +516,12 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <input id="fontePagadoraNucleoFamiliar1" type="text" name="fontePagadoraNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="Fonte Pagadora" style="width:100%">
-
+                    <input value="{{ old('fontePagadoraNucleoFamiliar1') }}" id="fontePagadoraNucleoFamiliar1" type="text" name="fontePagadoraNucleoFamiliar1" autofocus class="field__input a-field__input form-control @error('fontePagadoraNucleoFamiliar1') is-invalid @enderror" placeholder="Fonte Pagadora" style="width:100%">
+                    @error('fontePagadoraNucleoFamiliar1')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
                 </div>
 
