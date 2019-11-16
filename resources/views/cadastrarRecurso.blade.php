@@ -105,17 +105,17 @@
           <div class="textbox" style="">
 
             <div class="row">
-              <label id="label" for="motivo" class=" col-form-label" >{{ __('Motivo:') }}</label>
+              <label id="label" for="motivo" class=" col-form-label" style="margin-left:0%" >{{ __('Justificativa:') }}</label>
             </div>
 
             <div class="row">
-              <div class="col-sm-12">
+              
                 <textarea form ="formRecurso" name="motivo" id="taid" style="width:100%"></textarea>
-              </div>
+              
             </div>
           </div><!-- end label | textarea -->
 
-          <div class="row justify-content-center">
+          <div class="row justify-content-center" style="margin-top:20px;">
             <button type="submit" class="btn btn-primary btn-primary-lmts">
                 {{ __('Finalizar') }}
             </button>
