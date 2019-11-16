@@ -379,7 +379,7 @@
 
             <input onclick="selectCheck('aprovado')" id="selectDadosDoCursoAprovado" type="radio" name="radioDadosDoCurso" value="aprovado"> <h4 style="margin-left:1%">Aprovado</h4>
 
-            <input style="margin-left:3%" onclick="selectCheck('rejeitado')" id="selectDadosDoCursoRejeitado"  type="radio" name="radioDadosDoCurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>
+            <input style="margin-left:3%" id="radioIndeferida" @error('motivoRejeicao') checked @enderror onclick="selectCheck('rejeitado')" id="selectDadosDoCursoRejeitado"  type="radio" name="radioDadosDoCurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>
 
         </div>
 
@@ -512,7 +512,7 @@
                             <input onclick="selectCheck('aprovado')"  type="radio" name="radioComprovante" id="selectComprovanteAprovado" <?php if($inscricao->comprovante == 'isento'){echo('checked="true"');} ?> >
                           </td>
                           <td style="text-align: center">
-                            <input id="radioIndeferida" @error('motivoRejeicao') checked @enderror onclick="selectCheck('rejeitado')"  type="radio" name="radioComprovante" id="selectComprovanteRejeitado">
+                            <input onclick="selectCheck('rejeitado')"  type="radio" name="radioComprovante" id="selectComprovanteRejeitado">
                           </td>
                         </div>
                     </div>
@@ -633,7 +633,8 @@ function selectCheck(x){
 
 function checkIndeferido(){
   if(document.getElementById("radioIndeferida").checked == true){
-    document.getElementById("motivoRejeicao").style.display = ''
+    document.getElementById("motivoRejeicao").style.display = '';
+    document.getElementById("radioIndeferida").checked = false;
 
   }
 }
