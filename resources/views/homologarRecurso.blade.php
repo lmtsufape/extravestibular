@@ -125,7 +125,7 @@
 
             
             <div class="row">
-              <label id="label" for="motivoRejeicao" >{{ __('Motivos da Rejeição:') }}</label>
+              <label id="label" for="motivoRejeicao" >{{ __('Justificativa da Rejeição:') }}</label>
             </div>
             <div class="row justify-content-center">
               
