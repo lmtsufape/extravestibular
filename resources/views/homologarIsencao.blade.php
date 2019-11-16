@@ -77,7 +77,7 @@
           </div>
         </div><!-- end row declaracao-->
         <div class="row justify-content-center">
-            
+
           @if($isencao->tipo == "ambos")
             <div class="row justify-content-center">
               <div class="col-sm-12">
@@ -121,7 +121,7 @@
               <h5>
                 <a style="" href="{{ route('download', ['file' => $isencao->historicoEscolar])}}" target="_new">Abrir arquivo</a>
               </h5>
-            </div>                  
+            </div>
           </div><!-- end card body-->
         </div>
         <div class="card" style="">
@@ -198,7 +198,7 @@
                 <div class="col-sm-10"><h4 style="font-weight:bold">{{$isencao->fontePagadoraNucleoFamiliar1}}</h4></div>
               </div>
             </div><!-- end card-body -->
-        </div><!-- end card -->   
+        </div><!-- end card -->
       @elseif($isencao->tipo == "ensinoMedio")
         <div class="card">
             <div class="card-header">{{ __('Arquivos anexado pelo candidato') }}</div>
@@ -211,7 +211,7 @@
                 <h5>
                   <a style="" href="{{ route('download', ['file' => $isencao->historicoEscolar])}}" target="_new">Abrir arquivo</a>
                 </h5>
-              </div>                  
+              </div>
             </div><!-- end card-body -->
         </div><!-- end card-->
 
@@ -240,7 +240,7 @@
                 <div class="col-sm-10"><h4 style="font-weight:bold">{{$isencao->fontePagadoraDadoEconomico}}</h4></div>
               </div>
 
-              
+
             </div><!-- end card-body -->
         </div><!-- end card -->
         <div class="card">
@@ -296,43 +296,49 @@
             </div><!-- end card-body-->
         </div><!--end card-->
         @endif
-        
+
       </div><!-- end row card-->
 
 
-      <form method="POST" action={{ route('homologarIsencao') }} enctype="multipart/form-data" id="formHomologacao">
+      <form method="POST" action="{{ route('homologarIsencao') }}" enctype="multipart/form-data" id="formHomologacao">
         @csrf
 
         <div class="row justify-content-center">
-          
+
             <div class="card">
               <div class="card-header">{{ __('Parecer') }}</div>
               <div class="card-body">
                 <div class="row justify-content-center" style="margin-top:20px">
                   <div class="col-sm-1">
-                    <input onclick="selectCheck('aprovado')" type="radio" name="resultado" value="deferida"> 
+                    <input onclick="selectCheck('aprovado')" type="radio" name="resultado" value="deferida">
                   </div>
                   <div id="label" class="col-sm-2" style="margin-left:-5%"><h4>Deferida</h4></div>
                   <div class="col-sm-1">
-                    <input onclick="selectCheck('rejeitado')" type="radio" name="resultado" value="indeferida"> 
+                    <input id="radioIndeferida" @error('motivoRejeicao') checked @enderror onclick="selectCheck('rejeitado')" type="radio" name="resultado" value="indeferida">
                   </div>
                   <div id="label" class="col-sm-2" style="margin-left:-5%"><h4>Indeferida</h4></div>
-                  
+
                 </div>
-                
-                  
-                
+
+
+
                 <div class="row">
                   <div class="col-sm-12">
                     <div class="form-group" id="motivoRejeicao" style=" display: none; ">
                       <div class="row justify-content-left">
-                        <div class="col-sm-6">                          
+                        <div class="col-sm-6">
                           <label for="motivoRejeicao" class="col-form-label text-md-right" >{{ __('Motivos do indeferimento:') }}</label>
+
                         </div>
                       </div>
                       <div class="row justify-content-center">
                         <div class="col-sm-12">
-                            <textarea form ="formHomologacao" name="motivoRejeicao" id="taid" cols="115" style="width:100%" ></textarea>                            
+                            <textarea class=" form-control @error('motivoRejeicao') is-invalid @enderror" form ="formHomologacao" name="motivoRejeicao" id="taid" style="width:100%" ></textarea>
+                            @error('motivoRejeicao')
+                            <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                              <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                     </div>
@@ -340,10 +346,10 @@
                 </div>
 
 
-              
+
             </div><!-- end card-body -->
           </div><!-- end card-->
-        
+
       </div><!-- end row-->
       <div class="row justify-content-center" style="margin-top:20px;">
           <input type="hidden" name="isencaoId" value="{{$isencao->id}}">
@@ -352,7 +358,7 @@
           </button>
       </div>
   </form>
-        
+
 </div><!-- end container-->
 
 
@@ -366,5 +372,15 @@ function selectCheck(x){
     document.getElementById("motivoRejeicao").style.display = 'none'
   }
 }
+
+function checkIndeferido(){
+  if(document.getElementById("radioIndeferida").checked == true){
+    document.getElementById("motivoRejeicao").style.display = ''
+
+  }
+}
+
+checkIndeferido();
+
 </script>
 @endsection

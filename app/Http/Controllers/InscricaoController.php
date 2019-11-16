@@ -329,6 +329,7 @@ class InscricaoController extends Controller
 				$curso = $cursos[$j]['nome'] . '/' . $cursos[$j]['departamento'];
 			}
 		}
+
 		$usuario = User::find($inscricao->usuarioId);
 		$dados = DadosUsuario::find($usuario->dados);
 		$mytime = Carbon::now('America/Recife');
@@ -375,6 +376,7 @@ class InscricaoController extends Controller
 		}
 		if($request->tipo == 'seguirParaClassificacao'){
 			if($request->homologado == 'rejeitado'){
+				$validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);
 				$inscricao = Inscricao::find($request->inscricaoId);
 				$inscricao->homologado = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
@@ -398,6 +400,7 @@ class InscricaoController extends Controller
 
 		if(!strcmp($request->tipo, 'homologacao')){
 			if(!strcmp($request->homologado, 'rejeitado')){
+				$validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);
 				$inscricao->homologado = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
 				$inscricao->save();
@@ -1475,7 +1478,7 @@ class InscricaoController extends Controller
 		$inscricao = Inscricao::find($request->inscricaoId);
 		$validatedData = $request->validate([ 'coeficienteDeRendimento' 		=> ['required', 'numeric'],
 																					'completadas' 								=> ['required', 'numeric'],
-																					'materias' 										=> ['required', 'numeric'],
+																					'materias' 										=> ['required', 'numeric', 'gt:0'],
 																				]);
 
 
@@ -1491,6 +1494,9 @@ class InscricaoController extends Controller
 		$inscricao->conclusaoDoCurso = (String) $conclusaoDoCurso;
 		$nota =  ($conclusaoDoCurso + $coeficienteDeRendimento) / 2;
 		$nota = number_format((float)$nota, 1, '.', '');
+		if($coeficienteDeRendimento < 6){
+			$nota = 0;
+		}
 		$inscricao->nota = $nota;
 		$inscricao->save();
 		$inscricoesQueFaltamClassificar = Inscricao::where('editalId' , $inscricao->editalId)
@@ -1523,9 +1529,11 @@ class InscricaoController extends Controller
 			}
 
 			$this->verificarCompletudeClassificacoes($inscricao->editalId);
+
 			return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso.');
 		}
 		else{
+
 			return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso.');
 		}
 	}

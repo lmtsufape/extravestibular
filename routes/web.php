@@ -45,7 +45,7 @@ Route::group(['middleware' => 'lmts'], function(){
 
   Route::post('/cadastroClassificacao',      'InscricaoController@cadastroClassificacao'        )->name('cadastroClassificacao');
   Route::get('/homologarCoordenador',        'InscricaoController@classificarInscricao'         )->name('classificarInscricao');
-  Route::post('/classificarInscricao',       'InscricaoController@inscricaoEscolhida'           )->name('seguirParaClassificacao');
+  Route::get('/classificarInscricao',        'InscricaoController@inscricaoEscolhida'           )->name('seguirParaClassificacao');
   Route::post('/notificarCoordenador',       'InscricaoController@notificarCoordenador'         )->name('notificarCoordenador');
   Route::get('/homologarInscricao',          'InscricaoController@inscricaoEscolhida'           )->name('inscricaoEscolhida');
   Route::post('/inscricaoHomologada',        'InscricaoController@homologarInscricao'           )->name('homologarInscricao');
@@ -57,15 +57,15 @@ Route::group(['middleware' => 'lmts'], function(){
   Route::get('/novaErrata',                  'ErrataController@novaErrata'                      )->name('novaErrata');
 
   Route::post('/cadastroIsencao',            'IsencaoController@cadastroIsencao'                )->name('cadastroIsencao');
-  Route::post('/homologarIsencao',           'IsencaoController@isencaoEscolhida'               )->name('isencaoEscolhida');
+  Route::get('/homologarIsencao',            'IsencaoController@isencaoEscolhida'               )->name('isencaoEscolhida');
   Route::post('/isencaoHomologada',          'IsencaoController@homologarIsencao'               )->name('homologarIsencao');
 
   Route::post('/cadastroRecurso',            'RecursoController@cadastroRecurso'                )->name('cadastroRecurso');
-  Route::post('/homologarRecurso',           'RecursoController@recursoEscolhido'               )->name('recursoEscolhido');
+  Route::get('/homologarRecurso',            'RecursoController@recursoEscolhido'               )->name('recursoEscolhido');
   Route::post('/recursoHomologado',          'RecursoController@homologarRecurso'               )->name('homologarRecurso');
 
   Route::get('/dadosUsuario',                'DadosUsuarioController@verDadosUsuario'           )->name('verDadosUsuario')->middleware('auth');
-  Route::get('/editarDadosUsuario',         'DadosUsuarioController@editarDadosUsuario'         )->name('editarDadosUsuario');
+  Route::get('/editarDadosUsuario',          'DadosUsuarioController@editarDadosUsuario'        )->name('editarDadosUsuario');
   Route::post('/cadastroDadosUsuario',       'DadosUsuarioController@cadastroDadosUsuario'      )->name('cadastroDadosUsuario');
   Route::post('/cadastroEditarDadosUsuario', 'DadosUsuarioController@cadastroEditarDadosUsuario')->name('cadastroEditarDadosUsuario');
 

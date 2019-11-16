@@ -84,6 +84,9 @@ class RecursoController extends Controller
     }
 
     public function homologarRecurso(Request $request){
+      if($request->radioRecurso == 'rejeitado'){
+        $validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);        
+      }
       $recurso = Recurso::find($request->recursoId);
       $recurso->homologado = $request->radioRecurso;
       $recurso->motivoRejeicao = $request->motivoRejeicao;

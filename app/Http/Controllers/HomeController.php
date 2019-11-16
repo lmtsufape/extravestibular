@@ -104,7 +104,7 @@ class HomeController extends Controller
           return redirect()->route('home');
         }
         else{
-          return redirect()->route('loginApi');
+          return redirect()->route('home');
         }
       }
       else{

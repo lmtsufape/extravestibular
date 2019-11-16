@@ -66,8 +66,7 @@
                  </a>
                 </td>
                 <td> <!--  -->
-                  <form method="POST" action="{{ route('recursoEscolhido') }}" enctype="multipart/form-data"> <!-- Isenção -->
-                    @csrf
+                  <form method="GET" action="{{ route('recursoEscolhido') }}" enctype="multipart/form-data"> <!-- Isenção -->
                     <div class="col-md-8 offset-md-4">
                       <input type="hidden" name="recursoId" value="{{$recurso->id}}">
                       <button type="submit" class="btn btn-primary btn-primary-lmts">

@@ -74,6 +74,9 @@ return [
     'timezone'             => ':Attribute deve ser uma timezone válida.',
     'unique'               => ':Attribute já está em uso.',
     'url'                  => 'O formato de :attribute é inválido.',
+    'gt'  => [
+      'numeric' => 'O valor deve ser maior que 0',
+    ],
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

@@ -249,7 +249,20 @@
                     <span class="a-field__label">Tipo de Matricula</span>
                   </span>
                 </label>
-                <input disabled id="Tipo de Matricula" type="text" name="Curso Pretendido" autofocus class="form-control field__input a-field__input" placeholder="Tipo de Matricula" value="{{ $inscricao->tipo }}">
+                <input disabled id="Tipo de Matricula" type="text" name="Curso Pretendido" autofocus class="form-control field__input a-field__input" placeholder="Tipo de Matricula" value="<?php
+                                                                                                                                                                                               if($inscricao->tipo == 'reintegracao'){
+                                                                                                                                                                                                 echo('Reintegração');
+                                                                                                                                                                                               }
+                                                                                                                                                                                               elseif($inscricao->tipo == 'transferenciaInterna'){
+                                                                                                                                                                                                 echo('Transferência Interna');
+                                                                                                                                                                                               }
+                                                                                                                                                                                               elseif($inscricao->tipo == 'transferenciaExterna'){
+                                                                                                                                                                                                 echo('Transferência Externa');
+                                                                                                                                                                                               }
+                                                                                                                                                                                               elseif($inscricao->tipo == 'portadorDeDiploma'){
+                                                                                                                                                                                                 echo('Portador de Diploma');
+                                                                                                                                                                                               }
+                                                                                                                                                                                              ?>">
               </div><!-- end tipo de matrícula-->
         </div><!-- end row-->
 
@@ -278,7 +291,7 @@
     </div><!-- end card-->
   </div><!-- end row -->
 
-  
+
   <div class="row" styles="<?php if($tipo != 'homologacao'){ echo("display: none");} ?>">
     <div class="card">
       <div class="card-header">{{ __('Dados do Curso / Instituição de Origem') }}</div>
@@ -363,12 +376,13 @@
         </div><!-- end row-->
 
         <div class="row justify-content-center" style="margin-top:20px">
-          
+
             <input onclick="selectCheck('aprovado')" id="selectDadosDoCursoAprovado" type="radio" name="radioDadosDoCurso" value="aprovado"> <h4 style="margin-left:1%">Aprovado</h4>
-            
-            <input style="margin-left:3%" onclick="selectCheck('rejeitado')" id="selectDadosDoCursoRejeitado"  type="radio" name="radioDadosDoCurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>
-          
+
+            <input style="margin-left:3%" id="radioIndeferida" @error('motivoRejeicao') checked @enderror onclick="selectCheck('rejeitado')" id="selectDadosDoCursoRejeitado"  type="radio" name="radioDadosDoCurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>
+
         </div>
+
 
       </div><!-- end card-body -->
     </div><!-- end card -->
@@ -379,7 +393,7 @@
     <div class="card">
       <div class="card-header">{{ __('Documentos') }}</div>
       <div class="card-body">
-          
+
         <div class="row justify-content-center">
           <div style="margin-top:-100px">
             <table class="table table-responsive table-ordered table-hover">
@@ -511,18 +525,23 @@
           </div><!-- end row-->
           <div class="row">
             <div class="col-sm-12">
-                <form method="POST" action={{ route('homologarInscricao') }} enctype="multipart/form-data" id="formHomologacao">
+                <form method="POST" action="{{ route('homologarInscricao') }}" enctype="multipart/form-data" id="formHomologacao">
                   @csrf
                   <div class="form-group" id="motivoRejeicao" style=" display: none;">
                     <div class="row">
                       <div class="col-sm-12">
                         <label id="label" for="motivoRejeicao">{{ __('Justificativa da Rejeição:') }}</label>
                       </div>
-                      
+
                     </div>
                     <div class="row justify-content-center">
                       <div>
-                        <textarea form ="formHomologacao" name="motivoRejeicao" id="taid" cols="115" style="width:100%"></textarea>
+                        <textarea class="form-control @error('motivoRejeicao') is-invalid @enderror" form ="formHomologacao" name="motivoRejeicao" id="taid" cols="115" style="width:100%"></textarea>
+                        @error('motivoRejeicao')
+                        <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                       </div>
                     </div>
                   </div>
@@ -555,13 +574,9 @@ function checkFinalizar(){
       if(document.getElementById("selectProgramaDasDisciplinasAprovado").checked || document.getElementById("selectProgramaDasDisciplinasRejeitado").checked){
         if(document.getElementById("selectCurriculoAprovado").checked || document.getElementById("selectCurriculoRejeitado").checked){
           if(document.getElementById("selectEnemAprovado").checked || document.getElementById("selectEnemRejeitado").checked){
-            if(document.getElementById("selectDadosPessoaisAprovado").checked || document.getElementById("selectDadosPessoaisRejeitado").checked){
-              if(document.getElementById("selectDadosDoCursoAprovado").checked || document.getElementById("selectDadosDoCursoRejeitado").checked){
-                if(document.getElementById("selectInscricaoAprovado").checked || document.getElementById("selectInscricaoRejeitado").checked){
-                  if(document.getElementById("selectComprovanteAprovado").checked || document.getElementById("selectComprovanteRejeitado").checked){
-                    document.getElementById("buttonFinalizar").disabled = false;
-                  }
-                }
+            if(document.getElementById("selectDadosDoCursoAprovado").checked || document.getElementById("radioIndeferida").checked){
+              if(document.getElementById("selectComprovanteAprovado").checked || document.getElementById("selectComprovanteRejeitado").checked){
+                document.getElementById("buttonFinalizar").disabled = false;
               }
             }
           }
@@ -577,15 +592,11 @@ function checkAprovado(){
       if(document.getElementById("selectProgramaDasDisciplinasAprovado").checked){
         if(document.getElementById("selectCurriculoAprovado").checked){
           if(document.getElementById("selectEnemAprovado").checked){
-            if(document.getElementById("selectDadosPessoaisAprovado").checked){
-              if(document.getElementById("selectDadosDoCursoAprovado").checked){
-                if(document.getElementById("selectInscricaoAprovado").checked){
-                  if(document.getElementById("selectComprovanteAprovado").checked){
-                    document.getElementById("homologado").value = 'aprovado';
-                    document.getElementById("motivoRejeicao").value = '';
-                    document.getElementById("motivoRejeicao").style.display = 'none';
-                  }
-                }
+            if(document.getElementById("selectDadosDoCursoAprovado").checked){
+              if(document.getElementById("selectComprovanteAprovado").checked){
+                document.getElementById("homologado").value = 'aprovado';
+                document.getElementById("motivoRejeicao").value = '';
+                document.getElementById("motivoRejeicao").style.display = 'none';
               }
             }
           }
@@ -620,7 +631,15 @@ function selectCheck(x){
   checkFinalizar();
 }
 
+function checkIndeferido(){
+  if(document.getElementById("radioIndeferida").checked == true){
+    document.getElementById("motivoRejeicao").style.display = '';
+    document.getElementById("radioIndeferida").checked = false;
 
+  }
+}
+
+checkIndeferido();
 
 
 
