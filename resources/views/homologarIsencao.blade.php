@@ -111,7 +111,7 @@
   <div class="row justify-content-center">
       @if($isencao->tipo == "ambos")
         <div class="card" style="">
-          <div class="card-header">{{ __('Arquivos') }}</div>
+          <div class="card-header">{{ __('Arquivos anexados pelo candidato') }}</div>
           <div class="card-body">
             <div class="row justify-content-center" >
                 <h3 for="historicoEscolar" style="">{{ __('Histórico Escolar') }}</h3>
@@ -201,7 +201,7 @@
         </div><!-- end card -->   
       @elseif($isencao->tipo == "ensinoMedio")
         <div class="card">
-            <div class="card-header">{{ __('Arquivos') }}</div>
+            <div class="card-header">{{ __('Arquivos anexado pelo candidato') }}</div>
             <div class="card-body">
               <div class="row justify-content-center" >
                   <h3 for="historicoEscolar" style="">{{ __('Histórico Escolar') }}</h3>
