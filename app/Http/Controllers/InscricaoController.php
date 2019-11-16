@@ -401,7 +401,7 @@ class InscricaoController extends Controller
 				$inscricao->homologado = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
 				$inscricao->save();
-				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso.');
+				return redirect()->route('home')->with('jsAlert', 'Inscrição aceita com sucesso!');
 			}
 			else{
 				$inscricao->homologado = 'aprovado';
@@ -409,7 +409,7 @@ class InscricaoController extends Controller
 					$inscricao->homologadoDrca = 'aprovado';
 				}
 				$inscricao->save();
-				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso.');
+				return redirect()->route('home')->with('jsAlert', 'Inscrição aceita com sucesso!');
 			}
 		}
 		if(!strcmp($request->tipo, 'drca')){
@@ -417,12 +417,12 @@ class InscricaoController extends Controller
 				$inscricao->homologadoDrca = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
 				$inscricao->save();
-				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso.');
+				return redirect()->route('home')->with('jsAlert', 'Inscrição aceita com sucesso!');
 			}
 			else{
 				$inscricao->homologadoDrca = 'aprovado';
 				$inscricao->save();
-				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso.');
+				return redirect()->route('home')->with('jsAlert', 'Inscrição aceita com sucesso!');
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('titulo','Requerimento de Recurso')
+@section('titulo','Interposição de recurso ao resultado')
 @section('navbar')
     <!-- Home / Detalhes do edital / Requerimento de Recurso -->
     <li class="nav-item active">
@@ -34,7 +34,7 @@
       <a class="nav-link">/</a>
     </li>
     <li class="nav-item active">
-      <a class="nav-link">Requerimento de Recurso</a>
+      <a class="nav-link">Interposição de recurso ao resultado</a>
     </li>
 @endsection
 @section('content')
@@ -67,7 +67,7 @@
   <div class="row">
     <div class="card" style="width:100%; ">
       <div class="card-header">
-        {{ __('Requerimento de Recurso') }}
+        {{ __('Interposição de recurso ao resultado') }}
       </div>
 
       <div class="card-body" >
@@ -105,17 +105,17 @@
           <div class="textbox" style="">
 
             <div class="row">
-              <label id="label" for="motivo" class=" col-form-label" >{{ __('Motivo:') }}</label>
+              <label id="label" for="motivo" class=" col-form-label" style="margin-left:0%" >{{ __('Justificativa:') }}</label>
             </div>
 
             <div class="row">
-              <div class="col-sm-12">
+              
                 <textarea form ="formRecurso" name="motivo" id="taid" style="width:100%"></textarea>
-              </div>
+              
             </div>
           </div><!-- end label | textarea -->
 
-          <div class="row justify-content-center">
+          <div class="row justify-content-center" style="margin-top:20px;">
             <button type="submit" class="btn btn-primary btn-primary-lmts">
                 {{ __('Finalizar') }}
             </button>
