@@ -376,6 +376,7 @@ class InscricaoController extends Controller
 		}
 		if($request->tipo == 'seguirParaClassificacao'){
 			if($request->homologado == 'rejeitado'){
+				$validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);
 				$inscricao = Inscricao::find($request->inscricaoId);
 				$inscricao->homologado = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
@@ -399,7 +400,7 @@ class InscricaoController extends Controller
 
 		if(!strcmp($request->tipo, 'homologacao')){
 			if(!strcmp($request->homologado, 'rejeitado')){
-				$validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);				
+				$validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);
 				$inscricao->homologado = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
 				$inscricao->save();
@@ -1477,7 +1478,7 @@ class InscricaoController extends Controller
 		$inscricao = Inscricao::find($request->inscricaoId);
 		$validatedData = $request->validate([ 'coeficienteDeRendimento' 		=> ['required', 'numeric'],
 																					'completadas' 								=> ['required', 'numeric'],
-																					'materias' 										=> ['required', 'numeric'],
+																					'materias' 										=> ['required', 'numeric', 'gt:0'],
 																				]);
 
 
@@ -1525,9 +1526,13 @@ class InscricaoController extends Controller
 			}
 
 			$this->verificarCompletudeClassificacoes($inscricao->editalId);
+			dd('a');
+
 			return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso.');
 		}
 		else{
+			dd('a');
+
 			return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso.');
 		}
 	}

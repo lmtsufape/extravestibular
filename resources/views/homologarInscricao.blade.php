@@ -574,7 +574,7 @@ function checkFinalizar(){
       if(document.getElementById("selectProgramaDasDisciplinasAprovado").checked || document.getElementById("selectProgramaDasDisciplinasRejeitado").checked){
         if(document.getElementById("selectCurriculoAprovado").checked || document.getElementById("selectCurriculoRejeitado").checked){
           if(document.getElementById("selectEnemAprovado").checked || document.getElementById("selectEnemRejeitado").checked){
-            if(document.getElementById("selectDadosDoCursoAprovado").checked || document.getElementById("selectDadosDoCursoRejeitado").checked){
+            if(document.getElementById("selectDadosDoCursoAprovado").checked || document.getElementById("radioIndeferida").checked){
               if(document.getElementById("selectComprovanteAprovado").checked || document.getElementById("selectComprovanteRejeitado").checked){
                 document.getElementById("buttonFinalizar").disabled = false;
               }
