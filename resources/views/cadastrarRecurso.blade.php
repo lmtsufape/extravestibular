@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('titulo','Requerimento de Recurso')
+@section('titulo','Interposição de recurso ao resultado')
 @section('navbar')
     <!-- Home / Detalhes do edital / Requerimento de Recurso -->
     <li class="nav-item active">
@@ -34,7 +34,7 @@
       <a class="nav-link">/</a>
     </li>
     <li class="nav-item active">
-      <a class="nav-link">Requerimento de Recurso</a>
+      <a class="nav-link">Interposição de recurso ao resultado</a>
     </li>
 @endsection
 @section('content')
@@ -67,7 +67,7 @@
   <div class="row">
     <div class="card" style="width:100%; ">
       <div class="card-header">
-        {{ __('Requerimento de Recurso') }}
+        {{ __('Interposição de recurso ao resultado') }}
       </div>
 
       <div class="card-body" >
