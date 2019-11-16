@@ -251,7 +251,9 @@ border-radius: 70px;
   display:block; height: 100px;
   overflow: visible;
 }
-
+.card{
+  margin-top: 20px;
+}
 .card-header{
   background-color: #1B2E4F;
   color: white;
