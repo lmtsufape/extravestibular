@@ -43,6 +43,11 @@
 
 @endsection
 @section('content')
+<style>
+  h2{
+    margin-left: -2%;
+  }
+</style>
 <div class="container">
   <!-- row titulo -->
   <div class="row justify-content-center">
