@@ -383,6 +383,7 @@
 
         </div>
 
+
       </div><!-- end card-body -->
     </div><!-- end card -->
   </div><!-- end row-->
@@ -564,17 +565,20 @@
 <script type="text/javascript" >
 function checkFinalizar(){
   if(document.getElementById("selectHistoricoEscolarAprovado").checked || document.getElementById("selectHistoricoEscolarRejeitado").checked){
+    console.log('1');
     if(document.getElementById("selectDeclaracaoDeVinculoAprovado").checked || document.getElementById("selectDeclaracaoDeVinculoRejeitado").checked){
+      console.log('2');
       if(document.getElementById("selectProgramaDasDisciplinasAprovado").checked || document.getElementById("selectProgramaDasDisciplinasRejeitado").checked){
+        console.log('3');
         if(document.getElementById("selectCurriculoAprovado").checked || document.getElementById("selectCurriculoRejeitado").checked){
+          console.log('4');
           if(document.getElementById("selectEnemAprovado").checked || document.getElementById("selectEnemRejeitado").checked){
-            if(document.getElementById("selectDadosPessoaisAprovado").checked || document.getElementById("selectDadosPessoaisRejeitado").checked){
-              if(document.getElementById("selectDadosDoCursoAprovado").checked || document.getElementById("selectDadosDoCursoRejeitado").checked){
-                if(document.getElementById("selectInscricaoAprovado").checked || document.getElementById("selectInscricaoRejeitado").checked){
-                  if(document.getElementById("selectComprovanteAprovado").checked || document.getElementById("selectComprovanteRejeitado").checked){
-                    document.getElementById("buttonFinalizar").disabled = false;
-                  }
-                }
+            console.log('5');
+            if(document.getElementById("selectDadosDoCursoAprovado").checked || document.getElementById("selectDadosDoCursoRejeitado").checked){
+              console.log('6');
+              if(document.getElementById("selectComprovanteAprovado").checked || document.getElementById("selectComprovanteRejeitado").checked){
+                console.log('7');
+                document.getElementById("buttonFinalizar").disabled = false;
               }
             }
           }
@@ -590,15 +594,11 @@ function checkAprovado(){
       if(document.getElementById("selectProgramaDasDisciplinasAprovado").checked){
         if(document.getElementById("selectCurriculoAprovado").checked){
           if(document.getElementById("selectEnemAprovado").checked){
-            if(document.getElementById("selectDadosPessoaisAprovado").checked){
-              if(document.getElementById("selectDadosDoCursoAprovado").checked){
-                if(document.getElementById("selectInscricaoAprovado").checked){
-                  if(document.getElementById("selectComprovanteAprovado").checked){
-                    document.getElementById("homologado").value = 'aprovado';
-                    document.getElementById("motivoRejeicao").value = '';
-                    document.getElementById("motivoRejeicao").style.display = 'none';
-                  }
-                }
+            if(document.getElementById("selectDadosDoCursoAprovado").checked){
+              if(document.getElementById("selectComprovanteAprovado").checked){
+                document.getElementById("homologado").value = 'aprovado';
+                document.getElementById("motivoRejeicao").value = '';
+                document.getElementById("motivoRejeicao").style.display = 'none';
               }
             }
           }
