@@ -92,7 +92,7 @@
                 <span class="a-field__label-wrap">
                   <span class="a-field__label">RG*</span>
                 </span>
-                  <input id="rg" type="text" name="rg" autofocus class="form-control @error('rg') is-invalid @enderror field__input a-field__input" placeholder="RG*" style="" value="{{ $dados->rg }}">
+                  <input maxlength="7" id="rg" type="text" name="rg" autofocus class="form-control @error('rg') is-invalid @enderror field__input a-field__input" placeholder="RG*" style="" value="{{ $dados->rg }}">
               </label>
               @error('rg')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -106,7 +106,7 @@
                 <span class="a-field__label-wrap">
                   <span class="a-field__label">Orgão Emissor*</span>
                 </span>
-                  <input id="orgaoEmissor" type="text" name="orgaoEmissor" autofocus class="form-control @error('orgaoEmissor') is-invalid @enderror field__input a-field__input" placeholder="Orgão Emissor*" style="" value="{{ $dados->orgaoEmissor }}">
+                  <input maxlength="5" id="orgaoEmissor" type="text" name="orgaoEmissor" autofocus class="form-control @error('orgaoEmissor') is-invalid @enderror field__input a-field__input" placeholder="Orgão Emissor*" style="" value="{{ $dados->orgaoEmissor }}">
               </label>
               @error('orgaoEmissor')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -120,7 +120,7 @@
                 <span class="a-field__label-wrap">
                   <span class="a-field__label">UF*</span>
                 </span>
-                  <input id="orgaoEmissorUF" type="text" name="orgaoEmissorUF" autofocus class="form-control @error('orgaoEmissorUF') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="" value="{{ $dados->orgaoEmissorUF }}">
+                  <input maxlength="2" id="orgaoEmissorUF" type="text" name="orgaoEmissorUF" autofocus class="form-control @error('orgaoEmissorUF') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="" value="{{ $dados->orgaoEmissorUF }}">
               </label>
               @error('orgaoEmissorUF')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -134,7 +134,7 @@
                 <span class="a-field__label-wrap">
                   <span class="a-field__label">Título Eleitoral*</span>
                 </span>
-                  <input id="tituloEleitoral" type="text" name="tituloEleitoral" autofocus class="form-control @error('tituloEleitoral') is-invalid @enderror field__input a-field__input" placeholder="Título Eleitoral*" value="{{ $dados->tituloEleitoral }}">
+                  <input maxlength="12" id="tituloEleitoral" type="text" name="tituloEleitoral" autofocus class="form-control @error('tituloEleitoral') is-invalid @enderror field__input a-field__input" placeholder="Título Eleitoral*" value="{{ $dados->tituloEleitoral }}">
               </label>
               @error('tituloEleitoral')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -242,7 +242,7 @@
                 <span class="a-field__label-wrap">
                   <span class="a-field__label">Bairro*</span>
                 </span>
-                  <input id="bairro" type="text" name="bairro" autofocus class="form-control @error('bairro') is-invalid @enderror field__input a-field__input" placeholder="Bairro*" style="width:100%" value="{{ $dados->bairro }}">
+                  <input maxlength="2" id="bairro" type="text" name="bairro" autofocus class="form-control @error('bairro') is-invalid @enderror field__input a-field__input" placeholder="Bairro*" style="width:100%" value="{{ $dados->bairro }}">
               </label>
               @error('bairro')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">

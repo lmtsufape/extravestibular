@@ -82,7 +82,7 @@
                   <span class="a-field__label-wrap">
                     <span class="a-field__label">CPF*</span>
                   </span>
-                    <input id="cpf" type="text" name="cpf" autofocus class="form-control @error('cpf') is-invalid @enderror field__input a-field__input" placeholder="CPF*" style="" value="{{ old('cpf') }}">
+                    <input maxlength="11" id="cpf" type="text" name="cpf" autofocus class="form-control @error('cpf') is-invalid @enderror field__input a-field__input" placeholder="CPF*" style="" value="{{ old('cpf') }}">
                 </label>
                 @error('cpf')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -102,7 +102,7 @@
                   <span class="a-field__label-wrap">
                     <span class="a-field__label">RG*</span>
                   </span>
-                    <input id="rg" type="text" name="rg" autofocus class="form-control @error('rg') is-invalid @enderror field__input a-field__input" placeholder="RG*" style="" value="{{ old('rg') }}">
+                    <input maxlength="7" id="rg" type="text" name="rg" autofocus class="form-control @error('rg') is-invalid @enderror field__input a-field__input" placeholder="RG*" style="" value="{{ old('rg') }}">
                 </label>
                 @error('rg')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -117,7 +117,7 @@
                   <span class="a-field__label-wrap">
                     <span class="a-field__label">Orgão Emissor*</span>
                   </span>
-                    <input id="orgaoEmissor" type="text" name="orgaoEmissor" autofocus class="form-control @error('orgaoEmissor') is-invalid @enderror field__input a-field__input" placeholder="Orgão Emissor*" style="" value="{{ old('orgaoEmissor') }}">
+                    <input maxlength="5" id="orgaoEmissor" type="text" name="orgaoEmissor" autofocus class="form-control @error('orgaoEmissor') is-invalid @enderror field__input a-field__input" placeholder="Orgão Emissor*" style="" value="{{ old('orgaoEmissor') }}">
                 </label>
                 @error('orgaoEmissor')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -132,7 +132,7 @@
                   <span class="a-field__label-wrap">
                     <span class="a-field__label">UF*</span>
                   </span>
-                    <input id="orgaoEmissorUF" type="text" name="orgaoEmissorUF" autofocus class="form-control @error('orgaoEmissorUF') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="" value="{{ old('orgaoEmissorUF') }}">
+                    <input maxlength="2" id="orgaoEmissorUF" type="text" name="orgaoEmissorUF" autofocus class="form-control @error('orgaoEmissorUF') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="" value="{{ old('orgaoEmissorUF') }}">
                 </label>
                 @error('orgaoEmissorUF')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -147,7 +147,7 @@
                   <span class="a-field__label-wrap">
                     <span class="a-field__label">Título Eleitoral*</span>
                   </span>
-                    <input id="tituloEleitoral" type="text" name="tituloEleitoral" autofocus class="form-control @error('tituloEleitoral') is-invalid @enderror field__input a-field__input" placeholder="Título Eleitoral*" style="" value="{{ old('tituloEleitoral') }}">
+                    <input maxlength="12" id="tituloEleitoral" type="text" name="tituloEleitoral" autofocus class="form-control @error('tituloEleitoral') is-invalid @enderror field__input a-field__input" placeholder="Título Eleitoral*" style="" value="{{ old('tituloEleitoral') }}">
                 </label>
                 @error('tituloEleitoral')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -287,7 +287,7 @@
                 <span class="a-field__label-wrap">
                   <span class="a-field__label">UF*</span>
                 </span>
-                  <input id="uf" type="text" name="uf" autofocus class="form-control @error('uf') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="" value="{{ old('uf') }}">
+                  <input maxlength="2" id="uf" type="text" name="uf" autofocus class="form-control @error('uf') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="" value="{{ old('uf') }}">
               </label>
               @error('uf')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
