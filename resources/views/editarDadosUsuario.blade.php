@@ -75,7 +75,7 @@
                 <span class="a-field__label-wrap">
                   <span class="a-field__label">CPF*</span>
                 </span>
-                  <input id="cpf" type="text" name="cpf" autofocus class="form-control @error('cpf') is-invalid @enderror field__input a-field__input" placeholder="CPF*" style="" value="{{ $dados->cpf }}">
+                  <input disabled id="cpf" type="text" name="cpf" autofocus class="form-control @error('cpf') is-invalid @enderror field__input a-field__input" placeholder="CPF*" style="" value="{{ $dados->cpf }}">
               </label>
               @error('cpf')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
