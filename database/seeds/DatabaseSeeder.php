@@ -62,6 +62,7 @@ class DatabaseSeeder extends Seeder
           'inicioRecursoResultado' => '2019-10-11',
           'fimRecursoResultado' => '2019-11-12',
           'resultadoFinal' => '2019-12-13',
+          'descricao' => 'Edital extravestibular 2019.2',
 
         ]);
 
@@ -166,6 +167,8 @@ class DatabaseSeeder extends Seeder
             'inicioRecursoResultado' => '2019-09-11',
             'fimRecursoResultado' => '2019-12-12',
             'resultadoFinal' => '2019-12-13',
+            'descricao' => 'Edital extravestibular 2019.2',
+            
 
         ]);
 

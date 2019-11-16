@@ -14,6 +14,32 @@ use Carbon\Carbon;
 class IsencaoController extends Controller
 {
   public function cadastroIsencao(Request $request){
+
+    if($request->checkboxRenda == 'rendaFamiliar'){
+      $validatedData = $request->validate([
+                                            'nomeDadoEconomico' => ['required', 'string', 'max:255'],
+                                            'cpfDadoEconomico' => ['required', 'cpf'],
+                                            'parentescoDadoEconomico' => ['required', 'string', 'max:255'],
+                                            'rendaDadoEconomico' => ['required', 'string', 'max:255'],
+                                            'fontePagadoraDadoEconomico' => ['required', 'string', 'max:255'],
+                                            'nomeNucleoFamiliar' => ['nullable', 'string', 'max:255'],
+                                            'cpfNucleoFamiliar' => ['nullable', 'cpf'],
+                                            'parentescoNucleoFamiliar' => ['nullable', 'string', 'max:255'],
+                                            'rendaNucleoFamiliar' => ['nullable', 'string', 'max:255'],
+                                            'fontePagadoraNucleoFamiliar'=> ['nullable', 'string', 'max:255'],
+                                            'nomeNucleoFamiliar1' => ['nullable', 'string', 'max:255'],
+                                            'cpfNucleoFamiliar1' => ['nullable', 'cpf'],
+                                            'parentescoNucleoFamiliar1'=> ['nullable', 'string', 'max:255'],
+                                            'rendaNucleoFamiliar1' => ['nullable', 'string', 'max:255'],
+                                            'fontePagadoraNucleoFamiliar1 '=> ['nullable', 'string', 'max:255'],
+                                          ]);
+    }
+    if($request->checkboxEnsino == 'ensinoMedio'){
+      $validatedData = $request->validate([
+                                            'historicoEscolar' 			=> ['required', 'mimes:pdf','max:20000'],
+                                          ]);
+
+    }
     $mytime = Carbon::now('America/Recife');
     $mytime = $mytime->toDateString();
     $edital = Edital::find($request->editalId);

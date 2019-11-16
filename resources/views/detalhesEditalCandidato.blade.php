@@ -84,11 +84,8 @@
 
   <div class="row justify-content-center" style="margin-top:20px">
 
-    <p class="col-sm-12">A Pró-Reitora de Ensino de Graduação torna público para conhecimento dos interessados que, no
-    PERÍODO DE 29/05 a 05/06 DE 2019, estarão abertas às inscrições para o Processo Seletivo Extra que
-    visa o preenchimento de vagas para Ingresso via Processo Seletivo Extra nos Cursos de Graduação no 2o
-    semestre de 2019, de acordo com as normas regimentais da UFRPE (Resolução 410/2007; 354/2008;
-    34/2008181/91)
+    <p class="col-sm-12">
+      {{$edital->descricao}}
     </p>
   </div> <!-- end paragrafo-->
 
