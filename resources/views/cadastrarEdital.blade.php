@@ -368,33 +368,111 @@
                 {{ $curso['nome'] }}
               </td>
               <td>
-                <input id="checkbox{{$curso['id']}}" onclick="vagas({{$curso['id']}})" name="checkbox{{$curso['id']}}"  type="checkbox" value="{{$curso['id']}}">
+                <input id="checkbox{{$i}}" onclick="vagas({{$i}})" name="checkbox{{$i}}" <?php if(old('checkbox' . $i)){echo('checked');} ?> type="checkbox" value="{{$curso['id']}}">
               </td>
-              <td>
-                <label for="manha{{$i}}" class="field a-field a-field_a2 page__field" id="labelManha{{$curso['id']}}" style="display: none; margin-top: 10px" >
-                  <input disabled value="#" id="manha{{$curso['id']}}" type="text" name="manha{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;" placeholder="Manhã">
-                </label>
-              </td>
-              <td>
-                <label for="tarde{{$i}}" class="field a-field a-field_a2 page__field" id="labelTarde{{$curso['id']}}" style="display: none; margin-top: 10px" >
-                  <input disabled value="#" id="tarde{{$curso['id']}}" type="text" name="tarde{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;" placeholder="Tarde">
-                </label>
-              </td>
-              <td>
-                <label for="noite{{$i}}" class="field a-field a-field_a2 page__field" id="labelNoite{{$curso['id']}}" style="display: none; margin-top: 10px" >
-                  <input disabled value="#" id="noite{{$curso['id']}}" type="text" name="noite{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;" placeholder="Noite">
-                </label>
-              </td>
-              <td>
-                <label for="integral{{$i}}" class="field a-field a-field_a2 page__field" id="labelIntegral{{$curso['id']}}" style="display: none; margin-top: 10px" >
-                  <input disabled value="#" id="integral{{$curso['id']}}" type="text" name="integral{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;" placeholder="Integral">
-                </label>
-              </td>
-              <td>
-                <label for="especial{{$i}}" class="field a-field a-field_a2 page__field" id="labelEspecial{{$curso['id']}}" style="display: none; margin-top: 10px" >
-                  <input disabled value="#" id="especial{{$curso['id']}}" type="text" name="especial{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;" placeholder="Especial">
-                </label>
-              </td>
+              @if(old('checkbox' . $i))
+                <td>
+                  <label for="manha{{$i}}" class="field a-field a-field_a2 page__field" id="labelManha{{$i}}" style=" margin-top: 10px" >
+                    <input value="{{ old('manha' . $i) }}" id="manha{{$i}}" type="text" name="manha{{$i}}" class="field__input a-field__input" style="width: 5rem; " placeholder="Manhã">
+                  </label>
+                  @error('manha' . $i)
+                  <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </td>
+                <td>
+                  <label for="tarde{{$i}}" class="field a-field a-field_a2 page__field" id="labelTarde{{$i}}" style=" margin-top: 10px" >
+                    <input value="{{ old('tarde' . $i) }}" id="tarde{{$i}}" type="text" name="tarde{{$i}}" class="field__input a-field__input" style="width: 5rem; " placeholder="Tarde">
+                  </label>
+                  @error('tarde' . $i)
+                  <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </td>
+                <td>
+                  <label for="noite{{$i}}" class="field a-field a-field_a2 page__field" id="labelNoite{{$i}}" style=" margin-top: 10px" >
+                    <input value="{{ old('noite' . $i) }}" id="noite{{$i}}" type="text" name="noite{{$i}}" class="field__input a-field__input" style="width: 5rem; " placeholder="Noite">
+                  </label>
+                  @error('noite' . $i)
+                  <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </td>
+                <td>
+                  <label for="integral{{$i}}" class="field a-field a-field_a2 page__field" id="labelIntegral{{$i}}" style=" margin-top: 10px" >
+                    <input value="{{ old('integral' . $i) }}" id="integral{{$i}}" type="text" name="integral{{$i}}" class="field__input a-field__input" style="width: 5rem; " placeholder="Integral">
+                  </label>
+                  @error('integral' . $i)
+                  <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </td>
+                <td>
+                  <label for="especial{{$i}}" class="field a-field a-field_a2 page__field" id="labelEspecial{{$i}}" style=" margin-top: 10px" >
+                    <input value="{{ old('especial' . $i) }}" id="especial{{$i}}" type="text" name="especial{{$i}}" class="field__input a-field__input" style="width: 5rem; " placeholder="Especial">
+                  </label>
+                  @error('especial' . $i)
+                  <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </td>
+              @else
+                <td>
+                  <label for="manha{{$i}}" class="field a-field a-field_a2 page__field" id="labelManha{{$i}}" style="display: none; margin-top: 10px" >
+                    <input disabled value="#" id="manha{{$i}}" type="text" name="manha{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;" placeholder="Manhã">
+                  </label>
+                  @error('manha' . $i)
+                  <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </td>
+                <td>
+                  <label for="tarde{{$i}}" class="field a-field a-field_a2 page__field" id="labelTarde{{$i}}" style="display: none; margin-top: 10px" >
+                    <input disabled value="#" id="tarde{{$i}}" type="text" name="tarde{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;" placeholder="Tarde">
+                  </label>
+                  @error('tarde' . $i)
+                  <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </td>
+                <td>
+                  <label for="noite{{$i}}" class="field a-field a-field_a2 page__field" id="labelNoite{{$i}}" style="display: none; margin-top: 10px" >
+                    <input disabled value="#" id="noite{{$i}}" type="text" name="noite{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;" placeholder="Noite">
+                  </label>
+                  @error('noite' . $i)
+                  <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </td>
+                <td>
+                  <label for="integral{{$i}}" class="field a-field a-field_a2 page__field" id="labelIntegral{{$i}}" style="display: none; margin-top: 10px" >
+                    <input disabled value="#" id="integral{{$i}}" type="text" name="integral{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;" placeholder="Integral">
+                  </label>
+                  @error('integral' . $i)
+                  <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </td>
+                <td>
+                  <label for="especial{{$i}}" class="field a-field a-field_a2 page__field" id="labelEspecial{{$i}}" style="display: none; margin-top: 10px" >
+                    <input disabled value="#" id="especial{{$i}}" type="text" name="especial{{$i}}" class="field__input a-field__input" style="width: 5rem; display: none;" placeholder="Especial">
+                  </label>
+                  @error('especial' . $i)
+                  <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </td>
+              @endif
             </tr>
             <?php
             $i++;
@@ -421,79 +499,81 @@
 </div><!-- end container-->
 @endsection
 
-    <script type="text/javascript" >
-      function vagas(x) {
-        var str = "labelManha";
-        var labelManha = str.concat(x);
-        var str = "labelTarde";
-        var labelTarde = str.concat(x);
-        var str = "labelNoite";
-        var labelNoite = str.concat(x);
-        var str = "labelIntegral";
-        var labelIntegral = str.concat(x);
-        var str = "labelEspecial";
-        var labelEspecial = str.concat(x);
-        str = "manha";
-        var manha = str.concat(x);
-        str = "tarde";
-        var tarde = str.concat(x);
-        str = "noite";
-        var noite = str.concat(x);
-        str = "integral";
-        var integral = str.concat(x);
-        str = "especial";
-        var especial = str.concat(x);
-      	if (document.getElementById("checkbox" + x).checked == true) {
-          document.getElementById(manha).style.display = "";
-          document.getElementById(tarde).style.display = "";
-          document.getElementById(noite).style.display = "";
-          document.getElementById(integral).style.display = "";
-          document.getElementById(especial).style.display = "";
+<script type="text/javascript" >
+  function vagas(x) {
+    var str = "labelManha";
+    var labelManha = str.concat(x);
+    var str = "labelTarde";
+    var labelTarde = str.concat(x);
+    var str = "labelNoite";
+    var labelNoite = str.concat(x);
+    var str = "labelIntegral";
+    var labelIntegral = str.concat(x);
+    var str = "labelEspecial";
+    var labelEspecial = str.concat(x);
+    str = "manha";
+    var manha = str.concat(x);
+    str = "tarde";
+    var tarde = str.concat(x);
+    str = "noite";
+    var noite = str.concat(x);
+    str = "integral";
+    var integral = str.concat(x);
+    str = "especial";
+    var especial = str.concat(x);
+  	if (document.getElementById("checkbox" + x).checked == true) {
+      document.getElementById(manha).style.display = "";
+      document.getElementById(tarde).style.display = "";
+      document.getElementById(noite).style.display = "";
+      document.getElementById(integral).style.display = "";
+      document.getElementById(especial).style.display = "";
 
-          document.getElementById(labelManha).style.display = "";
-          document.getElementById(labelTarde).style.display = "";
-          document.getElementById(labelNoite).style.display = "";
-          document.getElementById(labelIntegral).style.display = "";
-          document.getElementById(labelEspecial).style.display = "";
+      document.getElementById(labelManha).style.display = "";
+      document.getElementById(labelTarde).style.display = "";
+      document.getElementById(labelNoite).style.display = "";
+      document.getElementById(labelIntegral).style.display = "";
+      document.getElementById(labelEspecial).style.display = "";
 
-          document.getElementById(manha).value = "";
-          document.getElementById(tarde).value = "";
-          document.getElementById(noite).value = "";
-          document.getElementById(integral).value = "";
-          document.getElementById(especial).value = "";
+      document.getElementById(manha).value = "";
+      document.getElementById(tarde).value = "";
+      document.getElementById(noite).value = "";
+      document.getElementById(integral).value = "";
+      document.getElementById(especial).value = "";
 
-          document.getElementById(manha).disabled = "";
-          document.getElementById(tarde).disabled = "";
-          document.getElementById(noite).disabled = "";
-          document.getElementById(integral).disabled = "";
-          document.getElementById(especial).disabled = "";
+      document.getElementById(manha).disabled = "";
+      document.getElementById(tarde).disabled = "";
+      document.getElementById(noite).disabled = "";
+      document.getElementById(integral).disabled = "";
+      document.getElementById(especial).disabled = "";
 
-      	}
-        else{
-          document.getElementById(manha).style.display = "none";
-          document.getElementById(tarde).style.display = "none";
-          document.getElementById(noite).style.display = "none";
-          document.getElementById(integral).style.display = "none";
-          document.getElementById(especial).style.display = "none";
+  	}
+    else{
+      document.getElementById(manha).style.display = "none";
+      document.getElementById(tarde).style.display = "none";
+      document.getElementById(noite).style.display = "none";
+      document.getElementById(integral).style.display = "none";
+      document.getElementById(especial).style.display = "none";
 
-          document.getElementById(labelManha).style.display = "none";
-          document.getElementById(labelTarde).style.display = "none";
-          document.getElementById(labelNoite).style.display = "none";
-          document.getElementById(labelIntegral).style.display = "none";
-          document.getElementById(labelEspecial).style.display = "none";
+      document.getElementById(labelManha).style.display = "none";
+      document.getElementById(labelTarde).style.display = "none";
+      document.getElementById(labelNoite).style.display = "none";
+      document.getElementById(labelIntegral).style.display = "none";
+      document.getElementById(labelEspecial).style.display = "none";
 
-          document.getElementById(manha).value = "#";
-          document.getElementById(tarde).value = "#";
-          document.getElementById(noite).value = "#";
-          document.getElementById(integral).value = "#";
-          document.getElementById(especial).value = "#";
+      document.getElementById(manha).value = "#";
+      document.getElementById(tarde).value = "#";
+      document.getElementById(noite).value = "#";
+      document.getElementById(integral).value = "#";
+      document.getElementById(especial).value = "#";
 
-          document.getElementById(manha).disabled = "true";
-          document.getElementById(tarde).disabled = "true";
-          document.getElementById(noite).disabled = "true";
-          document.getElementById(integral).disabled = "true";
-          document.getElementById(especial).disabled = "true";
-        }
+      document.getElementById(manha).disabled = "true";
+      document.getElementById(tarde).disabled = "true";
+      document.getElementById(noite).disabled = "true";
+      document.getElementById(integral).disabled = "true";
+      document.getElementById(especial).disabled = "true";
+    }
 
-      }
-    </script>
+  }
+
+
+</script>

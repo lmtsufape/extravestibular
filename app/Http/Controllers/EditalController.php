@@ -135,7 +135,7 @@ class EditalController extends Controller{
         $yesterday = Carbon::yesterday('America/Recife');
         $yesterday = $yesterday->toDateString();
         $mytime = $mytime->toDateString();
-
+        // validate para datas nulas
         if(
            $request->inicioIsencao == null ||
            $request->fimIsencao == null ||
@@ -166,7 +166,7 @@ class EditalController extends Controller{
                                                   'descricao'               => ['required', 'string', 'min:5'],
                                                 ]);
         }
-
+        //validate para data oks
         $validatedData = $request->validate([ 'nome'                    => ['required', 'string', 'max:255', 'unique:editals'],
                                               'pdfEdital'               => ['required', 'mimes:pdf', 'max:20000'],
                                               'inicioIsencao'           => ['required', 'date', 'after:'.$yesterday],
@@ -184,11 +184,6 @@ class EditalController extends Controller{
                                               'descricao'               => ['required', 'string', 'min:5'],
                                             ]);
 
-
-
-
-
-
         $dataPublicacao = null;
         $file = $request->pdfEdital;
         $path = 'editais/';
@@ -203,13 +198,18 @@ class EditalController extends Controller{
             $tarde = 'tarde' . $i;
             $noite = 'noite' . $i;
             $integral = 'integral' . $i;
-            $integral = 'especial' . $i;
+            $especial = 'especial' . $i;
             $vagas = $vagas . $request->$aux . ":";
+            $validatedData = $request->validate([$manha => ['nullable', 'integer']]);
             $vagas = $vagas . $request->$manha . "?";
+            $validatedData = $request->validate([$tarde => ['nullable', 'integer']]);
             $vagas = $vagas . $request->$tarde . "?";
+            $validatedData = $request->validate([$noite => ['nullable', 'integer']]);
             $vagas = $vagas . $request->$noite . "?";
+            $validatedData = $request->validate([$integral => ['nullable', 'integer']]);
             $vagas = $vagas . $request->$integral . "?";
-            $vagas = $vagas . $request->especial . "!";
+            $validatedData = $request->validate([$especial => ['nullable', 'integer']]);
+            $vagas = $vagas . $request->$especial . "!";
           }
 
         }
