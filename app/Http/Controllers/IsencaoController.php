@@ -34,12 +34,14 @@ class IsencaoController extends Controller
                                             'fontePagadoraNucleoFamiliar1 '=> ['nullable', 'string', 'max:255'],
                                           ]);
     }
+
     if($request->checkboxEnsino == 'ensinoMedio'){
       $validatedData = $request->validate([
                                             'historicoEscolar' 			=> ['required', 'mimes:pdf','max:20000'],
                                           ]);
 
     }
+
     $mytime = Carbon::now('America/Recife');
     $mytime = $mytime->toDateString();
     $edital = Edital::find($request->editalId);
@@ -118,6 +120,9 @@ class IsencaoController extends Controller
   }
 
   public function homologarIsencao(Request $request){
+    if($request->resultado == 'indeferida'){
+        $validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);
+    }
     $isencao = Isencao::find($request->isencaoId);
     $isencao->parecer = $request->resultado;
     $isencao->motivoRejeicao = $request->motivoRejeicao;
