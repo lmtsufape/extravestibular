@@ -29,6 +29,7 @@ class Edital extends Model
       'resultadoFinal',
       'publicado',
       'dataPublicacao',
+      'descricao',
     ];
 
     public function inscricao()

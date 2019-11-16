@@ -36,7 +36,7 @@
             <div class="card" style="width: 70rem;"> <!-- Card Arquivo -->
                 <div class="card-header">{{ __('Arquivo') }}</div>
 
-                
+
                 <div class="card-body">
                   <div class="card-body">
                           <div  class="form-group row justify-content-center" >  <!-- Nome do Edital -->
@@ -58,6 +58,24 @@
 
                             </div>
                           </div>
+
+                          <!-- row descricao -->
+                          <div class="row justify-content-center">
+                            <!-- descricao -->
+                            <div class="col-sm-9">
+                              <label for="descricao" class="field a-field a-field_a2 page__field" style="width: 100%;">
+                                <span class="a-field__label-wrap">
+                                  <span class="a-field__label">Descrição do edital*</span>
+                                </span>
+                                <textarea class="form-control @error('descricao') is-invalid @enderror" form="formCadastro" name="descricao" id="taid" style="width:100%" >{{ $edital->descricao }}</textarea>                
+                              </label>
+                              @error('descricao')
+                              <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                                <strong>{{ $message }}</strong>
+                              </span>
+                              @enderror
+                            </div><!-- end descricao -->
+                          </div><!-- end row descricao -->
 
                           <div  class="form-group row justify-content-center" >  <!-- PDF -->
                             <label for="pdfEdital" class="col-md-4 col-form-label text-md-right" style="margin-left: -12rem; margin-top: 20px; font-weight: bold">{{ __('Arquivo do Edital*:') }}</label>

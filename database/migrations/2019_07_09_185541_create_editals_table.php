@@ -19,6 +19,7 @@ class CreateEditalsTable extends Migration
             $table->softDeletes();
             $table->string('pdfEdital');
             $table->text('vagas');
+            $table->text('descricao');
             $table->date('inicioInscricoes');
             $table->date('fimInscricoes');
             $table->date('inicioRecurso');

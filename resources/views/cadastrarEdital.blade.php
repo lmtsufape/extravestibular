@@ -36,7 +36,7 @@
 </style>
 
 <div class="container">
-  <form method="POST" action={{ route('cadastroEdital') }} enctype="multipart/form-data">
+  <form id="formCadastro" method="POST" action="{{ route('cadastroEdital') }}" enctype="multipart/form-data">
     @csrf
     <!-- row card arquivo -->
     <div class="row justify-content-center">
@@ -64,6 +64,24 @@
               @enderror
             </div><!-- end nome -->
           </div><!-- end row nome -->
+
+          <!-- row descricao -->
+          <div class="row justify-content-center">
+            <!-- descricao -->
+            <div class="col-sm-9">
+              <label for="descricao" class="field a-field a-field_a2 page__field" style="width: 100%;">
+                <span class="a-field__label-wrap">
+                  <span class="a-field__label">Descrição do edital*</span>
+                </span>
+                <textarea class="form-control @error('descricao') is-invalid @enderror" form="formCadastro" name="descricao" id="taid" style="width:100%" >{{ old('descricao') }}</textarea>                
+              </label>
+              @error('descricao')
+              <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                <strong>{{ $message }}</strong>
+              </span>
+              @enderror
+            </div><!-- end descricao -->
+          </div><!-- end row descricao -->
 
           <!-- row input file -->
           <div class="row justify-content-center">

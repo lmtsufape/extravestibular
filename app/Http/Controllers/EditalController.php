@@ -69,6 +69,8 @@ class EditalController extends Controller{
                                               'inicioRecursoResultado'  => ['required', 'date', 'after:'.$request->resultado, 'before:'.$request->fimRecursoResultado],
                                               'fimRecursoResultado'     => ['required', 'date', 'after:'.$request->inicioRecursoResultado, 'before:'.$request->resultadoFinal],
                                               'resultadoFinal'          => ['required', 'date', 'after:'.$request->fimRecursoResultado],
+                                              'descricao'               => ['required', 'string', 'min:5'],
+
                                             ]);
 
 
@@ -118,6 +120,7 @@ class EditalController extends Controller{
         $edital->publicado =             $request->publicado;
         $edital->dataPublicacao =        $dataPublicacao;
         $edital->resultado =             $request->resultado;
+        $edital->descricao =             $request->descricao;
 
         $edital->save();
 
@@ -127,6 +130,7 @@ class EditalController extends Controller{
       }
 
       public function cadastroEdital(Request $request){
+        
         $mytime = Carbon::now('America/Recife');
         $mytime = $mytime->toDateString();
 
@@ -144,6 +148,7 @@ class EditalController extends Controller{
                                               'inicioRecursoResultado'  => ['required', 'date', 'after:'.$request->resultado, 'before:'.$request->fimRecursoResultado],
                                               'fimRecursoResultado'     => ['required', 'date', 'after:'.$request->inicioRecursoResultado, 'before:'.$request->resultadoFinal],
                                               'resultadoFinal'          => ['required', 'date', 'after:'.$request->fimRecursoResultado],
+                                              'descricao'               => ['required', 'string', 'min:5'],
                                             ]);
 
 
@@ -198,6 +203,7 @@ class EditalController extends Controller{
           'publicado'              => $request->publicado,
           'dataPublicacao'         => $dataPublicacao,
           'resultado'              => $request->resultado,
+          'descricao'              => $request->descricao,
 
 
         ]);
