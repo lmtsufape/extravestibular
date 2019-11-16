@@ -73,7 +73,7 @@ class RecursoController extends Controller
         'homologado'      => 'nao',
 
       ]);
-      return redirect()->route('home')->with('jsAlert', 'Recurso enviado com sucesso.');
+      return redirect()->route('home')->with('jsAlert', 'Recurso enviado com sucesso!');
     }
 
     public function recursoEscolhido(Request $request){

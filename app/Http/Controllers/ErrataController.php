@@ -39,7 +39,7 @@ class ErrataController extends Controller
         return redirect()->route('editarEdital')->with('editalId', $request->editalId);
       }
       else{
-        return redirect()->route('home')->with('jsAlert', 'Errata criada com sucesso.');
+        return redirect()->route('home')->with('jsAlert', 'Errata criada com sucesso!');
       }
     }
 

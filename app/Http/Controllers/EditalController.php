@@ -124,7 +124,7 @@ class EditalController extends Controller{
 
         $edital->save();
 
-        return redirect()->route('home')->with('jsAlert', 'Novo edital criado com sucesso.');
+        return redirect()->route('home')->with('jsAlert', 'Novo edital criado com sucesso!');
 
 
       }
@@ -241,7 +241,7 @@ class EditalController extends Controller{
 
         ]);
 
-       return redirect()->route('home')->with('jsAlert', 'Novo edital criado com sucesso.');
+       return redirect()->route('home')->with('jsAlert', 'Novo edital criado com sucesso!');
 
 
       }
@@ -249,7 +249,7 @@ class EditalController extends Controller{
       public function deleteEdital(Request $request){
         $edital = Edital::find($request->editalId);
         $edital->delete();
-        return redirect()->route('home')->with('jsAlert', 'Edital excluído com sucesso.');
+        return redirect()->route('home')->with('jsAlert', 'Edital excluído com sucesso!');
       }
 
       public function listaEditais(Request $request){
@@ -310,7 +310,7 @@ class EditalController extends Controller{
           $api = new ApiLmts();
           $cursos = $api->getCursos();
           if(is_null($cursos)){
-            return redirect()->route('home')->with('jsAlert', 'Serviço indisponivel no momento.');
+            return redirect()->route('home')->with('jsAlert', 'Serviço indisponível no momento.');
           }
       		$cursosDisponiveis = $edital->vagas;
       		$cursosDisponiveis = explode("!", $cursosDisponiveis);
@@ -737,7 +737,7 @@ class EditalController extends Controller{
         $edital->publicado = 'sim';
         $edital->dataPublicacao = $mytime;
         $edital->save();
-        return redirect()->route('home')->with('jsAlert', 'Edital publicado com sucesso.');
+        return redirect()->route('home')->with('jsAlert', 'Edital publicado com sucesso!');
       }
 
 }

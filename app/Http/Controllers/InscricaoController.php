@@ -277,7 +277,7 @@ class InscricaoController extends Controller
 					foreach ($emails as $key) {
 						Mail::to($key['email'])->send(new NovaInscricao($nomeEdital[0]));
 					}
-					return redirect()->route('home')->with('jsAlert', 'Inscrição criada com sucesso.');
+					return redirect()->route('home')->with('jsAlert', 'Inscrição criada com sucesso!');
 		}
 
 	public function cadastroDesempate(Request $request){
@@ -316,7 +316,7 @@ class InscricaoController extends Controller
 			$inscricaoAprovadaEspecial->save();
 		}
 
-		return redirect()->route('home')->with('jsAlert', 'Desempate realizado com sucesso.');
+		return redirect()->route('home')->with('jsAlert', 'Desempate realizado com sucesso!');
 	}
 
 	public function inscricaoEscolhida(Request $request){
@@ -381,7 +381,7 @@ class InscricaoController extends Controller
 				$inscricao->homologado = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
 				$inscricao->save();
-				return redirect()->route('home')->with('jsAlert', 'Inscrição indeferida com sucesso.');
+				return redirect()->route('home')->with('jsAlert', 'Inscrição indeferida com sucesso!');
 			}
 			return view('cadastrarClassificacao', [
 																										 'inscricao'  						 => $inscricao,
@@ -1530,11 +1530,11 @@ class InscricaoController extends Controller
 
 			$this->verificarCompletudeClassificacoes($inscricao->editalId);
 
-			return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso.');
+			return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso!');
 		}
 		else{
 
-			return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso.');
+			return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso!');
 		}
 	}
 

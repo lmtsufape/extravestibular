@@ -81,10 +81,10 @@
         <div class="row">
           <div id="margin" class="col-sm-12">
             <span class="a-field__label-wrap">
-              <span class="a-field__label">Tipo de Matricula</span>
+              <span class="a-field__label">Tipo de Matrícula</span>
             </span>
-            <label for="Tipo de Matricula" class="field a-field a-field_a2 page__field" style="width:100%;">
-              <input disabled id="Tipo de Matricula" type="text" name="Curso Pretendido" autofocus class="form-control field__input a-field__input" placeholder="Tipo de Matricula" value="<?php
+            <label for="Tipo de Matrícula" class="field a-field a-field_a2 page__field" style="width:100%;">
+              <input disabled id="Tipo de Matrícula" type="text" name="Curso Pretendido" autofocus class="form-control field__input a-field__input" placeholder="Tipo de Matrícula" value="<?php
                                                                                                                                                                                              if($inscricao->tipo == 'reintegracao'){
                                                                                                                                                                                                echo('Reintegração');
                                                                                                                                                                                              }
@@ -285,7 +285,7 @@
               <tr <?php if($inscricao->historicoEscolar == ''){echo('style="display: none"');} ?> >
                 <div class="form-group row" >
                   <td>
-                    <label for="historicoEscolar" >{{ __('Historico Escolar') }}</label>
+                    <label for="historicoEscolar" >{{ __('Histórico Escolar') }}</label>
                   </td>
                     <div class="col-md-6">
                       <td>
@@ -370,11 +370,11 @@
     <div class="row justify-content-center">
       <div class="card" style="width:100%;display: none; margin-bottom: 20px;" id="motivoRejeicao">
         <div class="card-header">
-          {{ __('Motivos da Rejeição') }}
+          {{ __('Justificativa') }}
         </div>
         <div class="card-body">
           <div class="row">
-            <label for="motivoRejeicao" class="col-form-label text-md-right" style="margin-left: 1.5%;">{{ __('Motivos da Rejeição') }}</label>
+            <label for="motivoRejeicao" class="col-form-label text-md-right" style="margin-left: 1.5%;">{{ __('Justificativa') }}</label>
           </div><!-- end row div-->
 
           <div class="row justify-content-center">
@@ -401,7 +401,7 @@
         <input id="tipo" type="hidden" name="tipo" value="seguirParaClassificacao">
         <div class="row justify-content-center">
           <button id="buttonFinalizar" type="submit" class="btn btn-primary btn-primary-lmts" disabled="true">
-            {{ __('Continuar') }}
+            {{ __('Submeter') }}
           </button>
         </div>
 

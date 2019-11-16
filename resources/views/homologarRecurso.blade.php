@@ -64,7 +64,7 @@
   @media screen and (max-width:576px){
     #label{
       margin-left: 0%;
-    } 
+    }
   }
 </style>
 <div class="container">
@@ -79,23 +79,23 @@
               <div class="col-sm-12">
                   <p >
                     <h3 style="text-align:justify;text-justify:inter-word">
-        
-                    
-                      À Preg, 
+
+
+                      À Preg,
                       <br><br>
                       Eu, <strong>{{$recurso->user->dadosUsuario->nome}}</strong>, CPF <strong>{{$recurso->user->dadosUsuario->cpf}}</strong>,
                       interponho recurso ao resultado
                       <strong>
                         @if($recurso->tipo == 'taxa')
-                          da solicitação de Isenção da Taxa de Inscrição 
+                          da solicitação de Isenção da Taxa de Inscrição
                         @else
-                          da seleção para ingresso extra para UFRPE <strong>{{$recurso->curso}}</strong> 
+                          da seleção para ingresso extra para UFRPE <strong>{{$recurso->curso}}</strong>
                         @endif
-                        
+
                       </strong>
-                      do edital <strong>{{$recurso->edital->nome}}</strong>,              
+                      do edital <strong>{{$recurso->edital->nome}}</strong>,
                       pelos seguintes motivos: <strong>{{$recurso->motivo}}</strong>.
-                      
+
                     </h3>
                   </p>
 
@@ -109,7 +109,7 @@
 
                   </div>
                   <div class="form-group" id="motivoRejeicao" style=" display: none;">
-                    <label for="motivoRejeicao" class="col-md-4 col-form-label text-md-right"  style="margin-left: -60px;">{{ __('Motivos da Rejeição:') }}</label>
+                    <label for="motivoRejeicao" class="col-md-4 col-form-label text-md-right"  style="margin-left: -60px;">{{ __('Justificativa:') }}</label>
 
                     <div class="col-md-12" style="margin-left: 10px">
                       <textarea class=" form-control @error('motivoRejeicao') is-invalid @enderror" form ="formHomologacao" name="motivoRejeicao" id="taid" style="width:100%" ></textarea>
@@ -123,24 +123,24 @@
                   </div>
                 </div>
             </div>{{-- end row --}}
-            
+
             <div class="row justify-content-center">
-              
+
                   <input onclick="selectCheck('aprovado')" type="radio" name="radioRecurso" value="aprovado"> <h4 style="margin-left:1%">Aprovado</h4>
-                  
-                  <input style="margin-left:1%" onclick="selectCheck('rejeitado')" type="radio" name="radioRecurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>    
+
+                  <input style="margin-left:1%" onclick="selectCheck('rejeitado')" type="radio" name="radioRecurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>
             </div>
 
-            
+
             <div class="row">
-              <label id="label" for="motivoRejeicao" >{{ __('Motivos da Rejeição:') }}</label>
+              <label id="label" for="motivoRejeicao" >{{ __('Justificativa:') }}</label>
             </div>
             <div class="row justify-content-center">
-              
+
                 <textarea form ="formHomologacao" name="motivoRejeicao" id="taid" cols="115" ></textarea>
-            
-            </div> 
-            
+
+            </div>
+
         </div><!-- end card-body-->
       </div><!-- end card-->
 
@@ -153,7 +153,7 @@
     </form>
   </div>
 
-  
+
 
 <script type="text/javascript" >
 function selectCheck(x){

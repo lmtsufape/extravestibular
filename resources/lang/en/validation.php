@@ -65,7 +65,7 @@ return [
     'required_without_all' => 'O campo :attribute é obrigatório quando nenhum destes estão presentes: :values.',
     'same'                 => ':Attribute e :other devem ser iguais.',
     'size'                 => [
-        'numeric' => ':Attribute deve ser :size.',
+        'numeric' => 'O número do :attribute deve conter :size caracteres.',
         'file'    => ':Attribute deve ter :size kilobytes.',
         'string'  => ':Attribute deve ter :size caracteres.',
         'array'   => ':Attribute deve conter :size itens.',

@@ -113,8 +113,8 @@
                   </div>
                 </div>
 
-                <div id="historicoEscolar" class="form-group row" style="display: none" >      <!-- Arquivo historico escolar -->
-                    <label for="Historico escolar" class="col-sm-4 col-form-label text-md-right">{{ __('Histórico escolar:') }}</label>
+                <div id="historicoEscolar" class="form-group row" style="display: none" >      <!-- Arquivo Histórico Escolar -->
+                    <label for="Histórico Escolar" class="col-sm-4 col-form-label text-md-right">{{ __('Histórico escolar:') }}</label>
 
                     <div class="col-sm-6">
                       <div class="custom-file">
