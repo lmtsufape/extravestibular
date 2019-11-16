@@ -92,7 +92,12 @@
            <div class="row justify-content-center" style="">  <!-- Nome -->
              <div class="col-sm-12">
 
-                 <input id="nome" type="text" name="nome" class="field__input a-field__input" placeholder="Nome">
+                 <input id="nome" type="text" name="nome" class="field__input a-field__input orm-control @error('nome') is-invalid @enderror" placeholder="Nome">
+                 @error('nome')
+                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                   <strong>{{ $message }}</strong>
+                 </span>
+                 @enderror
                </label>
               </div>
             </div><!--end Nome -->
@@ -169,10 +174,16 @@
       </h3>
 
 
-        <button type="button" class="btn btn-primary btn-primary-lmts" data-toggle="modal" data-target="#exampleModal"
+        <button id="buttonModal" type="button" class="btn btn-primary btn-primary-lmts" data-toggle="modal" data-target="#exampleModal"
         style="margin-top:-40px; float:right">
           Nova Errata
         </button>
+        @if(old('nome') || old('arquivo'))
+          <script type="text/javascript" >
+            alert('Ocorreu um erro ao cadastrar errata tente novamente.');
+          </script>
+        @endif
+
 
   </div><!-- end Título erratas -->
 
