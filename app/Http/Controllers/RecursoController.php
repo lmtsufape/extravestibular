@@ -94,7 +94,7 @@ class RecursoController extends Controller
         $inscricao->nota = null;
         $inscricao->save();
       }
-      return redirect()->route('home')->with('jsAlert', 'Recurso homologada com sucesso.');
+      return redirect()->route('home')->with('jsAlert', 'Recurso ao resultado avaliado com sucesso!');
 
     }
 

@@ -28,6 +28,9 @@
   #checkPublicarEdital{
     margin-left:16%;
   }
+  .checkbox{
+    display: table;
+  }
   @media screen and (max-width: 576px){
     #checkPublicarEdital{
       margin-left: 0;
@@ -368,7 +371,7 @@
                 {{ $curso['nome'] }}
               </td>
               <td>
-                <input id="checkbox{{$curso['id']}}" onclick="vagas({{$curso['id']}})" name="checkbox{{$curso['id']}}"  type="checkbox" value="{{$curso['id']}}">
+                <input class="checkbox" id="checkbox{{$curso['id']}}" onclick="vagas({{$curso['id']}})" name="checkbox{{$curso['id']}}"  type="checkbox" value="{{$curso['id']}}">
               </td>
               <td>
                 <label for="manha{{$i}}" class="field a-field a-field_a2 page__field" id="labelManha{{$curso['id']}}" style="display: none; margin-top: 10px" >
