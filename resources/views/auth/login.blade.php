@@ -17,7 +17,7 @@
   }
   @media screen and (max-width: 576px){
     #login{
-      height: 100vh;
+      height: 80vh;
     }
     #btn{
       margin-top: -10%;
