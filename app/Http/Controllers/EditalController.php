@@ -330,6 +330,7 @@ class EditalController extends Controller{
        				}
       			}
       		}
+          // dd($cursosDisponiveis);
           $comprovante = Isencao::where('editalId', $request->editalId)
                                   ->where('usuarioId', Auth::user()->id)
                                   ->where('parecer', 'deferida')

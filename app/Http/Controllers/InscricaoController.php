@@ -329,6 +329,7 @@ class InscricaoController extends Controller
 				$curso = $cursos[$j]['nome'] . '/' . $cursos[$j]['departamento'];
 			}
 		}
+
 		$usuario = User::find($inscricao->usuarioId);
 		$dados = DadosUsuario::find($usuario->dados);
 		$mytime = Carbon::now('America/Recife');

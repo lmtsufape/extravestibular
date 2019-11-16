@@ -202,7 +202,7 @@
                         <?php foreach ($cursosDisponiveis as $curso) {
                           if($curso[0] != '#'){
                             if($curso[0] != ''){
-                              echo('<option value=' . $curso[0] . '>' . $curso[0] . '</option>');
+                              echo('<option value=' . $curso[2] . '>' . $curso[0] . '</option>');
                             }
                           }
                         }
@@ -216,10 +216,11 @@
 
                     <div class="col-sm-8">
                       <select class="form-control col-sm-10" name="turno">
-                        <option value="Manhã">Manhã</option>
-                        <option value="Tarde">Tarde</option>
-                        <option value="Noite">Noite</option>
-                        <option value="Especial (EAD)">Especial (EAD)</option>
+                        <option value="manhã">Manhã</option>
+                        <option value="tarde">Tarde</option>
+                        <option value="noite">Noite</option>
+                        <option value="integral">Integral</option>
+                        <option value="especial">Especial (EAD)</option>
                       </select>
                     </div>
                 </div>

@@ -249,7 +249,20 @@
                     <span class="a-field__label">Tipo de Matricula</span>
                   </span>
                 </label>
-                <input disabled id="Tipo de Matricula" type="text" name="Curso Pretendido" autofocus class="form-control field__input a-field__input" placeholder="Tipo de Matricula" value="{{ $inscricao->tipo }}">
+                <input disabled id="Tipo de Matricula" type="text" name="Curso Pretendido" autofocus class="form-control field__input a-field__input" placeholder="Tipo de Matricula" value="<?php
+                                                                                                                                                                                               if($inscricao->tipo == 'reintegracao'){
+                                                                                                                                                                                                 echo('Reintegração');
+                                                                                                                                                                                               }
+                                                                                                                                                                                               elseif($inscricao->tipo == 'transferenciaInterna'){
+                                                                                                                                                                                                 echo('Transferência Interna');
+                                                                                                                                                                                               }
+                                                                                                                                                                                               elseif($inscricao->tipo == 'transferenciaExterna'){
+                                                                                                                                                                                                 echo('Transferência Externa');
+                                                                                                                                                                                               }
+                                                                                                                                                                                               elseif($inscricao->tipo == 'portadorDeDiploma'){
+                                                                                                                                                                                                 echo('Portador de Diploma');
+                                                                                                                                                                                               }
+                                                                                                                                                                                              ?>">
               </div><!-- end tipo de matrícula-->
         </div><!-- end row-->
 
@@ -278,7 +291,7 @@
     </div><!-- end card-->
   </div><!-- end row -->
 
-  
+
   <div class="row" styles="<?php if($tipo != 'homologacao'){ echo("display: none");} ?>">
     <div class="card">
       <div class="card-header">{{ __('Dados do Curso / Instituição de Origem') }}</div>
@@ -363,11 +376,11 @@
         </div><!-- end row-->
 
         <div class="row justify-content-center" style="margin-top:20px">
-          
+
             <input onclick="selectCheck('aprovado')" id="selectDadosDoCursoAprovado" type="radio" name="radioDadosDoCurso" value="aprovado"> <h4 style="margin-left:1%">Aprovado</h4>
-            
+
             <input style="margin-left:3%" onclick="selectCheck('rejeitado')" id="selectDadosDoCursoRejeitado"  type="radio" name="radioDadosDoCurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>
-          
+
         </div>
 
       </div><!-- end card-body -->
@@ -379,7 +392,7 @@
     <div class="card">
       <div class="card-header">{{ __('Documentos') }}</div>
       <div class="card-body">
-          
+
         <div class="row justify-content-center">
           <div style="margin-top:-100px">
             <table class="table table-responsive table-ordered table-hover">
@@ -518,7 +531,7 @@
                       <div class="col-sm-12">
                         <label id="label" for="motivoRejeicao">{{ __('Justificativa da Rejeição:') }}</label>
                       </div>
-                      
+
                     </div>
                     <div class="row justify-content-center">
                       <div>
