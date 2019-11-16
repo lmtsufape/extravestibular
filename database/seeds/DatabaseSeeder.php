@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('editals')->insert([
           'pdfEdital' => 'seed/pdfTeste.pdf',
-          'vagas' => '36:1?1?1?1?1!37:10?10?10?10?1!',
+          'vagas' => '11:1?1?1?1?1!12:10?10?10?10?1!',
           'inicioInscricoes' => '2019-09-01',
           'fimInscricoes' => '2019-09-02',
           'inicioRecurso' => '2019-09-03',
@@ -150,7 +150,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('editals')->insert([
             'pdfEdital' => 'seed/pdfTeste.pdf',
-            'vagas' => '36:2!37:1!',
+            'vagas' => '11:2!12:1!',
             'inicioInscricoes' => '2019-09-01',
             'fimInscricoes' => '2019-12-02',
             'inicioRecurso' => '2019-09-03',
@@ -168,7 +168,7 @@ class DatabaseSeeder extends Seeder
             'fimRecursoResultado' => '2019-12-12',
             'resultadoFinal' => '2019-12-13',
             'descricao' => 'Edital extravestibular 2019.2',
-            
+
 
         ]);
 
