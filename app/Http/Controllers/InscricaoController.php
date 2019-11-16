@@ -277,7 +277,7 @@ class InscricaoController extends Controller
 					foreach ($emails as $key) {
 						Mail::to($key['email'])->send(new NovaInscricao($nomeEdital[0]));
 					}
-					return redirect()->route('home')->with('jsAlert', 'Inscrição criada com sucesso!');
+					return redirect()->route('home')->with('jsAlert', 'Inscrição realizada com sucesso!');
 		}
 
 	public function cadastroDesempate(Request $request){

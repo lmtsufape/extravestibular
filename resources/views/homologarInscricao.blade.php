@@ -460,7 +460,7 @@
                 <tr <?php if($inscricao->curriculo == ''){echo('style="display: none"');} ?> >
                   <div class="form-group row" >
                     <td>
-                      <label for="curriculo" >{{ __('Curriculo') }}</label>
+                      <label for="curriculo" >{{ __('Matriz / Perfil Curricular') }}</label>
                     </td>
                       <div class="col-md-6">
                         <td>

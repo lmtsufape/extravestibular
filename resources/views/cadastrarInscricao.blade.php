@@ -162,7 +162,7 @@
                 </div>
 
                 <div id="curriculo" class="form-group row" style="display: none">              <!-- Arquivo curriculo -->
-                    <label for="Curriculo" class="col-sm-4 col-form-label text-md-right">{{ __('Perfil Currícular:') }}</label>
+                    <label for="Curriculo" class="col-sm-4 col-form-label text-md-right">{{ __('Perfil Curricular:') }}</label>
 
                     <div class="col-sm-6">
                       <div class="custom-file">

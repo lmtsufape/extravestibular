@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('titulo','Homologar Isencao')
+@section('titulo','Homologar Isenção')
 @section('navbar')
     <!-- Home / Detalhes do edital / Homologar Isenção / {{$isencao->cpfCandidato}} -->
     <li class="nav-item active">
@@ -81,7 +81,7 @@
           @if($isencao->tipo == "ambos")
             <div class="row justify-content-center">
               <div class="col-sm-12">
-                I - o candidato declarar-se impossibilitado de arcar com o pagamento da taxa de inscrição e comprovar renda familiar mensal igual inferior a um salário mínimo e meio.
+                I - o candidato declara-se impossibilitado de arcar com o pagamento da taxa de inscrição e comprovar renda familiar mensal igual inferior a um salário mínimo e meio.
               </div>
             </div>
             <div class="row justify-content-center">
@@ -92,7 +92,7 @@
           @elseif($isencao->tipo == "renda")
             <div class="row justify-content-center">
               <div class="col-sm-12">
-                I - o candidato declarar-se impossibilitado de arcar com o pagamento da taxa de inscrição e comprovar renda familiar mensal igual inferior a um salário mínimo e meio.
+                I - o candidato declara-se impossibilitado de arcar com o pagamento da taxa de inscrição e comprovar renda familiar mensal igual inferior a um salário mínimo e meio.
               </div>
             </div>
           @else
@@ -201,7 +201,7 @@
         </div><!-- end card -->
       @elseif($isencao->tipo == "ensinoMedio")
         <div class="card">
-            <div class="card-header">{{ __('Arquivos anexado pelo candidato') }}</div>
+            <div class="card-header">{{ __('Arquivos anexados pelo candidato') }}</div>
             <div class="card-body">
               <div class="row justify-content-center" >
                   <h3 for="historicoEscolar" style="">{{ __('Histórico Escolar') }}</h3>
