@@ -57,13 +57,13 @@
     width: 100%;
   }
   #label{
-    margin-left: 4%;
+    margin-left: 1.5%;
   }
 
 
   @media screen and (max-width:576px){
     #label{
-      margin-left: 0%;
+      margin-left: 5%;
     } 
   }
 </style>
@@ -99,14 +99,21 @@
                     </h3>
                   </p>
 
+                  {{-- aprovado rejeitado --}}
+                  <div class="row justify-content-center">
+              
+                      <input onclick="selectCheck('aprovado')" type="radio" name="radioRecurso" value="aprovado"> <h4 style="margin-left:1%">Aprovado</h4>
+                      
+                      <input style="margin-left:1%" onclick="selectCheck('rejeitado')" type="radio" name="radioRecurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>    
+                  </div>
                   
                   <div class="form-group" id="motivoRejeicao" style=" display: none;">
-                    <label for="motivoRejeicao" class="col-md-4 col-form-label text-md-right"  style="margin-left: -60px;">{{ __('Motivos da Rejeição:') }}</label>
+                    <label for="motivoRejeicao"  id="label">{{ __('Motivos da Rejeição:') }}</label>
 
-                    <div class="col-md-12" style="margin-left: 10px">
+                    <div class="col-md-12">
                       <textarea class=" form-control @error('motivoRejeicao') is-invalid @enderror" form ="formHomologacao" name="motivoRejeicao" id="taid" style="width:100%" ></textarea>
                       @error('motivoRejeicao')
-                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:none">
                         <strong>{{ $message }}</strong>
                       </span>
                       @enderror
@@ -116,22 +123,18 @@
                 </div>
             </div>{{-- end row --}}
             
-            <div class="row justify-content-center">
-              
-                  <input onclick="selectCheck('aprovado')" type="radio" name="radioRecurso" value="aprovado"> <h4 style="margin-left:1%">Aprovado</h4>
-                  
-                  <input style="margin-left:1%" onclick="selectCheck('rejeitado')" type="radio" name="radioRecurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>    
-            </div>
+            
 
-            
-            <div class="row">
-              <label id="label" for="motivoRejeicao" >{{ __('Justificativa da Rejeição:') }}</label>
-            </div>
-            <div class="row justify-content-center">
-              
+            {{-- <div id="motivoRejeicao" style=" display: block;">
+
+              <div class="row">
+                <label id="label" for="motivoRejeicao" >{{ __('Justificativa da Rejeição:') }}</label>
+              </div>
+              <div class="row justify-content-center">
+                
                 <textarea form ="formHomologacao" name="motivoRejeicao" id="taid" cols="115" ></textarea>
-            
-            </div> 
+              </div> 
+            </div> --}}
             
         </div><!-- end card-body-->
       </div><!-- end card-->
