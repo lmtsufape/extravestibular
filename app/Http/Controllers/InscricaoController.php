@@ -1526,12 +1526,10 @@ class InscricaoController extends Controller
 			}
 
 			$this->verificarCompletudeClassificacoes($inscricao->editalId);
-			dd('a');
 
 			return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso.');
 		}
 		else{
-			dd('a');
 
 			return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso.');
 		}
