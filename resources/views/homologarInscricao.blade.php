@@ -389,7 +389,7 @@
                 <tr <?php if($inscricao->declaracaoDeVinculo == ''){echo('style="display: none"');} ?> >
                   <div class="form-group row" >
                       <td>
-                        <label for="declaracaoDeVinculo" >{{ __('Declaração de Vinculo') }}</label>
+                        <label for="declaracaoDeVinculo" >{{ __('Declaração de Vínculo') }}</label>
                       </td>
                       <div class="col-md-6">
                           <td>
