@@ -62,7 +62,7 @@
       <div class="card " style="width: 100%;">
           <div class="card-header">{{ __('Comprovante') }}</div>
           <div class="card-body">
-          
+
             @if($comprovante == 'deferida')
               <div class="row justify-content-center" >
                 <label for="comprovante" class="">{{ __('Comprovante: ') }}</label>
@@ -74,17 +74,22 @@
               </div>
             @else
               <div class="row justify-content-center">
-                
+
                 <div class="col-sm-10">
                   <label for="comprovante" style="font-weight: bold">Selecione o comprovante gerado pelo pagamento da taxa do tipo de inscrição:</label>
                 </div>
-                
+
               </div>
               <div class="row justify-content-center">
                 <div class="col-sm-10">
                   <div class="custom-file" style="width: 100%;">
-                    <input id='elementoComprovante'  onclick="comprovanteSelecionado()"  type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="comprovante" >
+                    <input id='elementoComprovante'  onclick="comprovanteSelecionado()"  type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="comprovante" value="{{ old('comprovante') }}">
                     <label style="">Este arquivo deve ser menor do que 2mb</label>
+                    @error('comprovante')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
                 </div>
               </div>
@@ -92,7 +97,8 @@
           </div>
       </div>
     </div>
-      <div class="row" id="formulario" style="display: <?php if($comprovante != 'deferida') { echo('none'); }?> ;margin-top: 5%">
+    <div  id="formulario" style="display: <?php if($comprovante != 'deferida') { echo('none'); }?> ;">
+      <div class="row" style="margin-top: 5%">
         <div class="card" style="width: 100%;">
             <div class="card-header">{{ __('Inscrição') }}</div>
             <div class="card-body">
@@ -191,7 +197,7 @@
                     <label for="Curso" class="col-sm-4 col-form-label text-md-right">{{ __('Curso pretendido*:') }}</label>
 
                     <div class="col-sm-8" id="selectCurso">
-                      
+
                       <select class="form-control col-sm-10" name="curso" style="width: 100%">
                         <?php foreach ($cursosDisponiveis as $curso) {
                           if($curso[0] != '#'){
@@ -232,10 +238,10 @@
                     <div class="row">
                       <div class="col-sm-12">
                           <input id="polo" type="text" name="polo" autofocus class="form-control @error('polo') is-invalid @enderror field__input a-field__input" placeholder="Polo (apenas aluno EAD):" style="width: 100%;" value="{{ old('polo') }}" style="width:100%">
-                          
+
                       </div>
                     </div>
-                    
+
                     @error('polo')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                       <strong>{{ $message }}</strong>
@@ -254,7 +260,7 @@
               <div class="card-body">
                 <div class="form-group row">                                                   <!-- Curso de origem -->
 
-                
+
                   <label for="cursoDeOrigem" class="field a-field a-field_a2 page__field" style="width: 100%">
                     <span class="a-field__label-wrap">
                       <span class="a-field__label">Curso de Origem*:</span>
@@ -306,7 +312,7 @@
                   </div>
                 </div>
                 <div class="form-group row">  <!-- Endereço/Nº -->
-                        
+
                   <div class="col-sm-10">
                   <div class="row">
                     <div class="col-sm-12">
@@ -322,7 +328,7 @@
                         <input id="rua" type="text" name="endereco" autofocus class="form-control @error('endereco') is-invalid @enderror field__input a-field__input" placeholder="Rua*" style="width: 100%;" value="{{ old('endereco') }}">
                     </div>
                   </div>
-                    
+
                     @error('endereco')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                       <strong>{{ $message }}</strong>
@@ -330,8 +336,8 @@
                     @enderror
                   </div>
                   <div class="col-sm-2">
-                        
-                    
+
+
                     <label for="num" class="field a-field a-field_a2 page__field" style="">
                         <span class="a-field__label-wrap">
                           <span class="a-field__label">Número*</span>
@@ -392,7 +398,7 @@
             </div>
         </div>
       </div>
-
+    </div>
       <div class="row justify-content-center">
           <div class="">
             <button id="button" type="submit" class="btn btn-primary btn-primary-lmts" style="margin-top:20px;">
@@ -401,7 +407,7 @@
           </div>
       </div>
 
-    
+
     </div>
   </form>
 </div>
