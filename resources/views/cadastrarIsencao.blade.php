@@ -39,7 +39,7 @@
 @endsection
 @section('content')
 <style>
-  
+
 </style>
 
 <!-- container -->
@@ -62,7 +62,7 @@
       <div class="col-sm-12">
         <p><strong>O(a) candidato(a) declara, sob as penas da lei e da perda dos direitos decorrentes da sua inscrição,
         serem verdadeiras as informações, os dados e os documentos apresentados, prontificando-se a fornecer outros
-        documentos comprobatórios, sempre que solicitados pela Universidade Federal Rural de Pernambuco. Nos termos da lei, 
+        documentos comprobatórios, sempre que solicitados pela Universidade Federal Rural de Pernambuco. Nos termos da lei,
         o candidato se enquadra na situação:</strong></p>
       </div>
     </div><!-- end row parágrafo -->
@@ -70,13 +70,13 @@
     <!-- checkboxRenda -->
     <div class="row justify-content-center">
       <div class="col-sm-10">
-        <input id="checkboxRenda" onclick="escolher('renda')"  value="rendaFamiliar" type="checkbox" > Renda familiar per capita igual ou inferior a um salário mínimo e meio. <br>
+        <input id="checkboxRenda" onclick="escolher('renda')" name="checkboxRenda"  value="rendaFamiliar" type="checkbox" > Renda familiar per capita igual ou inferior a um salário mínimo e meio. <br>
       </div>
     </div><!-- end checkboxRenda -->
     <!-- checkboxEnsino -->
     <div class="row justify-content-center">
       <div class="col-sm-10">
-        <input id="checkboxEnsino" onclick="escolher('ensino')"  value="ensinoMedio" type="checkbox" > Ter cursado o ensino médio completo em escola da rede pública ou como bolsista integral em escola da rede privada. <br>
+        <input id="checkboxEnsino" onclick="escolher('ensino')" name="checkboxEnsino" value="ensinoMedio" type="checkbox" > Ter cursado o ensino médio completo em escola da rede pública ou como bolsista integral em escola da rede privada. <br>
       </div>
     </div><!-- end checkboxEnsino -->
 
@@ -93,6 +93,11 @@
 
               <div class="custom-file col-sm-12">
                 <input id="input" type="file" class="filestyle rounded-pill" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="historicoEscolar">
+                @error('historicoEscolar')
+                <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
               </div>
             </div>
           </div>
@@ -126,7 +131,7 @@
                     </div>
                   </div>
 
-                  
+
                 </div><!-- end nome -->
 
                 <div class="col-sm-4">
@@ -136,7 +141,7 @@
                       <span class="a-field__label-wrap">
                         <span class="a-field__label">CPF*</span>
                       </span>
-                      
+
                     </label>
                     </div>
                   </div>
@@ -146,7 +151,7 @@
                     </div>
                   </div>
 
-                  
+
                 </div>
 
               </div> <!-- end row Nome | CPF-->
@@ -169,7 +174,7 @@
                       <input id="parentescoDadoEconomico" type="text" name="parentescoDadoEconomico" autofocus class="field__input a-field__input" placeholder="Parentesco" style=" width:100%">
                     </div>
                   </div>
-                  
+
                 </div><!-- end parentesco -->
                 <!-- renda -->
                 <div class="col-sm-4">
@@ -179,9 +184,9 @@
                       <span class="a-field__label-wrap">
                         <span class="a-field__label">Renda*</span>
                       </span>
-                      
+
                     </label>
-                    
+
                     </div>
                   </div>
                   <div class="row">
@@ -190,7 +195,7 @@
                     </div>
                   </div>
 
-                  
+
                 </div><!-- end renda -->
                 <!-- fonte pagadora -->
                 <div class="col-sm-4">
@@ -200,7 +205,7 @@
                     <span class="a-field__label-wrap">
                       <span class="a-field__label">Fonte Pagadora*</span>
                     </span>
-                    
+
                   </label>
                     </div>
                   </div>
@@ -210,7 +215,7 @@
                     </div>
                   </div>
 
-                  
+
                 </div><!-- end fonte pagadora -->
 
 
@@ -237,7 +242,7 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <label for="nomeNucleoFamiliar" class="field a-field a-field_a2 page__field" style="width:100%">
-                      
+
                       <span class="a-field__label-wrap">
                         <span class="a-field__label">Nome</span>
                       </span>
@@ -249,7 +254,7 @@
                     <input id="nomeNucleoFamiliar" type="text" name="nomeNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Nome" style="width:100%">
                   </div>
                 </div>
-                
+
               </div><!--end nome -->
 
               <div class="col-sm-4">
@@ -267,7 +272,7 @@
                     <input id="cpfNucleoFamiliar" type="text" name="cpfNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="CPF" style="width:100%">
                   </div>
                 </div>
-                
+
               </div>
 
             </div><!-- end row Nome | CPF-->
@@ -279,7 +284,7 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <label for="parentescoNucleoFamiliar" class="field a-field a-field_a2 page__field" style=" width: 100%;">
-                    
+
                     <span class="a-field__label-wrap">
                       <span class="a-field__label">Parentesco</span>
                     </span>
@@ -292,7 +297,7 @@
                   </div>
                 </div>
 
-                
+
               </div><!-- end parentesco -->
               <!-- fonte pagadora -->
               <div class="col-sm-3">
@@ -309,10 +314,10 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <input id="parentescoNucleoFamiliar" type="text" name="parentescoNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Parentesco" style="width:100%">
-                  
+
                   </div>
                 </div>
-                
+
               </div><!-- end fonte pagadora -->
               <!-- renda -->
               <div class="col-sm-3">
@@ -320,7 +325,7 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <label for="rendaNucleoFamiliar" class="field a-field a-field_a2 page__field" style=" width: 100%;">
-                    
+
                     <span class="a-field__label-wrap">
                       <span class="a-field__label">Renda</span>
                     </span>
@@ -332,7 +337,7 @@
                     <input id="rendaNucleoFamiliar" type="text" name="rendaNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Renda" style="width:100%">
                   </div>
                 </div>
-                
+
               </div><!-- end renda -->
 
               <div class="col-sm-3">
@@ -350,7 +355,7 @@
                   <input id="fontePagadoraNucleoFamiliar" type="text" name="fontePagadoraNucleoFamiliar" autofocus class="field__input a-field__input" placeholder="Fonte Pagadora" style="width:100%">
                   </div>
                 </div>
-                
+
               </div>
             </div><!-- end row Parentesco/Renda/Fonte -->
           </div><!-- end card-body -->
@@ -374,7 +379,7 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <label for="nomeNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%">
-                      
+
                       <span class="a-field__label-wrap">
                         <span class="a-field__label">Nome</span>
                       </span>
@@ -387,14 +392,14 @@
                   </div>
                 </div>
 
-                
+
               </div><!-- end nome -->
               <!-- cpf -->
               <div class="col-sm-4">
                 <div class="row">
                   <div class="col-sm-12">
                     <label for="cpfNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%">
-                    
+
                     <span class="a-field__label-wrap">
                       <span class="a-field__label">CPF</span>
                     </span>
@@ -406,7 +411,7 @@
                   <input id="cpfNucleoFamiliar1" type="text" name="cpfNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="CPF" style="width:100%">
                   </div>
                 </div>
-                
+
               </div><!-- end cpf -->
 
 
@@ -418,7 +423,7 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <label for="parentescoNucleoFamiliar1" class="field a-field a-field_a2 page__field" style="width:100%;">
-                    
+
                     <span class="a-field__label-wrap">
                       <span class="a-field__label">Parentesco</span>
                     </span>
@@ -430,7 +435,7 @@
                     <input id="parentescoNucleoFamiliar1" type="text" name="parentescoNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="Parentesco" style="width: 100%;">
                   </div>
                 </div>
-                
+
               </div><!-- end parentesco -->
               <!-- renda -->
               <div class="col-sm-4">
@@ -446,10 +451,10 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <input id="rendaNucleoFamiliar1" type="text" name="rendaNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="Renda" style="width:100%">
-                  
+
                   </div>
                 </div>
-                
+
               </div><!-- end renda -->
               <div class="col-sm-4">
                 <div class="row">
@@ -464,10 +469,10 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <input id="fontePagadoraNucleoFamiliar1" type="text" name="fontePagadoraNucleoFamiliar1" autofocus class="field__input a-field__input" placeholder="Fonte Pagadora" style="width:100%">
-                  
+
                   </div>
                 </div>
-                
+
               </div>
             </div><!-- end Parentesco/Renda/Fonte -->
           </div><!-- end card-body -->

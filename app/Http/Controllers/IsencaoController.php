@@ -14,6 +14,19 @@ use Carbon\Carbon;
 class IsencaoController extends Controller
 {
   public function cadastroIsencao(Request $request){
+
+    if($request->checkboxRenda == 'rendaFamiliar'){
+      $validatedData = $request->validate([
+                                            // 'nome' => ['required', 'string', 'max:255'],
+                                          ]);
+    }
+    if($request->checkboxEnsino == 'ensinoMedio'){
+      $validatedData = $request->validate([
+                                            'historicoEscolar' 			=> ['required', 'mimes:pdf','max:20000'],
+                                          ]);
+
+    }
+
     $mytime = Carbon::now('America/Recife');
     $mytime = $mytime->toDateString();
     $edital = Edital::find($request->editalId);
