@@ -28,6 +28,9 @@
   #checkPublicarEdital{
     margin-left:16%;
   }
+  .checkbox{
+    display: table;
+  }
   @media screen and (max-width: 576px){
     #checkPublicarEdital{
       margin-left: 0;
