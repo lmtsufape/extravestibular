@@ -87,13 +87,18 @@
     height: 80vh;
     box-shadow: inset 0 0 7px rgba(0,0,0,0.5);
   }
+  
   @media screen and (max-width:576px){
     #login{
       background-color: #fff;
-      height: 120vh;
+      height: 90vh;
       box-shadow: inset 0 0 7px rgba(0,0,0,0.5);
-
-
+    }
+    #link{
+        margin-left: 50%;
+    }
+    #botao{
+        margin-left: 110%;
     }
   }
 </style>
@@ -190,11 +195,11 @@
           <!-- botoes -->
           <div id="margin" class="row">
             <div class="offset-sm-1" style="margin-top:5px">
-                <a class="menu-principal" href="{{  route('login')}}" style="color: #1B2E4F;">Voltar</a>
+                <a id="link" class="menu-principal" href="{{  route('login')}}" style="color: #1B2E4F;">Voltar</a>
             </div>
 
             <div class="offset-sm-4" style="">
-                <button type="submit" class="btn btn-primary"  style="background-color: #1B2E4F; border-color: #d3e0e9">
+                <button id="botao" type="submit" class="btn btn-primary"  style="background-color: #1B2E4F; border-color: #d3e0e9">
                     {{ __('Cadastrar') }}
                 </button>
             </div>
