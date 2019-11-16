@@ -236,7 +236,7 @@
 
   <div class="row">
     <div class="card">
-      <div class="card-header">{{ __('Dados Inscrição') }}</div>
+      <div class="card-header">{{ __('Dados da inscrição') }}</div>
       {{-- card dados inscrição --}}
       <div class="card-body">
         <div class="row">
