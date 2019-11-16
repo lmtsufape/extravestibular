@@ -278,7 +278,7 @@
   
   <div class="row" styles="<?php if($tipo != 'homologacao'){ echo("display: none");} ?>">
     <div class="card">
-      <div class="card-header">{{ __('Dados de Curso e Instituição de Origem') }}</div>
+      <div class="card-header">{{ __('Dados do Curso / Instituição de Origem') }}</div>
       <div class="card-body">
         <div class="row justify-content-center">
 
