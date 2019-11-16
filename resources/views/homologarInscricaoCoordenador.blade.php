@@ -61,6 +61,14 @@
   #margin{
     margin-bottom: 20px;
   }
+  .check{
+    margin-left: 1%;
+  }
+  @media screen and (max-width:576px){
+    .check{
+      margin-left: 3%;
+    }
+  }
 </style>
 
 <div class="container">
@@ -230,18 +238,9 @@
 
             <!-- aprovado rejeitado -->
             <div class="row justify-content-center" style="margin-top:20px;">
-              <!-- aprovado-->
-              <div class="col-sm-3" >
-                <div class="row justify-content-center">
-                  <input onclick="selectCheck('aprovado')" id="selectDadosDoCursoAprovado" type="radio" name="radioDadosDoCurso" value="aprovado"> <h4>Aprovado</h4>
-                </div>
-              </div><!-- end aprovado-->
-              <!-- Rejeitado -->
-              <div class="col-sm-3">
-                <div class="row justify-content-center">
-                  <input id="radioIndeferida" @error('motivoRejeicao') checked @enderror onclick="selectCheck('rejeitado')" id="selectDadosDoCursoRejeitado"  type="radio" name="radioDadosDoCurso" value="rejeitado"> <h4>Rejeitado</h4>
-                </div><!-- end Rejeitado -->
-              </div><!-- end Rejeitado -->
+                <input onclick="selectCheck('aprovado')" id="selectDadosDoCursoAprovado" type="radio" name="radioDadosDoCurso" value="aprovado"> <h4 style="margin-left:1%">Aprovado</h4>
+                <input class="check" id="radioIndeferida" @error('motivoRejeicao') checked @enderror onclick="selectCheck('rejeitado')" id="selectDadosDoCursoRejeitado"  type="radio" name="radioDadosDoCurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>
+              
             </div><!-- end aprovado rejeitado -->
           </div><!-- end card-body -->
         </div><!-- card dados do Curso -->
