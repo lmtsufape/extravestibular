@@ -61,7 +61,7 @@
     @csrf
   <div class="col-md-8">
     <div class="card" style="width: 50rem">
-      <div class="card-header">{{ __('Classificar Inscrição') }}</div>
+      <div class="card-header">{{ __('Classificar s') }}</div>
       <div class="card-body">
         <div class="form-group row" >
           <table class="table table-ordered table-hover">
