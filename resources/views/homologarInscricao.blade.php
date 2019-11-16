@@ -57,6 +57,9 @@
   #label{
     margin-left: 3%;
   }
+  .card{
+    width: 100%;
+  }
 
   @media screen and (max-width:576px){
     #label{
