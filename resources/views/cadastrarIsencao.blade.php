@@ -224,7 +224,6 @@
       </div>
     </div><!-- end card dados economicos Obrigatórios -->
 
-
     <!-- card dados economicos do núcleo familiar -->
     <div class="row">
       <!-- card -->
@@ -484,7 +483,7 @@
         <div class="">
           <input type="hidden" name="editalId" value="{{$editalId}}">
           <input id="tipo" type="hidden" name="tipo" value="">
-            <button type="submit" class="btn btn-primary btn-primary-lmts">
+            <button id="finalizar" disabled type="submit" class="btn btn-primary btn-primary-lmts">
                 {{ __('Finalizar') }}
             </button>
 
@@ -496,6 +495,36 @@
 
 
 <script type="text/javascript" >
+
+function checkTrueRenda(){
+  if (document.getElementById("checkboxRenda").checked == true ) {
+    document.getElementById("finalizar").disabled = false;
+    document.getElementById("tipo").value = "rendaFamiliar";
+    document.getElementById("dadosEconomicos").style.display = "";
+    document.getElementById("nucleo").style.display = "";
+    document.getElementById("nucleo1").style.display = "";
+  }
+}
+
+function checkTrueEnsino(){
+  if(document.getElementById("checkboxEnsino").checked == true ){
+    document.getElementById("tipo").value = "ensinoMedio";
+    document.getElementById("finalizar").disabled = false;
+    document.getElementById("historicoEscolar").style.display = "";
+  }
+}
+
+function checkTrueAmbos(){
+  if(document.getElementById("checkboxRenda").checked == true && document.getElementById("checkboxEnsino").checked == true){
+    document.getElementById("finalizar").disabled = false;
+    document.getElementById("tipo").value = "ambos";
+    document.getElementById("dadosEconomicos").style.display = "";
+    document.getElementById("nucleo").style.display = "";
+    document.getElementById("nucleo1").style.display = "";
+    document.getElementById("historicoEscolar").style.display = "";
+
+  }
+}
 
 function escolher(x) {
 	if (x == "renda") {
@@ -521,15 +550,27 @@ function escolher(x) {
     }
 	}
   if(document.getElementById("checkboxRenda").checked == true && document.getElementById("checkboxEnsino").checked == true){
+    document.getElementById("finalizar").disabled = false;
     document.getElementById("tipo").value = "ambos";
   }
   else if (document.getElementById("checkboxRenda").checked == true ) {
+    document.getElementById("finalizar").disabled = false;
     document.getElementById("tipo").value = "rendaFamiliar";
   }
   else{
     document.getElementById("tipo").value = "ensinoMedio";
+    document.getElementById("finalizar").disabled = false;
   }
+
+  if(document.getElementById("checkboxRenda").checked == false && document.getElementById("checkboxEnsino").checked == false){
+    document.getElementById("finalizar").disabled = true;
+  }
+
 }
+
+checkTrueRenda();
+checkTrueEnsino();
+checkTrueAmbos();
 
 </script>
 

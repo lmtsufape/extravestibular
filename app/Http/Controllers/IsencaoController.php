@@ -26,7 +26,6 @@ class IsencaoController extends Controller
                                           ]);
 
     }
-
     $mytime = Carbon::now('America/Recife');
     $mytime = $mytime->toDateString();
     $edital = Edital::find($request->editalId);
