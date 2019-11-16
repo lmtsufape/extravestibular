@@ -399,6 +399,7 @@ class InscricaoController extends Controller
 
 		if(!strcmp($request->tipo, 'homologacao')){
 			if(!strcmp($request->homologado, 'rejeitado')){
+				$validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);				
 				$inscricao->homologado = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
 				$inscricao->save();

@@ -512,7 +512,7 @@
                             <input onclick="selectCheck('aprovado')"  type="radio" name="radioComprovante" id="selectComprovanteAprovado" <?php if($inscricao->comprovante == 'isento'){echo('checked="true"');} ?> >
                           </td>
                           <td style="text-align: center">
-                            <input onclick="selectCheck('rejeitado')"  type="radio" name="radioComprovante" id="selectComprovanteRejeitado">
+                            <input id="radioIndeferida" @error('motivoRejeicao') checked @enderror onclick="selectCheck('rejeitado')"  type="radio" name="radioComprovante" id="selectComprovanteRejeitado">
                           </td>
                         </div>
                     </div>
@@ -525,7 +525,7 @@
           </div><!-- end row-->
           <div class="row">
             <div class="col-sm-12">
-                <form method="POST" action={{ route('homologarInscricao') }} enctype="multipart/form-data" id="formHomologacao">
+                <form method="POST" action="{{ route('homologarInscricao') }}" enctype="multipart/form-data" id="formHomologacao">
                   @csrf
                   <div class="form-group" id="motivoRejeicao" style=" display: none;">
                     <div class="row">
@@ -536,7 +536,12 @@
                     </div>
                     <div class="row justify-content-center">
                       <div>
-                        <textarea form ="formHomologacao" name="motivoRejeicao" id="taid" cols="115" style="width:100%"></textarea>
+                        <textarea class="form-control @error('motivoRejeicao') is-invalid @enderror" form ="formHomologacao" name="motivoRejeicao" id="taid" cols="115" style="width:100%"></textarea>
+                        @error('motivoRejeicao')
+                        <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                       </div>
                     </div>
                   </div>
@@ -565,19 +570,12 @@
 <script type="text/javascript" >
 function checkFinalizar(){
   if(document.getElementById("selectHistoricoEscolarAprovado").checked || document.getElementById("selectHistoricoEscolarRejeitado").checked){
-    console.log('1');
     if(document.getElementById("selectDeclaracaoDeVinculoAprovado").checked || document.getElementById("selectDeclaracaoDeVinculoRejeitado").checked){
-      console.log('2');
       if(document.getElementById("selectProgramaDasDisciplinasAprovado").checked || document.getElementById("selectProgramaDasDisciplinasRejeitado").checked){
-        console.log('3');
         if(document.getElementById("selectCurriculoAprovado").checked || document.getElementById("selectCurriculoRejeitado").checked){
-          console.log('4');
           if(document.getElementById("selectEnemAprovado").checked || document.getElementById("selectEnemRejeitado").checked){
-            console.log('5');
             if(document.getElementById("selectDadosDoCursoAprovado").checked || document.getElementById("selectDadosDoCursoRejeitado").checked){
-              console.log('6');
               if(document.getElementById("selectComprovanteAprovado").checked || document.getElementById("selectComprovanteRejeitado").checked){
-                console.log('7');
                 document.getElementById("buttonFinalizar").disabled = false;
               }
             }
@@ -633,7 +631,14 @@ function selectCheck(x){
   checkFinalizar();
 }
 
+function checkIndeferido(){
+  if(document.getElementById("radioIndeferida").checked == true){
+    document.getElementById("motivoRejeicao").style.display = ''
 
+  }
+}
+
+checkIndeferido();
 
 
 
