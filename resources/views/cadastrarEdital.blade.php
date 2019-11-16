@@ -371,7 +371,7 @@
                 {{ $curso['nome'] }}
               </td>
               <td>
-                <input id="checkbox{{$i}}" onclick="vagas({{$i}})" name="checkbox{{$i}}" <?php if(old('checkbox' . $i)){echo('checked');} ?> type="checkbox" value="{{$curso['id']}}">
+                <input style="margin-top:20%" id="checkbox{{$i}}" onclick="vagas({{$i}})" name="checkbox{{$i}}" <?php if(old('checkbox' . $i)){echo('checked');} ?> type="checkbox" value="{{$curso['id']}}">
               </td>
               @if(old('checkbox' . $i))
                 <td>
