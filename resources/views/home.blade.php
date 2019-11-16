@@ -167,10 +167,18 @@
                   <a href="{{ route('download', ['file' => $edital->pdfEdital])}}" target="_new">Baixar</a>
                 </td>
                 <td style="overflow: auto;"> <!-- Download Errata -->
-                  <?php $erratas = $edital->errata; ?>
-                  @foreach($erratas as $key)
-                    <a href="{{ route('download', ['file' => $key->arquivo])}}" target="_new">{{$key->nome}};</a>
-                  @endforeach
+                  <?php
+                    $erratas = $edital->errata;
+                  ?>
+                  @if($erratas->count() == 1)
+                    @foreach($erratas as $key)
+                      <a href="{{ route('download', ['file' => $key->arquivo])}}" target="_new">{{$key->nome}}.</a>
+                    @endforeach
+                  @else
+                    @foreach($erratas as $key)
+                      <a href="{{ route('download', ['file' => $key->arquivo])}}" target="_new">{{$key->nome}};</a>
+                    @endforeach
+                  @endif
                 </td>
               </tr>
             @endforeach

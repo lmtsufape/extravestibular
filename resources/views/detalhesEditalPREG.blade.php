@@ -92,7 +92,7 @@
            <div class="row justify-content-center" style="">  <!-- Nome -->
              <div class="col-sm-12">
 
-                 <input id="nome" type="text" name="nome" class="field__input a-field__input orm-control @error('nome') is-invalid @enderror" placeholder="Nome">
+                 <input id="nome" type="text" name="nome" class="field__input a-field__input orm-control @error('nome') is-invalid @enderror" placeholder="Nome" value="{{ old('nome') }}">
                  @error('nome')
                  <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                    <strong>{{ $message }}</strong>
