@@ -169,7 +169,7 @@
                       <span class="a-field__label">Coeficiente de Rendimento</span>
                     </span>
                   </label>
-                  <input id="coeficienteDeRendimento" type="text" name="coeficienteDeRendimento" autofocus class="form-control @error('coeficienteDeRendimento') is-invalid @enderror field__input a-field__input" placeholder="Coeficiente de Rendimento"  value="{{ old('coeficienteDeRendimento') }}">
+                  <input id="coeficienteDeRendimento" type="text" name="coeficienteDeRendimento" autofocus class="form-control @error('coeficienteDeRendimento') is-invalid @enderror field__input a-field__input" placeholder="EX: 8.5"  value="{{ old('coeficienteDeRendimento') }}">
                   @error('coeficienteDeRendimento')
                   <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                     <strong>{{ $message }}</strong>
@@ -182,7 +182,7 @@
                       <span class="a-field__label">Nº Disciplinas Obrigatórias</span>
                     </span>
                   </label>
-                  <input id="materias" type="text" name="materias" autofocus class="form-control @error('materias') is-invalid @enderror field__input a-field__input" placeholder="Nº Disciplinas Obrigatórias"  value="{{ old('materias') }}">
+                  <input id="materias" type="text" name="materias" autofocus class="form-control @error('materias') is-invalid @enderror field__input a-field__input" placeholder="EX: 10"  value="{{ old('materias') }}">
                 @error('materias')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                   <strong>{{ $message }}</strong>
@@ -195,7 +195,7 @@
                       <span class="a-field__label">Nº Disciplinas Cursadas</span>
                     </span>
                   </label>
-                  <input id="completadas" type="text" name="completadas" autofocus class="form-control @error('completadas') is-invalid @enderror field__input a-field__input" placeholder="Nº Disciplinas Cursadas" value="{{ old('completadas') }}">
+                  <input id="completadas" type="text" name="completadas" autofocus class="form-control @error('completadas') is-invalid @enderror field__input a-field__input" placeholder="EX: 9" value="{{ old('completadas') }}">
                 @error('completadas')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                   <strong>{{ $message }}</strong>

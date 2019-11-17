@@ -134,7 +134,7 @@
         <div class="form-group row" >
           <div>
             <label for="coeficienteDeRendimento" class="field a-field a-field_a2 page__field">
-                <input id="coeficienteDeRendimento" type="text" name="coeficienteDeRendimento" autofocus class="form-control @error('coeficienteDeRendimento') is-invalid @enderror field__input a-field__input" placeholder="Coeficiente de Rendimento"  value="{{ old('coeficienteDeRendimento') }}">
+                <input id="coeficienteDeRendimento" type="text" name="coeficienteDeRendimento" autofocus class="form-control @error('coeficienteDeRendimento') is-invalid @enderror field__input a-field__input" placeholder="EX: 7.5"  value="{{ old('coeficienteDeRendimento') }}">
                 <span class="a-field__label-wrap">
                   <span class="a-field__label">Coeficiente de Rendimento</span>
                 </span>
@@ -147,7 +147,7 @@
           </div>
         <div>
           <label for="materias" class="field a-field a-field_a2 page__field" style="margin-left: 20px">
-              <input id="materias" type="text" name="materias" autofocus class="form-control @error('materias') is-invalid @enderror field__input a-field__input" placeholder="Nº Disciplinas Obrigatórias"  value="{{ old('materias') }}">
+              <input id="materias" type="text" name="materias" autofocus class="form-control @error('materias') is-invalid @enderror field__input a-field__input" placeholder="EX: 12"  value="{{ old('materias') }}">
               <span class="a-field__label-wrap">
                 <span class="a-field__label">Nº Disciplinas Obrigatórias</span>
               </span>
@@ -160,7 +160,7 @@
         </div>
         <div>
           <label for="completadas" class="field a-field a-field_a2 page__field" style="margin-left: 20px">
-              <input id="completadas" type="text" name="completadas" autofocus class="form-control @error('completadas') is-invalid @enderror field__input a-field__input" placeholder="Nº Disciplinas Cursadas" value="{{ old('completadas') }}">
+              <input id="completadas" type="text" name="completadas" autofocus class="form-control @error('completadas') is-invalid @enderror field__input a-field__input" placeholder="EX: 8" value="{{ old('completadas') }}">
               <span class="a-field__label-wrap">
                 <span class="a-field__label">Nº Disciplinas Cursadas</span>
               </span>
