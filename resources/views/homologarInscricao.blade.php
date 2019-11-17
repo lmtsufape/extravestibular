@@ -438,10 +438,91 @@
                           <td style="text-align: center">
                             <input onclick=<?php if($tipo == 'drca'){echo("selectCheckDRCA('rejeitado')");}else{ echo("selectCheck('rejeitado')");} ?>  type="radio" name="radioHistoricoEscolar" id="selectHistoricoEscolarRejeitado" >
                           </td>
+<<<<<<< HEAD
+                      </div>
+                  </div>
+                </tr>
+                <tr <?php if($inscricao->historicoEscolar == ''){echo('style="display: none"');} ?> >
+                  <div class="form-group row" >
+                    <td>
+                      <label for="historicoEscolar" >{{ __('Histórico Escolar') }}</label>
+                    </td>
+                      <div class="col-md-6">
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->historicoEscolar])}}" target="_new">Abrir arquivo</a>
+                        </td>
+                        <td style="text-align: center">
+                          <input onclick=<?php if($tipo == 'drca'){echo("selectCheckDRCA('aprovado')");}else{ echo("selectCheck('aprovado')");} ?>  type="radio" name="radioHistoricoEscolar" id="selectHistoricoEscolarAprovado" <?php if($inscricao->historicoEscolar == ''){echo('checked="true"');} ?> >
+                        </td>
+                        <td style="text-align: center">
+                          <input onclick=<?php if($tipo == 'drca'){echo("selectCheckDRCA('rejeitado')");}else{ echo("selectCheck('rejeitado')");} ?>  type="radio" name="radioHistoricoEscolar" id="selectHistoricoEscolarRejeitado" >
+                        </td>
+                      </div>
+                  </div>
+                </tr>
+                <tr <?php if($inscricao->programaDasDisciplinas == ''){echo('style="display: none"');} ?> >
+                  <div class="form-group row" >
+                    <td>
+                      <label for="programaDasDisciplinas" >{{ __('Programa das Disciplinas') }}</label>
+                    </td>
+                      <div class="col-md-6">
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->programaDasDisciplinas])}}" target="_blank">Abir arquivo</a>
+                        </td>
+                        <td style="text-align: center">
+                          <input onclick="selectCheck('aprovado')"  type="radio" name="radioProgramaDasDisciplinas" id="selectProgramaDasDisciplinasAprovado" <?php if($inscricao->programaDasDisciplinas == ''){echo('checked="true"');} ?> >
+                        </td>
+                        <td style="text-align: center">
+                          <input onclick="selectCheck('rejeitado')"  type="radio" name="radioProgramaDasDisciplinas" id="selectProgramaDasDisciplinasRejeitado">
+                        </td>
+                      </div>
+                  </div>
+                </tr>
+                <tr <?php if($inscricao->curriculo == ''){echo('style="display: none"');} ?> >
+                  <div class="form-group row" >
+                    <td>
+                      <label for="curriculo" >{{ __('Matriz / Perfil Curricular') }}</label>
+                    </td>
+                      <div class="col-md-6">
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->curriculo ])}}" target="_blank">Abrir arquivo</a>
+                        </td>
+                        <td style="text-align: center">
+                          <input onclick="selectCheck('aprovado')"  type="radio" name="radioCurriculo" id="selectCurriculoAprovado" <?php if($inscricao->curriculo == ''){echo('checked="true"');} ?> >
+                        </td>
+                        <td style="text-align: center">
+                          <input onclick="selectCheck('rejeitado')"  type="radio" name="radioCurriculo" id="selectCurriculoRejeitado">
+                        </td>
+                      </div>
+                  </div>
+                </tr>
+                <tr <?php if($inscricao->enem == ''){echo('style="display: none"');} ?> >
+                  <div class="form-group row" >
+                    <td>
+                      <label for="enem" >{{ __('ENEM') }}</label>
+                    </td>
+                      <div class="col-md-6">
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->enem ])}}" target="_blank">Abrir arquivo</a>
+                        </td>
+                        <td style="text-align: center">
+                          <input onclick="selectCheck('aprovado')"  type="radio" name="radioEnem" id="selectEnemAprovado" <?php if($inscricao->enem == ''){echo('checked="true"');} ?> >
+                        </td>
+                        <td style="text-align: center">
+                          <input onclick="selectCheck('rejeitado')"  type="radio" name="radioEnem" id="selectEnemRejeitado">
+                        </td>
+                      </div>
+                  </div>
+                </tr>
+
+                @if($tipo == 'homologacao')
+                  <tr>
+=======
                         </div>
                     </div>
                   </tr>
                   <tr <?php if($inscricao->programaDasDisciplinas == ''){echo('style="display: none"');} ?> >
+>>>>>>> fd288bbdfb33b4570626b92b2f371eda9c4cc187
                     <div class="form-group row" >
                       <td>
                         <label for="programaDasDisciplinas" >{{ __('Programa das Disciplinas') }}</label>
@@ -496,6 +577,18 @@
                     </div>
                   </tr>
 
+<<<<<<< HEAD
+            </div><!-- end col-->
+          </div><!-- end row-->
+          <div class="row">
+            <div class="col-sm-12">
+                <form method="POST" action="{{ route('homologarInscricao') }}" enctype="multipart/form-data" id="formHomologacao">
+                  @csrf
+                  <div class="form-group" id="motivoRejeicao" style=" display: none;">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <label id="label" for="motivoRejeicao">{{ __('Justificativa:') }}</label>
+=======
                   @if($tipo == 'homologacao')
                     <tr>
                       <div class="form-group row" >
@@ -517,6 +610,7 @@
                               <input onclick="selectCheck('rejeitado')"  type="radio" name="radioComprovante" id="selectComprovanteRejeitado">
                             </td>
                           </div>
+>>>>>>> fd288bbdfb33b4570626b92b2f371eda9c4cc187
                       </div>
                     </tr>
                   @endif

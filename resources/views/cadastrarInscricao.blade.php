@@ -83,6 +83,7 @@
               <div class="row justify-content-center">
                 <div class="col-sm-10">
                   <div class="custom-file" style="width: 100%;">
+                    <input disabled type="hidden" value="aux" id="comprovante">
                     <input id='elementoComprovante'  onclick="comprovanteSelecionado()"  type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="comprovante" value="{{ old('comprovante') }}">
                     <label style="">Este arquivo deve ser menor do que 2mb</label>
                     @error('comprovante')
@@ -106,15 +107,19 @@
                 <div class="row">
                   <label for="tipoInscricao" class="col-sm-4 col-form-label text-sm-right" >Tipo de Inscrição*:</label>
                   <div class="col-sm-8">
-                    <input onclick="escolherTipo('reintegracao')" 			   type="radio" name="tipoInscricao" > Reintegração <br>
-                    <input onclick="escolherTipo('transferenciaInterna')"  type="radio" name="tipoInscricao" > Transferencia Interna <br>
-                    <input onclick="escolherTipo('transferenciaExterna')"  type="radio" name="tipoInscricao" > Transferencia Externa <br>
-                    <input onclick="escolherTipo('portadorDeDiploma')" 		 type="radio" name="tipoInscricao" > Portador de Diploma <br>
+                    <input <?php if(old('tipo') == 'reintegracao')        {echo('checked');} ?> onclick="escolherTipo('reintegracao')" 			   type="radio" name="tipoInscricao" > Reintegração <br>
+                    <input <?php if(old('tipo') == 'transferenciaInterna'){echo('checked');} ?> onclick="escolherTipo('transferenciaInterna')"  type="radio" name="tipoInscricao" > Transferencia Interna <br>
+                    <input <?php if(old('tipo') == 'transferenciaExterna'){echo('checked');} ?> onclick="escolherTipo('transferenciaExterna')"  type="radio" name="tipoInscricao" > Transferencia Externa <br>
+                    <input <?php if(old('tipo') == 'portadorDeDiploma')   {echo('checked');} ?> onclick="escolherTipo('portadorDeDiploma')" 		 type="radio" name="tipoInscricao" > Portador de Diploma <br>
                   </div>
                 </div>
 
+
+                <input disabled type="hidden" id="antigaOpcao" value="{{old('tipo')}}">
+
                 <div id="historicoEscolar" class="form-group row" style="display: none" >      <!-- Arquivo historico escolar -->
                     <label for="Historico escolar" class="col-sm-4 col-form-label text-md-right">{{ __('Histórico escolar:') }}</label>
+
 
                     <div class="col-sm-6">
                       <div class="custom-file">
@@ -162,7 +167,7 @@
                 </div>
 
                 <div id="curriculo" class="form-group row" style="display: none">              <!-- Arquivo curriculo -->
-                    <label for="Curriculo" class="col-sm-4 col-form-label text-md-right">{{ __('Perfil Currícular:') }}</label>
+                    <label for="Curriculo" class="col-sm-4 col-form-label text-md-right">{{ __('Perfil Curricular:') }}</label>
 
                     <div class="col-sm-6">
                       <div class="custom-file">
@@ -416,31 +421,21 @@
 
 <script type="text/javascript" >
 
-  function confirmar(){
-    if(confirm("Tem certeza que deseja finalizar?") == true) {
-      document.getElementById("formCadastro").submit();
-   }
-  }
-
-  function comprovanteSelecionado(){
-    document.getElementById("formulario").style.display = "";
-  }
-
   function escolherTipo(x) {
-  	if (x == "reintegracao") {
-     document.getElementById("tipo").value = "reintegracao";
-     document.getElementById("historicoEscolar").style.display = "";
-     document.getElementById("declaracaoDeVinculo").style.display = "none";
-     document.getElementById("enem").style.display = "none";
-     document.getElementById("curriculo").style.display = "none";
-     document.getElementById("programaDasDisciplinas").style.display = "none";
+    if (x == "reintegracao") {
+      document.getElementById("tipo").value = "reintegracao";
+      document.getElementById("historicoEscolar").style.display = "";
+      document.getElementById("declaracaoDeVinculo").style.display = "none";
+      document.getElementById("enem").style.display = "none";
+      document.getElementById("curriculo").style.display = "none";
+      document.getElementById("programaDasDisciplinas").style.display = "none";
 
-     if(document.getElementById("comprovante").value == 'isento'){
-       document.getElementById("formulario").style.display = "";
-     }
+      if(document.getElementById("comprovante").value == 'isento'){
+        document.getElementById("formulario").style.display = "";
+      }
 
-  	}
-  	if (x == "transferenciaInterna") {
+    }
+    if (x == "transferenciaInterna") {
       document.getElementById("tipo").value = "transferenciaInterna";
       document.getElementById("historicoEscolar").style.display = "";
       document.getElementById("declaracaoDeVinculo").style.display = "";
@@ -451,8 +446,8 @@
       if(document.getElementById("comprovante").value == 'isento'){
         document.getElementById("formulario").style.display = "";
       }
-  	}
-  	if (x == "transferenciaExterna") {
+    }
+    if (x == "transferenciaExterna") {
       document.getElementById("tipo").value = "transferenciaExterna";
       document.getElementById("historicoEscolar").style.display = "";
       document.getElementById("declaracaoDeVinculo").style.display = "";
@@ -463,8 +458,8 @@
       if(document.getElementById("comprovante").value == 'isento'){
         document.getElementById("formulario").style.display = "";
       }
-  	}
-  	if (x == "portadorDeDiploma") {
+    }
+    if (x == "portadorDeDiploma") {
       document.getElementById("tipo").value = "portadorDeDiploma";
       document.getElementById("historicoEscolar").style.display = "";
       document.getElementById("declaracaoDeVinculo").style.display = "";
@@ -475,7 +470,22 @@
       if(document.getElementById("comprovante").value == 'isento'){
         document.getElementById("formulario").style.display = "";
       }
-  	}
+    }
+  }
+
+  var antigaOpcao = document.getElementById("antigaOpcao");
+  if(antigaOpcao.value != null){
+    escolherTipo(antigaOpcao.value);
+  }
+
+  function confirmar(){
+    if(confirm("Tem certeza que deseja finalizar?") == true) {
+      document.getElementById("formCadastro").submit();
+   }
+  }
+
+  function comprovanteSelecionado(){
+    document.getElementById("formulario").style.display = "";
   }
 
 

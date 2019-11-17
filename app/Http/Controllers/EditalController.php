@@ -35,17 +35,40 @@ class EditalController extends Controller{
       }
 
       public function editarEdital(Request $request){
-        $edital = [];
-        if(is_null($request->editalId)){
-          $edital = Edital::find(Session::get('editalId'));
-        }
-        else{
-          $edital = Edital::find($request->editalId);
-        }
+
+        $edital = Edital::find($request->editalId);
+
         $api = new ApiLmts();
+        $vagas = $edital->vagas;
+        $vagas = explode('!', $vagas);
+        $aux = [];
+        foreach($vagas as $key){
+          if($key != ''){
+            array_push($aux, $key);
+          }
+        }
+        $vagas = $aux;
+        for($i = 0; $i < sizeof($vagas); $i++){
+          $vagas[$i] = explode(':', $vagas[$i]);
+        }
+        $aux =[];
+        for($i = 0; $i < sizeof($vagas); $i++){
+          array_push($aux, ['id' => $vagas[$i][0], 'vagas' => $vagas[$i][1]]);
+        }
+        $vagas = $aux;
+        for($i = 0; $i < sizeof($vagas); $i++){
+          $vagas[$i]['vagas'] = explode('?', $vagas[$i]['vagas']);
+        }
+
+
         $cursos = $api->getCursos();
+
         if(!is_null($cursos)){
-          return view('editarEdital', ['edital' => $edital, 'cursos' => $cursos]);
+          return view('editarEdital', ['edital' => $edital,
+                                       'cursos' => $cursos,
+                                       'vagasDisponiveis' => $vagas,
+                                       'editalId' => $request->editalId,
+                                      ]);
         }
         else{
           return redirect()->route('home')->with('jsAlert', 'Serviço indisponivel no momento.');
@@ -54,10 +77,45 @@ class EditalController extends Controller{
 
       public function cadastroEditarEdital(Request $request){
         $mytime = Carbon::now('America/Recife');
+        $yesterday = Carbon::yesterday('America/Recife');
+        $yesterday = $yesterday->toDateString();
         $mytime = $mytime->toDateString();
-        $validatedData = $request->validate([ 'nome'                    => ['required', 'string', 'max:255'],
-                                              'pdfEdital'               => ['required', 'mimes:pdf','max:20000'],
-                                              'inicioIsencao'           => ['required', 'date', 'after:'.$mytime],
+        // validate para datas nulas
+        if(
+           $request->inicioIsencao == null ||
+           $request->fimIsencao == null ||
+           $request->inicioRecursoIsencao == null ||
+           $request->fimRecursoIsencao == null ||
+           $request->inicioInscricoes == null ||
+           $request->fimInscricoes == null ||
+           $request->inicioRecurso == null ||
+           $request->fimRecurso == null ||
+           $request->inicioRecursoResultado == null ||
+           $request->fimRecursoResultado == null ||
+           $request->resultadoFinal == null
+          ){
+            $validatedData = $request->validate([ 'nome'                    => ['required', 'string', 'max:255', 'unique:editals'],
+                                                  'pdfEdital'               => ['required', 'mimes:pdf', 'max:20000'],
+                                                  'inicioIsencao'           => ['required', 'date', 'after:'.$yesterday],
+                                                  'fimIsencao'              => ['required', 'date'],
+                                                  'inicioRecursoIsencao'    => ['required', 'date'],
+                                                  'fimRecursoIsencao'       => ['required', 'date'],
+                                                  'inicioInscricoes'        => ['required', 'date'],
+                                                  'fimInscricoes'           => ['required', 'date'],
+                                                  'inicioRecurso'           => ['required', 'date'],
+                                                  'fimRecurso'              => ['required', 'date'],
+                                                  'resultado'               => ['required', 'date'],
+                                                  'inicioRecursoResultado'  => ['required', 'date'],
+                                                  'fimRecursoResultado'     => ['required', 'date'],
+                                                  'resultadoFinal'          => ['required', 'date'],
+                                                  'descricao'               => ['required', 'string', 'min:5', 'max:600'],
+                                                  'checkVagasExistentes'    => ['required', 'string'],
+                                                ]);
+        }
+        //validate para data oks
+        $validatedData = $request->validate([ 'nome'                    => ['required', 'string', 'max:255', 'unique:editals'],
+                                              'pdfEdital'               => ['required', 'mimes:pdf', 'max:20000'],
+                                              'inicioIsencao'           => ['required', 'date', 'after:'.$yesterday],
                                               'fimIsencao'              => ['required', 'date', 'after:'.$request->inicioIsencao, 'before:'.$request->inicioRecursoIsencao],
                                               'inicioRecursoIsencao'    => ['required', 'date', 'after:'.$request->fimIsencao, 'before:'.$request->fimRecursoIsencao],
                                               'fimRecursoIsencao'       => ['required', 'date', 'after:'.$request->inicioRecursoIsencao, 'before:'.$request->inicioInscricoes],
@@ -69,14 +127,9 @@ class EditalController extends Controller{
                                               'inicioRecursoResultado'  => ['required', 'date', 'after:'.$request->resultado, 'before:'.$request->fimRecursoResultado],
                                               'fimRecursoResultado'     => ['required', 'date', 'after:'.$request->inicioRecursoResultado, 'before:'.$request->resultadoFinal],
                                               'resultadoFinal'          => ['required', 'date', 'after:'.$request->fimRecursoResultado],
-                                              'descricao'               => ['required', 'string', 'min:5'],
-
+                                              'descricao'               => ['required', 'string', 'min:5', 'max:600'],
+                                              'checkVagasExistentes'    => ['required', 'string'],
                                             ]);
-
-
-
-
-
 
         $dataPublicacao = null;
         $file = $request->pdfEdital;
@@ -92,13 +145,20 @@ class EditalController extends Controller{
             $tarde = 'tarde' . $i;
             $noite = 'noite' . $i;
             $integral = 'integral' . $i;
+            $especial = 'especial' . $i;
             $vagas = $vagas . $request->$aux . ":";
+            $validatedData = $request->validate([$manha => ['nullable', 'integer']]);
             $vagas = $vagas . $request->$manha . "?";
+            $validatedData = $request->validate([$tarde => ['nullable', 'integer']]);
             $vagas = $vagas . $request->$tarde . "?";
+            $validatedData = $request->validate([$noite => ['nullable', 'integer']]);
             $vagas = $vagas . $request->$noite . "?";
+            $validatedData = $request->validate([$integral => ['nullable', 'integer']]);
             $vagas = $vagas . $request->$integral . "?";
-            $vagas = $vagas . $request->especial . "!";
+            $validatedData = $request->validate([$especial => ['nullable', 'integer']]);
+            $vagas = $vagas . $request->$especial . "!";
           }
+
         }
         if($request->publicado == 'sim'){
           $dataPublicacao = $mytime;
@@ -124,7 +184,9 @@ class EditalController extends Controller{
 
         $edital->save();
 
-        return redirect()->route('home')->with('jsAlert', 'Novo edital criado com sucesso.');
+
+        return redirect()->route('home')->with('jsAlert', 'Edital modificado com sucesso.');
+
 
 
       }
@@ -163,7 +225,8 @@ class EditalController extends Controller{
                                                   'inicioRecursoResultado'  => ['required', 'date'],
                                                   'fimRecursoResultado'     => ['required', 'date'],
                                                   'resultadoFinal'          => ['required', 'date'],
-                                                  'descricao'               => ['required', 'string', 'min:5'],
+                                                  'descricao'               => ['required', 'string', 'min:5', 'max:600'],
+                                                  'checkVagasExistentes'    => ['required', 'string'],
                                                 ]);
         }
         //validate para data oks
@@ -181,7 +244,8 @@ class EditalController extends Controller{
                                               'inicioRecursoResultado'  => ['required', 'date', 'after:'.$request->resultado, 'before:'.$request->fimRecursoResultado],
                                               'fimRecursoResultado'     => ['required', 'date', 'after:'.$request->inicioRecursoResultado, 'before:'.$request->resultadoFinal],
                                               'resultadoFinal'          => ['required', 'date', 'after:'.$request->fimRecursoResultado],
-                                              'descricao'               => ['required', 'string', 'min:5'],
+                                              'descricao'               => ['required', 'string', 'min:5', 'max:600'],
+                                              'checkVagasExistentes'    => ['required', 'string'],
                                             ]);
 
         $dataPublicacao = null;
@@ -241,7 +305,7 @@ class EditalController extends Controller{
 
         ]);
 
-       return redirect()->route('home')->with('jsAlert', 'Novo edital criado com sucesso.');
+       return redirect()->route('home')->with('jsAlert', 'Novo edital criado com sucesso!');
 
 
       }
@@ -249,7 +313,7 @@ class EditalController extends Controller{
       public function deleteEdital(Request $request){
         $edital = Edital::find($request->editalId);
         $edital->delete();
-        return redirect()->route('home')->with('jsAlert', 'Edital excluído com sucesso.');
+        return redirect()->route('home')->with('jsAlert', 'Edital excluído com sucesso!');
       }
 
       public function listaEditais(Request $request){
@@ -310,7 +374,7 @@ class EditalController extends Controller{
           $api = new ApiLmts();
           $cursos = $api->getCursos();
           if(is_null($cursos)){
-            return redirect()->route('home')->with('jsAlert', 'Serviço indisponivel no momento.');
+            return redirect()->route('home')->with('jsAlert', 'Serviço indisponível no momento.');
           }
       		$cursosDisponiveis = $edital->vagas;
       		$cursosDisponiveis = explode("!", $cursosDisponiveis);
@@ -425,15 +489,19 @@ class EditalController extends Controller{
       public function gerarClassificacao(Request $request){
         $inscricoes = Inscricao::where('editalId', $request->editalId)
                                  ->orderBy('curso', 'desc')
+                                 ->orderBy('situacao', 'asc')
                                  ->orderBy('nota', 'desc')
                                  ->get();
         $edital = Edital::find($request->editalId);
         $api = new ApiLmts();
         $cursos = $api->getCursos();
+        $mytime = Carbon::now('America/Recife');
+        $mytime = $mytime->toDateString();
         $data = [
                  'inscricoes' => $inscricoes,
                  'edital'     => $edital,
                  'cursos'     => $cursos,
+                 'mytime'     => $mytime,
                 ];
         $pdf = PDF::loadView('classificacao', $data);
         return $pdf->download('classificacao.pdf');
@@ -737,7 +805,7 @@ class EditalController extends Controller{
         $edital->publicado = 'sim';
         $edital->dataPublicacao = $mytime;
         $edital->save();
-        return redirect()->route('home')->with('jsAlert', 'Edital publicado com sucesso.');
+        return redirect()->route('home')->with('jsAlert', 'Edital publicado com sucesso!');
       }
 
 }

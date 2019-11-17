@@ -88,8 +88,8 @@
           </div>
 
           <div class="card-body" style="width: 100%;">
-            <div class="form-group row">      <!-- Arquivo historico escolar -->
-              <label for="Historico escolar" class="col-sm-12">{{ __('Histórico escolar*') }}</label>
+            <div class="form-group row">      <!-- Arquivo Histórico Escolar -->
+              <label for="Histórico Escolar" class="col-sm-12">{{ __('Histórico escolar*') }}</label>
 
               <div class="custom-file col-sm-12">
                 <input id="input" type="file" class="filestyle rounded-pill" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="historicoEscolar">
