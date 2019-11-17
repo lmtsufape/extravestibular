@@ -11,15 +11,17 @@ class LembreteCoordenador extends Mailable
 {
     use Queueable, SerializesModels;
     public $edital;
-    
+    public $diasRestantes;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(String $edital)
+    public function __construct(String $edital, String $diasRestantes)
     {
         $this->edital = $edital;
+        $this->diasRestantes = $diasRestantes;
     }
 
     /**

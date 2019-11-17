@@ -1536,8 +1536,10 @@ class InscricaoController extends Controller
 		$inscricao->conclusaoDoCurso = (String) $conclusaoDoCurso;
 		$nota =  ($conclusaoDoCurso + $coeficienteDeRendimento) / 2;
 		$nota = number_format((float)$nota, 1, '.', '');
-		if($coeficienteDeRendimento < 6){
-			$nota = 0;
+		if($inscricao->tipo == 'transferenciaExterna' || $inscricao->tipo == 'portadorDeDiploma'){
+			if($coeficienteDeRendimento < 6){
+				$nota = 0;
+			}
 		}
 		$inscricao->nota = $nota;
 		$inscricao->save();
@@ -1584,9 +1586,15 @@ class InscricaoController extends Controller
 		$edital = Edital::find($request->editalId);
 		$nomeEdital = explode(".pdf", $edital->nome);
 		$api = new ApiLmts();
+		$mytime = Carbon::now('America/Recife');
+		$mytime = $mytime->toDateString();
+		$mytime = Carbon::parse($mytime);
+		$aux    = Carbon::parse($edital->resultadoFinal);
+
+		$diasRestantes =  $aux->diffInDays($mytime));
 		$emails = $api->getEmailsCoordenadorPorCurso($request->cursoId);
 		foreach ($emails as $key) {
-			Mail::to($key['email'])->send(new LembreteCoordenador($nomeEdital[0]));
+			Mail::to($key['email'])->send(new LembreteCoordenador($nomeEdital[0], $diasRestantes));
 		}
 		return null;
 	}
