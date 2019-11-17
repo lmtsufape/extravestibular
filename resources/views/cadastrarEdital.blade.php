@@ -76,7 +76,7 @@
                 <span class="a-field__label-wrap">
                   <span class="a-field__label">Descrição do edital*</span>
                 </span>
-                <textarea class="form-control @error('descricao') is-invalid @enderror" form="formCadastro" name="descricao" id="taid" style="width:100%" >{{ old('descricao') }}</textarea>
+                <textarea class="form-control @error('descricao') is-invalid @enderror" maxlength="600" form="formCadastro" name="descricao" id="taid" style="width:100%" >{{ old('descricao') }}</textarea>
               </label>
               @error('descricao')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">

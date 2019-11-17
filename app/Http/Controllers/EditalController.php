@@ -108,7 +108,7 @@ class EditalController extends Controller{
                                                   'inicioRecursoResultado'  => ['required', 'date'],
                                                   'fimRecursoResultado'     => ['required', 'date'],
                                                   'resultadoFinal'          => ['required', 'date'],
-                                                  'descricao'               => ['required', 'string', 'min:5'],
+                                                  'descricao'               => ['required', 'string', 'min:5', 'max:600'],
                                                   'checkVagasExistentes'    => ['required', 'string'],
                                                 ]);
         }
@@ -127,7 +127,7 @@ class EditalController extends Controller{
                                               'inicioRecursoResultado'  => ['required', 'date', 'after:'.$request->resultado, 'before:'.$request->fimRecursoResultado],
                                               'fimRecursoResultado'     => ['required', 'date', 'after:'.$request->inicioRecursoResultado, 'before:'.$request->resultadoFinal],
                                               'resultadoFinal'          => ['required', 'date', 'after:'.$request->fimRecursoResultado],
-                                              'descricao'               => ['required', 'string', 'min:5'],
+                                              'descricao'               => ['required', 'string', 'min:5', 'max:600'],
                                               'checkVagasExistentes'    => ['required', 'string'],
                                             ]);
 
@@ -223,7 +223,7 @@ class EditalController extends Controller{
                                                   'inicioRecursoResultado'  => ['required', 'date'],
                                                   'fimRecursoResultado'     => ['required', 'date'],
                                                   'resultadoFinal'          => ['required', 'date'],
-                                                  'descricao'               => ['required', 'string', 'min:5'],
+                                                  'descricao'               => ['required', 'string', 'min:5', 'max:600'],
                                                   'checkVagasExistentes'    => ['required', 'string'],
                                                 ]);
         }
@@ -242,7 +242,7 @@ class EditalController extends Controller{
                                               'inicioRecursoResultado'  => ['required', 'date', 'after:'.$request->resultado, 'before:'.$request->fimRecursoResultado],
                                               'fimRecursoResultado'     => ['required', 'date', 'after:'.$request->inicioRecursoResultado, 'before:'.$request->resultadoFinal],
                                               'resultadoFinal'          => ['required', 'date', 'after:'.$request->fimRecursoResultado],
-                                              'descricao'               => ['required', 'string', 'min:5'],
+                                              'descricao'               => ['required', 'string', 'min:5', 'max:600'],
                                               'checkVagasExistentes'    => ['required', 'string'],
                                             ]);
 
