@@ -135,7 +135,7 @@
             <ul class="nav navbar-nav navbar-right">
               <!-- Logout -->
               <li class="nav-item active">
-                <a class="nav-link"  href="{{ route('logout') }}"
+                <a style="margin-right:50%" class="nav-link"  href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">
                   {{ __('SAIR') }}
@@ -208,7 +208,7 @@
             <ul class="nav navbar-nav navbar-right">
               <!-- Logout -->
               <li class="nav-item active">
-                <a class="nav-link"  href="{{ route('logout') }}"
+                <a style="margin-right:50%" class="nav-link"  href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">
                   {{ __('SAIR') }}

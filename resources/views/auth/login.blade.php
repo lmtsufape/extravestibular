@@ -179,7 +179,7 @@
         <div class="container">
 
           <div id="link" class="col-sm-5">
-            <a class="menu-principal" href="{{route('register')}}" style="color: #1B2E4F; ">Cadastrar</a>
+            <a class="menu-principal" href="{{route('register')}}" style="">Cadastrar</a>
           </div>
 
           <div id="btn" class="col-sm-3" style="margin-top: -25px">
