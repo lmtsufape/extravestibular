@@ -55,7 +55,7 @@
   </div><!-- end row titulo dados de usuário-->
 
   <!-- form -->
-  <form method="POST" action={{ route('cadastroIsencao') }} enctype="multipart/form-data">
+  <form id="formCadastro" method="POST" action="{{ route('cadastroIsencao') }}" enctype="multipart/form-data">
     @csrf
     <!-- row parágrafo -->
     <div class="row">
@@ -536,7 +536,7 @@
         <div class="">
           <input type="hidden" name="editalId" value="{{$editalId}}">
           <input id="tipo" type="hidden" name="tipo" value="">
-            <button id="finalizar" disabled type="submit" class="btn btn-primary btn-primary-lmts">
+            <button id="finalizar" disabled onclick="event.preventDefault();confirmar();" class="btn btn-primary btn-primary-lmts">
                 {{ __('Finalizar') }}
             </button>
 
@@ -548,6 +548,12 @@
 
 
 <script type="text/javascript" >
+
+function confirmar(){
+  if(confirm("Tem certeza que deseja finalizar?") == true) {
+    document.getElementById("formCadastro").submit();
+ }
+}
 
 function checkTrueRenda(){
   if (document.getElementById("checkboxRenda").checked == true ) {

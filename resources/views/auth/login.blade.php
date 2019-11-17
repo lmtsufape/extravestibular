@@ -17,7 +17,7 @@
   }
   @media screen and (max-width: 576px){
     #login{
-      height: 100vh;
+      height: 80vh;
     }
     #btn{
       margin-top: -10%;
@@ -60,7 +60,7 @@
               @if($editaisAbertosFlag)
                 <tr style="background-color: #F7F7F7">
                   <th> Nome</th><?php $editaisAbertosFlag = false;?>
-                  <th> Publicado em </th>
+                  <th style="width:10%"> Publicado em </th>
                   <th> Arquivo </th>
                 </tr>
               @endif

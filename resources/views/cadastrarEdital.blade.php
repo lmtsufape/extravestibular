@@ -347,11 +347,11 @@
               <th> Departamento </th>
               <th> Curso </th>
               <th> Vagas Disponíveis </th>
-              <th > Manhã </th>
-              <th > Tarde </th>
-              <th > Noite </th>
-              <th > Integral </th>
-              <th > Especial </th>
+              <th style="width: 5rem; "> Manhã </th>
+              <th style="width: 5rem; "> Tarde </th>
+              <th style="width: 5rem; "> Noite </th>
+              <th style="width: 5rem; "> Integral </th>
+              <th style="width: 5rem; "> Especial </th>
             </tr>
             <?php //cursos
             // dd($cursos);
@@ -371,7 +371,7 @@
                 {{ $curso['nome'] }}
               </td>
               <td>
-                <input id="checkbox{{$i}}" onclick="vagas({{$i}})" name="checkbox{{$i}}" <?php if(old('checkbox' . $i)){echo('checked');} ?> type="checkbox" value="{{$curso['id']}}">
+                <input style="margin-top:20%" id="checkbox{{$i}}" onclick="vagas({{$i}})" name="checkbox{{$i}}" <?php if(old('checkbox' . $i)){echo('checked');} ?> type="checkbox" value="{{$curso['id']}}">
               </td>
               @if(old('checkbox' . $i))
                 <td>
@@ -492,7 +492,7 @@
     <div class="form-group row justify-content-center" style=""> <!-- button -->
         <div class="">
             <input type="hidden" name="nCursos" value="{{$i}}">
-            <button type="submit" class="btn btn-primary btn-primary-lmts"  style="height: 50px;width: 120px;margin-top: 20px; margin-bottom: 40px;">
+            <button onclick="event.preventDefault();confirmar();" class="btn btn-primary btn-primary-lmts"  style="height: 50px;width: 120px;margin-top: 20px; margin-bottom: 40px;">
                 {{ __('Finalizar') }}
             </button>
 
@@ -576,6 +576,12 @@
       document.getElementById(especial).disabled = "true";
     }
 
+  }
+
+  function confirmar(){
+    if(confirm("Tem certeza que deseja finalizar?") == true) {
+      document.getElementById("formCadastro").submit();
+   }
   }
 
 

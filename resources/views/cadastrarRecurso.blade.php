@@ -67,11 +67,11 @@
   <div class="row">
     <div class="card" style="width:100%; ">
       <div class="card-header">
-        {{ __('Interposição de recurso ao resultado') }}
+        {{ __('Interposição de recurso ao resultado da solicitação de isenção') }}
       </div>
 
       <div class="card-body" >
-        <form method="POST" action="{{ route('cadastroRecurso') }}" enctype="multipart/form-data" id="formRecurso">
+        <form id="formCadastro" method="POST" action="{{ route('cadastroRecurso') }}" enctype="multipart/form-data" id="formRecurso">
           @csrf
           <div class="row">
             <input type="hidden" name="editalId" value="{{$editalId}}" />
@@ -122,7 +122,7 @@
           </div><!-- end label | textarea -->
 
           <div class="row justify-content-center" style="margin-top:20px;">
-            <button type="submit" class="btn btn-primary btn-primary-lmts">
+            <button onclick="event.preventDefault();confirmar();" class="btn btn-primary btn-primary-lmts">
                 {{ __('Finalizar') }}
             </button>
           </div>
@@ -137,6 +137,12 @@
 
 
 <script type="text/javascript" >
+function confirmar(){
+  if(confirm("Tem certeza que deseja finalizar?") == true) {
+    document.getElementById("formCadastro").submit();
+ }
+}
+
 function tipo(x) {
 	if (x == "reintegracao") {
    document.getElementById("tipo").value = "reintegracao";

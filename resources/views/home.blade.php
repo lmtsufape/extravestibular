@@ -57,8 +57,7 @@
               </td>
               <td>
                 <a href="{{ route('apagarEdital') }}"
-                   onclick="event.preventDefault();
-                                 document.getElementById('apagarEdital-form').submit();">
+                   onclick="event.preventDefault();confirmarApagar();">
                    {{ __('Excluir') }}
                 </a>
                 <form id="apagarEdital-form" action="{{ route('apagarEdital') }}" method="post" style="display: none;">
@@ -69,8 +68,7 @@
               </td>
               <td>
                 <a href="{{ route('publicarEdital') }}"
-                   onclick="event.preventDefault();
-                                 document.getElementById('publicarEdital-form').submit();">
+                   onclick="event.preventDefault();confirmarPublicar();">
                    {{ __('Publicar') }}
                 </a>
                 <form id="publicarEdital-form" action="{{ route('publicarEdital') }}" method="post" style="display: none;">
@@ -197,7 +195,19 @@
         alert('{{ session()->get('jsAlert') }}');
     </script>
 @endif
+<script type="text/javascript" >
+
+  function confirmarApagar(){
+    if(confirm("Tem certeza que deseja excluir?") == true) {
+      document.getElementById('apagarEdital-form').submit();
+    }
+  }
+  function confirmarPublicar(){
+    if(confirm("Tem certeza que deseja publicar?") == true) {
+      document.getElementById('publicarEdital-form').submit();
+    }
+  }
 
 
-
+</script>
 @endsection

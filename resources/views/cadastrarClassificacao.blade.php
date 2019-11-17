@@ -57,11 +57,11 @@
 
 <div class="container">
 <div class="row justify-content-center">
-  <form method="POST" action={{ route('cadastroClassificacao') }} enctype="multipart/form-data">
+  <form id="formCadastro" method="POST" action="{{ route('cadastroClassificacao') }}" enctype="multipart/form-data">
     @csrf
   <div class="col-md-8">
     <div class="card" style="width: 50rem">
-      <div class="card-header">{{ __('Classificar Inscrição') }}</div>
+      <div class="card-header">{{ __('Classificar s') }}</div>
       <div class="card-body">
         <div class="form-group row" >
           <table class="table table-ordered table-hover">
@@ -134,7 +134,7 @@
         <div class="form-group row" >
           <div>
             <label for="coeficienteDeRendimento" class="field a-field a-field_a2 page__field">
-                <input id="coeficienteDeRendimento" type="text" name="coeficienteDeRendimento" autofocus class="form-control @error('coeficienteDeRendimento') is-invalid @enderror field__input a-field__input" placeholder="Coeficiente de Rendimento"  value="{{ old('coeficienteDeRendimento') }}">
+                <input id="coeficienteDeRendimento" type="text" name="coeficienteDeRendimento" autofocus class="form-control @error('coeficienteDeRendimento') is-invalid @enderror field__input a-field__input" placeholder="EX: 7.5"  value="{{ old('coeficienteDeRendimento') }}">
                 <span class="a-field__label-wrap">
                   <span class="a-field__label">Coeficiente de Rendimento</span>
                 </span>
@@ -148,6 +148,7 @@
         <div>
           <label for="materias" class="field a-field a-field_a2 page__field" style="margin-left: 20px">
               <input id="materias" type="text" name="materias" autofocus class="form-control @error('materias') is-invalid @enderror field__input a-field__input" placeholder="Total de disciplinas obrigatórias no Curso de origem."  value="{{ old('materias') }}">
+              <!-- <input id="materias" type="text" name="materias" autofocus class="form-control @error('materias') is-invalid @enderror field__input a-field__input" placeholder="EX: 12"  value="{{ old('materias') }}"> -->
               <span class="a-field__label-wrap">
                 <span class="a-field__label">Total de disciplinas obrigatórias no Curso de origem.</span>
               </span>
@@ -161,6 +162,7 @@
         <div>
           <label for="completadas" class="field a-field a-field_a2 page__field" style="margin-left: 20px">
               <input id="completadas" type="text" name="completadas" autofocus class="form-control @error('completadas') is-invalid @enderror field__input a-field__input" placeholder="Total de disciplinas cursadas no Curso de origem" value="{{ old('completadas') }}">
+              <!-- <input id="completadas" type="text" name="completadas" autofocus class="form-control @error('completadas') is-invalid @enderror field__input a-field__input" placeholder="EX: 8" value="{{ old('completadas') }}"> -->
               <span class="a-field__label-wrap">
                 <span class="a-field__label">Total de disciplinas cursadas no Curso de origem</span>
               </span>
@@ -178,7 +180,7 @@
     <div class="form-group row mb-0">
       <div class="col-md-8 offset-md-4" style="margin-top: 10px; margin-left: 20rem">
         <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
-        <button id="buttonFinalizar" type="submit" class="btn btn-primary btn-primary-lmts">
+        <button onclick="event.preventDefault();confirmar();" id="buttonFinalizar" class="btn btn-primary btn-primary-lmts">
           {{ __('Finalizar') }}
         </button>
 
@@ -190,5 +192,11 @@
 
 
 <script type="text/javascript" >
+function confirmar(){
+    if(confirm("Tem certeza que deseja finalizar?") == true) {
+      document.getElementById("formCadastro").submit();
+   }
+  }
+
 </script>
 @endsection

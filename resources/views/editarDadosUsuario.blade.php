@@ -42,7 +42,7 @@
 <!-- container -->
 <div class="container">
   <!-- form -->
-  <form autocomplete="off" method="POST" action="{{ route('cadastroEditarDadosUsuario') }}" enctype="multipart/form-data">
+  <form id="formCadastro" autocomplete="off" method="POST" action="{{ route('cadastroEditarDadosUsuario') }}" enctype="multipart/form-data">
     @csrf
   <!-- row dados de usuário-->
   <div class="row " style="margin-bottom: 20px;">
@@ -332,7 +332,7 @@
 
   <div class="row justify-content-center"> <!-- Button -->
     <div class=>
-      <button type="submit" class="btn btn-primary btn-primary-lmts" >
+      <button onclick="event.preventDefault();confirmar();" class="btn btn-primary btn-primary-lmts" >
         {{ __('Finalizar') }}
       </button>
     </div>
@@ -349,7 +349,11 @@
 <br>
 
 <script type="text/javascript" >
-
+    function confirmar(){
+      if(confirm("Tem certeza que deseja finalizar?") == true) {
+        document.getElementById("formCadastro").submit();
+     }
+    }
 
     function limpa_formulário_cep() {
             //Limpa valores do formulário de cep.

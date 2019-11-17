@@ -132,7 +132,7 @@
       </div>
       <div class="modal-footer">
         <button  type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 50px;margin-top:40px;">Fechar</button>
-        <button type="submit" id="finalizarModal" class="btn btn-primary btn-primary-lmts">
+        <button onclick="event.preventDefault();confirmarErrata();" id="finalizarModal" class="btn btn-primary btn-primary-lmts">
           {{ __('Enviar') }}
         </button>
       </div>
@@ -655,6 +655,14 @@
 @endif
 
 <script type="text/javascript" >
+
+  function confirmarErrata(){
+    if(confirm("Tem certeza que deseja finalizar?") == true) {
+      document.getElementById("formErrata").submit();
+    }
+  }
+
+
   function novaErrata() {
     document.getElementById("novaErrata").style.display = "block";
   }
