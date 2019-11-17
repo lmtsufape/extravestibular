@@ -164,6 +164,7 @@ class EditalController extends Controller{
                                                   'fimRecursoResultado'     => ['required', 'date'],
                                                   'resultadoFinal'          => ['required', 'date'],
                                                   'descricao'               => ['required', 'string', 'min:5'],
+                                                  'checkVagasExistentes'    => ['required', 'string'],
                                                 ]);
         }
         //validate para data oks
@@ -182,6 +183,7 @@ class EditalController extends Controller{
                                               'fimRecursoResultado'     => ['required', 'date', 'after:'.$request->inicioRecursoResultado, 'before:'.$request->resultadoFinal],
                                               'resultadoFinal'          => ['required', 'date', 'after:'.$request->fimRecursoResultado],
                                               'descricao'               => ['required', 'string', 'min:5'],
+                                              'checkVagasExistentes'    => ['required', 'string'],
                                             ]);
 
         $dataPublicacao = null;
@@ -425,15 +427,19 @@ class EditalController extends Controller{
       public function gerarClassificacao(Request $request){
         $inscricoes = Inscricao::where('editalId', $request->editalId)
                                  ->orderBy('curso', 'desc')
+                                 ->orderBy('situacao', 'asc')
                                  ->orderBy('nota', 'desc')
                                  ->get();
         $edital = Edital::find($request->editalId);
         $api = new ApiLmts();
         $cursos = $api->getCursos();
+        $mytime = Carbon::now('America/Recife');
+        $mytime = $mytime->toDateString();
         $data = [
                  'inscricoes' => $inscricoes,
                  'edital'     => $edital,
                  'cursos'     => $cursos,
+                 'mytime'     => $mytime,
                 ];
         $pdf = PDF::loadView('classificacao', $data);
         return $pdf->download('classificacao.pdf');

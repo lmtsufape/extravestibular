@@ -17,7 +17,30 @@
     <link href="{{ asset('css/field-animation.css') }}" rel="stylesheet">
     <link href="{{ asset('css/stylelmts.css') }}" rel="stylesheet">
 
-    <script type="text/javascript">
+    <script type="text/javascript" >
+
+
+      function appendTable(table, nome, cpf, modalidade, curso, campus, colocacao, situacao, turno) {
+          var nomeTable = table;
+          var table = document.getElementById(nomeTable.toString());
+          var row = table.insertRow(-1);
+          var cell0 = row.insertCell(0);
+          var cell1 = row.insertCell(1);
+          var cell2 = row.insertCell(2);
+          var cell3 = row.insertCell(3);
+          var cell4 = row.insertCell(4);
+          var cell5 = row.insertCell(5);
+          var cell6 = row.insertCell(6);
+          var cell7 = row.insertCell(7);
+          cell0.innerHTML = nome;
+          cell1.innerHTML = cpf;
+          cell2.innerHTML = modalidade;
+          cell3.innerHTML = curso;
+          cell4.innerHTML = campus;
+          cell5.innerHTML = colocacao;
+          cell6.innerHTML = situacao;
+          cell7.innerHTML = turno;
+      }
 
     </script>
 
@@ -173,14 +196,19 @@
 
 </head>
 
-<body style="background-color: white">
+<body style="background-color: white; font-family: arial">
   <div class="container-fluid justify-content-left" style="background-color: white">
     <!-- aprovados -->
 
     <!-- timbrado governo -->
-      <div class="row">
+      <div class="row" >
         <div class="col-sm-12">
-          <img style="margin-left:35%" src="{{asset('images/head.jpg')}}"  height="100px" align ="center" >
+          <img style="margin-left:15%" src="{{asset('images/head.jpg')}}"  height="300px" align ="center" >
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-sm-12">
+          <h4 style="font-weight: bold"> Resultado <?php if($edital->resultadoFinal <= $mytime){echo('final');} else{echo('parcial');} ?> do Edital <?php $nomeEdital = explode(".pdf", $edital->nome); echo ($nomeEdital[0]); ?> publicado em {{date_format(date_create($edital->dataPublicacao), 'd/m/y')}}</h4>
         </div>
       </div>
 
@@ -189,6 +217,7 @@
         $i = 1;
         $primeiroCurso = true;
         $cursoAtual = '';
+        $posicoes = [];
       ?>
       <div class="row">
         <div class="col-sm-12">
@@ -200,13 +229,15 @@
                 foreach ($cursos as $key) {
                   if($key['id'] == $inscricao->curso){
                     $nomeCurso = $key['nome'];
-                    $campus = $key['departamento'];
+                    $campus = $key['campus'];
                   }
                 }
               ?>
               <!-- Começar uma nova tabela sempre que achar um curso diferente -->
           		@if($cursoAtual != $inscricao->curso)
+                <!-- <input type="hidden" name="{{$cursoAtual}}" value="$i"> -->
           			<?php
+                  array_push($posicoes, ['cursoId' => $cursoAtual, 'posicao' => $i]);
           				$i = 1;
           				$cursoAtual =  $inscricao->curso;
           			?>
@@ -217,21 +248,20 @@
                 <div class="titulo-tabela-lmts" style="width: 100%; margin-left: 0px; <?php if(!$primeiroCurso){ echo('margin-top: 10%');} ?>">
                   <h4>{{$nomeCurso}}</h4>
                 </div>
-          			<table class="table table-sm table-striped" width="100%" style="font-size: 6px;">
+          			<table id="{{$cursoAtual}}" class="table table-sm table-striped" width="100%" style="font-size: 6px;">
         					<tr>
                     <th style="width: 20%; height: 10px"> NOME </th>
                     <th style="width: 10%; height: 10px"> CPF </th>
                     <th style="width: 10%; height: 10px"> MODALIDADE </th>
-                    <th style="width: 15%; height: 10px"> CURSO PRETENDIDO</th>
+                    <th style="width: 17%; height: 10px"> CURSO PRETENDIDO</th>
                     <th style="width: 15%; height: 10px"> CAMPUS </th>
-                    <th style="width: 5% ; height: 10px"> COLOCAÇÃO </th>
-                    <th style="width: 8% ; height: 10px"> SITUAÇÃO </th>
-                    <th style="width: 7% ; height: 10px"> TURNO </th>
+                    <th align="center" style="width: 5% ; height: 10px"> COLOCAÇÃO </th>
+                    <th align="center" style="width: 6% ; height: 10px"> SITUAÇÃO </th>
+                    <th align="center" style="width: 7% ; height: 10px"> TURNO </th>
         					</tr>
           		@endif
 
-              @if($inscricao->situacao == 'Aprovado')
-          				<tr style="background-color: white">
+          				<tr style="background-color: white; line-height: 3px">
           					<td> {{$inscricao->user->dadosUsuario->nome}} </td>
           					<td> {{$inscricao->user->dadosUsuario->cpf}} </td>
           					<td>
@@ -253,8 +283,8 @@
           					<td> {{$nomeCurso}} </td>
           					<td> {{$campus}} </td>
                     <td align="center"> {{$i}} </t>
-          					<td style="background-color: <?php if($inscricao->situacao == 'Aprovado'){echo ('lightgreen'); }  ?>"> {{$inscricao->situacao}} </td>
-          					<td>
+          					<td align="center" style="background-color: <?php if($inscricao->situacao == 'Aprovado'){echo ('lightgreen'); }else{echo('lightyellow');}  ?>"> {{$inscricao->situacao}} </td>
+          					<td align="center">
                       <?php
                         if($inscricao->turno == 'manhã'){
                           echo('Manhã');
@@ -274,7 +304,6 @@
                       ?>
                     </td>
           				</tr>
-              @endif
 
           	 	<?php
           			$i++;
@@ -286,118 +315,95 @@
         </div>
       </div>
 
-    <!-- Classificaveis -->
-
-    <!-- lista -->
-      <?php
-        $i = 1;
-        $primeiroCurso = true;
-        $cursoAtual = '';
-      ?>
-      <div class="row">
-        <div class="col-sm-12">
-          @foreach ($inscricoes as $inscricao)
-              <!-- Pega o nome e departamento do curso da api-->
-              <?php
+    <!-- classiificaveis -->
+    <div class="row">
+      <div class="col-sm-12">
+        @foreach ($inscricoes as $inscricao)
+            <!-- Pega o nome e departamento do curso da api-->
+            <?php
               $nomeCurso = '';
               $campus = '';
               foreach ($cursos as $key) {
                 if($key['id'] == $inscricao->curso){
                   $nomeCurso = $key['nome'];
-                  $campus = $key['departamento'];
+                  $campus = $key['campus'];
                 }
               }
+            ?>
+            <!-- Começar uma nova tabela sempre que achar um curso diferente -->
+            @if($cursoAtual != $inscricao->curso)
+              <?php
+                $cursoAtual =  $inscricao->curso;
+                foreach ($posicoes as $key) {
+                  if($key['cursoId'] == $cursoAtual){
+                    $i = $key['posicao'];
+                  }
+                }
               ?>
-              <!-- Começar uma nova tabela sempre que achar um curso diferente -->
-              @if($cursoAtual != $inscricao->curso)
-                <?php
-                  $i = 1;
-                  $cursoAtual =  $inscricao->curso;
-                ?>
-                <!-- Não fechar tabela do curso anterior caso seja o primeiro curso -->
-                @if(!$primeiroCurso)
-                  </table>
-                @endif
-                <div class="titulo-tabela-lmts" style="width: 100%; margin-left: 0px; margin-top:10%">
-                  <h4>{{$nomeCurso}}</h4>
-                </div>
-                <table class="table table-sm table-striped" width="100%" style="font-size: 6px;">
-                  <tr>
-                    <th style="width: 20%; height: 10px"> NOME </th>
-                    <th style="width: 10%; height: 10px"> CPF </th>
-                    <th style="width: 10%; height: 10px"> MODALIDADE </th>
-                    <th style="width: 15%; height: 10px"> CURSO PRETENDIDO</th>
-                    <th style="width: 15%; height: 10px"> CAMPUS </th>
-                    <th style="width: 5% ; height: 10px"> COLOCAÇÃO </th>
-                    <th style="width: 8% ; height: 10px"> SITUAÇÃO </th>
-                    <th style="width: 7% ; height: 10px"> TURNO </th>
-                  </tr>
-              @endif
-              @if($inscricao->situacao == 'Classificável')
-                  <tr style="background-color: white">
-                    <td> {{$inscricao->user->dadosUsuario->nome}} </td>
-                    <td> {{$inscricao->user->dadosUsuario->cpf}} </td>
-                    <td>
-                     <?php
-                      if($inscricao->tipo == 'reintegracao'){
-                        echo('Reintegração');
-                      }
-                      elseif($inscricao->tipo == 'transferenciaInterna'){
-                        echo('Transferência Interna');
-                      }
-                      elseif($inscricao->tipo == 'transferenciaExterna'){
-                        echo('Transferência Externa');
-                      }
-                      elseif($inscricao->tipo == 'portadorDeDiploma'){
-                        echo('Portador de Diploma');
-                      }
-                     ?>
-                    </td>
-                    <td> {{$nomeCurso}} </td>
-                    <td> {{$campus}} </td>
-                    <td align="center"> {{$i}} </t>
-                    <td style="background-color: <?php if($inscricao->situacao == 'Aprovado'){echo ('lightgreen'); } ?>"> {{$inscricao->situacao}} </td>
-                    <td>
-                       <?php
-                         if($inscricao->turno == 'manhã'){
-                           echo('Manhã');
-                         }
-                         else if($inscricao->turno == 'tarde'){
-                           echo('Tarde');
-                         }
-                         else if($inscricao->turno == 'noite'){
-                           echo('Noite');
-                         }
-                         else if($inscricao->turno == 'integral'){
-                           echo('Integral');
-                         }
-                         else if($inscricao->turno == 'especial'){
-                           echo('Especial');
-                         }
-                       ?>
-                    </td>
-                  </tr>
-                <?php $i++; ?>
-              @endif
+            @endif
+
+            @if($inscricao->situacao == 'Classificável')
+              <?php
+               $modalidade = 'a';
+               if($inscricao->tipo == 'reintegracao'){
+                 $modalidade = 'Reintegração';
+               }
+               elseif($inscricao->tipo == 'transferenciaInterna'){
+                 $modalidade = 'Transferência Interna';
+               }
+               elseif($inscricao->tipo == 'transferenciaExterna'){
+                 $modalidade = 'Transferência Externa';
+               }
+               elseif($inscricao->tipo == 'portadorDeDiploma'){
+                 $modalidade = 'Portador de Diploma';
+               }
+
+               $turno = 'a';
+               if($inscricao->turno == 'manhã'){
+                 $turno = 'Manhã';
+               }
+               else if($inscricao->turno == 'tarde'){
+                 $turno = 'Tarde';
+               }
+               else if($inscricao->turno == 'noite'){
+                 $turno = 'Noite';
+               }
+               else if($inscricao->turno == 'integral'){
+                 $turno = 'Integral';
+               }
+               else if($inscricao->turno == 'especial'){
+                 $turno = 'Especial';
+               }
+              ?>
+
+              <!-- <script type="text/javascript" >
+
+                appendTable("{{$cursoAtual}}","{{$inscricao->user->dadosUsuario->nome}}","{{$inscricao->user->dadosUsuario->cpf}}","{{$modalidade}}","{{$nomeCurso}}","{{$campus}}","{{$i}}","{{$inscricao->situacao}}","{{$turno}}");
+
+              </script> -->
 
               <?php
+                $i++;
                 $primeiroCurso = false;
               ?>
-          @endforeach
-          <!-- Fechar ultima tabela -->
-          </table>
-        </div>
+            @endif
+        @endforeach
+        <!-- Fechar ultima tabela -->
+        </table>
       </div>
+    </div>
+
 
     <!-- footer -->
       <div class="row">
         <div class="col-sm-12">
-          <img style="margin-left:33%; margin-top:20px" src="{{asset('images/foot.jpg')}}"  height="30px" align ="center" >
+          <img style="margin-left:15%; margin-top:20px" src="{{asset('images/foot.jpg')}}"  height="100px" align ="center" >
         </div>
       </div>
 
 
   </div>
 </body>
+
 
 </html>

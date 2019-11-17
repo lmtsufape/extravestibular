@@ -340,6 +340,14 @@
         <div class="card-header">
           Vagas por Curso
         </div>
+        @error('checkVagasExistentes')
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Um edital precisa de pelo menos um curso com vagas disponíveis.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        @enderror
         <div class="card-body">
           <table class="table table-responsive table-ordered table-hover justify-content-center" style="width:100%">
             <tr>
@@ -374,6 +382,9 @@
                 <input style="margin-top:20%" id="checkbox{{$i}}" onclick="vagas({{$i}})" name="checkbox{{$i}}" <?php if(old('checkbox' . $i)){echo('checked');} ?> type="checkbox" value="{{$curso['id']}}">
               </td>
               @if(old('checkbox' . $i))
+                <script type="text/javascript" >
+                  existemVagas();
+                </script>
                 <td>
                   <label for="manha{{$i}}" class="field a-field a-field_a2 page__field" id="labelManha{{$i}}" style=" margin-top: 10px" >
                     <input value="{{ old('manha' . $i) }}" id="manha{{$i}}" type="text" name="manha{{$i}}" class="field__input a-field__input" style="width: 5rem; " placeholder="Manhã">
@@ -492,6 +503,7 @@
     <div class="form-group row justify-content-center" style=""> <!-- button -->
         <div class="">
             <input type="hidden" name="nCursos" value="{{$i}}">
+            <input id="checkVagasExistentes" type="hidden" name="checkVagasExistentes" value="">
             <button onclick="event.preventDefault();confirmar();" class="btn btn-primary btn-primary-lmts"  style="height: 50px;width: 120px;margin-top: 20px; margin-bottom: 40px;">
                 {{ __('Finalizar') }}
             </button>
@@ -503,7 +515,14 @@
 @endsection
 
 <script type="text/javascript" >
+
+  function existemVagas(){
+    document.getElementById("checkVagasExistentes").value = "ok";
+  }
+
+
   function vagas(x) {
+    existemVagas();
     var str = "labelManha";
     var labelManha = str.concat(x);
     var str = "labelTarde";
