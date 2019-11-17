@@ -379,7 +379,7 @@
 
           <div class="row justify-content-center" style="margin-top:20px">
 
-              <input onclick="selectCheck('aprovado')" id="selectDadosDoCursoAprovado" type="radio" name="radioDadosDoCurso" value="aprovado"> <h4 style="margin-left:1%">Aprovado</h4>
+              <input onclick="selectCheck('aprovado')" id="selectDadosDoCursoAprovado" type="radio" name="radioDadosDoCurso" value="aprovado"> <h4 style="margin-left:1%">Aceito</h4>
 
               <input style="margin-left:3%" id="radioIndeferida" @error('motivoRejeicao') checked @enderror onclick="selectCheck('rejeitado')" id="selectDadosDoCursoRejeitado"  type="radio" name="radioDadosDoCurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>
 
@@ -402,7 +402,7 @@
                   <tr>
                     <th>Requisito</th>
                     <th>Dados</th>
-                    <th style="text-align: center">Aprovado</th>
+                    <th style="text-align: center">Aceito</th>
                     <th style="text-align: center">Rejeitado</th>
                   </tr>
                   <tr <?php if($inscricao->declaracaoDeVinculo == ''){echo('style="display: none"');} ?> >

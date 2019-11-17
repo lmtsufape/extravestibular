@@ -66,17 +66,14 @@
 
   @media screen and (max-width:576px){
     #label{
-<<<<<<< HEAD
-      margin-left: 0%;
-    }
-=======
+
       margin-left: 5%;
     }
     #paragrafo{
     margin-left: -8%;
     margin-right: -5%;
   }
->>>>>>> fd288bbdfb33b4570626b92b2f371eda9c4cc187
+
   }
 </style>
 <div class="container">
@@ -84,7 +81,7 @@
     @csrf
       <div class="row justify-content-center">
         <div class="card">
-          <div class="card-header">{{ __('Homologar recurso') }}</div>
+          <div class="card-header">{{ __('Avaliar recurso') }}</div>
           <div class="card-body">
             {{-- row --}}
             <div class="row justify-content-center" id="paragrafo">
@@ -100,13 +97,15 @@
                       <strong>
                         @if($recurso->tipo == 'taxa')
                           da solicitação de Isenção da Taxa de Inscrição
+                        @elseif($recurso->tipo == 'resultado')
+                          da seleção para ingresso extra para UFRPE <strong>{{$recurso->curso}}</strong>
                         @else
                           da seleção para ingresso extra para UFRPE <strong>{{$recurso->curso}}</strong>
                         @endif
 
                       </strong>
                       do edital <strong>{{$recurso->edital->nome}}</strong>,
-                      pelos seguintes motivos: <strong>{{$recurso->motivo}}</strong>.
+                      pelos seguintes motivos: <br><br><strong>{{$recurso->motivo}}</strong>.
 
                     </h3>
                   </p>
@@ -115,18 +114,16 @@
                   {{-- aprovado rejeitado --}}
                   <div class="row justify-content-center">
 
-                      <input onclick="selectCheck('aprovado')" type="radio" name="radioRecurso" value="aprovado"> <h4 style="margin-left:1%">Aprovado</h4>
+                      <input onclick="selectCheck('aprovado')" type="radio" name="radioRecurso" value="aprovado"> <h4 style="margin-left:1%">Aceito</h4>
 
                       <input style="margin-left:1%" onclick="selectCheck('rejeitado')" type="radio" name="radioRecurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>
                   </div>
 
 
                   <div class="form-group" id="motivoRejeicao" style=" display: none;">
-<<<<<<< HEAD
+
                     <label for="motivoRejeicao" class="col-md-4 col-form-label text-md-right"  style="margin-left: -60px;">{{ __('Justificativa:') }}</label>
-=======
-                    <label for="motivoRejeicao"  id="label">{{ __('Motivos da Rejeição:') }}</label>
->>>>>>> fd288bbdfb33b4570626b92b2f371eda9c4cc187
+
 
                     <div class="col-md-12">
                       <textarea class=" form-control @error('motivoRejeicao') is-invalid @enderror" form ="formHomologacao" name="motivoRejeicao" id="taid" style="width:100%" ></textarea>
@@ -141,37 +138,6 @@
                 </div>
             </div>{{-- end row --}}
 
-<<<<<<< HEAD
-            <div class="row justify-content-center">
-
-                  <input onclick="selectCheck('aprovado')" type="radio" name="radioRecurso" value="aprovado"> <h4 style="margin-left:1%">Aprovado</h4>
-
-                  <input style="margin-left:1%" onclick="selectCheck('rejeitado')" type="radio" name="radioRecurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>
-            </div>
-
-
-            <div class="row">
-              <label id="label" for="motivoRejeicao" >{{ __('Justificativa:') }}</label>
-            </div>
-            <div class="row justify-content-center">
-
-                <textarea form ="formHomologacao" name="motivoRejeicao" id="taid" cols="115" ></textarea>
-
-            </div>
-=======
-
-
-            {{-- <div id="motivoRejeicao" style=" display: block;">
-
-              <div class="row">
-                <label id="label" for="motivoRejeicao" >{{ __('Justificativa da Rejeição:') }}</label>
-              </div>
-              <div class="row justify-content-center">
-
-                <textarea form ="formHomologacao" name="motivoRejeicao" id="taid" cols="115" ></textarea>
-              </div>
-            </div> --}}
->>>>>>> fd288bbdfb33b4570626b92b2f371eda9c4cc187
 
         </div><!-- end card-body-->
       </div><!-- end card-->

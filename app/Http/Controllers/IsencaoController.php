@@ -127,7 +127,7 @@ class IsencaoController extends Controller
     $isencao->parecer = $request->resultado;
     $isencao->motivoRejeicao = $request->motivoRejeicao;
     $isencao->save();
-    return redirect()->route('home')->with('jsAlert', 'Isenção homologada com sucesso!');
+    return redirect()->route('home')->with('jsAlert', 'Resposta a isenção cadastrada com sucesso!');
 
   }
 

@@ -67,7 +67,7 @@
   <div class="row">
     <div class="card" style="width:100%; ">
       <div class="card-header">
-        {{ __('Interposição de recurso ao resultado da solicitação de isenção') }}
+        {{ __('Interposição de recurso') }}
       </div>
 
       <div class="card-body" >

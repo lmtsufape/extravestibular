@@ -85,7 +85,7 @@ class RecursoController extends Controller
 
     public function homologarRecurso(Request $request){
       if($request->radioRecurso == 'rejeitado'){
-        $validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);        
+        $validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);
       }
       $recurso = Recurso::find($request->recursoId);
       $recurso->homologado = $request->radioRecurso;
@@ -97,7 +97,7 @@ class RecursoController extends Controller
         $inscricao->nota = null;
         $inscricao->save();
       }
-      return redirect()->route('home')->with('jsAlert', 'Recurso ao resultado avaliado com sucesso!');
+      return redirect()->route('home')->with('jsAlert', 'Resposta ao recurso cadastrada com sucesso!');
 
     }
 
