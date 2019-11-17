@@ -353,7 +353,7 @@
       </div><!-- end row-->
       <div class="row justify-content-center" style="margin-top:20px;">
           <input type="hidden" name="isencaoId" value="{{$isencao->id}}">
-          <button id="buttonFinalizar" type="submit" class="btn btn-primary btn-primary-lmts" >
+          <button id="buttonFinalizar" onclick="event.preventDefault();confirmar();" class="btn btn-primary btn-primary-lmts" >
             {{ __('Finalizar') }}
           </button>
       </div>
@@ -364,6 +364,13 @@
 
 
 <script type="text/javascript" >
+
+function confirmar(){
+      if(confirm("Tem certeza que deseja finalizar?") == true) {
+        document.getElementById("formHomologacao").submit();
+     }
+    }
+
 function selectCheck(x){
   if(x == 'rejeitado'){
     document.getElementById("motivoRejeicao").style.display = ''

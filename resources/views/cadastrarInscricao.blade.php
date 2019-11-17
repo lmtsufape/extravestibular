@@ -54,7 +54,7 @@
 
 
 <div class="container">
-  <form autocomplete="off" method="POST" action="{{ route('cadastroInscricao') }}" enctype="multipart/form-data">
+  <form id="formCadastro" autocomplete="off" method="POST" action="{{ route('cadastroInscricao') }}" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="editalId" value="{{$editalId}}" />
     <input id="tipo" type="hidden" name="tipo" value=""/>
@@ -403,7 +403,7 @@
     </div>
       <div class="row justify-content-center">
           <div class="">
-            <button id="button" type="submit" class="btn btn-primary btn-primary-lmts" style="margin-top:20px;">
+            <button id="button" onclick="event.preventDefault();confirmar();" class="btn btn-primary btn-primary-lmts" style="margin-top:20px;">
               {{ __('Finalizar') }}
             </button>
           </div>
@@ -415,6 +415,12 @@
 </div>
 
 <script type="text/javascript" >
+
+  function confirmar(){
+    if(confirm("Tem certeza que deseja finalizar?") == true) {
+      document.getElementById("formCadastro").submit();
+   }
+  }
 
   function comprovanteSelecionado(){
     document.getElementById("formulario").style.display = "";

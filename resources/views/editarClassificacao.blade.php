@@ -68,9 +68,9 @@
   </div>
 
 
-  <form method="POST" action="{{ route('cadastroClassificacao') }}" enctype="multipart/form-data">
+  <form id="formCadastro" method="POST" action="{{ route('cadastroClassificacao') }}" enctype="multipart/form-data">
     @csrf
-  
+
     <div class="row justify-content-center">
       <div class="card">
         <div class="card-header">Requisitos</div>
@@ -202,16 +202,16 @@
                 </span>
                 @enderror
               </div>
-              
+
           </div><!-- end row -->
 
-          
+
 
         </div><!-- card-body -->
       </div><!-- end card-->
       <div class="row justify-content-center" style="margin-top:20px">
           <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
-          <button id="buttonFinalizar" type="submit" class="btn btn-primary btn-primary-lmts">
+          <button id="buttonFinalizar" onclick="event.preventDefault();confirmar();" class="btn btn-primary btn-primary-lmts">
             {{ __('Finalizar') }}
           </button>
       </div>
@@ -223,5 +223,10 @@
 
 
 <script type="text/javascript" >
+function confirmar(){
+  if(confirm("Tem certeza que deseja finalizar?") == true) {
+    document.getElementById("formCadastro").submit();
+ }
+}
 </script>
 @endsection

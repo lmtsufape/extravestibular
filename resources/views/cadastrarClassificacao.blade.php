@@ -57,7 +57,7 @@
 
 <div class="container">
 <div class="row justify-content-center">
-  <form method="POST" action={{ route('cadastroClassificacao') }} enctype="multipart/form-data">
+  <form id="formCadastro" method="POST" action="{{ route('cadastroClassificacao') }}" enctype="multipart/form-data">
     @csrf
   <div class="col-md-8">
     <div class="card" style="width: 50rem">
@@ -178,7 +178,7 @@
     <div class="form-group row mb-0">
       <div class="col-md-8 offset-md-4" style="margin-top: 10px; margin-left: 20rem">
         <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
-        <button id="buttonFinalizar" type="submit" class="btn btn-primary btn-primary-lmts">
+        <button onclick="event.preventDefault();confirmar();" id="buttonFinalizar" class="btn btn-primary btn-primary-lmts">
           {{ __('Finalizar') }}
         </button>
 
@@ -190,5 +190,11 @@
 
 
 <script type="text/javascript" >
+function confirmar(){
+    if(confirm("Tem certeza que deseja finalizar?") == true) {
+      document.getElementById("formCadastro").submit();
+   }
+  }
+
 </script>
 @endsection

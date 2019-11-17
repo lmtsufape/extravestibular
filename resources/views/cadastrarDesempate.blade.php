@@ -40,7 +40,7 @@
 @section('content')
 
 <div class="container" >
-  <form method="POST" action="{{route('cadastroDesempate')}}">
+  <form id="formCadastro" method="POST" action="{{route('cadastroDesempate')}}">
     @csrf
   <div class="column">
     <div class="card" style="width: 90rem; margin-left: -10rem;margin-top: 1rem"> <!-- head -->
@@ -439,7 +439,7 @@
       <input type="hidden" name="idsEmpatados" value="<?php foreach ($idsEmpatados as $key) {
         echo($key . ',');
       } ?>">
-      <button id="buttonFinalizar" disabled type="submit" class="btn btn-primary btn-primary-lmts">
+      <button id="buttonFinalizar" disabled onclick="event.preventDefault();confirmar();" class="btn btn-primary btn-primary-lmts">
         {{ __('Finalizar') }}
       </button>
 
@@ -498,11 +498,19 @@
     }
 
   }
+
   function changeHeaderColor(x){
     var str = "header";
     str = str.concat(x);
     document.getElementById(str).className = "card-header";
   }
+
+  function confirmar(){
+    if(confirm("Tem certeza que deseja finalizar?") == true) {
+      document.getElementById("formCadastro").submit();
+   }
+  }
+
 </script>
 
 @endsection

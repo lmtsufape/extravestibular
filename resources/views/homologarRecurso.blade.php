@@ -67,7 +67,7 @@
   @media screen and (max-width:576px){
     #label{
       margin-left: 5%;
-    } 
+    }
     #paragrafo{
     margin-left: -8%;
     margin-right: -5%;
@@ -75,7 +75,7 @@
   }
 </style>
 <div class="container">
-  <form method="POST" action={{ route('homologarRecurso') }} enctype="multipart/form-data" id="formHomologacao">
+  <form method="POST" action="{{ route('homologarRecurso') }}" enctype="multipart/form-data" id="formHomologacao">
     @csrf
       <div class="row justify-content-center">
         <div class="card">
@@ -86,35 +86,35 @@
               <div class="col-sm-12">
                   <p>
                     <h3 style="text-align:justify;text-justify:inter-word">
-        
-                    
-                      À Preg, 
+
+
+                      À Preg,
                       <br><br>
                       Eu, <strong>{{$recurso->user->dadosUsuario->nome}}</strong>, CPF <strong>{{$recurso->user->dadosUsuario->cpf}}</strong>,
                       interponho recurso ao resultado
                       <strong>
                         @if($recurso->tipo == 'taxa')
-                          da solicitação de Isenção da Taxa de Inscrição 
+                          da solicitação de Isenção da Taxa de Inscrição
                         @else
-                          da seleção para ingresso extra para UFRPE <strong>{{$recurso->curso}}</strong> 
+                          da seleção para ingresso extra para UFRPE <strong>{{$recurso->curso}}</strong>
                         @endif
-                        
+
                       </strong>
-                      do edital <strong>{{$recurso->edital->nome}}</strong>,              
+                      do edital <strong>{{$recurso->edital->nome}}</strong>,
                       pelos seguintes motivos: <strong>{{$recurso->motivo}}</strong>.
-                      
+
                     </h3>
                   </p>
 
 
                   {{-- aprovado rejeitado --}}
                   <div class="row justify-content-center">
-              
+
                       <input onclick="selectCheck('aprovado')" type="radio" name="radioRecurso" value="aprovado"> <h4 style="margin-left:1%">Aprovado</h4>
-                      
-                      <input style="margin-left:1%" onclick="selectCheck('rejeitado')" type="radio" name="radioRecurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>    
+
+                      <input style="margin-left:1%" onclick="selectCheck('rejeitado')" type="radio" name="radioRecurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>
                   </div>
-                  
+
 
                   <div class="form-group" id="motivoRejeicao" style=" display: none;">
                     <label for="motivoRejeicao"  id="label">{{ __('Motivos da Rejeição:') }}</label>
@@ -131,8 +131,8 @@
                   </div>
                 </div>
             </div>{{-- end row --}}
-            
-            
+
+
 
             {{-- <div id="motivoRejeicao" style=" display: block;">
 
@@ -140,26 +140,33 @@
                 <label id="label" for="motivoRejeicao" >{{ __('Justificativa da Rejeição:') }}</label>
               </div>
               <div class="row justify-content-center">
-                
+
                 <textarea form ="formHomologacao" name="motivoRejeicao" id="taid" cols="115" ></textarea>
-              </div> 
+              </div>
             </div> --}}
-            
+
         </div><!-- end card-body-->
       </div><!-- end card-->
 
       <div class="row justify-content-center" style="margin-top:20px">
           <input type="hidden" name="recursoId" value="{{$recurso->id}}">
-          <button id="buttonFinalizar" type="submit" class="btn  btn-primary btn-primary-lmts" >
+          <button id="buttonFinalizar" onclick="event.preventDefault();confirmar();" class="btn  btn-primary btn-primary-lmts" >
             {{ __('Finalizar') }}
           </button>
       </div>
     </form>
   </div>
 
-  
+
 
 <script type="text/javascript" >
+
+function confirmar(){
+      if(confirm("Tem certeza que deseja finalizar?") == true) {
+        document.getElementById("formHomologacao").submit();
+     }
+    }
+
 function selectCheck(x){
   if(x == 'rejeitado'){
     document.getElementById("motivoRejeicao").style.display = ''

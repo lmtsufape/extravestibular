@@ -47,7 +47,7 @@
 
 </style>
 <div class="container">
-  <form autocomplete="off" method="POST" action="{{ route('cadastroDadosUsuario') }}" enctype="multipart/form-data">
+  <form id="formCadastro" autocomplete="off" method="POST" action="{{ route('cadastroDadosUsuario') }}" enctype="multipart/form-data">
       @csrf
 
     <!-- row dados usuário -->
@@ -347,7 +347,7 @@
     </div><!-- end row endereco -->
 
     <div class="row justify-content-center">
-      <button type="submit" class="btn btn-primary btn-primary-lmts" >
+      <button onclick="event.preventDefault();confirmar();" class="btn btn-primary btn-primary-lmts" >
         {{ __('Finalizar') }}
       </button>
     </div>
@@ -536,6 +536,12 @@
 
     autocomplete(document.getElementById("uf"), estados);
     autocomplete(document.getElementById("orgaoEmissorUF"), estados);
+
+    function confirmar(){
+      if(confirm("Tem certeza que deseja finalizar?") == true) {
+        document.getElementById("formCadastro").submit();
+     }
+    }
 
 
 </script>
