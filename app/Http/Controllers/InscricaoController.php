@@ -29,47 +29,89 @@ class InscricaoController extends Controller
 
 	public function cadastroInscricao(Request $request)
 	  	 {
+				 	// dd($request);
 				  $isencao = Isencao::where('editalId', $request->editalId)->where('usuarioId', Auth::user()->id)->where('parecer', 'deferida')->first();
 
 					if(empty($isencao)){
+						$validatedData = $request->validate(['comprovante' 					  => ['required', 'mimes:pdf','max:20000']]);
+					}
+
+					if($request->tipo == 'reintegracao'){
 						 $validatedData = $request->validate([ 'declaracaoDeVinculo' 		=> ['nullable', 'mimes:pdf','max:20000'],
-						 																			 'comprovante' 					  => ['required', 'mimes:pdf','max:20000'],
+																									 'comprovante' 					  => ['required', 'mimes:pdf','max:20000'],
 																									 'historicoEscolar' 			=> ['required', 'mimes:pdf','max:20000'],
-																							     'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:20000'],
-																							     'curriculo' 				 			=> ['nullable', 'mimes:pdf','max:20000'],
-																							     'enem' 						 			=> ['nullable', 'mimes:pdf','max:20000'],
+																									 'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:20000'],
+																									 'curriculo' 				 			=> ['nullable', 'mimes:pdf','max:20000'],
+																									 'enem' 						 			=> ['nullable', 'mimes:pdf','max:20000'],
 																									 'endereco'          			=> ['required', 'string', 'max:255'],
 																									 'num'               			=> ['required', 'integer'],
 																									 'bairro'            			=> ['required', 'max:255'],
 																									 'cidade'            			=> ['required', 'max:255'],
 																									 'uf'                			=> ['required', 'size:2'],
 																									 'polo'									  => ['nullable', 'string', 'max:255'],
-																		 					  	 'turno'								  => ['required', 'string', 'max:255'],
-																		 					   	 'cursoDeOrigem'					=> ['required', 'string', 'max:255'],
-																		 					   	 'instituicaoDeOrigem'    => ['required', 'string', 'max:255'],
-																		 					   	 'naturezaDaIes'					=> ['required', 'string', 'max:255'],
-																								 ]);
-					 }
-
-					else{
-						 $validatedData = $request->validate([ 'declaracaoDeVinculo' 		=> ['nullable', 'mimes:pdf','max:20000'],
-																									'historicoEscolar' 				=> ['required', 'mimes:pdf','max:20000'],
-																									'programaDasDisciplinas' 	=> ['nullable', 'mimes:pdf','max:20000'],
-																									'curriculo' 				 			=> ['nullable', 'mimes:pdf','max:20000'],
-																									'enem' 						 				=> ['nullable', 'mimes:pdf','max:20000'],
-																									'endereco'          			=> ['required', 'string', 'max:255'],
-																									'num'               			=> ['required', 'integer'],
-																									'bairro'            			=> ['required', 'max:255'],
-																									'cidade'            			=> ['required', 'max:255'],
-																									'uf'                			=> ['required', 'size:2'],
-																									'polo'									  => ['nullable', 'string', 'max:255'],
-																									'turno'								  	=> ['required', 'string', 'max:255'],
-																									'cursoDeOrigem'						=> ['required', 'string', 'max:255'],
-																									'instituicaoDeOrigem'    	=> ['required', 'string', 'max:255'],
-																									'naturezaDaIes'						=> ['required', 'string', 'max:255'],
-
-																								]);
-					 }
+																									 'turno'								  => ['required', 'string', 'max:255'],
+																									 'cursoDeOrigem'					=> ['required', 'string', 'max:255'],
+																									 'instituicaoDeOrigem'    => ['required', 'string', 'max:255'],
+																									 'naturezaDaIes'					=> ['required', 'string', 'max:255'],
+					 ]);
+				  }
+ 					elseif ($request->tipo == 'transferenciaInterna') {
+ 						$validatedData = $request->validate([ 'declaracaoDeVinculo' 		=> ['required', 'mimes:pdf','max:20000'],
+ 																									'comprovante' 					  => ['required', 'mimes:pdf','max:20000'],
+ 																									'historicoEscolar' 			=> ['required', 'mimes:pdf','max:20000'],
+ 																									'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:20000'],
+ 																									'curriculo' 				 			=> ['nullable', 'mimes:pdf','max:20000'],
+ 																									'enem' 						 			=> ['nullable', 'mimes:pdf','max:20000'],
+ 																									'endereco'          			=> ['required', 'string', 'max:255'],
+ 																									'num'               			=> ['required', 'integer'],
+ 																									'bairro'            			=> ['required', 'max:255'],
+ 																									'cidade'            			=> ['required', 'max:255'],
+ 																									'uf'                			=> ['required', 'size:2'],
+ 																									'polo'									  => ['nullable', 'string', 'max:255'],
+ 																									'turno'								  => ['required', 'string', 'max:255'],
+ 																									'cursoDeOrigem'					=> ['required', 'string', 'max:255'],
+ 																									'instituicaoDeOrigem'    => ['required', 'string', 'max:255'],
+ 																									'naturezaDaIes'					=> ['required', 'string', 'max:255'],
+ 																								]);
+ 					}
+ 					elseif ($request->tipo == 'transferenciaExterna') {
+ 						$validatedData = $request->validate([ 'declaracaoDeVinculo' 		=> ['required', 'mimes:pdf','max:20000'],
+ 																									'comprovante' 					  => ['required', 'mimes:pdf','max:20000'],
+ 																									'historicoEscolar' 			=> ['required', 'mimes:pdf','max:20000'],
+ 																									'programaDasDisciplinas' => ['required', 'mimes:pdf','max:20000'],
+ 																									'curriculo' 				 			=> ['required', 'mimes:pdf','max:20000'],
+ 																									'enem' 						 			=> ['nullable', 'mimes:pdf','max:20000'],
+ 																									'endereco'          			=> ['required', 'string', 'max:255'],
+ 																									'num'               			=> ['required', 'integer'],
+ 																									'bairro'            			=> ['required', 'max:255'],
+ 																									'cidade'            			=> ['required', 'max:255'],
+ 																									'uf'                			=> ['required', 'size:2'],
+ 																									'polo'									  => ['nullable', 'string', 'max:255'],
+ 																									'turno'								  => ['required', 'string', 'max:255'],
+ 																									'cursoDeOrigem'					=> ['required', 'string', 'max:255'],
+ 																									'instituicaoDeOrigem'    => ['required', 'string', 'max:255'],
+ 																									'naturezaDaIes'					=> ['required', 'string', 'max:255'],
+ 																								]);
+ 					}
+ 					elseif ($request->tipo == 'portadorDeDiploma') {
+ 						$validatedData = $request->validate([ 'declaracaoDeVinculo' 		=> ['required', 'mimes:pdf','max:20000'],
+ 																									'comprovante' 					  => ['required', 'mimes:pdf','max:20000'],
+ 																									'historicoEscolar' 			=> ['required', 'mimes:pdf','max:20000'],
+ 																									'programaDasDisciplinas' => ['required', 'mimes:pdf','max:20000'],
+ 																									'curriculo' 				 			=> ['nullable', 'mimes:pdf','max:20000'],
+ 																									'enem' 						 			=> ['required', 'mimes:pdf','max:20000'],
+ 																									'endereco'          			=> ['required', 'string', 'max:255'],
+ 																									'num'               			=> ['required', 'integer'],
+ 																									'bairro'            			=> ['required', 'max:255'],
+ 																									'cidade'            			=> ['required', 'max:255'],
+ 																									'uf'                			=> ['required', 'size:2'],
+ 																									'polo'									  => ['nullable', 'string', 'max:255'],
+ 																									'turno'								  => ['required', 'string', 'max:255'],
+ 																									'cursoDeOrigem'					=> ['required', 'string', 'max:255'],
+ 																									'instituicaoDeOrigem'    => ['required', 'string', 'max:255'],
+ 																									'naturezaDaIes'					=> ['required', 'string', 'max:255'],
+ 																								]);
+ 					}
 
 					$mytime = Carbon::now('America/Recife');
  	        $mytime = $mytime->toDateString();
