@@ -296,6 +296,7 @@
                       <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
                           <b style="font-weight: bold">Motivo</b>
                           <br>
+                          
                             {{$inscricao->motivoRejeicao}}
                       </span>
                     </a> -->
@@ -306,8 +307,10 @@
               @else
                 <div class="hover-popup-lmts">
                   <a style="font-weight: bold; color: red">Indeferido</a> <br>
+                  
                   <a style="font-weight: bold">Justificativa:</a> <br>
-                  <div style="display:flex; "> {{$inscricao->motivoRejeicao}} </div>
+                  <div class="justify-content-center" style="display:flex;"> {{$inscricao->motivoRejeicao}} </div>
+
                   <!-- <a style="color:white">
                     <img src="{{asset('images/iconAjuda.png')}}" style="width: 20px"/>
                     <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >

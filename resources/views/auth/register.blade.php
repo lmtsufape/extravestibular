@@ -195,7 +195,7 @@
           <!-- botoes -->
           <div id="margin" class="row">
             <div class="offset-sm-1" style="margin-top:5px">
-                <a id="link" class="menu-principal" href="{{  route('login')}}" style="color: #1B2E4F;">Voltar</a>
+                <a id="link" class="menu-principal" href="{{  route('login')}}" style="">Voltar</a>
             </div>
 
             <div class="offset-sm-4" style="">
