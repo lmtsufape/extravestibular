@@ -59,12 +59,19 @@
   #label{
     margin-left: 1.5%;
   }
-
+  #paragrafo{
+    margin-left: 1%;
+    margin-right: 1%;
+  }
 
   @media screen and (max-width:576px){
     #label{
       margin-left: 5%;
     } 
+    #paragrafo{
+    margin-left: -8%;
+    margin-right: -5%;
+  }
   }
 </style>
 <div class="container">
@@ -75,9 +82,9 @@
           <div class="card-header">{{ __('Homologar recurso') }}</div>
           <div class="card-body">
             {{-- row --}}
-            <div class="row justify-content-center">
+            <div class="row justify-content-center" id="paragrafo">
               <div class="col-sm-12">
-                  <p >
+                  <p>
                     <h3 style="text-align:justify;text-justify:inter-word">
         
                     
@@ -99,6 +106,7 @@
                     </h3>
                   </p>
 
+
                   {{-- aprovado rejeitado --}}
                   <div class="row justify-content-center">
               
@@ -107,6 +115,7 @@
                       <input style="margin-left:1%" onclick="selectCheck('rejeitado')" type="radio" name="radioRecurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>    
                   </div>
                   
+
                   <div class="form-group" id="motivoRejeicao" style=" display: none;">
                     <label for="motivoRejeicao"  id="label">{{ __('Motivos da Rejeição:') }}</label>
 
