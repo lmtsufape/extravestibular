@@ -37,11 +37,11 @@
         }
         .select2-container--bootstrap .select2-results__option {
             color: #555;
-            background-color: #fff;
+            background-color: white;
         }
         .select2-container--bootstrap .select2-results__option--highlighted[aria-selected] {
             color: #fff;
-            background-color: #bbb;
+            background-color: white;
         }
         .select2-container--bootstrap .select2-selection--single {
             height: 36px;
@@ -56,37 +56,8 @@
           border: 1px solid #ddd;
           margin-bottom: 12px;
         }
-        .navbar-default .navbar-nav > .dropdown > a:focus, .navbar-default .navbar-nav > .dropdown > a:hover {
-            color: #fff;
-            background-color: #1B2E4F;
-        }
-        .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
-            color: #000;
-            background-color: #fff;
-        }
-        .navbar-default .navbar-nav > a, .navbar-default .navbar-nav > li > a {
-            color: #fff;
-        }
-        .navbar-default .navbar-nav > li > a:hover, {
-            color: #fff;
-            background-color: #fff;
-        }
-        .dropdown-menu > li > a:hover {
-            background-color: #cccccc;
-        }
-        .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-text {
-            color: #000;
-            background-color: #fff;
-        }
-        #footer-brasil {
-           background: none repeat scroll 0% 0% #1B2E4F;
-           min-width: 100%;
-           position: absolute;
-           bottom: 0;
-           width: 100%;
 
 
-        }
         #page-container {
           position: relative;
           min-height: 100vh;
@@ -202,9 +173,18 @@
 
 </head>
 
-<body>
-  <div class="container-fluid justify-content-left">
+<body style="background-color: white">
+  <div class="container-fluid justify-content-left" style="background-color: white">
     <!-- aprovados -->
+
+    <!-- timbrado governo -->
+      <div class="row">
+        <div class="col-sm-12">
+          <img style="margin-left:35%" src="{{asset('images/head.jpg')}}"  height="100px" align ="center" >
+        </div>
+      </div>
+
+    <!-- lista -->
       <?php
         $i = 1;
         $primeiroCurso = true;
@@ -244,14 +224,14 @@
                     <th style="width: 10%; height: 10px"> MODALIDADE </th>
                     <th style="width: 15%; height: 10px"> CURSO PRETENDIDO</th>
                     <th style="width: 15%; height: 10px"> CAMPUS </th>
-                    <th style="width: 5% ; height: 10px"> Col. </th>
+                    <th style="width: 5% ; height: 10px"> COLOCAÇÃO </th>
                     <th style="width: 8% ; height: 10px"> SITUAÇÃO </th>
                     <th style="width: 7% ; height: 10px"> TURNO </th>
         					</tr>
           		@endif
 
               @if($inscricao->situacao == 'Aprovado')
-          				<tr>
+          				<tr style="background-color: white">
           					<td> {{$inscricao->user->dadosUsuario->nome}} </td>
           					<td> {{$inscricao->user->dadosUsuario->cpf}} </td>
           					<td>
@@ -272,9 +252,27 @@
                     </td>
           					<td> {{$nomeCurso}} </td>
           					<td> {{$campus}} </td>
-                    <td> {{$i}} </t>
-          					<td style="background-color: <?php if($inscricao->situacao == 'Aprovado'){echo ('lightgreen'); } else{ echo('lightyellow');} ?>"> {{$inscricao->situacao}} </td>
-          					<td> {{$inscricao->turno}} </td>
+                    <td align="center"> {{$i}} </t>
+          					<td style="background-color: <?php if($inscricao->situacao == 'Aprovado'){echo ('lightgreen'); }  ?>"> {{$inscricao->situacao}} </td>
+          					<td>
+                      <?php
+                        if($inscricao->turno == 'manhã'){
+                          echo('Manhã');
+                        }
+                        else if($inscricao->turno == 'tarde'){
+                          echo('Tarde');
+                        }
+                        else if($inscricao->turno == 'noite'){
+                          echo('Noite');
+                        }
+                        else if($inscricao->turno == 'integral'){
+                          echo('Integral');
+                        }
+                        else if($inscricao->turno == 'especial'){
+                          echo('Especial');
+                        }
+                      ?>
+                    </td>
           				</tr>
               @endif
 
@@ -287,88 +285,118 @@
           </table>
         </div>
       </div>
-    <!-- Classificaveis -->
-    <?php
-      $i = 1;
-      $primeiroCurso = true;
-      $cursoAtual = '';
-    ?>
-    <div class="row">
-      <div class="col-sm-12">
-        @foreach ($inscricoes as $inscricao)
-            <!-- Pega o nome e departamento do curso da api-->
-            <?php
-            $nomeCurso = '';
-            $campus = '';
-            foreach ($cursos as $key) {
-              if($key['id'] == $inscricao->curso){
-                $nomeCurso = $key['nome'];
-                $campus = $key['departamento'];
-              }
-            }
-            ?>
-            <!-- Começar uma nova tabela sempre que achar um curso diferente -->
-            @if($cursoAtual != $inscricao->curso)
-              <?php
-                $i = 1;
-                $cursoAtual =  $inscricao->curso;
-              ?>
-              <!-- Não fechar tabela do curso anterior caso seja o primeiro curso -->
-              @if(!$primeiroCurso)
-                </table>
-              @endif
-              <div class="titulo-tabela-lmts" style="width: 100%; margin-left: 0px; <?php if(!$primeiroCurso){ echo('margin-top: 10%');} else{echo('margin-top: 100vh');} ?>">
-                <h4>{{$nomeCurso}}</h4>
-              </div>
-              <table class="table table-sm table-striped" width="100%" style="font-size: 6px;">
-                <tr>
-                  <th style="width: 20%; height: 10px"> NOME </th>
-                  <th style="width: 10%; height: 10px"> CPF </th>
-                  <th style="width: 10%; height: 10px"> MODALIDADE </th>
-                  <th style="width: 15%; height: 10px"> CURSO PRETENDIDO</th>
-                  <th style="width: 15%; height: 10px"> CAMPUS </th>
-                  <th style="width: 5% ; height: 10px"> Col. </th>
-                  <th style="width: 8% ; height: 10px"> SITUAÇÃO </th>
-                  <th style="width: 7% ; height: 10px"> TURNO </th>
-                </tr>
-            @endif
-            @if($inscricao->situacao == 'Classificável')
-                <tr>
-                  <td> {{$inscricao->user->dadosUsuario->nome}} </td>
-                  <td> {{$inscricao->user->dadosUsuario->cpf}} </td>
-                  <td>
-                   <?php
-                    if($inscricao->tipo == 'reintegracao'){
-                      echo('Reintegração');
-                    }
-                    elseif($inscricao->tipo == 'transferenciaInterna'){
-                      echo('Transferência Interna');
-                    }
-                    elseif($inscricao->tipo == 'transferenciaExterna'){
-                      echo('Transferência Externa');
-                    }
-                    elseif($inscricao->tipo == 'portadorDeDiploma'){
-                      echo('Portador de Diploma');
-                    }
-                   ?>
-                  </td>
-                  <td> {{$nomeCurso}} </td>
-                  <td> {{$campus}} </td>
-                  <td> {{$i}} </t>
-                  <td style="background-color: <?php if($inscricao->situacao == 'Aprovado'){echo ('lightgreen'); } else{ echo('lightyellow');} ?>"> {{$inscricao->situacao}} </td>
-                  <td> {{$inscricao->turno}} </td>
-                </tr>
-              <?php $i++; ?>
-            @endif
 
-            <?php
-              $primeiroCurso = false;
-            ?>
-        @endforeach
-        <!-- Fechar ultima tabela -->
-        </table>
+    <!-- Classificaveis -->
+
+    <!-- lista -->
+      <?php
+        $i = 1;
+        $primeiroCurso = true;
+        $cursoAtual = '';
+      ?>
+      <div class="row">
+        <div class="col-sm-12">
+          @foreach ($inscricoes as $inscricao)
+              <!-- Pega o nome e departamento do curso da api-->
+              <?php
+              $nomeCurso = '';
+              $campus = '';
+              foreach ($cursos as $key) {
+                if($key['id'] == $inscricao->curso){
+                  $nomeCurso = $key['nome'];
+                  $campus = $key['departamento'];
+                }
+              }
+              ?>
+              <!-- Começar uma nova tabela sempre que achar um curso diferente -->
+              @if($cursoAtual != $inscricao->curso)
+                <?php
+                  $i = 1;
+                  $cursoAtual =  $inscricao->curso;
+                ?>
+                <!-- Não fechar tabela do curso anterior caso seja o primeiro curso -->
+                @if(!$primeiroCurso)
+                  </table>
+                @endif
+                <div class="titulo-tabela-lmts" style="width: 100%; margin-left: 0px; margin-top:10%">
+                  <h4>{{$nomeCurso}}</h4>
+                </div>
+                <table class="table table-sm table-striped" width="100%" style="font-size: 6px;">
+                  <tr>
+                    <th style="width: 20%; height: 10px"> NOME </th>
+                    <th style="width: 10%; height: 10px"> CPF </th>
+                    <th style="width: 10%; height: 10px"> MODALIDADE </th>
+                    <th style="width: 15%; height: 10px"> CURSO PRETENDIDO</th>
+                    <th style="width: 15%; height: 10px"> CAMPUS </th>
+                    <th style="width: 5% ; height: 10px"> COLOCAÇÃO </th>
+                    <th style="width: 8% ; height: 10px"> SITUAÇÃO </th>
+                    <th style="width: 7% ; height: 10px"> TURNO </th>
+                  </tr>
+              @endif
+              @if($inscricao->situacao == 'Classificável')
+                  <tr style="background-color: white">
+                    <td> {{$inscricao->user->dadosUsuario->nome}} </td>
+                    <td> {{$inscricao->user->dadosUsuario->cpf}} </td>
+                    <td>
+                     <?php
+                      if($inscricao->tipo == 'reintegracao'){
+                        echo('Reintegração');
+                      }
+                      elseif($inscricao->tipo == 'transferenciaInterna'){
+                        echo('Transferência Interna');
+                      }
+                      elseif($inscricao->tipo == 'transferenciaExterna'){
+                        echo('Transferência Externa');
+                      }
+                      elseif($inscricao->tipo == 'portadorDeDiploma'){
+                        echo('Portador de Diploma');
+                      }
+                     ?>
+                    </td>
+                    <td> {{$nomeCurso}} </td>
+                    <td> {{$campus}} </td>
+                    <td align="center"> {{$i}} </t>
+                    <td style="background-color: <?php if($inscricao->situacao == 'Aprovado'){echo ('lightgreen'); } ?>"> {{$inscricao->situacao}} </td>
+                    <td>
+                       <?php
+                         if($inscricao->turno == 'manhã'){
+                           echo('Manhã');
+                         }
+                         else if($inscricao->turno == 'tarde'){
+                           echo('Tarde');
+                         }
+                         else if($inscricao->turno == 'noite'){
+                           echo('Noite');
+                         }
+                         else if($inscricao->turno == 'integral'){
+                           echo('Integral');
+                         }
+                         else if($inscricao->turno == 'especial'){
+                           echo('Especial');
+                         }
+                       ?>
+                    </td>
+                  </tr>
+                <?php $i++; ?>
+              @endif
+
+              <?php
+                $primeiroCurso = false;
+              ?>
+          @endforeach
+          <!-- Fechar ultima tabela -->
+          </table>
+        </div>
       </div>
-    </div>
+
+    <!-- footer -->
+      <div class="row">
+        <div class="col-sm-12">
+          <img style="margin-left:33%; margin-top:20px" src="{{asset('images/foot.jpg')}}"  height="30px" align ="center" >
+        </div>
+      </div>
+
+
   </div>
 </body>
 
