@@ -85,7 +85,7 @@ class IsencaoController extends Controller
         'parecer'                          => 'nao',
 
       ]);
-      return redirect()->route('home')->with('jsAlert', 'Isenção requerida com sucesso.');
+      return redirect()->route('home')->with('jsAlert', 'Isenção requerida com sucesso!');
     }
     Isencao::create([
       'usuarioId'                        => Auth::user()->id,
@@ -109,7 +109,7 @@ class IsencaoController extends Controller
       'parecer'                          => 'nao',
 
     ]);
-    return redirect()->route('home')->with('jsAlert', 'Isenção requerida com sucesso.');
+    return redirect()->route('home')->with('jsAlert', 'Isenção requerida com sucesso!');
   }
 
   public function isencaoEscolhida(Request $request){
@@ -127,7 +127,7 @@ class IsencaoController extends Controller
     $isencao->parecer = $request->resultado;
     $isencao->motivoRejeicao = $request->motivoRejeicao;
     $isencao->save();
-    return redirect()->route('home')->with('jsAlert', 'Isenção homologada com sucesso.');
+    return redirect()->route('home')->with('jsAlert', 'Isenção homologada com sucesso!');
 
   }
 

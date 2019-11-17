@@ -410,14 +410,11 @@
 
 
 <script type="text/javascript" >
-
   function confirmar(){
       if(confirm("Tem certeza que deseja finalizar?") == true) {
         document.getElementById("formHomologacao").submit();
      }
     }
-
-
   function checkFinalizar(){
     if(document.getElementById("selectHistoricoEscolarAprovado").checked || document.getElementById("selectHistoricoEscolarRejeitado").checked){
       if(document.getElementById("selectDeclaracaoDeVinculoAprovado").checked || document.getElementById("selectDeclaracaoDeVinculoRejeitado").checked){
@@ -435,7 +432,6 @@
       }
     }
   }
-
   function checkAprovado(){
     if(document.getElementById("selectHistoricoEscolarAprovado").checked){
       if(document.getElementById("selectDeclaracaoDeVinculoAprovado").checked){
@@ -455,7 +451,6 @@
       }
     }
   }
-
   function selectCheckDRCA(x){
     if(x == 'rejeitado'){
       document.getElementById("motivoRejeicao").style.display = '';
@@ -469,7 +464,6 @@
       document.getElementById("buttonFinalizar").disabled = false;
     }
   }
-
   function selectCheck(x){
     if(x == 'rejeitado'){
       document.getElementById("motivoRejeicao").style.display = '';
@@ -478,20 +472,13 @@
     checkAprovado();
     checkFinalizar();
   }
-
   function checkIndeferido(){
     if(document.getElementById("radioIndeferida").checked == true){
       document.getElementById("motivoRejeicao").style.display = '';
       document.getElementById("radioIndeferida").checked = false;
-
     }
   }
-
   checkIndeferido();
-
-
-
-
 </script>
 
 @endsection

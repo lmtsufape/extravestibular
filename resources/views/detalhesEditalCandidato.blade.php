@@ -154,7 +154,7 @@
           @else
             <div class="hover-popup-lmts">
               <a style="font-weight: bold; color: red">Indeferido</a> <br>
-              <a style="font-weight: bold">Motivo:</a> <br>
+              <a style="font-weight: bold">Justificativa:</a> <br>
               <a> {{$isencao->motivoRejeicao}} </a>
               <!-- <a style="color:white">
                 <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
@@ -221,7 +221,7 @@
             @else
             <div class="hover-popup-lmts">
               <a style="font-weight: bold; color: red">Indeferido</a> <br>
-              <a style="font-weight: bold">Motivo:</a> <br>
+              <a style="font-weight: bold">Justificativa:</a> <br>
               <a> {{$recursoIsencao->motivoRejeicao}} </a>
               <!-- <a style="color:white">
                 <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}"/>
@@ -289,7 +289,7 @@
                 @else
                   <div>
                     <a style="font-weight: bold; color: red">Indeferido</a> <br>
-                    <a style="font-weight: bold">Motivo:</a> <br>
+                    <a style="font-weight: bold">Justificativa:</a> <br>
                     <a> {{$inscricao->motivoRejeicao}} </a>
                     <!-- <a style="color:white">
                       <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
@@ -306,7 +306,7 @@
               @else
                 <div class="hover-popup-lmts">
                   <a style="font-weight: bold; color: red">Indeferido</a> <br>
-                  <a style="font-weight: bold">Motivo:</a> <br>
+                  <a style="font-weight: bold">Justificativa:</a> <br>
                   <div style="display:flex; "> {{$inscricao->motivoRejeicao}} </div>
                   <!-- <a style="color:white">
                     <img src="{{asset('images/iconAjuda.png')}}" style="width: 20px"/>
@@ -373,7 +373,7 @@
                @else
                  <div class="hover-popup-lmts">
                    <a style="font-weight: bold; color: red">Indeferido</a> <br>
-                   <a style="font-weight: bold">Motivo:</a> <br>
+                   <a style="font-weight: bold">Justificativa:</a> <br>
                    <a> {{$inscricao->motivoRejeicao}} </a>
                    <!-- <a style="color:white">
                      <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
@@ -442,7 +442,7 @@
             @else
             <div class="hover-popup-lmts">
               <a style="font-weight: bold; color: red">Indeferido</a> <br>
-              <a style="font-weight: bold">Motivo:</a> <br>
+              <a style="font-weight: bold">Justificativa:</a> <br>
               <a> {{$recursoResultado->motivoRejeicao}} </a>
               <!-- <a style="color:white">
                 <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}"/>

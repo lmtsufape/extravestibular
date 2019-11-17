@@ -84,7 +84,7 @@
                                 </tr>
                                 <tr <?php if($key->historicoEscolar == ''){echo('style="display: none"');} ?> >
                                   <td>
-                                    <label for="historicoEscolar" >{{ __('Historico Escolar') }}</label>
+                                    <label for="historicoEscolar" >{{ __('Histórico Escolar') }}</label>
                                   </td>
                                   <td>
                                     <a href="{{ route('download', ['file' => $key->historicoEscolar])}}" target="_new">Abrir arquivo</a>
@@ -160,7 +160,7 @@
                                 </tr>
                                 <tr <?php if($key->historicoEscolar == ''){echo('style="display: none"');} ?> >
                                   <td>
-                                    <label for="historicoEscolar" >{{ __('Historico Escolar') }}</label>
+                                    <label for="historicoEscolar" >{{ __('Histórico Escolar') }}</label>
                                   </td>
                                   <td>
                                     <a href="{{ route('download', ['file' => $key->historicoEscolar])}}" target="_new">Abrir arquivo</a>
@@ -236,7 +236,7 @@
                                 </tr>
                                 <tr <?php if($key->historicoEscolar == ''){echo('style="display: none"');} ?> >
                                   <td>
-                                    <label for="historicoEscolar" >{{ __('Historico Escolar') }}</label>
+                                    <label for="historicoEscolar" >{{ __('Histórico Escolar') }}</label>
                                   </td>
                                   <td>
                                     <a href="{{ route('download', ['file' => $key->historicoEscolar])}}" target="_new">Abrir arquivo</a>
@@ -313,7 +313,7 @@
                                 </tr>
                                 <tr <?php if($key->historicoEscolar == ''){echo('style="display: none"');} ?> >
                                   <td>
-                                    <label for="historicoEscolar" >{{ __('Historico Escolar') }}</label>
+                                    <label for="historicoEscolar" >{{ __('Histórico Escolar') }}</label>
                                   </td>
                                   <td>
                                     <a href="{{ route('download', ['file' => $key->historicoEscolar])}}" target="_new">Abrir arquivo</a>
@@ -390,7 +390,7 @@
                                 </tr>
                                 <tr <?php if($key->historicoEscolar == ''){echo('style="display: none"');} ?> >
                                   <td>
-                                    <label for="historicoEscolar" >{{ __('Historico Escolar') }}</label>
+                                    <label for="historicoEscolar" >{{ __('Histórico Escolar') }}</label>
                                   </td>
                                   <td>
                                     <a href="{{ route('download', ['file' => $key->historicoEscolar])}}" target="_new">Abrir arquivo</a>

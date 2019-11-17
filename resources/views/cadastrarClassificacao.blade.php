@@ -84,7 +84,7 @@
             <tr <?php if($inscricao->historicoEscolar == ''){echo('style="display: none"');} ?> >
               <div class="form-group row" >
                 <td>
-                  <label for="historicoEscolar" >{{ __('Historico Escolar') }}</label>
+                  <label for="historicoEscolar" >{{ __('Histórico Escolar') }}</label>
                 </td>
                   <div class="col-md-6">
                     <td>
@@ -147,9 +147,10 @@
           </div>
         <div>
           <label for="materias" class="field a-field a-field_a2 page__field" style="margin-left: 20px">
-              <input id="materias" type="text" name="materias" autofocus class="form-control @error('materias') is-invalid @enderror field__input a-field__input" placeholder="EX: 12"  value="{{ old('materias') }}">
+              <input id="materias" type="text" name="materias" autofocus class="form-control @error('materias') is-invalid @enderror field__input a-field__input" placeholder="Total de disciplinas obrigatórias no Curso de origem."  value="{{ old('materias') }}">
+              <!-- <input id="materias" type="text" name="materias" autofocus class="form-control @error('materias') is-invalid @enderror field__input a-field__input" placeholder="EX: 12"  value="{{ old('materias') }}"> -->
               <span class="a-field__label-wrap">
-                <span class="a-field__label">Nº Disciplinas Obrigatórias</span>
+                <span class="a-field__label">Total de disciplinas obrigatórias no Curso de origem.</span>
               </span>
           </label>
           @error('materias')
@@ -160,9 +161,10 @@
         </div>
         <div>
           <label for="completadas" class="field a-field a-field_a2 page__field" style="margin-left: 20px">
-              <input id="completadas" type="text" name="completadas" autofocus class="form-control @error('completadas') is-invalid @enderror field__input a-field__input" placeholder="EX: 8" value="{{ old('completadas') }}">
+              <input id="completadas" type="text" name="completadas" autofocus class="form-control @error('completadas') is-invalid @enderror field__input a-field__input" placeholder="Total de disciplinas cursadas no Curso de origem" value="{{ old('completadas') }}">
+              <!-- <input id="completadas" type="text" name="completadas" autofocus class="form-control @error('completadas') is-invalid @enderror field__input a-field__input" placeholder="EX: 8" value="{{ old('completadas') }}"> -->
               <span class="a-field__label-wrap">
-                <span class="a-field__label">Nº Disciplinas Cursadas</span>
+                <span class="a-field__label">Total de disciplinas cursadas no Curso de origem</span>
               </span>
           </label>
           @error('completadas')

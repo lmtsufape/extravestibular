@@ -114,10 +114,12 @@
                   </div>
                 </div>
 
+
                 <input disabled type="hidden" id="antigaOpcao" value="{{old('tipo')}}">
 
                 <div id="historicoEscolar" class="form-group row" style="display: none" >      <!-- Arquivo historico escolar -->
                     <label for="Historico escolar" class="col-sm-4 col-form-label text-md-right">{{ __('Histórico escolar:') }}</label>
+
 
                     <div class="col-sm-6">
                       <div class="custom-file">
@@ -165,7 +167,7 @@
                 </div>
 
                 <div id="curriculo" class="form-group row" style="display: none">              <!-- Arquivo curriculo -->
-                    <label for="Curriculo" class="col-sm-4 col-form-label text-md-right">{{ __('Perfil Currícular:') }}</label>
+                    <label for="Curriculo" class="col-sm-4 col-form-label text-md-right">{{ __('Perfil Curricular:') }}</label>
 
                     <div class="col-sm-6">
                       <div class="custom-file">
