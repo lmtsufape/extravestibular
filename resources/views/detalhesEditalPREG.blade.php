@@ -212,7 +212,7 @@
 <div class="row justify-content-center" style="width: 97%; padding-top: 1%;">  <!-- opções -->
   <div class="card text-center" style="border-radius: 20px;height: 22.5rem;">    <!-- Isenção -->
     <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-      <h2 class="h2" style="font-weight: bold">Isenção</h2>
+      <h2 class="h2" style="font-weight: bold">Avaliar solicitações <br>de isenção</h2>
 
     </div>
     <div class="card-header d-flex justify-content-center">
@@ -244,14 +244,14 @@
       </h4>
       <h5>
 
-          Total de Inscrições: <a style="font-weight: bold">{{($isencoesHomologadas + $isencoesNaoHomologadas)}}</a>
+        Total de solicitações: <a style="font-weight: bold">{{($isencoesHomologadas + $isencoesNaoHomologadas)}}</a>
 
       </h5>
         <h5>
-          Inscrições homologadas: <a style="font-weight: bold">{{$isencoesHomologadas}}</a>
+          Solicitações homologadas: <a style="font-weight: bold">{{$isencoesHomologadas}}</a>
         </h5>
         <h5>
-          Inscrições em espera: <a style="font-weight: bold">{{$isencoesNaoHomologadas}}</a>
+          Solicitações em espera: <a style="font-weight: bold">{{$isencoesNaoHomologadas}}</a>
         </h5>
     </div>
 
@@ -284,7 +284,7 @@
   <div class="card text-center " style="border-radius: 20px;height: 22.5rem;"> <!-- Recurso Isenção -->
 
     <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-      <h2 class="h2" style="font-weight: bold">Recurso Isenção</h2>
+      <h2 class="h2" style="font-weight: bold">Avaliar recursos as <br>solicitações de isenção</h2>
 
     </div>
 
@@ -317,14 +317,14 @@
       </h4>
       <h5>
 
-          Total de Inscrições: <a style="font-weight: bold">{{($recursosTaxaHomologados + $recursosTaxaNaoHomologados)}}</a>
+        Total de recursos: <a style="font-weight: bold">{{($recursosTaxaHomologados + $recursosTaxaNaoHomologados)}}</a>
 
       </h5>
         <h5>
-          Inscrições homologadas: <a style="font-weight: bold">{{$recursosTaxaHomologados}}</a>
+          Recursos avaliados: <a style="font-weight: bold">{{$recursosTaxaHomologados}}</a>
         </h5>
         <h5>
-          Inscrições em espera: <a style="font-weight: bold">{{$recursosTaxaNaoHomologados}}</a>
+          Recursos em espera: <a style="font-weight: bold">{{$recursosTaxaNaoHomologados}}</a>
         </h5>
     </div>
 
@@ -358,7 +358,7 @@
   <div class="card text-center " style="border-radius: 20px;height: 22.5rem;">   <!-- Inscrição -->
 
        <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-           <h2 class="h2" style="font-weight: bold">Inscrição</h2>
+           <h2 class="h2" style="font-weight: bold">Homologar recursos <br>às inscrições</h2>
 
        </div>
        <div class="card-header d-flex justify-content-center">
@@ -390,14 +390,14 @@
          </h4>
          <h5>
 
-             Total de Inscrições: <a style="font-weight: bold">{{($inscricoesHomologadas + $inscricoesNaoHomologadas)}}</a>
+          Total de inscrições: <a style="font-weight: bold">{{($inscricoesHomologadas + $inscricoesNaoHomologadas)}}</a>
 
          </h5>
            <h5>
-             Inscrições homologadas: <a style="font-weight: bold">{{$inscricoesHomologadas}}</a>
+            Inscrições avaliadas: <a style="font-weight: bold">{{$inscricoesHomologadas}}</a>
            </h5>
            <h5>
-             Inscrições em espera: <a style="font-weight: bold">{{$inscricoesNaoHomologadas}}</a>
+            Inscrições em espera: <a style="font-weight: bold">{{$inscricoesNaoHomologadas}}</a>
            </h5>
        </div>
       <div class="container justify-content-center" style="padding: 13px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
@@ -427,7 +427,7 @@
 
   <div class="card text-center " style="border-radius: 20px;height: 22.5rem;">   <!-- Recuso Inscrição -->
        <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-           <h2 class="h2" style="font-weight: bold">Recurso Inscrição</h2>
+           <h2 class="h2" style="font-weight: bold">Avaliar recursos ao <br>resultado parcial</h2>
 
        </div>
 
@@ -460,14 +460,14 @@
          </h4>
          <h5>
 
-             Total de Inscrições: <a style="font-weight: bold">{{($recursosClassificacaoHomologados + $recursosClassificacaoNaoHomologados)}}</a>
+          Total de recursos: <a style="font-weight: bold">{{($recursosClassificacaoHomologados + $recursosClassificacaoNaoHomologados)}}</a>
 
          </h5>
            <h5>
-             Inscrições homologadas: <a style="font-weight: bold">{{$recursosClassificacaoHomologados}}</a>
+            Recursos avaliados: <a style="font-weight: bold">{{$recursosClassificacaoHomologados}}</a>
            </h5>
            <h5>
-             Inscrições em espera: <a style="font-weight: bold">{{$recursosClassificacaoNaoHomologados}}</a>
+            Recursos em espera: <a style="font-weight: bold">{{$recursosClassificacaoNaoHomologados}}</a>
            </h5>
        </div>
        <div class="container justify-content-center" style="padding: 13px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
@@ -498,7 +498,7 @@
 
   <div class="card text-center " style="border-radius: 20px;height: 22.5rem;">   <!-- Recuso Resultado -->
       <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-          <h2 class="h2" style="font-weight: bold">Recurso Resultado</h2>
+          <h2 class="h2" style="font-weight: bold">Avaliar recursos ao <br>resultado parcial</h2>
 
       </div>
 
@@ -532,14 +532,14 @@
         </h4>
         <h5>
 
-            Total de Inscrições: <a style="font-weight: bold">{{($recursosResultadoHomologados + $recursosResultadoNaoHomologados)}}</a>
+          Total de recursos: <a style="font-weight: bold">{{($recursosResultadoHomologados + $recursosResultadoNaoHomologados)}}</a>
 
         </h5>
           <h5>
-            Inscrições homologadas: <a style="font-weight: bold">{{$recursosResultadoHomologados}}</a>
+            Recursos avaliados: <a style="font-weight: bold">{{$recursosResultadoHomologados}}</a>
           </h5>
           <h5>
-            Inscrições em espera: <a style="font-weight: bold">{{$recursosResultadoNaoHomologados}}</a>
+            Recursos em espera: <a style="font-weight: bold">{{$recursosResultadoNaoHomologados}}</a>
           </h5>
       </div>
       <div class="container justify-content-center" style="padding: 13px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px" >
@@ -570,7 +570,7 @@
 
   <div class="card text-center " style="border-radius: 20px;height: 22.5rem;">    <!-- Classificação -->
    <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-     <h2 class="h2" style="font-weight: bold">Classificação</h2>
+     <h2 class="h2" style="font-weight: bold">Gerar resultado <br>final</h2>
 
    </div>
    <div class="card-header d-flex justify-content-center">
@@ -611,14 +611,14 @@
      </h4>
      <h5>
 
-         Total de Inscrições: <a style="font-weight: bold">{{($inscricoesClassificadas + $inscricoesNaoClassificadas)}}</a>
+      Total de inscrições: <a style="font-weight: bold">{{($inscricoesClassificadas + $inscricoesNaoClassificadas)}}</a>
 
      </h5>
        <h5>
-         Inscrições homologadas: <a style="font-weight: bold">{{$inscricoesClassificadas}}</a>
+        Inscrições classificadas: <a style="font-weight: bold">{{$inscricoesClassificadas}}</a>
        </h5>
        <h5>
-         Inscrições em espera: <a style="font-weight: bold">{{$inscricoesNaoClassificadas}}</a>
+        Inscrições em espera: <a style="font-weight: bold">{{$inscricoesNaoClassificadas}}</a>
        </h5>
    </div>
 
