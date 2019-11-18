@@ -57,7 +57,7 @@
     width: 100%;
   }
   #label{
-    margin-left: -25%;
+    margin-left: -23%;
   }
   #paragrafo{
     margin-left: 1%;
@@ -122,7 +122,7 @@
 
                   <div class="form-group" id="motivoRejeicao" style=" display: none;">
 
-                    <label for="motivoRejeicao" class="col-md-4 col-form-label text-md-right"  id="label">{{ __('Recurso:') }}</label>
+                    <label for="motivoRejeicao" class="col-md-4 col-form-label text-md-right"  id="label">{{ __('Justificativa:') }}</label>
 
 
                     <div class="col-md-12">
