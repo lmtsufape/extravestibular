@@ -111,7 +111,7 @@
 
             <div class="row">
 
-                <textarea class=" form-control @error('motivo') is-invalid @enderror"  form ="formRecurso" name="motivo" id="taid" style="width:100%"></textarea>
+                <textarea class=" form-control @error('motivo') is-invalid @enderror"  form ="formCadastro" name="motivo" id="taid" style="width:100%"></textarea>
                 @error('motivo')
                   <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                     <strong>{{ $message }}</strong>

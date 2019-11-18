@@ -55,9 +55,7 @@ class RecursoController extends Controller
         }
       }
 
-
-     $validatedData = $request->validate([ 'motivo'              => ['required', 'string',],
-                                         ]);
+     $validatedData = $request->validate([ 'motivo' => ['required', 'string']]);
 
 
 
