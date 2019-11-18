@@ -133,6 +133,10 @@
 
             <!-- Menu da Direita -->
             <ul class="nav navbar-nav navbar-right">
+              <!-- email logado -->
+              <li class="nav-item active">
+                <a class="nav-link"> {{Auth::user()->email}} </a>
+              </li>
               <!-- Logout -->
               <li class="nav-item active">
                 <a style="margin-right:50%" class="nav-link"  href="{{ route('logout') }}"
@@ -206,6 +210,10 @@
             </ul>
             <!-- Menu da Direita -->
             <ul class="nav navbar-nav navbar-right">
+              <!-- email logado -->
+              <li class="nav-item active">
+                <a class="nav-link"> {{session('email')}} </a>
+              </li>
               <!-- Logout -->
               <li class="nav-item active">
                 <a style="margin-right:50%" class="nav-link"  href="{{ route('logout') }}"

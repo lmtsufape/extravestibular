@@ -13,7 +13,7 @@ class DadosUsuarioController extends Controller
   public function cadastroDadosUsuario(Request $request){
     $validatedData = $request->validate([ 'nome'              => ['required', 'string', 'max:255'],
                                           'cpf'               => ['required', 'size:11', 'unique:dados_usuarios', 'cpf'],
-                                          'rg'                => ['required', 'size:7','integer'],
+                                          'rg'                => ['required', 'integer'],
                                           'orgaoEmissor'      => ['required', 'min:3', 'max:5', 'string'],
                                           'orgaoEmissorUF'    => ['required', 'size:2', 'string'],
                                           'tituloEleitoral'   => ['required', 'min:12', 'max:12', 'titulo_eleitor'],
