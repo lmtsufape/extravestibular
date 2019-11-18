@@ -38,11 +38,14 @@
 }
 .card{
   margin: 10px;
-
+  height: 500px;
 }
 
 #label{
   margin-left: 3%;
+}
+#card{
+  height: 24rem;
 }
 
 @media screen and (max-width: 576px){
@@ -51,7 +54,9 @@
   }
   .card{
     margin-left: 50px;
-
+  }
+  #card{
+    height: 26rem;
   }
   .titulo-tabela-lmts {
     margin-right: 5%;
@@ -210,7 +215,7 @@
 
 <!-- CARDS -->
 <div class="row justify-content-center" style="width: 97%; padding-top: 1%;">  <!-- opções -->
-  <div class="card text-center" style="border-radius: 20px;height: 22.5rem;">    <!-- Isenção -->
+  <div id="card" class="card text-center" style="border-radius: 20px;">    <!-- Isenção -->
     <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
       <h2 class="h2" style="font-weight: bold">Avaliar solicitações <br>de isenção</h2>
 
@@ -281,7 +286,7 @@
 
   </div> <!-- END Isenção-->
 
-  <div class="card text-center " style="border-radius: 20px;height: 22.5rem;"> <!-- Recurso Isenção -->
+  <div id="card" class="card text-center " style="border-radius: 20px;"> <!-- Recurso Isenção -->
 
     <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
       <h2 class="h2" style="font-weight: bold">Avaliar recursos as <br>solicitações de isenção</h2>
@@ -355,7 +360,7 @@
     </div>
   </div><!-- END Recurso Isenção -->
 
-  <div class="card text-center " style="border-radius: 20px;height: 22.5rem;">   <!-- Inscrição -->
+  <div id="card" class="card text-center " style="border-radius: 20px;">   <!-- Inscrição -->
 
        <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
            <h2 class="h2" style="font-weight: bold">Homologar recursos <br>às inscrições</h2>
@@ -425,7 +430,7 @@
        </div>
   </div> <!-- END Inscrição -->
 
-  <div class="card text-center " style="border-radius: 20px;height: 22.5rem;">   <!-- Recuso Inscrição -->
+  <div id="card" class="card text-center " style="border-radius: 20px;">   <!-- Recuso Inscrição -->
        <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
            <h2 class="h2" style="font-weight: bold">Avaliar recursos ao <br>resultado parcial</h2>
 
@@ -496,7 +501,7 @@
        </div>
      </div> <!-- END Recuso Inscrição -->
 
-  <div class="card text-center " style="border-radius: 20px;height: 22.5rem;">   <!-- Recuso Resultado -->
+  <div id="card" class="card text-center " style="border-radius: 20px;">   <!-- Recuso Resultado -->
       <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
           <h2 class="h2" style="font-weight: bold">Avaliar recursos ao <br>resultado parcial</h2>
 
@@ -568,7 +573,7 @@
       </div>
     </div><!-- END Recuso Resultado -->
 
-  <div class="card text-center " style="border-radius: 20px;height: 22.5rem;">    <!-- Classificação -->
+  <div id="card" class="card text-center " style="border-radius: 20px;">    <!-- Classificação -->
    <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
      <h2 class="h2" style="font-weight: bold">Gerar resultado <br>final</h2>
 
@@ -585,7 +590,7 @@
           </a>
        </h5>
    </div>
-   <div class="container justify-content-center" style="height: 100%; margin-top: 2%">
+   <div class="container-fluid justify-content-center" style="height: 100%; margin-top: 2%">
      <h4>
        <?php
          $porcentagem = $inscricoesClassificadas * 100;
@@ -597,6 +602,7 @@
          }
         ?>
         @if(($inscricoesClassificadas + $inscricoesNaoClassificadas) > 0 )
+
          <a style="font-weight: bold">Etapa {{number_format($porcentagem, 0)}}% finalizada</a>
          <a href="{{ route('detalhesPorcentagem') }}"
             onclick="event.preventDefault();
@@ -622,7 +628,7 @@
        </h5>
    </div>
 
-   <div class="container justify-content-center" style="padding: 13px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px"   <!-- form Classificação -->
+   <div class="container justify-content-center" style="padding: 13px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;"   <!-- form Classificação -->
      <form method="POST" action="{{route('gerarClassificacao')}}" target="_blank" enctype="multipart/form-data">
        @csrf
        <input type="hidden" name="editalId" value="{{$edital->id}}">
