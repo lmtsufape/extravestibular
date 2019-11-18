@@ -44,29 +44,27 @@ class ApiLmts extends Model{
       for($i = 0; $i < sizeof($response); $i++){
         $nomeCampus = '';
         $nomeDep = '';
-        for($j = 0; $j < sizeof($response[$i]); $j++){
-          for($k = 0; $k < sizeof($response[$i][$j]); $k++){
-            if($response[$i][$j][$k] == ''){
-              continue;
-            }
-            if($response[$i][$j][$k][0]['tipoUnidade'] == 'Campus'){
-              $nomeCampus = $response[$i][$j][$k][0]['nome'];
-            }
-            if($response[$i][$j][$k][0]['tipoUnidade'] == 'Departamento'){
-              $nomeDep = $response[$i][$j][$k][0]['nome'];
-            }
-            if($response[$i][$j][$k][0]['tipoUnidade'] == 'Curso de Graduação'){
-              array_push($aux, [
-                'id' => $response[$i][$j][$k][0]['id'],
-                'nome' => $response[$i][$j][$k][0]['nome'],
-                'departamento' => $nomeDep,
-                'campus'  => $nomeCampus,
-              ]);
-            }
+        $idCurso = '';
+        $nomeCurso = '';
+        for($k = 0; $k < sizeof($response[$i]); $k++){
+          if($response[$i][$k]['tipoUnidade'] == 'Campus'){
+            $nomeCampus = $response[$i][$k]['nome'];
+          }
+          if($response[$i][$k]['tipoUnidade'] == 'Departamento'){
+            $nomeDep = $response[$i][$k]['nome'];
+          }
+          if($response[$i][$k]['tipoUnidade'] == 'Curso de Graduação'){
+            $nomeCurso = $response[$i][$k]['nome'];
+            $idCurso = $response[$i][$k]['id'];
           }
         }
+        array_push($aux, [
+          'id' => $idCurso,
+          'nome' => $nomeCurso,
+          'departamento' => $nomeDep,
+          'campus'  => $nomeCampus,
+        ]);
       }
-
       $response = $aux;
       return $response;
     }
