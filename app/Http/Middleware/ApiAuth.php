@@ -13,8 +13,8 @@ use Closure;
 class ApiAuth
 {
 
-    // public $api = 'http://lmts.api/api/';
-    public $api = 'http://app.uag.ufrpe.br/api/api/';
+    public $api = 'http://lmts.api/api/';
+    // public $api = 'http://app.uag.ufrpe.br/api/api/';
 
 
     /**

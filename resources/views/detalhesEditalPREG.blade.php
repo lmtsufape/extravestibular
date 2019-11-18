@@ -603,7 +603,7 @@
                           document.getElementById('detalhesPorcentagem-form').submit();">
               <img src="{{asset('images/eye.png')}}" alt="">
          </a>
-         <form id="detalhesPorcentagem-form" target="_blank" action="{{ route('detalhesPorcentagem') }}" method="get" style="display: none;">
+         <form id="detalhesPorcentagem-form" action="{{ route('detalhesPorcentagem') }}" method="get" style="display: none;">
 
            <input type="hidden" name="editalId" value="{{$edital->id}}">
          </form>

@@ -8,8 +8,8 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Client;
 
 class ApiLmts extends Model{
-  public $api = 'http://app.uag.ufrpe.br/api/api/';
-  // public $api = 'http://lmts.api/api/';
+  // public $api = 'http://app.uag.ufrpe.br/api/api/';
+  public $api = 'http://lmts.api/api/';
 
   public function check(){
     $client = new Client(); //GuzzleHttp\Client
@@ -123,12 +123,12 @@ class ApiLmts extends Model{
 
   public function getEmailsCoordenadorPorCurso($cursoId){
     $client = new Client(); //GuzzleHttp\Client
-    $response = $client->request('GET',$this->api . 'usuario/coordenador/getEmails/' . $cursoId, [
-                                                                                                 'headers' => [
-                                                                                                               'Content-Type' => 'application/json',
-                                                                                                               'X-Requested-With' => 'XMLHttpRequest'
-                                                                                                              ]
-                                                                                                ]);
+    $response = $client->request('GET',$this->api . 'getEmails/' . $cursoId, [
+                                                                               'headers' => [
+                                                                                             'Content-Type' => 'application/json',
+                                                                                             'X-Requested-With' => 'XMLHttpRequest'
+                                                                                            ]
+                                                                              ]);
     if($response->getStatusCode() == 201){
       $response = json_decode($response->getBody(), true);
       return $response;
@@ -140,12 +140,12 @@ class ApiLmts extends Model{
 
   public function getEmailsPreg(){
     $client = new Client(); //GuzzleHttp\Client
-    $response = $client->request('GET',$this->api . 'usuario/preg/getEmails',                   [
-                                                                                                 'headers' => [
-                                                                                                               'Content-Type' => 'application/json',
-                                                                                                               'X-Requested-With' => 'XMLHttpRequest'
-                                                                                                              ]
-                                                                                                ]);
+    $response = $client->request('GET',$this->api . 'getEmails/6',                   [
+                                                                                       'headers' => [
+                                                                                                     'Content-Type' => 'application/json',
+                                                                                                     'X-Requested-With' => 'XMLHttpRequest'
+                                                                                                    ]
+                                                                                      ]);
     if($response->getStatusCode() == 201){
       $response = json_decode($response->getBody(), true);
       return $response;
