@@ -213,7 +213,7 @@
 
 
 <!-- CARDS -->
-<div class="row justify-content-center" style="width: 97%; padding-top: 1%;">  <!-- opções -->
+<div class="row justify-content-center" style="width: 100%; padding-top: 1%;">  <!-- opções -->
   <div id="card" class="card text-center" style="border-radius: 20px;">    <!-- Isenção -->
     <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
       <h2 class="h2" style="font-weight: bold">Avaliar solicitações <br>de isenção</h2>
@@ -288,7 +288,7 @@
   <div id="card" class="card text-center " style="border-radius: 20px;"> <!-- Recurso Isenção -->
 
     <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-      <h2 class="h2" style="font-weight: bold">Avaliar recursos as <br>solicitações de isenção</h2>
+      <h2 class="h2" style="font-weight: bold">Avaliar recursos às <br>solicitações de isenção</h2>
 
     </div>
 
@@ -362,7 +362,7 @@
   <div id="card" class="card text-center " style="border-radius: 20px;">   <!-- Inscrição -->
 
        <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-           <h2 class="h2" style="font-weight: bold">Homologar recursos <br>às inscrições</h2>
+           <h2 class="h2" style="font-weight: bold">Homologar <br>inscrições</h2>
 
        </div>
        <div class="card-header d-flex justify-content-center">
@@ -431,7 +431,7 @@
 
   <div id="card" class="card text-center " style="border-radius: 20px;">   <!-- Recuso Inscrição -->
        <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-           <h2 class="h2" style="font-weight: bold">Avaliar recursos ao <br>resultado parcial</h2>
+           <h2 class="h2" style="font-weight: bold">Avaliar recursos às <br>inscrições</h2>
 
        </div>
 
@@ -574,7 +574,7 @@
 
   <div id="card" class="card text-center " style="border-radius: 20px;">    <!-- Classificação -->
    <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-     <h2 class="h2" style="font-weight: bold">Gerar resultado <br>final</h2>
+     <h2 class="h2" style="font-weight: bold">Gerar <br>resultado</h2>
 
    </div>
    <div class="card-header d-flex justify-content-center">
