@@ -312,9 +312,9 @@ class InscricaoController extends Controller
 					$nomeEdital = explode(".pdf", $edital->nome);
 					$api = new ApiLmts();
 					$emails = $api->getEmailsPreg();
-					foreach ($emails as $key) {
-						Mail::to($key)->send(new NovaInscricao($nomeEdital[0]));
-					}
+					// foreach ($emails as $key) {
+					// 	Mail::to($key)->send(new NovaInscricao($nomeEdital[0]));
+					// }
 					return redirect()->route('home')->with('jsAlert', 'Inscrição realizada com sucesso!');
 		}
 
@@ -1508,9 +1508,9 @@ class InscricaoController extends Controller
 			$nomeEdital = explode(".pdf", $edital->nome);
 			$api = new ApiLmts();
 			$emails = $api->getEmailsPreg();
-			foreach ($emails as $key) {
-				Mail::to($key)->send(new ClassificacaoCompleta($nomeEdital[0]));
-			}
+			// foreach ($emails as $key) {
+			// 	Mail::to($key)->send(new ClassificacaoCompleta($nomeEdital[0]));
+			// }
 
 		}
 	}
@@ -1591,10 +1591,10 @@ class InscricaoController extends Controller
 		$aux    = Carbon::parse($edital->resultadoFinal);
 
 		$diasRestantes =  $aux->diffInDays($mytime);
-		$emails = $api->getEmailsCoordenadorPorCurso($request->cursoId);
-		foreach ($emails as $key) {
-			Mail::to($key)->send(new LembreteCoordenador($nomeEdital[0], $diasRestantes));
-		}
+		// $emails = $api->getEmailsCoordenadorPorCurso($request->cursoId);
+		// foreach ($emails as $key) {
+		// 	Mail::to($key)->send(new LembreteCoordenador($nomeEdital[0], $diasRestantes));
+		// }
 		return 'Notificação enviada com sucesso!';
 	}
 
