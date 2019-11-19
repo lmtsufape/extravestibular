@@ -135,7 +135,7 @@
             <ul class="nav navbar-nav navbar-right">
               <!-- email logado -->
               <li class="nav-item active">
-                <a class="nav-link"> {{Auth::user()->email}} </a>
+                <a class="nav-link">Bem vindo(a), {{Auth::user()->email}} </a>
               </li>
               <!-- Logout -->
               <li class="nav-item active">
@@ -212,7 +212,7 @@
             <ul class="nav navbar-nav navbar-right">
               <!-- email logado -->
               <li class="nav-item active">
-                <a class="nav-link"> {{session('email')}} </a>
+                <a class="nav-link">Bem vindo(a), {{session('email')}} </a>
               </li>
               <!-- Logout -->
               <li class="nav-item active">
