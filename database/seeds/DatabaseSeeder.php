@@ -16,29 +16,29 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         for($i = 1; $i < 21; $i++){
           DB::table('dados_usuarios')->insert([
-            'nome' => 'teste'.Str::random(5),
-            'rg' => 'seed',
+            'nome' => 'Candidato' . $i,
+            'rg' => 'Dados',
             'nascimento' => '2019-09-10',
-            'orgaoEmissor' =>  'seed',
-            'orgaoEmissorUF' =>  'seed',
-            'cpf' =>  'seed'.Str::random(5),
-            'tituloEleitoral' =>  'seed',
-            'filiacao' =>  'seed',
-            'endereco' =>  'seed',
-            'num' =>  'seed',
-            'bairro' =>  'seed',
-            'cidade' =>  'seed',
-            'uf' =>  'seed',
-            'foneResidencial' =>  'seed',
-            'foneCelular' =>  'seed',
-            'foneComercial' =>  'seed',
+            'orgaoEmissor' =>  'Dados',
+            'orgaoEmissorUF' =>  'Dados',
+            'cpf' =>  '123456789'.$i,
+            'tituloEleitoral' =>  'Dados',
+            'filiacao' =>  'Dados',
+            'endereco' =>  'Dados',
+            'num' =>  'Dados',
+            'bairro' =>  'Dados',
+            'cidade' =>  'Dados',
+            'uf' =>  'Dados',
+            'foneResidencial' =>  'Dados',
+            'foneCelular' =>  'Dados',
+            'foneComercial' =>  'Dados',
           ]);
         }
 
         for($i = 1; $i < 21; $i++){
           DB::table('users')->insert([
-            'email' => 'teste'.Str::random(5).'@gmail.com',
-            'password' => bcrypt('password'),
+            'email' => 'candidato'.$i.'@gmail.com',
+            'password' => bcrypt('12345678'),
             'tipo' => 'candidato',
             'dados' => $i,
           ]);
@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
           'fimIsencao' => '2019-09-06',
           'inicioRecursoIsencao' => '2019-09-07',
           'fimRecursoIsencao' => '2019-09-08',
-          'nome' => 'Edital para teste de classificação',
+          'nome' => 'Edital para classificação',
           'created_at' => '2019-09-02 18:15:48',
           'publicado' => 'sim',
           'dataPublicacao' => '2019-09-02',
@@ -66,88 +66,6 @@ class DatabaseSeeder extends Seeder
           'descricao' => 'Edital extravestibular 2019.2',
 
         ]);
-
-        DB::table('users')->insert([
-            'email' => 'preg@teste.com',
-            'password' => bcrypt('12345678'),
-            'tipo' => 'PREG',
-
-        ]);
-        DB::table('users')->insert([
-            'email' => 'drca@teste.com',
-            'password' => bcrypt('12345678'),
-            'tipo' => 'DRCA',
-
-        ]);
-        DB::table('users')->insert([
-            'email' => 'coord@teste.com',
-            'password' => bcrypt('12345678'),
-            'tipo' => 'coordenador',
-
-        ]);
-        // DB::table('editals')->insert([
-        //     'pdfEdital' => 'seed',
-        //     'vagas' => '1:10!2:10!3:10!',
-        //     'inicioInscricoes' => '2019-09-10',
-        //     'fimInscricoes' => '2019-11-01',
-        //     'inicioRecurso' => '2019-11-02',
-        //     'fimRecurso' => '2019-11-03',
-        //     'inicioIsencao' => '2019-09-04',
-        //     'fimIsencao' => '2019-09-05',
-        //     'inicioRecursoIsencao' => '2019-09-06',
-        //     'fimRecursoIsencao' => '2019-09-07',
-        //     'nome' => 'Inscrição aberta',
-        //     'created_at' => '2019-09-10 18:15:48',
-        //     'publicado' => 'sim',
-        //     'dataPublicacao' => '2019-09-10',
-        //     'resultado' => '2019-09-10',
-        //     'inicioRecursoResultado' => '2019-09-11',
-        //     'fimRecursoResultado' => '2019-09-12',
-        //     'resultadoFinal' => '2019-12-13',
-        //
-        // ]);
-        // DB::table('editals')->insert([
-        //     'pdfEdital' => 'seed',
-        //     'vagas' => '1:10!2:10!3:10!',
-        //     'inicioInscricoes' => '2019-11-01',
-        //     'fimInscricoes' => '2019-11-02',
-        //     'inicioRecurso' => '2019-11-03',
-        //     'fimRecurso' => '2019-11-04',
-        //     'inicioIsencao' => '2019-09-10',
-        //     'fimIsencao' => '2019-11-06',
-        //     'inicioRecursoIsencao' => '2019-10-07',
-        //     'fimRecursoIsencao' => '2019-10-08',
-        //     'nome' => 'Isençao aberta',
-        //     'created_at' => '2019-09-10 18:15:48',
-        //     'publicado' => 'sim',
-        //     'dataPublicacao' => '2019-09-10',
-        //     'resultado' => '2019-09-10',
-        //     'inicioRecursoResultado' => '2019-09-11',
-        //     'fimRecursoResultado' => '2019-09-12',
-        //     'resultadoFinal' => '2019-12-13',
-        //
-        // ]);
-        // DB::table('editals')->insert([
-        //     'pdfEdital' => 'seed',
-        //     'vagas' => '1:10!2:10!3:10!',
-        //     'inicioInscricoes' => '2019-11-01',
-        //     'fimInscricoes' => '2019-11-02',
-        //     'inicioRecurso' => '2019-11-03',
-        //     'fimRecurso' => '2019-11-04',
-        //     'inicioIsencao' => '2019-09-05',
-        //     'fimIsencao' => '2019-09-06',
-        //     'inicioRecursoIsencao' => '2019-09-07',
-        //     'fimRecursoIsencao' => '2019-11-08',
-        //     'nome' => 'Recurso Isençao aberta',
-        //     'created_at' => '2019-09-10 18:15:48',
-        //     'publicado' => 'sim',
-        //     'dataPublicacao' => '2019-09-10',
-        //     'resultado' => '2019-09-10',
-        //     'inicioRecursoResultado' => '2019-09-11',
-        //     'fimRecursoResultado' => '2019-09-12',
-        //     'resultadoFinal' => '2019-12-13',
-        //
-        // ]);
 
         DB::table('editals')->insert([
             'pdfEdital' => 'seed/pdfTeste.pdf',
@@ -160,7 +78,7 @@ class DatabaseSeeder extends Seeder
             'fimIsencao' => '2019-12-06',
             'inicioRecursoIsencao' => '2019-09-07',
             'fimRecursoIsencao' => '2019-12-08',
-            'nome' => 'Recurso Inscrição aberta',
+            'nome' => 'Edital para Demonstração',
             'created_at' => '2019-09-10 18:15:48',
             'publicado' => 'sim',
             'dataPublicacao' => '2019-09-10',
@@ -184,18 +102,18 @@ class DatabaseSeeder extends Seeder
                 'historicoEscolar' => 'seed/pdfTeste.pdf',
                 'curso' => '11',
                 'turno' => 'manhã',
-                'cursoDeOrigem' => 'seed',
-                'instituicaoDeOrigem' => 'seed',
-                'naturezaDaIes' => 'seed',
-                'endereco' => 'seed',
-                'num' => 'seed',
-                'bairro' => 'seed',
+                'cursoDeOrigem' => 'Dados',
+                'instituicaoDeOrigem' => 'Dados',
+                'naturezaDaIes' => 'Dados',
+                'endereco' => 'Dados',
+                'num' => 'Dados',
+                'bairro' => 'Dados',
                 'homologado' => 'aprovado',
                 'homologadoDrca' => 'aprovado',
-                'cidade' => 'seed',
-                'uf' => 'seed',
+                'cidade' => 'Dados',
+                'uf' => 'Dados',
                 'coeficienteDeRendimento' => '9',
-                'nota' => $i
+                'nota' => '0.5'
 
 
 
@@ -211,20 +129,21 @@ class DatabaseSeeder extends Seeder
                 'comprovante' => 'isento',
                 'curso' => '11',
                 'turno' => 'manhã',
-                'cursoDeOrigem' => 'seed',
-                'instituicaoDeOrigem' => 'seed',
-                'naturezaDaIes' => 'seed',
-                'endereco' => 'seed',
-                'num' => 'seed',
-                'bairro' => 'seed',
+                'cursoDeOrigem' => 'Dados',
+                'instituicaoDeOrigem' => 'Dados',
+                'naturezaDaIes' => 'Dados',
+                'endereco' => 'Dados',
+                'num' => 'Dados',
+                'bairro' => 'Dados',
                 'homologado' => 'aprovado',
                 'homologadoDrca' => 'aprovado',
-                'cidade' => 'seed',
-                'uf' => 'seed',
+                'cidade' => 'Dados',
+                'uf' => 'Dados',
                 'coeficienteDeRendimento' => 'nao',
 
             ]);
           }
+
           if($i == 20){
             DB::table('inscricaos')->insert([
                 'usuarioId' => $i,
@@ -234,21 +153,39 @@ class DatabaseSeeder extends Seeder
                 'comprovante' => 'isento',
                 'curso' => '12',
                 'turno' => 'manhã',
-                'cursoDeOrigem' => 'seed',
-                'instituicaoDeOrigem' => 'seed',
-                'naturezaDaIes' => 'seed',
-                'endereco' => 'seed',
-                'num' => 'seed',
-                'bairro' => 'seed',
+                'cursoDeOrigem' => 'Dados',
+                'instituicaoDeOrigem' => 'Dados',
+                'naturezaDaIes' => 'Dados',
+                'endereco' => 'Dados',
+                'num' => 'Dados',
+                'bairro' => 'Dados',
                 'homologado' => 'aprovado',
                 'homologadoDrca' => 'aprovado',
-                'cidade' => 'seed',
-                'uf' => 'seed',
+                'cidade' => 'Dados',
+                'uf' => 'Dados',
                 'coeficienteDeRendimento' => 'nao',
 
             ]);
           }
 
         }
+
+        DB::table('isencaos')->insert([
+          'usuarioId' => 1,
+          'editalId' => 1,
+          'tipo' => 'ambos',
+          'motivoRejeicao' => 'Anexou arquivo errado.',
+        ]);
+
+        DB::table('recursos')->insert([
+          'tipo' => 'taxa',
+          'motivo' => 'Erro na documentação',
+          'usuarioId' => 1,
+          'editalId' => 1,
+          'data' => '2019-09-11',
+          'homologado' => 'indeferida',
+          'motivoRejeicao' => 'Não se aplica',
+
+        ]);
     }
 }
