@@ -45,9 +45,14 @@
 }
 .card{
   margin: 10px;
-
+  height: 350px;
+  width: 270px;
+  overflow:auto;
 }
-
+#rowCards{
+  width: 100%; 
+  padding-top: 1%;
+}
 @media screen and (max-width: 576px){
   #finalizarModal{
     margin-top: 40px;
@@ -60,6 +65,10 @@
     margin-right: 5%;
 
   }
+  #rowCards{
+  width: 97%; 
+  padding-top: 1%;
+}
 
 }
 
@@ -122,7 +131,7 @@
 
 
 <!-- CARDS -->
-<div class="row justify-content-center" style="width: 97%; padding-top: 1%;">  <!-- opções -->
+<div id="rowCards" class="row justify-content-center" style="width: 97%; padding-top: 1%;">  <!-- opções -->
 
   <div class="card text-center " style="border-radius: 20px">    <!-- Isenção -->
 
