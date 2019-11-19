@@ -5,6 +5,7 @@ namespace extravestibular\Http\Controllers;
 use extravestibular\Recurso;
 use extravestibular\DadosUsuario;
 use extravestibular\Inscricao;
+use extravestibular\Isencao;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use extravestibular\Edital;
@@ -89,6 +90,17 @@ class RecursoController extends Controller
       $recurso->homologado = $request->radioRecurso;
       $recurso->motivoRejeicao = $request->motivoRejeicao;
       $recurso->save();
+      if($recurso->tipo == 'taxa'){
+        $isencao = Isencao::where('editalId', $recurso->editalId)->where('usuarioId', $recurso->usuarioId)->first();
+        $isencao->parecer = 'deferida';
+        $isencao->save();
+      }
+      if($recurso->tipo == 'classificacao'){
+        $inscricao = Inscricao::where('editalId', $recurso->editalId)->where('usuarioId', $recurso->usuarioId)->first();
+        $inscricao->coeficienteDeRendimento = 'nao';
+        $inscricao->nota = null;
+        $inscricao->save();
+      }
       if ($recurso->tipo == 'resultado') {
         $inscricao = Inscricao::where('usuarioId', $recurso->usuarioId)->where('editalId', $recurso->editalId)->first();
         $inscricao->coeficienteDeRendimento = 'nao';

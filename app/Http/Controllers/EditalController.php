@@ -606,27 +606,27 @@ class EditalController extends Controller{
                                                  ->where('homologadoDrca', 'nao')
                                                  ->get();
           $recursosTaxaHomologados = Recurso::where('editalId', $request->editalId)
+                                              ->where('tipo', 'taxa')
                                               ->where('homologado', 'aprovado')
                                               ->orWhere('homologado', 'rejeitado')
-                                              ->where('tipo', 'taxa')
                                               ->get();
           $recursosTaxaNaoHomologados = Recurso::where('editalId', $request->editalId)
                                                  ->where('tipo', 'taxa')
                                                  ->where('homologado', 'nao')
                                                  ->get();
           $recursosClassificacaoHomologados = Recurso::where('editalId', $request->editalId)
+                                              ->where('tipo', 'classificacao')
                                               ->where('homologado', 'aprovado')
                                               ->orWhere('homologado', 'rejeitado')
-                                              ->where('tipo', 'classificacao')
                                               ->get();
           $recursosClassificacaoNaoHomologados = Recurso::where('editalId', $request->editalId)
                                                  ->where('tipo', 'classificacao')
                                                  ->where('homologado', 'nao')
                                                  ->get();
           $recursosResultadoHomologados = Recurso::where('editalId', $request->editalId)
+                                              ->where('tipo', 'resultado')
                                              ->where('homologado', 'aprovado')
                                              ->orWhere('homologado', 'rejeitado')
-                                             ->where('tipo', 'resultado')
                                              ->get();
           $recursosResultadoNaoHomologados = Recurso::where('editalId', $request->editalId)
                                                 ->where('tipo', 'resultado')
@@ -678,7 +678,6 @@ class EditalController extends Controller{
         if(session('tipo') == 'DRCA'){
           $inscricoesHomologadas = Inscricao::where('editalId', $request->editalId)
                                               ->where('homologado', 'aprovado')
-                                              ->orWhere('homologado', 'rejeitado')
                                               ->where('homologadoDrca', 'aprovado')
                                               ->orWhere('homologadoDrca', 'rejeitado')
                                               ->get();
@@ -704,9 +703,11 @@ class EditalController extends Controller{
           $inscricoesClassificadas = Inscricao::where('editalId', $request->editalId)
                                                 ->where('nota', '!=', null)
                                                 ->where('curso', session('cursoId'))
+                                                ->where('coeficienteDeRendimento', 'nao')
                                                 ->get();
           $inscricoesNaoClassificadas = Inscricao::where('editalId', $request->editalId)
                                                 ->where('curso', session('cursoId'))
+                                                ->where('coeficienteDeRendimento', 'nao')
                                                 ->whereNull('nota')
                                                 ->get();
           $erratas = $edital->errata;
@@ -724,7 +725,6 @@ class EditalController extends Controller{
                                                 ]);
 
         }
-
 
       }
 

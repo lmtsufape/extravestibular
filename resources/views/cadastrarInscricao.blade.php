@@ -65,10 +65,10 @@
 
             @if($comprovante == 'deferida')
               <div class="row justify-content-center" >
-                <label for="comprovante" class="">{{ __('Comprovante: ') }}</label>
+                <label for="comprovante" class="">{{ __('Comprovante:') }}</label>
 
-                <div class="col-sm-12">
-                  Isento de pagamento
+                <div class="justify-content-center">
+                  <strong>Isento de pagamento</strong>
                   <input id="comprovante" type="hidden" name="comprovante" value="isento">
                 </div>
               </div>

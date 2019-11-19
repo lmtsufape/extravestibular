@@ -327,7 +327,7 @@
                     <div class="form-group" id="motivoRejeicao" style=" display: none; ">
                       <div class="row justify-content-left">
                         <div class="col-sm-6">
-                          <label for="motivoRejeicao" class="col-form-label text-md-right" >{{ __('Motivos do indeferimento:') }}</label>
+                          <label for="motivoRejeicao" class="col-form-label text-md-right" >{{ __('Justificativa:') }}</label>
 
                         </div>
                       </div>

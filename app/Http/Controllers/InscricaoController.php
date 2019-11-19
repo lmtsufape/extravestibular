@@ -38,7 +38,6 @@ class InscricaoController extends Controller
 
 					if($request->tipo == 'reintegracao'){
 						 $validatedData = $request->validate([ 'declaracaoDeVinculo' 		=> ['nullable', 'mimes:pdf','max:20000'],
-																									 'comprovante' 					  => ['required', 'mimes:pdf','max:20000'],
 																									 'historicoEscolar' 			=> ['required', 'mimes:pdf','max:20000'],
 																									 'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:20000'],
 																									 'curriculo' 				 			=> ['nullable', 'mimes:pdf','max:20000'],
@@ -57,7 +56,6 @@ class InscricaoController extends Controller
 				  }
  					elseif ($request->tipo == 'transferenciaInterna') {
  						$validatedData = $request->validate([ 'declaracaoDeVinculo' 		=> ['required', 'mimes:pdf','max:20000'],
- 																									'comprovante' 					  => ['required', 'mimes:pdf','max:20000'],
  																									'historicoEscolar' 			=> ['required', 'mimes:pdf','max:20000'],
  																									'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:20000'],
  																									'curriculo' 				 			=> ['nullable', 'mimes:pdf','max:20000'],
@@ -76,7 +74,6 @@ class InscricaoController extends Controller
  					}
  					elseif ($request->tipo == 'transferenciaExterna') {
  						$validatedData = $request->validate([ 'declaracaoDeVinculo' 		=> ['required', 'mimes:pdf','max:20000'],
- 																									'comprovante' 					  => ['required', 'mimes:pdf','max:20000'],
  																									'historicoEscolar' 			=> ['required', 'mimes:pdf','max:20000'],
  																									'programaDasDisciplinas' => ['required', 'mimes:pdf','max:20000'],
  																									'curriculo' 				 			=> ['required', 'mimes:pdf','max:20000'],
@@ -95,7 +92,6 @@ class InscricaoController extends Controller
  					}
  					elseif ($request->tipo == 'portadorDeDiploma') {
  						$validatedData = $request->validate([ 'declaracaoDeVinculo' 		=> ['required', 'mimes:pdf','max:20000'],
- 																									'comprovante' 					  => ['required', 'mimes:pdf','max:20000'],
  																									'historicoEscolar' 			=> ['required', 'mimes:pdf','max:20000'],
  																									'programaDasDisciplinas' => ['required', 'mimes:pdf','max:20000'],
  																									'curriculo' 				 			=> ['nullable', 'mimes:pdf','max:20000'],
@@ -444,6 +440,7 @@ class InscricaoController extends Controller
 			if(!strcmp($request->homologado, 'rejeitado')){
 				$validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);
 				$inscricao->homologado = 'rejeitado';
+				$inscricao->coeficienteDeRendimento = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
 				$inscricao->save();
 				return redirect()->route('home')->with('jsAlert', 'Inscrição aceita com sucesso!');
@@ -459,6 +456,7 @@ class InscricaoController extends Controller
 		}
 		if(!strcmp($request->tipo, 'drca')){
 			if(!strcmp($request->homologado, 'rejeitado')){
+				$inscricao->coeficienteDeRendimento = 'rejeitado';
 				$inscricao->homologadoDrca = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
 				$inscricao->save();
@@ -495,6 +493,7 @@ class InscricaoController extends Controller
 		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
+																						 ->whereNotNull('nota')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'manhã')
 																						 ->where('tipo', 'reintegracao')
