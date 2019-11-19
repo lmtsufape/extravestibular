@@ -151,7 +151,7 @@ class DatabaseSeeder extends Seeder
                 'tipo' => 'reintegracao',
                 'historicoEscolar' => 'seed/pdfTeste.pdf',
                 'comprovante' => 'isento',
-                'curso' => '12',
+                'curso' => '11',
                 'turno' => 'manhã',
                 'cursoDeOrigem' => 'Dados',
                 'instituicaoDeOrigem' => 'Dados',
@@ -163,8 +163,8 @@ class DatabaseSeeder extends Seeder
                 'homologadoDrca' => 'aprovado',
                 'cidade' => 'Dados',
                 'uf' => 'Dados',
-                'coeficienteDeRendimento' => 'nao',
-
+                'coeficienteDeRendimento' => '9',
+                'nota' => '0.5'
             ]);
           }
 
