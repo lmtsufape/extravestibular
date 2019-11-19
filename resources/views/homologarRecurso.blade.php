@@ -119,7 +119,7 @@
 
                       <input onclick="selectCheck('aprovado')" type="radio" name="radioRecurso" value="aprovado"> <h4 style="margin-left:1%">Aceito</h4>
 
-                      <input style="margin-left:1%" onclick="selectCheck('rejeitado')" type="radio" name="radioRecurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>
+                      <input id="radioIndeferida" @error('motivoRejeicao') checked @enderror style="margin-left:1%" onclick="selectCheck('rejeitado')" type="radio" name="radioRecurso" value="rejeitado"> <h4 style="margin-left:1%">Rejeitado</h4>
                   </div>
 
 
@@ -131,7 +131,7 @@
                     <div class="col-md-12">
                       <textarea class=" form-control @error('motivoRejeicao') is-invalid @enderror" form ="formHomologacao" name="motivoRejeicao" id="taid" style="width:100%" ></textarea>
                       @error('motivoRejeicao')
-                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:none">
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                         <strong>{{ $message }}</strong>
                       </span>
                       @enderror
