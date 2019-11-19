@@ -57,7 +57,7 @@
     width: 100%;
   }
   #label{
-    margin-left: 1.5%;
+    margin-left: -23%;
   }
   #paragrafo{
     margin-left: 1%;
@@ -67,7 +67,7 @@
   @media screen and (max-width:576px){
     #label{
 
-      margin-left: 5%;
+      margin-left: 0%;
     }
     #paragrafo{
     margin-left: -8%;
@@ -125,7 +125,7 @@
 
                   <div class="form-group" id="motivoRejeicao" style=" display: none;">
 
-                    <label for="motivoRejeicao" class="col-md-4 col-form-label text-md-right"  style="margin-left: -60px;">{{ __('Justificativa:') }}</label>
+                    <label for="motivoRejeicao" class="col-md-4 col-form-label text-md-right"  id="label">{{ __('Justificativa:') }}</label>
 
 
                     <div class="col-md-12">

@@ -96,7 +96,7 @@
                   <tr <?php if($inscricao->historicoEscolar == ''){echo('style="display: none"');} ?> >
                     <div class="form-group row" >
                       <td>
-                        <label for="historicoEscolar" >{{ __('Historico Escolar') }}</label>
+                        <label for="historicoEscolar" >{{ __('Histórico Escolar') }}</label>
                       </td>
                         <div class="col-md-6">
                           <td>
