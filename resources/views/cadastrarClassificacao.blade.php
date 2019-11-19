@@ -55,140 +55,142 @@
 @endsection
 @section('content')
 
+
 <div class="container">
-<div class="row justify-content-center">
   <form id="formCadastro" method="POST" action="{{ route('cadastroClassificacao') }}" enctype="multipart/form-data">
     @csrf
-  <div class="col-md-8">
-    <div class="card" style="width: 50rem">
-      <div class="card-header">{{ __('Classificar s') }}</div>
-      <div class="card-body">
-        <div class="form-group row" >
-          <table class="table table-ordered table-hover">
-            <tr>
-              <th>Requisito</th>
-              <th>Dados</th>
-            </tr>
-            <tr <?php if($inscricao->declaracaoDeVinculo == ''){echo('style="display: none"');} ?> >
-              <div class="form-group row" >
+
+    <div class="card">
+      <div class="card-header">Classificar Inscrição</div>
+      <div class="card-body" style="">
+        <div class="row justify-content-center">
+          <table  class="table table-ordered table-hover">
+          <tr>
+            <th>Requisito</th>
+            <th>Dados</th>
+          </tr>
+          <tr <?php if($inscricao->declaracaoDeVinculo == ''){echo('style="display: none"');} ?> >
+            <div class="form-group row" >
+                <td>
+                  <label for="declaracaoDeVinculo" >{{ __('Declaração de Vinculo') }}</label>
+                </td>
+                <div class="col-md-6">
+                    <td>
+                      <a href="{{ route('download', ['file' => $inscricao->declaracaoDeVinculo])}}" target="_blank">Abrir arquivo</a>
+                    </td>
+                </div>
+            </div>
+          </tr>
+          <tr <?php if($inscricao->historicoEscolar == ''){echo('style="display: none"');} ?> >
+            <div class="form-group row" >
+              <td>
+                <label for="historicoEscolar" >{{ __('Histórico Escolar') }}</label>
+              </td>
+                <div class="col-md-6">
                   <td>
-                    <label for="declaracaoDeVinculo" >{{ __('Declaração de Vinculo') }}</label>
+                    <a href="{{ route('download', ['file' => $inscricao->historicoEscolar])}}" target="_new">Abrir arquivo</a>
                   </td>
-                  <div class="col-md-6">
-                      <td>
-                        <a href="{{ route('download', ['file' => $inscricao->declaracaoDeVinculo])}}" target="_blank">Abrir arquivo</a>
-                      </td>
-                  </div>
-              </div>
-            </tr>
-            <tr <?php if($inscricao->historicoEscolar == ''){echo('style="display: none"');} ?> >
-              <div class="form-group row" >
-                <td>
-                  <label for="historicoEscolar" >{{ __('Histórico Escolar') }}</label>
-                </td>
-                  <div class="col-md-6">
-                    <td>
-                      <a href="{{ route('download', ['file' => $inscricao->historicoEscolar])}}" target="_new">Abrir arquivo</a>
-                    </td>
-                  </div>
-              </div>
-            </tr>
-            <tr <?php if($inscricao->programaDasDisciplinas == ''){echo('style="display: none"');} ?> >
-              <div class="form-group row" >
-                <td>
-                  <label for="programaDasDisciplinas" >{{ __('Programa das Disciplinas') }}</label>
-                </td>
-                  <div class="col-md-6">
-                    <td>
-                      <a href="{{ route('download', ['file' => $inscricao->programaDasDisciplinas])}}" target="_blank">Abir arquivo</a>
-                    </td>
-                  </div>
-              </div>
-            </tr>
-            <tr <?php if($inscricao->curriculo == ''){echo('style="display: none"');} ?> >
-              <div class="form-group row" >
-                <td>
-                  <label for="curriculo" >{{ __('Curriculo') }}</label>
-                </td>
-                  <div class="col-md-6">
-                    <td>
-                      <a href="{{ route('download', ['file' => $inscricao->curriculo ])}}" target="_blank">Abrir arquivo</a>
-                    </td>
-                  </div>
-              </div>
-            </tr>
-            <tr <?php if($inscricao->enem == ''){echo('style="display: none"');} ?> >
-              <div class="form-group row" >
-                <td>
-                  <label for="enem" >{{ __('ENEM') }}</label>
-                </td>
-                  <div class="col-md-6">
-                    <td>
-                      <a href="{{ route('download', ['file' => $inscricao->enem ])}}" target="_blank">Abrir arquivo</a>
-                    </td>
-                  </div>
-              </div>
-            </tr >
-          </table>
+                </div>
+            </div>
+          </tr>
+          <tr <?php if($inscricao->programaDasDisciplinas == ''){echo('style="display: none"');} ?> >
+            <div class="form-group row" >
+              <td>
+                <label for="programaDasDisciplinas" >{{ __('Programa das Disciplinas') }}</label>
+              </td>
+                <div class="col-md-6">
+                  <td>
+                    <a href="{{ route('download', ['file' => $inscricao->programaDasDisciplinas])}}" target="_blank">Abir arquivo</a>
+                  </td>
+                </div>
+            </div>
+          </tr>
+          <tr <?php if($inscricao->curriculo == ''){echo('style="display: none"');} ?> >
+            <div class="form-group row" >
+              <td>
+                <label for="curriculo" >{{ __('Curriculo') }}</label>
+              </td>
+                <div class="col-md-6">
+                  <td>
+                    <a href="{{ route('download', ['file' => $inscricao->curriculo ])}}" target="_blank">Abrir arquivo</a>
+                  </td>
+                </div>
+            </div>
+          </tr>
+          <tr <?php if($inscricao->enem == ''){echo('style="display: none"');} ?> >
+            <div class="form-group row" >
+              <td>
+                <label for="enem" >{{ __('ENEM') }}</label>
+              </td>
+                <div class="col-md-6">
+                  <td>
+                    <a href="{{ route('download', ['file' => $inscricao->enem ])}}" target="_blank">Abrir arquivo</a>
+                  </td>
+                </div>
+            </div>
+          </tr >
+        </table>
+      </div><!-- end row tabela-->
+
+      <hr>
+      <div class="row justify-content-center" style="margin-top:30px">
+
+        <div class="col-sm-4">
+          <label for="coeficienteDeRendimento" class="field a-field a-field_a2 page__field">
+              <span class="a-field__label-wrap">
+                <span class="a-field__label">Coeficiente de Rendimento</span>
+              </span>
+          </label>
+          <input id="coeficienteDeRendimento" type="text" name="coeficienteDeRendimento" autofocus class="form-control @error('coeficienteDeRendimento') is-invalid @enderror field__input a-field__input" placeholder="EX: 7.5"  value="{{ old('coeficienteDeRendimento') }}">
+          @error('coeficienteDeRendimento')
+          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
         </div>
-        <div class="form-group row" >
-          <div>
-            <label for="coeficienteDeRendimento" class="field a-field a-field_a2 page__field">
-                <input id="coeficienteDeRendimento" type="text" name="coeficienteDeRendimento" autofocus class="form-control @error('coeficienteDeRendimento') is-invalid @enderror field__input a-field__input" placeholder="EX: 7.5"  value="{{ old('coeficienteDeRendimento') }}">
-                <span class="a-field__label-wrap">
-                  <span class="a-field__label">Coeficiente de Rendimento</span>
-                </span>
-            </label>
-            @error('coeficienteDeRendimento')
-            <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-              <strong>{{ $message }}</strong>
-            </span>
-            @enderror
-          </div>
-        <div>
-          <label for="materias" class="field a-field a-field_a2 page__field" style="margin-left: 20px">
-              <input id="materias" type="text" name="materias" autofocus class="form-control @error('materias') is-invalid @enderror field__input a-field__input" placeholder="Total de disciplinas obrigatórias no Curso de origem."  value="{{ old('materias') }}">
+        <div class="col-sm-4">
+          <label for="materias" class="field a-field a-field_a2 page__field" >
               <!-- <input id="materias" type="text" name="materias" autofocus class="form-control @error('materias') is-invalid @enderror field__input a-field__input" placeholder="EX: 12"  value="{{ old('materias') }}"> -->
               <span class="a-field__label-wrap">
                 <span class="a-field__label">Total de disciplinas obrigatórias no Curso de origem.</span>
               </span>
           </label>
+          <input id="materias" type="text" name="materias" autofocus class="form-control @error('materias') is-invalid @enderror field__input a-field__input" placeholder="Total de disciplinas obrigatórias no Curso de origem."  value="{{ old('materias') }}">
           @error('materias')
           <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
             <strong>{{ $message }}</strong>
           </span>
           @enderror
         </div>
-        <div>
-          <label for="completadas" class="field a-field a-field_a2 page__field" style="margin-left: 20px">
-              <input id="completadas" type="text" name="completadas" autofocus class="form-control @error('completadas') is-invalid @enderror field__input a-field__input" placeholder="Total de disciplinas cursadas no Curso de origem" value="{{ old('completadas') }}">
+        <div class="col-sm-4">
+          <label for="completadas" class="field a-field a-field_a2 page__field">
               <!-- <input id="completadas" type="text" name="completadas" autofocus class="form-control @error('completadas') is-invalid @enderror field__input a-field__input" placeholder="EX: 8" value="{{ old('completadas') }}"> -->
               <span class="a-field__label-wrap">
                 <span class="a-field__label">Total de disciplinas cursadas no Curso de origem</span>
               </span>
           </label>
+          <input id="completadas" type="text" name="completadas" autofocus class="form-control @error('completadas') is-invalid @enderror field__input a-field__input" placeholder="Total de disciplinas cursadas no Curso de origem" value="{{ old('completadas') }}">
           @error('completadas')
           <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
             <strong>{{ $message }}</strong>
           </span>
           @enderror
         </div>
-        </div>
 
-      </div>
-    </div>
-    <div class="form-group row mb-0">
-      <div class="col-md-8 offset-md-4" style="margin-top: 10px; margin-left: 20rem">
-        <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
-        <button onclick="event.preventDefault();confirmar();" id="buttonFinalizar" class="btn btn-primary btn-primary-lmts">
-          {{ __('Finalizar') }}
-        </button>
+      </div><!-- end row input -->
+      </div><!-- end card-body-->
+    </div><!-- end card-->
 
-      </div>
-    </div>
+  <div class="row justify-content-center" style="margin-top:20px">
+    <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
+    <button onclick="event.preventDefault();confirmar();" id="buttonFinalizar" class="btn btn-primary btn-primary-lmts">
+      {{ __('Finalizar') }}
+    </button>
+
   </div>
-  </form>
-</div>
+
+</div><!-- end container-->
+</form>
 
 
 <script type="text/javascript" >
