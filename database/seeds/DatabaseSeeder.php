@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             'foneComercial' =>  'seed',
           ]);
         }
+
         for($i = 1; $i < 21; $i++){
           DB::table('users')->insert([
             'email' => 'teste'.Str::random(5).'@gmail.com',
@@ -150,7 +151,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('editals')->insert([
             'pdfEdital' => 'seed/pdfTeste.pdf',
-            'vagas' => '11:2!12:1!',
+            'vagas' => '11:1?2?3?4?5!12:1?2???!',
             'inicioInscricoes' => '2019-09-01',
             'fimInscricoes' => '2019-12-02',
             'inicioRecurso' => '2019-09-03',

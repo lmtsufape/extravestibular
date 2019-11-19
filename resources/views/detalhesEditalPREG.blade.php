@@ -74,8 +74,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <form method="POST" action="{{ route('cadastroErrata') }}" enctype="multipart/form-data" id="formErrata">
-    @csrf
+  <form method="GET" action="{{ route('editarEdital') }}" enctype="multipart/form-data" id="formErrata">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -86,7 +85,6 @@
       </div>
       <div class="modal-body">
          <div>
-           <input type="hidden" name="editalId" value="{{$edital->id}}" />
 
            <div class="row" style="margin-left: 0.5%;">
              <label for="nome" class="field a-field a-field_a2 page__field" style="width:100%">
@@ -128,6 +126,7 @@
            <div  class="row" style="margin-top:10px;">
              <div class="col-sm-10">
                <input name="editarEdital" type="checkbox" value="sim">
+               <input name="editalId" type="hidden" value="{{$editalId}}">
              <label for="editarEdital">{{ __('Marque se existir mudança nas datas') }}</label>
            </div>
            </div>

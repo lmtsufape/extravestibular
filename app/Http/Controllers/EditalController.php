@@ -60,7 +60,6 @@ class EditalController extends Controller{
           $vagas[$i]['vagas'] = explode('?', $vagas[$i]['vagas']);
         }
 
-
         $cursos = $api->getCursos();
 
         if(!is_null($cursos)){
@@ -94,7 +93,7 @@ class EditalController extends Controller{
            $request->fimRecursoResultado == null ||
            $request->resultadoFinal == null
           ){
-            $validatedData = $request->validate([ 'nome'                    => ['required', 'string', 'max:255', 'unique:editals'],
+            $validatedData = $request->validate([
                                                   'pdfEdital'               => ['required', 'mimes:pdf', 'max:20000'],
                                                   'inicioIsencao'           => ['required', 'date', 'after:'.$yesterday],
                                                   'fimIsencao'              => ['required', 'date'],
@@ -113,9 +112,9 @@ class EditalController extends Controller{
                                                 ]);
         }
         //validate para data oks
-        $validatedData = $request->validate([ 'nome'                    => ['required', 'string', 'max:255', 'unique:editals'],
+        $validatedData = $request->validate([
                                               'pdfEdital'               => ['required', 'mimes:pdf', 'max:20000'],
-                                              'inicioIsencao'           => ['required', 'date', 'after:'.$yesterday],
+                                              'inicioIsencao'           => ['required', 'date'],
                                               'fimIsencao'              => ['required', 'date', 'after:'.$request->inicioIsencao, 'before:'.$request->inicioRecursoIsencao],
                                               'inicioRecursoIsencao'    => ['required', 'date', 'after:'.$request->fimIsencao, 'before:'.$request->fimRecursoIsencao],
                                               'fimRecursoIsencao'       => ['required', 'date', 'after:'.$request->inicioRecursoIsencao, 'before:'.$request->inicioInscricoes],
@@ -131,11 +130,10 @@ class EditalController extends Controller{
                                               'checkVagasExistentes'    => ['required', 'string'],
                                             ]);
 
-        $dataPublicacao = null;
         $file = $request->pdfEdital;
+        $edital = Edital::find($request->editalId);
         $path = 'editais/';
-        $nome = $request->nome . ".pdf";
-        Storage::putFileAs($path, $file, $nome);
+        Storage::putFileAs($path, $file, $edital->nome);
         $vagas = "";
         for($i = 1; $i < $request->nCursos; $i++){
           $aux = "checkbox" . $i;
@@ -160,25 +158,19 @@ class EditalController extends Controller{
           }
 
         }
-        if($request->publicado == 'sim'){
-          $dataPublicacao = $mytime;
-        }
 
-        $edital = Edital::find($request->editalId);
+
 
         $edital->vagas =                 $vagas;
-        $edital->pdfEdital =             $path . $nome;
+        $edital->pdfEdital =             $path . $edital->nome;
         $edital->inicioInscricoes =      $request->inicioInscricoes;
         $edital->fimInscricoes =         $request->fimInscricoes;
-        $edital->nome =                  $nome;
         $edital->inicioRecurso =         $request->inicioRecurso;
         $edital->fimRecurso =            $request->fimRecurso;
         $edital->inicioIsencao =         $request->inicioIsencao;
         $edital->fimIsencao =            $request->fimIsencao;
         $edital->inicioRecursoIsencao =  $request->inicioRecursoIsencao;
         $edital->fimRecursoIsencao =     $request->fimRecursoIsencao;
-        $edital->publicado =             $request->publicado;
-        $edital->dataPublicacao =        $dataPublicacao;
         $edital->resultado =             $request->resultado;
         $edital->descricao =             $request->descricao;
 

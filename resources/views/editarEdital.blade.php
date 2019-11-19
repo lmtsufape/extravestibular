@@ -61,7 +61,7 @@
                   <input value="<?php
                     $nomeEdital = explode(".pdf", $edital->nome);
                     echo ($nomeEdital[0]);
-                   ?>"  id="nome" type="text" name="nome" autofocus class="form-control @error('nome') is-invalid @enderror field__input a-field__input" placeholder="Nome do edital*">
+                   ?>"  id="nome" disabled type="text" name="nome" autofocus class="form-control @error('nome') is-invalid @enderror field__input a-field__input" placeholder="Nome do edital*">
               </label>
               @error('nome')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -109,13 +109,7 @@
             </div>
           </div><!-- end row input file -->
 
-          <!-- row publicar edital -->
-          <div class="row justify-content-left">
-            <div id="checkPublicarEdital" class="col-sm-4">
-              <input class=""name="publicado" type="checkbox" value="sim" style=" margin-top:10px;">
-              <label for="pdfEdital" class="col-form-label text-md-right" style=" margin-top: 9px; font-weight: bold">{{ __('Publicar o Edital*') }}</label>
-            </div>
-          </div><!-- end row publicar edital -->
+
         </div><!--end card body -->
       </div><!-- card arquivo -->
     </div><!-- end row card arquivo -->
