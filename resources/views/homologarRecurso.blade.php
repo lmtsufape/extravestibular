@@ -104,7 +104,10 @@
                         @endif
 
                       </strong>
-                      do edital <strong>{{$recurso->edital->nome}}</strong>,
+                      do edital <strong><?php
+                        $nomeEdital = explode(".pdf", $recurso->edital->nome);
+                        echo ($nomeEdital[0]);
+                       ?></strong>,
                       pelos seguintes motivos: <br><br><strong>{{$recurso->motivo}}</strong>.
 
                     </h3>
