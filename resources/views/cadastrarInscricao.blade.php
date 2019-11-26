@@ -278,7 +278,7 @@
       </div>
       <div class="row" style="margin-top:5%">
         <div class="card" style=" width: 100%">
-            <div class="card-header">{{ __('Dados da IES') }}</div>
+            <div class="card-header">{{ __('Dados da Instituições de Ensino Superior de Origem') }}</div>
             <div class="card-body">
               <div class="card-body">
                 <div class="form-group row">                                                   <!-- Curso de origem -->
@@ -286,10 +286,10 @@
 
                   <label for="cursoDeOrigem" class="field a-field a-field_a2 page__field" style="width: 100%">
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Curso de Origem*:</span>
+                      <span class="a-field__label">Nome Completo do Curso de Origem*:</span>
                     </span>
                   </label>
-                    <input id="cursoDeOrigem" type="text" name="cursoDeOrigem" class="form-control @error('cursoDeOrigem') is-invalid @enderror field__input a-field__input" placeholder="Curso de Origem*:" style="width: 100%;" value="{{ old('cursoDeOrigem') }}">
+                    <input id="cursoDeOrigem" type="text" name="cursoDeOrigem" class="form-control @error('cursoDeOrigem') is-invalid @enderror field__input a-field__input" placeholder="EX: Bacharelado em Ciências da Computação" style="width: 100%;" value="{{ old('cursoDeOrigem') }}">
                   @error('cursoDeOrigem')
                   <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                     <strong>{{ $message }}</strong>
@@ -300,10 +300,10 @@
                 <div class="form-group row">                                                   <!-- Instituição de origem -->
                   <label for="instituicaoDeOrigem" class="field a-field a-field_a2 page__field" style="width: 100%">
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Instituição de Origem*:</span>
+                      <span class="a-field__label">Nome Completo da Instituição de Origem*:</span>
                     </span>
                   </label>
-                    <input id="instituicaoDeOrigem" type="text" name="instituicaoDeOrigem" autofocus class="form-control @error('instituicaoDeOrigem') is-invalid @enderror field__input a-field__input" placeholder="Instituição de Origem*:" style="width: 100%;" value="{{ old('instituicaoDeOrigem') }}">
+                    <input id="instituicaoDeOrigem" type="text" name="instituicaoDeOrigem" autofocus class="form-control @error('instituicaoDeOrigem') is-invalid @enderror field__input a-field__input" placeholder="EX: Universidade Federal Rural de Pernambuco" style="width: 100%;" value="{{ old('instituicaoDeOrigem') }}">
                   @error('instituicaoDeOrigem')
                   <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                     <strong>{{ $message }}</strong>
