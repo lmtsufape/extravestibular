@@ -27,8 +27,7 @@ use Carbon\Carbon;
 class InscricaoController extends Controller
 {
 
-	public function cadastroInscricao(Request $request)
-	  	 {
+	public function cadastroInscricao(Request $request){
 				 	// dd($request);
 				  $isencao = Isencao::where('editalId', $request->editalId)->where('usuarioId', Auth::user()->id)->where('parecer', 'deferida')->first();
 
@@ -448,32 +447,34 @@ class InscricaoController extends Controller
 			if(!strcmp($request->homologado, 'rejeitado')){
 				$validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);
 				$inscricao->homologado = 'rejeitado';
-				$inscricao->coeficienteDeRendimento = 'rejeitado';
+				$inscricao->classificacao = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
 				$inscricao->save();
-				return redirect()->route('home')->with('jsAlert', 'Inscrição aceita com sucesso!');
+				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso!');
 			}
 			else{
 				$inscricao->homologado = 'aprovado';
 				if($inscricao->tipo != 'reintegracao'){
 					$inscricao->homologadoDrca = 'aprovado';
+					$inscricao->classificacao = 'processando';
 				}
 				$inscricao->save();
-				return redirect()->route('home')->with('jsAlert', 'Inscrição aceita com sucesso!');
+				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso!');
 			}
 		}
 		if(!strcmp($request->tipo, 'drca')){
 			if(!strcmp($request->homologado, 'rejeitado')){
-				$inscricao->coeficienteDeRendimento = 'rejeitado';
+				$inscricao->classificacao = 'rejeitado';
 				$inscricao->homologadoDrca = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
 				$inscricao->save();
-				return redirect()->route('home')->with('jsAlert', 'Inscrição aceita com sucesso!');
+				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso!');
 			}
 			else{
 				$inscricao->homologadoDrca = 'aprovado';
+				$inscricao->classificacao = 'processando';
 				$inscricao->save();
-				return redirect()->route('home')->with('jsAlert', 'Inscrição aceita com sucesso!');
+				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso!');
 			}
 		}
 	}
@@ -502,63 +503,73 @@ class InscricaoController extends Controller
 		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
+																						 ->where('classificacao', '!=', 'processando')
+																						 ->where('classificacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'manhã')
 																						 ->where('tipo', 'transferenciaInterna')
-																						 ->orderBy('nota', 'desc')
+																						 ->orderBy('coeficienteDeRendimento', 'desc')
+																						 ->orderBy('totalDisciplinas', 'desc')
 																						 ->get();
 		$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
+																						 ->where('classificacao', '!=', 'processando')
+																						 ->where('classificacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'tarde')
 																						 ->where('tipo', 'transferenciaInterna')
-																						 ->orderBy('nota', 'desc')
+																						 ->orderBy('coeficienteDeRendimento', 'desc')
+																						 ->orderBy('totalDisciplinas', 'desc')
 																						 ->get();
 		$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
+																						 ->where('classificacao', '!=', 'processando')
+																						 ->where('classificacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'noite')
 																						 ->where('tipo', 'transferenciaInterna')
-																						 ->orderBy('nota', 'desc')
+																						 ->orderBy('coeficienteDeRendimento', 'desc')
+																						 ->orderBy('totalDisciplinas', 'desc')
 																						 ->get();
 		$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
 																								->where('homologado' , 'aprovado')
 																								->where('homologadoDrca', 'aprovado')
-																								->whereNotNull('nota')
+																								->where('classificacao', '!=', 'processando')
+	 																						 	->where('classificacao', '!=', 'rejeitado')
 																								->where('curso', $curso)
 																								->where('turno', 'integral')
 																								->where('tipo', 'transferenciaInterna')
-																								->orderBy('nota', 'desc')
+																								->orderBy('coeficienteDeRendimento', 'desc')
+																								->orderBy('totalDisciplinas', 'desc')
 																								->get();
 		$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
 																								->where('homologado' , 'aprovado')
 																								->where('homologadoDrca', 'aprovado')
-																								->whereNotNull('nota')
+																								->where('classificacao', '!=', 'processando')
+	 																						 	->where('classificacao', '!=', 'rejeitado')
 																								->where('curso', $curso)
 																								->where('turno', 'especial')
 																								->where('tipo', 'transferenciaInterna')
-																								->orderBy('nota', 'desc')
+																								->orderBy('coeficienteDeRendimento', 'desc')
+																								->orderBy('totalDisciplinas', 'desc')
 																								->get();
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
 			if($aux <= $vagas[0]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[0] = $vagas[0] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -574,20 +585,20 @@ class InscricaoController extends Controller
 			}
 		}
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
 			if($aux1 <= $vagas[1]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[1] = $vagas[1] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -604,20 +615,20 @@ class InscricaoController extends Controller
 			$aux1++;
 		}
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
 			if($aux2 <= $vagas[2]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[2] = $vagas[2] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -634,20 +645,20 @@ class InscricaoController extends Controller
 			$aux2++;
 		}
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
 			if($aux3 <= $vagas[3]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[3] = $vagas[3] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -664,20 +675,20 @@ class InscricaoController extends Controller
 			$aux3++;
 		}
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
 			if($aux4 <= $vagas[3]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[4] = $vagas[4] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -701,64 +712,74 @@ class InscricaoController extends Controller
 		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
+																						 ->where('classificacao', '!=', 'processando')
+																						 ->where('classificacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'manhã')
 																						 ->where('tipo', 'reintegracao')
-																						 ->orderBy('nota', 'desc')
+																						 ->orderBy('coeficienteDeRendimento', 'desc')
+																						 ->orderBy('totalDisciplinas', 'desc')
 																						 ->get();
 		$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
+																						 ->where('classificacao', '!=', 'processando')
+																						 ->where('classificacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'tarde')
 																						 ->where('tipo', 'reintegracao')
-																						 ->orderBy('nota', 'desc')
+																						 ->orderBy('coeficienteDeRendimento', 'desc')
+																						 ->orderBy('totalDisciplinas', 'desc')
 																						 ->get();
 		$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
+																						 ->where('classificacao', '!=', 'processando')
+																						 ->where('classificacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'noite')
 																						 ->where('tipo', 'reintegracao')
-																						 ->orderBy('nota', 'desc')
+																						 ->orderBy('coeficienteDeRendimento', 'desc')
+																						 ->orderBy('totalDisciplinas', 'desc')
 																						 ->get();
 		$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
 																							  ->where('homologado' , 'aprovado')
 																							  ->where('homologadoDrca', 'aprovado')
-																							  ->whereNotNull('nota')
+																								->where('classificacao', '!=', 'processando')
+	 																						 	->where('classificacao', '!=', 'rejeitado')
 																							  ->where('curso', $curso)
 																							  ->where('turno', 'integral')
 																							  ->where('tipo', 'reintegracao')
-																							  ->orderBy('nota', 'desc')
+																							  ->orderBy('coeficienteDeRendimento', 'desc')
+																								->orderBy('totalDisciplinas', 'desc')
 																							  ->get();
 		$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
 																							  ->where('homologado' , 'aprovado')
 																							  ->where('homologadoDrca', 'aprovado')
-																							  ->whereNotNull('nota')
+																								->where('classificacao', '!=', 'processando')
+	 																						 	->where('classificacao', '!=', 'rejeitado')
 																							  ->where('curso', $curso)
 																							  ->where('turno', 'especial')
 																							  ->where('tipo', 'reintegracao')
-																							  ->orderBy('nota', 'desc')
+																							  ->orderBy('coeficienteDeRendimento', 'desc')
+																								->orderBy('totalDisciplinas', 'desc')
 																							  ->get();
 
 		$aux = 1;
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
 			if($aux <= $vagas[0]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[0] = $vagas[0] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -775,20 +796,20 @@ class InscricaoController extends Controller
 		}
 
 		$aux1 = 1;
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
 			if($aux1 <= $vagas[1]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[1] = $vagas[1] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -806,20 +827,20 @@ class InscricaoController extends Controller
 		}
 
 		$aux2 = 1;
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
 			if($aux2 <= $vagas[2]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[2] = $vagas[2] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -837,20 +858,20 @@ class InscricaoController extends Controller
 		}
 
 		$aux3 = 1;
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
 			if($aux3 <= $vagas[3]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[3] = $vagas[3] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -868,20 +889,20 @@ class InscricaoController extends Controller
 		}
 
 		$aux4 = 1;
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
 			if($aux4 <= $vagas[3]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[4] = $vagas[4] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -903,68 +924,78 @@ class InscricaoController extends Controller
 		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
+																						 ->where('classificacao', '!=', 'processando')
+																						 ->where('classificacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'manhã')
 																						 ->where('tipo', 'transferenciaExterna')
 																						 ->where('cursoDeOrigem', $curso)
-																						 ->orderBy('nota', 'desc')
+																						 ->orderBy('coeficienteDeRendimento', 'desc')
+																						 ->orderBy('totalDisciplinas', 'desc')
 																						 ->get();
 		$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
+																						 ->where('classificacao', '!=', 'processando')
+																						 ->where('classificacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'tarde')
 																						 ->where('tipo', 'transferenciaExterna')
 																						 ->where('cursoDeOrigem', $curso)
-																						 ->orderBy('nota', 'desc')
+																						 ->orderBy('coeficienteDeRendimento', 'desc')
+																						 ->orderBy('totalDisciplinas', 'desc')
 																						 ->get();
 		$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
+																						 ->where('classificacao', '!=', 'processando')
+																						 ->where('classificacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'noite')
 																						 ->where('tipo', 'transferenciaExterna')
 																						 ->where('cursoDeOrigem', $curso)
-																						 ->orderBy('nota', 'desc')
+																						 ->orderBy('coeficienteDeRendimento', 'desc')
+																						 ->orderBy('totalDisciplinas', 'desc')
 																						 ->get();
 		$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
 																								->where('homologado' , 'aprovado')
 																								->where('homologadoDrca', 'aprovado')
-																								->whereNotNull('nota')
+																								->where('classificacao', '!=', 'processando')
+	 																						 	->where('classificacao', '!=', 'rejeitado')
 																								->where('curso', $curso)
 																								->where('turno', 'integral')
 																								->where('tipo', 'transferenciaExterna')
 	 																						 	->where('cursoDeOrigem', $curso)
-																								->orderBy('nota', 'desc')
+																								->orderBy('coeficienteDeRendimento', 'desc')
+																								->orderBy('totalDisciplinas', 'desc')
 																								->get();
 		$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
 																								->where('homologado' , 'aprovado')
 																								->where('homologadoDrca', 'aprovado')
-																								->whereNotNull('nota')
+																								->where('classificacao', '!=', 'processando')
+	 																						 	->where('classificacao', '!=', 'rejeitado')
 																								->where('curso', $curso)
 																								->where('turno', 'especial')
 																								->where('tipo', 'transferenciaExterna')
 	 																						 	->where('cursoDeOrigem', $curso)
-																								->orderBy('nota', 'desc')
+																								->orderBy('coeficienteDeRendimento', 'desc')
+																								->orderBy('totalDisciplinas', 'desc')
 																								->get();
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
 			if($aux <= $vagas[0]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[0] = $vagas[0] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -980,20 +1011,20 @@ class InscricaoController extends Controller
 			}
 		}
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
 			if($aux1 <= $vagas[1]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[1] = $vagas[1] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -1010,20 +1041,20 @@ class InscricaoController extends Controller
 			$aux1++;
 		}
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
 			if($aux2 <= $vagas[2]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[2] = $vagas[2] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -1040,20 +1071,20 @@ class InscricaoController extends Controller
 			$aux2++;
 		}
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
 			if($aux3 <= $vagas[3]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[3] = $vagas[3] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -1070,20 +1101,20 @@ class InscricaoController extends Controller
 			$aux3++;
 		}
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
 			if($aux4 <= $vagas[3]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[4] = $vagas[4] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -1105,68 +1136,78 @@ class InscricaoController extends Controller
 		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
+																						 ->where('classificacao', '!=', 'processando')
+																						 ->where('classificacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'manhã')
 																						 ->where('tipo', 'transferenciaExterna')
 																						 ->where('cursoDeOrigem', '!=',$curso)
-																						 ->orderBy('nota', 'desc')
+																						 ->orderBy('coeficienteDeRendimento', 'desc')
+																						 ->orderBy('totalDisciplinas', 'desc')
 																						 ->get();
 		$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
+																						 ->where('classificacao', '!=', 'processando')
+																						 ->where('classificacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'tarde')
 																						 ->where('tipo', 'transferenciaExterna')
 																						 ->where('cursoDeOrigem', '!=',$curso)
-																						 ->orderBy('nota', 'desc')
+																						 ->orderBy('coeficienteDeRendimento', 'desc')
+																						 ->orderBy('totalDisciplinas', 'desc')
 																						 ->get();
 		$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
+																						 ->where('classificacao', '!=', 'processando')
+																						 ->where('classificacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'noite')
 																						 ->where('tipo', 'transferenciaExterna')
 																						 ->where('cursoDeOrigem', '!=',$curso)
-																						 ->orderBy('nota', 'desc')
+																						 ->orderBy('coeficienteDeRendimento', 'desc')
+																						 ->orderBy('totalDisciplinas', 'desc')
 																						 ->get();
 		$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
 																								->where('homologado' , 'aprovado')
 																								->where('homologadoDrca', 'aprovado')
-																								->whereNotNull('nota')
+																								->where('classificacao', '!=', 'processando')
+	 																						 	->where('classificacao', '!=', 'rejeitado')
 																								->where('curso', $curso)
 																								->where('turno', 'integral')
 																								->where('tipo', 'transferenciaExterna')
 	 																						 	->where('cursoDeOrigem', '!=',$curso)
-																								->orderBy('nota', 'desc')
+																								->orderBy('coeficienteDeRendimento', 'desc')
+																								->orderBy('totalDisciplinas', 'desc')
 																								->get();
 		$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
 																								->where('homologado' , 'aprovado')
 																								->where('homologadoDrca', 'aprovado')
-																								->whereNotNull('nota')
+																								->where('classificacao', '!=', 'processando')
+	 																						 	->where('classificacao', '!=', 'rejeitado')
 																								->where('curso', $curso)
 																								->where('turno', 'especial')
 																								->where('tipo', 'transferenciaExterna')
 	 																						 	->where('cursoDeOrigem', '!=',$curso)
-																								->orderBy('nota', 'desc')
+																								->orderBy('coeficienteDeRendimento', 'desc')
+																								->orderBy('totalDisciplinas', 'desc')
 																								->get();
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
 			if($aux <= $vagas[0]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[0] = $vagas[0] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -1182,20 +1223,20 @@ class InscricaoController extends Controller
 			}
 		}
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
 			if($aux1 <= $vagas[1]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[1] = $vagas[1] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -1212,20 +1253,20 @@ class InscricaoController extends Controller
 			$aux1++;
 		}
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
 			if($aux2 <= $vagas[2]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[2] = $vagas[2] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -1242,20 +1283,20 @@ class InscricaoController extends Controller
 			$aux2++;
 		}
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
 			if($aux3 <= $vagas[3]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[3] = $vagas[3] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -1272,20 +1313,20 @@ class InscricaoController extends Controller
 			$aux3++;
 		}
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
 			if($aux4 <= $vagas[3]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[4] = $vagas[4] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -1307,63 +1348,73 @@ class InscricaoController extends Controller
 		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
+																						 ->where('classificacao', '!=', 'processando')
+																						 ->where('classificacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'manhã')
 																						 ->where('tipo', 'portadorDeDiploma')
-																						 ->orderBy('nota', 'desc')
+																						 ->orderBy('coeficienteDeRendimento', 'desc')
+																						 ->orderBy('totalDisciplinas', 'desc')
 																						 ->get();
 		$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
+																						 ->where('classificacao', '!=', 'processando')
+																						 ->where('classificacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'tarde')
 																						 ->where('tipo', 'portadorDeDiploma')
-																						 ->orderBy('nota', 'desc')
+																						 ->orderBy('coeficienteDeRendimento', 'desc')
+																						 ->orderBy('totalDisciplinas', 'desc')
 																						 ->get();
 		$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
+																						 ->where('classificacao', '!=', 'processando')
+																						 ->where('classificacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'noite')
 																						 ->where('tipo', 'portadorDeDiploma')
-																						 ->orderBy('nota', 'desc')
+																						 ->orderBy('coeficienteDeRendimento', 'desc')
+																						 ->orderBy('totalDisciplinas', 'desc')
 																						 ->get();
 		$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
 																								->where('homologado' , 'aprovado')
 																								->where('homologadoDrca', 'aprovado')
-																								->whereNotNull('nota')
+																								->where('classificacao', '!=', 'processando')
+	 																						 	->where('classificacao', '!=', 'rejeitado')
 																								->where('curso', $curso)
 																								->where('turno', 'integral')
 																								->where('tipo', 'portadorDeDiploma')
-																								->orderBy('nota', 'desc')
+																								->orderBy('coeficienteDeRendimento', 'desc')
+																								->orderBy('totalDisciplinas', 'desc')
 																								->get();
 		$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
 																								->where('homologado' , 'aprovado')
 																								->where('homologadoDrca', 'aprovado')
-																								->whereNotNull('nota')
+																								->where('classificacao', '!=', 'processando')
+	 																						 	->where('classificacao', '!=', 'rejeitado')
 																								->where('curso', $curso)
 																								->where('turno', 'especial')
 																								->where('tipo', 'portadorDeDiploma')
-																								->orderBy('nota', 'desc')
+																								->orderBy('coeficienteDeRendimento', 'desc')
+																								->orderBy('totalDisciplinas', 'desc')
 																								->get();
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
 			if($aux <= $vagas[0]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[0] = $vagas[0] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -1379,20 +1430,20 @@ class InscricaoController extends Controller
 			}
 		}
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
 			if($aux1 <= $vagas[1]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[1] = $vagas[1] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -1409,20 +1460,20 @@ class InscricaoController extends Controller
 			$aux1++;
 		}
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
 			if($aux2 <= $vagas[2]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[2] = $vagas[2] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -1439,20 +1490,20 @@ class InscricaoController extends Controller
 			$aux2++;
 		}
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
 			if($aux3 <= $vagas[3]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[3] = $vagas[3] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -1469,20 +1520,20 @@ class InscricaoController extends Controller
 			$aux3++;
 		}
 
-		$ultimaNota = 0;
+		$ultimoCRE = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
 
 		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
 			if($aux4 <= $vagas[3]){
 				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
+				$ultimoCRE = $inscricao->coeficenteDeRendimento;
 				$ultimoId = $inscricao->id;
 				$inscricao->save();
 				$vagas[4] = $vagas[4] - 1;
 			}
 			else{
-				if($ultimaNota == $inscricao->nota){
+				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
 					if($flagEmpate == false){
 						array_push($ids, $ultimoId);
 						array_push($ids, $inscricao->id);
@@ -1527,38 +1578,22 @@ class InscricaoController extends Controller
 
 	public function cadastroClassificacao(Request $request){
 		$inscricao = Inscricao::find($request->inscricaoId);
-		$validatedData = $request->validate([ 'coeficienteDeRendimento' 		=> ['required', 'numeric'],
-																					'completadas' 								=> ['required', 'numeric'],
-																					'materias' 										=> ['required', 'numeric', 'gt:0'],
+		$validatedData = $request->validate([
+																					'coeficienteDeRendimento' 		=> ['required', 'float', 'lt:10.1'],
+																					'totalDisciplinas' 						=> ['required', 'numeric'],
 																				]);
-
-
-
 		$coeficienteDeRendimento = str_replace(",",".",$request->coeficienteDeRendimento);
 		$inscricao->coeficienteDeRendimento = $coeficienteDeRendimento;
-		$completadas = floatval($request->completadas);
-		$materias = floatval($request->materias);
-		$completadas = $completadas * 100;
-		$conclusaoDoCurso = $completadas/$materias;
-		$conclusaoDoCurso = $conclusaoDoCurso/10;
-		$conclusaoDoCurso = number_format((float)$conclusaoDoCurso, 1, '.', '');
-		$inscricao->conclusaoDoCurso = (String) $conclusaoDoCurso;
-		$nota =  ($conclusaoDoCurso + $coeficienteDeRendimento) / 2;
-		$nota = number_format((float)$nota, 1, '.', '');
-		if($inscricao->tipo == 'transferenciaExterna' || $inscricao->tipo == 'portadorDeDiploma'){
-			if($coeficienteDeRendimento < 6){
-				$nota = 0;
-			}
-		}
-		$inscricao->nota = $nota;
+		$inscricao->totalDisciplinas = $$request->totalDisciplinas;
+		$inscricao->classificacao = 0;
 		$inscricao->save();
-		$inscricoesQueFaltamClassificar = Inscricao::where('editalId' , $inscricao->editalId)
-																								 ->where('homologado' , 'aprovado')
-																								 ->where('homologadoDrca', 'aprovado')
-																								 ->where('curso', $inscricao->curso)
-																								 ->whereNull('nota')
-																								 ->first();
-		if(is_null($inscricoesQueFaltamClassificar)){
+		// $inscricoesQueFaltamClassificar = Inscricao::where('editalId' , $inscricao->editalId)
+		// 																						 ->where('homologado' , 'aprovado')
+		// 																						 ->where('homologadoDrca', 'aprovado')
+		// 																						 ->where('curso', $inscricao->curso)
+		// 																						 ->whereNull('nota')
+		// 																						 ->first();
+		// if(is_null($inscricoesQueFaltamClassificar)){
 			$ids = $this->aprovarInscricoes($inscricao->editalId, $inscricao->curso);
 			if(!is_null($ids)){
 				$inscricoesManha 	  = Inscricao::where('turno', 'manhã')->whereIn('id',$ids)->get();
@@ -1584,11 +1619,11 @@ class InscricaoController extends Controller
 			$this->verificarCompletudeClassificacoes($inscricao->editalId);
 
 			return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso!');
-		}
-		else{
-
-			return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso!');
-		}
+		// }
+		// else{
+		//
+		// 	return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso!');
+		// }
 	}
 
 	public function notificarCoordenador(Request $request){

@@ -149,33 +149,20 @@
           @enderror
         </div>
         <div class="col-sm-4">
-          <label for="materias" class="field a-field a-field_a2 page__field" >
-              <!-- <input id="materias" type="text" name="materias" autofocus class="form-control @error('materias') is-invalid @enderror field__input a-field__input" placeholder="EX: 12"  value="{{ old('materias') }}"> -->
+          <label for="totalDisciplinas" class="field a-field a-field_a2 page__field" >
+              <!-- <input id="totalDisciplinas" type="text" name="totalDisciplinas" autofocus class="form-control @error('totalDisciplinas') is-invalid @enderror field__input a-field__input" placeholder="EX: 12"  value="{{ old('totalDisciplinas') }}"> -->
               <span class="a-field__label-wrap">
-                <span class="a-field__label">Total de disciplinas obrigatórias no Curso de origem.</span>
+                <span class="a-field__label">Total de disciplinas aproveitadas do Curso de origem.</span>
               </span>
           </label>
-          <input id="materias" type="text" name="materias" autofocus class="form-control @error('materias') is-invalid @enderror field__input a-field__input" placeholder="Total de disciplinas obrigatórias no Curso de origem."  value="{{ old('materias') }}">
-          @error('materias')
+          <input id="totalDisciplinas" type="text" name="totalDisciplinas" autofocus class="form-control @error('totalDisciplinas') is-invalid @enderror field__input a-field__input" placeholder="Total de disciplinas obrigatórias no Curso de origem."  value="{{ old('totalDisciplinas') }}">
+          @error('totalDisciplinas')
           <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
             <strong>{{ $message }}</strong>
           </span>
           @enderror
         </div>
-        <div class="col-sm-4">
-          <label for="completadas" class="field a-field a-field_a2 page__field">
-              <!-- <input id="completadas" type="text" name="completadas" autofocus class="form-control @error('completadas') is-invalid @enderror field__input a-field__input" placeholder="EX: 8" value="{{ old('completadas') }}"> -->
-              <span class="a-field__label-wrap">
-                <span class="a-field__label">Total de disciplinas cursadas no Curso de origem</span>
-              </span>
-          </label>
-          <input id="completadas" type="text" name="completadas" autofocus class="form-control @error('completadas') is-invalid @enderror field__input a-field__input" placeholder="Total de disciplinas cursadas no Curso de origem" value="{{ old('completadas') }}">
-          @error('completadas')
-          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-            <strong>{{ $message }}</strong>
-          </span>
-          @enderror
-        </div>
+
 
       </div><!-- end row input -->
       </div><!-- end card-body-->

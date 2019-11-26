@@ -40,8 +40,9 @@ class Inscricao extends Model
         'motivoRejeicao',
         'homologadoDrca',
         'coeficienteDeRendimento',
-        'conclusaoDoCurso',
-        'nota',
+        'totalDisciplinas',
+        'classificacao',
+
     ];
 
     public function user()
