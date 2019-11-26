@@ -35,6 +35,7 @@ class ErrataController extends Controller
         'arquivo'    => $path . $nomeErrata,
         'editalId'   => $request->editalId,
       ]);
+
       if($request->editarEdital == 'sim'){
         return redirect()->route('editarEdital')->with('editalId', $request->editalId);
       }
