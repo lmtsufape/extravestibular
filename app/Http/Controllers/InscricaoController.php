@@ -488,7 +488,207 @@ class InscricaoController extends Controller
 		}
 		$vagas = explode('?', $vagas);
 		$ids = [];
-	  //prioridade 0 = reintegracao
+
+		//prioridade 0 = transferenciaInterna
+
+		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
+																						 ->where('homologado' , 'aprovado')
+																						 ->where('homologadoDrca', 'aprovado')
+																						 ->whereNotNull('nota')
+																						 ->where('curso', $curso)
+																						 ->where('turno', 'manhã')
+																						 ->where('tipo', 'transferenciaInterna')
+																						 ->orderBy('nota', 'desc')
+																						 ->get();
+		$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
+																						 ->where('homologado' , 'aprovado')
+																						 ->where('homologadoDrca', 'aprovado')
+																						 ->whereNotNull('nota')
+																						 ->where('curso', $curso)
+																						 ->where('turno', 'tarde')
+																						 ->where('tipo', 'transferenciaInterna')
+																						 ->orderBy('nota', 'desc')
+																						 ->get();
+		$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
+																						 ->where('homologado' , 'aprovado')
+																						 ->where('homologadoDrca', 'aprovado')
+																						 ->whereNotNull('nota')
+																						 ->where('curso', $curso)
+																						 ->where('turno', 'noite')
+																						 ->where('tipo', 'transferenciaInterna')
+																						 ->orderBy('nota', 'desc')
+																						 ->get();
+		$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
+																								->where('homologado' , 'aprovado')
+																								->where('homologadoDrca', 'aprovado')
+																								->whereNotNull('nota')
+																								->where('curso', $curso)
+																								->where('turno', 'integral')
+																								->where('tipo', 'transferenciaInterna')
+																								->orderBy('nota', 'desc')
+																								->get();
+		$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
+																								->where('homologado' , 'aprovado')
+																								->where('homologadoDrca', 'aprovado')
+																								->whereNotNull('nota')
+																								->where('curso', $curso)
+																								->where('turno', 'especial')
+																								->where('tipo', 'transferenciaInterna')
+																								->orderBy('nota', 'desc')
+																								->get();
+
+		$ultimaNota = 0;
+		$ultimoId = 0;
+		$flagEmpate = false;
+
+		foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
+			if($aux <= $vagas[0]){
+				$inscricao->situacao = 'Aprovado';
+				$ultimaNota = $inscricao->nota;
+				$ultimoId = $inscricao->id;
+				$inscricao->save();
+				$vagas[0] = $vagas[0] - 1;
+			}
+			else{
+				if($ultimaNota == $inscricao->nota){
+					if($flagEmpate == false){
+						array_push($ids, $ultimoId);
+						array_push($ids, $inscricao->id);
+						$flagEmpate = true;
+					}
+					else{
+						array_push($ids, $inscricao->id);
+					}
+				}
+				$inscricao->situacao = 'Classificável';
+				$inscricao->save();
+				$vagas[0] = $vagas[0] - 1;
+			}
+		}
+
+		$ultimaNota = 0;
+		$ultimoId = 0;
+		$flagEmpate = false;
+
+		foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
+			if($aux1 <= $vagas[1]){
+				$inscricao->situacao = 'Aprovado';
+				$ultimaNota = $inscricao->nota;
+				$ultimoId = $inscricao->id;
+				$inscricao->save();
+				$vagas[1] = $vagas[1] - 1;
+			}
+			else{
+				if($ultimaNota == $inscricao->nota){
+					if($flagEmpate == false){
+						array_push($ids, $ultimoId);
+						array_push($ids, $inscricao->id);
+						$flagEmpate = true;
+					}
+					else{
+						array_push($ids, $inscricao->id);
+					}
+				}
+				$inscricao->situacao = 'Classificável';
+				$inscricao->save();
+				$vagas[1] = $vagas[1] - 1;
+			}
+			$aux1++;
+		}
+
+		$ultimaNota = 0;
+		$ultimoId = 0;
+		$flagEmpate = false;
+
+		foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
+			if($aux2 <= $vagas[2]){
+				$inscricao->situacao = 'Aprovado';
+				$ultimaNota = $inscricao->nota;
+				$ultimoId = $inscricao->id;
+				$inscricao->save();
+				$vagas[2] = $vagas[2] - 1;
+			}
+			else{
+				if($ultimaNota == $inscricao->nota){
+					if($flagEmpate == false){
+						array_push($ids, $ultimoId);
+						array_push($ids, $inscricao->id);
+						$flagEmpate = true;
+					}
+					else{
+						array_push($ids, $inscricao->id);
+					}
+				}
+				$inscricao->situacao = 'Classificável';
+				$inscricao->save();
+				$vagas[2] = $vagas[2] - 1;
+			}
+			$aux2++;
+		}
+
+		$ultimaNota = 0;
+		$ultimoId = 0;
+		$flagEmpate = false;
+
+		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
+			if($aux3 <= $vagas[3]){
+				$inscricao->situacao = 'Aprovado';
+				$ultimaNota = $inscricao->nota;
+				$ultimoId = $inscricao->id;
+				$inscricao->save();
+				$vagas[3] = $vagas[3] - 1;
+			}
+			else{
+				if($ultimaNota == $inscricao->nota){
+					if($flagEmpate == false){
+						array_push($ids, $ultimoId);
+						array_push($ids, $inscricao->id);
+						$flagEmpate = true;
+					}
+					else{
+						array_push($ids, $inscricao->id);
+					}
+				}
+				$inscricao->situacao = 'Classificável';
+				$inscricao->save();
+				$vagas[3] = $vagas[3] - 1;
+			}
+			$aux3++;
+		}
+
+		$ultimaNota = 0;
+		$ultimoId = 0;
+		$flagEmpate = false;
+
+		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
+			if($aux4 <= $vagas[3]){
+				$inscricao->situacao = 'Aprovado';
+				$ultimaNota = $inscricao->nota;
+				$ultimoId = $inscricao->id;
+				$inscricao->save();
+				$vagas[4] = $vagas[4] - 1;
+			}
+			else{
+				if($ultimaNota == $inscricao->nota){
+					if($flagEmpate == false){
+						array_push($ids, $ultimoId);
+						array_push($ids, $inscricao->id);
+						$flagEmpate = true;
+					}
+					else{
+						array_push($ids, $inscricao->id);
+					}
+				}
+				$inscricao->situacao = 'Classificável';
+				$inscricao->save();
+				$vagas[4] = $vagas[4] - 1;
+			}
+			$aux4++;
+		}
+
+
+
+	  //prioridade 1 = reintegracao
 
 		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
@@ -660,204 +860,6 @@ class InscricaoController extends Controller
 		}
 
 		$aux4 = 1;
-		$ultimaNota = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
-			if($aux4 <= $vagas[3]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[4] = $vagas[4] - 1;
-			}
-			else{
-				if($ultimaNota == $inscricao->nota){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[4] = $vagas[4] - 1;
-			}
-			$aux4++;
-		}
-
-
-	  //prioridade 1 = transferenciaInterna
-
-		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'manhã')
-																						 ->where('tipo', 'transferenciaInterna')
-																						 ->orderBy('nota', 'desc')
-																						 ->get();
-		$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'tarde')
-																						 ->where('tipo', 'transferenciaInterna')
-																						 ->orderBy('nota', 'desc')
-																						 ->get();
-		$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->whereNotNull('nota')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'noite')
-																						 ->where('tipo', 'transferenciaInterna')
-																						 ->orderBy('nota', 'desc')
-																						 ->get();
-		$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
-																								->where('homologado' , 'aprovado')
-																								->where('homologadoDrca', 'aprovado')
-																								->whereNotNull('nota')
-																								->where('curso', $curso)
-																								->where('turno', 'integral')
-																								->where('tipo', 'transferenciaInterna')
-																								->orderBy('nota', 'desc')
-																								->get();
-		$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
-																								->where('homologado' , 'aprovado')
-																								->where('homologadoDrca', 'aprovado')
-																								->whereNotNull('nota')
-																								->where('curso', $curso)
-																								->where('turno', 'especial')
-																								->where('tipo', 'transferenciaInterna')
-																								->orderBy('nota', 'desc')
-																								->get();
-
-		$ultimaNota = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
-			if($aux <= $vagas[0]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[0] = $vagas[0] - 1;
-			}
-			else{
-				if($ultimaNota == $inscricao->nota){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[0] = $vagas[0] - 1;
-			}
-		}
-
-		$ultimaNota = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
-			if($aux1 <= $vagas[1]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[1] = $vagas[1] - 1;
-			}
-			else{
-				if($ultimaNota == $inscricao->nota){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[1] = $vagas[1] - 1;
-			}
-			$aux1++;
-		}
-
-		$ultimaNota = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
-			if($aux2 <= $vagas[2]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[2] = $vagas[2] - 1;
-			}
-			else{
-				if($ultimaNota == $inscricao->nota){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[2] = $vagas[2] - 1;
-			}
-			$aux2++;
-		}
-
-		$ultimaNota = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
-			if($aux3 <= $vagas[3]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimaNota = $inscricao->nota;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[3] = $vagas[3] - 1;
-			}
-			else{
-				if($ultimaNota == $inscricao->nota){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[3] = $vagas[3] - 1;
-			}
-			$aux3++;
-		}
-
 		$ultimaNota = 0;
 		$ultimoId = 0;
 		$flagEmpate = false;
