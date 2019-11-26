@@ -314,10 +314,13 @@
                 <div class="form-group row">                                                   <!-- Natureza da IES -->
                   <label for="naturezaDaIes" class="field a-field a-field_a2 page__field" style="width: 100%">
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Natureza da IES*:</span>
+                      <span class="a-field__label">Natureza da Instituição*:</span>
                     </span>
                   </label>
-                    <input id="naturezaDaIes" type="text" name="naturezaDaIes" autofocus class="form-control @error('naturezaDaIes') is-invalid @enderror field__input a-field__input" placeholder="Natureza da IES*:" style="width: 100%;"  value="{{ old('naturezaDaIes') }}">
+                    <select class="form-control col-sm-10" name="naturezaDaIes">
+                      <option <?php if(old('naturezaDaIes') == 'Pública'){ echo('selected'); } ?> value="Pública">Pública</option>
+                      <option <?php if(old('naturezaDaIes') == 'Privada'){ echo('selected'); } ?> value="Privada">Privada</option>
+                    </select>
                   @error('naturezaDaIes')
                   <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                     <strong>{{ $message }}</strong>
