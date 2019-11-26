@@ -31,37 +31,25 @@ class ApiAuth
         }
         else{
           try {
-                // $client = new Client(); //GuzzleHttp\Client
-                // $headers  =[
-                //              'Content-Type' => 'application/json',
-                //              'X-Requested-With' => 'XMLHttpRequest',
-                //              'Authorization' => 'Bearer '.session('access_token'),
-                //            ];
-                // $response = $client->request('GET','http://lmts.api/api/curso/', ['headers' => $headers]);
                 $api = new ApiLmts();
                 $check= $api->check();
-                // if($response->getStatusCode() == 201){
-                //   return $next($request);
-                // }
                 if($check){
                   return $next($request);
                 }
                 else{
-                  Auth::logout();
+                  // Auth::logout();
                   session(['tipo' => null, 'token_type' => null, 'name' => null, 'id' => null, 'email' => null, 'cursoId' => null]);
-                  return $next($request);
+                  return redirect('login');
                 }
 
               } catch (ClientException $e) {
-                Auth::logout();
+                // Auth::logout();
                 session(['tipo' => null, 'token_type' => null, 'name' => null, 'id' => null, 'email' => null, 'cursoId' => null]);
-                return $next($request);
+                return redirect('login');
                 }
-          Auth::logout();
+          // Auth::logout();
           session(['tipo' => null, 'token_type' => null, 'name' => null, 'id' => null, 'email' => null, 'cursoId' => null]);
-          return $next($request);
-
-
+          return redirect('login');
         }
     }
 

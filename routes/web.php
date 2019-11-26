@@ -26,7 +26,7 @@ Route::get('/login',                         'InscricaoController@entrar'       
 Route::get('/listarEditais',                 'EditalController@iframeEditais'                   )->name('iframeEditais');
 Route::post('/loginApi',                     'HomeController@loginApi'                          )->name('loginApi')->middleware('guest');
 
-Route::group(['middleware' => 'lmts'], function(){
+Route::group(['middleware' => ['lmts']], function(){
   Route::get('/home',                        'HomeController@index'                             )->name('home');
   Route::get('/home/servidor',               'HomeController@homeApi'                           )->name('homeApi');
 
@@ -36,7 +36,7 @@ Route::group(['middleware' => 'lmts'], function(){
   Route::post('/listaEditais',               'EditalController@listaEditais'                    )->name('listaEditais');
   Route::post('/publicarEdital',             'EditalController@publicarEdital'                  )->name('publicarEdital');
   Route::post('/cadastroEdital',             'EditalController@cadastroEdital'                  )->name('cadastroEdital');
-  Route::get( '/detalhes',                   'EditalController@detalhesEdital'                  )->name('detalhesEdital')->middleware('auth');
+  Route::get( '/detalhes',                   'EditalController@detalhesEdital'                  )->name('detalhesEdital');
   Route::get( '/detalhes/servidor',          'EditalController@detalhesEdital'                  )->name('detalhesEditalServidor');
   Route::get( '/listaInscricoes',            'EditalController@editalEscolhido'                 )->name('editalEscolhido');
   Route::post('/gerarClassificacao',         'EditalController@gerarClassificacao'              )->name('gerarClassificacao');
@@ -64,7 +64,7 @@ Route::group(['middleware' => 'lmts'], function(){
   Route::get('/homologarRecurso',            'RecursoController@recursoEscolhido'               )->name('recursoEscolhido');
   Route::post('/recursoHomologado',          'RecursoController@homologarRecurso'               )->name('homologarRecurso');
 
-  Route::get('/dadosUsuario',                'DadosUsuarioController@verDadosUsuario'           )->name('verDadosUsuario')->middleware('auth');
+  Route::get('/dadosUsuario',                'DadosUsuarioController@verDadosUsuario'           )->name('verDadosUsuario');
   Route::get('/editarDadosUsuario',          'DadosUsuarioController@editarDadosUsuario'        )->name('editarDadosUsuario');
   Route::post('/cadastroDadosUsuario',       'DadosUsuarioController@cadastroDadosUsuario'      )->name('cadastroDadosUsuario');
   Route::post('/cadastroEditarDadosUsuario', 'DadosUsuarioController@cadastroEditarDadosUsuario')->name('cadastroEditarDadosUsuario');
