@@ -198,6 +198,22 @@
                     </div>
                 </div>
 
+                <div id="diploma" class="form-group row" style="display: none">                   <!-- Arquivo diploma -->
+                    <label for="Diploma" class="col-sm-4 col-form-label text-md-right">{{ __('Diploma:') }}</label>
+
+                    <div class="col-sm-6">
+                      <div class="custom-file">
+                        <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="diploma" >
+                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                      </div>
+                      @error('diploma')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                </div>
+
                 <div class="form-group row">                                                   <!-- Curso -->
                     <label for="Curso" class="col-sm-4 col-form-label text-md-right">{{ __('Curso pretendido*:') }}</label>
 
@@ -429,6 +445,7 @@
       document.getElementById("enem").style.display = "none";
       document.getElementById("curriculo").style.display = "none";
       document.getElementById("programaDasDisciplinas").style.display = "none";
+      document.getElementById("diploma").style.display = "none";
 
       if(document.getElementById("comprovante").value == 'isento'){
         document.getElementById("formulario").style.display = "";
@@ -442,6 +459,8 @@
       document.getElementById("enem").style.display = "none";
       document.getElementById("curriculo").style.display = "none";
       document.getElementById("programaDasDisciplinas").style.display = "none";
+      document.getElementById("diploma").style.display = "none";
+
 
       if(document.getElementById("comprovante").value == 'isento'){
         document.getElementById("formulario").style.display = "";
@@ -454,6 +473,8 @@
       document.getElementById("enem").style.display = "none";
       document.getElementById("curriculo").style.display = "";
       document.getElementById("programaDasDisciplinas").style.display = "";
+      document.getElementById("diploma").style.display = "none";
+
 
       if(document.getElementById("comprovante").value == 'isento'){
         document.getElementById("formulario").style.display = "";
@@ -466,6 +487,8 @@
       document.getElementById("enem").style.display = "";
       document.getElementById("curriculo").style.display = "none";
       document.getElementById("programaDasDisciplinas").style.display = "";
+      document.getElementById("diploma").style.display = "";
+
 
       if(document.getElementById("comprovante").value == 'isento'){
         document.getElementById("formulario").style.display = "";

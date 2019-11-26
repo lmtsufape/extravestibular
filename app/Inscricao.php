@@ -12,7 +12,7 @@ class Inscricao extends Model
      *
      * @var array
      */
-    
+
 
     protected $fillable = [
         'usuarioId',
@@ -23,6 +23,7 @@ class Inscricao extends Model
         'programaDasDisciplinas',
         'curriculo',
         'enem',
+        'diploma',
         'comprovante',
         'curso',
         'polo',

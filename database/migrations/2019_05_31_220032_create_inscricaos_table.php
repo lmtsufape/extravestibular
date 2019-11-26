@@ -23,7 +23,8 @@ class CreateInscricaosTable extends Migration
             $table->string('historicoEscolar')->nullable();
             $table->string('programaDasDisciplinas')->nullable();
     				$table->string('curriculo')->nullable();
-    				$table->string('enem')->nullable();
+            $table->string('enem')->nullable();
+    				$table->string('diploma')->nullable();
             $table->string('comprovante');
     				$table->string('curso');
     				$table->string('polo')->nullable();
