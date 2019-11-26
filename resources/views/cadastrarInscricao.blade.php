@@ -183,7 +183,7 @@
                     </div>
 
                 <div id="enem" class="form-group row" style="display: none">                   <!-- Arquivo enenm -->
-                    <label for="ENEM" class="col-sm-4 col-form-label text-md-right">{{ __('Nota no Exame Nacional do Ensino Médio (ENEM): ') }}</label>
+                    <label for="ENEM" class="col-sm-4 col-form-label text-md-right">{{ __('Documento com a Nota do Exame Nacional do Ensino Médio a partir da edição de 2010:') }}</label>
 
                     <div class="col-sm-6">
                       <div class="custom-file">
