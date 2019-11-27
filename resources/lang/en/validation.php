@@ -72,7 +72,7 @@ return [
     ],
     'string'               => ':Attribute deve ser uma string',
     'timezone'             => ':Attribute deve ser uma timezone válida.',
-    'unique'               => ':Attribute já está em uso.',
+    'unique'               => 'Este :Attribute já foi cadastrado no sistema.',
     'url'                  => 'O formato de :attribute é inválido.',
     'gt'  => [
       'numeric' => 'O valor deve ser maior que 0',
