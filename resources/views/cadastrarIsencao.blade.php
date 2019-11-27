@@ -89,8 +89,14 @@
 
           <div class="card-body" style="width: 100%;">
             <div class="form-group row">      <!-- Arquivo Histórico Escolar -->
-              <label for="Histórico Escolar" class="col-sm-12">{{ __('Histórico escolar*') }}</label>
 
+              <div class="alert alert-warning alert-dismissible fade show col-sm-12" role="alert">
+                <strong>Atenção!</strong> Os documentos precisam ser legíveis.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <label for="Histórico Escolar" class="col-sm-12">{{ __('Histórico escolar*') }}</label>
               <div class="custom-file col-sm-12">
                 <input id="input" type="file" class="filestyle rounded-pill" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="historicoEscolar">
                 @error('historicoEscolar')
