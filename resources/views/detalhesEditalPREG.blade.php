@@ -28,45 +28,45 @@
 
 <style type="text/css">
 
-.btn-primary {
-  margin-top: 8%;
-}
+  .btn-primary {
+    margin-top: 8%;
+  }
 
-.h2 {
-  color: #1B2E4F;
-  font-size: 110%;
-}
-.card{
-  margin: 10px;
-  height: 500px;
-}
-
-#label{
-  margin-left: 3%;
-}
-#card{
-  height: 24rem;
-}
-
-@media screen and (max-width: 576px){
-  #finalizarModal{
-    margin-top: 40px;
+  .h2 {
+    color: #1B2E4F;
+    font-size: 110%;
   }
   .card{
-    margin-left: 50px;
+    margin: 10px;
+    height: 500px;
+  }
+
+  #label{
+    margin-left: 3%;
   }
   #card{
-    height: 26rem;
-  }
-  .titulo-tabela-lmts {
-    margin-right: 5%;
-
-  }
-  #label{
-    margin-left: 4%;
+    height: 24rem;
   }
 
-}
+  @media screen and (max-width: 576px){
+    #finalizarModal{
+      margin-top: 40px;
+    }
+    .card{
+      margin-left: 50px;
+    }
+    #card{
+      height: 26rem;
+    }
+    .titulo-tabela-lmts {
+      margin-right: 5%;
+
+    }
+    #label{
+      margin-left: 4%;
+    }
+
+  }
 
 </style>
 
@@ -575,21 +575,36 @@
 
   <div id="card" class="card text-center " style="border-radius: 20px;">    <!-- Classificação -->
    <div class="card-header d-flex justify-content-center" style="background-color: white; margin-top: -50px; border-top-left-radius: 20px; border-top-right-radius: 20px">
-     <h2 class="h2" style="font-weight: bold">Gerar <br>resultado</h2>
+     <h2 class="h2" style="font-weight: bold">Gerar <br>resultado <?php if($mytime <= $edital->resultado ){echo('parcial');}else{echo('final');} ?></h2>
 
    </div>
-   <div class="card-header d-flex justify-content-center">
-       <h5>
-        Aberto de: <br>
-          <a style="font-weight: bold;">
-            {{date_format(date_create($edital->fimInscricoes), 'd/m/y')}}
-          </a>
-           até
-          <a style="font-weight: bold">
-            {{date_format(date_create($edital->resultado), 'd/m/y')}}
-          </a>
-       </h5>
-   </div>
+   @if($mytime <= $edital->resultado )
+     <div class="card-header d-flex justify-content-center">
+         <h5>
+          Aberto de: <br>
+            <a style="font-weight: bold;">
+              {{date_format(date_create($edital->inicioInscricoes), 'd/m/y')}}
+            </a>
+             até
+            <a style="font-weight: bold">
+              {{date_format(date_create($edital->resultado), 'd/m/y')}}
+            </a>
+         </h5>
+     </div>
+   @else
+     <div class="card-header d-flex justify-content-center">
+         <h5>
+          Aberto de: <br>
+            <a style="font-weight: bold;">
+              {{date_format(date_create($edital->fimRecursoResultado), 'd/m/y')}}
+            </a>
+             até
+            <a style="font-weight: bold">
+              {{date_format(date_create($edital->resultadoFinal), 'd/m/y')}}
+            </a>
+         </h5>
+     </div>
+   @endif
    <div class="container-fluid justify-content-center" style="height: 100%; margin-top: 2%">
      <h4>
        <?php
