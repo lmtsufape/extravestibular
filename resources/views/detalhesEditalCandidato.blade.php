@@ -50,7 +50,7 @@
   overflow:auto;
 }
 #rowCards{
-  width: 100%; 
+  width: 100%;
   padding-top: 1%;
 }
 @media screen and (max-width: 576px){
@@ -66,7 +66,7 @@
 
   }
   #rowCards{
-  width: 97%; 
+  width: 97%;
   padding-top: 1%;
 }
 
@@ -164,15 +164,7 @@
             <div class="hover-popup-lmts">
               <a style="font-weight: bold; color: red">Indeferido</a> <br>
               <a style="font-weight: bold">Justificativa:</a> <br>
-              <a> {{$isencao->motivoRejeicao}} </a>
-              <!-- <a style="color:white">
-                <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
-                <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
-                    <b style="font-weight: bold">Motivo</b>
-                    <br>
-                      {{$isencao->motivoRejeicao}}
-                </span>
-              </a> -->
+              <div class="justify-content-center" style=""> {{$inscricao->motivoRejeicao}} </div>
             </div>
           @endif
         @else
@@ -228,19 +220,11 @@
             @elseif($recursoIsencao->homologado == 'nao')
               <a style="font-weight: bold">Processando</a>
             @else
-            <div class="hover-popup-lmts">
-              <a style="font-weight: bold; color: red">Indeferido</a> <br>
-              <a style="font-weight: bold">Justificativa:</a> <br>
-              <a> {{$recursoIsencao->motivoRejeicao}} </a>
-              <!-- <a style="color:white">
-                <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}"/>
-                <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
-                    <b style="font-weight: bold">Motivo</b>
-                    <br>
-                      {{$recursoIsencao->motivoRejeicao}}
-                </span>
-              </a> -->
-            </div>
+              <div class="hover-popup-lmts">
+                <a style="font-weight: bold; color: red">Indeferido</a> <br>
+                <a style="font-weight: bold">Justificativa:</a> <br>
+                <div class="justify-content-center" style=""> {{$inscricao->motivoRejeicao}} </div>
+              </div>
             @endif
           @else
             <a style="font-weight: bold">Processando</a>
@@ -296,19 +280,10 @@
                 @elseif($inscricao->homologadoDrca == 'nao')
                   <a style="font-weight: bold">Processando</a>
                 @else
-                  <div>
+                  <div class="hover-popup-lmts">
                     <a style="font-weight: bold; color: red">Indeferido</a> <br>
                     <a style="font-weight: bold">Justificativa:</a> <br>
-                    <a> {{$inscricao->motivoRejeicao}} </a>
-                    <!-- <a style="color:white">
-                      <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
-                      <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
-                          <b style="font-weight: bold">Motivo</b>
-                          <br>
-                          
-                            {{$inscricao->motivoRejeicao}}
-                      </span>
-                    </a> -->
+                    <div class="justify-content-center" style=""> {{$inscricao->motivoRejeicao}} </div>
                   </div>
                 @endif
               @elseif($inscricao->homologado == 'nao')
@@ -316,18 +291,8 @@
               @else
                 <div class="hover-popup-lmts">
                   <a style="font-weight: bold; color: red">Indeferido</a> <br>
-                  
                   <a style="font-weight: bold">Justificativa:</a> <br>
-                  <div class="justify-content-center" style="display:flex;"> {{$inscricao->motivoRejeicao}} </div>
-
-                  <!-- <a style="color:white">
-                    <img src="{{asset('images/iconAjuda.png')}}" style="width: 20px"/>
-                    <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
-                        <b style="font-weight: bold">Motivo</b>
-                        <br>
-                          {{$inscricao->motivoRejeicao}}
-                    </span>
-                  </a> -->
+                  <div class="justify-content-center" style=""> {{$inscricao->motivoRejeicao}} </div>
                 </div>
               @endif
             @else
@@ -386,15 +351,7 @@
                  <div class="hover-popup-lmts">
                    <a style="font-weight: bold; color: red">Indeferido</a> <br>
                    <a style="font-weight: bold">Justificativa:</a> <br>
-                   <a> {{$inscricao->motivoRejeicao}} </a>
-                   <!-- <a style="color:white">
-                     <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}" />
-                     <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
-                         <b style="font-weight: bold">Motivo</b>
-                         <br>
-                           {{$recursoInscricao->motivoRejeicao}}
-                     </span>
-                   </a> -->
+                   <div class="justify-content-center" style=""> {{$inscricao->motivoRejeicao}} </div>
                  </div>
                @endif
               @else
@@ -452,19 +409,11 @@
             @elseif($recursoResultado->homologado == 'nao')
               <a style="font-weight: bold">Processando</a>
             @else
-            <div class="hover-popup-lmts">
-              <a style="font-weight: bold; color: red">Indeferido</a> <br>
-              <a style="font-weight: bold">Justificativa:</a> <br>
-              <a> {{$recursoResultado->motivoRejeicao}} </a>
-              <!-- <a style="color:white">
-                <img class="ajuda-lmts" src="{{asset('images/iconAjuda.png')}}"/>
-                <span style="background-color: lightgray; color: black; border-radius: 5px; padding: 5px; size: 5rem" >
-                    <b style="font-weight: bold">Motivo</b>
-                    <br>
-                      {{$recursoIsencao->motivoRejeicao}}
-                </span>
-              </a> -->
-            </div>
+              <div class="hover-popup-lmts">
+                <a style="font-weight: bold; color: red">Indeferido</a> <br>
+                <a style="font-weight: bold">Justificativa:</a> <br>
+                <div class="justify-content-center" style=""> {{$inscricao->motivoRejeicao}} </div>
+              </div>
             @endif
           @else
             <a style="font-weight: bold">Processando</a>
