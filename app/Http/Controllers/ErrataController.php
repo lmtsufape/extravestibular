@@ -44,6 +44,22 @@ class ErrataController extends Controller
       }
     }
 
+    public function modificarErrata(Request $request){
+      $validatedData = $request->validate([
+                                            'arquivo1' => ['required', 'mimes:pdf', 'max:20000'],
+                                          ]);
+      $errata = Errata::find($request->errataId);
+      $file = $request->arquivo1;
+      $path = 'erratas/' . $request->editalId . '/';
+      $nomeErrata = $errata->nome . '.pdf';
+
+      Storage::putFileAs($path, $file, $nomeErrata);
+      $errata->arquivo = $path . $nomeErrata;
+      $errata->save();
+
+      return redirect()->route('home')->with('jsAlert', 'Arquivo da Errata modificado com sucesso!');
+    }
+
     public function deleteErrata(Request $request){
       $errata = Errata::find($request->errataId);
       $errata->delete();

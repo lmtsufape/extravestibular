@@ -55,6 +55,7 @@ Route::group(['middleware' => ['lmts']], function(){
   Route::post('/cadastroErrata',             'ErrataController@cadastroErrata'                  )->name('cadastroErrata');
   Route::post('/deleteErrata',               'ErrataController@deleteErrata'                    )->name('deleteErrata');
   Route::get('/novaErrata',                  'ErrataController@novaErrata'                      )->name('novaErrata');
+  Route::post('/modificarErrata',             'ErrataController@modificarErrata'                 )->name('modificarErrata');
 
   Route::post('/cadastroIsencao',            'IsencaoController@cadastroIsencao'                )->name('cadastroIsencao');
   Route::get('/homologarIsencao',            'IsencaoController@isencaoEscolhida'               )->name('isencaoEscolhida');
