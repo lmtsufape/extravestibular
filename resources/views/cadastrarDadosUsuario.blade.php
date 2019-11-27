@@ -127,12 +127,41 @@
               </div><!-- end Orgao Emissor -->
 
               <!-- uf -->
-              <div id="margin" class="col-sm-1">
+              <div id="margin" class="col-sm-2">
                 <label id="largura" for="orgaoEmissorUF" class="field a-field a-field_a2 page__field" style="width:100%">
                   <span class="a-field__label-wrap">
                     <span class="a-field__label">UF*</span>
                   </span>
-                    <input maxlength="2" id="orgaoEmissorUF" type="text" name="orgaoEmissorUF" autofocus class="form-control @error('orgaoEmissorUF') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="" value="{{ old('orgaoEmissorUF') }}">
+                    <!-- <input maxlength="2" id="orgaoEmissorUF" type="text" name="orgaoEmissorUF" autofocus class="form-control @error('orgaoEmissorUF') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="" value="{{ old('orgaoEmissorUF') }}"> -->
+                    <select class="form-control col-sm-10" name="orgaoEmissorUF">
+                      <option <?php if(old('orgaoEmissorUF') == 'AC'){ echo('selected'); } ?> value="AC">AC</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'AL'){ echo('selected'); } ?> value="AL">AL</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'AP'){ echo('selected'); } ?> value="AP">AP</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'AM'){ echo('selected'); } ?> value="AM">AM</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'BA'){ echo('selected'); } ?> value="BA">BA</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'CE'){ echo('selected'); } ?> value="CE">CE</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'DF'){ echo('selected'); } ?> value="DF">DF</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'ES'){ echo('selected'); } ?> value="ES">ES</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'GO'){ echo('selected'); } ?> value="GO">GO</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'MA'){ echo('selected'); } ?> value="MA">MA</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'MT'){ echo('selected'); } ?> value="MT">MT</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'MS'){ echo('selected'); } ?> value="MS">MS</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'MG'){ echo('selected'); } ?> value="MG">MG</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'PA'){ echo('selected'); } ?> value="PA">PA</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'PB'){ echo('selected'); } ?> value="PB">PB</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'PR'){ echo('selected'); } ?> value="PR">PR</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'PE'){ echo('selected'); } ?> value="PE">PE</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'PI'){ echo('selected'); } ?> value="PI">PI</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'RJ'){ echo('selected'); } ?> value="RJ">RJ</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'RN'){ echo('selected'); } ?> value="RN">RN</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'RS'){ echo('selected'); } ?> value="RS">RS</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'RO'){ echo('selected'); } ?> value="RO">RO</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'RR'){ echo('selected'); } ?> value="RR">RR</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'SC'){ echo('selected'); } ?> value="SC">SC</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'SP'){ echo('selected'); } ?> value="SP">SP</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'SE'){ echo('selected'); } ?> value="SE">SE</option>
+                      <option <?php if(old('orgaoEmissorUF') == 'TO'){ echo('selected'); } ?> value="TO">TO</option>
+                    </select>
                 </label>
                 @error('orgaoEmissorUF')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -157,7 +186,7 @@
               </div><!-- end titulo eleitoral -->
 
               <!-- data nascimento -->
-              <div class="col-sm-3">
+              <div class="col-sm-2">
                 <label id="largura" for="nascimento" class="field a-field a-field_a2 page__field" style="width:100%">
                   <span class="a-field__label-wrap">
                     <span class="a-field__label">Data de Nascimento*</span>
@@ -287,7 +316,36 @@
                 <span class="a-field__label-wrap">
                   <span class="a-field__label">UF*</span>
                 </span>
-                  <input maxlength="2" id="uf" type="text" name="uf" autofocus class="form-control @error('uf') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="" value="{{ old('uf') }}">
+                  <!-- <input maxlength="2" id="uf" type="text" name="uf" autofocus class="form-control @error('uf') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="" value="{{ old('uf') }}"> -->
+                  <select id="uf" class="form-control col-sm-10" name="uf">
+                    <option <?php if(old('uf') == 'AC'){ echo('selected'); } ?> value="AC">AC</option>
+                    <option <?php if(old('uf') == 'AL'){ echo('selected'); } ?> value="AL">AL</option>
+                    <option <?php if(old('uf') == 'AP'){ echo('selected'); } ?> value="AP">AP</option>
+                    <option <?php if(old('uf') == 'AM'){ echo('selected'); } ?> value="AM">AM</option>
+                    <option <?php if(old('uf') == 'BA'){ echo('selected'); } ?> value="BA">BA</option>
+                    <option <?php if(old('uf') == 'CE'){ echo('selected'); } ?> value="CE">CE</option>
+                    <option <?php if(old('uf') == 'DF'){ echo('selected'); } ?> value="DF">DF</option>
+                    <option <?php if(old('uf') == 'ES'){ echo('selected'); } ?> value="ES">ES</option>
+                    <option <?php if(old('uf') == 'GO'){ echo('selected'); } ?> value="GO">GO</option>
+                    <option <?php if(old('uf') == 'MA'){ echo('selected'); } ?> value="MA">MA</option>
+                    <option <?php if(old('uf') == 'MT'){ echo('selected'); } ?> value="MT">MT</option>
+                    <option <?php if(old('uf') == 'MS'){ echo('selected'); } ?> value="MS">MS</option>
+                    <option <?php if(old('uf') == 'MG'){ echo('selected'); } ?> value="MG">MG</option>
+                    <option <?php if(old('uf') == 'PA'){ echo('selected'); } ?> value="PA">PA</option>
+                    <option <?php if(old('uf') == 'PB'){ echo('selected'); } ?> value="PB">PB</option>
+                    <option <?php if(old('uf') == 'PR'){ echo('selected'); } ?> value="PR">PR</option>
+                    <option <?php if(old('uf') == 'PE'){ echo('selected'); } ?> value="PE">PE</option>
+                    <option <?php if(old('uf') == 'PI'){ echo('selected'); } ?> value="PI">PI</option>
+                    <option <?php if(old('uf') == 'RJ'){ echo('selected'); } ?> value="RJ">RJ</option>
+                    <option <?php if(old('uf') == 'RN'){ echo('selected'); } ?> value="RN">RN</option>
+                    <option <?php if(old('uf') == 'RS'){ echo('selected'); } ?> value="RS">RS</option>
+                    <option <?php if(old('uf') == 'RO'){ echo('selected'); } ?> value="RO">RO</option>
+                    <option <?php if(old('uf') == 'RR'){ echo('selected'); } ?> value="RR">RR</option>
+                    <option <?php if(old('uf') == 'SC'){ echo('selected'); } ?> value="SC">SC</option>
+                    <option <?php if(old('uf') == 'SP'){ echo('selected'); } ?> value="SP">SP</option>
+                    <option <?php if(old('uf') == 'SE'){ echo('selected'); } ?> value="SE">SE</option>
+                    <option <?php if(old('uf') == 'TO'){ echo('selected'); } ?> value="TO">TO</option>
+                  </select>
               </label>
               @error('uf')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
