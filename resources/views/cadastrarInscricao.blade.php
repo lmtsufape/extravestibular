@@ -74,7 +74,12 @@
               </div>
             @else
               <div class="row justify-content-center">
-
+                <div class="alert alert-warning alert-dismissible fade show col-sm-12" role="alert">
+                  <strong>Atenção!</strong> Os documentos precisam ser legíveis.
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
                 <div class="col-sm-10">
                   <label for="comprovante" style="font-weight: bold">Selecione o comprovante gerado pelo pagamento da taxa do tipo de inscrição:</label>
                 </div>
@@ -116,6 +121,12 @@
 
 
                 <input disabled type="hidden" id="antigaOpcao" value="{{old('tipo')}}">
+                <div class="alert alert-warning alert-dismissible fade show col-sm-12" role="alert">
+                  <strong>Atenção!</strong> Os documentos precisam ser legíveis.
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
 
                 <div id="historicoEscolar" class="form-group row" style="display: none" >      <!-- Arquivo historico escolar -->
                     <label for="Historico escolar" class="col-sm-4 col-form-label text-md-right">{{ __('Histórico escolar:') }}</label>
