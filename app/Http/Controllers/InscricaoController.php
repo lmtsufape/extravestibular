@@ -442,6 +442,9 @@ class InscricaoController extends Controller
 
 	public function homologarInscricao(Request $request){
 		$inscricao = Inscricao::find($request->inscricaoId);
+		if($request->homologado == 'rejeitado'){
+        $validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);
+    }
 
 		if(!strcmp($request->tipo, 'homologacao')){
 			if(!strcmp($request->homologado, 'rejeitado')){
