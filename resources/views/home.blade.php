@@ -170,12 +170,20 @@
                   ?>
                   @if($erratas->count() == 1)
                     @foreach($erratas as $key)
-                      <a href="{{ route('download', ['file' => $key->arquivo])}}" target="_new">{{$key->nome}}.</a>
+                      <a href="{{ route('download', ['file' => $key->arquivo])}}" target="_new">{{$key->nome}}</a>
                     @endforeach
+                    .
                   @else
+                    <?php $primeiraErrata = true; ?>
                     @foreach($erratas as $key)
-                      <a href="{{ route('download', ['file' => $key->arquivo])}}" target="_new">{{$key->nome}};</a>
+                      @if($primeiraErrata)
+                        <?php $primeiraErrata = false; ?>
+                        <a href="{{ route('download', ['file' => $key->arquivo])}}" target="_new">{{$key->nome}}</a>
+                      @else
+                        ;<a href="{{ route('download', ['file' => $key->arquivo])}}" target="_new"> {{$key->nome}}</a>
+                      @endif
                     @endforeach
+                    .
                   @endif
                 </td>
               </tr>
