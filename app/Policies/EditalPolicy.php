@@ -4,10 +4,12 @@ namespace extravestibular\Policies;
 
 use extravestibular\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use extravestibular\ApiLmts;
 
 class EditalPolicy
 {
     use HandlesAuthorization;
+    private $api;
 
     /**
      * Create a new policy instance.
@@ -16,7 +18,7 @@ class EditalPolicy
      */
     public function __construct()
     {
-        //
+        $this->api = new ApiLmts();
     }
 
     /**
@@ -25,12 +27,6 @@ class EditalPolicy
      * @return bollean
      */
     public function gerenciarEdital(?User $user){
-      $acl = explode(';', session('acl'));
-      foreach ($acl as $key) {
-        if($key == 'gerenciar editais'){
-          return true;
-        }
-      }
-      return false;
+      return $this->api->autorizar('gerenciar editais');
     }
 }

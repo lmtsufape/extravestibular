@@ -4,10 +4,14 @@ namespace extravestibular\Policies;
 
 use extravestibular\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use extravestibular\ApiLmts;
+
+
 
 class RecursoPolicy
 {
     use HandlesAuthorization;
+    private $api;
 
     /**
      * Create a new policy instance.
@@ -16,26 +20,16 @@ class RecursoPolicy
      */
     public function __construct()
     {
-        //
+        $this->api = new ApiLmts();
     }
 
     public function homologarRecurso(?User $user){
-      $acl = explode(';', session('acl'));
-      foreach ($acl as $key) {
-        if($key == 'homologar recursos'){
-          return true;
-        }
-      }
-      return false;
+      return $this->api->autorizar('homologar recursos');
+
     }
 
     public function cadastrarRecurso(?User $user){
-      $acl = explode(';', session('acl'));
-      foreach ($acl as $key) {
-        if($key == 'cadastrar recursos'){
-          return true;
-        }
-      }
-      return false;
+      return $this->api->autorizar('cadastrar recursos');
+
     }
 }

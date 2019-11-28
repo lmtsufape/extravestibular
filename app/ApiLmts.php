@@ -153,4 +153,15 @@ class ApiLmts extends Model{
       return null;
     }
   }
+
+  public function autorizar($acao){
+    $acl = explode(';', session('acl'));
+    foreach ($acl as $key) {
+      if($key == $acao){
+        return true;
+      }
+    }
+    return false;
+  }
+  
 }
