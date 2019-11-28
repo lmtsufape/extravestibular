@@ -23,12 +23,11 @@ use extravestibular\Mail\LembreteCoordenador;
 use Carbon\Carbon;
 
 
-
 class InscricaoController extends Controller
 {
 
 	public function cadastroInscricao(Request $request){
-					$this->authorize('cadastrarInscricao', Inscricao::class);				
+					$this->authorize('cadastrarInscricao', Inscricao::class);
 
 				  $isencao = Isencao::where('editalId', $request->editalId)->where('usuarioId', Auth::user()->id)->where('parecer', 'deferida')->first();
 

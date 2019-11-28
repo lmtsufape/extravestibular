@@ -797,7 +797,7 @@ class EditalController extends Controller{
       }
 
       public function publicarEdital(Request $request){
-        $this->authorize('gerenciarEdital', Edital::class);        
+        $this->authorize('gerenciarEdital', Edital::class);
         $mytime = Carbon::now('America/Recife');
         $mytime = $mytime->toDateString();
         $edital = Edital::find($request->editalId);
