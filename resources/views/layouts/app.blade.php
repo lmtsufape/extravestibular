@@ -46,6 +46,26 @@
           padding-top: 20%;
         }
       }
+
+
+      /* MAO DO LIBRAS */
+
+      [vw] [vw-access-button] .access-button {
+
+        margin-top: 70%;
+
+      }
+      [vw] [vw-access-button] .pop-up {
+
+        margin-right: 6px;
+        -webkit-transition: width 2s;
+        transition: width 0.5s;
+        margin-top: 70%;
+
+
+      }
+
+
     </style>
 
 </head>
