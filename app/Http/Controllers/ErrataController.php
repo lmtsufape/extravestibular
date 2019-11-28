@@ -18,6 +18,8 @@ class ErrataController extends Controller
     }
 
     public function cadastroErrata(Request $request){
+      $this->authorize('gerenciarEdital', Edital::class);
+
       $validatedData = $request->validate([ 'nome'    => ['required', 'string', 'max:255'],
                                             'arquivo' => ['required', 'mimes:pdf', 'max:20000'],
                                           ]);
@@ -45,6 +47,8 @@ class ErrataController extends Controller
     }
 
     public function modificarErrata(Request $request){
+      $this->authorize('gerenciarEdital', Edital::class);
+
       $validatedData = $request->validate([
                                             'arquivo1' => ['required', 'mimes:pdf', 'max:20000'],
                                           ]);
@@ -61,6 +65,8 @@ class ErrataController extends Controller
     }
 
     public function deleteErrata(Request $request){
+      $this->authorize('gerenciarEdital', Edital::class);
+      
       $errata = Errata::find($request->errataId);
       $errata->delete();
       return redirect()->route('home')->with('jsAlert', 'Errata excluida com suceso.');

@@ -24,6 +24,7 @@ use Session;
 class EditalController extends Controller{
 
       public function novoEdital(){
+        $this->authorize('gerenciarEdital', Edital::class);
         $api = new ApiLmts();
         $cursos = $api->getCursos();
         if(!is_null($cursos)){
@@ -35,6 +36,7 @@ class EditalController extends Controller{
       }
 
       public function editarEdital(Request $request){
+        $this->authorize('gerenciarEdital', Edital::class);
 
         $edital = Edital::find($request->editalId);
 
@@ -75,6 +77,7 @@ class EditalController extends Controller{
       }
 
       public function cadastroEditarEdital(Request $request){
+        $this->authorize('gerenciarEdital', Edital::class);
         $mytime = Carbon::now('America/Recife');
         $yesterday = Carbon::yesterday('America/Recife');
         $yesterday = $yesterday->toDateString();
@@ -184,7 +187,7 @@ class EditalController extends Controller{
       }
 
       public function cadastroEdital(Request $request){
-
+        $this->authorize('gerenciarEdital', Edital::class);
         $mytime = Carbon::now('America/Recife');
         $yesterday = Carbon::yesterday('America/Recife');
         $yesterday = $yesterday->toDateString();
@@ -303,6 +306,7 @@ class EditalController extends Controller{
       }
 
       public function deleteEdital(Request $request){
+        $this->authorize('gerenciarEdital', Edital::class);
         $edital = Edital::find($request->editalId);
         $edital->delete();
         return redirect()->route('home')->with('jsAlert', 'Edital excluído com sucesso!');
@@ -479,6 +483,7 @@ class EditalController extends Controller{
       }
 
       public function gerarClassificacao(Request $request){
+        $this->authorize('gerenciarEdital', Edital::class);
         $inscricoes = Inscricao::where('editalId', $request->editalId)
                                  ->orderBy('curso', 'desc')
                                  ->orderBy('situacao', 'asc')
@@ -729,6 +734,7 @@ class EditalController extends Controller{
       }
 
       public function detalhesPorcentagem(Request $request){
+        $this->authorize('gerenciarEdital', Edital::class);
         $mytime = Carbon::now('America/Recife');
         $mytime = $mytime->toDateString();
         $inscricoesClassificadasPorCurso = DB::table('inscricaos')
@@ -791,6 +797,7 @@ class EditalController extends Controller{
       }
 
       public function publicarEdital(Request $request){
+        $this->authorize('gerenciarEdital', Edital::class);        
         $mytime = Carbon::now('America/Recife');
         $mytime = $mytime->toDateString();
         $edital = Edital::find($request->editalId);

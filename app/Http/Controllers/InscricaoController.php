@@ -28,7 +28,8 @@ class InscricaoController extends Controller
 {
 
 	public function cadastroInscricao(Request $request){
-				 	// dd($request);
+					$this->authorize('cadastrarInscricao', Inscricao::class);				
+
 				  $isencao = Isencao::where('editalId', $request->editalId)->where('usuarioId', Auth::user()->id)->where('parecer', 'deferida')->first();
 
 					if(empty($isencao)){
@@ -126,6 +127,8 @@ class InscricaoController extends Controller
 					}
 
 
+					$inscricao = '';
+
 	  	 	  if(!strcmp($request->tipo, 'reintegracao')){
 
 		  	    $file = $request->historicoEscolar;
@@ -142,7 +145,7 @@ class InscricaoController extends Controller
 							$comprovante = $path . '/comprovante.pdf';
 						}																																									//criar inscricao no banco
 
-					  Inscricao::create([
+					  $inscricao = Inscricao::create([
 					  	'usuarioId'              => Auth::user()->id,
 					  	'tipo'					  			 => $request->tipo,
 					  	'editalId'               => $request->editalId,
@@ -184,7 +187,7 @@ class InscricaoController extends Controller
 						}
 
 
-					  Inscricao::create([
+					  $inscricao = Inscricao::create([
 					  	'usuarioId'              => Auth::user()->id,
 					  	'tipo'					   			 => $request->tipo,
 					  	'editalId'               => $request->editalId,
@@ -233,7 +236,7 @@ class InscricaoController extends Controller
 							$comprovante = $path . '/comprovante.pdf';
 						}
 
-					  Inscricao::create([
+					  $inscricao = Inscricao::create([
 					  	'usuarioId'              => Auth::user()->id,
 					  	'tipo'         			 		 => $request->tipo,
 					  	'editalId'               => $request->editalId,
@@ -287,7 +290,7 @@ class InscricaoController extends Controller
 							$comprovante = $path . '/comprovante.pdf';
 						}
 
-					  Inscricao::create([
+					  $inscricao = Inscricao::create([
 					  	'usuarioId'              => Auth::user()->id,
 					  	'tipo'					    		 => $request->tipo,
 					  	'editalId'               => $request->editalId,
@@ -315,13 +318,30 @@ class InscricaoController extends Controller
 
 	    	  }
 
+					$api = new ApiLmts();
 					$edital = Edital::find($request->editalId);
 					$nomeEdital = explode(".pdf", $edital->nome);
-					$api = new ApiLmts();
+					$mytime = Carbon::now('America/Recife');
+					$mytime = $mytime->toDateString();
 					$emails = $api->getEmailsPreg();
 					// foreach ($emails as $key) {
 					// 	Mail::to($key)->send(new NovaInscricao($nomeEdital[0]));
 					// }
+					$dados = DadosUsuario::find(Auth::user()->dados);
+					$cursos = $api->getCursos();
+					$curso = $inscricao->curso;
+					for($j = 0; $j < sizeof($cursos); $j++){
+						if($curso == $cursos[$j]['id']){
+							$curso = $cursos[$j]['nome'] . '/' . $cursos[$j]['departamento'];
+						}
+					}
+					return view('confirmacaoInscricao', [
+																								'editalId' => $request->editalId,
+																								'mytime'	 => $mytime,
+																								'inscricao'=> $inscricao,
+																								'dados'		 => $dados,
+																								'curso'	   => $curso,
+																							]);
 					return redirect()->route('home')->with('jsAlert', 'Inscrição realizada com sucesso!');
 		}
 
@@ -441,6 +461,7 @@ class InscricaoController extends Controller
 	}
 
 	public function homologarInscricao(Request $request){
+		$this->authorize('homologarInscricao', Inscricao::class);
 		$inscricao = Inscricao::find($request->inscricaoId);
 		if($request->homologado == 'rejeitado'){
         $validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);
@@ -1580,6 +1601,7 @@ class InscricaoController extends Controller
 	}
 
 	public function cadastroClassificacao(Request $request){
+		$this->authorize('classificarInscricao', Inscricao::class);
 		$inscricao = Inscricao::find($request->inscricaoId);
 		$validatedData = $request->validate([
 																					'coeficienteDeRendimento' 		=> ['required', 'float', 'lt:10.1'],

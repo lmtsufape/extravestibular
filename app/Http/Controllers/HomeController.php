@@ -12,6 +12,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Client;
 
+
 class HomeController extends Controller
 {
     /**
@@ -76,7 +77,13 @@ class HomeController extends Controller
 
     }
 
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function homeApi(){
+
       if(is_null(session('tipo'))){
         return redirect()->route('login');
       }
@@ -95,6 +102,11 @@ class HomeController extends Controller
                           ]);
     }
 
+    /**
+     * Realiza o login.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function loginApi(Request $request){
       $api = new ApiLmts();
       $user = $api->loginApi($request->email, $request->password);
@@ -102,9 +114,11 @@ class HomeController extends Controller
         Auth::attempt(['email' => $request->email, 'password' => $request->password]);
         if(Auth::check()){
           return redirect()->route('home');
+
         }
         else{
-          return redirect()->route('home');
+
+          return redirect()->route('login')->withInput(['email' => $request->email])->withErrors(['email' => 'E-mail ou Senha incorreta.']);
         }
       }
       else{
@@ -112,14 +126,12 @@ class HomeController extends Controller
         $request->session()->put('email', $user['email']);
         $request->session()->put('cursoId', $user['cursoId']);
         $request->session()->put('tipo', $user['tipo']);
-        // dd(session()->all());
-        // dd(session()->all());
-        // $acl = $api->getAcl($user['tipoUsuario']);
-        // $stringAcl = '';
-        // foreach($acl as $key){
-        //   $stringAcl = $stringAcl . $key . ';';
-        // }
-        // $request->session()->put('acl', $stringAcl);
+        $acl = $api->getAcl($user['tipoUsuario']);
+        $stringAcl = '';
+        foreach($acl as $key){
+          $stringAcl = $stringAcl . $key . ';';
+        }
+        $request->session()->put('acl', $stringAcl);
         return redirect()->route('homeApi');
       }
 

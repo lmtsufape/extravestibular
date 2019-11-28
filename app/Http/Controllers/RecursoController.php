@@ -14,6 +14,7 @@ use Auth;
 class RecursoController extends Controller
 {
     public function cadastroRecurso(Request $request){
+      $this->authorize('cadastrarRecurso', Recurso::class);
 
       $mytime = Carbon::now('America/Recife');
       $mytime = $mytime->toDateString();
@@ -83,6 +84,8 @@ class RecursoController extends Controller
     }
 
     public function homologarRecurso(Request $request){
+      $this->authorize('homologarRecurso', Recurso::class);
+
       if($request->radioRecurso == 'rejeitado'){
         $validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);
       }

@@ -14,6 +14,7 @@ use Carbon\Carbon;
 class IsencaoController extends Controller
 {
   public function cadastroIsencao(Request $request){
+    $this->authorize('cadastrarIsencao', Isencao::class);
 
     if($request->checkboxRenda == 'rendaFamiliar'){
       $validatedData = $request->validate([
@@ -120,6 +121,8 @@ class IsencaoController extends Controller
   }
 
   public function homologarIsencao(Request $request){
+    $this->authorize('homologarIsencao', Isencao::class);
+
     if($request->resultado == 'indeferida'){
         $validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);
     }

@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Client;
 
+
 class ApiLmts extends Model{
   public $api = 'http://app.uag.ufrpe.br/api/api/';
   // public $api = 'http://lmts.api/api/';
