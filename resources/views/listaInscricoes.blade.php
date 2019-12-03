@@ -98,6 +98,63 @@
   {{ $inscricoes->links() }}
   </div><!-- end tabela -->
 
+  @if($tipo == 'homologacao')
+    <!-- titulo -->
+    <div class="row justify-content-center">
+      <div class="col-sm-9 titulo-tabela-lmts">
+        <h2>Inscrições Classificadas</h2>
+      </div>
+    </div><!-- end titulo -->
+
+    <!-- tabela -->
+    <div class="row justify-content-center">
+    <table class="table table-ordered table-hover col-sm-9">
+      <tr>
+        <th> Nome </th>
+        <th> CPF </th>
+        <th> Parecer </th>
+        <th> </th>
+      </tr>
+      @foreach ($homologadas as $inscricao)
+      <tr>
+        <td>
+         <a >
+           {{$inscricao->user->dadosUsuario->nome}}
+         </a>
+        </td>
+        <td>
+         <a >
+           {{$inscricao->user->dadosUsuario->cpf}}
+         </a>
+        </td>
+        <td>
+         <a >
+           <?php if($inscricao->homologado == 'aprovado') { echo('Aprovado'); } else{ echo('Rejeitado'); } ?>
+         </a>
+        </td>
+
+        <td>
+          <form method="get" action="{{ route('inscricaoEscolhida') }}" enctype="multipart/form-data"> <!-- Isenção -->
+
+            <div class="col-md-8 offset-md-4">
+                <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
+                <input type="hidden" name="tipo" value="homologacao">
+                <button type="submit" class="btn btn-primary btn-primary-lmts">
+                    {{ __('Editar') }}
+                </button>
+
+            </div>
+          </form>
+        </td>
+      </tr>
+
+      @endforeach
+    </table>
+
+    {{ $inscricoes->links() }}
+    </div><!-- end tabela -->
+  @endif
+
   @if($tipo == 'classificacao')
     <!-- titulo -->
     <div class="row justify-content-center">
@@ -146,7 +203,7 @@
     </table>
 
     {{ $inscricoes->links() }}
-  </div><!-- end tabela -->
+    </div><!-- end tabela -->
   @endif
 </div><!-- end container-->
 

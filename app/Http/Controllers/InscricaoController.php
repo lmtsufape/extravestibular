@@ -18,8 +18,6 @@ use Illuminate\Support\Facades\Mail;
 use extravestibular\Mail\NovaInscricao;
 use extravestibular\Mail\ClassificacaoCompleta;
 use extravestibular\Mail\LembreteCoordenador;
-
-
 use Carbon\Carbon;
 
 

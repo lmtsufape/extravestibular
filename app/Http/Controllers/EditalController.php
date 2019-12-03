@@ -412,9 +412,13 @@ class EditalController extends Controller{
           $inscricoesDisponiveis = Inscricao::where('editalId', $request->editalId)
                                               ->where('homologado', 'nao')
                                               ->paginate(10);
-          return view('listaInscricoes', ['inscricoes' => $inscricoesDisponiveis,
-                                          'tipo'       => 'homologacao',
-                                          'editalId'   => $request->editalId,
+          $inscricoesHomologadas = Inscricao::where('editalId', $request->editalId)
+                                              ->where('homologado', '!=','nao')
+                                              ->paginate(10);
+          return view('listaInscricoes', ['inscricoes'  => $inscricoesDisponiveis,
+                                          'homologadas' => $inscricoesHomologadas,
+                                          'tipo'        => 'homologacao',
+                                          'editalId'    => $request->editalId,
                                           'mytime'            => $mytime,
                                          ]);
         }
