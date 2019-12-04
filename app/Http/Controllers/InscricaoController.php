@@ -506,6 +506,263 @@ class InscricaoController extends Controller
     return response()->download(storage_path('app/public/'.$request->file));
 	}
 
+	private function aprovarPorPrioridade($aux, $curso, $tipo, $editalId, $transferenciaExternaDeMesmoCurso){
+		if($transferenciaExternaDeMesmoCurso == 'sim'){
+			$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
+																							->where('homologado' , 'aprovado')
+																							->where('homologadoDrca', 'aprovado')
+																							->where('situacao', '!=', 'processando')
+																							->where('situacao', '!=', 'rejeitado')
+																							->where('curso', $curso)
+																							->where('cursoDeOrigem', $curso)
+																							->where('turno', 'manhã')
+																							->where('tipo', $tipo)
+																							->orderBy('nota', 'desc')
+																							->get();
+			$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
+																							->where('homologado' , 'aprovado')
+																							->where('homologadoDrca', 'aprovado')
+																							->where('situacao', '!=', 'processando')
+																							->where('situacao', '!=', 'rejeitado')
+																							->where('curso', $curso)
+																							->where('cursoDeOrigem', $curso)
+																							->where('turno', 'tarde')
+																							->where('tipo', $tipo)
+																							->orderBy('nota', 'desc')
+																							->get();
+			$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
+																							->where('homologado' , 'aprovado')
+																							->where('homologadoDrca', 'aprovado')
+																							->where('situacao', '!=', 'processando')
+																							->where('situacao', '!=', 'rejeitado')
+																							->where('curso', $curso)
+																							->where('cursoDeOrigem', $curso)
+																							->where('turno', 'noite')
+																							->where('tipo', $tipo)
+																							->orderBy('nota', 'desc')
+																							->get();
+			$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
+																									->where('homologado' , 'aprovado')
+																									->where('homologadoDrca', 'aprovado')
+																									->where('situacao', '!=', 'processando')
+																									->where('situacao', '!=', 'rejeitado')
+																									->where('curso', $curso)
+																									->where('cursoDeOrigem', $curso)
+																									->where('turno', 'integral')
+																									->where('tipo', $tipo)
+																									->orderBy('nota', 'desc')
+																									->get();
+			$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
+																								->where('homologado' , 'aprovado')
+																								->where('homologadoDrca', 'aprovado')
+																								->where('situacao', '!=', 'processando')
+																								->where('situacao', '!=', 'rejeitado')
+																								->where('curso', $curso)
+																								->where('cursoDeOrigem', $curso)
+																								->where('turno', 'especial')
+																								->where('tipo', $tipo)
+																								->orderBy('nota', 'desc')
+																								->get();
+		}
+		elseif ($transferenciaExternaDeMesmoCurso == 'nao') {
+			$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
+																							->where('homologado' , 'aprovado')
+																							->where('homologadoDrca', 'aprovado')
+																							->where('situacao', '!=', 'processando')
+																							->where('situacao', '!=', 'rejeitado')
+																							->where('curso', $curso)
+																							->where('cursoDeOrigem', '!=', $curso)
+																							->where('turno', 'manhã')
+																							->where('tipo', $tipo)
+																							->orderBy('nota', 'desc')
+																							->get();
+			$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
+																							->where('homologado' , 'aprovado')
+																							->where('homologadoDrca', 'aprovado')
+																							->where('situacao', '!=', 'processando')
+																							->where('situacao', '!=', 'rejeitado')
+																							->where('curso', $curso)
+																							->where('cursoDeOrigem', '!=', $curso)
+																							->where('turno', 'tarde')
+																							->where('tipo', $tipo)
+																							->orderBy('nota', 'desc')
+																							->get();
+			$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
+																							->where('homologado' , 'aprovado')
+																							->where('homologadoDrca', 'aprovado')
+																							->where('situacao', '!=', 'processando')
+																							->where('situacao', '!=', 'rejeitado')
+																							->where('curso', $curso)
+																							->where('cursoDeOrigem', '!=', $curso)
+																							->where('turno', 'noite')
+																							->where('tipo', $tipo)
+																							->orderBy('nota', 'desc')
+																							->get();
+			$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
+																									->where('homologado' , 'aprovado')
+																									->where('homologadoDrca', 'aprovado')
+																									->where('situacao', '!=', 'processando')
+																									->where('situacao', '!=', 'rejeitado')
+																									->where('curso', $curso)
+																									->where('cursoDeOrigem', '!=', $curso)
+																									->where('turno', 'integral')
+																									->where('tipo', $tipo)
+																									->orderBy('nota', 'desc')
+																									->get();
+			$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
+																								->where('homologado' , 'aprovado')
+																								->where('homologadoDrca', 'aprovado')
+																								->where('situacao', '!=', 'processando')
+																								->where('situacao', '!=', 'rejeitado')
+																								->where('curso', $curso)
+																								->where('cursoDeOrigem', '!=', $curso)
+																								->where('turno', 'especial')
+																								->where('tipo', $tipo)
+																								->orderBy('nota', 'desc')
+																								->get();
+		}
+		else{
+			$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
+																							->where('homologado' , 'aprovado')
+																							->where('homologadoDrca', 'aprovado')
+																							->where('situacao', '!=', 'processando')
+																							->where('situacao', '!=', 'rejeitado')
+																							->where('curso', $curso)
+																							->where('turno', 'manhã')
+																							->where('tipo', $tipo)
+																							->orderBy('nota', 'desc')
+																							->get();
+			$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
+																							->where('homologado' , 'aprovado')
+																							->where('homologadoDrca', 'aprovado')
+																							->where('situacao', '!=', 'processando')
+																							->where('situacao', '!=', 'rejeitado')
+																							->where('curso', $curso)
+																							->where('turno', 'tarde')
+																							->where('tipo', $tipo)
+																							->orderBy('nota', 'desc')
+																							->get();
+			$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
+																							->where('homologado' , 'aprovado')
+																							->where('homologadoDrca', 'aprovado')
+																							->where('situacao', '!=', 'processando')
+																							->where('situacao', '!=', 'rejeitado')
+																							->where('curso', $curso)
+																							->where('turno', 'noite')
+																							->where('tipo', $tipo)
+																							->orderBy('nota', 'desc')
+																							->get();
+			$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
+																									->where('homologado' , 'aprovado')
+																									->where('homologadoDrca', 'aprovado')
+																									->where('situacao', '!=', 'processando')
+																									->where('situacao', '!=', 'rejeitado')
+																									->where('curso', $curso)
+																									->where('turno', 'integral')
+																									->where('tipo', $tipo)
+																									->orderBy('nota', 'desc')
+																									->get();
+			$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
+																								->where('homologado' , 'aprovado')
+																								->where('homologadoDrca', 'aprovado')
+																								->where('situacao', '!=', 'processando')
+																								->where('situacao', '!=', 'rejeitado')
+																								->where('curso', $curso)
+																								->where('turno', 'especial')
+																								->where('tipo', $tipo)
+																								->orderBy('nota', 'desc')
+																								->get();
+		}
+		foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
+			if($aux[0][0] > 0){
+				$inscricao->situacao = 'Aprovado';
+				$inscricao->classificacao = $aux[1][0];
+				$inscricao->save();
+				$aux[0][0] = $aux[0][0] - 1;
+				$aux[1][0] = $aux[1][0] + 1;
+
+			}
+			else{
+				$inscricao->situacao = 'Classificável';
+				$inscricao->classificacao = $aux[1][0];
+				$inscricao->save();
+				$aux[0][0] = $aux[0][0] - 1;
+				$aux[1][0] = $aux[1][0] + 1;
+			}
+		}
+
+		foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
+			if($aux[0][1] > 0){
+				$inscricao->situacao = 'Aprovado';
+				$inscricao->classificacao = $aux[1][1];
+				$inscricao->save();
+				$aux[0][1] = $aux[0][1] - 1;
+				$aux[1][1] = $aux[1][1] + 1;
+			}
+			else{
+				$inscricao->situacao = 'Classificável';
+				$inscricao->classificacao = $aux[1][0];
+				$inscricao->save();
+				$aux[0][1] = $aux[0][1] - 1;
+				$aux[1][1] = $aux[1][1] + 1;
+			}
+		}
+
+		foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
+			if($aux[0][2] > 0){
+				$inscricao->situacao = 'Aprovado';
+				$inscricao->classificacao = $aux[1][0];
+				$inscricao->save();
+				$aux[0][2] = $aux[0][2] - 1;
+				$aux[1][2] = $aux[1][2] + 1;
+			}
+			else{
+				$inscricao->situacao = 'Classificável';
+				$inscricao->classificacao = $aux[1][0];
+				$inscricao->save();
+				$aux[0][2] = $aux[0][2] - 1;
+				$aux[1][2] = $aux[1][2] + 1;
+			}
+		}
+
+		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
+			if($aux[0][3] > 0){
+				$inscricao->situacao = 'Aprovado';
+				$inscricao->classificacao = $aux[1][3];
+				$inscricao->save();
+				$aux[0][3] = $aux[0][3] - 1;
+				$aux[1][3] = $aux[1][3] + 1;
+			}
+			else{
+				$inscricao->situacao = 'Classificável';
+				$inscricao->classificacao = $aux[1][3];
+				$inscricao->save();
+				$aux[0][3] = $aux[0][3] - 1;
+				$aux[1][3] = $aux[1][3] + 1;
+			}
+		}
+
+		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
+			if($aux[0][4] > 0){
+				$inscricao->situacao = 'Aprovado';
+				$inscricao->classificacao = $aux[1][4];
+				$inscricao->save();
+				$aux[0][4] = $aux[0][4] - 1;
+				$aux[1][4] = $aux[1][4] + 1;
+			}
+			else{
+				$inscricao->situacao = 'Classificável';
+				$inscricao->classificacao = $aux[1][4];
+				$inscricao->save();
+				$aux[0][4] = $aux[0][4] - 1;
+				$aux[1][4] = $aux[1][4] + 1;
+			}
+		}
+
+		return $aux;
+
+	}
+
 	private function aprovarInscricoes($editalId, $curso){
 		$edital = Edital::find($editalId);
 		$vagas = explode('!',$edital->vagas);
@@ -519,1060 +776,1066 @@ class InscricaoController extends Controller
 			}
 		}
 		$vagas = explode('?', $vagas);
+		$classifcacoes = [1,1,1,1,1];
 		$ids = [];
+		$aux = [];
+		array_push($aux, $vagas);
+		array_push($aux, $classifcacoes);
+		$aux = $this->aprovarPorPrioridade($aux, $curso, 'transferenciaInterna', $editalId, null); //prioridade 0 = transferenciaInterna
+		$aux = $this->aprovarPorPrioridade($aux, $curso, 'reintegracao', $editalId, null);				 //prioridade 1 = reintegracao
+		$aux = $this->aprovarPorPrioridade($aux, $curso, 'transferenciaExterna', $editalId, 'sim'); //prioridade 2 = transferenciaExterna, mesmo curso
+		$aux = $this->aprovarPorPrioridade($aux, $curso, 'transferenciaExterna', $editalId, 'nao'); //prioridade 3 = transferenciaExterna, curso afim
+		$aux = $this->aprovarPorPrioridade($aux, $curso, 'portadorDeDiploma', $editalId, null);		 //prioridade 4 = portadorDeDiploma
+		// dd($aux);
+
 
 		//prioridade 0 = transferenciaInterna
-
-		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('situacao', '!=', 'processando')
-																						 ->where('situacao', '!=', 'rejeitado')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'manhã')
-																						 ->where('tipo', 'transferenciaInterna')
-																						 ->orderBy('nota', 'desc')
-
-																						 ->get();
-		$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('situacao', '!=', 'processando')
-																						 ->where('situacao', '!=', 'rejeitado')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'tarde')
-																						 ->where('tipo', 'transferenciaInterna')
-																						 ->orderBy('nota', 'desc')
-
-																						 ->get();
-		$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('situacao', '!=', 'processando')
-																						 ->where('situacao', '!=', 'rejeitado')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'noite')
-																						 ->where('tipo', 'transferenciaInterna')
-																						 ->orderBy('nota', 'desc')
-
-																						 ->get();
-		$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
-																								->where('homologado' , 'aprovado')
-																								->where('homologadoDrca', 'aprovado')
-																								->where('situacao', '!=', 'processando')
-	 																						 	->where('situacao', '!=', 'rejeitado')
-																								->where('curso', $curso)
-																								->where('turno', 'integral')
-																								->where('tipo', 'transferenciaInterna')
-																								->orderBy('nota', 'desc')
-
-																								->get();
-		$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
-																								->where('homologado' , 'aprovado')
-																								->where('homologadoDrca', 'aprovado')
-																								->where('situacao', '!=', 'processando')
-	 																						 	->where('situacao', '!=', 'rejeitado')
-																								->where('curso', $curso)
-																								->where('turno', 'especial')
-																								->where('tipo', 'transferenciaInterna')
-																								->orderBy('nota', 'desc')
-
-																								->get();
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
-			if($aux <= $vagas[0]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[0] = $vagas[0] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[0] = $vagas[0] - 1;
-			}
-		}
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
-			if($aux1 <= $vagas[1]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[1] = $vagas[1] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[1] = $vagas[1] - 1;
-			}
-			$aux1++;
-		}
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
-			if($aux2 <= $vagas[2]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[2] = $vagas[2] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[2] = $vagas[2] - 1;
-			}
-			$aux2++;
-		}
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
-			if($aux3 <= $vagas[3]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[3] = $vagas[3] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[3] = $vagas[3] - 1;
-			}
-			$aux3++;
-		}
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
-			if($aux4 <= $vagas[3]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[4] = $vagas[4] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[4] = $vagas[4] - 1;
-			}
-			$aux4++;
-		}
-
-
+			//
+			// $inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																				 ->where('homologado' , 'aprovado')
+			// 																				 ->where('homologadoDrca', 'aprovado')
+			// 																				 ->where('situacao', '!=', 'processando')
+			// 																				 ->where('situacao', '!=', 'rejeitado')
+			// 																				 ->where('curso', $curso)
+			// 																				 ->where('turno', 'manhã')
+			// 																				 ->where('tipo', 'transferenciaInterna')
+			// 																				 ->orderBy('nota', 'desc')
+			//
+			// 																				 ->get();
+			// $inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																				 ->where('homologado' , 'aprovado')
+			// 																				 ->where('homologadoDrca', 'aprovado')
+			// 																				 ->where('situacao', '!=', 'processando')
+			// 																				 ->where('situacao', '!=', 'rejeitado')
+			// 																				 ->where('curso', $curso)
+			// 																				 ->where('turno', 'tarde')
+			// 																				 ->where('tipo', 'transferenciaInterna')
+			// 																				 ->orderBy('nota', 'desc')
+			//
+			// 																				 ->get();
+			// $inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																				 ->where('homologado' , 'aprovado')
+			// 																				 ->where('homologadoDrca', 'aprovado')
+			// 																				 ->where('situacao', '!=', 'processando')
+			// 																				 ->where('situacao', '!=', 'rejeitado')
+			// 																				 ->where('curso', $curso)
+			// 																				 ->where('turno', 'noite')
+			// 																				 ->where('tipo', 'transferenciaInterna')
+			// 																				 ->orderBy('nota', 'desc')
+			//
+			// 																				 ->get();
+			// $inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																						->where('homologado' , 'aprovado')
+			// 																						->where('homologadoDrca', 'aprovado')
+			// 																						->where('situacao', '!=', 'processando')
+		 	// 																					 	->where('situacao', '!=', 'rejeitado')
+			// 																						->where('curso', $curso)
+			// 																						->where('turno', 'integral')
+			// 																						->where('tipo', 'transferenciaInterna')
+			// 																						->orderBy('nota', 'desc')
+			//
+			// 																						->get();
+			// $inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																						->where('homologado' , 'aprovado')
+			// 																						->where('homologadoDrca', 'aprovado')
+			// 																						->where('situacao', '!=', 'processando')
+		 	// 																					 	->where('situacao', '!=', 'rejeitado')
+			// 																						->where('curso', $curso)
+			// 																						->where('turno', 'especial')
+			// 																						->where('tipo', 'transferenciaInterna')
+			// 																						->orderBy('nota', 'desc')
+			//
+			// 																						->get();
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
+			// 	if($aux <= $vagas[0]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[0] = $vagas[0] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[0] = $vagas[0] - 1;
+			// 	}
+			// }
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
+			// 	if($aux1 <= $vagas[1]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[1] = $vagas[1] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[1] = $vagas[1] - 1;
+			// 	}
+			// 	$aux1++;
+			// }
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
+			// 	if($aux2 <= $vagas[2]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[2] = $vagas[2] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[2] = $vagas[2] - 1;
+			// 	}
+			// 	$aux2++;
+			// }
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
+			// 	if($aux3 <= $vagas[3]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[3] = $vagas[3] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[3] = $vagas[3] - 1;
+			// 	}
+			// 	$aux3++;
+			// }
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
+			// 	if($aux4 <= $vagas[3]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[4] = $vagas[4] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[4] = $vagas[4] - 1;
+			// 	}
+			// 	$aux4++;
+			// }
 
 	  //prioridade 1 = reintegracao
-
-		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('situacao', '!=', 'processando')
-																						 ->where('situacao', '!=', 'rejeitado')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'manhã')
-																						 ->where('tipo', 'reintegracao')
-																						 ->orderBy('nota', 'desc')
-
-																						 ->get();
-		$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('situacao', '!=', 'processando')
-																						 ->where('situacao', '!=', 'rejeitado')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'tarde')
-																						 ->where('tipo', 'reintegracao')
-																						 ->orderBy('nota', 'desc')
-
-																						 ->get();
-		$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('situacao', '!=', 'processando')
-																						 ->where('situacao', '!=', 'rejeitado')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'noite')
-																						 ->where('tipo', 'reintegracao')
-																						 ->orderBy('nota', 'desc')
-
-																						 ->get();
-		$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
-																							  ->where('homologado' , 'aprovado')
-																							  ->where('homologadoDrca', 'aprovado')
-																								->where('situacao', '!=', 'processando')
-	 																						 	->where('situacao', '!=', 'rejeitado')
-																							  ->where('curso', $curso)
-																							  ->where('turno', 'integral')
-																							  ->where('tipo', 'reintegracao')
-																							  ->orderBy('nota', 'desc')
-
-																							  ->get();
-		$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
-																							  ->where('homologado' , 'aprovado')
-																							  ->where('homologadoDrca', 'aprovado')
-																								->where('situacao', '!=', 'processando')
-	 																						 	->where('situacao', '!=', 'rejeitado')
-																							  ->where('curso', $curso)
-																							  ->where('turno', 'especial')
-																							  ->where('tipo', 'reintegracao')
-																							  ->orderBy('nota', 'desc')
-
-																							  ->get();
-
-		$aux = 1;
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
-			if($aux <= $vagas[0]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[0] = $vagas[0] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[0] = $vagas[0] - 1;
-			}
-		}
-
-		$aux1 = 1;
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
-			if($aux1 <= $vagas[1]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[1] = $vagas[1] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[1] = $vagas[1] - 1;
-			}
-			$aux1++;
-		}
-
-		$aux2 = 1;
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
-			if($aux2 <= $vagas[2]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[2] = $vagas[2] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[2] = $vagas[2] - 1;
-			}
-			$aux2++;
-		}
-
-		$aux3 = 1;
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
-			if($aux3 <= $vagas[3]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[3] = $vagas[3] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[3] = $vagas[3] - 1;
-			}
-			$aux3++;
-		}
-
-		$aux4 = 1;
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
-			if($aux4 <= $vagas[3]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[4] = $vagas[4] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[4] = $vagas[4] - 1;
-			}
-			$aux4++;
-		}
-
-	 // prioridade 2 = transferenciaExterna, mesmo curso
-
-		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('situacao', '!=', 'processando')
-																						 ->where('situacao', '!=', 'rejeitado')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'manhã')
-																						 ->where('tipo', 'transferenciaExterna')
-																						 ->where('cursoDeOrigem', $curso)
-																						 ->orderBy('nota', 'desc')
-
-																						 ->get();
-		$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('situacao', '!=', 'processando')
-																						 ->where('situacao', '!=', 'rejeitado')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'tarde')
-																						 ->where('tipo', 'transferenciaExterna')
-																						 ->where('cursoDeOrigem', $curso)
-																						 ->orderBy('nota', 'desc')
-
-																						 ->get();
-		$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('situacao', '!=', 'processando')
-																						 ->where('situacao', '!=', 'rejeitado')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'noite')
-																						 ->where('tipo', 'transferenciaExterna')
-																						 ->where('cursoDeOrigem', $curso)
-																						 ->orderBy('nota', 'desc')
-
-																						 ->get();
-		$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
-																								->where('homologado' , 'aprovado')
-																								->where('homologadoDrca', 'aprovado')
-																								->where('situacao', '!=', 'processando')
-	 																						 	->where('situacao', '!=', 'rejeitado')
-																								->where('curso', $curso)
-																								->where('turno', 'integral')
-																								->where('tipo', 'transferenciaExterna')
-	 																						 	->where('cursoDeOrigem', $curso)
-																								->orderBy('nota', 'desc')
-
-																								->get();
-		$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
-																								->where('homologado' , 'aprovado')
-																								->where('homologadoDrca', 'aprovado')
-																								->where('situacao', '!=', 'processando')
-	 																						 	->where('situacao', '!=', 'rejeitado')
-																								->where('curso', $curso)
-																								->where('turno', 'especial')
-																								->where('tipo', 'transferenciaExterna')
-	 																						 	->where('cursoDeOrigem', $curso)
-																								->orderBy('nota', 'desc')
-
-																								->get();
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
-			if($aux <= $vagas[0]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[0] = $vagas[0] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[0] = $vagas[0] - 1;
-			}
-		}
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
-			if($aux1 <= $vagas[1]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[1] = $vagas[1] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[1] = $vagas[1] - 1;
-			}
-			$aux1++;
-		}
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
-			if($aux2 <= $vagas[2]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[2] = $vagas[2] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[2] = $vagas[2] - 1;
-			}
-			$aux2++;
-		}
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
-			if($aux3 <= $vagas[3]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[3] = $vagas[3] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[3] = $vagas[3] - 1;
-			}
-			$aux3++;
-		}
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
-			if($aux4 <= $vagas[3]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[4] = $vagas[4] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[4] = $vagas[4] - 1;
-			}
-			$aux4++;
-		}
-
-	 // prioridade 3 = transferenciaExterna, curso afim
-
-		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('situacao', '!=', 'processando')
-																						 ->where('situacao', '!=', 'rejeitado')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'manhã')
-																						 ->where('tipo', 'transferenciaExterna')
-																						 ->where('cursoDeOrigem', '!=',$curso)
-																						 ->orderBy('nota', 'desc')
-
-																						 ->get();
-		$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('situacao', '!=', 'processando')
-																						 ->where('situacao', '!=', 'rejeitado')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'tarde')
-																						 ->where('tipo', 'transferenciaExterna')
-																						 ->where('cursoDeOrigem', '!=',$curso)
-																						 ->orderBy('nota', 'desc')
-
-																						 ->get();
-		$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('situacao', '!=', 'processando')
-																						 ->where('situacao', '!=', 'rejeitado')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'noite')
-																						 ->where('tipo', 'transferenciaExterna')
-																						 ->where('cursoDeOrigem', '!=',$curso)
-																						 ->orderBy('nota', 'desc')
-
-																						 ->get();
-		$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
-																								->where('homologado' , 'aprovado')
-																								->where('homologadoDrca', 'aprovado')
-																								->where('situacao', '!=', 'processando')
-	 																						 	->where('situacao', '!=', 'rejeitado')
-																								->where('curso', $curso)
-																								->where('turno', 'integral')
-																								->where('tipo', 'transferenciaExterna')
-	 																						 	->where('cursoDeOrigem', '!=',$curso)
-																								->orderBy('nota', 'desc')
-
-																								->get();
-		$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
-																								->where('homologado' , 'aprovado')
-																								->where('homologadoDrca', 'aprovado')
-																								->where('situacao', '!=', 'processando')
-	 																						 	->where('situacao', '!=', 'rejeitado')
-																								->where('curso', $curso)
-																								->where('turno', 'especial')
-																								->where('tipo', 'transferenciaExterna')
-	 																						 	->where('cursoDeOrigem', '!=',$curso)
-																								->orderBy('nota', 'desc')
-
-																								->get();
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
-			if($aux <= $vagas[0]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[0] = $vagas[0] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[0] = $vagas[0] - 1;
-			}
-		}
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
-			if($aux1 <= $vagas[1]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[1] = $vagas[1] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[1] = $vagas[1] - 1;
-			}
-			$aux1++;
-		}
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
-			if($aux2 <= $vagas[2]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[2] = $vagas[2] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[2] = $vagas[2] - 1;
-			}
-			$aux2++;
-		}
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
-			if($aux3 <= $vagas[3]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[3] = $vagas[3] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[3] = $vagas[3] - 1;
-			}
-			$aux3++;
-		}
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
-			if($aux4 <= $vagas[3]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[4] = $vagas[4] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[4] = $vagas[4] - 1;
-			}
-			$aux4++;
-		}
-
-	 // prioridade 4 = portadorDeDiploma
-
-		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('situacao', '!=', 'processando')
-																						 ->where('situacao', '!=', 'rejeitado')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'manhã')
-																						 ->where('tipo', 'portadorDeDiploma')
-																						 ->orderBy('nota', 'desc')
-
-																						 ->get();
-		$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('situacao', '!=', 'processando')
-																						 ->where('situacao', '!=', 'rejeitado')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'tarde')
-																						 ->where('tipo', 'portadorDeDiploma')
-																						 ->orderBy('nota', 'desc')
-
-																						 ->get();
-		$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
-																						 ->where('homologado' , 'aprovado')
-																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('situacao', '!=', 'processando')
-																						 ->where('situacao', '!=', 'rejeitado')
-																						 ->where('curso', $curso)
-																						 ->where('turno', 'noite')
-																						 ->where('tipo', 'portadorDeDiploma')
-																						 ->orderBy('nota', 'desc')
-
-																						 ->get();
-		$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
-																								->where('homologado' , 'aprovado')
-																								->where('homologadoDrca', 'aprovado')
-																								->where('situacao', '!=', 'processando')
-	 																						 	->where('situacao', '!=', 'rejeitado')
-																								->where('curso', $curso)
-																								->where('turno', 'integral')
-																								->where('tipo', 'portadorDeDiploma')
-																								->orderBy('nota', 'desc')
-
-																								->get();
-		$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
-																								->where('homologado' , 'aprovado')
-																								->where('homologadoDrca', 'aprovado')
-																								->where('situacao', '!=', 'processando')
-	 																						 	->where('situacao', '!=', 'rejeitado')
-																								->where('curso', $curso)
-																								->where('turno', 'especial')
-																								->where('tipo', 'portadorDeDiploma')
-																								->orderBy('nota', 'desc')
-
-																								->get();
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
-			if($aux <= $vagas[0]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[0] = $vagas[0] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[0] = $vagas[0] - 1;
-			}
-		}
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
-			if($aux1 <= $vagas[1]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[1] = $vagas[1] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[1] = $vagas[1] - 1;
-			}
-			$aux1++;
-		}
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
-			if($aux2 <= $vagas[2]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[2] = $vagas[2] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[2] = $vagas[2] - 1;
-			}
-			$aux2++;
-		}
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
-			if($aux3 <= $vagas[3]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[3] = $vagas[3] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[3] = $vagas[3] - 1;
-			}
-			$aux3++;
-		}
-
-		$ultimoCRE = 0;
-		$ultimoId = 0;
-		$flagEmpate = false;
-
-		foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
-			if($aux4 <= $vagas[3]){
-				$inscricao->situacao = 'Aprovado';
-				$ultimoCRE = $inscricao->coeficenteDeRendimento;
-				$ultimoId = $inscricao->id;
-				$inscricao->save();
-				$vagas[4] = $vagas[4] - 1;
-			}
-			else{
-				if($ultimoCRE == $inscricao->coeficenteDeRendimento){
-					if($flagEmpate == false){
-						array_push($ids, $ultimoId);
-						array_push($ids, $inscricao->id);
-						$flagEmpate = true;
-					}
-					else{
-						array_push($ids, $inscricao->id);
-					}
-				}
-				$inscricao->situacao = 'Classificável';
-				$inscricao->save();
-				$vagas[4] = $vagas[4] - 1;
-			}
-			$aux4++;
-		}
-
+			//
+			// $inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																				 ->where('homologado' , 'aprovado')
+			// 																				 ->where('homologadoDrca', 'aprovado')
+			// 																				 ->where('situacao', '!=', 'processando')
+			// 																				 ->where('situacao', '!=', 'rejeitado')
+			// 																				 ->where('curso', $curso)
+			// 																				 ->where('turno', 'manhã')
+			// 																				 ->where('tipo', 'reintegracao')
+			// 																				 ->orderBy('nota', 'desc')
+			//
+			// 																				 ->get();
+			// $inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																				 ->where('homologado' , 'aprovado')
+			// 																				 ->where('homologadoDrca', 'aprovado')
+			// 																				 ->where('situacao', '!=', 'processando')
+			// 																				 ->where('situacao', '!=', 'rejeitado')
+			// 																				 ->where('curso', $curso)
+			// 																				 ->where('turno', 'tarde')
+			// 																				 ->where('tipo', 'reintegracao')
+			// 																				 ->orderBy('nota', 'desc')
+			//
+			// 																				 ->get();
+			// $inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																				 ->where('homologado' , 'aprovado')
+			// 																				 ->where('homologadoDrca', 'aprovado')
+			// 																				 ->where('situacao', '!=', 'processando')
+			// 																				 ->where('situacao', '!=', 'rejeitado')
+			// 																				 ->where('curso', $curso)
+			// 																				 ->where('turno', 'noite')
+			// 																				 ->where('tipo', 'reintegracao')
+			// 																				 ->orderBy('nota', 'desc')
+			//
+			// 																				 ->get();
+			// $inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																					  ->where('homologado' , 'aprovado')
+			// 																					  ->where('homologadoDrca', 'aprovado')
+			// 																						->where('situacao', '!=', 'processando')
+		 	// 																					 	->where('situacao', '!=', 'rejeitado')
+			// 																					  ->where('curso', $curso)
+			// 																					  ->where('turno', 'integral')
+			// 																					  ->where('tipo', 'reintegracao')
+			// 																					  ->orderBy('nota', 'desc')
+			//
+			// 																					  ->get();
+			// $inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																					  ->where('homologado' , 'aprovado')
+			// 																					  ->where('homologadoDrca', 'aprovado')
+			// 																						->where('situacao', '!=', 'processando')
+		 	// 																					 	->where('situacao', '!=', 'rejeitado')
+			// 																					  ->where('curso', $curso)
+			// 																					  ->where('turno', 'especial')
+			// 																					  ->where('tipo', 'reintegracao')
+			// 																					  ->orderBy('nota', 'desc')
+			//
+			// 																					  ->get();
+			//
+			// $aux = 1;
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
+			// 	if($aux <= $vagas[0]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[0] = $vagas[0] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[0] = $vagas[0] - 1;
+			// 	}
+			// }
+			//
+			// $aux1 = 1;
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
+			// 	if($aux1 <= $vagas[1]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[1] = $vagas[1] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[1] = $vagas[1] - 1;
+			// 	}
+			// 	$aux1++;
+			// }
+			//
+			// $aux2 = 1;
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
+			// 	if($aux2 <= $vagas[2]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[2] = $vagas[2] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[2] = $vagas[2] - 1;
+			// 	}
+			// 	$aux2++;
+			// }
+			//
+			// $aux3 = 1;
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
+			// 	if($aux3 <= $vagas[3]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[3] = $vagas[3] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[3] = $vagas[3] - 1;
+			// 	}
+			// 	$aux3++;
+			// }
+			//
+			// $aux4 = 1;
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
+			// 	if($aux4 <= $vagas[3]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[4] = $vagas[4] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[4] = $vagas[4] - 1;
+			// 	}
+			// 	$aux4++;
+			// }
+
+	  //prioridade 2 = transferenciaExterna, mesmo curso
+			//
+			// $inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																				 ->where('homologado' , 'aprovado')
+			// 																				 ->where('homologadoDrca', 'aprovado')
+			// 																				 ->where('situacao', '!=', 'processando')
+			// 																				 ->where('situacao', '!=', 'rejeitado')
+			// 																				 ->where('curso', $curso)
+			// 																				 ->where('turno', 'manhã')
+			// 																				 ->where('tipo', 'transferenciaExterna')
+			// 																				 ->where('cursoDeOrigem', $curso)
+			// 																				 ->orderBy('nota', 'desc')
+			//
+			// 																				 ->get();
+			// $inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																				 ->where('homologado' , 'aprovado')
+			// 																				 ->where('homologadoDrca', 'aprovado')
+			// 																				 ->where('situacao', '!=', 'processando')
+			// 																				 ->where('situacao', '!=', 'rejeitado')
+			// 																				 ->where('curso', $curso)
+			// 																				 ->where('turno', 'tarde')
+			// 																				 ->where('tipo', 'transferenciaExterna')
+			// 																				 ->where('cursoDeOrigem', $curso)
+			// 																				 ->orderBy('nota', 'desc')
+			//
+			// 																				 ->get();
+			// $inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																				 ->where('homologado' , 'aprovado')
+			// 																				 ->where('homologadoDrca', 'aprovado')
+			// 																				 ->where('situacao', '!=', 'processando')
+			// 																				 ->where('situacao', '!=', 'rejeitado')
+			// 																				 ->where('curso', $curso)
+			// 																				 ->where('turno', 'noite')
+			// 																				 ->where('tipo', 'transferenciaExterna')
+			// 																				 ->where('cursoDeOrigem', $curso)
+			// 																				 ->orderBy('nota', 'desc')
+			//
+			// 																				 ->get();
+			// $inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																						->where('homologado' , 'aprovado')
+			// 																						->where('homologadoDrca', 'aprovado')
+			// 																						->where('situacao', '!=', 'processando')
+		 	// 																					 	->where('situacao', '!=', 'rejeitado')
+			// 																						->where('curso', $curso)
+			// 																						->where('turno', 'integral')
+			// 																						->where('tipo', 'transferenciaExterna')
+		 	// 																					 	->where('cursoDeOrigem', $curso)
+			// 																						->orderBy('nota', 'desc')
+			//
+			// 																						->get();
+			// $inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																						->where('homologado' , 'aprovado')
+			// 																						->where('homologadoDrca', 'aprovado')
+			// 																						->where('situacao', '!=', 'processando')
+		 	// 																					 	->where('situacao', '!=', 'rejeitado')
+			// 																						->where('curso', $curso)
+			// 																						->where('turno', 'especial')
+			// 																						->where('tipo', 'transferenciaExterna')
+		 	// 																					 	->where('cursoDeOrigem', $curso)
+			// 																						->orderBy('nota', 'desc')
+			//
+			// 																						->get();
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
+			// 	if($aux <= $vagas[0]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[0] = $vagas[0] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[0] = $vagas[0] - 1;
+			// 	}
+			// }
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
+			// 	if($aux1 <= $vagas[1]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[1] = $vagas[1] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[1] = $vagas[1] - 1;
+			// 	}
+			// 	$aux1++;
+			// }
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
+			// 	if($aux2 <= $vagas[2]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[2] = $vagas[2] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[2] = $vagas[2] - 1;
+			// 	}
+			// 	$aux2++;
+			// }
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
+			// 	if($aux3 <= $vagas[3]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[3] = $vagas[3] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[3] = $vagas[3] - 1;
+			// 	}
+			// 	$aux3++;
+			// }
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
+			// 	if($aux4 <= $vagas[3]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[4] = $vagas[4] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[4] = $vagas[4] - 1;
+			// 	}
+			// 	$aux4++;
+			// }
+
+	  //prioridade 3 = transferenciaExterna, curso afim
+			// $inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																				 ->where('homologado' , 'aprovado')
+			// 																				 ->where('homologadoDrca', 'aprovado')
+			// 																				 ->where('situacao', '!=', 'processando')
+			// 																				 ->where('situacao', '!=', 'rejeitado')
+			// 																				 ->where('curso', $curso)
+			// 																				 ->where('turno', 'manhã')
+			// 																				 ->where('tipo', 'transferenciaExterna')
+			// 																				 ->where('cursoDeOrigem', '!=',$curso)
+			// 																				 ->orderBy('nota', 'desc')
+			//
+			// 																				 ->get();
+			// $inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																				 ->where('homologado' , 'aprovado')
+			// 																				 ->where('homologadoDrca', 'aprovado')
+			// 																				 ->where('situacao', '!=', 'processando')
+			// 																				 ->where('situacao', '!=', 'rejeitado')
+			// 																				 ->where('curso', $curso)
+			// 																				 ->where('turno', 'tarde')
+			// 																				 ->where('tipo', 'transferenciaExterna')
+			// 																				 ->where('cursoDeOrigem', '!=',$curso)
+			// 																				 ->orderBy('nota', 'desc')
+			//
+			// 																				 ->get();
+			// $inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																				 ->where('homologado' , 'aprovado')
+			// 																				 ->where('homologadoDrca', 'aprovado')
+			// 																				 ->where('situacao', '!=', 'processando')
+			// 																				 ->where('situacao', '!=', 'rejeitado')
+			// 																				 ->where('curso', $curso)
+			// 																				 ->where('turno', 'noite')
+			// 																				 ->where('tipo', 'transferenciaExterna')
+			// 																				 ->where('cursoDeOrigem', '!=',$curso)
+			// 																				 ->orderBy('nota', 'desc')
+			//
+			// 																				 ->get();
+			// $inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																						->where('homologado' , 'aprovado')
+			// 																						->where('homologadoDrca', 'aprovado')
+			// 																						->where('situacao', '!=', 'processando')
+		 	// 																					 	->where('situacao', '!=', 'rejeitado')
+			// 																						->where('curso', $curso)
+			// 																						->where('turno', 'integral')
+			// 																						->where('tipo', 'transferenciaExterna')
+		 	// 																					 	->where('cursoDeOrigem', '!=',$curso)
+			// 																						->orderBy('nota', 'desc')
+			//
+			// 																						->get();
+			// $inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																						->where('homologado' , 'aprovado')
+			// 																						->where('homologadoDrca', 'aprovado')
+			// 																						->where('situacao', '!=', 'processando')
+		 	// 																					 	->where('situacao', '!=', 'rejeitado')
+			// 																						->where('curso', $curso)
+			// 																						->where('turno', 'especial')
+			// 																						->where('tipo', 'transferenciaExterna')
+		 	// 																					 	->where('cursoDeOrigem', '!=',$curso)
+			// 																						->orderBy('nota', 'desc')
+			//
+			// 																						->get();
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
+			// 	if($aux <= $vagas[0]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[0] = $vagas[0] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[0] = $vagas[0] - 1;
+			// 	}
+			// }
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
+			// 	if($aux1 <= $vagas[1]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[1] = $vagas[1] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[1] = $vagas[1] - 1;
+			// 	}
+			// 	$aux1++;
+			// }
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
+			// 	if($aux2 <= $vagas[2]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[2] = $vagas[2] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[2] = $vagas[2] - 1;
+			// 	}
+			// 	$aux2++;
+			// }
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
+			// 	if($aux3 <= $vagas[3]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[3] = $vagas[3] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[3] = $vagas[3] - 1;
+			// 	}
+			// 	$aux3++;
+			// }
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
+			// 	if($aux4 <= $vagas[3]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[4] = $vagas[4] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[4] = $vagas[4] - 1;
+			// 	}
+			// 	$aux4++;
+			// }
+
+	  //prioridade 4 = portadorDeDiploma
+			// $inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																				 ->where('homologado' , 'aprovado')
+			// 																				 ->where('homologadoDrca', 'aprovado')
+			// 																				 ->where('situacao', '!=', 'processando')
+			// 																				 ->where('situacao', '!=', 'rejeitado')
+			// 																				 ->where('curso', $curso)
+			// 																				 ->where('turno', 'manhã')
+			// 																				 ->where('tipo', 'portadorDeDiploma')
+			// 																				 ->orderBy('nota', 'desc')
+			//
+			// 																				 ->get();
+			// $inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																				 ->where('homologado' , 'aprovado')
+			// 																				 ->where('homologadoDrca', 'aprovado')
+			// 																				 ->where('situacao', '!=', 'processando')
+			// 																				 ->where('situacao', '!=', 'rejeitado')
+			// 																				 ->where('curso', $curso)
+			// 																				 ->where('turno', 'tarde')
+			// 																				 ->where('tipo', 'portadorDeDiploma')
+			// 																				 ->orderBy('nota', 'desc')
+			//
+			// 																				 ->get();
+			// $inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																				 ->where('homologado' , 'aprovado')
+			// 																				 ->where('homologadoDrca', 'aprovado')
+			// 																				 ->where('situacao', '!=', 'processando')
+			// 																				 ->where('situacao', '!=', 'rejeitado')
+			// 																				 ->where('curso', $curso)
+			// 																				 ->where('turno', 'noite')
+			// 																				 ->where('tipo', 'portadorDeDiploma')
+			// 																				 ->orderBy('nota', 'desc')
+			//
+			// 																				 ->get();
+			// $inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																						->where('homologado' , 'aprovado')
+			// 																						->where('homologadoDrca', 'aprovado')
+			// 																						->where('situacao', '!=', 'processando')
+		 	// 																					 	->where('situacao', '!=', 'rejeitado')
+			// 																						->where('curso', $curso)
+			// 																						->where('turno', 'integral')
+			// 																						->where('tipo', 'portadorDeDiploma')
+			// 																						->orderBy('nota', 'desc')
+			//
+			// 																						->get();
+			// $inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
+			// 																						->where('homologado' , 'aprovado')
+			// 																						->where('homologadoDrca', 'aprovado')
+			// 																						->where('situacao', '!=', 'processando')
+		 	// 																					 	->where('situacao', '!=', 'rejeitado')
+			// 																						->where('curso', $curso)
+			// 																						->where('turno', 'especial')
+			// 																						->where('tipo', 'portadorDeDiploma')
+			// 																						->orderBy('nota', 'desc')
+			//
+			// 																						->get();
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesManhaOrderByDesc as $inscricao) { //manha
+			// 	if($aux <= $vagas[0]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[0] = $vagas[0] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[0] = $vagas[0] - 1;
+			// 	}
+			// }
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesTardeOrderByDesc as $inscricao) { //tarde
+			// 	if($aux1 <= $vagas[1]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[1] = $vagas[1] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[1] = $vagas[1] - 1;
+			// 	}
+			// 	$aux1++;
+			// }
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesNoiteOrderByDesc as $inscricao) { //noite
+			// 	if($aux2 <= $vagas[2]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[2] = $vagas[2] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[2] = $vagas[2] - 1;
+			// 	}
+			// 	$aux2++;
+			// }
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //integral
+			// 	if($aux3 <= $vagas[3]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[3] = $vagas[3] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[3] = $vagas[3] - 1;
+			// 	}
+			// 	$aux3++;
+			// }
+			//
+			// $ultimoCRE = 0;
+			// $ultimoId = 0;
+			// $flagEmpate = false;
+			//
+			// foreach ($inscricoesIntegralOrderByDesc as $inscricao) { //especial
+			// 	if($aux4 <= $vagas[3]){
+			// 		$inscricao->situacao = 'Aprovado';
+			// 		$ultimoCRE = $inscricao->coeficenteDeRendimento;
+			// 		$ultimoId = $inscricao->id;
+			// 		$inscricao->save();
+			// 		$vagas[4] = $vagas[4] - 1;
+			// 	}
+			// 	else{
+			// 		if($ultimoCRE == $inscricao->coeficenteDeRendimento){
+			// 			if($flagEmpate == false){
+			// 				array_push($ids, $ultimoId);
+			// 				array_push($ids, $inscricao->id);
+			// 				$flagEmpate = true;
+			// 			}
+			// 			else{
+			// 				array_push($ids, $inscricao->id);
+			// 			}
+			// 		}
+			// 		$inscricao->situacao = 'Classificável';
+			// 		$inscricao->save();
+			// 		$vagas[4] = $vagas[4] - 1;
+			// 	}
+			// 	$aux4++;
+			// }
 
 		if(!empty($ids)) {
 			return $ids;

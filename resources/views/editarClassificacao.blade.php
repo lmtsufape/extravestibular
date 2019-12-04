@@ -147,6 +147,12 @@
       </div><!-- end card -->
     </div><!-- end row-->
 
+
+
+
+
+
+
     <div class="row justify-content-center">
       <div class="card">
         <div class="card-header">Notas</div>
@@ -162,48 +168,39 @@
             </div>
           </div><!-- end row -->
 
-          <div class="row justify-content-center">
+          <div class="row justify-content-center" style="margin-top:30px">
+
               <div class="col-sm-4">
-                  <label for="coeficienteDeRendimento" class="field a-field a-field_a2 page__field">
+                <label for="coeficienteDeRendimento" class="field a-field a-field_a2 page__field">
                     <span class="a-field__label-wrap">
                       <span class="a-field__label">Coeficiente de Rendimento</span>
                     </span>
-                  </label>
-                  <input id="coeficienteDeRendimento" type="text" name="coeficienteDeRendimento" autofocus class="form-control @error('coeficienteDeRendimento') is-invalid @enderror field__input a-field__input" placeholder="EX: 8.5"  value="{{ old('coeficienteDeRendimento') }}">
-                  @error('coeficienteDeRendimento')
-                  <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-                </div>
-              <div class="col-sm-4">
-                <label for="materias" class="field a-field a-field_a2 page__field" style="margin-left: 20px">
-                    <span class="a-field__label-wrap">
-                      <span class="a-field__label">Nº Disciplinas Obrigatórias</span>
-                    </span>
-                  </label>
-                  <input id="materias" type="text" name="materias" autofocus class="form-control @error('materias') is-invalid @enderror field__input a-field__input" placeholder="EX: 10"  value="{{ old('materias') }}">
-                @error('materias')
+                </label>
+                <input id="coeficienteDeRendimento" type="text" name="coeficienteDeRendimento" autofocus class="form-control @error('coeficienteDeRendimento') is-invalid @enderror field__input a-field__input" placeholder="EX: 7.5"  value="{{ old('coeficienteDeRendimento') }}">
+                @error('coeficienteDeRendimento')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                   <strong>{{ $message }}</strong>
                 </span>
                 @enderror
               </div>
               <div class="col-sm-4">
-                <label for="completadas" class="field a-field a-field_a2 page__field" style="margin-left: 20px">
+                <label for="totalDisciplinas" class="field a-field a-field_a2 page__field" >
+                    <!-- <input id="totalDisciplinas" type="text" name="totalDisciplinas" autofocus class="form-control @error('totalDisciplinas') is-invalid @enderror field__input a-field__input" placeholder="EX: 12"  value="{{ old('totalDisciplinas') }}"> -->
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Nº Disciplinas Cursadas</span>
+                      <span class="a-field__label">Total de disciplinas aproveitadas do Curso de origem.</span>
                     </span>
-                  </label>
-                  <input id="completadas" type="text" name="completadas" autofocus class="form-control @error('completadas') is-invalid @enderror field__input a-field__input" placeholder="EX: 9" value="{{ old('completadas') }}">
-                @error('completadas')
+                </label>
+                <input id="totalDisciplinas" type="text" name="totalDisciplinas" autofocus class="form-control @error('totalDisciplinas') is-invalid @enderror field__input a-field__input" placeholder="Total de disciplinas obrigatórias no Curso de origem."  value="{{ old('totalDisciplinas') }}">
+                @error('totalDisciplinas')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                   <strong>{{ $message }}</strong>
                 </span>
                 @enderror
               </div>
 
-          </div><!-- end row -->
+
+            </div><!-- end row input -->
+
 
 
 

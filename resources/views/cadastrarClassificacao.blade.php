@@ -132,7 +132,7 @@
         </table>
       </div><!-- end row tabela-->
 
-      <hr>
+      
       <div class="row justify-content-center" style="margin-top:30px">
 
         <div class="col-sm-4">

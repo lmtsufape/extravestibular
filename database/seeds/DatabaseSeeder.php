@@ -112,10 +112,8 @@ class DatabaseSeeder extends Seeder
                 'homologadoDrca' => 'aprovado',
                 'cidade' => 'Dados',
                 'uf' => 'Dados',
-                'coeficienteDeRendimento' => '9',
-                'nota' => '0.5',
                 'classificacao' => $i,
-                'situacao' => 'Aprovado'
+                'situacao' => 'processando'
 
 
 
@@ -141,7 +139,6 @@ class DatabaseSeeder extends Seeder
                 'homologadoDrca' => 'aprovado',
                 'cidade' => 'Dados',
                 'uf' => 'Dados',
-                'coeficienteDeRendimento' => 'nao',
                 'situacao' => 'processando',
 
             ]);
@@ -166,9 +163,7 @@ class DatabaseSeeder extends Seeder
                 'homologadoDrca' => 'aprovado',
                 'cidade' => 'Dados',
                 'uf' => 'Dados',
-                'coeficienteDeRendimento' => '9',
-                'nota' => null,
-                'situacao' => 'Aprovado',
+                'situacao' => 'processando',
             ]);
           }
 
