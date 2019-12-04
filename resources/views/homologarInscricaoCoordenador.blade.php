@@ -71,6 +71,7 @@
   }
 </style>
 
+
 <div class="container">
   <form method="GET" action="{{ route('seguirParaClassificacao') }}" enctype="multipart/form-data" id="formHomologacao">
 
