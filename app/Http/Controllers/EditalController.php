@@ -436,18 +436,18 @@ class EditalController extends Controller{
         }
         if($request->tipo == 'classificarInscricoes'){
           $inscricoesClassificadas = Inscricao::where('editalId', $request->editalId)
+                                                ->where('curso', session('cursoId'))
                                                 ->where('homologado', 'aprovado')
                                                 ->where('homologadoDrca', 'aprovado')
-                                                ->whereNotNull('nota')
-                                                ->orderBy('id')
-                                                ->where('curso', session('cursoId'))
-                                                ->paginate(10);
+                                                ->where('situacao', '!=', 'processando')
+                                                ->orderBy('classificacao', 'asc')
+                                                ->paginate(20);
           $inscricoesDisponiveis = Inscricao::where('editalId', $request->editalId)
                                               ->where('homologado', 'aprovado')
                                               ->where('homologadoDrca', 'aprovado')
-                                              ->where('coeficienteDeRendimento', 'nao')
+                                              ->where('situacao', 'processando')
                                               ->where('curso', session('cursoId'))
-                                              ->paginate(10);
+                                              ->paginate(20);
           return view('listaInscricoes', [
                                           'inscricoes'              => $inscricoesDisponiveis,
                                           'inscricoesClassificadas' => $inscricoesClassificadas,
@@ -560,11 +560,15 @@ class EditalController extends Controller{
                                       ->where('tipo', 'resultado')
                                       ->first();
           $inscricoesClassificadas = Inscricao::where('editalId', $request->editalId)
-                                                ->where('nota', '!=', null)
+                                                ->where('homologado', 'aprovado')
+                                                ->where('homologadoDrca', 'aprovado')
+                                                ->where('situacao', '!=', 'processando')
                                                 ->get();
           $inscricoesNaoClassificadas = Inscricao::where('editalId', $request->editalId)
-                                                ->whereNull('nota')
-                                                ->get();
+                                                   ->where('homologado', 'aprovado')
+                                                   ->where('homologadoDrca', 'aprovado')
+                                                   ->where('situacao', 'processando')
+                                                   ->get();
           $inscricoesClassificadas = json_decode($inscricoesClassificadas);
           $inscricoesNaoClassificadas = json_decode($inscricoesNaoClassificadas);
           $edital = Edital::find($request->editalId);
@@ -710,15 +714,18 @@ class EditalController extends Controller{
         }
         if(session('tipo') == 'coordenador'){
           $inscricoesClassificadas = Inscricao::where('editalId', $request->editalId)
-                                                ->where('nota', '!=', null)
                                                 ->where('curso', session('cursoId'))
-                                                ->where('coeficienteDeRendimento', 'nao')
+                                                ->where('homologado', 'aprovado')
+                                                ->where('homologadoDrca', 'aprovado')
+                                                ->where('situacao', '!=', 'processando')
                                                 ->get();
           $inscricoesNaoClassificadas = Inscricao::where('editalId', $request->editalId)
-                                                ->where('curso', session('cursoId'))
-                                                ->where('coeficienteDeRendimento', 'nao')
-                                                ->whereNull('nota')
-                                                ->get();
+                                                   ->where('curso', session('cursoId'))
+                                                   ->where('homologado', 'aprovado')
+                                                   ->where('homologadoDrca', 'aprovado')
+                                                   ->where('situacao', 'processando')
+                                                   ->get();
+
           $erratas = $edital->errata;
 
           return view('detalhesEditalCoordenador', ['editalId'                             => $request->editalId,

@@ -169,6 +169,9 @@
       <tr>
         <th> Nome </th>
         <th> CPF </th>
+        <th> Nota </th>
+        <th> Posição </th>
+        <th> Situação </th>
         <th> </th>
       </tr>
       @foreach ($inscricoesClassificadas as $inscricao)
@@ -181,6 +184,21 @@
         <td>
          <a >
            {{$inscricao->user->dadosUsuario->cpf}}
+         </a>
+        </td>
+        <td>
+         <a >
+           {{$inscricao->nota}}
+         </a>
+        </td>
+        <td>
+         <a >
+           {{$inscricao->classificacao}}
+         </a>
+        </td>
+        <td>
+         <a >
+           {{$inscricao->situacao}}
          </a>
         </td>
 

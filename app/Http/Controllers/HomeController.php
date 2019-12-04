@@ -113,6 +113,12 @@ class HomeController extends Controller
       if(is_null($user)){
         Auth::attempt(['email' => $request->email, 'password' => $request->password]);
         if(Auth::check()){
+          $acl = $api->getAcl('4');
+          $stringAcl = '';
+          foreach($acl as $key){
+            $stringAcl = $stringAcl . $key . ';';
+          }
+          $request->session()->put('acl', $stringAcl);
           return redirect()->route('home');
 
         }

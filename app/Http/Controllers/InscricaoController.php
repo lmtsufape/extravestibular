@@ -327,6 +327,8 @@ class InscricaoController extends Controller
 					$dados = DadosUsuario::find(Auth::user()->dados);
 					$cursos = $api->getCursos();
 					$curso = $inscricao->curso;
+					$inscricao->situacao = 'processando';
+					$inscricao->save();
 					for($j = 0; $j < sizeof($cursos); $j++){
 						if($curso == $cursos[$j]['id']){
 							$curso = $cursos[$j]['nome'] . '/' . $cursos[$j]['departamento'];
@@ -524,57 +526,57 @@ class InscricaoController extends Controller
 		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('classificacao', '!=', 'processando')
-																						 ->where('classificacao', '!=', 'rejeitado')
+																						 ->where('situacao', '!=', 'processando')
+																						 ->where('situacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'manhã')
 																						 ->where('tipo', 'transferenciaInterna')
-																						 ->orderBy('coeficienteDeRendimento', 'desc')
-																						 ->orderBy('totalDisciplinas', 'desc')
+																						 ->orderBy('nota', 'desc')
+
 																						 ->get();
 		$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('classificacao', '!=', 'processando')
-																						 ->where('classificacao', '!=', 'rejeitado')
+																						 ->where('situacao', '!=', 'processando')
+																						 ->where('situacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'tarde')
 																						 ->where('tipo', 'transferenciaInterna')
-																						 ->orderBy('coeficienteDeRendimento', 'desc')
-																						 ->orderBy('totalDisciplinas', 'desc')
+																						 ->orderBy('nota', 'desc')
+
 																						 ->get();
 		$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('classificacao', '!=', 'processando')
-																						 ->where('classificacao', '!=', 'rejeitado')
+																						 ->where('situacao', '!=', 'processando')
+																						 ->where('situacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'noite')
 																						 ->where('tipo', 'transferenciaInterna')
-																						 ->orderBy('coeficienteDeRendimento', 'desc')
-																						 ->orderBy('totalDisciplinas', 'desc')
+																						 ->orderBy('nota', 'desc')
+
 																						 ->get();
 		$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
 																								->where('homologado' , 'aprovado')
 																								->where('homologadoDrca', 'aprovado')
-																								->where('classificacao', '!=', 'processando')
-	 																						 	->where('classificacao', '!=', 'rejeitado')
+																								->where('situacao', '!=', 'processando')
+	 																						 	->where('situacao', '!=', 'rejeitado')
 																								->where('curso', $curso)
 																								->where('turno', 'integral')
 																								->where('tipo', 'transferenciaInterna')
-																								->orderBy('coeficienteDeRendimento', 'desc')
-																								->orderBy('totalDisciplinas', 'desc')
+																								->orderBy('nota', 'desc')
+
 																								->get();
 		$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
 																								->where('homologado' , 'aprovado')
 																								->where('homologadoDrca', 'aprovado')
-																								->where('classificacao', '!=', 'processando')
-	 																						 	->where('classificacao', '!=', 'rejeitado')
+																								->where('situacao', '!=', 'processando')
+	 																						 	->where('situacao', '!=', 'rejeitado')
 																								->where('curso', $curso)
 																								->where('turno', 'especial')
 																								->where('tipo', 'transferenciaInterna')
-																								->orderBy('coeficienteDeRendimento', 'desc')
-																								->orderBy('totalDisciplinas', 'desc')
+																								->orderBy('nota', 'desc')
+
 																								->get();
 
 		$ultimoCRE = 0;
@@ -733,57 +735,57 @@ class InscricaoController extends Controller
 		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('classificacao', '!=', 'processando')
-																						 ->where('classificacao', '!=', 'rejeitado')
+																						 ->where('situacao', '!=', 'processando')
+																						 ->where('situacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'manhã')
 																						 ->where('tipo', 'reintegracao')
-																						 ->orderBy('coeficienteDeRendimento', 'desc')
-																						 ->orderBy('totalDisciplinas', 'desc')
+																						 ->orderBy('nota', 'desc')
+
 																						 ->get();
 		$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('classificacao', '!=', 'processando')
-																						 ->where('classificacao', '!=', 'rejeitado')
+																						 ->where('situacao', '!=', 'processando')
+																						 ->where('situacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'tarde')
 																						 ->where('tipo', 'reintegracao')
-																						 ->orderBy('coeficienteDeRendimento', 'desc')
-																						 ->orderBy('totalDisciplinas', 'desc')
+																						 ->orderBy('nota', 'desc')
+
 																						 ->get();
 		$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('classificacao', '!=', 'processando')
-																						 ->where('classificacao', '!=', 'rejeitado')
+																						 ->where('situacao', '!=', 'processando')
+																						 ->where('situacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'noite')
 																						 ->where('tipo', 'reintegracao')
-																						 ->orderBy('coeficienteDeRendimento', 'desc')
-																						 ->orderBy('totalDisciplinas', 'desc')
+																						 ->orderBy('nota', 'desc')
+
 																						 ->get();
 		$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
 																							  ->where('homologado' , 'aprovado')
 																							  ->where('homologadoDrca', 'aprovado')
-																								->where('classificacao', '!=', 'processando')
-	 																						 	->where('classificacao', '!=', 'rejeitado')
+																								->where('situacao', '!=', 'processando')
+	 																						 	->where('situacao', '!=', 'rejeitado')
 																							  ->where('curso', $curso)
 																							  ->where('turno', 'integral')
 																							  ->where('tipo', 'reintegracao')
-																							  ->orderBy('coeficienteDeRendimento', 'desc')
-																								->orderBy('totalDisciplinas', 'desc')
+																							  ->orderBy('nota', 'desc')
+
 																							  ->get();
 		$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
 																							  ->where('homologado' , 'aprovado')
 																							  ->where('homologadoDrca', 'aprovado')
-																								->where('classificacao', '!=', 'processando')
-	 																						 	->where('classificacao', '!=', 'rejeitado')
+																								->where('situacao', '!=', 'processando')
+	 																						 	->where('situacao', '!=', 'rejeitado')
 																							  ->where('curso', $curso)
 																							  ->where('turno', 'especial')
 																							  ->where('tipo', 'reintegracao')
-																							  ->orderBy('coeficienteDeRendimento', 'desc')
-																								->orderBy('totalDisciplinas', 'desc')
+																							  ->orderBy('nota', 'desc')
+
 																							  ->get();
 
 		$aux = 1;
@@ -945,62 +947,62 @@ class InscricaoController extends Controller
 		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('classificacao', '!=', 'processando')
-																						 ->where('classificacao', '!=', 'rejeitado')
+																						 ->where('situacao', '!=', 'processando')
+																						 ->where('situacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'manhã')
 																						 ->where('tipo', 'transferenciaExterna')
 																						 ->where('cursoDeOrigem', $curso)
-																						 ->orderBy('coeficienteDeRendimento', 'desc')
-																						 ->orderBy('totalDisciplinas', 'desc')
+																						 ->orderBy('nota', 'desc')
+
 																						 ->get();
 		$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('classificacao', '!=', 'processando')
-																						 ->where('classificacao', '!=', 'rejeitado')
+																						 ->where('situacao', '!=', 'processando')
+																						 ->where('situacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'tarde')
 																						 ->where('tipo', 'transferenciaExterna')
 																						 ->where('cursoDeOrigem', $curso)
-																						 ->orderBy('coeficienteDeRendimento', 'desc')
-																						 ->orderBy('totalDisciplinas', 'desc')
+																						 ->orderBy('nota', 'desc')
+
 																						 ->get();
 		$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('classificacao', '!=', 'processando')
-																						 ->where('classificacao', '!=', 'rejeitado')
+																						 ->where('situacao', '!=', 'processando')
+																						 ->where('situacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'noite')
 																						 ->where('tipo', 'transferenciaExterna')
 																						 ->where('cursoDeOrigem', $curso)
-																						 ->orderBy('coeficienteDeRendimento', 'desc')
-																						 ->orderBy('totalDisciplinas', 'desc')
+																						 ->orderBy('nota', 'desc')
+
 																						 ->get();
 		$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
 																								->where('homologado' , 'aprovado')
 																								->where('homologadoDrca', 'aprovado')
-																								->where('classificacao', '!=', 'processando')
-	 																						 	->where('classificacao', '!=', 'rejeitado')
+																								->where('situacao', '!=', 'processando')
+	 																						 	->where('situacao', '!=', 'rejeitado')
 																								->where('curso', $curso)
 																								->where('turno', 'integral')
 																								->where('tipo', 'transferenciaExterna')
 	 																						 	->where('cursoDeOrigem', $curso)
-																								->orderBy('coeficienteDeRendimento', 'desc')
-																								->orderBy('totalDisciplinas', 'desc')
+																								->orderBy('nota', 'desc')
+
 																								->get();
 		$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
 																								->where('homologado' , 'aprovado')
 																								->where('homologadoDrca', 'aprovado')
-																								->where('classificacao', '!=', 'processando')
-	 																						 	->where('classificacao', '!=', 'rejeitado')
+																								->where('situacao', '!=', 'processando')
+	 																						 	->where('situacao', '!=', 'rejeitado')
 																								->where('curso', $curso)
 																								->where('turno', 'especial')
 																								->where('tipo', 'transferenciaExterna')
 	 																						 	->where('cursoDeOrigem', $curso)
-																								->orderBy('coeficienteDeRendimento', 'desc')
-																								->orderBy('totalDisciplinas', 'desc')
+																								->orderBy('nota', 'desc')
+
 																								->get();
 
 		$ultimoCRE = 0;
@@ -1157,62 +1159,62 @@ class InscricaoController extends Controller
 		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('classificacao', '!=', 'processando')
-																						 ->where('classificacao', '!=', 'rejeitado')
+																						 ->where('situacao', '!=', 'processando')
+																						 ->where('situacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'manhã')
 																						 ->where('tipo', 'transferenciaExterna')
 																						 ->where('cursoDeOrigem', '!=',$curso)
-																						 ->orderBy('coeficienteDeRendimento', 'desc')
-																						 ->orderBy('totalDisciplinas', 'desc')
+																						 ->orderBy('nota', 'desc')
+
 																						 ->get();
 		$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('classificacao', '!=', 'processando')
-																						 ->where('classificacao', '!=', 'rejeitado')
+																						 ->where('situacao', '!=', 'processando')
+																						 ->where('situacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'tarde')
 																						 ->where('tipo', 'transferenciaExterna')
 																						 ->where('cursoDeOrigem', '!=',$curso)
-																						 ->orderBy('coeficienteDeRendimento', 'desc')
-																						 ->orderBy('totalDisciplinas', 'desc')
+																						 ->orderBy('nota', 'desc')
+
 																						 ->get();
 		$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('classificacao', '!=', 'processando')
-																						 ->where('classificacao', '!=', 'rejeitado')
+																						 ->where('situacao', '!=', 'processando')
+																						 ->where('situacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'noite')
 																						 ->where('tipo', 'transferenciaExterna')
 																						 ->where('cursoDeOrigem', '!=',$curso)
-																						 ->orderBy('coeficienteDeRendimento', 'desc')
-																						 ->orderBy('totalDisciplinas', 'desc')
+																						 ->orderBy('nota', 'desc')
+
 																						 ->get();
 		$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
 																								->where('homologado' , 'aprovado')
 																								->where('homologadoDrca', 'aprovado')
-																								->where('classificacao', '!=', 'processando')
-	 																						 	->where('classificacao', '!=', 'rejeitado')
+																								->where('situacao', '!=', 'processando')
+	 																						 	->where('situacao', '!=', 'rejeitado')
 																								->where('curso', $curso)
 																								->where('turno', 'integral')
 																								->where('tipo', 'transferenciaExterna')
 	 																						 	->where('cursoDeOrigem', '!=',$curso)
-																								->orderBy('coeficienteDeRendimento', 'desc')
-																								->orderBy('totalDisciplinas', 'desc')
+																								->orderBy('nota', 'desc')
+
 																								->get();
 		$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
 																								->where('homologado' , 'aprovado')
 																								->where('homologadoDrca', 'aprovado')
-																								->where('classificacao', '!=', 'processando')
-	 																						 	->where('classificacao', '!=', 'rejeitado')
+																								->where('situacao', '!=', 'processando')
+	 																						 	->where('situacao', '!=', 'rejeitado')
 																								->where('curso', $curso)
 																								->where('turno', 'especial')
 																								->where('tipo', 'transferenciaExterna')
 	 																						 	->where('cursoDeOrigem', '!=',$curso)
-																								->orderBy('coeficienteDeRendimento', 'desc')
-																								->orderBy('totalDisciplinas', 'desc')
+																								->orderBy('nota', 'desc')
+
 																								->get();
 
 		$ultimoCRE = 0;
@@ -1369,57 +1371,57 @@ class InscricaoController extends Controller
 		$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('classificacao', '!=', 'processando')
-																						 ->where('classificacao', '!=', 'rejeitado')
+																						 ->where('situacao', '!=', 'processando')
+																						 ->where('situacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'manhã')
 																						 ->where('tipo', 'portadorDeDiploma')
-																						 ->orderBy('coeficienteDeRendimento', 'desc')
-																						 ->orderBy('totalDisciplinas', 'desc')
+																						 ->orderBy('nota', 'desc')
+
 																						 ->get();
 		$inscricoesTardeOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('classificacao', '!=', 'processando')
-																						 ->where('classificacao', '!=', 'rejeitado')
+																						 ->where('situacao', '!=', 'processando')
+																						 ->where('situacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'tarde')
 																						 ->where('tipo', 'portadorDeDiploma')
-																						 ->orderBy('coeficienteDeRendimento', 'desc')
-																						 ->orderBy('totalDisciplinas', 'desc')
+																						 ->orderBy('nota', 'desc')
+
 																						 ->get();
 		$inscricoesNoiteOrderByDesc = Inscricao::where('editalId', $editalId)
 																						 ->where('homologado' , 'aprovado')
 																						 ->where('homologadoDrca', 'aprovado')
-																						 ->where('classificacao', '!=', 'processando')
-																						 ->where('classificacao', '!=', 'rejeitado')
+																						 ->where('situacao', '!=', 'processando')
+																						 ->where('situacao', '!=', 'rejeitado')
 																						 ->where('curso', $curso)
 																						 ->where('turno', 'noite')
 																						 ->where('tipo', 'portadorDeDiploma')
-																						 ->orderBy('coeficienteDeRendimento', 'desc')
-																						 ->orderBy('totalDisciplinas', 'desc')
+																						 ->orderBy('nota', 'desc')
+
 																						 ->get();
 		$inscricoesIntegralOrderByDesc = Inscricao::where('editalId', $editalId)
 																								->where('homologado' , 'aprovado')
 																								->where('homologadoDrca', 'aprovado')
-																								->where('classificacao', '!=', 'processando')
-	 																						 	->where('classificacao', '!=', 'rejeitado')
+																								->where('situacao', '!=', 'processando')
+	 																						 	->where('situacao', '!=', 'rejeitado')
 																								->where('curso', $curso)
 																								->where('turno', 'integral')
 																								->where('tipo', 'portadorDeDiploma')
-																								->orderBy('coeficienteDeRendimento', 'desc')
-																								->orderBy('totalDisciplinas', 'desc')
+																								->orderBy('nota', 'desc')
+
 																								->get();
 		$inscricoesEspecialOrderByDesc = Inscricao::where('editalId', $editalId)
 																								->where('homologado' , 'aprovado')
 																								->where('homologadoDrca', 'aprovado')
-																								->where('classificacao', '!=', 'processando')
-	 																						 	->where('classificacao', '!=', 'rejeitado')
+																								->where('situacao', '!=', 'processando')
+	 																						 	->where('situacao', '!=', 'rejeitado')
 																								->where('curso', $curso)
 																								->where('turno', 'especial')
 																								->where('tipo', 'portadorDeDiploma')
-																								->orderBy('coeficienteDeRendimento', 'desc')
-																								->orderBy('totalDisciplinas', 'desc')
+																								->orderBy('nota', 'desc')
+
 																								->get();
 
 		$ultimoCRE = 0;
@@ -1601,13 +1603,15 @@ class InscricaoController extends Controller
 		$this->authorize('classificarInscricao', Inscricao::class);
 		$inscricao = Inscricao::find($request->inscricaoId);
 		$validatedData = $request->validate([
-																					'coeficienteDeRendimento' 		=> ['required', 'float', 'lt:10.1'],
+																					'coeficienteDeRendimento' 		=> ['required', 'numeric', 'lt:10.1'],
 																					'totalDisciplinas' 						=> ['required', 'numeric'],
 																				]);
 		$coeficienteDeRendimento = str_replace(",",".",$request->coeficienteDeRendimento);
 		$inscricao->coeficienteDeRendimento = $coeficienteDeRendimento;
-		$inscricao->totalDisciplinas = $$request->totalDisciplinas;
+		$inscricao->totalDisciplinas = $request->totalDisciplinas;
+		$inscricao->nota = ($coeficienteDeRendimento + $request->totalDisciplinas) / 2;
 		$inscricao->classificacao = 0;
+		$inscricao->situacao = 'classificar';
 		$inscricao->save();
 		// $inscricoesQueFaltamClassificar = Inscricao::where('editalId' , $inscricao->editalId)
 		// 																						 ->where('homologado' , 'aprovado')
@@ -1616,31 +1620,31 @@ class InscricaoController extends Controller
 		// 																						 ->whereNull('nota')
 		// 																						 ->first();
 		// if(is_null($inscricoesQueFaltamClassificar)){
-			$ids = $this->aprovarInscricoes($inscricao->editalId, $inscricao->curso);
-			if(!is_null($ids)){
-				$inscricoesManha 	  = Inscricao::where('turno', 'manhã')->whereIn('id',$ids)->get();
-				$inscricoesTarde 	  = Inscricao::where('turno', 'tarde')->whereIn('id',$ids)->get();
-				$inscricoesNoite 	  = Inscricao::where('turno', 'noite')->whereIn('id',$ids)->get();
-				$inscricoesIntegral = Inscricao::where('turno', 'integral')->whereIn('id',$ids)->get();
-				$inscricoesEspecial = Inscricao::where('turno', 'especial')->whereIn('id',$ids)->get();
-				$mytime = Carbon::now('America/Recife');
-				$mytime = $mytime->toDateString();
+		$ids = $this->aprovarInscricoes($inscricao->editalId, $inscricao->curso);
+		// if(!is_null($ids)){
+		// 	$inscricoesManha 	  = Inscricao::where('turno', 'manhã')->whereIn('id',$ids)->get();
+		// 	$inscricoesTarde 	  = Inscricao::where('turno', 'tarde')->whereIn('id',$ids)->get();
+		// 	$inscricoesNoite 	  = Inscricao::where('turno', 'noite')->whereIn('id',$ids)->get();
+		// 	$inscricoesIntegral = Inscricao::where('turno', 'integral')->whereIn('id',$ids)->get();
+		// 	$inscricoesEspecial = Inscricao::where('turno', 'especial')->whereIn('id',$ids)->get();
+		// 	$mytime = Carbon::now('America/Recife');
+		// 	$mytime = $mytime->toDateString();
+		//
+		// 	return view('cadastrarDesempate', [
+		// 		'inscricoesManha' => $inscricoesManha,
+		// 		'inscricoesTarde' => $inscricoesTarde,
+		// 		'inscricoesNoite' => $inscricoesNoite,
+		// 		'inscricoesIntegral' => $inscricoesIntegral,
+		// 		'inscricoesEspecial' => $inscricoesEspecial,
+		// 		'idsEmpatados' => $ids,
+		// 		'editalId' => $inscricao->editalId,
+		// 		'mytime' => $mytime,
+		// 	]);
+		// }
 
-				return view('cadastrarDesempate', [
-					'inscricoesManha' => $inscricoesManha,
-					'inscricoesTarde' => $inscricoesTarde,
-					'inscricoesNoite' => $inscricoesNoite,
-					'inscricoesIntegral' => $inscricoesIntegral,
-					'inscricoesEspecial' => $inscricoesEspecial,
-					'idsEmpatados' => $ids,
-					'editalId' => $inscricao->editalId,
-					'mytime' => $mytime,
-				]);
-			}
+		$this->verificarCompletudeClassificacoes($inscricao->editalId);
 
-			$this->verificarCompletudeClassificacoes($inscricao->editalId);
-
-			return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso!');
+		return redirect()->route('home')->with('jsAlert', 'Inscrição classificada com sucesso!');
 		// }
 		// else{
 		//

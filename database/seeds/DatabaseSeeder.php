@@ -71,7 +71,7 @@ class DatabaseSeeder extends Seeder
             'pdfEdital' => 'seed/pdfTeste.pdf',
             'vagas' => '11:1?2?3?4?5!12:1?2???!',
             'inicioInscricoes' => '2019-09-01',
-            'fimInscricoes' => '2019-12-02',
+            'fimInscricoes' => '2019-12-06',
             'inicioRecurso' => '2019-09-03',
             'fimRecurso' => '2019-12-04',
             'inicioIsencao' => '2019-09-05',
@@ -113,7 +113,9 @@ class DatabaseSeeder extends Seeder
                 'cidade' => 'Dados',
                 'uf' => 'Dados',
                 'coeficienteDeRendimento' => '9',
-                'nota' => '0.5'
+                'nota' => '0.5',
+                'classificacao' => $i,
+                'situacao' => 'Aprovado'
 
 
 
@@ -140,6 +142,7 @@ class DatabaseSeeder extends Seeder
                 'cidade' => 'Dados',
                 'uf' => 'Dados',
                 'coeficienteDeRendimento' => 'nao',
+                'situacao' => 'processando',
 
             ]);
           }
@@ -151,7 +154,7 @@ class DatabaseSeeder extends Seeder
                 'tipo' => 'reintegracao',
                 'historicoEscolar' => 'seed/pdfTeste.pdf',
                 'comprovante' => 'isento',
-                'curso' => '11',
+                'curso' => '12',
                 'turno' => 'manhã',
                 'cursoDeOrigem' => 'Dados',
                 'instituicaoDeOrigem' => 'Dados',
@@ -164,7 +167,8 @@ class DatabaseSeeder extends Seeder
                 'cidade' => 'Dados',
                 'uf' => 'Dados',
                 'coeficienteDeRendimento' => '9',
-                'nota' => '0.5'
+                'nota' => null,
+                'situacao' => 'Aprovado',
             ]);
           }
 
