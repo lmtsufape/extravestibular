@@ -8,7 +8,6 @@ use extravestibular\ApiLmts;
 
 
 
-      return $this->api->autorizar('homologar recursos');
 
 class IsencaoPolicy
 {
