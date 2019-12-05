@@ -178,7 +178,7 @@
                 </div>
 
                 <div id="curriculo" class="form-group row" style="display: none">              <!-- Arquivo curriculo -->
-                    <label for="Curriculo" class="col-sm-4 col-form-label text-md-right">{{ __('Perfil Curricular:') }}</label>
+                    <label for="Curriculo" class="col-sm-4 col-form-label text-md-right">{{ __('Documento acadêmico que contenha o Currículo Pleno do curso original, caso o histórico escolar não demonstre:') }}</label>
 
                     <div class="col-sm-6">
                       <div class="custom-file">
@@ -325,7 +325,7 @@
                 <div class="form-group row">                                                   <!-- Natureza da IES -->
                   <label for="naturezaDaIes" class="field a-field a-field_a2 page__field" style="width: 100%">
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Natureza da Instituição*:</span>
+                      <span class="a-field__label">Natureza da Instituição de Ensino Superior*:</span>
                     </span>
                   </label>
                     <select class="form-control col-sm-10" name="naturezaDaIes">
