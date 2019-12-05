@@ -52,7 +52,6 @@
 }
 </style>
 
-
 <div class="container">
   <form id="formCadastro" autocomplete="off" method="POST" action="{{ route('cadastroInscricao') }}" enctype="multipart/form-data">
     @csrf
