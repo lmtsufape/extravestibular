@@ -403,79 +403,97 @@ function selectCriterio(opcao){
 
   var textoMotivos = document.getElementById("motivos");
 
-  if(checkCriterioA == false && checkCriterioB == false && checkCriterioC == false && checkCriterioD == false && checkCriterioE == false && checkCriterioF == false){
-    cardRejeicaoCriterio.style.display = "none";
-  }else{
-    cardRejeicaoCriterio.style.display = "block";
 
-    if(opcao == "a"){
-      if (checkboxA.checked == true) {
 
-        // cardRejeicaoCriterio.style.display = "block";
-        arrayMotivos.push(opcao);
+  if(opcao == "a"){
+    if (checkboxA.checked == true) {
 
-      }
-      else{
-        arrayMotivos.splice(arrayMotivos.indexOf(opcao));
-      }
-    }
-    if(opcao == "b"){
-      if (checkboxB.checked == true) {
-        // cardRejeicaoCriterio.style.display = "block";
-        arrayMotivos.push(opcao);
-      }
-      else{
-        arrayMotivos.splice(arrayMotivos.indexOf(opcao));
-      }
+      // cardRejeicaoCriterio.style.display = "block";
+      arrayMotivos.push(opcao);
 
     }
-    if(opcao == "c"){
-      if (checkboxC.checked == true) {
-        // cardRejeicaoCriterio.style.display = "block";
-        arrayMotivos.push(opcao);
-      }
-      else{
-        arrayMotivos.splice(arrayMotivos.indexOf(opcao));
-      }
-
+    else{
+      // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
+      arrayMotivos= arrayRemove(arrayMotivos,opcao);
     }
-    if(opcao == "d"){
-      if (checkboxD.checked == true) {
-        // cardRejeicaoCriterio.style.display = "block";
-        arrayMotivos.push(opcao);
-      }
-      else{
-        arrayMotivos.splice(arrayMotivos.indexOf(opcao));
-      }
-
+  }
+  if(opcao == "b"){
+    if (checkboxB.checked == true) {
+      // cardRejeicaoCriterio.style.display = "block";
+      arrayMotivos.push(opcao);
     }
-    if(opcao == "e"){
-      if (checkboxE.checked == true) {
-        // cardRejeicaoCriterio.style.display = "block";
-        arrayMotivos.push(opcao);
-      }
-      else{
-        arrayMotivos.splice(arrayMotivos.indexOf(opcao));
-      }
-
+    else{
+      // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
+      arrayMotivos= arrayRemove(arrayMotivos,opcao);
     }
 
-    if(opcao == "f"){
-      if (checkboxF.checked == true) {
-        // cardRejeicaoCriterio.style.display = "block";
-        arrayMotivos.push(opcao);
-      }
-      else{
-        arrayMotivos.splice(arrayMotivos.indexOf(opcao));
-      }
+  }
+  if(opcao == "c"){
+    if (checkboxC.checked == true) {
+      // cardRejeicaoCriterio.style.display = "block";
+      arrayMotivos.push(opcao);
+    }
+    else{
+      // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
+      arrayMotivos= arrayRemove(arrayMotivos,opcao);
+    }
+
+  }
+  if(opcao == "d"){
+    if (checkboxD.checked == true) {
+      // cardRejeicaoCriterio.style.display = "block";
+      arrayMotivos.push(opcao);
+    }
+    else{
+      // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
+      arrayMotivos= arrayRemove(arrayMotivos,opcao);
+    }
+
+  }
+  if(opcao == "e"){
+    if (checkboxE.checked == true) {
+      // cardRejeicaoCriterio.style.display = "block";
+      arrayMotivos.push(opcao);
+    }
+    else{
+      // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
+      arrayMotivos= arrayRemove(arrayMotivos,opcao);
+    }
+
+  }
+
+  if(opcao == "f"){
+    if (checkboxF.checked == true) {
+      // cardRejeicaoCriterio.style.display = "block";
+      arrayMotivos.push(opcao);
+    }
+    else{
+      // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
+      arrayMotivos= arrayRemove(arrayMotivos,opcao);
 
     }
 
   }
 
-  textoMotivos.innerHTML = arrayMotivos;
+
+
+
+  if(checkCriterioA.checked == false && checkCriterioB.checked == false && checkCriterioC.checked == false
+    && checkCriterioD.checked == false && checkCriterioE.checked == false && checkCriterioF.checked == false){
+    cardRejeicaoCriterio.style.display = "none";
+  }else {
+    cardRejeicaoCriterio.style.display = "block";
+    textoMotivos.innerHTML = arrayMotivos.sort();
+  }
+}
+function arrayRemove(arr, value) {
+
+   return arr.filter(function(ele){
+       return ele != value;
+   });
 
 }
+
 
 
 
