@@ -71,7 +71,6 @@
   }
 </style>
 
-
 <div class="container">
   <form method="GET" action="{{ route('seguirParaClassificacao') }}" enctype="multipart/form-data" id="formHomologacao">
 
@@ -374,7 +373,7 @@
           </div>
           <div class="card-body">
             <div class="row">
-              <label for="motivoRejeicao" class="col-form-label text-md-right" style="margin-left: 1.5%;">{{ __('Motivos da Rejeição*') }}</label>
+              <label for="motivoRejeicao" class="col-form-label text-md-right" style="margin-left: 1.5%;">{{ __('Motivos da Rejeição') }}</label>
             </div><!-- end row div-->
 
             <div class="row justify-content-center">
