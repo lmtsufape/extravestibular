@@ -421,8 +421,9 @@ class InscricaoController extends Controller
 		if($request->tipo == 'classificacao'){// TELA HOMOLOGAR INSCRICAO COORDENADOR (return view('homologarInscricaoCoordenador')
 			// homologarInscricaoReintegracao
 			// homologarInscricaoReopcao
+			// homologarInscricaoTransferenciaExterna
 
-			return view('homologarInscricaoReopcao', [
+			return view('homologarInscricaoTransferenciaExterna', [
 																										 'inscricao'  						 => $inscricao,
 																								 	   'tipo'										 => 'classificacao',
 																									   'curso'									 => $curso,
