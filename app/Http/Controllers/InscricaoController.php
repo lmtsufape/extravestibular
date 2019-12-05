@@ -419,7 +419,10 @@ class InscricaoController extends Controller
 																			  ]);
 		}
 		if($request->tipo == 'classificacao'){// TELA HOMOLOGAR INSCRICAO COORDENADOR (return view('homologarInscricaoCoordenador')
-			return view('homologarInscricaoReintegracao', [
+			// homologarInscricaoReintegracao
+			// homologarInscricaoReopcao
+
+			return view('homologarInscricaoReopcao', [
 																										 'inscricao'  						 => $inscricao,
 																								 	   'tipo'										 => 'classificacao',
 																									   'curso'									 => $curso,
