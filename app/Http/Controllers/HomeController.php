@@ -33,6 +33,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        dd(session()->all());
         $mytime = Carbon::now('America/Recife');
         $mytime = $mytime->toDateString();
         $editais = Edital::where('publicado', 'sim')
@@ -118,6 +119,10 @@ class HomeController extends Controller
       }
       else{
         $logado = $api->login($request->email, $request->password);
+        $cursoId = session('unidadeOrgId');
+        $tipo = session('tipoNome');
+        session(['cursoId' => $cursoId, 'tipo' => $tipo]);
+
         if($logado){
           return redirect()->route('home');
         }
