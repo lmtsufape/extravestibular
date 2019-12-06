@@ -1,16 +1,16 @@
 <?php
 
-namespace extravestibular\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use extravestibular\Edital;
-use extravestibular\User;
+use App\Edital;
+use App\User;
 use Carbon\Carbon;
-use extravestibular\ApiLmts;
 use Auth;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Client;
+use Lmts\src\controller\LmtsApi;
 
 
 class HomeController extends Controller
@@ -102,45 +102,30 @@ class HomeController extends Controller
                           ]);
     }
 
-    /**
-     * Realiza o login.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function loginApi(Request $request){
-      $api = new ApiLmts();
-      $user = $api->loginApi($request->email, $request->password);
-      if(is_null($user)){
-        Auth::attempt(['email' => $request->email, 'password' => $request->password]);
-        if(Auth::check()){
-          $acl = $api->getAcl('4');
-          $stringAcl = '';
-          foreach($acl as $key){
-            $stringAcl = $stringAcl . $key . ';';
-          }
-          $request->session()->put('acl', $stringAcl);
-          return redirect()->route('home');
-
-        }
-        else{
-
-          return redirect()->route('login')->withInput(['email' => $request->email])->withErrors(['email' => 'E-mail ou Senha incorreta.']);
-        }
-      }
-      else{
-        $request->session()->put('id', $user['id']);
-        $request->session()->put('email', $user['email']);
-        $request->session()->put('cursoId', $user['cursoId']);
-        $request->session()->put('tipo', $user['tipo']);
-        $acl = $api->getAcl($user['tipoUsuario']);
+      $api = new LmtsApi();
+      Auth::attempt(['email' => $request->email, 'password' => $request->password]);
+      if(Auth::check()){
+        $acl = $api->getAcl('4');
         $stringAcl = '';
         foreach($acl as $key){
           $stringAcl = $stringAcl . $key . ';';
         }
-        $request->session()->put('acl', $stringAcl);
-        return redirect()->route('homeApi');
-      }
+        session(['acl' => $stringAcl]);
 
+        return redirect()->route('home');
+
+      }
+      else{
+        $logado = $api->login($request->email, $request->password);
+        if($logado){
+          return redirect()->route('home');
+        }
+        else{
+          return redirect()->route('login')->withInput(['email' => $request->email])
+                                           ->withErrors(['email' => 'E-mail ou Senha incorreta.']);
+        }
+      }
     }
 
 

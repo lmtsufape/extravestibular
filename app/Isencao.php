@@ -1,6 +1,6 @@
 <?php
 
-namespace extravestibular;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -34,12 +34,12 @@ class Isencao extends Model
 
   public function edital()
   {
-      return $this->belongsTo('extravestibular\Edital', 'editalId');
+      return $this->belongsTo('App\Edital', 'editalId');
   }
 
   public function user()
   {
-      return $this->belongsTo('extravestibular\User', 'usuarioId');
+      return $this->belongsTo('App\User', 'usuarioId');
   }
 
 }

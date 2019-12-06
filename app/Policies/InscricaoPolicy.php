@@ -1,10 +1,12 @@
 <?php
 
-namespace extravestibular\Policies;
+namespace App\Policies;
 
-use extravestibular\User;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use extravestibular\ApiLmts;
+use Lmts\src\controller\LmtsApi;
+
+
 
 class InscricaoPolicy
 {
@@ -18,7 +20,7 @@ class InscricaoPolicy
      */
     public function __construct()
     {
-        $this->api = new ApiLmts();
+        $this->api = new LmtsApi();
     }
 
     public function classificarInscricao(?User $user){

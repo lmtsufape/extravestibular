@@ -1,6 +1,6 @@
 <?php
 
-namespace extravestibular;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -47,12 +47,12 @@ class Inscricao extends Model
 
     public function user()
     {
-        return $this->belongsTo('extravestibular\User', 'usuarioId');
+        return $this->belongsTo('App\User', 'usuarioId');
     }
 
     public function edital()
     {
-        return $this->belongsTo('extravestibular\Edital', 'editalId');
+        return $this->belongsTo('App\Edital', 'editalId');
     }
 
 }
