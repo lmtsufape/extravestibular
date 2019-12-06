@@ -1,6 +1,6 @@
 <?php
 
-namespace extravestibular;
+namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -39,21 +39,21 @@ class User extends Authenticatable
 
     public function dadosUsuario()
     {
-        return $this->belongsTo('extravestibular\DadosUsuario', 'dados');
+        return $this->belongsTo('App\DadosUsuario', 'dados');
     }
 
     public function inscricao()
     {
-        return $this->hasMany('extravestibular\Inscricao');
+        return $this->hasMany('App\Inscricao');
     }
 
     public function isencao()
     {
-        return $this->hasMany('extravestibular\Isencao');
+        return $this->hasMany('App\Isencao');
     }
 
     public function recurso()
     {
-        return $this->hasMany('extravestibular\Recurso');
+        return $this->hasMany('App\Recurso');
     }
 }

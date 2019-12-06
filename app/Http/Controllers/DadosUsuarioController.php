@@ -1,10 +1,10 @@
 <?php
 
-namespace extravestibular\Http\Controllers;
+namespace App\Http\Controllers;
 
-use extravestibular\DadosUsuario;
+use App\DadosUsuario;
 use Illuminate\Http\Request;
-use extravestibular\User;
+use App\User;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 

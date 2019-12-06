@@ -173,11 +173,11 @@ return [
         /*
          * Application Service Providers...
          */
-        extravestibular\Providers\AppServiceProvider::class,
-        extravestibular\Providers\AuthServiceProvider::class,
-        // extravestibular\Providers\BroadcastServiceProvider::class,
-        extravestibular\Providers\EventServiceProvider::class,
-        extravestibular\Providers\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
 
     ],
 

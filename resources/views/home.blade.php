@@ -28,7 +28,9 @@
 }
 
 </style>
-
+<?php
+// dd(session()->all());
+ ?>
 <div class="container">
 
   <!-- div contem as tabelas -->

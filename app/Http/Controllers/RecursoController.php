@@ -1,14 +1,14 @@
 <?php
 
-namespace extravestibular\Http\Controllers;
+namespace App\Http\Controllers;
 
-use extravestibular\Recurso;
-use extravestibular\DadosUsuario;
-use extravestibular\Inscricao;
-use extravestibular\Isencao;
+use App\Recurso;
+use App\DadosUsuario;
+use App\Inscricao;
+use App\Isencao;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use extravestibular\Edital;
+use App\Edital;
 use Auth;
 
 class RecursoController extends Controller

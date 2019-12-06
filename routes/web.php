@@ -24,7 +24,7 @@ Route::get('/login',                         'InscricaoController@entrar'       
 
 
 Route::get('/listarEditais',                 'EditalController@iframeEditais'                   )->name('iframeEditais');
-Route::post('/loginApi',                     'HomeController@loginApi'                          )->name('loginApi')->middleware('guest');
+Route::post('/loginApi',                     'HomeController@loginApi'                          )->name('loginApi');
 
 Route::group(['middleware' => ['lmts']], function(){
   Route::get('/home',                        'HomeController@index'                             )->name('home');
