@@ -1,16 +1,16 @@
 <?php
 
-namespace extravestibular\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use extravestibular\Edital;
-use extravestibular\Inscricao;
-use extravestibular\Recurso;
-use extravestibular\Isencao;
-use extravestibular\Erratas;
-use extravestibular\User;
-use extravestibular\DadosUsuario;
-use extravestibular\ApiLmts;
+use App\Edital;
+use App\Inscricao;
+use App\Recurso;
+use App\Isencao;
+use App\Erratas;
+use App\User;
+use App\DadosUsuario;
+use Lmts\src\controller\LmtsApi;
 use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
@@ -23,10 +23,17 @@ use Session;
 
 class EditalController extends Controller{
 
+      private $api;
+
+      public function __construct()
+      {
+        $this->api = new LmtsApi();
+      }
+
       public function novoEdital(){
         $this->authorize('gerenciarEdital', Edital::class);
-        $api = new ApiLmts();
-        $cursos = $api->getCursos();
+
+        $cursos = $this->api->getCursos();
         if(!is_null($cursos)){
           return view('cadastrarEdital', ['cursos' => $cursos]);
         }
@@ -40,7 +47,7 @@ class EditalController extends Controller{
 
         $edital = Edital::find($request->editalId);
 
-        $api = new ApiLmts();
+
         $vagas = $edital->vagas;
         $vagas = explode('!', $vagas);
         $aux = [];
@@ -62,7 +69,7 @@ class EditalController extends Controller{
           $vagas[$i]['vagas'] = explode('?', $vagas[$i]['vagas']);
         }
 
-        $cursos = $api->getCursos();
+        $cursos = $this->api->getCursos();
 
         if(!is_null($cursos)){
           return view('editarEdital', ['edital' => $edital,
@@ -367,8 +374,8 @@ class EditalController extends Controller{
         $mytime = $mytime->toDateString();
         if($request->tipo == 'fazerInscricao'){
           $edital = Edital::find($request->editalId);
-          $api = new ApiLmts();
-          $cursos = $api->getCursos();
+
+          $cursos = $this->api->getCursos();
           if(is_null($cursos)){
             return redirect()->route('home')->with('jsAlert', 'Serviço indisponível no momento.');
           }
@@ -494,8 +501,8 @@ class EditalController extends Controller{
                                  ->orderBy('nota', 'desc')
                                  ->get();
         $edital = Edital::find($request->editalId);
-        $api = new ApiLmts();
-        $cursos = $api->getCursos();
+
+        $cursos = $this->api->getCursos();
         $mytime = Carbon::now('America/Recife');
         $mytime = $mytime->toDateString();
         $data = [
@@ -763,8 +770,8 @@ class EditalController extends Controller{
         $cursosDasInscricoes = Inscricao::where('editalId', $request->editalId)->select('curso')->get();
         $cursosDasInscricoes = $cursosDasInscricoes->unique('curso');
         $cursosDasInscricoes = $cursosDasInscricoes->toArray();
-        $api = new ApiLmts();
-        $cursos = $api->getCursos();
+
+        $cursos = $this->api->getCursos();
         $vagasInscricoesPorCurso = [];
         foreach ($cursosDasInscricoes as $key) {
           for($j = 0; $j < sizeof($cursos); $j++){

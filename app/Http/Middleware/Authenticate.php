@@ -1,9 +1,9 @@
 <?php
 
-namespace extravestibular\Http\Middleware;
+namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
-use extravestibular\Edital;
+use App\Edital;
 
 class Authenticate extends Middleware
 {

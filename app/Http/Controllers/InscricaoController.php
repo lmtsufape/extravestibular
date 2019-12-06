@@ -1,28 +1,36 @@
 <?php
 
-namespace extravestibular\Http\Controllers;
+namespace App\Http\Controllers;
 
-use extravestibular\Http\Controllers\Controller;
-use extravestibular\Inscricao;
-use extravestibular\Isencao;
+use App\Http\Controllers\Controller;
+use App\Inscricao;
+use App\Isencao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
-use extravestibular\Edital;
-use extravestibular\DadosUsuario;
-use extravestibular\User;
-use extravestibular\ApiLmts;
+use App\Edital;
+use App\DadosUsuario;
+use App\User;
 use Auth;
 use Illuminate\Support\Facades\Mail;
-use extravestibular\Mail\NovaInscricao;
-use extravestibular\Mail\ClassificacaoCompleta;
-use extravestibular\Mail\LembreteCoordenador;
+use App\Mail\NovaInscricao;
+use App\Mail\ClassificacaoCompleta;
+use App\Mail\LembreteCoordenador;
 use Carbon\Carbon;
+use Lmts\src\controller\LmtsApi;
 
 
 class InscricaoController extends Controller
 {
+
+	private $api;
+
+	public function __construct()
+	{
+		$this->api = new LmtsApi();
+	}
 
 	public function cadastroInscricao(Request $request){
 					$this->authorize('cadastrarInscricao', Inscricao::class);
@@ -315,17 +323,17 @@ class InscricaoController extends Controller
 
 	    	  }
 
-					$api = new ApiLmts();
+
 					$edital = Edital::find($request->editalId);
 					$nomeEdital = explode(".pdf", $edital->nome);
 					$mytime = Carbon::now('America/Recife');
 					$mytime = $mytime->toDateString();
-					$emails = $api->getEmailsPreg();
+					$emails = $this->api->getEmailsPreg();
 					// foreach ($emails as $key) {
 					// 	Mail::to($key)->send(new NovaInscricao($nomeEdital[0]));
 					// }
 					$dados = DadosUsuario::find(Auth::user()->dados);
-					$cursos = $api->getCursos();
+					$cursos = $this->api->getCursos();
 					$curso = $inscricao->curso;
 					$inscricao->situacao = 'processando';
 					$inscricao->save();
@@ -385,8 +393,8 @@ class InscricaoController extends Controller
 
 	public function inscricaoEscolhida(Request $request){
 		$inscricao = Inscricao::find($request->inscricaoId);
-		$api = new ApiLmts();
-		$cursos = $api->getCursos();
+
+		$cursos = $this->api->getCursos();
 		$curso = $inscricao->curso;
 		for($j = 0; $j < sizeof($cursos); $j++){
 			if($curso == $cursos[$j]['id']){
@@ -1857,8 +1865,8 @@ class InscricaoController extends Controller
 		if(is_null($naoClassificadas)){
 			$edital = Edital::find($editalId);
 			$nomeEdital = explode(".pdf", $edital->nome);
-			$api = new ApiLmts();
-			$emails = $api->getEmailsPreg();
+
+			$emails = $this->api->getEmailsPreg();
 			// foreach ($emails as $key) {
 			// 	Mail::to($key)->send(new ClassificacaoCompleta($nomeEdital[0]));
 			// }
@@ -1922,14 +1930,14 @@ class InscricaoController extends Controller
 	public function notificarCoordenador(Request $request){
 		$edital = Edital::find($request->editalId);
 		$nomeEdital = explode(".pdf", $edital->nome);
-		$api = new ApiLmts();
+
 		$mytime = Carbon::now('America/Recife');
 		$mytime = $mytime->toDateString();
 		$mytime = Carbon::parse($mytime);
 		$aux    = Carbon::parse($edital->resultadoFinal);
 
 		$diasRestantes =  $aux->diffInDays($mytime);
-		// $emails = $api->getEmailsCoordenadorPorCurso($request->cursoId);
+		// $emails = $this->api->getEmailsCoordenadorPorCurso($request->cursoId);
 		// foreach ($emails as $key) {
 		// 	Mail::to($key)->send(new LembreteCoordenador($nomeEdital[0], $diasRestantes));
 		// }
@@ -1937,6 +1945,10 @@ class InscricaoController extends Controller
 	}
 
 	public function entrar(Request $request){
+		if(Auth::check() || $this->api->check()){
+			return redirect()->route('home');
+		}
+
 		$mytime = Carbon::now('America/Recife');
 		$mytime = $mytime->toDateString();
 		$editais = Edital::where('publicado', 'sim')

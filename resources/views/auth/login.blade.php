@@ -32,7 +32,9 @@
   }
 </style>
 <!-- box-shadow: inset 0 0 7px rgba(0,0,0,0.5); -->
-
+<?php
+// dd(session()->all());
+ ?>
 <div class="container-fluid" style=" box-shadow: inset 0 0 7px rgba(0,0,0,0.5);">
   <div id="row1" class="row" style="">
 

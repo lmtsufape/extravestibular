@@ -1,10 +1,10 @@
 <?php
 
-namespace extravestibular\Http\Controllers;
+namespace App\Http\Controllers;
 
-use extravestibular\Errata;
+use App\Errata;
 use Illuminate\Http\Request;
-use extravestibular\Edital;
+use App\Edital;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 

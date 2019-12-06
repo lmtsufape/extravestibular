@@ -1,6 +1,6 @@
 <?php
 
-namespace extravestibular;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,6 +26,6 @@ class DadosUsuario extends Model
     ];
     public function user()
     {
-        return $this->hasOne('extravestibular\User');
+        return $this->hasOne('App\User');
     }
 }

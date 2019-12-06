@@ -1,13 +1,13 @@
 <?php
 
-namespace extravestibular\Http\Controllers;
+namespace App\Http\Controllers;
 
-use extravestibular\Isencao;
+use App\Isencao;
 use Illuminate\Http\Request;
-use extravestibular\User;
-use extravestibular\DadosUsuario;
+use App\User;
+use App\DadosUsuario;
 use Auth;
-use extravestibular\Edital;
+use App\Edital;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace extravestibular;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -34,21 +34,21 @@ class Edital extends Model
 
     public function inscricao()
     {
-        return $this->hasMany('extravestibular\Inscricao');
+        return $this->hasMany('App\Inscricao');
     }
 
     public function isencao()
     {
-        return $this->hasMany('extravestibular\Isencao');
+        return $this->hasMany('App\Isencao');
     }
 
     public function recurso()
     {
-        return $this->hasMany('extravestibular\Recurso');
+        return $this->hasMany('App\Recurso');
     }
 
     public function errata()
     {
-        return $this->hasMany('extravestibular\Errata', 'editalId');
+        return $this->hasMany('App\Errata', 'editalId');
     }
 }

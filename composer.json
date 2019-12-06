@@ -12,9 +12,10 @@
         "barryvdh/laravel-dompdf": "^0.8.4",
         "fideloper/proxy": "^4.0",
         "geekcom/validator-docs": "^3.2",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "^6.4",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "lmts/api": "^1.0",
         "predis/predis": "^1.1",
         "uhura/uhura": "^0.7.0"
     },
@@ -38,7 +39,7 @@
     },
     "autoload": {
         "psr-4": {
-            "extravestibular\\": "app/"
+            "App\\": "app/"
         },
         "classmap": [
             "database/seeds",

@@ -1,22 +1,16 @@
 <?php
 
-namespace extravestibular\Http\Middleware;
+namespace App\Http\Middleware;
+
+use Lmts\src\controller\LmtsApi;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Client;
-use extravestibular\ApiLmts;
 
 use Auth;
 
 use Closure;
 
-class ApiAuth
-{
-
-    // public $api = 'http://lmts.api/api/';
-    public $api = 'http://app.uag.ufrpe.br/api/api/';
-
-
+class ApiAuth{
     /**
     * Handle an incoming request.
     *
@@ -31,23 +25,20 @@ class ApiAuth
         }
         else{
           try {
-                $api = new ApiLmts();
+                $api = new LmtsApi();
                 $check= $api->check();
                 if($check){
                   return $next($request);
                 }
                 else{
-                  // Auth::logout();
                   session(['tipo' => null, 'token_type' => null, 'name' => null, 'id' => null, 'email' => null, 'cursoId' => null]);
                   return redirect('login');
                 }
 
               } catch (ClientException $e) {
-                // Auth::logout();
                 session(['tipo' => null, 'token_type' => null, 'name' => null, 'id' => null, 'email' => null, 'cursoId' => null]);
                 return redirect('login');
                 }
-          // Auth::logout();
           session(['tipo' => null, 'token_type' => null, 'name' => null, 'id' => null, 'email' => null, 'cursoId' => null]);
           return redirect('login');
         }
