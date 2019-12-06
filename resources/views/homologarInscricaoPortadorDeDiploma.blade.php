@@ -97,7 +97,7 @@
       <!-- título Dados de Usuário-->
       <div class="titulo-tabela-lmts">
           <h3>
-            Transferência Externa
+            Portador de Diploma
           </h3>
       </div><!-- end título Dados de Usuário-->
     </div>
@@ -256,9 +256,9 @@
             <div class="col-sm-12">
               <input type="checkbox" class="form-check-input" id="checkCriterioA" onclick="selectCriterio('a')">
               <label for="">
-                a) Tiver cursado e concluído com aproveitamento de média global igual ou maior que 6,0 e
-                  não ter mais do que 2 (duas) reprovações nas disciplinas do primeiro semestre letivo na
-                  Instituição de origem;
+                a) Somente serão apreciados os requerimentos de ingresso graduados, que sejam oriundos de
+                  Cursos de Graduação <b>afim do pretendido</b>, reconhecidos pelo CNE (Consultar ANEXO II do
+                  Edital);
               </label>
             </div>
           </div>
@@ -267,9 +267,8 @@
             <div class="col-sm-12">
               <input type="checkbox" class="form-check-input" id="checkCriterioB" onclick="selectCriterio('b')">
               <label for="">
-                b) Conseguir concluir o currículo pleno do Curso de Graduação da UFRPE, dentro do prazo
-                  máximo estabelecido pelo UFRPE para o curso no qual está ingressando, considerando o
-                  prazo anterior utilizado no curso da IES original;
+                b) Não tiver sido formalmente desligado de um Curso de Graduação da UFRPE para o curso
+                    o qual pleiteia o ingresso;
               </label>
             </div>
           </div>
@@ -278,7 +277,7 @@
             <div class="col-sm-12">
               <input type="checkbox" class="form-check-input" id="checkCriterioC" onclick="selectCriterio('c')">
               <label for="">
-                c) Tiver cursado com aprovação, <b>no máximo</b> 70% do curso na Instituição de origem;
+                c) Tiver cursado e concluído com aproveitamento de média global igual ou maior que 6,0;
               </label>
             </div>
           </div>
@@ -287,16 +286,8 @@
             <div class="col-sm-12">
               <input type="checkbox" class="form-check-input" id="checkCriterioD" onclick="selectCriterio('d')">
               <label for="">
-                d) Não tiver sido reprovado 04 (quatro) vezes em uma ou mais disciplinas;
-              </label>
-            </div>
-          </div>
-
-          <div class="row justify-content-left">
-            <div class="col-sm-12">
-              <input type="checkbox" class="form-check-input" id="checkCriterioE" onclick="selectCriterio('e')">
-              <label for="">
-                e) Não tiver sido formalmente desligado de um Curso de Graduação da UFRPE.
+                d) Nota no Exame Nacional do Ensino Médio a partir da edição de <b>2010</b>, como critério
+                    complementar, caso o candidato possua.
               </label>
             </div>
           </div>
@@ -309,8 +300,8 @@
 
           <div class="row justify-content-left">
             <ol>
-              <li><h5>Maior proximidade de conclusão do curso;</h5></li>
               <li><h5>Maior média global constante no Histórico Escolar da graduação.</h5></li>
+
             </ol>
           </div>
 
@@ -439,20 +430,10 @@ function selectCriterio(opcao){
     }
 
   }
-  if(opcao == "e"){
-    if (checkboxE.checked == true) {
-      // cardRejeicaoCriterio.style.display = "block";
-      arrayMotivos.push(opcao);
-    }
-    else{
-      // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
-      arrayMotivos= arrayRemove(arrayMotivos,opcao);
-    }
 
-  }
 
   if(checkCriterioA.checked == false && checkCriterioB.checked == false && checkCriterioC.checked == false
-    && checkCriterioD.checked == false && checkCriterioE.checked == false){
+    && checkCriterioD.checked == false){
     cardRejeicaoCriterio.style.display = "none";
   }else {
     cardRejeicaoCriterio.style.display = "block";
@@ -468,8 +449,6 @@ function arrayRemove(arr, value) {
    });
 
 }
-
-
 
 
 
@@ -537,6 +516,7 @@ function arrayRemove(arr, value) {
     checkAprovado();
     checkFinalizar();
   }
+
 </script>
 
 @endsection

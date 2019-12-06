@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Lmts\src\controller\LmtsApi;
 
+
 class IsencaoPolicy
 {
     use HandlesAuthorization;

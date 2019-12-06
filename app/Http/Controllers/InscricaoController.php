@@ -430,8 +430,8 @@ class InscricaoController extends Controller
 			// homologarInscricaoReintegracao
 			// homologarInscricaoReopcao
 			// homologarInscricaoTransferenciaExterna
-
-			return view('homologarInscricaoTransferenciaExterna', [
+			// homologarInscricaoPortadorDeDiploma
+			return view('homologarInscricaoReintegracao', [
 																										 'inscricao'  						 => $inscricao,
 																								 	   'tipo'										 => 'classificacao',
 																									   'curso'									 => $curso,

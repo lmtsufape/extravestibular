@@ -68,6 +68,9 @@
     margin-left: 5%;
     margin-right: 5%;
   }
+  #buttonFinalizar{
+    margin-top: 20px;
+  }
   @media screen and (max-width:576px){
     .check{
       margin-left: 3%;
@@ -497,79 +500,69 @@ function arrayRemove(arr, value) {
 
 
 
-  // function confirmar(){
-  //     if(confirm("Tem certeza que deseja finalizar?") == true) {
-  //       document.getElementById("formHomologacao").submit();
-  //    }
-  //   }
-  // function checkFinalizar(){
-  //   if(document.getElementById("selectHistoricoEscolarAprovado").checked || document.getElementById("selectHistoricoEscolarRejeitado").checked){
-  //     if(document.getElementById("selectDeclaracaoDeVinculoAprovado").checked || document.getElementById("selectDeclaracaoDeVinculoRejeitado").checked){
-  //       if(document.getElementById("selectProgramaDasDisciplinasAprovado").checked || document.getElementById("selectProgramaDasDisciplinasRejeitado").checked){
-  //         if(document.getElementById("selectCurriculoAprovado").checked || document.getElementById("selectCurriculoRejeitado").checked){
-  //           if(document.getElementById("selectEnemAprovado").checked || document.getElementById("selectEnemRejeitado").checked){
-  //             if(document.getElementById("selectDadosDoCursoAprovado").checked || document.getElementById("radioIndeferida").checked){
-  //               if(document.getElementById("selectComprovanteAprovado").checked || document.getElementById("selectComprovanteRejeitado").checked){
-  //                 document.getElementById("buttonFinalizar").disabled = false;
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
-  // function checkAprovado(){
-  //   if(document.getElementById("selectHistoricoEscolarAprovado").checked){
-  //     if(document.getElementById("selectDeclaracaoDeVinculoAprovado").checked){
-  //       if(document.getElementById("selectProgramaDasDisciplinasAprovado").checked){
-  //         if(document.getElementById("selectCurriculoAprovado").checked){
-  //           if(document.getElementById("selectEnemAprovado").checked){
-  //             if(document.getElementById("selectDadosDoCursoAprovado").checked){
-  //               if(document.getElementById("selectComprovanteAprovado").checked){
-  //                 document.getElementById("homologado").value = 'aprovado';
-  //                 document.getElementById("motivoRejeicao").value = '';
-  //                 document.getElementById("motivoRejeicao").style.display = 'none';
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
+  function confirmar(){
+      if(confirm("Tem certeza que deseja finalizar?") == true) {
+        document.getElementById("formHomologacao").submit();
+     }
+    }
+  function checkFinalizar(){
+    if(document.getElementById("selectHistoricoEscolarAprovado").checked || document.getElementById("selectHistoricoEscolarRejeitado").checked){
+      if(document.getElementById("selectDeclaracaoDeVinculoAprovado").checked || document.getElementById("selectDeclaracaoDeVinculoRejeitado").checked){
+        if(document.getElementById("selectProgramaDasDisciplinasAprovado").checked || document.getElementById("selectProgramaDasDisciplinasRejeitado").checked){
+          if(document.getElementById("selectCurriculoAprovado").checked || document.getElementById("selectCurriculoRejeitado").checked){
+            if(document.getElementById("selectEnemAprovado").checked || document.getElementById("selectEnemRejeitado").checked){
+                if(document.getElementById("selectComprovanteAprovado").checked || document.getElementById("selectComprovanteRejeitado").checked){
+                  document.getElementById("buttonFinalizar").disabled = false;
+                }
+            }
+          }
+        }
+      }
+    }
+  }
+  function checkAprovado(){
+    if(document.getElementById("selectHistoricoEscolarAprovado").checked){
+      if(document.getElementById("selectDeclaracaoDeVinculoAprovado").checked){
+        if(document.getElementById("selectProgramaDasDisciplinasAprovado").checked){
+          if(document.getElementById("selectCurriculoAprovado").checked){
+            if(document.getElementById("selectEnemAprovado").checked){
+                if(document.getElementById("selectComprovanteAprovado").checked){
+                  document.getElementById("homologado").value = 'aprovado';
+                  document.getElementById("motivoRejeicao").value = '';
+                  document.getElementById("motivoRejeicao").style.display = 'none';
+                }
+              // }
+            }
+          }
+        }
+      }
+    }
+  }
 
 
 
-  //
-  // function selectCheckDRCA(x){
-  //   if(x == 'rejeitado'){
-  //     document.getElementById("motivoRejeicao").style.display = '';
-  //     document.getElementById("homologado").value = 'rejeitado';
-  //     document.getElementById("buttonFinalizar").disabled = false;
-  //   }
-  //   else{
-  //     document.getElementById("homologado").value = 'aprovado';
-  //     document.getElementById("motivoRejeicao").value = '';
-  //     document.getElementById("motivoRejeicao").style.display = 'none';
-  //     document.getElementById("buttonFinalizar").disabled = false;
-  //   }
-  // }
-  // function selectCheck(x){
-  //   if(x == 'rejeitado'){
-  //     document.getElementById("motivoRejeicao").style.display = '';
-  //     document.getElementById("homologado").value = 'rejeitado';
-  //   }
-  //   checkAprovado();
-  //   checkFinalizar();
-  // }
-  // // function checkIndeferido(){
-  //   if(document.getElementById("radioIndeferida").checked == true){
-  //     document.getElementById("motivoRejeicao").style.display = '';
-  //     document.getElementById("radioIndeferida").checked = false;
-  //   }
-  // }
-  // checkIndeferido();
+
+  function selectCheckDRCA(x){
+    if(x == 'rejeitado'){
+      document.getElementById("motivoRejeicao").style.display = '';
+      document.getElementById("homologado").value = 'rejeitado';
+      document.getElementById("buttonFinalizar").disabled = false;
+    }
+    else{
+      document.getElementById("homologado").value = 'aprovado';
+      document.getElementById("motivoRejeicao").value = '';
+      document.getElementById("motivoRejeicao").style.display = 'none';
+      document.getElementById("buttonFinalizar").disabled = false;
+    }
+  }
+  function selectCheck(x){
+    if(x == 'rejeitado'){
+      document.getElementById("motivoRejeicao").style.display = '';
+      document.getElementById("homologado").value = 'rejeitado';
+    }
+    checkAprovado();
+    checkFinalizar();
+  }
 </script>
 
 @endsection
