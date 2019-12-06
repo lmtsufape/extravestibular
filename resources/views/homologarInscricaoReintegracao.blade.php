@@ -391,10 +391,7 @@
 
 <script type="text/javascript" >
 
-
-var arrayMotivos = [];
-function selectCriterio(opcao){
-
+  var arrayMotivos = [];
   var checkboxA = document.getElementById("checkCriterioA");
   var checkboxB = document.getElementById("checkCriterioB");
   var checkboxC = document.getElementById("checkCriterioC");
@@ -402,109 +399,113 @@ function selectCriterio(opcao){
   var checkboxE = document.getElementById("checkCriterioE");
   var checkboxF = document.getElementById("checkCriterioF");
 
-  var cardRejeicaoCriterio = document.getElementById("motivoRejeicaoCriterio");
+  function selectCriterio(opcao){
+    var cardRejeicaoCriterio = document.getElementById("motivoRejeicaoCriterio");
+    var textoMotivos = document.getElementById("motivos");
+    if(opcao == "a"){
+      if (checkboxA.checked == true) {
 
-  var textoMotivos = document.getElementById("motivos");
+        // cardRejeicaoCriterio.style.display = "block";
+        arrayMotivos.push(opcao);
+        document.getElementById("homologado").value = 'rejeitado';
 
+      }
+      else{
+        // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
+        arrayMotivos= arrayRemove(arrayMotivos,opcao);
 
+      }
+    }
+    if(opcao == "b"){
+      if (checkboxB.checked == true) {
+        // cardRejeicaoCriterio.style.display = "block";
+        arrayMotivos.push(opcao);
+        document.getElementById("homologado").value = 'rejeitado';
+      }
+      else{
+        // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
+        arrayMotivos= arrayRemove(arrayMotivos,opcao);
 
-  if(opcao == "a"){
-    if (checkboxA.checked == true) {
-
-      // cardRejeicaoCriterio.style.display = "block";
-      arrayMotivos.push(opcao);
+      }
 
     }
-    else{
-      // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
-      arrayMotivos= arrayRemove(arrayMotivos,opcao);
+    if(opcao == "c"){
+      if (checkboxC.checked == true) {
+        // cardRejeicaoCriterio.style.display = "block";
+        arrayMotivos.push(opcao);
+        document.getElementById("homologado").value = 'rejeitado';
+      }
+      else{
+        // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
+        arrayMotivos= arrayRemove(arrayMotivos,opcao);
+
+      }
+
     }
+    if(opcao == "d"){
+      if (checkboxD.checked == true) {
+        // cardRejeicaoCriterio.style.display = "block";
+        arrayMotivos.push(opcao);
+        document.getElementById("homologado").value = 'rejeitado';
+      }
+      else{
+        // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
+        arrayMotivos= arrayRemove(arrayMotivos,opcao);
+
+      }
+
+    }
+    if(opcao == "e"){
+      if (checkboxE.checked == true) {
+        // cardRejeicaoCriterio.style.display = "block";
+        arrayMotivos.push(opcao);
+        document.getElementById("homologado").value = 'rejeitado';
+      }
+      else{
+        // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
+        arrayMotivos= arrayRemove(arrayMotivos,opcao);
+
+      }
+
+    }
+    if(opcao == "f"){
+      if (checkboxF.checked == true) {
+        // cardRejeicaoCriterio.style.display = "block";
+        arrayMotivos.push(opcao);
+        document.getElementById("homologado").value = 'rejeitado';
+      }
+      else{
+        // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
+        arrayMotivos= arrayRemove(arrayMotivos,opcao);
+
+
+      }
+
+    }
+    if(checkboxA.checked == false && checkboxB.checked == false && checkboxC.checked == false
+      && checkboxD.checked == false && checkboxE.checked == false && checkboxF.checked == false){
+      cardRejeicaoCriterio.style.display = "none";
+    }else {
+      cardRejeicaoCriterio.style.display = "block";
+      textoMotivos.innerHTML = arrayMotivos.sort();
+    }
+    checkAprovado();
   }
-  if(opcao == "b"){
-    if (checkboxB.checked == true) {
-      // cardRejeicaoCriterio.style.display = "block";
-      arrayMotivos.push(opcao);
-    }
-    else{
-      // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
-      arrayMotivos= arrayRemove(arrayMotivos,opcao);
-    }
+
+  function arrayRemove(arr, value) {
+
+     return arr.filter(function(ele){
+         return ele != value;
+     });
 
   }
-  if(opcao == "c"){
-    if (checkboxC.checked == true) {
-      // cardRejeicaoCriterio.style.display = "block";
-      arrayMotivos.push(opcao);
-    }
-    else{
-      // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
-      arrayMotivos= arrayRemove(arrayMotivos,opcao);
-    }
-
-  }
-  if(opcao == "d"){
-    if (checkboxD.checked == true) {
-      // cardRejeicaoCriterio.style.display = "block";
-      arrayMotivos.push(opcao);
-    }
-    else{
-      // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
-      arrayMotivos= arrayRemove(arrayMotivos,opcao);
-    }
-
-  }
-  if(opcao == "e"){
-    if (checkboxE.checked == true) {
-      // cardRejeicaoCriterio.style.display = "block";
-      arrayMotivos.push(opcao);
-    }
-    else{
-      // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
-      arrayMotivos= arrayRemove(arrayMotivos,opcao);
-    }
-
-  }
-
-  if(opcao == "f"){
-    if (checkboxF.checked == true) {
-      // cardRejeicaoCriterio.style.display = "block";
-      arrayMotivos.push(opcao);
-    }
-    else{
-      // arrayMotivos.splice(arrayMotivos.indexOf(opcao));
-      arrayMotivos= arrayRemove(arrayMotivos,opcao);
-
-    }
-
-  }
-
-
-
-
-  if(checkCriterioA.checked == false && checkCriterioB.checked == false && checkCriterioC.checked == false
-    && checkCriterioD.checked == false && checkCriterioE.checked == false && checkCriterioF.checked == false){
-    cardRejeicaoCriterio.style.display = "none";
-  }else {
-    cardRejeicaoCriterio.style.display = "block";
-    textoMotivos.innerHTML = arrayMotivos.sort();
-  }
-}
-function arrayRemove(arr, value) {
-
-   return arr.filter(function(ele){
-       return ele != value;
-   });
-
-}
-
-
-
 
   function confirmar(){
       if(confirm("Tem certeza que deseja finalizar?") == true) {
         document.getElementById("formHomologacao").submit();
      }
     }
+
   function checkFinalizar(){
     if(document.getElementById("selectHistoricoEscolarAprovado").checked || document.getElementById("selectHistoricoEscolarRejeitado").checked){
       if(document.getElementById("selectDeclaracaoDeVinculoAprovado").checked || document.getElementById("selectDeclaracaoDeVinculoRejeitado").checked){
@@ -520,27 +521,27 @@ function arrayRemove(arr, value) {
       }
     }
   }
+
   function checkAprovado(){
     if(document.getElementById("selectHistoricoEscolarAprovado").checked){
       if(document.getElementById("selectDeclaracaoDeVinculoAprovado").checked){
         if(document.getElementById("selectProgramaDasDisciplinasAprovado").checked){
           if(document.getElementById("selectCurriculoAprovado").checked){
             if(document.getElementById("selectEnemAprovado").checked){
-                if(document.getElementById("selectComprovanteAprovado").checked){
+              if(document.getElementById("selectComprovanteAprovado").checked){
+                if(checkboxA.checked == false && checkboxB.checked == false && checkboxC.checked == false
+                  && checkboxD.checked == false && checkboxE.checked == false && checkboxF.checked == false){
                   document.getElementById("homologado").value = 'aprovado';
                   document.getElementById("motivoRejeicao").value = '';
                   document.getElementById("motivoRejeicao").style.display = 'none';
                 }
-              // }
+              }
             }
           }
         }
       }
     }
   }
-
-
-
 
   function selectCheckDRCA(x){
     if(x == 'rejeitado'){
@@ -555,6 +556,7 @@ function arrayRemove(arr, value) {
       document.getElementById("buttonFinalizar").disabled = false;
     }
   }
+
   function selectCheck(x){
     if(x == 'rejeitado'){
       document.getElementById("motivoRejeicao").style.display = '';
@@ -563,6 +565,7 @@ function arrayRemove(arr, value) {
     checkAprovado();
     checkFinalizar();
   }
+
 </script>
 
 @endsection
