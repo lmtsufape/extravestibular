@@ -268,8 +268,6 @@
               </div>
             </div><!-- end card-body -->
         </div><!-- end card-->
-
-
         <div class="card">
             <div class="card-header">{{ __('Dados econômicos do núcleo familiar') }}</div>
             <div class="card-body">
@@ -295,7 +293,36 @@
               </div>
             </div><!-- end card-body-->
         </div><!--end card-->
-        @endif
+        <!-- card Documentos -->
+        <div id="margin" class="card">
+            <div class="card-header">{{ __('Documentos') }}</div>
+            <!-- card-body -->
+            <div class="card-body">
+              <div class="row justify-content-center">
+                <table class="table table-ordered table-hover">
+                  <tr>
+                    <th>Requisito</th>
+                    <th>Dados</th>
+                  </tr>
+                  <tr <?php if($isencao->nis == ''){echo('style="display: none"');} ?> >
+                    <div class="form-group row" >
+                        <td>
+                          <label for="nis" >{{ __('NIS') }}</label>
+                        </td>
+                        <div class="col-md-6">
+                            <td>
+                              <a href="{{ route('download', ['file' => $isencao->nis])}}" target="_blank">Abrir arquivo</a>
+                            </td>
+
+                        </div>
+                    </div>
+                  </tr>
+                </table>
+              </div>
+
+            </div><!-- end card-body -->
+        </div><!-- end card Documentos -->
+      @endif
 
       </div><!-- end row card-->
 

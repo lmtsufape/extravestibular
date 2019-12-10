@@ -33,6 +33,7 @@ class IsencaoController extends Controller
                                             'parentescoNucleoFamiliar1'=> ['nullable', 'string', 'max:255'],
                                             'rendaNucleoFamiliar1' => ['nullable', 'string', 'max:255'],
                                             'fontePagadoraNucleoFamiliar1 '=> ['nullable', 'string', 'max:255'],
+                                            'nis' => ['required', 'mimes:pdf', 'max:20000'],
                                           ]);
     }
 
@@ -57,13 +58,13 @@ class IsencaoController extends Controller
     }
 
 
-
+    $isencao = [];
     if(!is_null($request->historicoEscolar)){
 
       $file = $request->historicoEscolar;
       $path = 'insencoes/' . Auth::user()->id . '/' . $request->editalId;
       Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
-      Isencao::create([
+      $isencao = Isencao::create([
         'usuarioId'                        => Auth::user()->id,
         'editalId'                         => $request->editalId,
         'tipo'                             => $request->tipo,
@@ -86,9 +87,17 @@ class IsencaoController extends Controller
         'parecer'                          => 'nao',
 
       ]);
+      if(!is_null($request->nis)){
+        $file = $request->nis;
+        $path = 'isencoes/' . Auth::user()->id . '/' . $request->editalId;
+        Storage::putFileAs($path, $file, 'nis.pdf');
+        $isencao->nis = $path . '/nis.pdf';
+        $isencao->save();
+      }
       return redirect()->route('home')->with('jsAlert', 'Isenção requerida com sucesso!');
     }
-    Isencao::create([
+
+    $isencao = Isencao::create([
       'usuarioId'                        => Auth::user()->id,
       'editalId'                         => $request->editalId,
       'tipo'                             => $request->tipo,
@@ -110,6 +119,13 @@ class IsencaoController extends Controller
       'parecer'                          => 'nao',
 
     ]);
+    if(!is_null($request->nis)){
+      $file = $request->nis;
+      $path = 'isencoes/' . Auth::user()->id . '/' . $request->editalId;
+      Storage::putFileAs($path, $file, 'nis.pdf');
+      $isencao->nis = $path . '/nis.pdf';
+      $isencao->save();
+    }
     return redirect()->route('home')->with('jsAlert', 'Isenção requerida com sucesso!');
   }
 

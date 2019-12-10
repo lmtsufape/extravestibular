@@ -28,8 +28,9 @@ class Isencao extends Model
     'fontePagadoraNucleoFamiliar1',
     'rendaFamiliarHomologacao',
     'ensinoMedioHomologacao',
-    'parecer',    
+    'parecer',
     'motivoRejeicao',
+    'nis',
   ];
 
   public function edital()

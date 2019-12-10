@@ -33,7 +33,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        dd(session()->all());
         $mytime = Carbon::now('America/Recife');
         $mytime = $mytime->toDateString();
         $editais = Edital::where('publicado', 'sim')

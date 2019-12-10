@@ -244,9 +244,31 @@
                     @enderror
                     </div>
                   </div>
-
-
                 </div><!-- end fonte pagadora -->
+                <div class="row">
+                  <div class="alert alert-warning alert-dismissible fade show col-sm-12" role="alert">
+                    <strong>Atenção!</strong> Os documentos precisam ser legíveis.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="col-sm-12">
+                    <label for="comprovante" style="font-weight: bold">Selecione o documento com o número do NIS:</label>
+                  </div>
+
+                  <div class="col-sm-12">
+                    <div class="custom-file" style="width: 100%;">
+                      <input disabled type="hidden" value="aux" id="comprovante">
+                      <input id='elementoComprovante' type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="nis" value="{{ old('nis') }}">
+                      <label style="">(aceito arquivo .pdf de até 2 mb).</label>
+                      @error('nis')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                  </div>
+                </div>
 
 
               </div><!-- end row Parentesco/Renda/Fonte -->
