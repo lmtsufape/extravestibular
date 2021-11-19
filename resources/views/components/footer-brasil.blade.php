@@ -6,8 +6,9 @@
             <div class="col-sm-12" align="center">
                 <div class="row justify-content-center" style="margin-top:15px;">
                     <div class="col-sm-12" style="font-family:arial; ">
-                            <a href="/" style="text-decoration: none; color:black">Início</a>&nbsp;&nbsp;&nbsp;●&nbsp;&nbsp;
+                            <a href="/" style="text-decoration: none; color:black">Início</a>
                         @guest
+                            &nbsp;&nbsp;&nbsp;●&nbsp;&nbsp;
                             <a href="#" style="text-decoration: none; color:black">Sobre</a>
                         @endguest
                         <hr style="width: 80%; border: 0; height: 1px; background: #333; background-image: linear-gradient(to right, #ccc, #333, #ccc);">
@@ -41,7 +42,7 @@
                         Parceria
                     </div>
                     <div style="margin: 3px;">
-                        <a href="http://ufape.edu.br/" target="blank">
+                        <a href="http://www.ufrpe.br/" target="blank">
                             <img style="width: 65px;" src="{{asset('images/ufrpe.png')}}">
                         </a>
                     </div>
@@ -72,4 +73,5 @@
         </div>
     </div>
 </div>
-<script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
+{{-- <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script> --}}
+<script defer="defer" src="//barra.brasil.gov.br/barra_2.0.js" type="text/javascript"></script>
