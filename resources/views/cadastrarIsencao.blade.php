@@ -62,7 +62,7 @@
       <div class="col-sm-12">
         <p><strong>O(a) candidato(a) declara, sob as penas da lei e da perda dos direitos decorrentes da sua inscrição,
         serem verdadeiras as informações, os dados e os documentos apresentados, prontificando-se a fornecer outros
-        documentos comprobatórios, sempre que solicitados pela Universidade Federal Rural de Pernambuco. Nos termos da lei,
+        documentos comprobatórios, sempre que solicitados pela Universidade Federal do Agreste de Pernambuco. Nos termos da lei,
         o candidato se enquadra na situação:</strong></p>
       </div>
     </div><!-- end row parágrafo -->

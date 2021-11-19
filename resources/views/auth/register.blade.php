@@ -84,7 +84,7 @@
   }
   #login{
     background-color: #fff;
-    height: 80vh;
+    height: 88vh;
     box-shadow: inset 0 0 7px rgba(0,0,0,0.5);
   }
 
@@ -96,10 +96,10 @@
       width:576px;
     }
     #link{
-        margin-left: 50%;
+      margin-left: 50%;
     }
     #botao{
-        margin-left: 55%;
+      margin-left: 55%;
     }
   }
 </style>
