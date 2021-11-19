@@ -41,7 +41,7 @@
                         Parceria
                     </div>
                     <div style="margin: 3px;">
-                        <a href="http://ufape.edu.br/" target="blank">
+                        <a href="http://www.ufrpe.br/" target="blank">
                             <img style="width: 65px;" src="{{asset('images/ufrpe.png')}}">
                         </a>
                     </div>
