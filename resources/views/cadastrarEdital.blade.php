@@ -351,8 +351,8 @@
         <div class="card-body">
           <table class="table table-responsive table-ordered table-hover justify-content-center" style="width:100%">
             <tr>
-              <th> Campus </th>
-              <th> Departamento </th>
+              <th> Universidade </th>
+              {{-- <th> Departamento </th> --}}
               <th> Curso </th>
               <th> Vagas Disponíveis </th>
               <th style="width: 5rem; "> Manhã </th>
@@ -364,7 +364,6 @@
             <?php //cursos
             // dd($cursos);
             $i = 1;
-
             foreach ($cursos as $curso):
 
             ?>
@@ -372,9 +371,9 @@
               <td>
                 {{ $curso['campus'] }}
               </td>
-              <td>
+              {{-- <td>
                 {{ $curso['departamento'] }}
-              </td>
+              </td> --}}
               <td>
                 {{ $curso['nome'] }}
               </td>
