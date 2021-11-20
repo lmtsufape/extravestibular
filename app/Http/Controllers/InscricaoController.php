@@ -312,8 +312,11 @@ class InscricaoController extends Controller
         } elseif(!strcmp($request->tipo, 'portadorDeDiploma')) {
             $file = $request->historicoEscolar;
             Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
-            $file = $request->programaDasDisciplinas;
-            Storage::putFileAs($path, $file, 'programaDasDisciplinas.pdf');
+            $programaDasDisciplinas = null;
+            if ($request->hasFile('programaDasDisciplinas')) {
+                Storage::putFileAs($path, $file, 'programaDasDisciplinas.pdf');
+                $programaDasDisciplinas = $path . '/programaDasDisciplinas.pdf';
+            }
             $file = $request->diploma;
             Storage::putFileAs($path, $file, 'diploma.pdf');
             $comprovante = '';
@@ -331,7 +334,7 @@ class InscricaoController extends Controller
                 'tipo'					 => $request->tipo,
                 'editalId'               => $request->editalId,
                 'historicoEscolar'       => $path . '/historicoEscolar.pdf',
-                'programaDasDisciplinas' => $path . '/programaDasDisciplinas.pdf',
+                'programaDasDisciplinas' => $programaDasDisciplinas,
                 'diploma'                => $path . '/diploma.pdf',
                 'curso'					 => $request->curso,
                 'polo'					 => $request->polo,
