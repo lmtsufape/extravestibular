@@ -168,7 +168,6 @@ class InscricaoController extends Controller
 							'uf'								  	 => $request->uf,
 							'homologado'						 => 'nao',
 							'homologadoDrca'			 	 => 'nao',
-							'coeficienteDeRendimento'=> 'nao',
 							'comprovante'						 => $comprovante,
 					  ]);
 	    	  }
@@ -211,7 +210,6 @@ class InscricaoController extends Controller
 							'uf'								  	 => $request->uf,
 							'homologado'						 => 'nao',
 							'homologadoDrca'			 	 => 'nao',
-							'coeficienteDeRendimento'=> 'nao',
 							'comprovante'						 => $comprovante,
 						]);
 
@@ -262,7 +260,6 @@ class InscricaoController extends Controller
 							'uf'								  	 => $request->uf,
 							'homologado'						 => 'nao',
 							'homologadoDrca'			 	 => 'nao',
-							'coeficienteDeRendimento'=> 'nao',
 							'comprovante'						 => $comprovante,
 					  ]);
 
@@ -317,7 +314,6 @@ class InscricaoController extends Controller
 							'uf'								  	 => $request->uf,
 							'homologado'						 => 'nao',
 							'homologadoDrca'			 	 => 'nao',
-							'coeficienteDeRendimento'=> 'nao',
 							'comprovante'						 => $comprovante,
 					  ]);
 
