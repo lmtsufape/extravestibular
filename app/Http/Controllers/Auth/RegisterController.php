@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Lmts\src\controller\LmtsApi;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -62,11 +63,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'tipo' => 'candidato',
         ]);
+        $api = new LmtsApi();
+        $acl = $api->getAcl('4');
+        $stringAcl = '';
+        foreach($acl as $key){
+          $stringAcl = $stringAcl . $key . ';';
+        }
+        session(['acl' => $stringAcl]);
+        return $user;
     }
 }
