@@ -42,7 +42,14 @@ class Inscricao extends Model
         'coeficienteDeRendimento',
         'totalDisciplinas',
         'classificacao',
-
+        'declaracaoDeVeracidade',
+        'rg',
+        'cpf',
+        'quitacaoEleitoral',
+        'reservista',
+        'certidaoNascimento',
+        'historicoEnsinoMedio',
+        'declaracaoENADE',
     ];
 
     public function user()

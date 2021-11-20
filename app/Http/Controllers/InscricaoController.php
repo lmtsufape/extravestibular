@@ -119,7 +119,7 @@ class InscricaoController extends Controller
         elseif ($request->tipo == 'portadorDeDiploma') {
             $validatedData = $request->validate([
                 'historicoEscolar' 		 => ['required', 'mimes:pdf','max:20000'],
-                'programaDasDisciplinas' => ['required', 'mimes:pdf','max:20000'],
+                'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:20000'],
                 'diploma' 				 => ['required', 'mimes:pdf','max:20000'],
                 'endereco'          	 => ['required', 'string', 'max:255'],
                 'num'               	 => ['required', 'integer'],
