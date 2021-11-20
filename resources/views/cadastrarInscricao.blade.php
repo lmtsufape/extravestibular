@@ -112,7 +112,6 @@
                   <label for="tipoInscricao" class="col-sm-4 col-form-label text-sm-right" >Tipo de Inscrição*:</label>
                   <div class="col-sm-8">
                     <input <?php if(old('tipo') == 'reintegracao')        {echo('checked');} ?> onclick="escolherTipo('reintegracao')" 			   type="radio" name="tipoInscricao" > Reintegração <br>
-                    <input <?php if(old('tipo') == 'transferenciaInterna'){echo('checked');} ?> onclick="escolherTipo('transferenciaInterna')"  type="radio" name="tipoInscricao" > Transferencia Interna <br>
                     <input <?php if(old('tipo') == 'transferenciaExterna'){echo('checked');} ?> onclick="escolherTipo('transferenciaExterna')"  type="radio" name="tipoInscricao" > Transferencia Externa <br>
                     <input <?php if(old('tipo') == 'portadorDeDiploma')   {echo('checked');} ?> onclick="escolherTipo('portadorDeDiploma')" 		 type="radio" name="tipoInscricao" > Portador de Diploma <br>
                   </div>
@@ -127,8 +126,128 @@
                   </button>
                 </div>
 
+                <div id="declaracaoDeVeracidade" class="form-group row">      <!-- Arquivo declaracaoDeVeracidade -->
+                    <label for="declaracaoDeVeracidade" class="col-sm-4 col-form-label text-md-right">{{ __('Declaração de veracidade:') }}</label>
+                    <div class="col-sm-6">
+                      <div class="custom-file">
+                        <input required type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="declaracaoDeVeracidade">
+                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                      </div>
+                      @error('declaracaoDeVeracidade')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                </div>
+
+                <div id="rg" class="form-group row">      <!-- Arquivo rg -->
+                    <label for="rg" class="col-sm-4 col-form-label text-md-right">{{ __('RG:') }}</label>
+                    <div class="col-sm-6">
+                      <div class="custom-file">
+                        <input required type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="rg">
+                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                      </div>
+                      @error('rg')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                </div>
+
+                <div id="cpf" class="form-group row">      <!-- Arquivo cpf -->
+                    <label for="cpf" class="col-sm-4 col-form-label text-md-right">{{ __('CPF:') }}</label>
+                    <div class="col-sm-6">
+                      <div class="custom-file">
+                        <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="cpf">
+                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                      </div>
+                      @error('cpf')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                </div>
+
+                <div id="quitacaoEleitoral" class="form-group row">      <!-- Arquivo quitacaoEleitoral -->
+                    <label for="quitacaoEleitoral" class="col-sm-4 col-form-label text-md-right">{{ __('Certidão de quitação eleitoral:') }}</label>
+                    <div class="col-sm-6">
+                      <div class="custom-file">
+                        <input required type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="quitacaoEleitoral">
+                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                      </div>
+                      @error('quitacaoEleitoral')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                </div>
+
+                <div id="reservista" class="form-group row">      <!-- Arquivo reservista -->
+                    <label for="reservista" class="col-sm-4 col-form-label text-md-right">{{ __('Reservista para o sexo masculino (só para candidatos de 18 a 45 anos:') }}</label>
+                    <div class="col-sm-6">
+                      <div class="custom-file">
+                        <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="reservista">
+                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                      </div>
+                      @error('reservista')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                </div>
+
+                <div id="certidaoNascimento" class="form-group row">      <!-- Arquivo certidaoNascimento -->
+                    <label for="certidaoNascimento" class="col-sm-4 col-form-label text-md-right">{{ __('Certidão de nascimento ou registro de casamento:') }}</label>
+                    <div class="col-sm-6">
+                      <div class="custom-file">
+                        <input required type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="certidaoNascimento">
+                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                      </div>
+                      @error('certidaoNascimento')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                </div>
+
+                <div id="historicoEnsinoMedio" class="form-group row" style="display: none" >      <!-- Arquivo historicoEnsinoMedio -->
+                    <label for="historicoEnsinoMedio" class="col-sm-4 col-form-label text-md-right">{{ __('Histórico e Certificado de conclusão do ensino médio com carimbo e assinatura da instituição legíveis:') }}</label>
+                    <div class="col-sm-6">
+                      <div class="custom-file">
+                        <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="historicoEnsinoMedio">
+                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                      </div>
+                      @error('historicoEnsinoMedio')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                </div>
+
+                <div id="declaracaoENADE" class="form-group row" style="display: none" >      <!-- Arquivo declaracaoENADE -->
+                    <label for="declaracaoENADE" class="col-sm-4 col-form-label text-md-right">{{ __('Declaração de regularidade com o Exame Nacional de Desempenho dos Estudantes (ENADE). A declaração não será necessária se a informação de regularidade com o ENADE estiver no histórico escolar:') }}</label>
+                    <div class="col-sm-6">
+                      <div class="custom-file">
+                        <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="declaracaoENADE">
+                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                      </div>
+                      @error('declaracaoENADE')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </div>
+                </div>
+
                 <div id="historicoEscolar" class="form-group row" style="display: none" >      <!-- Arquivo historico escolar -->
-                    <label for="Historico escolar" class="col-sm-4 col-form-label text-md-right">{{ __('Histórico escolar:') }}</label>
+                    <label for="Historico escolar" class="col-sm-4 col-form-label text-md-right">{{ __('Histórico escolar do curso de graduação:') }}</label>
 
 
                     <div class="col-sm-6">
@@ -453,11 +572,14 @@
   function escolherTipo(x) {
     if (x == "reintegracao") {
       document.getElementById("tipo").value = "reintegracao";
+
       document.getElementById("historicoEscolar").style.display = "";
+      document.getElementById("declaracaoENADE").style.display = "none";
+      document.getElementById("curriculo").style.display = "none";
       document.getElementById("declaracaoDeVinculo").style.display = "none";
-      document.getElementById("enem").style.display = "none";
-      document.getElementById("curriculo").style.display = "none";
       document.getElementById("programaDasDisciplinas").style.display = "none";
+      document.getElementById("historicoEnsinoMedio").style.display = "none";
+      document.getElementById("enem").style.display = "none";
       document.getElementById("diploma").style.display = "none";
 
       if(document.getElementById("comprovante").value == 'isento'){
@@ -465,27 +587,30 @@
       }
 
     }
-    if (x == "transferenciaInterna") {
-      document.getElementById("tipo").value = "transferenciaInterna";
-      document.getElementById("historicoEscolar").style.display = "";
-      document.getElementById("declaracaoDeVinculo").style.display = "";
-      document.getElementById("enem").style.display = "none";
-      document.getElementById("curriculo").style.display = "none";
-      document.getElementById("programaDasDisciplinas").style.display = "none";
-      document.getElementById("diploma").style.display = "none";
+    // if (x == "transferenciaInterna") {
+    //   document.getElementById("tipo").value = "transferenciaInterna";
+    //   document.getElementById("historicoEscolar").style.display = "";
+    //   document.getElementById("declaracaoDeVinculo").style.display = "";
+    //   document.getElementById("enem").style.display = "none";
+    //   document.getElementById("curriculo").style.display = "none";
+    //   document.getElementById("programaDasDisciplinas").style.display = "none";
+    //   document.getElementById("diploma").style.display = "none";
 
 
-      if(document.getElementById("comprovante").value == 'isento'){
-        document.getElementById("formulario").style.display = "";
-      }
-    }
+    //   if(document.getElementById("comprovante").value == 'isento'){
+    //     document.getElementById("formulario").style.display = "";
+    //   }
+    // }
     if (x == "transferenciaExterna") {
       document.getElementById("tipo").value = "transferenciaExterna";
+
+      document.getElementById("declaracaoENADE").style.display = "";
       document.getElementById("historicoEscolar").style.display = "";
-      document.getElementById("declaracaoDeVinculo").style.display = "";
-      document.getElementById("enem").style.display = "none";
       document.getElementById("curriculo").style.display = "";
+      document.getElementById("declaracaoDeVinculo").style.display = "";
       document.getElementById("programaDasDisciplinas").style.display = "";
+      document.getElementById("historicoEnsinoMedio").style.display = "";
+      document.getElementById("enem").style.display = "none";
       document.getElementById("diploma").style.display = "none";
 
 
@@ -495,13 +620,15 @@
     }
     if (x == "portadorDeDiploma") {
       document.getElementById("tipo").value = "portadorDeDiploma";
-      document.getElementById("historicoEscolar").style.display = "";
-      document.getElementById("declaracaoDeVinculo").style.display = "";
-      document.getElementById("enem").style.display = "";
-      document.getElementById("curriculo").style.display = "none";
-      document.getElementById("programaDasDisciplinas").style.display = "";
-      document.getElementById("diploma").style.display = "";
 
+      document.getElementById("diploma").style.display = "";
+      document.getElementById("historicoEscolar").style.display = "";
+      document.getElementById("programaDasDisciplinas").style.display = "";
+      document.getElementById("declaracaoENADE").style.display = "none";
+      document.getElementById("curriculo").style.display = "none";
+      document.getElementById("declaracaoDeVinculo").style.display = "none";
+      document.getElementById("enem").style.display = "none";
+      document.getElementById("historicoEnsinoMedio").style.display = "none";
 
       if(document.getElementById("comprovante").value == 'isento'){
         document.getElementById("formulario").style.display = "";
