@@ -164,7 +164,7 @@
             <div class="hover-popup-lmts">
               <a style="font-weight: bold; color: red">Indeferido</a> <br>
               <a style="font-weight: bold">Justificativa:</a> <br>
-              <div class="justify-content-center" style=""> {{$inscricao->motivoRejeicao}} </div>
+              <div class="justify-content-center" style=""> {{$isencao->motivoRejeicao}} </div>
             </div>
           @endif
         @else
@@ -223,7 +223,7 @@
               <div class="hover-popup-lmts">
                 <a style="font-weight: bold; color: red">Indeferido</a> <br>
                 <a style="font-weight: bold">Justificativa:</a> <br>
-                <div class="justify-content-center" style=""> {{$inscricao->motivoRejeicao}} </div>
+                <div class="justify-content-center" style=""> {{$recursoIsencao->motivoRejeicao}} </div>
               </div>
             @endif
           @else
@@ -351,7 +351,7 @@
                  <div class="hover-popup-lmts">
                    <a style="font-weight: bold; color: red">Indeferido</a> <br>
                    <a style="font-weight: bold">Justificativa:</a> <br>
-                   <div class="justify-content-center" style=""> {{$inscricao->motivoRejeicao}} </div>
+                   <div class="justify-content-center" style=""> {{$recursoInscricao->motivoRejeicao}} </div>
                  </div>
                @endif
               @else
@@ -412,7 +412,7 @@
               <div class="hover-popup-lmts">
                 <a style="font-weight: bold; color: red">Indeferido</a> <br>
                 <a style="font-weight: bold">Justificativa:</a> <br>
-                <div class="justify-content-center" style=""> {{$inscricao->motivoRejeicao}} </div>
+                <div class="justify-content-center" style=""> {{$recursoResultado->motivoRejeicao}} </div>
               </div>
             @endif
           @else

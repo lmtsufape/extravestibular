@@ -116,12 +116,21 @@
             <div class="row justify-content-center" >
                 <h3 for="historicoEscolar" style="">{{ __('Histórico Escolar') }}</h3>
             </div>
-            <br>
             <div class="row justify-content-center">
               <h5>
                 <a style="" href="{{ route('download', ['file' => $isencao->historicoEscolar])}}" target="_new">Abrir arquivo</a>
               </h5>
             </div>
+            @if($isencao->nis)
+                <div class="row justify-content-center pt-3" >
+                    <h3 for="nis" style="">{{ __('NIS') }}</h3>
+                </div>
+                <div class="row justify-content-center pt-0">
+                  <h5>
+                    <a style="" href="{{ route('download', ['file' => $isencao->nis])}}" target="_new">Abrir arquivo</a>
+                  </h5>
+                </div>
+            @endif
           </div><!-- end card body-->
         </div>
         <div class="card" style="">
