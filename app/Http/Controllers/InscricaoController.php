@@ -507,7 +507,7 @@ class InscricaoController extends Controller
 			if(!strcmp($request->homologado, 'rejeitado')){
 				$validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);
 				$inscricao->homologado = 'rejeitado';
-				$inscricao->classificacao = 'rejeitado';
+				//$inscricao->classificacao = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
 				$inscricao->save();
 				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso!');
@@ -516,7 +516,7 @@ class InscricaoController extends Controller
 				$inscricao->homologado = 'aprovado';
 				if($inscricao->tipo != 'reintegracao'){
 					$inscricao->homologadoDrca = 'aprovado';
-					$inscricao->classificacao = 'processando';
+					//$inscricao->classificacao = 'processando';
 				}
 				$inscricao->save();
 				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso!');
@@ -524,7 +524,7 @@ class InscricaoController extends Controller
 		}
 		if(!strcmp($request->tipo, 'drca')){
 			if(!strcmp($request->homologado, 'rejeitado')){
-				$inscricao->classificacao = 'rejeitado';
+				//$inscricao->classificacao = 'rejeitado';
 				$inscricao->homologadoDrca = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
 				$inscricao->save();
@@ -532,7 +532,7 @@ class InscricaoController extends Controller
 			}
 			else{
 				$inscricao->homologadoDrca = 'aprovado';
-				$inscricao->classificacao = 'processando';
+				//$inscricao->classificacao = 'processando';
 				$inscricao->save();
 				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso!');
 			}
