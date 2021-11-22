@@ -14,7 +14,7 @@ class AddDadosToInscricaos extends Migration
     public function up()
     {
         Schema::table('inscricaos', function (Blueprint $table) {
-            $table->string('declaracaoDeVeracidade')->nullable();
+            $table->boolean('declaracaoDeVeracidade')->nullable();
             $table->string('declaracaoENADE')->nullable();
             $table->string('rg')->nullable();
             $table->string('cpf')->nullable();

@@ -576,8 +576,6 @@ class EditalController extends Controller{
                                                    ->where('homologadoDrca', 'aprovado')
                                                    ->where('situacao', 'processando')
                                                    ->get();
-          $inscricoesClassificadas = json_decode($inscricoesClassificadas);
-          $inscricoesNaoClassificadas = json_decode($inscricoesNaoClassificadas);
           $edital = Edital::find($request->editalId);
         }
         if(Auth::check()){
@@ -659,16 +657,6 @@ class EditalController extends Controller{
           $isencoesNaoHomologadas = Isencao::where('editalId', $request->editalId)
                                              ->where('parecer', 'nao')
                                              ->get();
-          $inscricoesHomologadas = json_decode($inscricoesHomologadas);
-          $inscricoesNaoHomologadas = json_decode($inscricoesNaoHomologadas);
-          $isencoesHomologadas = json_decode($isencoesHomologadas);
-          $isencoesNaoHomologadas = json_decode($isencoesNaoHomologadas);
-          $recursosTaxaHomologados = json_decode($recursosTaxaHomologados);
-          $recursosTaxaNaoHomologados = json_decode($recursosTaxaNaoHomologados);
-          $recursosClassificacaoHomologados = json_decode($recursosClassificacaoHomologados);
-          $recursosClassificacaoNaoHomologados = json_decode($recursosClassificacaoNaoHomologados);
-          $recursosResultadoHomologados = json_decode($recursosResultadoHomologados);
-          $recursosResultadoNaoHomologados = json_decode($recursosResultadoNaoHomologados);
           $erratas = $edital->errata;
 
           return view('detalhesEditalPREG', ['editalId'                             => $request->editalId,
@@ -676,18 +664,18 @@ class EditalController extends Controller{
                                              'isencao'                              => null,
                                              'recursoIsencao'                       => null,
                                              'recursoInscricao'                     => null,
-                                             'inscricoesHomologadas'                => sizeof($inscricoesHomologadas),
-                                             'inscricoesNaoHomologadas'             => sizeof($inscricoesNaoHomologadas),
-                                             'isencoesHomologadas'                  => sizeof($isencoesHomologadas),
-                                             'isencoesNaoHomologadas'               => sizeof($isencoesNaoHomologadas),
-                                             'recursosTaxaHomologados'              => sizeof($recursosTaxaHomologados),
-                                             'recursosTaxaNaoHomologados'           => sizeof($recursosTaxaNaoHomologados),
-                                             'recursosClassificacaoHomologados'     => sizeof($recursosClassificacaoHomologados),
-                                             'recursosClassificacaoNaoHomologados'  => sizeof($recursosClassificacaoNaoHomologados),
-                                             'recursosResultadoHomologados'         => sizeof($recursosResultadoHomologados),
-                                             'recursosResultadoNaoHomologados'      => sizeof($recursosResultadoNaoHomologados),
-                                             'inscricoesClassificadas'              => sizeof($inscricoesClassificadas),
-                                             'inscricoesNaoClassificadas'           => sizeof($inscricoesNaoClassificadas),
+                                             'inscricoesHomologadas'                => $inscricoesHomologadas->count(),
+                                             'inscricoesNaoHomologadas'             => $inscricoesNaoHomologadas->count(),
+                                             'isencoesHomologadas'                  => $isencoesHomologadas->count(),
+                                             'isencoesNaoHomologadas'               => $isencoesNaoHomologadas->count(),
+                                             'recursosTaxaHomologados'              => $recursosTaxaHomologados->count(),
+                                             'recursosTaxaNaoHomologados'           => $recursosTaxaNaoHomologados->count(),
+                                             'recursosClassificacaoHomologados'     => $recursosClassificacaoHomologados->count(),
+                                             'recursosClassificacaoNaoHomologados'  => $recursosClassificacaoNaoHomologados->count(),
+                                             'recursosResultadoHomologados'         => $recursosResultadoHomologados->count(),
+                                             'recursosResultadoNaoHomologados'      => $recursosResultadoNaoHomologados->count(),
+                                             'inscricoesClassificadas'              => $inscricoesClassificadas->count(),
+                                             'inscricoesNaoClassificadas'           => $inscricoesNaoClassificadas->count(),
                                              'edital'                               => $edital,
                                              'mytime'                               => $mytime,
                                              'erratas'                              => $erratas,

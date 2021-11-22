@@ -42,10 +42,9 @@ class InscricaoController extends Controller
                 'comprovante' => ['required', 'mimes:pdf','max:20000']
             ]);
         }
-
         // campos comuns a todos
         $request->validate([
-            'declaracaoDeVeracidade' => ['required', 'mimes:pdf','max:20000'],
+            'declaracaoDeVeracidade' => ['required'],
             'rg'                     => ['required', 'mimes:pdf','max:20000'],
             'cpf'                    => ['nullable', 'mimes:pdf','max:20000'],
             'quitacaoEleitoral'      => ['required', 'mimes:pdf','max:20000'],
@@ -162,7 +161,7 @@ class InscricaoController extends Controller
             $reservista = $path . '/reservista.pdf';
         }
         Storage::putFileAs($path, $request->rg, 'rg.pdf');
-        Storage::putFileAs($path, $request->declaracaoDeVeracidade, 'declaracaoDeVeracidade.pdf');
+        // Storage::putFileAs($path, $request->declaracaoDeVeracidade, 'declaracaoDeVeracidade.pdf');
         Storage::putFileAs($path, $request->quitacaoEleitoral, 'quitacaoEleitoral.pdf');
         Storage::putFileAs($path, $request->certidaoNascimento, 'certidaoNascimento.pdf');
 
@@ -200,7 +199,7 @@ class InscricaoController extends Controller
                 'homologadoDrca'		 => 'nao',
                 'comprovante'			 => $comprovante,
                 'rg'                     => $path . '/rg.pdf',
-                'declaracaoDeVeracidade' => $path . '/declaracaoDeVeracidade.pdf',
+                'declaracaoDeVeracidade' => true,
                 'quitacaoEleitoral'      => $path . '/quitacaoEleitoral.pdf',
                 'certidaoNascimento'     => $path . '/certidaoNascimento.pdf',
                 'cpf'                    => $cpf,
@@ -243,7 +242,7 @@ class InscricaoController extends Controller
                 'homologadoDrca'			 	 => 'nao',
                 'comprovante'						 => $comprovante,
                 'rg'                     => $path . '/rg.pdf',
-                'declaracaoDeVeracidade' => $path . '/declaracaoDeVeracidade.pdf',
+                'declaracaoDeVeracidade' => true,
                 'quitacaoEleitoral'      => $path . '/quitacaoEleitoral.pdf',
                 'certidaoNascimento'     => $path . '/certidaoNascimento.pdf',
                 'cpf'                    => $cpf,
@@ -302,7 +301,7 @@ class InscricaoController extends Controller
                 'declaracaoENADE'        => $declaracaoENADE,
                 'historicoEnsinoMedio'   => $path . '/historicoEnsinoMedio.pdf',
                 'rg'                     => $path . '/rg.pdf',
-                'declaracaoDeVeracidade' => $path . '/declaracaoDeVeracidade.pdf',
+                'declaracaoDeVeracidade' => true,
                 'quitacaoEleitoral'      => $path . '/quitacaoEleitoral.pdf',
                 'certidaoNascimento'     => $path . '/certidaoNascimento.pdf',
                 'cpf'                    => $cpf,
@@ -351,7 +350,7 @@ class InscricaoController extends Controller
                 'homologadoDrca'		 => 'nao',
                 'comprovante'			 => $comprovante,
                 'rg'                     => $path . '/rg.pdf',
-                'declaracaoDeVeracidade' => $path . '/declaracaoDeVeracidade.pdf',
+                'declaracaoDeVeracidade' => true,
                 'quitacaoEleitoral'      => $path . '/quitacaoEleitoral.pdf',
                 'certidaoNascimento'     => $path . '/certidaoNascimento.pdf',
                 'cpf'                    => $cpf,
@@ -385,6 +384,7 @@ class InscricaoController extends Controller
             'dados'		 => $dados,
             'curso'	   => $curso,
         ]);
+		
         return redirect()->route('home')->with('jsAlert', 'Inscrição realizada com sucesso!');
     }
 

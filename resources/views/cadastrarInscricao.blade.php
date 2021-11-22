@@ -119,29 +119,14 @@
 
 
                 <input disabled type="hidden" id="antigaOpcao" value="{{old('tipo')}}">
-                <div class="alert alert-warning alert-dismissible fade show col-sm-12" role="alert">
+                <div id="alerta-documentos" class="alert alert-warning alert-dismissible fade show col-sm-12" role="alert" style="display: none">
                   <strong>Atenção!</strong> Os documentos precisam ser legíveis.
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
 
-                <div id="declaracaoDeVeracidade" class="form-group row">      <!-- Arquivo declaracaoDeVeracidade -->
-                    <label for="declaracaoDeVeracidade" class="col-sm-4 col-form-label text-md-right">{{ __('Declaração de veracidade:') }}</label>
-                    <div class="col-sm-6">
-                      <div class="custom-file">
-                        <input required type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="declaracaoDeVeracidade">
-                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
-                      </div>
-                      @error('declaracaoDeVeracidade')
-                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                      @enderror
-                    </div>
-                </div>
-
-                <div id="rg" class="form-group row">      <!-- Arquivo rg -->
+                <div id="rg" class="form-group row" style="display: none">      <!-- Arquivo rg -->
                     <label for="rg" class="col-sm-4 col-form-label text-md-right">{{ __('RG:') }}</label>
                     <div class="col-sm-6">
                       <div class="custom-file">
@@ -156,7 +141,7 @@
                     </div>
                 </div>
 
-                <div id="cpf" class="form-group row">      <!-- Arquivo cpf -->
+                <div id="cpf" class="form-group row" style="display: none">      <!-- Arquivo cpf -->
                     <label for="cpf" class="col-sm-4 col-form-label text-md-right">{{ __('CPF:') }}</label>
                     <div class="col-sm-6">
                       <div class="custom-file">
@@ -171,7 +156,7 @@
                     </div>
                 </div>
 
-                <div id="quitacaoEleitoral" class="form-group row">      <!-- Arquivo quitacaoEleitoral -->
+                <div id="quitacaoEleitoral" class="form-group row" style="display: none">      <!-- Arquivo quitacaoEleitoral -->
                     <label for="quitacaoEleitoral" class="col-sm-4 col-form-label text-md-right">{{ __('Certidão de quitação eleitoral:') }}</label>
                     <div class="col-sm-6">
                       <div class="custom-file">
@@ -186,7 +171,7 @@
                     </div>
                 </div>
 
-                <div id="reservista" class="form-group row">      <!-- Arquivo reservista -->
+                <div id="reservista" class="form-group row" style="display: none">      <!-- Arquivo reservista -->
                     <label for="reservista" class="col-sm-4 col-form-label text-md-right">{{ __('Reservista para o sexo masculino (só para candidatos de 18 a 45 anos:') }}</label>
                     <div class="col-sm-6">
                       <div class="custom-file">
@@ -201,7 +186,7 @@
                     </div>
                 </div>
 
-                <div id="certidaoNascimento" class="form-group row">      <!-- Arquivo certidaoNascimento -->
+                <div id="certidaoNascimento" class="form-group row" style="display: none">      <!-- Arquivo certidaoNascimento -->
                     <label for="certidaoNascimento" class="col-sm-4 col-form-label text-md-right">{{ __('Certidão de nascimento ou registro de casamento:') }}</label>
                     <div class="col-sm-6">
                       <div class="custom-file">
@@ -341,6 +326,25 @@
                       </span>
                       @enderror
                     </div>
+                </div>
+
+                <div id="declaracaoDeVeracidade" class="form-group row">      <!-- Arquivo declaracaoDeVeracidade -->
+                  <label for="declaracaoDeVeracidade" class="col-sm-4 col-form-label text-md-right">{{ __('Declaração de veracidade:') }}</label>
+                  <div class="col-sm-7">
+                    <div class="row">
+                      <div class="col-sm-1">
+                        <input type="checkbox" id="declaracaoDeVeracidade" name="declaracaoDeVeracidade" required>
+                      </div>
+                      <div class="col-sm-11" style="position: relative; left: -25px;">
+                        <label for="declaracaoDeVeracidade">Declaro que as informações acima prestadas são verdadeiras, e assumo a inteira responsabilidade pelas mesmas.</label>
+                      </div>
+                    </div>
+                    @error('declaracaoDeVeracidade')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
                 </div>
 
                 <div class="form-group row">                                                   <!-- Curso -->
@@ -568,9 +572,18 @@
 </div>
 
 <script type="text/javascript" >
+  function mostrarComuns() {
+    document.getElementById("rg").style.display = "";
+    document.getElementById("cpf").style.display = "";
+    document.getElementById("quitacaoEleitoral").style.display = "";
+    document.getElementById("reservista").style.display = "";
+    document.getElementById("certidaoNascimento").style.display = "";
+    document.getElementById("alerta-documentos").style.display = "";
+  }
 
-  function escolherTipo(x) {
+  function escolherTipo(x) {  
     if (x == "reintegracao") {
+      mostrarComuns();
       document.getElementById("tipo").value = "reintegracao";
 
       document.getElementById("historicoEscolar").style.display = "";
@@ -602,6 +615,7 @@
     //   }
     // }
     if (x == "transferenciaExterna") {
+      mostrarComuns();
       document.getElementById("tipo").value = "transferenciaExterna";
 
       document.getElementById("declaracaoENADE").style.display = "";
@@ -619,6 +633,7 @@
       }
     }
     if (x == "portadorDeDiploma") {
+      mostrarComuns();
       document.getElementById("tipo").value = "portadorDeDiploma";
 
       document.getElementById("diploma").style.display = "";
