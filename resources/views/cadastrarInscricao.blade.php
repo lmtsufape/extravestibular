@@ -126,21 +126,6 @@
                   </button>
                 </div>
 
-                <div id="declaracaoDeVeracidade" class="form-group row">      <!-- Arquivo declaracaoDeVeracidade -->
-                    <label for="declaracaoDeVeracidade" class="col-sm-4 col-form-label text-md-right">{{ __('Declaração de veracidade:') }}</label>
-                    <div class="col-sm-6">
-                      <div class="custom-file">
-                        <input required type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="declaracaoDeVeracidade">
-                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
-                      </div>
-                      @error('declaracaoDeVeracidade')
-                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                      @enderror
-                    </div>
-                </div>
-
                 <div id="rg" class="form-group row">      <!-- Arquivo rg -->
                     <label for="rg" class="col-sm-4 col-form-label text-md-right">{{ __('RG:') }}</label>
                     <div class="col-sm-6">
@@ -341,6 +326,25 @@
                       </span>
                       @enderror
                     </div>
+                </div>
+
+                <div id="declaracaoDeVeracidade" class="form-group row">      <!-- Arquivo declaracaoDeVeracidade -->
+                  <label for="declaracaoDeVeracidade" class="col-sm-4 col-form-label text-md-right">{{ __('Declaração de veracidade:') }}</label>
+                  <div class="col-sm-7">
+                    <div class="row">
+                      <div class="col-sm-1">
+                        <input type="checkbox" id="declaracaoDeVeracidade" name="declaracaoDeVeracidade" required>
+                      </div>
+                      <div class="col-sm-11" style="position: relative; left: -25px;">
+                        <label for="declaracaoDeVeracidade">Declaro que as informações acima prestadas são verdadeiras, e assumo a inteira responsabilidade pelas mesmas.</label>
+                      </div>
+                    </div>
+                    @error('declaracaoDeVeracidade')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
                 </div>
 
                 <div class="form-group row">                                                   <!-- Curso -->

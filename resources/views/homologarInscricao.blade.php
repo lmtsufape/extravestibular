@@ -463,16 +463,6 @@
                         </td>
                     </div>
                   </tr>
-                  <tr <?php if($inscricao->declaracaoDeVeracidade == null){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
-                        <td>
-                          <label for="declaracaoDeVeracidade" >{{ __('Declaração de Veracidade') }}</label>
-                        </td>
-                        <td>
-                          <a href="{{ route('download', ['file' => $inscricao->declaracaoDeVeracidade])}}" target="_blank">Abrir arquivo</a>
-                        </td>
-                    </div>
-                  </tr>
                   <tr <?php if($inscricao->declaracaoENADE == null){echo('style="display: none"');} ?> >
                     <div class="form-group row" >
                         <td>
