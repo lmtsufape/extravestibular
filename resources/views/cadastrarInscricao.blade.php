@@ -376,7 +376,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row justify-content-center">
+                {{--<div class="form-group row justify-content-center">
                   <div class="col-sm-10">                                                   <!-- Polo -->
                     <div class="row">
                       <div class="col-sm-12">
@@ -400,7 +400,7 @@
                     </span>
                     @enderror
                   </div>
-                </div>
+                </div>--}}
 
             </div>
         </div>
