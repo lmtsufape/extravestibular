@@ -93,7 +93,7 @@ class RecursoController extends Controller
       $recurso->homologado = $request->radioRecurso;
       $recurso->motivoRejeicao = $request->motivoRejeicao;
       $recurso->save();
-      if($recurso->tipo == 'taxa'){
+      if($recurso->tipo == 'taxa' && $request->radioRecurso == 'aprovado'){
         $isencao = Isencao::where('editalId', $recurso->editalId)->where('usuarioId', $recurso->usuarioId)->first();
         $isencao->parecer = 'deferida';
         $isencao->save();

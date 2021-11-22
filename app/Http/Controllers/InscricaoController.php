@@ -33,324 +33,360 @@ class InscricaoController extends Controller
 	}
 
 	public function cadastroInscricao(Request $request){
-					$this->authorize('cadastrarInscricao', Inscricao::class);
+        $this->authorize('cadastrarInscricao', Inscricao::class);
 
-				  $isencao = Isencao::where('editalId', $request->editalId)->where('usuarioId', Auth::user()->id)->where('parecer', 'deferida')->first();
+        $isencao = Isencao::where('editalId', $request->editalId)->where('usuarioId', Auth::user()->id)->where('parecer', 'deferida')->first();
 
-					if(empty($isencao)){
-						$validatedData = $request->validate(['comprovante' 					  => ['required', 'mimes:pdf','max:20000']]);
-					}
+        if(empty($isencao)){
+            $validatedData = $request->validate([
+                'comprovante' => ['required', 'mimes:pdf','max:20000']
+            ]);
+        }
 
-					if($request->tipo == 'reintegracao'){
-						 $validatedData = $request->validate([ 'declaracaoDeVinculo' 		=> ['nullable', 'mimes:pdf','max:20000'],
-																									 'historicoEscolar' 			=> ['required', 'mimes:pdf','max:20000'],
-																									 'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:20000'],
-																									 'curriculo' 				 			=> ['nullable', 'mimes:pdf','max:20000'],
-																									 'enem' 						 			=> ['nullable', 'mimes:pdf','max:20000'],
-																									 'diploma' 						 		=> ['nullable', 'mimes:pdf','max:20000'],
-																									 'endereco'          			=> ['required', 'string', 'max:255'],
-																									 'num'               			=> ['required', 'integer'],
-																									 'bairro'            			=> ['required', 'max:255'],
-																									 'cidade'            			=> ['required', 'max:255'],
-																									 'uf'                			=> ['required', 'size:2'],
-																									 'polo'									  => ['nullable', 'string', 'max:255'],
-																									 'turno'								  => ['required', 'string', 'max:255'],
-																									 'cursoDeOrigem'					=> ['required', 'string', 'max:255'],
-																									 'instituicaoDeOrigem'    => ['required', 'string', 'max:255'],
-																									 'naturezaDaIes'					=> ['required', 'string', 'max:255'],
-					 ]);
-				  }
- 					elseif ($request->tipo == 'transferenciaInterna') {
- 						$validatedData = $request->validate([ 'declaracaoDeVinculo' 		=> ['required', 'mimes:pdf','max:20000'],
- 																									'historicoEscolar' 				=> ['required', 'mimes:pdf','max:20000'],
- 																									'programaDasDisciplinas' 	=> ['nullable', 'mimes:pdf','max:20000'],
- 																									'curriculo' 				 			=> ['nullable', 'mimes:pdf','max:20000'],
- 																									'enem' 						 				=> ['nullable', 'mimes:pdf','max:20000'],
-																									'diploma' 						 		=> ['nullable', 'mimes:pdf','max:20000'],
- 																									'endereco'          			=> ['required', 'string', 'max:255'],
- 																									'num'               			=> ['required', 'integer'],
- 																									'bairro'            			=> ['required', 'max:255'],
- 																									'cidade'            			=> ['required', 'max:255'],
- 																									'uf'                			=> ['required', 'size:2'],
- 																									'polo'									  => ['nullable', 'string', 'max:255'],
- 																									'turno'								  	=> ['required', 'string', 'max:255'],
- 																									'cursoDeOrigem'						=> ['required', 'string', 'max:255'],
- 																									'instituicaoDeOrigem'    	=> ['required', 'string', 'max:255'],
- 																									'naturezaDaIes'						=> ['required', 'string', 'max:255'],
- 																								]);
- 					}
- 					elseif ($request->tipo == 'transferenciaExterna') {
- 						$validatedData = $request->validate([ 'declaracaoDeVinculo' 		=> ['required', 'mimes:pdf','max:20000'],
- 																									'historicoEscolar' 				=> ['required', 'mimes:pdf','max:20000'],
- 																									'programaDasDisciplinas' 	=> ['required', 'mimes:pdf','max:20000'],
- 																									'curriculo' 				 			=> ['required', 'mimes:pdf','max:20000'],
- 																									'enem' 						 				=> ['nullable', 'mimes:pdf','max:20000'],
-																									'diploma' 						 		=> ['nullable', 'mimes:pdf','max:20000'],
- 																									'endereco'          			=> ['required', 'string', 'max:255'],
- 																									'num'               			=> ['required', 'integer'],
- 																									'bairro'            			=> ['required', 'max:255'],
- 																									'cidade'            			=> ['required', 'max:255'],
- 																									'uf'                			=> ['required', 'size:2'],
- 																									'polo'									  => ['nullable', 'string', 'max:255'],
- 																									'turno'								  	=> ['required', 'string', 'max:255'],
- 																									'cursoDeOrigem'						=> ['required', 'string', 'max:255'],
- 																									'instituicaoDeOrigem'    	=> ['required', 'string', 'max:255'],
- 																									'naturezaDaIes'						=> ['required', 'string', 'max:255'],
- 																								]);
- 					}
- 					elseif ($request->tipo == 'portadorDeDiploma') {
- 						$validatedData = $request->validate([ 'declaracaoDeVinculo' 		=> ['required', 'mimes:pdf','max:20000'],
- 																									'historicoEscolar' 				=> ['required', 'mimes:pdf','max:20000'],
- 																									'programaDasDisciplinas' 	=> ['required', 'mimes:pdf','max:20000'],
- 																									'curriculo' 				 			=> ['nullable', 'mimes:pdf','max:20000'],
- 																									'enem' 						 				=> ['required', 'mimes:pdf','max:20000'],
-																									'diploma' 						 		=> ['required', 'mimes:pdf','max:20000'],
- 																									'endereco'          			=> ['required', 'string', 'max:255'],
- 																									'num'               			=> ['required', 'integer'],
- 																									'bairro'            			=> ['required', 'max:255'],
- 																									'cidade'            			=> ['required', 'max:255'],
- 																									'uf'                			=> ['required', 'size:2'],
- 																									'polo'									  => ['nullable', 'string', 'max:255'],
- 																									'turno'								  	=> ['required', 'string', 'max:255'],
- 																									'cursoDeOrigem'						=> ['required', 'string', 'max:255'],
- 																									'instituicaoDeOrigem'   	=> ['required', 'string', 'max:255'],
- 																									'naturezaDaIes'						=> ['required', 'string', 'max:255'],
- 																								]);
- 					}
+        // campos comuns a todos
+        $request->validate([
+            'declaracaoDeVeracidade' => ['required', 'mimes:pdf','max:20000'],
+            'rg'                     => ['required', 'mimes:pdf','max:20000'],
+            'cpf'                    => ['nullable', 'mimes:pdf','max:20000'],
+            'quitacaoEleitoral'      => ['required', 'mimes:pdf','max:20000'],
+            'reservista'             => ['nullable', 'mimes:pdf','max:20000'],
+            'certidaoNascimento'     => ['required', 'mimes:pdf','max:20000'],
+        ]);
 
-					$mytime = Carbon::now('America/Recife');
- 	        $mytime = $mytime->toDateString();
-			 		$edital = Edital::find($request->editalId);
-					$existeInscricao = Inscricao::where('editalId', $request->editalId)
-																				->where('usuarioId', Auth::user()->id)
-																				->first();
-					if(!is_null($existeInscricao)){
-						return redirect()->route('home')->with('jsAlert', 'Você já possui uma inscrição cadastrada no edital.');
-					}
-					if(!(($edital->inicioInscricoes <= $mytime) && ($edital->fimInscricoes >= $mytime))){
-						return redirect()->route('home')->with('jsAlert', 'Este edital não está no periodo correto.');
-					}
+        if($request->tipo == 'reintegracao'){
+            $validatedData = $request->validate([
+                'declaracaoDeVinculo'    => ['nullable', 'mimes:pdf','max:20000'],
+                'historicoEscolar'       => ['required', 'mimes:pdf','max:20000'],
+                'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:20000'],
+                'curriculo'              => ['nullable', 'mimes:pdf','max:20000'],
+                'enem'                   => ['nullable', 'mimes:pdf','max:20000'],
+                'diploma'                => ['nullable', 'mimes:pdf','max:20000'],
+                'endereco'               => ['required', 'string', 'max:255'],
+                'num'                    => ['required', 'integer'],
+                'bairro'                 => ['required', 'max:255'],
+                'cidade'                 => ['required', 'max:255'],
+                'uf'                     => ['required', 'size:2'],
+                'polo'                   => ['nullable', 'string', 'max:255'],
+                'turno'                  => ['required', 'string', 'max:255'],
+                'cursoDeOrigem'          => ['required', 'string', 'max:255'],
+                'instituicaoDeOrigem'    => ['required', 'string', 'max:255'],
+                'naturezaDaIes'          => ['required', 'string', 'max:255'],
+            ]);
+        }
+        elseif ($request->tipo == 'transferenciaInterna') {
+            $validatedData = $request->validate([
+                'declaracaoDeVinculo'    => ['required', 'mimes:pdf','max:20000'],
+                'historicoEscolar'       => ['required', 'mimes:pdf','max:20000'],
+                'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:20000'],
+                'curriculo'              => ['nullable', 'mimes:pdf','max:20000'],
+                'enem'                   => ['nullable', 'mimes:pdf','max:20000'],
+                'diploma'                => ['nullable', 'mimes:pdf','max:20000'],
+                'endereco'               => ['required', 'string', 'max:255'],
+                'num'                    => ['required', 'integer'],
+                'bairro'                 => ['required', 'max:255'],
+                'cidade'                 => ['required', 'max:255'],
+                'uf'                     => ['required', 'size:2'],
+                'polo'                   => ['nullable', 'string', 'max:255'],
+                'turno'                  => ['required', 'string', 'max:255'],
+                'cursoDeOrigem'          => ['required', 'string', 'max:255'],
+                'instituicaoDeOrigem'    => ['required', 'string', 'max:255'],
+                'naturezaDaIes'          => ['required', 'string', 'max:255'],
+            ]);
+        }
+        elseif ($request->tipo == 'transferenciaExterna') {
+            // enade historicoGraduacao curriculo vinculo programa historioMedio
+            $validatedData = $request->validate([
+                'declaracaoDeVinculo'    => ['required', 'mimes:pdf','max:20000'],
+                'declaracaoENADE'        => ['required', 'mimes:pdf','max:20000'],
+                'historicoEscolar'       => ['required', 'mimes:pdf','max:20000'],
+                'historicoEnsinoMedio'   => ['required', 'mimes:pdf','max:20000'],
+                'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:20000'],
+                'curriculo'              => ['required', 'mimes:pdf','max:20000'],
+                'enem'                   => ['nullable', 'mimes:pdf','max:20000'],
+                'diploma'                => ['nullable', 'mimes:pdf','max:20000'],
+                'endereco'               => ['required', 'string', 'max:255'],
+                'num'                    => ['required', 'integer'],
+                'bairro'                 => ['required', 'max:255'],
+                'cidade'                 => ['required', 'max:255'],
+                'uf'                     => ['required', 'size:2'],
+                'polo'                   => ['nullable', 'string', 'max:255'],
+                'turno'                  => ['required', 'string', 'max:255'],
+                'cursoDeOrigem'          => ['required', 'string', 'max:255'],
+                'instituicaoDeOrigem'    => ['required', 'string', 'max:255'],
+                'naturezaDaIes'          => ['required', 'string', 'max:255'],
+            ]);
+        }
+        elseif ($request->tipo == 'portadorDeDiploma') {
+            $validatedData = $request->validate([
+                'historicoEscolar' 		 => ['required', 'mimes:pdf','max:20000'],
+                'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:20000'],
+                'diploma' 				 => ['required', 'mimes:pdf','max:20000'],
+                'endereco'          	 => ['required', 'string', 'max:255'],
+                'num'               	 => ['required', 'integer'],
+                'bairro'            	 => ['required', 'max:255'],
+                'cidade'            	 => ['required', 'max:255'],
+                'uf'                	 => ['required', 'size:2'],
+                'polo'					 => ['nullable', 'string', 'max:255'],
+                'turno'					 => ['required', 'string', 'max:255'],
+                'cursoDeOrigem'		     => ['required', 'string', 'max:255'],
+                'instituicaoDeOrigem'    => ['required', 'string', 'max:255'],
+                'naturezaDaIes'			 => ['required', 'string', 'max:255'],
+            ]);
+        }
 
-
-					$inscricao = '';
-
-	  	 	  if(!strcmp($request->tipo, 'reintegracao')){
-
-		  	    $file = $request->historicoEscolar;
-		  	    $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
-					  Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
-						$comprovante = '';
-						if($request->comprovante == 'isento'){
-							$comprovante = 'isento';
-						}
-						else{
-							$file = $request->comprovante;
-							$path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
-							Storage::putFileAs($path, $file, 'comprovante.pdf');
-							$comprovante = $path . '/comprovante.pdf';
-						}																																									//criar inscricao no banco
-
-					  $inscricao = Inscricao::create([
-					  	'usuarioId'              => Auth::user()->id,
-					  	'tipo'					  			 => $request->tipo,
-					  	'editalId'               => $request->editalId,
-					  	'historicoEscolar'       => $path . '/historicoEscolar.pdf',
-					  	'curso'								 	 => $request->curso,
-					  	'polo'									 => $request->polo,
-					  	'turno'								   => $request->turno,
-					  	'cursoDeOrigem'					 => $request->cursoDeOrigem,
-					  	'instituicaoDeOrigem'    => $request->instituicaoDeOrigem,
-					  	'naturezaDaIes'					 => $request->naturezaDaIes,
-							'endereco'							 => $request->endereco,
-							'num'									   => $request->num,
-							'bairro'								 => $request->bairro,
-							'cidade'								 => $request->cidade,
-							'uf'								  	 => $request->uf,
-							'homologado'						 => 'nao',
-							'homologadoDrca'			 	 => 'nao',
-							'coeficienteDeRendimento'=> 'nao',
-							'comprovante'						 => $comprovante,
-					  ]);
-	    	  }
-
-	    	  elseif(!strcmp($request->tipo, 'transferenciaInterna')) {
-					  $file = $request->historicoEscolar;
-			  	  $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
-					  Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
-					  $file = $request->declaracaoDeVinculo;
-			  	  $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
-					  Storage::putFileAs($path, $file, 'declaracaoDeVinculo.pdf');
-						$comprovante = '';
-						if($request->comprovante == 'isento'){
-							$comprovante = 'isento';
-						}
-						else{
-							$file = $request->comprovante;
-							$path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
-							Storage::putFileAs($path, $file, 'comprovante.pdf');
-							$comprovante = $path . '/comprovante.pdf';
-						}
+        $mytime = Carbon::now('America/Recife');
+        $mytime = $mytime->toDateString();
+        $edital = Edital::find($request->editalId);
+        $existeInscricao = Inscricao::where('editalId', $request->editalId)
+                                        ->where('usuarioId', Auth::user()->id)
+                                        ->first();
+        if(!is_null($existeInscricao)){
+            return redirect()->route('home')->with('jsAlert', 'Você já possui uma inscrição cadastrada no edital.');
+        }
+        if(!(($edital->inicioInscricoes <= $mytime) && ($edital->fimInscricoes >= $mytime))){
+            return redirect()->route('home')->with('jsAlert', 'Este edital não está no periodo correto.');
+        }
 
 
-					  $inscricao = Inscricao::create([
-					  	'usuarioId'              => Auth::user()->id,
-					  	'tipo'					   			 => $request->tipo,
-					  	'editalId'               => $request->editalId,
-					  	'historicoEscolar'       => $path . '/historicoEscolar.pdf',
-					  	'declaracaoDeVinculo'    => $path . '/declaracaoDeVinculo.pdf',
-							'curso'									 => $request->curso,
-							'polo'									 => $request->polo,
-							'turno'									 => $request->turno,
-							'cursoDeOrigem'					 => $request->cursoDeOrigem,
-							'instituicaoDeOrigem'    => $request->instituicaoDeOrigem,
-							'naturezaDaIes'					 => $request->naturezaDaIes,
-							'endereco'							 => $request->endereco,
-							'num'									   => $request->num,
-							'bairro'								 => $request->bairro,
-							'cidade'								 => $request->cidade,
-							'uf'								  	 => $request->uf,
-							'homologado'						 => 'nao',
-							'homologadoDrca'			 	 => 'nao',
-							'coeficienteDeRendimento'=> 'nao',
-							'comprovante'						 => $comprovante,
-						]);
+        $inscricao = '';
 
-	    	  }
+        $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
+        $cpf = null;
+        $reservista = null;
+        if ($request->hasFile('cpf')) {
+            Storage::putFileAs($path, $request->cpf, 'cpf.pdf');
+            $cpf = $path . '/cpf.pdf';
+        }
+        if ($request->hasFile('reservista')) {
+            Storage::putFileAs($path, $request->reservista, 'reservista.pdf');
+            $reservista = $path . '/reservista.pdf';
+        }
+        Storage::putFileAs($path, $request->rg, 'rg.pdf');
+        Storage::putFileAs($path, $request->declaracaoDeVeracidade, 'declaracaoDeVeracidade.pdf');
+        Storage::putFileAs($path, $request->quitacaoEleitoral, 'quitacaoEleitoral.pdf');
+        Storage::putFileAs($path, $request->certidaoNascimento, 'certidaoNascimento.pdf');
 
-	    	  elseif(!strcmp($request->tipo, 'transferenciaExterna')) {
-					  $file = $request->historicoEscolar;
-			  	  $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
-					  Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
-					  $file = $request->declaracaoDeVinculo;
-			  	  $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
-					  Storage::putFileAs($path, $file, 'declaracaoDeVinculo.pdf');
-					  $file = $request->programaDasDisciplinas;
-			  	  $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
-					  Storage::putFileAs($path, $file, 'programaDasDisciplinas.pdf');
-					  $file = $request->curriculo;
-			  	  $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
-					  Storage::putFileAs($path, $file, 'curriculo.pdf');
-						$comprovante = '';
-						if($request->comprovante == 'isento'){
-							$comprovante = 'isento';
-						}
-						else{
-							$file = $request->comprovante;
-							$path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
-							Storage::putFileAs($path, $file, 'comprovante.pdf');
-							$comprovante = $path . '/comprovante.pdf';
-						}
+        if(!strcmp($request->tipo, 'reintegracao')){
+            $file = $request->historicoEscolar;
 
-					  $inscricao = Inscricao::create([
-					  	'usuarioId'              => Auth::user()->id,
-					  	'tipo'         			 		 => $request->tipo,
-					  	'editalId'               => $request->editalId,
-					  	'historicoEscolar'       => $path . '/historicoEscolar.pdf',
-					  	'declaracaoDeVinculo'    => $path . '/declaracaoDeVinculo.pdf',
-					  	'programaDasDisciplinas' => $path . '/programaDasDisciplinas.pdf',
-					  	'curriculo'              => $path . '/curriculo.pdf',
-							'curso'									 => $request->curso,
-							'polo'									 => $request->polo,
-							'turno'									 => $request->turno,
-							'cursoDeOrigem'					 => $request->cursoDeOrigem,
-							'instituicaoDeOrigem'    => $request->instituicaoDeOrigem,
-							'naturezaDaIes'					 => $request->naturezaDaIes,
-							'endereco'							 => $request->endereco,
-							'num'									   => $request->num,
-							'bairro'								 => $request->bairro,
-							'cidade'								 => $request->cidade,
-							'uf'								  	 => $request->uf,
-							'homologado'						 => 'nao',
-							'homologadoDrca'			 	 => 'nao',
-							'coeficienteDeRendimento'=> 'nao',
-							'comprovante'						 => $comprovante,
-					  ]);
+            Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
+            $comprovante = '';
+            if($request->comprovante == 'isento'){
+                $comprovante = 'isento';
+            }
+            else{
+                $file = $request->comprovante;
+                Storage::putFileAs($path, $file, 'comprovante.pdf');
+                $comprovante = $path . '/comprovante.pdf';
+            }																																									//criar inscricao no banco
 
-	    	  }
+            $inscricao = Inscricao::create([
+                'usuarioId'              => Auth::user()->id,
+                'tipo'					 => $request->tipo,
+                'editalId'               => $request->editalId,
+                'historicoEscolar'       => $path . '/historicoEscolar.pdf',
+                'curso'					 => $request->curso,
+                'polo'					 => $request->polo,
+                'turno'					 => $request->turno,
+                'cursoDeOrigem'			 => $request->cursoDeOrigem,
+                'instituicaoDeOrigem'    => $request->instituicaoDeOrigem,
+                'naturezaDaIes'			 => $request->naturezaDaIes,
+                'endereco'				 => $request->endereco,
+                'num'					 => $request->num,
+                'bairro'				 => $request->bairro,
+                'cidade'				 => $request->cidade,
+                'uf'					 => $request->uf,
+                'homologado'			 => 'nao',
+                'homologadoDrca'		 => 'nao',
+                'comprovante'			 => $comprovante,
+                'rg'                     => $path . '/rg.pdf',
+                'declaracaoDeVeracidade' => $path . '/declaracaoDeVeracidade.pdf',
+                'quitacaoEleitoral'      => $path . '/quitacaoEleitoral.pdf',
+                'certidaoNascimento'     => $path . '/certidaoNascimento.pdf',
+                'cpf'                    => $cpf,
+                'reservista'             => $reservista,
+            ]);
+        }
+        elseif(!strcmp($request->tipo, 'transferenciaInterna')) {
+            $file = $request->historicoEscolar;
+            Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
+            $file = $request->declaracaoDeVinculo;
+            Storage::putFileAs($path, $file, 'declaracaoDeVinculo.pdf');
+            $comprovante = '';
+            if($request->comprovante == 'isento'){
+                $comprovante = 'isento';
+            }
+            else{
+                $file = $request->comprovante;
+                $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
+                Storage::putFileAs($path, $file, 'comprovante.pdf');
+                $comprovante = $path . '/comprovante.pdf';
+            }
+            $inscricao = Inscricao::create([
+                'usuarioId'              => Auth::user()->id,
+                'tipo'					   			 => $request->tipo,
+                'editalId'               => $request->editalId,
+                'historicoEscolar'       => $path . '/historicoEscolar.pdf',
+                'declaracaoDeVinculo'    => $path . '/declaracaoDeVinculo.pdf',
+                'curso'									 => $request->curso,
+                'polo'									 => $request->polo,
+                'turno'									 => $request->turno,
+                'cursoDeOrigem'					 => $request->cursoDeOrigem,
+                'instituicaoDeOrigem'    => $request->instituicaoDeOrigem,
+                'naturezaDaIes'					 => $request->naturezaDaIes,
+                'endereco'							 => $request->endereco,
+                'num'									   => $request->num,
+                'bairro'								 => $request->bairro,
+                'cidade'								 => $request->cidade,
+                'uf'								  	 => $request->uf,
+                'homologado'						 => 'nao',
+                'homologadoDrca'			 	 => 'nao',
+                'comprovante'						 => $comprovante,
+                'rg'                     => $path . '/rg.pdf',
+                'declaracaoDeVeracidade' => $path . '/declaracaoDeVeracidade.pdf',
+                'quitacaoEleitoral'      => $path . '/quitacaoEleitoral.pdf',
+                'certidaoNascimento'     => $path . '/certidaoNascimento.pdf',
+                'cpf'                    => $cpf,
+                'reservista'             => $reservista,
+            ]);
+        }
+        elseif(!strcmp($request->tipo, 'transferenciaExterna')) {
+            $file = $request->historicoEscolar;
+            Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
+            $file = $request->declaracaoDeVinculo;
+            Storage::putFileAs($path, $file, 'declaracaoDeVinculo.pdf');
+            Storage::putFileAs($path, $request->declaracaoENADE, 'declaracaoENADE.pdf');
+            Storage::putFileAs($path, $request->historicoEnsinoMedio, 'historicoEnsinoMedio.pdf');
+            $programaDasDisciplinas = null;
+            if ($request->hasFile('programaDasDisciplinas')) {
+                Storage::putFileAs($path, $file, 'programaDasDisciplinas.pdf');
+                $programaDasDisciplinas = $path . '/programaDasDisciplinas.pdf';
+            }
+            $declaracaoENADE = null;
+            if ($request->hasFile('declaracaoENADE')) {
+                Storage::putFileAs($path, $file, 'declaracaoENADE.pdf');
+                $declaracaoENADE = $path . '/declaracaoENADE.pdf';
+            }
+            $file = $request->curriculo;
+            Storage::putFileAs($path, $file, 'curriculo.pdf');
+            $comprovante = '';
+            if($request->comprovante == 'isento'){
+                $comprovante = 'isento';
+            } else {
+                $file = $request->comprovante;
+                Storage::putFileAs($path, $file, 'comprovante.pdf');
+                $comprovante = $path . '/comprovante.pdf';
+            }
+            $inscricao = Inscricao::create([
+                'usuarioId'              => Auth::user()->id,
+                'tipo'         			 => $request->tipo,
+                'editalId'               => $request->editalId,
+                'historicoEscolar'       => $path . '/historicoEscolar.pdf',
+                'declaracaoDeVinculo'    => $path . '/declaracaoDeVinculo.pdf',
+                'programaDasDisciplinas' => $programaDasDisciplinas,
+                'curriculo'              => $path . '/curriculo.pdf',
+                'curso'					 => $request->curso,
+                'polo'					 => $request->polo,
+                'turno'					 => $request->turno,
+                'cursoDeOrigem'			 => $request->cursoDeOrigem,
+                'instituicaoDeOrigem'    => $request->instituicaoDeOrigem,
+                'naturezaDaIes'			 => $request->naturezaDaIes,
+                'endereco'				 => $request->endereco,
+                'num'					 => $request->num,
+                'bairro'				 => $request->bairro,
+                'cidade'				 => $request->cidade,
+                'uf'					 => $request->uf,
+                'homologado'			 => 'nao',
+                'homologadoDrca'		 => 'nao',
+                'comprovante'			 => $comprovante,
+                'declaracaoENADE'        => $declaracaoENADE,
+                'historicoEnsinoMedio'   => $path . '/historicoEnsinoMedio.pdf',
+                'rg'                     => $path . '/rg.pdf',
+                'declaracaoDeVeracidade' => $path . '/declaracaoDeVeracidade.pdf',
+                'quitacaoEleitoral'      => $path . '/quitacaoEleitoral.pdf',
+                'certidaoNascimento'     => $path . '/certidaoNascimento.pdf',
+                'cpf'                    => $cpf,
+                'reservista'             => $reservista,
+        ]);
 
-	    	  elseif(!strcmp($request->tipo, 'portadorDeDiploma')) {
-    	  	  $file = $request->historicoEscolar;
-		  	    $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
-					  Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
-					  $file = $request->declaracaoDeVinculo;
-		  	    $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
-					  Storage::putFileAs($path, $file, 'declaracaoDeVinculo.pdf');
-					  $file = $request->programaDasDisciplinas;
-		  	    $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
-					  Storage::putFileAs($path, $file, 'programaDasDisciplinas.pdf');
-					  $file = $request->enem;
-		  	    $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
-					  Storage::putFileAs($path, $file, 'enem.pdf');
-						$file = $request->diploma;
-		  	    $path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
-					  Storage::putFileAs($path, $file, 'diploma.pdf');
-						$comprovante = '';
-						if($request->comprovante == 'isento'){
-							$comprovante = 'isento';
-						}
-						else{
-							$file = $request->comprovante;
-							$path = 'inscricoes/' . Auth::user()->id . '/' . $request->editalId;
-							Storage::putFileAs($path, $file, 'comprovante.pdf');
-							$comprovante = $path . '/comprovante.pdf';
-						}
+        } elseif(!strcmp($request->tipo, 'portadorDeDiploma')) {
+            $file = $request->historicoEscolar;
+            Storage::putFileAs($path, $file, 'historicoEscolar.pdf');
+            $programaDasDisciplinas = null;
+            if ($request->hasFile('programaDasDisciplinas')) {
+                Storage::putFileAs($path, $file, 'programaDasDisciplinas.pdf');
+                $programaDasDisciplinas = $path . '/programaDasDisciplinas.pdf';
+            }
+            $file = $request->diploma;
+            Storage::putFileAs($path, $file, 'diploma.pdf');
+            $comprovante = '';
+            if($request->comprovante == 'isento'){
+                $comprovante = 'isento';
+            }
+            else{
+                $file = $request->comprovante;
+                Storage::putFileAs($path, $file, 'comprovante.pdf');
+                $comprovante = $path . '/comprovante.pdf';
+            }
 
-					  $inscricao = Inscricao::create([
-					  	'usuarioId'              => Auth::user()->id,
-					  	'tipo'					    		 => $request->tipo,
-					  	'editalId'               => $request->editalId,
-					  	'historicoEscolar'       => $path . '/historicoEscolar.pdf',
-					  	'declaracaoDeVinculo'    => $path . '/declaracaoDeVinculo.pdf',
-					  	'programaDasDisciplinas' => $path . '/programaDasDisciplinas.pdf',
-							'enem'                   => $path . '/enem.pdf',
-					  	'diploma'                => $path . '/diploma.pdf',
-							'curso'									 => $request->curso,
-							'polo'									 => $request->polo,
-							'turno'									 => $request->turno,
-							'cursoDeOrigem'					 => $request->cursoDeOrigem,
-							'instituicaoDeOrigem'    => $request->instituicaoDeOrigem,
-							'naturezaDaIes'					 => $request->naturezaDaIes,
-							'endereco'							 => $request->endereco,
-							'num'									   => $request->num,
-							'bairro'								 => $request->bairro,
-							'cidade'								 => $request->cidade,
-							'uf'								  	 => $request->uf,
-							'homologado'						 => 'nao',
-							'homologadoDrca'			 	 => 'nao',
-							'coeficienteDeRendimento'=> 'nao',
-							'comprovante'						 => $comprovante,
-					  ]);
-
-	    	  }
+            $inscricao = Inscricao::create([
+                'usuarioId'              => Auth::user()->id,
+                'tipo'					 => $request->tipo,
+                'editalId'               => $request->editalId,
+                'historicoEscolar'       => $path . '/historicoEscolar.pdf',
+                'programaDasDisciplinas' => $programaDasDisciplinas,
+                'diploma'                => $path . '/diploma.pdf',
+                'curso'					 => $request->curso,
+                'polo'					 => $request->polo,
+                'turno'					 => $request->turno,
+                'cursoDeOrigem'			 => $request->cursoDeOrigem,
+                'instituicaoDeOrigem'    => $request->instituicaoDeOrigem,
+                'naturezaDaIes'			 => $request->naturezaDaIes,
+                'endereco'				 => $request->endereco,
+                'num'					 => $request->num,
+                'bairro'				 => $request->bairro,
+                'cidade'				 => $request->cidade,
+                'uf'					 => $request->uf,
+                'homologado'			 => 'nao',
+                'homologadoDrca'		 => 'nao',
+                'comprovante'			 => $comprovante,
+                'rg'                     => $path . '/rg.pdf',
+                'declaracaoDeVeracidade' => $path . '/declaracaoDeVeracidade.pdf',
+                'quitacaoEleitoral'      => $path . '/quitacaoEleitoral.pdf',
+                'certidaoNascimento'     => $path . '/certidaoNascimento.pdf',
+                'cpf'                    => $cpf,
+                'reservista'             => $reservista,
+            ]);
+        }
 
 
-					$edital = Edital::find($request->editalId);
-					$nomeEdital = explode(".pdf", $edital->nome);
-					$mytime = Carbon::now('America/Recife');
-					$mytime = $mytime->toDateString();
-					$emails = $this->api->getEmailsPreg();
-					// foreach ($emails as $key) {
-					// 	Mail::to($key)->send(new NovaInscricao($nomeEdital[0]));
-					// }
-					$dados = DadosUsuario::find(Auth::user()->dados);
-					$cursos = $this->api->getCursos();
-					$curso = $inscricao->curso;
-					$inscricao->situacao = 'processando';
-					$inscricao->save();
-					for($j = 0; $j < sizeof($cursos); $j++){
-						if($curso == $cursos[$j]['id']){
-							$curso = $cursos[$j]['nome'] . '/' . $cursos[$j]['departamento'];
-						}
-					}
-					return view('confirmacaoInscricao', [
-																								'editalId' => $request->editalId,
-																								'mytime'	 => $mytime,
-																								'inscricao'=> $inscricao,
-																								'dados'		 => $dados,
-																								'curso'	   => $curso,
-																							]);
-					return redirect()->route('home')->with('jsAlert', 'Inscrição realizada com sucesso!');
-		}
+        $edital = Edital::find($request->editalId);
+        $nomeEdital = explode(".pdf", $edital->nome);
+        $mytime = Carbon::now('America/Recife');
+        $mytime = $mytime->toDateString();
+        $emails = $this->api->getEmailsPreg();
+        // foreach ($emails as $key) {
+        // 	Mail::to($key)->send(new NovaInscricao($nomeEdital[0]));
+        // }
+        $dados = DadosUsuario::find(Auth::user()->dados);
+        $cursos = $this->api->getCursos();
+        $curso = $inscricao->curso;
+        $inscricao->situacao = 'processando';
+        $inscricao->save();
+        for($j = 0; $j < sizeof($cursos); $j++){
+            if($curso == $cursos[$j]['id']){
+                $curso = $cursos[$j]['nome'] . '/' . $cursos[$j]['departamento'];
+            }
+        }
+        return view('confirmacaoInscricao', [
+            'editalId' => $request->editalId,
+            'mytime'	 => $mytime,
+            'inscricao'=> $inscricao,
+            'dados'		 => $dados,
+            'curso'	   => $curso,
+        ]);
+        return redirect()->route('home')->with('jsAlert', 'Inscrição realizada com sucesso!');
+    }
 
 	public function cadastroDesempate(Request $request){
 		$idsEmpatados = explode(',',$request->idsEmpatados);
@@ -511,7 +547,7 @@ class InscricaoController extends Controller
 			if(!strcmp($request->homologado, 'rejeitado')){
 				$validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);
 				$inscricao->homologado = 'rejeitado';
-				$inscricao->classificacao = 'rejeitado';
+				//$inscricao->classificacao = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
 				$inscricao->save();
 				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso!');
@@ -520,7 +556,7 @@ class InscricaoController extends Controller
 				$inscricao->homologado = 'aprovado';
 				if($inscricao->tipo != 'reintegracao'){
 					$inscricao->homologadoDrca = 'aprovado';
-					$inscricao->classificacao = 'processando';
+					//$inscricao->classificacao = 'processando';
 				}
 				$inscricao->save();
 				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso!');
@@ -528,7 +564,7 @@ class InscricaoController extends Controller
 		}
 		if(!strcmp($request->tipo, 'drca')){
 			if(!strcmp($request->homologado, 'rejeitado')){
-				$inscricao->classificacao = 'rejeitado';
+				//$inscricao->classificacao = 'rejeitado';
 				$inscricao->homologadoDrca = 'rejeitado';
 				$inscricao->motivoRejeicao = $request->motivoRejeicao;
 				$inscricao->save();
@@ -536,7 +572,7 @@ class InscricaoController extends Controller
 			}
 			else{
 				$inscricao->homologadoDrca = 'aprovado';
-				$inscricao->classificacao = 'processando';
+				//$inscricao->classificacao = 'processando';
 				$inscricao->save();
 				return redirect()->route('home')->with('jsAlert', 'Inscrição homologada com sucesso!');
 			}

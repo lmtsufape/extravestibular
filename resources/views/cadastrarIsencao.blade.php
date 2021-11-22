@@ -70,13 +70,15 @@
     <!-- checkboxRenda -->
     <div class="row justify-content-center">
       <div class="col-sm-10">
-        <input <?php if(old('checkboxRenda')){echo('checked');} ?> id="checkboxRenda" onclick="escolher('renda')" name="checkboxRenda"  value="rendaFamiliar" type="checkbox" > Renda familiar per capita igual ou inferior a um salário mínimo e meio. <br>
+        <input type="hidden" name="checkboxRenda" value="rendaFamiliar">
+        <input checked onclick="return false;" id="checkboxRenda" name="checkboxRenda"  value="rendaFamiliar" type="checkbox" > Renda familiar per capita igual ou inferior a um salário mínimo e meio. <br>
       </div>
     </div><!-- end checkboxRenda -->
     <!-- checkboxEnsino -->
     <div class="row justify-content-center">
       <div class="col-sm-10">
-        <input <?php if(old('checkboxEnsino')){echo('checked');}?> id="checkboxEnsino" onclick="escolher('ensino')" name="checkboxEnsino" value="ensinoMedio" type="checkbox" > Ter cursado o ensino médio completo em escola da rede pública ou como bolsista integral em escola da rede privada. <br>
+        <input type="hidden" name="checkboxEnsino" value="ensinoMedio">
+        <input checked onclick="return false;" id="checkboxEnsino" name="checkboxEnsino" value="ensinoMedio" type="checkbox" > Ter cursado o ensino médio completo em escola da rede pública ou como bolsista integral em escola da rede privada. <br>
       </div>
     </div><!-- end checkboxEnsino -->
 
@@ -613,47 +615,47 @@ function checkTrueAmbos(){
   }
 }
 
-function escolher(x) {
-	if (x == "renda") {
-    if(document.getElementById("checkboxRenda").checked == true){
-      document.getElementById("dadosEconomicos").style.display = "";
-      document.getElementById("nucleo").style.display = "";
-      document.getElementById("nucleo1").style.display = "";
-    }
-    else{
-      document.getElementById("dadosEconomicos").style.display = "none";
-      document.getElementById("nucleo").style.display = "none";
-      document.getElementById("nucleo1").style.display = "none";
-    }
+// function escolher(x) {
+// 	if (x == "renda") {
+//     if(document.getElementById("checkboxRenda").checked == true){
+//       document.getElementById("dadosEconomicos").style.display = "";
+//       document.getElementById("nucleo").style.display = "";
+//       document.getElementById("nucleo1").style.display = "";
+//     }
+//     else{
+//       document.getElementById("dadosEconomicos").style.display = "none";
+//       document.getElementById("nucleo").style.display = "none";
+//       document.getElementById("nucleo1").style.display = "none";
+//     }
 
-	}
-	if (x == "ensino") {
-    if(document.getElementById("checkboxEnsino").checked == true){
-      document.getElementById("historicoEscolar").style.display = "";
-    }
-    else{
-      document.getElementById("historicoEscolar").style.display = "none";
+// 	}
+// 	if (x == "ensino") {
+//     if(document.getElementById("checkboxEnsino").checked == true){
+//       document.getElementById("historicoEscolar").style.display = "";
+//     }
+//     else{
+//       document.getElementById("historicoEscolar").style.display = "none";
 
-    }
-	}
-  if(document.getElementById("checkboxRenda").checked == true && document.getElementById("checkboxEnsino").checked == true){
-    document.getElementById("finalizar").disabled = false;
-    document.getElementById("tipo").value = "ambos";
-  }
-  else if (document.getElementById("checkboxRenda").checked == true ) {
-    document.getElementById("finalizar").disabled = false;
-    document.getElementById("tipo").value = "rendaFamiliar";
-  }
-  else{
-    document.getElementById("tipo").value = "ensinoMedio";
-    document.getElementById("finalizar").disabled = false;
-  }
+//     }
+// 	}
+//   if(document.getElementById("checkboxRenda").checked == true && document.getElementById("checkboxEnsino").checked == true){
+//     document.getElementById("finalizar").disabled = false;
+//     document.getElementById("tipo").value = "ambos";
+//   }
+//   else if (document.getElementById("checkboxRenda").checked == true ) {
+//     document.getElementById("finalizar").disabled = false;
+//     document.getElementById("tipo").value = "rendaFamiliar";
+//   }
+//   else{
+//     document.getElementById("tipo").value = "ensinoMedio";
+//     document.getElementById("finalizar").disabled = false;
+//   }
 
-  if(document.getElementById("checkboxRenda").checked == false && document.getElementById("checkboxEnsino").checked == false){
-    document.getElementById("finalizar").disabled = true;
-  }
+//   if(document.getElementById("checkboxRenda").checked == false && document.getElementById("checkboxEnsino").checked == false){
+//     document.getElementById("finalizar").disabled = true;
+//   }
 
-}
+// }
 
 checkTrueRenda();
 checkTrueEnsino();

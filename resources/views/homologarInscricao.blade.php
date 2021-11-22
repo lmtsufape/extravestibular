@@ -403,10 +403,90 @@
                         </td>
                     </div>
                   </tr>
+                  <tr <?php if($inscricao->historicoEnsinoMedio == null){echo('style="display: none"');} ?> >
+                    <div class="form-group row" >
+                        <td>
+                          <label for="historicoEnsinoMedio" >{{ __('Histórico e Certificado de conclusão do ensino médio') }}</label>
+                        </td>
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->historicoEnsinoMedio])}}" target="_blank">Abrir arquivo</a>
+                        </td>
+                    </div>
+                  </tr>
+                  <tr <?php if($inscricao->certidaoNascimento == null){echo('style="display: none"');} ?> >
+                    <div class="form-group row" >
+                        <td>
+                          <label for="certidaoNascimento" >{{ __('Certidão de nascimento ou registro de casamento') }}</label>
+                        </td>
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->certidaoNascimento])}}" target="_blank">Abrir arquivo</a>
+                        </td>
+                    </div>
+                  </tr>
+                  <tr <?php if($inscricao->reservista == null){echo('style="display: none"');} ?> >
+                    <div class="form-group row" >
+                        <td>
+                          <label for="reservista" >{{ __('Reservista') }}</label>
+                        </td>
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->reservista])}}" target="_blank">Abrir arquivo</a>
+                        </td>
+                    </div>
+                  </tr>
+                  <tr <?php if($inscricao->quitacaoEleitoral == null){echo('style="display: none"');} ?> >
+                    <div class="form-group row" >
+                        <td>
+                          <label for="quitacaoEleitoral" >{{ __('Certidão de quitação eleitoral') }}</label>
+                        </td>
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->quitacaoEleitoral])}}" target="_blank">Abrir arquivo</a>
+                        </td>
+                    </div>
+                  </tr>
+                  <tr <?php if($inscricao->cpf == null){echo('style="display: none"');} ?> >
+                    <div class="form-group row" >
+                        <td>
+                          <label for="cpf" >{{ __('CPF') }}</label>
+                        </td>
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->cpf])}}" target="_blank">Abrir arquivo</a>
+                        </td>
+                    </div>
+                  </tr>
+                  <tr <?php if($inscricao->rg == null){echo('style="display: none"');} ?> >
+                    <div class="form-group row" >
+                        <td>
+                          <label for="rg" >{{ __('RG') }}</label>
+                        </td>
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->rg])}}" target="_blank">Abrir arquivo</a>
+                        </td>
+                    </div>
+                  </tr>
+                  <tr <?php if($inscricao->declaracaoDeVeracidade == null){echo('style="display: none"');} ?> >
+                    <div class="form-group row" >
+                        <td>
+                          <label for="declaracaoDeVeracidade" >{{ __('Declaração de Veracidade') }}</label>
+                        </td>
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->declaracaoDeVeracidade])}}" target="_blank">Abrir arquivo</a>
+                        </td>
+                    </div>
+                  </tr>
+                  <tr <?php if($inscricao->declaracaoENADE == null){echo('style="display: none"');} ?> >
+                    <div class="form-group row" >
+                        <td>
+                          <label for="declaracaoENADE" >{{ __('Declaração de regularidade com o Exame Nacional de Desempenho dos Estudantes (ENADE).') }}</label>
+                        </td>
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->declaracaoENADE])}}" target="_blank">Abrir arquivo</a>
+                        </td>
+                    </div>
+                  </tr>
                   <tr <?php if($inscricao->historicoEscolar == ''){echo('style="display: none"');} ?> >
                     <div class="form-group row" >
                       <td>
-                        <label for="historicoEscolar" >{{ __('Histórico Escolar') }}</label>
+                        <label for="historicoEscolar" >{{ __('Histórico escolar do curso de graduação') }}</label>
                       </td>
                       <td>
                         <a href="{{ route('download', ['file' => $inscricao->historicoEscolar])}}" target="_new">Abrir arquivo</a>
