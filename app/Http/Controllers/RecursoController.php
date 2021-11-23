@@ -85,7 +85,6 @@ class RecursoController extends Controller
 
     public function homologarRecurso(Request $request){
       $this->authorize('homologarRecurso', Recurso::class);
-
       if($request->radioRecurso == 'rejeitado'){
         $validatedData = $request->validate([ 'motivoRejeicao' => ['required', 'string']]);
       }
@@ -100,13 +99,13 @@ class RecursoController extends Controller
       }
       if($recurso->tipo == 'classificacao'){
         $inscricao = Inscricao::where('editalId', $recurso->editalId)->where('usuarioId', $recurso->usuarioId)->first();
-        $inscricao->coeficienteDeRendimento = 'nao';
+        $inscricao->coeficienteDeRendimento = 0;
         $inscricao->nota = null;
         $inscricao->save();
       }
       if ($recurso->tipo == 'resultado') {
         $inscricao = Inscricao::where('usuarioId', $recurso->usuarioId)->where('editalId', $recurso->editalId)->first();
-        $inscricao->coeficienteDeRendimento = 'nao';
+        $inscricao->coeficienteDeRendimento = 0;
         $inscricao->nota = null;
         $inscricao->save();
       }
