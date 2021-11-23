@@ -25,9 +25,9 @@
 @endsection
 @section('content')
 <style media="screen">
-  #checkPublicarEdital{
+  /* #checkPublicarEdital{
     margin-left:16%;
-  }
+  } */
   .checkbox{
     display: table;
   }
@@ -79,7 +79,7 @@
                 <span class="a-field__label-wrap">
                   <span class="a-field__label">Descrição do edital*</span>
                 </span>
-                <textarea class="form-control @error('descricao') is-invalid @enderror" form="formCadastro" name="descricao" id="taid" style="width:100%" >{{ $edital->descricao }}</textarea>
+                <textarea class="form-control @error('descricao') is-invalid @enderror" form="formCadastro" name="descricao" id="taid" style="width:100%" >{{ old('descricao', $edital->descricao) }}</textarea>
               </label>
               @error('descricao')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -91,15 +91,16 @@
 
           <!-- row input file -->
           <div class="row justify-content-center">
-            <div class="col-sm-2"style="">
+            <div class="col-sm-3"style="">
               <label for="pdfEdital" class=" col-form-label " style="margin-top: 20px; font-weight: bold;">
-                {{ __('Arquivo do Edital*:') }}
+                {{ __('Arquivo do Edital:') }}
               </label>
+              <a href="{{ route('download', ['file' => $edital->pdfEdital])}}" target="_new">Arquivo atual</a>
             </div>
 
             <div class="col-sm-6" style="margin-top: 20px;">
               <div class="custom-file">
-                <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="pdfEdital">
+                <input type="file" class="filestyle" data-placeholder="Para editar, envie um arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="pdfEdital">
               </div>
               @error('pdfEdital')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -108,8 +109,13 @@
               @enderror
             </div>
           </div><!-- end row input file -->
-
-
+          <!-- row publicar edital -->
+          <div class="row justify-content-center">
+            <div id="checkPublicarEdital" class="col-sm-9">
+                <input id="publicarEdital" @if($edital->publicado == 'sim') checked @endif class=""name="publicado" type="checkbox" value="sim" style=" margin-top:10px;">
+                <label for="publicarEdital" class="col-form-label text-md-right" style=" margin-top: 9px; font-weight: bold">{{old('publicado') }}{{__('Publicar o Edital') }}</label>
+            </div>
+          </div><!-- end row publicar edital -->
         </div><!--end card body -->
       </div><!-- card arquivo -->
     </div><!-- end row card arquivo -->
@@ -134,7 +140,7 @@
               </td>
               <td>
                 <label for="inicioIsencao" class="field a-field a-field_a2 page__field">
-                  <input value="{{ $edital->inicioIsencao }}" id="inicioIsencao" type="date" name="inicioIsencao" autofocus class="form-control @error('inicioIsencao') is-invalid @enderror field__input a-field__input" style="width: 10rem; height:100%">
+                  <input value="{{ old('inicioIsencao', $edital->inicioIsencao) }}" id="inicioIsencao" type="date" name="inicioIsencao" autofocus class="form-control @error('inicioIsencao') is-invalid @enderror field__input a-field__input" style="width: 10rem; height:100%">
                   <span class="a-field__label-wrap">
                     <span class="a-field__label"></span>
                   </span>
@@ -147,7 +153,7 @@
               </td>
               <td>
                 <label for="fimIsencao" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
-                  <input value="{{ $edital->fimIsencao }}" id="fimIsencao" type="date" name="fimIsencao" autofocus class="form-control @error('fimIsencao') is-invalid @enderror field__input a-field__input" style="width: 10rem; height:100%">
+                  <input value="{{ old('fimIsencao', $edital->fimIsencao) }}" id="fimIsencao" type="date" name="fimIsencao" autofocus class="form-control @error('fimIsencao') is-invalid @enderror field__input a-field__input" style="width: 10rem; height:100%">
                   <span class="a-field__label-wrap">
                     <span class="a-field__label"></span>
                   </span>
@@ -165,7 +171,7 @@
               </td>
               <td>
                 <label for="inicioRecursoIsencao" class="field a-field a-field_a2 page__field">
-                  <input value="{{ $edital->inicioRecursoIsencao }}" id="inicioRecursoIsencao" type="date" name="inicioRecursoIsencao" autofocus class="form-control @error('inicioRecursoIsencao') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                  <input value="{{ old('inicioRecursoIsencao', $edital->inicioRecursoIsencao) }}" id="inicioRecursoIsencao" type="date" name="inicioRecursoIsencao" autofocus class="form-control @error('inicioRecursoIsencao') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
                   <span class="a-field__label-wrap">
                     <span class="a-field__label"></span>
                   </span>
@@ -178,7 +184,7 @@
               </td>
               <td>
                 <label for="fimRecursoIsencao" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
-                  <input value="{{ $edital->fimRecursoIsencao }}" id="fimRecursoIsencao" type="date" name="fimRecursoIsencao" autofocus class="form-control @error('fimRecursoIsencao') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                  <input value="{{ old('fimRecursoIsencao', $edital->fimRecursoIsencao) }}" id="fimRecursoIsencao" type="date" name="fimRecursoIsencao" autofocus class="form-control @error('fimRecursoIsencao') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
                   <span class="a-field__label-wrap">
                     <span class="a-field__label"></span>
                   </span>
@@ -196,7 +202,7 @@
               </td>
               <td>
                 <label for="inicioInscricoes" class="field a-field a-field_a2 page__field">
-                  <input value="{{ $edital->inicioInscricoes }}" id="inicioInscricoes" type="date" name="inicioInscricoes" autofocus class="form-control @error('inicioInscricoes') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                  <input value="{{ old('inicioInscricoes', $edital->inicioInscricoes) }}" id="inicioInscricoes" type="date" name="inicioInscricoes" autofocus class="form-control @error('inicioInscricoes') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
                   <span class="a-field__label-wrap">
                     <span class="a-field__label"></span>
                   </span>
@@ -209,7 +215,7 @@
               </td>
               <td>
                 <label for="fimInscricoes" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
-                  <input value="{{ $edital->fimInscricoes }}" id="fimInscricoes" type="date" name="fimInscricoes" autofocus class="form-control @error('fimInscricoes') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                  <input value="{{ old('fimInscricoes', $edital->fimInscricoes) }}" id="fimInscricoes" type="date" name="fimInscricoes" autofocus class="form-control @error('fimInscricoes') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
                   <span class="a-field__label-wrap">
                     <span class="a-field__label"></span>
                   </span>
@@ -227,7 +233,7 @@
               </td>
               <td>
                 <label for="inicioRecurso" class="field a-field a-field_a2 page__field">
-                  <input value="{{ $edital->inicioRecurso }}" id="inicioRecurso" type="date" name="inicioRecurso" autofocus class="form-control @error('inicioRecurso') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                  <input value="{{ old('inicioRecurso', $edital->inicioRecurso) }}" id="inicioRecurso" type="date" name="inicioRecurso" autofocus class="form-control @error('inicioRecurso') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
                   <span class="a-field__label-wrap">
                     <span class="a-field__label"></span>
                   </span>
@@ -240,7 +246,7 @@
               </td>
               <td>
                 <label for="fimRecurso" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
-                  <input value="{{ $edital->fimRecurso }}" id="fimRecurso" type="date" name="fimRecurso" autofocus class="form-control @error('fimRecurso') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                  <input value="{{ old('fimRecurso', $edital->fimRecurso) }}" id="fimRecurso" type="date" name="fimRecurso" autofocus class="form-control @error('fimRecurso') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
                   <span class="a-field__label-wrap">
                     <span class="a-field__label"></span>
                   </span>
@@ -260,7 +266,7 @@
               </td>
               <td>
                 <label for="resultado" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
-                  <input value="{{ $edital->resultado }}" id="fimRecurso" type="date" name="resultado" autofocus class="form-control @error('resultado') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                  <input value="{{ old('resultado', $edital->resultado) }}" id="fimRecurso" type="date" name="resultado" autofocus class="form-control @error('resultado') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
                   <span class="a-field__label-wrap">
                     <span class="a-field__label"></span>
                   </span>
@@ -278,7 +284,7 @@
               </td>
               <td>
                 <label for="inicioRecursoResultado" class="field a-field a-field_a2 page__field">
-                  <input value="{{ $edital->inicioRecursoResultado }}" id="inicioRecursoResultado" type="date" name="inicioRecursoResultado" autofocus class="form-control @error('inicioRecursoResultado') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                  <input value="{{ old('inicioRecursoResultado', $edital->inicioRecursoResultado) }}" id="inicioRecursoResultado" type="date" name="inicioRecursoResultado" autofocus class="form-control @error('inicioRecursoResultado') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
                   <span class="a-field__label-wrap">
                     <span class="a-field__label"></span>
                   </span>
@@ -291,7 +297,7 @@
               </td>
               <td>
                 <label for="fimRecursoResultado" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
-                  <input value="{{ $edital->fimRecursoResultado }}" id="fimRecurso" type="date" name="fimRecursoResultado" autofocus class="form-control @error('fimRecursoResultado') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                  <input value="{{ old('fimRecursoResultado', $edital->fimRecursoResultado) }}" id="fimRecurso" type="date" name="fimRecursoResultado" autofocus class="form-control @error('fimRecursoResultado') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
                   <span class="a-field__label-wrap">
                     <span class="a-field__label"></span>
                   </span>
@@ -311,7 +317,7 @@
               </td>
               <td>
                 <label for="resultadoFinal" class="field a-field a-field_a2 page__field" style="margin-left: 25px;">
-                  <input value="{{ $edital->resultadoFinal }}" id="fimRecurso" type="date" name="resultadoFinal" autofocus class="form-control @error('resultadoFinal') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
+                  <input value="{{ old('resultadoFinal', $edital->resultadoFinal) }}" id="fimRecurso" type="date" name="resultadoFinal" autofocus class="form-control @error('resultadoFinal') is-invalid @enderror field__input a-field__input"  style="width: 10rem;">
                   <span class="a-field__label-wrap">
                     <span class="a-field__label"></span>
                   </span>

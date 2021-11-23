@@ -118,11 +118,17 @@
               @if($editaisAbertos)
                 @if($editaisAbertosFlag)
                   <tr style="background-color: #F7F7F7">
+                    @can('gerenciarEdital', $edital)
+                    <th style="width: 40%"> Nome</th><?php $editaisAbertosFlag = false;?>
+                    @else
                     <th style="width: 55%"> Nome</th><?php $editaisAbertosFlag = false;?>
+                    @endcan
                     <th style="width: 15%"> Publicação </th>
                     <th style="width: 15%"> Arquivo </th>
                     <th style="width: 15%"> Erratas </th>
-                  </tr>
+                    @can('gerenciarEdital', $edital)
+                    <th style="width: 15%"> Opções </th>
+                    @endcan
                 @endif
               @else
                 @if($editaisFinalizadosFlag)
@@ -132,10 +138,17 @@
                 </div>
                 <table class="table table-ordered table-hover">
                   <tr style="background-color: #F7F7F7">
+                    @can('gerenciarEdital', $edital)
+                    <th style="width: 40%"> Nome</th><?php $editaisFinalizadosFlag = false;?>
+                    @else
                     <th style="width: 55%"> Nome</th><?php $editaisFinalizadosFlag = false;?>
+                    @endcan
                     <th style="width: 15%"> Publicação </th>
                     <th style="width: 15%"> Arquivo </th>
                     <th style="width: 15%"> Erratas </th>
+                    @can('gerenciarEdital', $edital)
+                    <th style="width: 15%"> Opções </th>
+                    @endcan
                   </tr>
                 @endif
               @endif
@@ -188,6 +201,25 @@
                     .
                   @endif
                 </td>
+                @can('gerenciarEdital', $edital)
+                    <td>
+                        <a href="/editarEdital/{{$edital->nome}}"
+                           onclick="event.preventDefault();document.getElementById('editarEdital-form').submit();">
+                            {{ __('Editar') }}
+                        </a>
+                        <form id="editarEdital-form" action="{{route('editarEdital')}}" method="GET" style="display: none;">
+                            <input type="hidden" name="editalId" value="{{$edital->id}}">
+                        </form>
+                        <a href="{{ route('apagarEdital') }}"
+                           onclick="event.preventDefault();confirmarApagar();">
+                            {{ __('Excluir') }}
+                        </a>
+                        <form id="apagarEdital-form" action="{{ route('apagarEdital') }}" method="post" style="display: none;">
+                            @csrf
+                            <input type="hidden" name="editalId" value="{{$edital->id}}">
+                        </form>
+                    </td>
+                @endcan
               </tr>
             @endforeach
 

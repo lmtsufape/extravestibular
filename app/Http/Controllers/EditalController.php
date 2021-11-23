@@ -104,7 +104,7 @@ class EditalController extends Controller{
            $request->resultadoFinal == null
           ){
             $validatedData = $request->validate([
-                                                  'pdfEdital'               => ['required', 'mimes:pdf', 'max:20000'],
+                                                  'pdfEdital'               => ['nullable', 'mimes:pdf', 'max:20000'],
                                                   'inicioIsencao'           => ['required', 'date'],
                                                   'fimIsencao'              => ['required', 'date'],
                                                   'inicioRecursoIsencao'    => ['required', 'date'],
@@ -123,7 +123,7 @@ class EditalController extends Controller{
         }
         //validate para data oks
         $validatedData = $request->validate([
-                                                  'pdfEdital'               => ['required', 'mimes:pdf', 'max:20000'],
+                                                  'pdfEdital'               => ['nullable', 'mimes:pdf', 'max:20000'],
                                                   'inicioIsencao'           => ['required', 'date'],
                                                   'fimIsencao'              => ['required', 'date'],
                                                   'inicioRecursoIsencao'    => ['required', 'date'],
@@ -140,10 +140,15 @@ class EditalController extends Controller{
                                                   'checkVagasExistentes'    => ['required', 'string'],
                                             ]);
 
-        $file = $request->pdfEdital;
         $edital = Edital::find($request->editalId);
-        $path = 'editais/';
-        Storage::putFileAs($path, $file, $edital->nome);
+        if($request->hasFile('pdfEdital')) {
+            $path = 'editais/';
+            if(Storage::exists($edital->pdfEdital)) {
+                Storage::delete($edital->pdfEdital);
+            }
+            $file = $request->pdfEdital;
+            Storage::putFileAs($path, $file, $edital->nome);
+        }
         $vagas = "";
         for($i = 1; $i < $request->nCursos; $i++){
           $aux = "checkbox" . $i;
@@ -170,9 +175,11 @@ class EditalController extends Controller{
         }
 
 
-
+        if($request->publicado == 'sim')
+            $edital->publicado = 'sim';
+        else
+            $edital->publicado = null;
         $edital->vagas =                 $vagas;
-        $edital->pdfEdital =             $path . $edital->nome;
         $edital->inicioInscricoes =      $request->inicioInscricoes;
         $edital->fimInscricoes =         $request->fimInscricoes;
         $edital->inicioRecurso =         $request->inicioRecurso;
