@@ -64,7 +64,7 @@
                 <div id="margin" class="col-sm-9">
                   <label id="largura" for="nome" class="field a-field a-field_a2 page__field" style="width:100%">
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Nome*</span>
+                      <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Nome:</span>
                     </span>
                       <input id="nome" type="text" name="nome" autofocus class="form-control @error('nome') is-invalid @enderror field__input a-field__input" placeholder="Nome*"  style="" value="{{ old('nome') }}">
                   </label>
@@ -80,7 +80,7 @@
               <div id="margin" class="col-sm-3">
                 <label id="largura" for="cpf" class="field a-field a-field_a2 page__field" style="width:100%">
                   <span class="a-field__label-wrap">
-                    <span class="a-field__label">CPF*</span>
+                    <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>CPF:</span>
                   </span>
                     <input maxlength="11" id="cpf" type="text" name="cpf" autofocus class="form-control @error('cpf') is-invalid @enderror field__input a-field__input" placeholder="CPF*" style="" value="{{ old('cpf') }}">
                 </label>
@@ -100,7 +100,7 @@
               <div id="margin" class="col-sm-3">
                 <label id="largura" for="rg" class="field a-field a-field_a2 page__field" style="width:100%" >
                   <span class="a-field__label-wrap">
-                    <span class="a-field__label">RG*</span>
+                    <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>RG:</span>
                   </span>
                     <input maxlength="7" id="rg" type="text" name="rg" autofocus class="form-control @error('rg') is-invalid @enderror field__input a-field__input" placeholder="RG*" style="" value="{{ old('rg') }}">
                 </label>
@@ -115,7 +115,7 @@
               <div id="margin" class="col-sm-2">
                 <label id="largura" for="orgaoEmissor" class="field a-field a-field_a2 page__field" style="width:100%">
                   <span class="a-field__label-wrap">
-                    <span class="a-field__label">Orgão Emissor*</span>
+                    <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Orgão Emissor:</span>
                   </span>
                     <input maxlength="5" id="orgaoEmissor" type="text" name="orgaoEmissor" autofocus class="form-control @error('orgaoEmissor') is-invalid @enderror field__input a-field__input" placeholder="Orgão Emissor*" style="" value="{{ old('orgaoEmissor') }}">
                 </label>
@@ -130,7 +130,7 @@
               <div id="margin" class="col-sm-2">
                 <label id="largura" for="orgaoEmissorUF" class="field a-field a-field_a2 page__field" style="width:100%">
                   <span class="a-field__label-wrap">
-                    <span class="a-field__label">UF*</span>
+                    <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>UF:</span>
                   </span>
                     <!-- <input maxlength="2" id="orgaoEmissorUF" type="text" name="orgaoEmissorUF" autofocus class="form-control @error('orgaoEmissorUF') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="" value="{{ old('orgaoEmissorUF') }}"> -->
                     <select class="form-control col-sm-10" name="orgaoEmissorUF">
@@ -174,7 +174,7 @@
               <div id="margin" class="col-sm-3">
                 <label id="largura" for="tituloEleitoral" class="field a-field a-field_a2 page__field" style="width:100%">
                   <span class="a-field__label-wrap">
-                    <span class="a-field__label">Título Eleitoral*</span>
+                    <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Título Eleitoral:</span>
                   </span>
                     <input maxlength="12" id="tituloEleitoral" type="text" name="tituloEleitoral" autofocus class="form-control @error('tituloEleitoral') is-invalid @enderror field__input a-field__input" placeholder="Título Eleitoral*" style="" value="{{ old('tituloEleitoral') }}">
                 </label>
@@ -189,7 +189,7 @@
               <div class="col-sm-2">
                 <label id="largura" for="nascimento" class="field a-field a-field_a2 page__field" style="width:100%">
                   <span class="a-field__label-wrap">
-                    <span class="a-field__label">Data de Nascimento*</span>
+                    <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Data de Nascimento:</span>
                   </span>
                     <input id="nascimento" type="date" name="nascimento" autofocus class="form-control @error('nascimento') is-invalid @enderror field__input a-field__input" placeholder="Data de Nascimento*" style="" value="{{ old('nascimento') }}">
                 </label>
@@ -207,7 +207,7 @@
               <div id="margin" class="col-sm-9">
                 <label for="filiacao" class="field a-field a-field_a1 page__field" style="width:100%">
                   <span class="a-field__label-wrap">
-                    <span class="a-field__label">Filiação*</span>
+                    <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Filiação:</span>
                   </span>
                     <input id="filiacao" type="text" name="filiacao" autofocus class="form-control @error('filiacao') is-invalid @enderror field__input a-field__input" placeholder="Filiação*" value="{{ old('filiacao') }}">
                 </label>
@@ -237,7 +237,7 @@
             <div id="margin" class="col-sm-9">
               <label id="largura" for="endereco" class="field a-field a-field_a3 page__field" style="">
                 <span class="a-field__label-wrap">
-                  <span class="a-field__label">CEP</span>
+                  <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>CEP:</span>
                 </span>
                   <input onblur="pesquisacep(this.value);" id="cep" type="text" name="cep" autofocus class="form-control field__input a-field__input" placeholder="CEP" size="10" maxlength="9" >
               </label>
@@ -250,7 +250,7 @@
             <div id="margin" class="col-sm-9">
               <label for="endereco" class="field a-field a-field_a2 page__field" style="width:100%">
                 <span class="a-field__label-wrap">
-                  <span class="a-field__label">Rua*</span>
+                  <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Rua:</span>
                 </span>
                   <input id="rua" type="text" name="endereco" autofocus class="form-control @error('endereco') is-invalid @enderror field__input a-field__input" placeholder="Endereço*" style="" value="{{ old('endereco') }}">
               </label>
@@ -265,7 +265,7 @@
             <div id="margin" class="col-sm-3">
               <label id="largura" for="num" class="field a-field a-field_a2 page__field" style="width:100%">
                 <span class="a-field__label-wrap">
-                  <span class="a-field__label">Número*</span>
+                  <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Número:</span>
                 </span>
                   <input id="num" type="text" name="num" autofocus class="form-control @error('num') is-invalid @enderror field__input a-field__input" placeholder="Número*" style="" value="{{ old('num') }}">
               </label>
@@ -284,7 +284,7 @@
             <div id="margin" class="col-sm-5">
               <label for="bairro" class="field a-field a-field_a2 page__field" style="width:100%">
                 <span class="a-field__label-wrap">
-                  <span class="a-field__label">Bairro*</span>
+                  <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Bairro:</span>
                 </span>
                   <input id="bairro" type="text" name="bairro" autofocus class="form-control @error('bairro') is-invalid @enderror field__input a-field__input" placeholder="Bairro*" style="" value="{{ old('bairro') }}">
               </label>
@@ -299,7 +299,7 @@
             <div id="margin" class="col-sm-5">
               <label for="cidade" class="field a-field a-field_a2 page__field" style="width:100%">
                 <span class="a-field__label-wrap">
-                  <span class="a-field__label">Cidade*</span>
+                  <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Cidade:</span>
                 </span>
                   <input id="cidade" type="text" name="cidade" autofocus class="form-control @error('cidade') is-invalid @enderror field__input a-field__input" placeholder="Cidade*" style="" value="{{ old('cidade') }}">
               </label>
@@ -314,7 +314,7 @@
             <div id="margin" class="col-sm-2 autocomplete">
               <label for="uf" class="field a-field a-field_a2 page__field" style="width:100%">
                 <span class="a-field__label-wrap">
-                  <span class="a-field__label">UF*</span>
+                  <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>UF:</span>
                 </span>
                   <!-- <input maxlength="2" id="uf" type="text" name="uf" autofocus class="form-control @error('uf') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="" value="{{ old('uf') }}"> -->
                   <select id="uf" class="form-control col-sm-10" name="uf">

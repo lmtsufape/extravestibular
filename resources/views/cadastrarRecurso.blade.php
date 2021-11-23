@@ -105,7 +105,7 @@
           <div class="textbox" style="">
 
             <div class="row">
-              <label id="label" for="motivo" class=" col-form-label" style="margin-left:0%" >{{ __('Recurso:') }}</label>
+              <label id="label" for="motivo" class=" col-form-label" style="margin-left:0%" ><span style="color: red; font-weight: bold;">* </span>{{ __('Recurso:') }}</label>
 
             </div>
 

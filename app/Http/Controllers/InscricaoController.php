@@ -374,7 +374,7 @@ class InscricaoController extends Controller
         $inscricao->save();
         for($j = 0; $j < sizeof($cursos); $j++){
             if($curso == $cursos[$j]['id']){
-                $curso = $cursos[$j]['nome'] . '/' . $cursos[$j]['departamento'];
+                $curso = $cursos[$j]['nome'];
             }
         }
         return view('confirmacaoInscricao', [
@@ -434,7 +434,7 @@ class InscricaoController extends Controller
 		$curso = $inscricao->curso;
 		for($j = 0; $j < sizeof($cursos); $j++){
 			if($curso == $cursos[$j]['id']){
-				$curso = $cursos[$j]['nome'] . '/' . $cursos[$j]['departamento'];
+				$curso = $cursos[$j]['nome'];
 			}
 		}
 

@@ -90,10 +90,10 @@
           <div class="row">
             <div id="margin" class="col-sm-12">
               <span class="a-field__label-wrap">
-                <span class="a-field__label">Tipo de Matricula</span>
+                <span class="a-field__label">Tipo de Matrícula</span>
               </span>
               <label for="Tipo de Matricula" class="field a-field a-field_a2 page__field" style="width:100%;">
-                <input disabled id="Tipo de Matricula" type="text" name="Curso Pretendido" autofocus class="form-control field__input a-field__input" placeholder="Tipo de Matricula" value="<?php
+                <input disabled id="Tipo de Matricula" type="text" name="Curso Pretendido" autofocus class="form-control field__input a-field__input" placeholder="Tipo de Matrícula" value="<?php
                                                                                                                                                                                                if($inscricao->tipo == 'reintegracao'){
                                                                                                                                                                                                  echo('Reintegração');
                                                                                                                                                                                                }
@@ -267,7 +267,7 @@
                 <tr <?php if($inscricao->declaracaoDeVinculo == ''){echo('style="display: none"');} ?> >
                   <div class="form-group row" >
                       <td>
-                        <label for="declaracaoDeVinculo" >{{ __('Declaração de Vinculo') }}</label>
+                        <label for="declaracaoDeVinculo" >{{ __('Declaração de Vínculo') }}</label>
                       </td>
                       <div class="col-md-6">
                           <td>

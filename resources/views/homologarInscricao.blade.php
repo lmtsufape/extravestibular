@@ -248,10 +248,10 @@
               <div class="col-sm-12">
                   <label for="Tipo de Matricula" class="field a-field a-field_a2 page__field">
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Tipo de Matricula</span>
+                      <span class="a-field__label">Tipo de Matrícula</span>
                     </span>
                   </label>
-                  <input disabled id="Tipo de Matricula" type="text" name="Curso Pretendido" autofocus class="form-control field__input a-field__input" placeholder="Tipo de Matricula" value="<?php
+                  <input disabled id="Tipo de Matricula" type="text" name="Curso Pretendido" autofocus class="form-control field__input a-field__input" placeholder="Tipo de Matrícula" value="<?php
                                                                                                                                                                                                  if($inscricao->tipo == 'reintegracao'){
                                                                                                                                                                                                    echo('Reintegração');
                                                                                                                                                                                                  }

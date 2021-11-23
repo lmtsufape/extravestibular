@@ -401,7 +401,7 @@ class EditalController extends Controller{
       			for($j = 0; $j < sizeof($cursos); $j++){
       				if($idCurso == $cursos[$j]['id']){
       					$cursosDisponiveis[$i][2] = $idCurso;
-      					$cursosDisponiveis[$i][0] = $cursos[$j]['nome'] . ' / ' . $cursos[$j]['departamento'];
+      					$cursosDisponiveis[$i][0] = $cursos[$j]['nome'];
        				}
       			}
       		}
