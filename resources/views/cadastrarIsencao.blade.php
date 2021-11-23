@@ -68,19 +68,12 @@
     </div><!-- end row parágrafo -->
 
     <!-- checkboxRenda -->
-    <div class="row justify-content-center">
-      <div class="col-sm-10">
-        <input type="hidden" name="checkboxRenda" value="rendaFamiliar">
-        <input checked onclick="return false;" id="checkboxRenda" name="checkboxRenda"  value="rendaFamiliar" type="checkbox" > Renda familiar per capita igual ou inferior a um salário mínimo e meio. <br>
-      </div>
-    </div><!-- end checkboxRenda -->
-    <!-- checkboxEnsino -->
-    <div class="row justify-content-center">
-      <div class="col-sm-10">
-        <input type="hidden" name="checkboxEnsino" value="ensinoMedio">
-        <input checked onclick="return false;" id="checkboxEnsino" name="checkboxEnsino" value="ensinoMedio" type="checkbox" > Ter cursado o ensino médio completo em escola da rede pública ou como bolsista integral em escola da rede privada. <br>
-      </div>
-    </div><!-- end checkboxEnsino -->
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="check" onchange="checkTrueAmbos()">
+        <label class="form-check-label" for="defaultCheck2">
+          Possuir renda familiar per capita igual ou inferior a um salário mínimo e meio e ter cursado o ensino médio completo em escola da rede pública ou como bolsista integral em escola da rede privada.
+        </label>
+    </div>
 
     <!-- card Histórico escolar -->
     <div class="row justify-content-center" style="">
@@ -585,33 +578,39 @@ function confirmar(){
  }
 }
 
-function checkTrueRenda(){
-  if (document.getElementById("checkboxRenda").checked == true ) {
-    document.getElementById("finalizar").disabled = false;
-    document.getElementById("tipo").value = "rendaFamiliar";
-    document.getElementById("dadosEconomicos").style.display = "";
-    document.getElementById("nucleo").style.display = "";
-    document.getElementById("nucleo1").style.display = "";
-  }
-}
+// function checkTrueRenda(){
+//   if (document.getElementById("checkboxRenda").checked == true ) {
+//     document.getElementById("finalizar").disabled = false;
+//     document.getElementById("tipo").value = "rendaFamiliar";
+//     document.getElementById("dadosEconomicos").style.display = "";
+//     document.getElementById("nucleo").style.display = "";
+//     document.getElementById("nucleo1").style.display = "";
+//   }
+// }
 
-function checkTrueEnsino(){
-  if(document.getElementById("checkboxEnsino").checked == true ){
-    document.getElementById("tipo").value = "ensinoMedio";
-    document.getElementById("finalizar").disabled = false;
-    document.getElementById("historicoEscolar").style.display = "";
-  }
-}
+// function checkTrueEnsino(){
+//   if(document.getElementById("checkboxEnsino").checked == true ){
+//     document.getElementById("tipo").value = "ensinoMedio";
+//     document.getElementById("finalizar").disabled = false;
+//     document.getElementById("historicoEscolar").style.display = "";
+//   }
+// }
 
 function checkTrueAmbos(){
-  if(document.getElementById("checkboxRenda").checked == true && document.getElementById("checkboxEnsino").checked == true){
+  if(document.getElementById("check").checked == true){
     document.getElementById("finalizar").disabled = false;
     document.getElementById("tipo").value = "ambos";
     document.getElementById("dadosEconomicos").style.display = "";
     document.getElementById("nucleo").style.display = "";
     document.getElementById("nucleo1").style.display = "";
     document.getElementById("historicoEscolar").style.display = "";
-
+  } else {
+    document.getElementById("finalizar").disabled = true;
+    document.getElementById("tipo").value = "ambos";
+    document.getElementById("dadosEconomicos").style.display = "none";
+    document.getElementById("nucleo").style.display = "none";
+    document.getElementById("nucleo1").style.display = "none";
+    document.getElementById("historicoEscolar").style.display = "none";
   }
 }
 
@@ -657,8 +656,8 @@ function checkTrueAmbos(){
 
 // }
 
-checkTrueRenda();
-checkTrueEnsino();
+// checkTrueRenda();
+// checkTrueEnsino();
 checkTrueAmbos();
 
 </script>
