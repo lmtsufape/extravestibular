@@ -98,7 +98,7 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <label for="Histórico Escolar" class="col-sm-12">{{ __('Histórico escolar*') }}</label>
+              <label for="Histórico Escolar" class="col-sm-12"><span style="color: red; font-weight: bold;">* </span>{{ __('Histórico escolar') }}</label>
               <div class="custom-file col-sm-12">
                 <input id="input" type="file" class="filestyle rounded-pill" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="historicoEscolar">
                 @error('historicoEscolar')
@@ -127,7 +127,7 @@
                     <div class="col-sm-12">
                       <label for="nomeDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
                         <span class="a-field__label-wrap">
-                          <span class="a-field__label">Nome*</span>
+                          <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Nome</span>
                         </span>
                       </label>
                     </div>
@@ -151,7 +151,7 @@
                     <div class="col-sm-12">
                       <label for="cpfDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
                       <span class="a-field__label-wrap">
-                        <span class="a-field__label">CPF*</span>
+                        <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>CPF</span>
                       </span>
 
                     </label>
@@ -181,7 +181,7 @@
                     <div class="col-sm-12">
                       <label for="parentescoDadoEconomico" class="field a-field a-field_a2 page__field" style=" width:100%">
                         <span class="a-field__label-wrap">
-                          <span class="a-field__label">Parentesco*</span>
+                          <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Parentesco</span>
                         </span>
                       </label>
                     </div>
@@ -204,7 +204,7 @@
                     <div class="col-sm-12">
                       <label for="rendaDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
                       <span class="a-field__label-wrap">
-                        <span class="a-field__label">Renda*</span>
+                        <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Renda</span>
                       </span>
 
                     </label>
@@ -230,7 +230,7 @@
                     <div class="col-sm-12">
                     <label for="fontePagadoraDadoEconomico" class="field a-field a-field_a2 page__field" style="width:100%">
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Fonte Pagadora*</span>
+                      <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Fonte Pagadora</span>
                     </span>
 
                   </label>
@@ -255,7 +255,7 @@
                     </button>
                   </div>
                   <div class="col-sm-12">
-                    <label for="comprovante" style="font-weight: bold">Selecione o documento com o número do NIS:</label>
+                    <label for="comprovante" style="font-weight: bold"><span style="color: red; font-weight: bold;">* </span>Selecione o documento com o número do NIS:</label>
                   </div>
 
                   <div class="col-sm-12">

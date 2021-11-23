@@ -76,7 +76,7 @@
                                 </tr>
                                 <tr <?php if($key->declaracaoDeVinculo == ''){echo('style="display: none"');} ?> >
                                   <td>
-                                    <label for="declaracaoDeVinculo" >{{ __('Declaração de Vinculo') }}</label>
+                                    <label for="declaracaoDeVinculo" >{{ __('Declaração de Vínculo') }}</label>
                                   </td>
                                   <td>
                                     <a href="{{ route('download', ['file' => $key->declaracaoDeVinculo])}}" target="_blank">Abrir arquivo</a>
@@ -100,7 +100,7 @@
                                 </tr>
                                 <tr <?php if($key->curriculo == ''){echo('style="display: none"');} ?> >
                                   <td>
-                                    <label for="curriculo" >{{ __('Curriculo') }}</label>
+                                    <label for="curriculo" >{{ __('Currículo') }}</label>
                                   </td>
                                   <td>
                                     <a href="{{ route('download', ['file' => $key->curriculo ])}}" target="_blank">Abrir arquivo</a>
@@ -152,7 +152,7 @@
                                 </tr>
                                 <tr <?php if($key->declaracaoDeVinculo == ''){echo('style="display: none"');} ?> >
                                   <td>
-                                    <label for="declaracaoDeVinculo" >{{ __('Declaração de Vinculo') }}</label>
+                                    <label for="declaracaoDeVinculo" >{{ __('Declaração de Vínculo') }}</label>
                                   </td>
                                   <td>
                                     <a href="{{ route('download', ['file' => $key->declaracaoDeVinculo])}}" target="_blank">Abrir arquivo</a>
@@ -176,7 +176,7 @@
                                 </tr>
                                 <tr <?php if($key->curriculo == ''){echo('style="display: none"');} ?> >
                                   <td>
-                                    <label for="curriculo" >{{ __('Curriculo') }}</label>
+                                    <label for="curriculo" >{{ __('Currículo') }}</label>
                                   </td>
                                   <td>
                                     <a href="{{ route('download', ['file' => $key->curriculo ])}}" target="_blank">Abrir arquivo</a>
@@ -228,7 +228,7 @@
                                 </tr>
                                 <tr <?php if($key->declaracaoDeVinculo == ''){echo('style="display: none"');} ?> >
                                   <td>
-                                    <label for="declaracaoDeVinculo" >{{ __('Declaração de Vinculo') }}</label>
+                                    <label for="declaracaoDeVinculo" >{{ __('Declaração de Vínculo') }}</label>
                                   </td>
                                   <td>
                                     <a href="{{ route('download', ['file' => $key->declaracaoDeVinculo])}}" target="_blank">Abrir arquivo</a>
@@ -252,7 +252,7 @@
                                 </tr>
                                 <tr <?php if($key->curriculo == ''){echo('style="display: none"');} ?> >
                                   <td>
-                                    <label for="curriculo" >{{ __('Curriculo') }}</label>
+                                    <label for="curriculo" >{{ __('Currículo') }}</label>
                                   </td>
                                   <td>
                                     <a href="{{ route('download', ['file' => $key->curriculo ])}}" target="_blank">Abrir arquivo</a>
@@ -305,7 +305,7 @@
                                 </tr>
                                 <tr <?php if($key->declaracaoDeVinculo == ''){echo('style="display: none"');} ?> >
                                   <td>
-                                    <label for="declaracaoDeVinculo" >{{ __('Declaração de Vinculo') }}</label>
+                                    <label for="declaracaoDeVinculo" >{{ __('Declaração de Vínculo') }}</label>
                                   </td>
                                   <td>
                                     <a href="{{ route('download', ['file' => $key->declaracaoDeVinculo])}}" target="_blank">Abrir arquivo</a>
@@ -329,7 +329,7 @@
                                 </tr>
                                 <tr <?php if($key->curriculo == ''){echo('style="display: none"');} ?> >
                                   <td>
-                                    <label for="curriculo" >{{ __('Curriculo') }}</label>
+                                    <label for="curriculo" >{{ __('Currículo') }}</label>
                                   </td>
                                   <td>
                                     <a href="{{ route('download', ['file' => $key->curriculo ])}}" target="_blank">Abrir arquivo</a>
@@ -382,7 +382,7 @@
                                 </tr>
                                 <tr <?php if($key->declaracaoDeVinculo == ''){echo('style="display: none"');} ?> >
                                   <td>
-                                    <label for="declaracaoDeVinculo" >{{ __('Declaração de Vinculo') }}</label>
+                                    <label for="declaracaoDeVinculo" >{{ __('Declaração de Vínculo') }}</label>
                                   </td>
                                   <td>
                                     <a href="{{ route('download', ['file' => $key->declaracaoDeVinculo])}}" target="_blank">Abrir arquivo</a>
@@ -406,7 +406,7 @@
                                 </tr>
                                 <tr <?php if($key->curriculo == ''){echo('style="display: none"');} ?> >
                                   <td>
-                                    <label for="curriculo" >{{ __('Curriculo') }}</label>
+                                    <label for="curriculo" >{{ __('Currículo') }}</label>
                                   </td>
                                   <td>
                                     <a href="{{ route('download', ['file' => $key->curriculo ])}}" target="_blank">Abrir arquivo</a>

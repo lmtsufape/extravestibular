@@ -56,7 +56,7 @@
             <div class="col-sm-9">
               <label for="nome" class="field a-field a-field_a2 page__field" style="width: 100%;">
                 <span class="a-field__label-wrap">
-                  <span class="a-field__label">Nome do edital*</span>
+                  <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Nome do edital:</span>
                 </span>
                   <input value="{{ old('nome') }}"  id="nome" type="text" name="nome" autofocus class="form-control @error('nome') is-invalid @enderror field__input a-field__input" placeholder="Nome do edital*">
               </label>
@@ -74,7 +74,7 @@
             <div class="col-sm-9">
               <label for="descricao" class="field a-field a-field_a2 page__field" style="width: 100%;">
                 <span class="a-field__label-wrap">
-                  <span class="a-field__label">Descrição do edital*</span>
+                  <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Descrição do edital:</span>
                 </span>
                 <textarea class="form-control @error('descricao') is-invalid @enderror" maxlength="600" form="formCadastro" name="descricao" id="taid" style="width:100%" >{{ old('descricao') }}</textarea>
               </label>
@@ -89,8 +89,8 @@
           <!-- row input file -->
           <div class="row justify-content-center">
             <div class="col-sm-2"style="">
-              <label for="pdfEdital" class=" col-form-label " style="margin-top: 20px; font-weight: bold;">
-                {{ __('Arquivo do Edital*:') }}
+              <label for="pdfEdital" class=" col-form-label " style="margin-top: 20px; font-weight: bold;"><span style="color: red; font-weight: bold;">* </span>
+                {{ __('Arquivo do Edital:') }}
               </label>
             </div>
 
@@ -110,7 +110,7 @@
           <div class="row justify-content-left">
             <div id="checkPublicarEdital" class="col-sm-4">
               <input class=""name="publicado" type="checkbox" value="sim" style=" margin-top:10px;">
-              <label for="pdfEdital" class="col-form-label text-md-right" style=" margin-top: 9px; font-weight: bold">{{ __('Publicar o Edital*') }}</label>
+              <label for="pdfEdital" class="col-form-label text-md-right" style=" margin-top: 9px; font-weight: bold">{{ __('Publicar o Edital') }}</label>
             </div>
           </div><!-- end row publicar edital -->
         </div><!--end card body -->
@@ -133,7 +133,7 @@
             </tr>
             <tr>
               <td>
-                <a style="font-weight: bold;">{{__('Período de Isenção da Taxa de Inscrição*: ')}}</a>
+                <a style="font-weight: bold;"><span style="color: red; font-weight: bold;">* </span>{{__('Período de Isenção da Taxa de Inscrição: ')}}</a>
               </td>
               <td>
                 <label for="inicioIsencao" class="field a-field a-field_a2 page__field">
@@ -164,7 +164,7 @@
             </tr>
             <tr>
               <td>
-                <a style="font-weight: bold;">{{__('Período de Recurso da Isenção da Taxa de Inscrição*: ')}}</a>
+                <a style="font-weight: bold;"><span style="color: red; font-weight: bold;">* </span>{{__('Período de Recurso da Isenção da Taxa de Inscrição: ')}}</a>
               </td>
               <td>
                 <label for="inicioRecursoIsencao" class="field a-field a-field_a2 page__field">
@@ -195,7 +195,7 @@
             </tr>
             <tr>
               <td>
-                <a style="font-weight: bold;">{{__('Período de Inscrições*: ')}}</a>
+                <a style="font-weight: bold;"><span style="color: red; font-weight: bold;">* </span>{{__('Período de Inscrições: ')}}</a>
               </td>
               <td>
                 <label for="inicioInscricoes" class="field a-field a-field_a2 page__field">
@@ -226,7 +226,7 @@
             </tr>
             <tr>
               <td>
-                <a style="font-weight: bold;">{{__('Período de Recurso da Inscrição*: ')}}</a>
+                <a style="font-weight: bold;"><span style="color: red; font-weight: bold;">* </span>{{__('Período de Recurso da Inscrição: ')}}</a>
               </td>
               <td>
                 <label for="inicioRecurso" class="field a-field a-field_a2 page__field">
@@ -257,7 +257,7 @@
             </tr>
             <tr>
               <td>
-                <a style="font-weight: bold;">{{__('Data do Resultado Preliminar*: ')}}</a>
+                <a style="font-weight: bold;"><span style="color: red; font-weight: bold;">* </span>{{__('Data do Resultado Preliminar: ')}}</a>
               </td>
               <td>
               </td>
@@ -277,7 +277,7 @@
             </tr>
             <tr>
               <td>
-                <a style="font-weight: bold;">{{__('Período do Recurso do Resultado*: ')}}</a>
+                <a style="font-weight: bold;"><span style="color: red; font-weight: bold;">* </span>{{__('Período do Recurso do Resultado: ')}}</a>
               </td>
               <td>
                 <label for="inicioRecursoResultado" class="field a-field a-field_a2 page__field">
@@ -308,7 +308,7 @@
             </tr>
             <tr>
               <td>
-                <a style="font-weight: bold;">{{__('Data do Resultado*: ')}}</a>
+                <a style="font-weight: bold;"><span style="color: red; font-weight: bold;">* </span>{{__('Data do Resultado: ')}}</a>
               </td>
               <td>
               </td>

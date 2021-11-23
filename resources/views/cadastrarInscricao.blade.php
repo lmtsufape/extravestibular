@@ -58,6 +58,9 @@
     <input type="hidden" name="editalId" value="{{$editalId}}" />
     <input id="tipo" type="hidden" name="tipo" value=""/>
     <div class="row" style="margin-top:5%">
+        <div class="card " style="width: 30%; margin-left: 70%;">
+            <div class="card-header"><span style="color: red; font-weight: bold;">*</span> Campo obrigatório</div>
+        </div>
       <div class="card " style="width: 100%;">
           <div class="card-header">{{ __('Comprovante') }}</div>
           <div class="card-body">
@@ -80,7 +83,7 @@
                   </button>
                 </div>
                 <div class="col-sm-10">
-                  <label for="comprovante" style="font-weight: bold">Selecione o comprovante gerado pelo pagamento da taxa do tipo de inscrição:</label>
+                  <label for="comprovante" style="font-weight: bold"><span style="color: red; font-weight: bold;">* </span>Selecione o comprovante gerado pelo pagamento da taxa do tipo de inscrição:</label>
                 </div>
 
               </div>
@@ -109,7 +112,7 @@
             <div class="card-body">
 
                 <div class="row">
-                  <label for="tipoInscricao" class="col-sm-4 col-form-label text-sm-right" >Tipo de Inscrição*:</label>
+                  <label for="tipoInscricao" class="col-sm-4 col-form-label text-sm-right" ><span style="color: red; font-weight: bold;">* </span>Tipo de Inscrição:</label>
                   <div class="col-sm-8">
                     <input <?php if(old('tipo') == 'reintegracao')        {echo('checked');} ?> onclick="escolherTipo('reintegracao')" 			   type="radio" name="tipoInscricao" > Reintegração <br>
                     <input <?php if(old('tipo') == 'transferenciaExterna'){echo('checked');} ?> onclick="escolherTipo('transferenciaExterna')"  type="radio" name="tipoInscricao" > Transferencia Externa <br>
@@ -127,7 +130,7 @@
                 </div>
 
                 <div id="rg" class="form-group row" style="display: none">      <!-- Arquivo rg -->
-                    <label for="rg" class="col-sm-4 col-form-label text-md-right">{{ __('RG:') }}</label>
+                    <label for="rg" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('RG:') }}</label>
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input required type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="rg">
@@ -157,7 +160,7 @@
                 </div>
 
                 <div id="quitacaoEleitoral" class="form-group row" style="display: none">      <!-- Arquivo quitacaoEleitoral -->
-                    <label for="quitacaoEleitoral" class="col-sm-4 col-form-label text-md-right">{{ __('Certidão de quitação eleitoral:') }}</label>
+                    <label for="quitacaoEleitoral" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Certidão de quitação eleitoral:') }}</label>
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input required type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="quitacaoEleitoral">
@@ -172,7 +175,7 @@
                 </div>
 
                 <div id="reservista" class="form-group row" style="display: none">      <!-- Arquivo reservista -->
-                    <label for="reservista" class="col-sm-4 col-form-label text-md-right">{{ __('Reservista para o sexo masculino (só para candidatos de 18 a 45 anos:') }}</label>
+                    <label for="reservista" class="col-sm-4 col-form-label text-md-right">{{ __('Reservista para o sexo masculino (só para candidatos de 18 a 45 anos):') }}</label>
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="reservista">
@@ -187,7 +190,7 @@
                 </div>
 
                 <div id="certidaoNascimento" class="form-group row" style="display: none">      <!-- Arquivo certidaoNascimento -->
-                    <label for="certidaoNascimento" class="col-sm-4 col-form-label text-md-right">{{ __('Certidão de nascimento ou registro de casamento:') }}</label>
+                    <label for="certidaoNascimento" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Certidão de nascimento ou registro de casamento:') }}</label>
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input required type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="certidaoNascimento">
@@ -202,7 +205,7 @@
                 </div>
 
                 <div id="historicoEnsinoMedio" class="form-group row" style="display: none" >      <!-- Arquivo historicoEnsinoMedio -->
-                    <label for="historicoEnsinoMedio" class="col-sm-4 col-form-label text-md-right">{{ __('Histórico e Certificado de conclusão do ensino médio com carimbo e assinatura da instituição legíveis:') }}</label>
+                    <label for="historicoEnsinoMedio" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Histórico e Certificado de conclusão do ensino médio com carimbo e assinatura da instituição legíveis:') }}</label>
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="historicoEnsinoMedio">
@@ -217,7 +220,7 @@
                 </div>
 
                 <div id="declaracaoENADE" class="form-group row" style="display: none" >      <!-- Arquivo declaracaoENADE -->
-                    <label for="declaracaoENADE" class="col-sm-4 col-form-label text-md-right">{{ __('Declaração de regularidade com o Exame Nacional de Desempenho dos Estudantes (ENADE). A declaração não será necessária se a informação de regularidade com o ENADE estiver no histórico escolar:') }}</label>
+                    <label for="declaracaoENADE" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Declaração de regularidade com o Exame Nacional de Desempenho dos Estudantes (ENADE). A declaração não será necessária se a informação de regularidade com o ENADE estiver no histórico escolar:') }}</label>
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="declaracaoENADE">
@@ -232,7 +235,7 @@
                 </div>
 
                 <div id="historicoEscolar" class="form-group row" style="display: none" >      <!-- Arquivo historico escolar -->
-                    <label for="Historico escolar" class="col-sm-4 col-form-label text-md-right">{{ __('Histórico escolar do curso de graduação:') }}</label>
+                    <label for="Historico escolar" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Histórico escolar do curso de graduação:') }}</label>
 
 
                     <div class="col-sm-6">
@@ -249,7 +252,7 @@
                 </div>
 
                 <div id="declaracaoDeVinculo" class="form-group row" style="display: none">    <!-- Arquivo declaração de vinculo -->
-                    <label for="Declaracao de Viculo" class="col-sm-4 col-form-label text-md-right">{{ __('Declaração de vínculo:') }}</label>
+                    <label for="Declaracao de Viculo" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Declaração de vínculo:') }}</label>
 
                     <div class="col-sm-6">
                       <div class="custom-file">
@@ -281,7 +284,7 @@
                 </div>
 
                 <div id="curriculo" class="form-group row" style="display: none">              <!-- Arquivo curriculo -->
-                    <label for="Curriculo" class="col-sm-4 col-form-label text-md-right">{{ __('Documento acadêmico que contenha o Currículo Pleno do curso original, caso o histórico escolar não demonstre:') }}</label>
+                    <label for="Curriculo" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Documento acadêmico que contenha o Currículo Pleno do curso original, caso o histórico escolar não demonstre:') }}</label>
 
                     <div class="col-sm-6">
                       <div class="custom-file">
@@ -313,7 +316,7 @@
                 </div>
 
                 <div id="diploma" class="form-group row" style="display: none">                   <!-- Arquivo diploma -->
-                    <label for="Diploma" class="col-sm-4 col-form-label text-md-right">{{ __('Diploma:') }}</label>
+                    <label for="Diploma" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Diploma:') }}</label>
 
                     <div class="col-sm-6">
                       <div class="custom-file">
@@ -329,7 +332,7 @@
                 </div>
 
                 <div id="declaracaoDeVeracidade" class="form-group row">      <!-- Arquivo declaracaoDeVeracidade -->
-                  <label for="declaracaoDeVeracidade" class="col-sm-4 col-form-label text-md-right">{{ __('Declaração de veracidade:') }}</label>
+                  <label for="declaracaoDeVeracidade" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Declaração de veracidade:') }}</label>
                   <div class="col-sm-7">
                     <div class="row">
                       <div class="col-sm-1">
@@ -348,7 +351,7 @@
                 </div>
 
                 <div class="form-group row">                                                   <!-- Curso -->
-                    <label for="Curso" class="col-sm-4 col-form-label text-md-right">{{ __('Curso pretendido*:') }}</label>
+                    <label for="Curso" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Curso pretendido:') }}</label>
 
                     <div class="col-sm-8" id="selectCurso">
 
@@ -367,7 +370,7 @@
                 </div>
 
                 <div class="form-group row">                                                   <!-- Turno -->
-                    <label for="Turno" class="col-sm-4 col-form-label text-md-right">{{ __('Turno*:') }}</label>
+                    <label for="Turno" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Turno:') }}</label>
 
                     <div class="col-sm-8">
                       <select class="form-control col-sm-10" name="turno">
@@ -419,7 +422,7 @@
 
                   <label for="cursoDeOrigem" class="field a-field a-field_a2 page__field" style="width: 100%">
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Nome Completo do Curso de Origem*:</span>
+                      <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Nome Completo do Curso de Origem:</span>
                     </span>
                   </label>
                     <input id="cursoDeOrigem" type="text" name="cursoDeOrigem" class="form-control @error('cursoDeOrigem') is-invalid @enderror field__input a-field__input" placeholder="EX: Bacharelado em Ciências da Computação" style="width: 100%;" value="{{ old('cursoDeOrigem') }}">
@@ -433,7 +436,7 @@
                 <div class="form-group row">                                                   <!-- Instituição de origem -->
                   <label for="instituicaoDeOrigem" class="field a-field a-field_a2 page__field" style="width: 100%">
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Nome Completo da Instituição de Origem*:</span>
+                      <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Nome Completo da Instituição de Origem:</span>
                     </span>
                   </label>
                     <input id="instituicaoDeOrigem" type="text" name="instituicaoDeOrigem" autofocus class="form-control @error('instituicaoDeOrigem') is-invalid @enderror field__input a-field__input" placeholder="EX: Universidade Federal Rural de Pernambuco" style="width: 100%;" value="{{ old('instituicaoDeOrigem') }}">
@@ -447,7 +450,7 @@
                 <div class="form-group row">                                                   <!-- Natureza da IES -->
                   <label for="naturezaDaIes" class="field a-field a-field_a2 page__field" style="width: 100%">
                     <span class="a-field__label-wrap">
-                      <span class="a-field__label">Natureza da Instituição de Ensino Superior*:</span>
+                      <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Natureza da Instituição de Ensino Superior:</span>
                     </span>
                   </label>
                     <select class="form-control col-sm-10" name="naturezaDaIes">
@@ -464,7 +467,7 @@
                   <div class="" style="">
                     <label for="endereco" class="field a-field a-field_a3 page__field" style="width: 100%;">
                       <span class="a-field__label-wrap">
-                        <span class="a-field__label">CEP</span>
+                        <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>CEP</span>
                       </span>
                     </label>
                       <input onblur="pesquisacep(this.value);" id="cep" type="text" name="cep" autofocus class="form-control field__input a-field__input" placeholder="CEP" maxlength="9" >
@@ -477,14 +480,14 @@
                     <div class="col-sm-12">
                       <label for="endereco" class="field a-field a-field_a2 page__field" style="width: 100%">
                           <span class="a-field__label-wrap">
-                            <span class="a-field__label">Rua*</span>
+                            <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Rua</span>
                           </span>
                       </label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-sm-12">
-                        <input id="rua" type="text" name="endereco" autofocus class="form-control @error('endereco') is-invalid @enderror field__input a-field__input" placeholder="Rua*" style="width: 100%;" value="{{ old('endereco') }}">
+                        <input id="rua" type="text" name="endereco" autofocus class="form-control @error('endereco') is-invalid @enderror field__input a-field__input" placeholder="Rua" style="width: 100%;" value="{{ old('endereco') }}">
                     </div>
                   </div>
 
@@ -499,10 +502,10 @@
 
                     <label for="num" class="field a-field a-field_a2 page__field" style="">
                         <span class="a-field__label-wrap">
-                          <span class="a-field__label">Número*</span>
+                          <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Número</span>
                         </span>
                     </label>
-                        <input id="num" type="text" name="num" autofocus class="form-control @error('num') is-invalid @enderror field__input a-field__input" placeholder="Número*" style="width: 100%;" value="{{ old('num') }}">
+                        <input id="num" type="text" name="num" autofocus class="form-control @error('num') is-invalid @enderror field__input a-field__input" placeholder="Número" style="width: 100%;" value="{{ old('num') }}">
                     @error('num')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                       <strong>{{ $message }}</strong>
@@ -515,10 +518,10 @@
                   <div class="col-sm-5" id="divBairro">
                     <label for="bairro" class="field a-field a-field_a2 page__field" style="width: 100%">
                         <span class="a-field__label-wrap">
-                          <span class="a-field__label">Bairro*</span>
+                          <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Bairro</span>
                         </span>
                     </label>
-                        <input id="bairro" type="text" name="bairro" autofocus class="form-control @error('bairro') is-invalid @enderror field__input a-field__input" placeholder="Bairro*" style="width: 100%" value="{{ old('bairro') }}">
+                        <input id="bairro" type="text" name="bairro" autofocus class="form-control @error('bairro') is-invalid @enderror field__input a-field__input" placeholder="Bairro" style="width: 100%" value="{{ old('bairro') }}">
                     @error('bairro')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                       <strong>{{ $message }}</strong>
@@ -528,10 +531,10 @@
                   <div class="col-sm-5" id="divCidade">
                     <label for="cidade" class="field a-field a-field_a2 page__field" style="width: 100%">
                         <span class="a-field__label-wrap">
-                          <span class="a-field__label">Cidade*</span>
+                          <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Cidade</span>
                         </span>
                     </label>
-                        <input id="cidade" type="text" name="cidade" autofocus class="form-control @error('cidade') is-invalid @enderror field__input a-field__input" placeholder="Cidade*" style="width: 100%" value="{{ old('cidade') }}">
+                        <input id="cidade" type="text" name="cidade" autofocus class="form-control @error('cidade') is-invalid @enderror field__input a-field__input" placeholder="Cidade" style="width: 100%" value="{{ old('cidade') }}">
                     @error('cidade')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                       <strong>{{ $message }}</strong>
@@ -541,10 +544,10 @@
                   <div class="col-sm-2" id="divUf">
                     <label for="uf" class="field a-field a-field_a2 page__field" style="width: 100%">
                         <span class="a-field__label-wrap">
-                          <span class="a-field__label">UF*</span>
+                          <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>UF</span>
                         </span>
                     </label>
-                        <input id="uf" type="text" name="uf" autofocus class="form-control @error('uf') is-invalid @enderror field__input a-field__input" placeholder="UF*" style="width: 100%" value="{{ old('uf') }}">
+                        <input id="uf" type="text" name="uf" autofocus class="form-control @error('uf') is-invalid @enderror field__input a-field__input" placeholder="UF" style="width: 100%" value="{{ old('uf') }}">
                     @error('uf')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                       <strong>{{ $message }}</strong>
@@ -581,7 +584,7 @@
     document.getElementById("alerta-documentos").style.display = "";
   }
 
-  function escolherTipo(x) {  
+  function escolherTipo(x) {
     if (x == "reintegracao") {
       mostrarComuns();
       document.getElementById("tipo").value = "reintegracao";
