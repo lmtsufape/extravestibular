@@ -172,7 +172,7 @@
                 </div>
 
                 <div id="reservista" class="form-group row" style="display: none">      <!-- Arquivo reservista -->
-                    <label for="reservista" class="col-sm-4 col-form-label text-md-right">{{ __('Reservista para o sexo masculino (só para candidatos de 18 a 45 anos:') }}</label>
+                    <label for="reservista" class="col-sm-4 col-form-label text-md-right">{{ __('Reservista para o sexo masculino (só para candidatos de 18 a 45 anos):') }}</label>
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="reservista">
@@ -581,7 +581,7 @@
     document.getElementById("alerta-documentos").style.display = "";
   }
 
-  function escolherTipo(x) {  
+  function escolherTipo(x) {
     if (x == "reintegracao") {
       mostrarComuns();
       document.getElementById("tipo").value = "reintegracao";
