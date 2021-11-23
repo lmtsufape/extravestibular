@@ -44,7 +44,7 @@
         <div class="col-md-10">
 
           <div class="titulo-tabela-lmts" style="margin-bottom:20px; width:100%;margin-left:0;">
-            <h2>Recursos ao resultado para avaliação</h2>
+            <h2>{{$titulo_da_pagina}}</h2>
           </div>
 
           <table class="table table-ordered table-hover">

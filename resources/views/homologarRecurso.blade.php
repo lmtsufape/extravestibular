@@ -98,9 +98,9 @@
                         @if($recurso->tipo == 'taxa')
                           da solicitação de Isenção da Taxa de Inscrição
                         @elseif($recurso->tipo == 'resultado')
-                          da seleção para ingresso extra para UFRPE <strong>{{$recurso->curso}}</strong>
+                          da seleção para ingresso extra para UFAPE <strong>{{$recurso->curso}}</strong>
                         @else
-                          da seleção para ingresso extra para UFRPE <strong>{{$recurso->curso}}</strong>
+                          da seleção para ingresso extra para UFAPE <strong>{{$recurso->curso}}</strong>
                         @endif
 
                       </strong>
