@@ -372,6 +372,7 @@ class EditalController extends Controller{
     		$edital = Edital::find($request->editalId);
         $mytime = Carbon::now('America/Recife');
         $mytime = $mytime->toDateString();
+        
         if($request->tipo == 'fazerInscricao'){
           $edital = Edital::find($request->editalId);
 
@@ -471,11 +472,21 @@ class EditalController extends Controller{
                                            'mytime'      => $mytime,
                                           ]);
         }
-        if($request->tipo == 'homologarRecursos'){
+        if($request->tipo == 'homologarRecursosIsencao'){
           $recursosDisponiveis = Recurso::where('editalId', $request->editalId)
-                                          ->where('homologado', 'nao')
+                                          ->where([['homologado', 'nao'], ['tipo', 'taxa']])
                                           ->paginate(10);
-          return view('listaRecursos', ['recursos' => $recursosDisponiveis,
+          return view('listaRecursos', ['titulo_da_pagina' => 'Recursos ao resultado para avaliação de isenção',
+                                        'recursos' => $recursosDisponiveis,
+                                        'mytime'            => $mytime,
+                                        'editalId'   => $request->editalId]);
+        }
+        if($request->tipo == 'homologarRecursosInscricao'){
+          $recursosDisponiveis = Recurso::where('editalId', $request->editalId)
+                                          ->where([['homologado', 'nao'], ['tipo', 'classificacao']])
+                                          ->paginate(10);
+          return view('listaRecursos', ['titulo_da_pagina' => 'Recursos ao resultado para avaliação de inscrições',
+                                        'recursos' => $recursosDisponiveis,
                                         'mytime'            => $mytime,
                                         'editalId'   => $request->editalId]);
         }
@@ -614,9 +625,9 @@ class EditalController extends Controller{
           //
 
           $inscricoesHomologadas = Inscricao::where('editalId', $request->editalId)
-                                              ->where('homologado', 'aprovado')
+                                              ->orWhere('homologado', 'aprovado')
                                               ->orWhere('homologado', 'rejeitado')
-                                              ->where('homologadoDrca', 'aprovado')
+                                              ->orWhere('homologadoDrca', 'aprovado')
                                               ->orWhere('homologadoDrca', 'rejeitado')
                                               ->get();
           $inscricoesNaoHomologadas = Inscricao::where('editalId', $request->editalId)
