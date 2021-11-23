@@ -481,6 +481,15 @@ class EditalController extends Controller{
                                         'mytime'            => $mytime,
                                         'editalId'   => $request->editalId]);
         }
+        if($request->tipo == 'homologarRecursosResultado'){
+          $recursosDisponiveis = Recurso::where('editalId', $request->editalId)
+                                          ->where([['homologado', 'nao'], ['tipo', 'resultado']])
+                                          ->paginate(10);
+          return view('listaRecursos', ['titulo_da_pagina' => 'Recursos ao resultado parcial',
+                                        'recursos' => $recursosDisponiveis,
+                                        'mytime'            => $mytime,
+                                        'editalId'   => $request->editalId]);
+        }
         if($request->tipo == 'homologarRecursosInscricao'){
           $recursosDisponiveis = Recurso::where('editalId', $request->editalId)
                                           ->where([['homologado', 'nao'], ['tipo', 'classificacao']])

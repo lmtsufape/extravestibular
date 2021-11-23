@@ -582,7 +582,7 @@
         <form method="GET" action="{{route('editalEscolhido')}}">
 
             <input type="hidden" name="editalId" value="{{$edital->id}}">
-            <input type="hidden" name="tipo" value="homologarRecursos">
+            <input type="hidden" name="tipo" value="homologarRecursosResultado">
 
             @if($edital->inicioRecursoResultado <= $mytime)
               @if($edital->fimRecursoResultado >= $mytime)
