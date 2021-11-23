@@ -39,7 +39,7 @@ class ErrataController extends Controller
       ]);
 
       if($request->editarEdital == 'sim'){
-        return redirect()->route('editarEdital')->with('editalId', $request->editalId);
+        return redirect()->route('editarEdital', ['editalId' => $request->editalId]);
       }
       else{
         return redirect()->route('home')->with('jsAlert', 'Errata criada com sucesso!');

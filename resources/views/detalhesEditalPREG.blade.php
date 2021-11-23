@@ -126,7 +126,7 @@
 
            <div  class="row" style="margin-top:10px;">
              <div class="col-sm-10">
-               <input name="editarEdital" type="checkbox" value="sim">
+               <input name="editarEdital" id="editarEdital" type="checkbox" value="sim">
                <input name="editalId" type="hidden" value="{{$editalId}}">
              <label for="editarEdital">{{ __('Marque se existir mudança nas datas') }}</label>
            </div>
