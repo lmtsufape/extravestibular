@@ -580,21 +580,21 @@ class EditalController extends Controller{
         }
         if(Auth::check()){
           if(Auth::user()->tipo == 'candidato'){
-            if(($edital->fimIsencao > $mytime) && (!is_null($isencao))){
-              $isencao = 'processando';
-            }
-            if(($edital->fimRecursoIsencao > $mytime) && (!is_null($recursoIsencao))){
-              $recursoIsencao = 'processando';
-            }
-            if(($edital->fimInscricoes > $mytime) &&  (!is_null($inscricao))){
-              $inscricao = 'processando';
-            }
-            if(($edital->fimRecurso > $mytime) && (!is_null($recursoInscricao))){
-              $recursoInscricao = 'processando';
-            }
-            if(($edital->fimRecursoResultado > $mytime) && (!is_null($recursoResultado))){
-              $recursoResultado = 'processando';
-            }
+            // if(($edital->fimIsencao > $mytime) && (!is_null($isencao))){
+            //   $isencao = 'processando';
+            // }
+            // if(($edital->fimRecursoIsencao > $mytime) && (!is_null($recursoIsencao))){
+            //   $recursoIsencao = 'processando';
+            // }
+            // if(($edital->fimInscricoes > $mytime) &&  (!is_null($inscricao))){
+            //   $inscricao = 'processando';
+            // }
+            // if(($edital->fimRecurso > $mytime) && (!is_null($recursoInscricao))){
+            //   $recursoInscricao = 'processando';
+            // }
+            // if(($edital->fimRecursoResultado > $mytime) && (!is_null($recursoResultado))){
+            //   $recursoResultado = 'processando';
+            // }
             $erratas = $edital->errata;
             return view('detalhesEditalCandidato', ['editalId'          => $request->editalId,
                                                     'inscricao'         => $inscricao,

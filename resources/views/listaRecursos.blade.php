@@ -57,7 +57,7 @@
               <tr>
                 <td> <!--  -->
                  <a >
-                   {{$recurso->user->dadosUsuario->cpf}}
+                   {{$recurso->user->dadosUsuario->nome}}
                  </a>
                 </td>
                 <td> <!--  -->
