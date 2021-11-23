@@ -634,28 +634,22 @@ class EditalController extends Controller{
                                                  ->where('homologado', 'nao')
                                                  ->where('homologadoDrca', 'nao')
                                                  ->get();
-          $recursosTaxaHomologados = Recurso::where('editalId', $request->editalId)
-                                              ->where('tipo', 'taxa')
-                                              ->where('homologado', 'aprovado')
-                                              ->orWhere('homologado', 'rejeitado')
+          $recursosTaxaHomologados = Recurso::where([['editalId', $request->editalId], ['tipo', 'taxa'], ['homologado', 'aprovado']])
+                                              ->orWhere([['editalId', $request->editalId], ['tipo', 'taxa'], ['homologado', 'rejeitado']])
                                               ->get();
           $recursosTaxaNaoHomologados = Recurso::where('editalId', $request->editalId)
                                                  ->where('tipo', 'taxa')
                                                  ->where('homologado', 'nao')
                                                  ->get();
-          $recursosClassificacaoHomologados = Recurso::where('editalId', $request->editalId)
-                                              ->where('tipo', 'classificacao')
-                                              ->where('homologado', 'aprovado')
-                                              ->orWhere('homologado', 'rejeitado')
+          $recursosClassificacaoHomologados = Recurso::where([['editalId', $request->editalId], ['tipo', 'classificacao'], ['homologado', 'aprovado']])
+                                              ->orWhere([['editalId', $request->editalId], ['tipo', 'classificacao'], ['homologado', 'rejeitado']])
                                               ->get();
           $recursosClassificacaoNaoHomologados = Recurso::where('editalId', $request->editalId)
                                                  ->where('tipo', 'classificacao')
                                                  ->where('homologado', 'nao')
                                                  ->get();
-          $recursosResultadoHomologados = Recurso::where('editalId', $request->editalId)
-                                              ->where('tipo', 'resultado')
-                                             ->where('homologado', 'aprovado')
-                                             ->orWhere('homologado', 'rejeitado')
+          $recursosResultadoHomologados = Recurso::where([['editalId', $request->editalId], ['tipo', 'resultado'], ['homologado', 'aprovado']])
+                                             ->orWhere([['editalId', $request->editalId], ['tipo', 'resultado'], ['homologado', 'rejeitado']])
                                              ->get();
           $recursosResultadoNaoHomologados = Recurso::where('editalId', $request->editalId)
                                                 ->where('tipo', 'resultado')
