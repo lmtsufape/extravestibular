@@ -32,8 +32,8 @@ class IsencaoController extends Controller
                                         'parentescoNucleoFamiliar1'=> ['nullable', 'string', 'max:255'],
                                         'rendaNucleoFamiliar1' => ['nullable', 'string', 'max:255'],
                                         'fontePagadoraNucleoFamiliar1 '=> ['nullable', 'string', 'max:255'],
-                                        'nis' => ['required', 'mimes:pdf', 'max:20000'],
-                                        'historicoEscolar' 			=> ['required', 'mimes:pdf','max:20000'],
+                                        'nis' => ['required', 'mimes:pdf', 'max:65536'],
+                                        'historicoEscolar' 			=> ['required', 'mimes:pdf','max:65536'],
                                         ]);
 
 

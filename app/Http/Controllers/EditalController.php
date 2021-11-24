@@ -104,7 +104,7 @@ class EditalController extends Controller{
            $request->resultadoFinal == null
           ){
             $validatedData = $request->validate([
-                                                  'pdfEdital'               => ['nullable', 'mimes:pdf', 'max:20000'],
+                                                  'pdfEdital'               => ['nullable', 'mimes:pdf', 'max:65536'],
                                                   'inicioIsencao'           => ['required', 'date', 'after:'.$yesterday],
                                                   'fimIsencao'              => ['required', 'date'],
                                                   'inicioRecursoIsencao'    => ['required', 'date'],
@@ -123,7 +123,7 @@ class EditalController extends Controller{
         }
         //validate para data oks
         $validatedData = $request->validate([
-                                              'pdfEdital'               => ['nullable', 'mimes:pdf', 'max:20000'],
+                                              'pdfEdital'               => ['nullable', 'mimes:pdf', 'max:65536'],
                                               'inicioIsencao'           => ['required', 'date'],
                                               'fimIsencao'              => ['required', 'date', 'after:'.$request->inicioIsencao, 'before:'.$request->inicioRecursoIsencao],
                                               'inicioRecursoIsencao'    => ['required', 'date', 'after:'.$request->fimIsencao, 'before:'.$request->fimRecursoIsencao],
@@ -221,7 +221,7 @@ class EditalController extends Controller{
            $request->resultadoFinal == null
           ){
             $validatedData = $request->validate([ 'nome'                    => ['required', 'string', 'max:255', 'unique:editals'],
-                                                  'pdfEdital'               => ['required', 'mimes:pdf', 'max:20000'],
+                                                  'pdfEdital'               => ['required', 'mimes:pdf', 'max:65536'],
                                                   'inicioIsencao'           => ['required', 'date', 'after:'.$yesterday],
                                                   'fimIsencao'              => ['required', 'date'],
                                                   'inicioRecursoIsencao'    => ['required', 'date'],
@@ -240,7 +240,7 @@ class EditalController extends Controller{
         }
         //validate para data oks
         $validatedData = $request->validate([ 'nome'                    => ['required', 'string', 'max:255', 'unique:editals'],
-                                              'pdfEdital'               => ['required', 'mimes:pdf', 'max:20000'],
+                                              'pdfEdital'               => ['required', 'mimes:pdf', 'max:65536'],
                                               'inicioIsencao'           => ['required', 'date', 'after:'.$yesterday],
                                               'fimIsencao'              => ['required', 'date', 'after:'.$request->inicioIsencao, 'before:'.$request->inicioRecursoIsencao],
                                               'inicioRecursoIsencao'    => ['required', 'date', 'after:'.$request->fimIsencao, 'before:'.$request->fimRecursoIsencao],

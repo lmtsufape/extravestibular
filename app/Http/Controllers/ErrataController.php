@@ -21,7 +21,7 @@ class ErrataController extends Controller
       $this->authorize('gerenciarEdital', Edital::class);
 
       $validatedData = $request->validate([ 'nome'    => ['required', 'string', 'max:255'],
-                                            'arquivo' => ['required', 'mimes:pdf', 'max:20000'],
+                                            'arquivo' => ['required', 'mimes:pdf', 'max:65536'],
                                           ]);
       $file = $request->arquivo;
       $path = 'erratas/' . $request->editalId . '/';
@@ -50,7 +50,7 @@ class ErrataController extends Controller
       $this->authorize('gerenciarEdital', Edital::class);
 
       $validatedData = $request->validate([
-                                            'arquivo1' => ['required', 'mimes:pdf', 'max:20000'],
+                                            'arquivo1' => ['required', 'mimes:pdf', 'max:65536'],
                                           ]);
       $errata = Errata::find($request->errataId);
       $file = $request->arquivo1;

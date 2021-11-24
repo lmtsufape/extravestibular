@@ -39,27 +39,27 @@ class InscricaoController extends Controller
 
         if(empty($isencao)){
             $validatedData = $request->validate([
-                'comprovante' => ['required', 'mimes:pdf','max:20000']
+                'comprovante' => ['required', 'mimes:pdf','max:65536']
             ]);
         }
         // campos comuns a todos
         $request->validate([
             'declaracaoDeVeracidade' => ['required'],
-            'rg'                     => ['required', 'mimes:pdf','max:20000'],
-            'cpf'                    => ['nullable', 'mimes:pdf','max:20000'],
-            'quitacaoEleitoral'      => ['required', 'mimes:pdf','max:20000'],
-            'reservista'             => ['nullable', 'mimes:pdf','max:20000'],
-            'certidaoNascimento'     => ['required', 'mimes:pdf','max:20000'],
+            'rg'                     => ['required', 'mimes:pdf','max:65536'],
+            'cpf'                    => ['nullable', 'mimes:pdf','max:65536'],
+            'quitacaoEleitoral'      => ['required', 'mimes:pdf','max:65536'],
+            'reservista'             => ['nullable', 'mimes:pdf','max:65536'],
+            'certidaoNascimento'     => ['required', 'mimes:pdf','max:65536'],
         ]);
 
         if($request->tipo == 'reintegracao'){
             $validatedData = $request->validate([
-                'declaracaoDeVinculo'    => ['nullable', 'mimes:pdf','max:20000'],
-                'historicoEscolar'       => ['required', 'mimes:pdf','max:20000'],
-                'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:20000'],
-                'curriculo'              => ['nullable', 'mimes:pdf','max:20000'],
-                'enem'                   => ['nullable', 'mimes:pdf','max:20000'],
-                'diploma'                => ['nullable', 'mimes:pdf','max:20000'],
+                'declaracaoDeVinculo'    => ['nullable', 'mimes:pdf','max:65536'],
+                'historicoEscolar'       => ['required', 'mimes:pdf','max:65536'],
+                'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:65536'],
+                'curriculo'              => ['nullable', 'mimes:pdf','max:65536'],
+                'enem'                   => ['nullable', 'mimes:pdf','max:65536'],
+                'diploma'                => ['nullable', 'mimes:pdf','max:65536'],
                 'endereco'               => ['required', 'string', 'max:255'],
                 'num'                    => ['required', 'integer'],
                 'bairro'                 => ['required', 'max:255'],
@@ -74,12 +74,12 @@ class InscricaoController extends Controller
         }
         elseif ($request->tipo == 'transferenciaInterna') {
             $validatedData = $request->validate([
-                'declaracaoDeVinculo'    => ['required', 'mimes:pdf','max:20000'],
-                'historicoEscolar'       => ['required', 'mimes:pdf','max:20000'],
-                'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:20000'],
-                'curriculo'              => ['nullable', 'mimes:pdf','max:20000'],
-                'enem'                   => ['nullable', 'mimes:pdf','max:20000'],
-                'diploma'                => ['nullable', 'mimes:pdf','max:20000'],
+                'declaracaoDeVinculo'    => ['required', 'mimes:pdf','max:65536'],
+                'historicoEscolar'       => ['required', 'mimes:pdf','max:65536'],
+                'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:65536'],
+                'curriculo'              => ['nullable', 'mimes:pdf','max:65536'],
+                'enem'                   => ['nullable', 'mimes:pdf','max:65536'],
+                'diploma'                => ['nullable', 'mimes:pdf','max:65536'],
                 'endereco'               => ['required', 'string', 'max:255'],
                 'num'                    => ['required', 'integer'],
                 'bairro'                 => ['required', 'max:255'],
@@ -95,14 +95,14 @@ class InscricaoController extends Controller
         elseif ($request->tipo == 'transferenciaExterna') {
             // enade historicoGraduacao curriculo vinculo programa historioMedio
             $validatedData = $request->validate([
-                'declaracaoDeVinculo'    => ['required', 'mimes:pdf','max:20000'],
-                'declaracaoENADE'        => ['required', 'mimes:pdf','max:20000'],
-                'historicoEscolar'       => ['required', 'mimes:pdf','max:20000'],
-                'historicoEnsinoMedio'   => ['required', 'mimes:pdf','max:20000'],
-                'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:20000'],
-                'curriculo'              => ['required', 'mimes:pdf','max:20000'],
-                'enem'                   => ['nullable', 'mimes:pdf','max:20000'],
-                'diploma'                => ['nullable', 'mimes:pdf','max:20000'],
+                'declaracaoDeVinculo'    => ['required', 'mimes:pdf','max:65536'],
+                'declaracaoENADE'        => ['required', 'mimes:pdf','max:65536'],
+                'historicoEscolar'       => ['required', 'mimes:pdf','max:65536'],
+                'historicoEnsinoMedio'   => ['required', 'mimes:pdf','max:65536'],
+                'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:65536'],
+                'curriculo'              => ['required', 'mimes:pdf','max:65536'],
+                'enem'                   => ['nullable', 'mimes:pdf','max:65536'],
+                'diploma'                => ['nullable', 'mimes:pdf','max:65536'],
                 'endereco'               => ['required', 'string', 'max:255'],
                 'num'                    => ['required', 'integer'],
                 'bairro'                 => ['required', 'max:255'],
@@ -117,9 +117,9 @@ class InscricaoController extends Controller
         }
         elseif ($request->tipo == 'portadorDeDiploma') {
             $validatedData = $request->validate([
-                'historicoEscolar' 		 => ['required', 'mimes:pdf','max:20000'],
-                'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:20000'],
-                'diploma' 				 => ['required', 'mimes:pdf','max:20000'],
+                'historicoEscolar' 		 => ['required', 'mimes:pdf','max:65536'],
+                'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:65536'],
+                'diploma' 				 => ['required', 'mimes:pdf','max:65536'],
                 'endereco'          	 => ['required', 'string', 'max:255'],
                 'num'               	 => ['required', 'integer'],
                 'bairro'            	 => ['required', 'max:255'],

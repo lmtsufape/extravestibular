@@ -255,7 +255,7 @@
                     <div class="custom-file" style="width: 100%;">
                       <input disabled type="hidden" value="aux" id="comprovante">
                       <input id='elementoComprovante' type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="nis" value="{{ old('nis') }}">
-                      <label style="">(aceito arquivo .pdf de até 2 mb).</label>
+                      <label style="">(Aceito arquivo .pdf de até 64 mb).</label>
                       @error('nis')
                       <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                         <strong>{{ $message }}</strong>

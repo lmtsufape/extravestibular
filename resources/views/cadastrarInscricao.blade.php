@@ -92,7 +92,7 @@
                   <div class="custom-file" style="width: 100%;">
                     <input disabled type="hidden" value="aux" id="comprovante">
                     <input id='elementoComprovante'  onclick="comprovanteSelecionado()"  type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="comprovante" value="{{ old('comprovante') }}">
-                    <label style="">Anexar comprovante de pagamento (aceito arquivo .pdf de até 2 mb).</label>
+                    <label style="">Anexar comprovante de pagamento (Aceito arquivo .pdf de até 64 mb).</label>
                     @error('comprovante')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                       <strong>{{ $message }}</strong>
@@ -134,7 +134,7 @@
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input required type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="rg">
-                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                        <label style="">Aceito arquivo .pdf de até 64 mb</label>
                       </div>
                       @error('rg')
                       <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -149,7 +149,7 @@
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="cpf">
-                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                        <label style="">Aceito arquivo .pdf de até 64 mb</label>
                       </div>
                       @error('cpf')
                       <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -164,7 +164,7 @@
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input required type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="quitacaoEleitoral">
-                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                        <label style="">Aceito arquivo .pdf de até 64 mb</label>
                       </div>
                       @error('quitacaoEleitoral')
                       <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -179,7 +179,7 @@
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="reservista">
-                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                        <label style="">Aceito arquivo .pdf de até 64 mb</label>
                       </div>
                       @error('reservista')
                       <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -194,7 +194,7 @@
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input required type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="certidaoNascimento">
-                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                        <label style="">Aceito arquivo .pdf de até 64 mb</label>
                       </div>
                       @error('certidaoNascimento')
                       <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -209,7 +209,7 @@
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="historicoEnsinoMedio">
-                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                        <label style="">Aceito arquivo .pdf de até 64 mb</label>
                       </div>
                       @error('historicoEnsinoMedio')
                       <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -224,7 +224,7 @@
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="declaracaoENADE">
-                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                        <label style="">Aceito arquivo .pdf de até 64 mb</label>
                       </div>
                       @error('declaracaoENADE')
                       <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -241,7 +241,7 @@
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="historicoEscolar">
-                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                        <label style="">Aceito arquivo .pdf de até 64 mb</label>
                       </div>
                       @error('historicoEscolar')
                       <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -257,7 +257,7 @@
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="declaracaoDeVinculo">
-                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                        <label style="">Aceito arquivo .pdf de até 64 mb</label>
                       </div>
                       @error('declaracaoDeVinculo')
                       <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -273,7 +273,7 @@
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="programaDasDisciplinas" >
-                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                        <label style="">Aceito arquivo .pdf de até 64 mb</label>
                       </div>
                       @error('programaDasDisciplinas')
                       <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -289,7 +289,7 @@
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="curriculo" >
-                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                        <label style="">Aceito arquivo .pdf de até 64 mb</label>
                       </div>
                       @error('curriculo')
                       <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -305,7 +305,7 @@
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="enem" >
-                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                        <label style="">Aceito arquivo .pdf de até 64 mb</label>
                       </div>
                       @error('enem')
                       <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -321,7 +321,7 @@
                     <div class="col-sm-6">
                       <div class="custom-file">
                         <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="diploma" >
-                        <label style="">Aceito arquivo .pdf de até 2 mb</label>
+                        <label style="">Aceito arquivo .pdf de até 64 mb</label>
                       </div>
                       @error('diploma')
                       <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
