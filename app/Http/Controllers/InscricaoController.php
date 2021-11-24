@@ -583,6 +583,11 @@ class InscricaoController extends Controller
     return response()->download(storage_path('app/public/'.$request->file));
 	}
 
+    public function downloadEdital(Request $request)
+    {
+        return response()->download(storage_path('app/public/'.$request->file));
+    }
+
 	private function aprovarPorPrioridade($aux, $curso, $tipo, $editalId, $transferenciaExternaDeMesmoCurso){
 		if($transferenciaExternaDeMesmoCurso == 'sim'){
 			$inscricoesManhaOrderByDesc = Inscricao::where('editalId', $editalId)
