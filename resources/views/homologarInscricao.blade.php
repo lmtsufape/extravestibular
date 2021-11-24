@@ -213,7 +213,7 @@
               <div class="col-sm-4" style="<?php if(is_null($dados->foneResidencial)){echo("display: none");}  ?>">
                   <label for="foneResidencial" class="field a-field a-field_a2 page__field">
                       <span class="a-field__label-wrap">
-                        <span class="a-field__label">Fone Residencial*</span>
+                        <span class="a-field__label">Fone Residencial</span>
                       </span>
                     </label>
                     <input disabled id="foneResidencial" type="text" name="foneResidencial" autofocus class=" form-control field__input a-field__input" placeholder="Fone Residencial*" value="{{ $dados->foneResidencial }}">
@@ -229,7 +229,7 @@
                 <div class="col-sm-4" style="<?php if(is_null($dados->foneComercial)){echo("display: none");}  ?>">
                   <label for="foneComercial" class="field a-field a-field_a2 page__field">
                       <span class="a-field__label-wrap">
-                        <span class="a-field__label">Fone Comercial*</span>
+                        <span class="a-field__label">Fone Comercial</span>
                       </span>
                     </label>
                     <input disabled id="foneComercial" type="text" name="foneComercial" autofocus class=" form-control field__input a-field__input" placeholder="Fone Comercial*" value="{{ $dados->foneComercial }}">

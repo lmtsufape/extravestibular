@@ -215,7 +215,7 @@
                         <span class="a-field__label">Fone Comercial</span>
                       </span>
                     </label>
-                    <input disabled id="foneComercial" type="text" name="foneComercial" autofocus class=" form-control field__input a-field__input" placeholder="Fone Comercial*" value="{{ $dados->foneComercial }}">
+                    <input disabled id="foneComercial" type="text" name="foneComercial" autofocus class=" form-control field__input a-field__input" placeholder="Fone Comercial" value="{{ $dados->foneComercial }}">
                 </div>
           </div><!-- end row telefone-->
         </div><!-- end card-body -->
