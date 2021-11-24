@@ -60,9 +60,6 @@
     <div class="row" style="margin-top:5%">
         <div class="card " style="width: 30%; margin-left: 70%;">
             <div class="card-header"><span style="color: red; font-weight: bold;">*</span> Campo obrigatório</div>
-            <div class="col-md-4" style="text-align: right">
-                <a class="btn btn-primary" href="{{route('ajaxListarCurso')}}">Teste</a>
-            </div>
         </div>
       <div class="card " style="width: 100%;">
           <div class="card-header">{{ __('Comprovante') }}</div>
