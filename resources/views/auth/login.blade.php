@@ -147,9 +147,11 @@
                 <span class="a-field__label">Senha</span>
               </span>
               <label for="password" class="field a-field a-field_a3 page__field" style="width:100%" >
-              <input id="password" type="password" class="form-control @error('password') is-invalid @enderror field__input a-field__input"
+              <input id="password" type="password" class="form-control pb-0 mb-0 @error('password') is-invalid @enderror field__input a-field__input"
               name="password" required autocomplete="current-password" placeholder="Senha">
-
+              <a class="btn btn-link pl-0" href="{{route('password.request')}}">
+                {{ __('Esqueceu sua senha?   ') }}
+              </a>
               </label>
               @error('password')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;">
@@ -169,11 +171,7 @@
                       {{ __('Lembre-se de mim') }}
                   </label>
               </div>
-              @if (Route::has('password.request'))
-              <a class="btn btn-link" href="#" style="color: #1B2E4F; opacity: 0">
-                {{ __('Esqueceu sua senha?   ') }}
-              </a>
-              @endif
+
           </div>
         </div><!-- end row lembre-se de mim | Esqueceu senha -->
 

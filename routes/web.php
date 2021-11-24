@@ -18,6 +18,8 @@ Route::get('/', function () {
     return redirect()->route('home');
 });
 
+Route::view('/password/reset', 'auth.passwords.reset')->name('password.request');
+
 Auth::routes();
 
 Route::get('/login',                         'InscricaoController@entrar'                       )->name('login');
