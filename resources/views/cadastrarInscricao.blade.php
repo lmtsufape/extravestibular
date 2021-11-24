@@ -235,7 +235,7 @@
                 </div>
 
                 <div id="historicoEscolar" class="form-group row" style="display: none" >      <!-- Arquivo historico escolar -->
-                    <label for="Historico escolar" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Histórico escolar do curso de graduação:') }}</label>
+                    <label for="Historico escolar" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold; display: inline">* </span><p style="display: inline" id="pHistoricoGraduacao">{{ __('Histórico escolar do curso de graduação:') }}</p></label>
 
 
                     <div class="col-sm-6">
@@ -284,7 +284,7 @@
                 </div>
 
                 <div id="curriculo" class="form-group row" style="display: none">              <!-- Arquivo curriculo -->
-                    <label for="Curriculo" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Documento acadêmico que contenha o Currículo Pleno do curso original, caso o histórico escolar não demonstre:') }}</label>
+                    <label for="Curriculo" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Documento acadêmico que contenha o Currículo do curso original, caso o histórico escolar não demonstre:') }}</label>
 
                     <div class="col-sm-6">
                       <div class="custom-file">
@@ -591,6 +591,7 @@
 
       document.getElementById("historicoEscolar").style.display = "";
       document.getElementById("declaracaoENADE").style.display = "none";
+      $('#pHistoricoGraduacao').text('Histórico Escolar do curso de graduação (UFAPE  ou  antiga  UAG/UFRPE) atualizado:');
       document.getElementById("curriculo").style.display = "none";
       document.getElementById("declaracaoDeVinculo").style.display = "none";
       document.getElementById("programaDasDisciplinas").style.display = "none";
@@ -623,6 +624,7 @@
 
       document.getElementById("declaracaoENADE").style.display = "";
       document.getElementById("historicoEscolar").style.display = "";
+      $('#pHistoricoGraduacao').text('Histórico Escolar do curso de graduação atualizado, com indicativo da média global, formalmente oficializado pela IFES de origem:');
       document.getElementById("curriculo").style.display = "";
       document.getElementById("declaracaoDeVinculo").style.display = "";
       document.getElementById("programaDasDisciplinas").style.display = "";
@@ -641,6 +643,7 @@
 
       document.getElementById("diploma").style.display = "";
       document.getElementById("historicoEscolar").style.display = "";
+      $('#pHistoricoGraduacao').text('Histórico Escolar do curso de graduação, com indicativo da média global:');
       document.getElementById("programaDasDisciplinas").style.display = "";
       document.getElementById("declaracaoENADE").style.display = "none";
       document.getElementById("curriculo").style.display = "none";
