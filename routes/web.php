@@ -22,7 +22,7 @@ Auth::routes();
 
 Route::get('/login',                         'InscricaoController@entrar'                       )->name('login');
 
-
+Route::get('/downloadEdital',                'InscricaoController@downloadEdital'              )->name('downloadEdital');
 Route::get('/listarEditais',                 'EditalController@iframeEditais'                   )->name('iframeEditais');
 Route::post('/loginApi',                     'HomeController@loginApi'                          )->name('loginApi');
 

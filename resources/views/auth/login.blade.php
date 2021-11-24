@@ -97,7 +97,7 @@
                 <a>{{ date_format($date , 'd/m/y')  }}</a>
               </td>
               <td> <!-- Download -->
-                <a href="{{ route('download', ['file' => $edital->pdfEdital])}}" target="_parent">Baixar Edital</a>
+                <a href="{{ route('downloadEdital', ['file' => $edital->pdfEdital])}}" target="_new">Baixar Edital</a>
               </td>
 
             </tr>
