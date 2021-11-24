@@ -105,7 +105,7 @@ class EditalController extends Controller{
           ){
             $validatedData = $request->validate([
                                                   'pdfEdital'               => ['nullable', 'mimes:pdf', 'max:20000'],
-                                                  'inicioIsencao'           => ['required', 'date'],
+                                                  'inicioIsencao'           => ['required', 'date', 'after:'.$yesterday],
                                                   'fimIsencao'              => ['required', 'date'],
                                                   'inicioRecursoIsencao'    => ['required', 'date'],
                                                   'fimRecursoIsencao'       => ['required', 'date'],
@@ -123,21 +123,21 @@ class EditalController extends Controller{
         }
         //validate para data oks
         $validatedData = $request->validate([
-                                                  'pdfEdital'               => ['nullable', 'mimes:pdf', 'max:20000'],
-                                                  'inicioIsencao'           => ['required', 'date'],
-                                                  'fimIsencao'              => ['required', 'date'],
-                                                  'inicioRecursoIsencao'    => ['required', 'date'],
-                                                  'fimRecursoIsencao'       => ['required', 'date'],
-                                                  'inicioInscricoes'        => ['required', 'date'],
-                                                  'fimInscricoes'           => ['required', 'date'],
-                                                  'inicioRecurso'           => ['required', 'date'],
-                                                  'fimRecurso'              => ['required', 'date'],
-                                                  'resultado'               => ['required', 'date'],
-                                                  'inicioRecursoResultado'  => ['required', 'date'],
-                                                  'fimRecursoResultado'     => ['required', 'date'],
-                                                  'resultadoFinal'          => ['required', 'date'],
-                                                  'descricao'               => ['required', 'string', 'min:5', 'max:600'],
-                                                  'checkVagasExistentes'    => ['required', 'string'],
+                                              'pdfEdital'               => ['nullable', 'mimes:pdf', 'max:20000'],
+                                              'inicioIsencao'           => ['required', 'date'],
+                                              'fimIsencao'              => ['required', 'date', 'after:'.$request->inicioIsencao, 'before:'.$request->inicioRecursoIsencao],
+                                              'inicioRecursoIsencao'    => ['required', 'date', 'after:'.$request->fimIsencao, 'before:'.$request->fimRecursoIsencao],
+                                              'fimRecursoIsencao'       => ['required', 'date', 'after:'.$request->inicioRecursoIsencao, 'before:'.$request->inicioInscricoes],
+                                              'inicioInscricoes'        => ['required', 'date', 'after:'.$request->fimRecursoIsencao, 'before:'.$request->fimInscricoes],
+                                              'fimInscricoes'           => ['required', 'date', 'after:'.$request->inicioInscricoes, 'before:'.$request->inicioRecurso],
+                                              'inicioRecurso'           => ['required', 'date', 'after:'.$request->fimInscricoes, 'before:'.$request->fimRecurso],
+                                              'fimRecurso'              => ['required', 'date', 'after:'.$request->inicioRecurso, 'before:'.$request->resultado],
+                                              'resultado'               => ['required', 'date', 'after:'.$request->fimRecurso, 'before:'.$request->inicioRecursoResultado],
+                                              'inicioRecursoResultado'  => ['required', 'date', 'after:'.$request->resultado, 'before:'.$request->fimRecursoResultado],
+                                              'fimRecursoResultado'     => ['required', 'date', 'after:'.$request->inicioRecursoResultado, 'before:'.$request->resultadoFinal],
+                                              'resultadoFinal'          => ['required', 'date', 'after:'.$request->fimRecursoResultado],
+                                              'descricao'               => ['required', 'string', 'min:5', 'max:600'],
+                                              'checkVagasExistentes'    => ['required', 'string'],
                                             ]);
 
         $edital = Edital::find($request->editalId);
@@ -222,7 +222,7 @@ class EditalController extends Controller{
           ){
             $validatedData = $request->validate([ 'nome'                    => ['required', 'string', 'max:255', 'unique:editals'],
                                                   'pdfEdital'               => ['required', 'mimes:pdf', 'max:20000'],
-                                                  'inicioIsencao'           => ['required', 'date'],
+                                                  'inicioIsencao'           => ['required', 'date', 'after:'.$yesterday],
                                                   'fimIsencao'              => ['required', 'date'],
                                                   'inicioRecursoIsencao'    => ['required', 'date'],
                                                   'fimRecursoIsencao'       => ['required', 'date'],
@@ -241,18 +241,18 @@ class EditalController extends Controller{
         //validate para data oks
         $validatedData = $request->validate([ 'nome'                    => ['required', 'string', 'max:255', 'unique:editals'],
                                               'pdfEdital'               => ['required', 'mimes:pdf', 'max:20000'],
-                                              'inicioIsencao'           => ['required', 'date'],
-                                              'fimIsencao'              => ['required', 'date'],
-                                              'inicioRecursoIsencao'    => ['required', 'date'],
-                                              'fimRecursoIsencao'       => ['required', 'date'],
-                                              'inicioInscricoes'        => ['required', 'date'],
-                                              'fimInscricoes'           => ['required', 'date'],
-                                              'inicioRecurso'           => ['required', 'date'],
-                                              'fimRecurso'              => ['required', 'date'],
-                                              'resultado'               => ['required', 'date'],
-                                              'inicioRecursoResultado'  => ['required', 'date'],
-                                              'fimRecursoResultado'     => ['required', 'date'],
-                                              'resultadoFinal'          => ['required', 'date'],
+                                              'inicioIsencao'           => ['required', 'date', 'after:'.$yesterday],
+                                              'fimIsencao'              => ['required', 'date', 'after:'.$request->inicioIsencao, 'before:'.$request->inicioRecursoIsencao],
+                                              'inicioRecursoIsencao'    => ['required', 'date', 'after:'.$request->fimIsencao, 'before:'.$request->fimRecursoIsencao],
+                                              'fimRecursoIsencao'       => ['required', 'date', 'after:'.$request->inicioRecursoIsencao, 'before:'.$request->inicioInscricoes],
+                                              'inicioInscricoes'        => ['required', 'date', 'after:'.$request->fimRecursoIsencao, 'before:'.$request->fimInscricoes],
+                                              'fimInscricoes'           => ['required', 'date', 'after:'.$request->inicioInscricoes, 'before:'.$request->inicioRecurso],
+                                              'inicioRecurso'           => ['required', 'date', 'after:'.$request->fimInscricoes, 'before:'.$request->fimRecurso],
+                                              'fimRecurso'              => ['required', 'date', 'after:'.$request->inicioRecurso, 'before:'.$request->resultado],
+                                              'resultado'               => ['required', 'date', 'after:'.$request->fimRecurso, 'before:'.$request->inicioRecursoResultado],
+                                              'inicioRecursoResultado'  => ['required', 'date', 'after:'.$request->resultado, 'before:'.$request->fimRecursoResultado],
+                                              'fimRecursoResultado'     => ['required', 'date', 'after:'.$request->inicioRecursoResultado, 'before:'.$request->resultadoFinal],
+                                              'resultadoFinal'          => ['required', 'date', 'after:'.$request->fimRecursoResultado],
                                               'descricao'               => ['required', 'string', 'min:5', 'max:600'],
                                               'checkVagasExistentes'    => ['required', 'string'],
                                             ]);
@@ -379,7 +379,7 @@ class EditalController extends Controller{
     		$edital = Edital::find($request->editalId);
         $mytime = Carbon::now('America/Recife');
         $mytime = $mytime->toDateString();
-        
+
         if($request->tipo == 'fazerInscricao'){
           $edital = Edital::find($request->editalId);
 
