@@ -102,7 +102,7 @@
                   <span class="a-field__label-wrap">
                     <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>RG:</span>
                   </span>
-                    <input maxlength="7" id="rg" type="text" name="rg" autofocus class="form-control @error('rg') is-invalid @enderror field__input a-field__input" placeholder="RG*" style="" value="{{ old('rg') }}">
+                    <input id="rg" type="text" name="rg" autofocus class="form-control @error('rg') is-invalid @enderror field__input a-field__input" placeholder="RG*" style="" value="{{ old('rg') }}">
                 </label>
                 @error('rg')
                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
