@@ -384,8 +384,55 @@ class InscricaoController extends Controller
             'dados'		 => $dados,
             'curso'	   => $curso,
         ]);
-		
+
         return redirect()->route('home')->with('jsAlert', 'Inscrição realizada com sucesso!');
+    }
+
+    public function ajaxCurso(Request $request)
+    {
+        $edital = Edital::find($request->edital);
+        $curso = $request->curso;
+        $vagas = explode('!',$edital->vagas);
+		for($i = 0; $i < sizeof($vagas); $i++){
+			$vagas[$i] = explode(":",$vagas[$i]);
+		}
+		for($i = 0; $i < sizeof($vagas); $i++){
+			if($vagas[$i][0] == $curso){
+				$vagas = $vagas[$i][1];
+				break;
+			}
+		}
+		$vagas = explode('?', $vagas);
+        $valorTurnos = collect();
+        $nomesTurnos = collect();
+
+        if($vagas[0] != ""){
+            $valorTurnos->push('manhã');
+            $nomesTurnos->push('Manhã');
+        }
+        if($vagas[1] != ""){
+            $valorTurnos->push('tarde');
+            $nomesTurnos->push('Tarde');
+        }
+        if($vagas[2] != ""){
+            $valorTurnos->push('noite');
+            $nomesTurnos->push('Noite');
+        }
+        if($vagas[3] != ""){
+            $valorTurnos->push('integral');
+            $nomesTurnos->push('Integral');
+        }
+        if($vagas[4] != ""){
+            $valorTurnos->push('especial');
+            $nomesTurnos->push('Especial (EAD)');
+        }
+
+        $data = array(
+            'success'   => true,
+            'valorTurnos' => $valorTurnos,
+            'nomesTurnos' => $nomesTurnos,
+        );
+        echo json_encode($data);
     }
 
 	public function cadastroDesempate(Request $request){

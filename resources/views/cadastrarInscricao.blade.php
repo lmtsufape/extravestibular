@@ -91,7 +91,7 @@
                 <div class="col-sm-10">
                   <div class="custom-file" style="width: 100%;">
                     <input disabled type="hidden" value="aux" id="comprovante">
-                    <input id='elementoComprovante'  onclick="comprovanteSelecionado()"  type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="comprovante" value="{{ old('comprovante') }}">
+                    <input id='elementoComprovante'  onclick="comprovanteSelecionado({{$editalId}})"  type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="comprovante" value="{{ old('comprovante') }}">
                     <label style="">Anexar comprovante de pagamento (Aceito arquivo .pdf de até 64 mb).</label>
                     @error('comprovante')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -355,7 +355,7 @@
 
                     <div class="col-sm-8" id="selectCurso">
 
-                      <select class="form-control col-sm-10" name="curso" style="width: 100%">
+                      <select class="form-control col-sm-10" name="curso" style="width: 100%" id="idSelecionarCurso" onChange="selecionarCurso({{$editalId}})">
                         <?php
                         foreach ($cursosDisponiveis as $curso) {
                           if($curso[0] != '#'){
@@ -373,12 +373,7 @@
                     <label for="Turno" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Turno:') }}</label>
 
                     <div class="col-sm-8">
-                      <select class="form-control col-sm-10" name="turno">
-                        <option value="manhã">Manhã</option>
-                        <option value="tarde">Tarde</option>
-                        <option value="noite">Noite</option>
-                        <option value="integral">Integral</option>
-                        <option value="especial">Especial (EAD)</option>
+                      <select class="form-control col-sm-10" name="turno" id="id_turnos">
                       </select>
                     </div>
                 </div>
@@ -575,6 +570,34 @@
 </div>
 
 <script type="text/javascript" >
+
+    function selecionarCurso(editalId){
+        var historySelectList = $('select#idSelecionarCurso');
+        var $curso = $('option:selected', historySelectList).val();
+        limparTurnos();
+
+        $.ajax({
+            url:'ajax-listar-turnos',
+            type:"get",
+            data: {"curso": $curso, "edital" : editalId},
+            dataType:'json',
+
+            complete: function(data) {
+                if(data.responseJSON.success){
+                    for(var i = 0; i < data.responseJSON.valorTurnos.length; i++){
+                        var html = `<option value="`+data.responseJSON.valorTurnos[i]+`">`+data.responseJSON.nomesTurnos[i]+`</option>`;
+                        $('#id_turnos').append(html);
+                    }
+                }
+            }
+        });
+    }
+
+    function limparTurnos() {
+        var turnos = document.getElementById('id_turnos');
+        turnos.innerHTML = "";
+    }
+
   function mostrarComuns() {
     document.getElementById("rg").style.display = "";
     document.getElementById("cpf").style.display = "";
@@ -668,8 +691,9 @@
    }
   }
 
-  function comprovanteSelecionado(){
+  function comprovanteSelecionado(editalId){
     document.getElementById("formulario").style.display = "";
+    this.selecionarCurso(editalId);
   }
 
 
