@@ -271,7 +271,7 @@
                 <span class="a-field__label-wrap">
                   <span class="a-field__label">Bairro*</span>
                 </span>
-                  <input maxlength="2" id="bairro" type="text" name="bairro" autofocus class="form-control @error('bairro') is-invalid @enderror field__input a-field__input" placeholder="Bairro*" style="width:100%" value="{{ $dados->bairro }}">
+                  <input id="bairro" type="text" name="bairro" autofocus class="form-control @error('bairro') is-invalid @enderror field__input a-field__input" placeholder="Bairro*" style="width:100%" value="{{ $dados->bairro }}">
               </label>
               @error('bairro')
               <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
