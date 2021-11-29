@@ -323,21 +323,9 @@
         <input type="hidden" name="editalId" value="{{$edital->id}}">
         <input type="hidden" name="tipo" value="homologarIsencao">
 
-        @if($edital->inicioIsencao<= $mytime)
-          @if($edital->fimIsencao >= $mytime)
             <button type="submit" class="btn btn-primary btn-primary-lmts "  >
               {{ __('Homologar Isenção') }}
             </button>
-          @else
-            <button type="submit" disabled class="btn btn-primary btn-primary-lmts ">
-              {{ __('Homologar Isenção') }}
-            </button>
-          @endif
-        @else
-          <button type="submit" disabled class="btn btn-primary btn-primary-lmts "  >
-            {{ __('Homologar Isenção') }}
-          </button>
-        @endif
       </form>
     </div>
 
@@ -397,7 +385,7 @@
         <input type="hidden" name="editalId" value="{{$edital->id}}">
         <input type="hidden" name="tipo" value="homologarRecursosIsencao">
 
-        <button type="submit" @if(!($edital->inicioRecursoIsencao <= $mytime && $edital->fimRecursoIsencao >= $mytime)) disabled @endif class="btn btn-primary btn-primary-lmts">
+        <button type="submit" class="btn btn-primary btn-primary-lmts">
           {{ __('Homologar Recursos Isenção') }}
         </button>
       </form>
@@ -455,21 +443,9 @@
              <input type="hidden" name="editalId" value="{{$edital->id}}">
              <input type="hidden" name="tipo" value="homologarInscricoes">
 
-             @if($edital->inicioInscricoes <= $mytime)
-               @if($edital->fimInscricoes >= $mytime)
-                 <button type="submit" class="btn btn-primary btn-primary-lmts ">
-                     {{ __('Homologar Inscrições') }}
-                 </button>
-               @else
-               <button type="submit" disabled class="btn btn-primary btn-primary-lmts">
-                   {{ __('Homologar Inscrições') }}
-               </button>
-               @endif
-             @else
-             <button type="submit" disabled class="btn btn-primary btn-primary-lmts">
-                 {{ __('Homologar Inscrições') }}
-             </button>
-             @endif
+            <button type="submit" class="btn btn-primary btn-primary-lmts ">
+                {{ __('Homologar Inscrições') }}
+            </button>
          </form>
        </div>
   </div> <!-- END Inscrição -->
@@ -524,8 +500,8 @@
 
             <input type="hidden" name="editalId" value="{{$edital->id}}">
             <input type="hidden" name="tipo" value="homologarRecursosInscricao">
-             
-            <button type="submit" @if(!($edital->inicioRecurso <= $mytime && $edital->fimRecurso >= $mytime)) disabled @endif class="btn btn-primary btn-primary-lmts">
+
+            <button type="submit" class="btn btn-primary btn-primary-lmts">
             {{ __('Homologar Recursos Inscrição') }}
             </button>
          </form>
@@ -584,22 +560,9 @@
             <input type="hidden" name="editalId" value="{{$edital->id}}">
             <input type="hidden" name="tipo" value="homologarRecursosResultado">
 
-            @if($edital->inicioRecursoResultado <= $mytime)
-              @if($edital->fimRecursoResultado >= $mytime)
-                <button type="submit" class="btn btn-primary btn-primary-lmts" >
-                    {{ __('Homologar Recursos Resultado') }}
-                </button>
-              @else
-              <button type="submit" disabled class="btn btn-primary btn-primary-lmts">
-                  {{ __('Homologar Recursos Resultado') }}
-              </button>
-              @endif
-            @else
-            <button type="submit" disabled class="btn btn-primary btn-primary-lmts">
+            <button type="submit" class="btn btn-primary btn-primary-lmts" >
                 {{ __('Homologar Recursos Resultado') }}
             </button>
-            @endif
-
         </form>
       </div>
     </div><!-- END Recuso Resultado -->
