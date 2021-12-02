@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\User;
+use App\Recurso;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Lmts\src\controller\LmtsApi;
 
@@ -22,7 +23,9 @@ class RecursoPolicy
     }
 
     public function homologarRecurso(?User $user){
-      return $this->api->autorizar('homologar recursos');
+      $recurso = Recurso::all()->where('id', request()->recursoId)->first();
+      return $this->api->autorizar('homologar recursos')
+        || auth()->user()->analistas()->where('analistas.edital_id', $recurso->edital->id)->count();
 
     }
 

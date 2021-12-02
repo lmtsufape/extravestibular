@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\User;
+use App\Inscricao;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Lmts\src\controller\LmtsApi;
 
@@ -28,7 +29,9 @@ class InscricaoPolicy
     }
 
     public function homologarInscricao(?User $user){
-      return $this->api->autorizar('homologar inscricoes');
+      $inscricao = Inscricao::all()->where('id', request()->inscricaoId)->first();
+      return $this->api->autorizar('homologar inscricoes')
+        || auth()->user()->analistas()->where('analistas.edital_id', $inscricao->edital->id)->count();
     }
 
     public function cadastrarInscricao(?User $user){

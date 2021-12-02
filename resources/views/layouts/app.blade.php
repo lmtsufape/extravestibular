@@ -133,6 +133,17 @@
                     </form>
                 </li>
               @endif
+              @if (Auth::user()->analistas->count())
+                <!-- separador -->
+                <li class="separador-lmts">
+                    |
+                </li>
+                <li class="nav-item active">
+                        <a class="nav-link" href="{{route('analistas.editais')}}">
+                        {{ __('ÁREA DO ANALISTA') }}
+                        </a>
+                    </li>
+              @endif
             </ul>
 
             <!-- Menu da Direita -->

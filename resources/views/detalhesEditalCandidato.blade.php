@@ -239,7 +239,7 @@
           <input type="hidden" name="editalId" value="{{$edital->id}}">
           <input type="hidden" name="tipo" value="requerimentoDeRecurso">
           <input type="hidden" name="tipoRecurso" value="taxa" >
-          @if(is_null($recursoIsencao) && !is_null($isencao))
+          @if(is_null($recursoIsencao) && !is_null($isencao) && $isencao->parecer == "indeferida")
             @if($edital->inicioRecursoIsencao <= $mytime)
               @if($edital->fimRecursoIsencao >= $mytime)
                 <button type="submit" class="btn btn-primary btn-primary-lmts" >
@@ -275,17 +275,7 @@
             Status da Inscrição: <br>
             @if($inscricao != 'processando')
               @if($inscricao->homologado == 'aprovado')
-                @if($inscricao->homologadoDrca == 'aprovado')
-                  <a style="font-weight: bold;color: green">Aprovado</a>
-                @elseif($inscricao->homologadoDrca == 'nao')
-                  <a style="font-weight: bold">Processando</a>
-                @else
-                  <div class="hover-popup-lmts">
-                    <a style="font-weight: bold; color: red">Indeferido</a> <br>
-                    <a style="font-weight: bold">Justificativa:</a> <br>
-                    <div class="justify-content-center" style=""> {{$inscricao->motivoRejeicao}} </div>
-                  </div>
-                @endif
+                <a style="font-weight: bold;color: green">Aprovado</a>
               @elseif($inscricao->homologado == 'nao')
                 <a style="font-weight: bold">Processando</a>
               @else
@@ -367,7 +357,7 @@
              <input type="hidden" name="editalId" value="{{$edital->id}}">
              <input type="hidden" name="tipo" value="requerimentoDeRecurso">
              <input type="hidden" name="tipoRecurso" value="classificacao" >
-             @if(is_null($recursoInscricao) && !is_null($inscricao))
+             @if(is_null($recursoInscricao) && !is_null($inscricao) && $inscricao->homologado == 'rejeitado')
                @if($edital->inicioRecurso <= $mytime)
                  @if($edital->fimRecurso >= $mytime)
                    <button type="submit" class="btn btn-primary btn-primary-lmts" >

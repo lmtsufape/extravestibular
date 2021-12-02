@@ -70,129 +70,6 @@
 
 </style>
 
-
-
-<!-- Modal Nova Errata -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <form method="POST" action="{{ route('cadastroErrata') }}" enctype="multipart/form-data" id="formErrata">
-    @csrf
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Nova Errata</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-         <div>
-
-           <div class="row" style="margin-left: 0.5%;">
-             <label for="nome" class="field a-field a-field_a2 page__field" style="width:100%">
-               <span class="a-field__label-wrap">
-                 <span class="a-field__label">Nome*</span>
-               </span>
-           </div>
-           <div class="row justify-content-center" style="">  <!-- Nome -->
-             <div class="col-sm-12">
-
-                 <input id="nome" type="text" name="nome" class="field__input a-field__input form-control @error('nome') is-invalid @enderror" placeholder="Nome" value="{{ old('nome') }}">
-                 @error('nome')
-                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                   <strong>{{ $message }}</strong>
-                 </span>
-                 @enderror
-               </label>
-              </div>
-            </div><!--end Nome -->
-
-
-             <div id="label" class="row" style="margin-left:0.5%">
-               <label  for="arquivo" class="col-form-label text-sm-right">{{ __('Arquivo*') }}</label>
-             </div>
-             <div  class="row justify-content-left" >  <!-- PDF -->
-
-               <div class="col-md-12" style="">
-                 <div class="custom-file">
-                   <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="arquivo">
-                 </div>
-                 @error('arquivo')
-                 <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                   <strong>{{ $message }}</strong>
-                 </span>
-                 @enderror
-               </div>
-          </div><!-- end PDF -->
-
-           <div  class="row" style="margin-top:10px;">
-             <div class="col-sm-10">
-               <input name="editarEdital" id="editarEdital" type="checkbox" value="sim">
-               <input name="editalId" type="hidden" value="{{$editalId}}">
-             <label for="editarEdital">{{ __('Marque se existir mudança nas datas') }}</label>
-           </div>
-           </div>
-
-         </div>
-
-      </div>
-      <div class="modal-footer">
-        <button  type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 50px;margin-top:40px;">Fechar</button>
-        <button onclick="event.preventDefault();confirmarErrata();" id="finalizarModal" class="btn btn-primary btn-primary-lmts">
-          {{ __('Enviar') }}
-        </button>
-      </div>
-    </div>
-  </div>
-  </form>
-</div> <!-- End Modal -->
-
-
-<!-- Modal Nova Errata -->
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-  <form method="POST" action="{{ route('modificarErrata') }}" enctype="multipart/form-data" id="formModificarErrata">
-    @csrf
-    <input type="hidden" name="errataId" value="" id="idModificarErrata">
-    <input name="editalId" type="hidden" value="{{$editalId}}">
-
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel1">Modificar Errata</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-         <div>
-           <div id="label1" class="row" style="margin-left:0.5%">
-             <label  for="arquivo" class="col-form-label text-sm-right">{{ __('Arquivo*') }}</label>
-           </div>
-          <div class="row justify-content-left" >  <!-- PDF -->
-           <div class="col-md-12" style="">
-             <div class="custom-file">
-               <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="arquivo1">
-             </div>
-             @error('arquivo1')
-             <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-               <strong>{{ $message }}</strong>
-             </span>
-             @enderror
-           </div>
-          </div><!-- end PDF -->
-         </div>
-
-      </div>
-      <div class="modal-footer">
-        <button  type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 50px;margin-top:40px;">Fechar</button>
-        <button onclick="event.preventDefault();confirmarModificarErrata();" id="finalizarModal1" class="btn btn-primary btn-primary-lmts">
-          {{ __('Enviar') }}
-        </button>
-      </div>
-    </div>
-  </div>
-  </form>
-</div> <!-- End Modal -->
-
 <div class="container">
 
 
@@ -224,24 +101,6 @@
       <h3>
         Erratas
       </h3>
-
-
-        <button id="buttonModal" type="button" class="btn btn-primary btn-primary-lmts" data-toggle="modal" data-target="#exampleModal"
-        style="margin-top:-40px; float:right">
-          Nova Errata
-        </button>
-        @if(old('nome') || old('arquivo'))
-          <script type="text/javascript" >
-            alert('Ocorreu um erro ao cadastrar errata tente novamente.');
-          </script>
-        @endif
-        @if(old('arquivo1'))
-          <script type="text/javascript" >
-            alert('Ocorreu um erro ao cadastrar errata tente novamente.');
-          </script>
-        @endif
-
-
   </div><!-- end Título erratas -->
 
   @if($erratas->isNotEmpty())
@@ -253,9 +112,6 @@
            <td align="left">
              <a style="margin-left: 1%;font-weight: bold; font-size: 15px;">{{$errata->nome}}</a>
            </td>
-           <td align="right"> <!-- modificar -->
-               <a id="buttonModal1" class="" href="" data-toggle="modal" data-target="#exampleModal1" onclick="idErrata({{$errata->id}});">Modificar Arquivo</a>
-           </td>
            <td align="right"> <!-- Download -->
              <a href="{{ route('download', ['file' => $errata->arquivo])}}" target="_new">Baixar Errata</a>
            </td>
@@ -266,19 +122,6 @@
   @endif
 
 </div><!--end lista erratas  -->
-
-<div class="row justify-content-center">
-    <div class="titulo-tabela-lmts col-sm-12">
-        <h3>
-          Analistas
-        </h3>
-          <a href="{{route('analistas.index', $edital)}}" class="btn btn-primary btn-primary-lmts" style="margin-top:-40px; float:right">
-            Listar analistas
-          </a>
-    </div><!-- end Título analista -->
-  </div><!--end lista analista  -->
-</div><!-- end Container-->
-
 
 <!-- CARDS -->
 <div class="row justify-content-center" style="width: 100%; padding-top: 1%;">  <!-- opções -->
@@ -678,29 +521,4 @@
         alert('{{ session()->get('jsAlert') }}');
     </script>
 @endif
-
-<script type="text/javascript" >
-
-  function confirmarErrata(){
-    if(confirm("Tem certeza que deseja finalizar?") == true) {
-      document.getElementById("formErrata").submit();
-    }
-  }
-
-  function confirmarModificarErrata(){
-    if(confirm("Tem certeza que deseja finalizar?") == true) {
-      document.getElementById("formModificarErrata").submit();
-    }
-  }
-
-  function idErrata(x){
-    document.getElementById("idModificarErrata").value = x;
-
-  }
-
-  function novaErrata() {
-    document.getElementById("novaErrata").style.display = "block";
-  }
-</script>
-
 @endsection
