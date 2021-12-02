@@ -514,8 +514,13 @@ class EditalController extends Controller{
           $isencoesDisponiveis = Isencao::where('editalId', $request->editalId)
                                           ->where('parecer', 'nao')
                                           ->paginate(10);
+          $isencoesHomologadas = Isencao::where('editalId', $request->editalId)
+                                          ->where('parecer', 'deferida')
+                                          ->orWhere('parecer', 'indeferida')
+                                          ->get();
           return view('listaIsencoes', ['isencoes' => $isencoesDisponiveis,
                                         'mytime'            => $mytime,
+                                        'isencoesHomologadas' => $isencoesHomologadas,
                                         'editalId'   => $request->editalId]);
         }
       }
