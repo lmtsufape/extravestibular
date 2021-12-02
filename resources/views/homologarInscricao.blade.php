@@ -97,6 +97,24 @@
 
                   </div><!-- enc dpf-->
           </div><!-- row nome cpf-->
+          <div class="row">
+            <div class="col-sm-12">
+                <label for="rg"
+                    class="field a-field a-field_a2 page__field">
+                    <span class="a-field__label-wrap">
+                        <span class="a-field__label">Email</span>
+                    </span>
+                </label>
+                <input disabled
+                    id="rg"
+                    type="text"
+                    name="rg"
+                    autofocus
+                    class="form-control field__input a-field__input"
+                    placeholder="RG"
+                    value="{{ $user->email }}">
+            </div>
+        </div>
           {{-- row rg oe uf te dn --}}
           <div class="row justify-content-center">
               <div class="col-sm-4">

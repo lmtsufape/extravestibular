@@ -69,6 +69,7 @@ Route::group(['middleware' => ['lmts']], function(){
 
   Route::post('/cadastroIsencao',            'IsencaoController@cadastroIsencao'                )->name('cadastroIsencao');
   Route::get('/homologarIsencao',            'IsencaoController@isencaoEscolhida'               )->name('isencaoEscolhida');
+  Route::get('/visualizarIsencao',           'IsencaoController@show'                           )->name('visualizarIsencao');
   Route::post('/isencaoHomologada',          'IsencaoController@homologarIsencao'               )->name('homologarIsencao');
 
   Route::post('/cadastroRecurso',            'RecursoController@cadastroRecurso'                )->name('cadastroRecurso');
