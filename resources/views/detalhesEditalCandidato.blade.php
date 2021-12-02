@@ -275,17 +275,7 @@
             Status da Inscrição: <br>
             @if($inscricao != 'processando')
               @if($inscricao->homologado == 'aprovado')
-                @if($inscricao->homologadoDrca == 'aprovado')
-                  <a style="font-weight: bold;color: green">Aprovado</a>
-                @elseif($inscricao->homologadoDrca == 'nao')
-                  <a style="font-weight: bold">Processando</a>
-                @else
-                  <div class="hover-popup-lmts">
-                    <a style="font-weight: bold; color: red">Indeferido</a> <br>
-                    <a style="font-weight: bold">Justificativa:</a> <br>
-                    <div class="justify-content-center" style=""> {{$inscricao->motivoRejeicao}} </div>
-                  </div>
-                @endif
+                <a style="font-weight: bold;color: green">Aprovado</a>
               @elseif($inscricao->homologado == 'nao')
                 <a style="font-weight: bold">Processando</a>
               @else
