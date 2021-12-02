@@ -45,6 +45,13 @@ Route::group(['middleware' => ['lmts']], function(){
   Route::get( '/detalhesPorcentagem',        'EditalController@detalhesPorcentagem'             )->name('detalhesPorcentagem');
   Route::post('/cadastroEditarEdital' ,      'EditalController@cadastroEditarEdital'            )->name('cadastroEditarEdital');
 
+  Route::get('/edital/{edital}/analistas', 'AnalistaController@index')->name('analistas.index');
+  Route::get('/edital/{edital}/analistas/create', 'AnalistaController@create')->name('analistas.create');
+  Route::get('/analistas/editais', 'AnalistaController@editais')->name('analistas.editais');
+  Route::get('/analistas/edital/{edital}', 'AnalistaController@edital')->name('analistas.edital');
+  Route::post('/edital/{edital}/analistas', 'AnalistaController@store')->name('analistas.store');
+  Route::delete('/analistas/{analista}', 'AnalistaController@destroy')->name('analistas.destroy');
+
   Route::post('/cadastroClassificacao',      'InscricaoController@cadastroClassificacao'        )->name('cadastroClassificacao');
   Route::get('/homologarCoordenador',        'InscricaoController@classificarInscricao'         )->name('classificarInscricao');
   Route::get('/classificarInscricao',        'InscricaoController@inscricaoEscolhida'           )->name('seguirParaClassificacao');
