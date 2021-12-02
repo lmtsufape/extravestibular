@@ -109,6 +109,326 @@
 
 
   <div class="row justify-content-center">
+    <div class="card">
+        <div class="card-header">{{ __('Dados Pessoais do Candidato') }}</div>
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <!-- row nome cpf-->
+                <div class="col-sm-9">
+                    <label for="nome"
+                        class="field a-field a-field_a2 page__field">
+                        <span class="a-field__label-wrap">
+                            <span class="a-field__label">Nome</span>
+                        </span>
+                    </label>
+                    <input disabled
+                        id="nome"
+                        type="text"
+                        name="nome"
+                        autofocus
+                        class="form-control field__input a-field__input"
+                        placeholder="Nome"
+                        value="{{ $isencao->user->dadosusuario->nome }}">
+                </div><!-- end nome-->
+
+                <div class="col-sm-3">
+                    <label for="cpf"
+                        class="field a-field a-field_a2 page__field">
+                        <span class="a-field__label-wrap">
+                            <span class="a-field__label">CPF</span>
+                        </span>
+                    </label>
+                    <input disabled
+                        id="cpf"
+                        type="text"
+                        name="cpf"
+                        autofocus
+                        class="form-control field__input a-field__input"
+                        placeholder="CPF"
+                        value="{{ $isencao->user->dadosusuario->cpf }}">
+
+                </div><!-- enc dpf-->
+
+            </div><!-- row nome cpf-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="rg"
+                        class="field a-field a-field_a2 page__field">
+                        <span class="a-field__label-wrap">
+                            <span class="a-field__label">Email</span>
+                        </span>
+                    </label>
+                    <input disabled
+                        id="rg"
+                        type="text"
+                        name="rg"
+                        autofocus
+                        class="form-control field__input a-field__input"
+                        placeholder="RG"
+                        value="{{ $isencao->user->email }}">
+                </div>
+            </div>
+            {{-- row rg oe uf te dn --}}
+            <div class="row justify-content-center">
+                <div class="col-sm-4">
+                    <label for="rg"
+                        class="field a-field a-field_a2 page__field">
+                        <span class="a-field__label-wrap">
+                            <span class="a-field__label">RG</span>
+                        </span>
+                    </label>
+                    <input disabled
+                        id="rg"
+                        type="text"
+                        name="rg"
+                        autofocus
+                        class="form-control field__input a-field__input"
+                        placeholder="RG"
+                        value="{{ $isencao->user->dadosusuario->rg }}">
+                </div>
+
+                <div class="col-sm-2">
+                    <label for="orgaoEmissor"
+                        class="field a-field a-field_a2 page__field">
+                        <span class="a-field__label-wrap">
+                            <span class="a-field__label">Orgão Emissor</span>
+                        </span>
+                    </label>
+                    <input disabled
+                        id="orgaoEmissor"
+                        type="text"
+                        name="orgaoEmissor"
+                        autofocus
+                        class="form-control field__input a-field__input"
+                        placeholder="Orgão Emissor"
+                        value="{{ $isencao->user->dadosusuario->orgaoEmissor }}">
+                </div>
+
+                <div class="col-sm-1">
+                    <label for="orgaoEmissorUF"
+                        class="field a-field a-field_a2 page__field">
+                        <span class="a-field__label-wrap">
+                            <span class="a-field__label">UF</span>
+                        </span>
+                    </label>
+                    <input disabled
+                        id="orgaoEmissorUF"
+                        type="text"
+                        name="orgaoEmissorUF"
+                        autofocus
+                        class="form-control field__input a-field__input"
+                        placeholder="UF"
+                        value="{{ $isencao->user->dadosusuario->orgaoEmissorUF }}">
+                </div>
+
+                <div class="col-sm-2">
+                    <label for="tituloEleitoral"
+                        class="field a-field a-field_a2 page__field">
+                        <span class="a-field__label-wrap">
+                            <span class="a-field__label">Título Eleitoral</span>
+                        </span>
+                    </label>
+                    <input disabled
+                        id="tituloEleitoral"
+                        type="text"
+                        name="tituloEleitoral"
+                        autofocus
+                        class="form-control field__input a-field__input"
+                        placeholder="Título Eleitoral"
+                        value="{{ $isencao->user->dadosusuario->tituloEleitoral }}">
+                </div>
+
+                <div class="col-sm-3">
+                    <label for="nascimento"
+                        class="field a-field a-field_a1 page__field">
+                        <span class="a-field__label-wrap">
+                            <span class="a-field__label">Data de Nascimento</span>
+                        </span>
+                    </label>
+                    <input disabled
+                        id="nascimento"
+                        type="date"
+                        name="nascimento"
+                        autofocus
+                        class="form-control field__input a-field__input"
+                        placeholder="Data de Nascimento"
+                        value="{{ $isencao->user->dadosusuario->nascimento }}">
+                </div>
+            </div>{{-- row rg oe uf te dn --}}
+
+            {{-- row filiação --}}
+            <div class="row justify-content-center">
+                <div class="col-sm-12">
+                    <label for="filiacao"
+                        class="field a-field a-field_a1 page__field">
+                        <span class="a-field__label-wrap">
+                            <span class="a-field__label">Filiação</span>
+                        </span>
+                    </label>
+                    <input disabled
+                        id="filiacao"
+                        type="text"
+                        name="filiacao"
+                        autofocus
+                        class="form-control field__input a-field__input"
+                        placeholder="Filiação"
+                        value="{{ $isencao->user->dadosusuario->filiacao }}">
+                </div>
+            </div>{{-- end row filiação --}}
+
+            {{-- row rua numero --}}
+            <div class="row justify-content-center">
+
+                <div class="col-sm-10">
+                    <label for="endereco"
+                        class="field a-field a-field_a2 page__field">
+                        <span class="a-field__label-wrap">
+                            <span class="a-field__label">Rua</span>
+                        </span>
+                    </label>
+                    <input disabled
+                        id="endereco"
+                        type="text"
+                        name="endereco"
+                        autofocus
+                        class="form-control field__input a-field__input"
+                        placeholder="Endereço"
+                        value="{{ $isencao->user->dadosusuario->endereco }}">
+                </div>
+
+                <div class="col-sm-2">
+                    <label for="num"
+                        class="field a-field a-field_a2 page__field">
+                        <span class="a-field__label-wrap">
+                            <span class="a-field__label">Nº</span>
+                        </span>
+                    </label>
+                    <input disabled
+                        id="num"
+                        type="text"
+                        name="num"
+                        autofocus
+                        class=" form-control field__input a-field__input"
+                        placeholder="Nº"
+                        value="{{ $isencao->user->dadosusuario->num }}">
+                </div>
+
+            </div>{{-- end row rua numero --}}
+
+            {{-- row bairro cidade uf --}}
+            <div class="row justify-content-center">
+                <div class="col-sm-5">
+                    <label for="bairro"
+                        class="field a-field a-field_a2 page__field">
+                        <span class="a-field__label-wrap">
+                            <span class="a-field__label">Bairro</span>
+                        </span>
+                    </label>
+                    <input disabled
+                        id="bairro"
+                        type="text"
+                        name="bairro"
+                        autofocus
+                        class=" form-control field__input a-field__input"
+                        placeholder="Bairro"
+                        value="{{ $isencao->user->dadosusuario->bairro }}">
+                </div>
+                <div class="col-sm-5">
+                    <label for="cidade"
+                        class="field a-field a-field_a2 page__field">
+                        <span class="a-field__label-wrap">
+                            <span class="a-field__label">Cidade</span>
+                        </span>
+                    </label>
+                    <input disabled
+                        id="cidade"
+                        type="text"
+                        name="cidade"
+                        autofocus
+                        class=" form-control field__input a-field__input"
+                        placeholder="Cidade"
+                        value="{{ $isencao->user->dadosusuario->cidade }}">
+                </div>
+                <div class="col-sm-2">
+                    <label for="uf"
+                        class="field a-field a-field_a2 page__field">
+                        <span class="a-field__label-wrap">
+                            <span class="a-field__label">UF</span>
+                        </span>
+                    </label>
+                    <input disabled
+                        id="uf"
+                        type="text"
+                        name="uf"
+                        autofocus
+                        class=" form-control field__input a-field__input"
+                        placeholder="UF"
+                        value="{{ $isencao->user->dadosusuario->uf }}">
+                </div>
+            </div>{{-- end row bairro cidade uf --}}
+
+
+            <div class="row justify-content-center">
+                <div class="col-sm-4"
+                    style="<?php if (is_null($isencao->user->dadosusuario->foneResidencial)) {
+                        echo 'display: none';
+                    } ?>">
+                    <label for="foneResidencial"
+                        class="field a-field a-field_a2 page__field">
+                        <span class="a-field__label-wrap">
+                            <span class="a-field__label">Fone Residencial</span>
+                        </span>
+                    </label>
+                    <input disabled
+                        id="foneResidencial"
+                        type="text"
+                        name="foneResidencial"
+                        autofocus
+                        class=" form-control field__input a-field__input"
+                        placeholder="Fone Residencial*"
+                        value="{{ $isencao->user->dadosusuario->foneResidencial }}">
+                </div>
+                <div class="col-sm-4"
+                    style="<?php if (is_null($isencao->user->dadosusuario->foneCelular)) {
+                        echo 'display: none';
+                    } ?>">
+                    <label for="foneCelular"
+                        class="field a-field a-field_a2 page__field">
+                        <span class="a-field__label-wrap">
+                            <span class="a-field__label">Fone Celular</span>
+                        </span>
+                    </label>
+                    <input disabled
+                        id="foneCelular"
+                        type="text"
+                        name="foneCelular"
+                        autofocus
+                        class=" form-control field__input a-field__input"
+                        placeholder="Fone Celular"
+                        value="{{ $isencao->user->dadosusuario->foneCelular }}">
+                </div>
+                <div class="col-sm-4"
+                    style="<?php if (is_null($isencao->user->dadosusuario->foneComercial)) {
+                        echo 'display: none';
+                    } ?>">
+                    <label for="foneComercial"
+                        class="field a-field a-field_a2 page__field">
+                        <span class="a-field__label-wrap">
+                            <span class="a-field__label">Fone Comercial</span>
+                        </span>
+                    </label>
+                    <input disabled
+                        id="foneComercial"
+                        type="text"
+                        name="foneComercial"
+                        autofocus
+                        class=" form-control field__input a-field__input"
+                        placeholder="Fone Comercial*"
+                        value="{{ $isencao->user->dadosusuario->foneComercial }}">
+                </div>
+            </div><!-- end row telefone-->
+        </div><!-- end card-body -->
+    </div><!-- end card-body -->
       @if($isencao->tipo == "ambos")
         <div class="card" style="">
           <div class="card-header">{{ __('Arquivos anexados pelo candidato') }}</div>

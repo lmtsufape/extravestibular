@@ -496,6 +496,7 @@ class InscricaoController extends Controller
 																				 'curso'									 => $curso,
 																				 'dados'									 => $dados,
 																				 'editalId'								 => $inscricao->editalId,
+                                                                                 'user' => $usuario,
 																				 'mytime'									 => $mytime,
 																			  ]);
 

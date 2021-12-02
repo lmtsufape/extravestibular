@@ -93,6 +93,15 @@ class IsencaoController extends Controller
     return view('homologarIsencao', ['isencao' => $isencao, 'editalId' => $request->editalId, 'mytime' => $mytime]);
   }
 
+  public function show(Request $request)
+  {
+    $this->authorize('homologarIsencao', Isencao::class);
+    $isencao = Isencao::find($request->isencaoId);
+    $mytime = Carbon::now('America/Recife');
+    $mytime = $mytime->toDateString();
+    return view('visualizarIsencao', ['isencao' => $isencao, 'editalId' => $request->editalId, 'mytime' => $mytime]);
+  }
+
   public function homologarIsencao(Request $request){
     $this->authorize('homologarIsencao', Isencao::class);
 
