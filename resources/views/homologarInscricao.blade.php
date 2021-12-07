@@ -461,6 +461,16 @@
                         </td>
                     </div>
                   </tr>
+                  <tr <?php if($inscricao->diploma == null){echo('style="display: none"');} ?> >
+                    <div class="form-group row" >
+                        <td>
+                          <label for="quitacaoEleitoral" >{{ __('Diploma  de  curso  de  graduação') }}</label>
+                        </td>
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->diploma])}}" target="_blank">Abrir arquivo</a>
+                        </td>
+                    </div>
+                  </tr>
                   <tr <?php if($inscricao->cpf == null){echo('style="display: none"');} ?> >
                     <div class="form-group row" >
                         <td>
