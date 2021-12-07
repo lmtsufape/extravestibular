@@ -275,7 +275,7 @@
             Status da Inscrição: <br>
             @if($inscricao != 'processando')
               @if($inscricao->homologado == 'aprovado')
-                <a style="font-weight: bold;color: green">Aprovado</a>
+                    <a style="font-weight: bold;color: green">Aprovado</a>
               @elseif($inscricao->homologado == 'nao')
                 <a style="font-weight: bold">Processando</a>
               @else
@@ -289,6 +289,7 @@
               <a style="font-weight: bold">Processando</a>
             @endif
           </h5>
+          <a href="{{route('visualizarInscricao', $inscricao)}}">Visualizar inscrição</a>
         </div>
        @endif
        <div class="container justify-content-center" style="padding: 10px" >

@@ -25,25 +25,9 @@
       @else
         <form id="detalhesEdital" action="{{route('detalhesEditalServidor')}}" method="GET" style="display: none;">
       @endif
-          <input type="hidden" name="editalId" value="{{$editalId}}">
-          <input type="hidden" name="mytime" value="{{$mytime}}">
+          <input type="hidden" name="editalId" value="{{$inscricao->editalId}}">
 
         </form>
-    </li>
-    <li class="nav-item active">
-      <a class="nav-link">/</a>
-    </li>
-
-    <li class="nav-item active">
-      <a class="nav-link" style="color: black" href="classificar"
-         onclick="event.preventDefault();
-                       document.getElementById('classificar').submit();">
-         {{ __('Homologar Inscrições') }}
-      </a>
-      <form id="classificar" method="GET" action="{{route('editalEscolhido')}}">
-          <input type="hidden" name="editalId" value="{{$editalId}}">
-          <input type="hidden" name="tipo" value="homologarInscricoes">
-      </form>
     </li>
     <li class="nav-item active">
       <a class="nav-link">/</a>
@@ -112,7 +96,7 @@
                     autofocus
                     class="form-control field__input a-field__input"
                     placeholder="RG"
-                    value="{{ $user->email }}">
+                    value="{{ $usuario->email }}">
             </div>
         </div>
           {{-- row rg oe uf te dn --}}
@@ -312,7 +296,7 @@
     </div><!-- end row -->
 
 
-    <div class="row" styles="<?php if($tipo != 'homologacao'){ echo("display: none");} ?>">
+    <div class="row" styles="<?php if($inscricao->tipo != 'homologacao'){ echo("display: none");} ?>">
       <div class="card">
         <div class="card-header">{{ __('Dados do Curso / Instituição de Origem') }}</div>
         <div class="card-body">
@@ -405,163 +389,167 @@
         <div class="card-body">
 
           <div class="row">
-            <div class="col-sm-12" style="margin-top:-100px; width:100%">
+            <div class="col-sm-12 mt-0" style="width:100%">
               <table class="table table-ordered table-hover">
-                  <tr>
-                    <th>Requisito</th>
-                    <th>Dados</th>
-                  </tr>
-                  <tr <?php if($inscricao->declaracaoDeVinculo == ''){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
-                        <td>
-                          <label for="declaracaoDeVinculo" >{{ __('Declaração de Vínculo') }}</label>
-                        </td>
-                        <td>
-                          <a href="{{ route('download', ['file' => $inscricao->declaracaoDeVinculo])}}" target="_blank">Abrir arquivo</a>
-                        </td>
-                    </div>
-                  </tr>
-                  <tr <?php if($inscricao->historicoEnsinoMedio == null){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
-                        <td>
-                          <label for="historicoEnsinoMedio" >{{ __('Histórico e Certificado de conclusão do ensino médio') }}</label>
-                        </td>
-                        <td>
-                          <a href="{{ route('download', ['file' => $inscricao->historicoEnsinoMedio])}}" target="_blank">Abrir arquivo</a>
-                        </td>
-                    </div>
-                  </tr>
-                  <tr <?php if($inscricao->certidaoNascimento == null){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
-                        <td>
-                          <label for="certidaoNascimento" >{{ __('Certidão de nascimento ou registro de casamento') }}</label>
-                        </td>
-                        <td>
-                          <a href="{{ route('download', ['file' => $inscricao->certidaoNascimento])}}" target="_blank">Abrir arquivo</a>
-                        </td>
-                    </div>
-                  </tr>
-                  <tr <?php if($inscricao->reservista == null){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
-                        <td>
-                          <label for="reservista" >{{ __('Reservista') }}</label>
-                        </td>
-                        <td>
-                          <a href="{{ route('download', ['file' => $inscricao->reservista])}}" target="_blank">Abrir arquivo</a>
-                        </td>
-                    </div>
-                  </tr>
-                  <tr <?php if($inscricao->quitacaoEleitoral == null){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
-                        <td>
-                          <label for="quitacaoEleitoral" >{{ __('Certidão de quitação eleitoral') }}</label>
-                        </td>
-                        <td>
-                          <a href="{{ route('download', ['file' => $inscricao->quitacaoEleitoral])}}" target="_blank">Abrir arquivo</a>
-                        </td>
-                    </div>
-                  </tr>
-                  <tr <?php if($inscricao->diploma == null){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
-                        <td>
-                          <label for="quitacaoEleitoral" >{{ __('Diploma  de  curso  de  graduação') }}</label>
-                        </td>
-                        <td>
-                          <a href="{{ route('download', ['file' => $inscricao->diploma])}}" target="_blank">Abrir arquivo</a>
-                        </td>
-                    </div>
-                  </tr>
-                  <tr <?php if($inscricao->cpf == null){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
-                        <td>
-                          <label for="cpf" >{{ __('CPF') }}</label>
-                        </td>
-                        <td>
-                          <a href="{{ route('download', ['file' => $inscricao->cpf])}}" target="_blank">Abrir arquivo</a>
-                        </td>
-                    </div>
-                  </tr>
-                  <tr <?php if($inscricao->rg == null){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
-                        <td>
-                          <label for="rg" >{{ __('RG') }}</label>
-                        </td>
-                        <td>
-                          <a href="{{ route('download', ['file' => $inscricao->rg])}}" target="_blank">Abrir arquivo</a>
-                        </td>
-                    </div>
-                  </tr>
-                  <tr <?php if($inscricao->declaracaoENADE == null){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
-                        <td>
-                          <label for="declaracaoENADE" >{{ __('Declaração de regularidade com o Exame Nacional de Desempenho dos Estudantes (ENADE).') }}</label>
-                        </td>
-                        <td>
-                          <a href="{{ route('download', ['file' => $inscricao->declaracaoENADE])}}" target="_blank">Abrir arquivo</a>
-                        </td>
-                    </div>
-                  </tr>
-                  <tr <?php if($inscricao->historicoEscolar == ''){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
-                      <td>
-                        <label for="historicoEscolar" >{{ __('Histórico escolar do curso de graduação') }}</label>
-                      </td>
-                      <td>
-                        <a href="{{ route('download', ['file' => $inscricao->historicoEscolar])}}" target="_new">Abrir arquivo</a>
-                      </td>
-                    </div>
-                  </tr>
-                  <tr <?php if($inscricao->programaDasDisciplinas == ''){echo('style="display: none"');} ?> >
-
-                    <div class="form-group row" >
-                      <td>
-                        <label for="programaDasDisciplinas" >{{ __('Programa das Disciplinas') }}</label>
-                      </td>
-                      <td>
-                        <a href="{{ route('download', ['file' => $inscricao->programaDasDisciplinas])}}" target="_blank">Abir arquivo</a>
-                      </td>
-                    </div>
-                  </tr>
-                  <tr <?php if($inscricao->curriculo == ''){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
-                      <td>
-                        <label for="curriculo" >{{ __('Curriculo') }}</label>
-                      </td>
-                      <td>
-                        <a href="{{ route('download', ['file' => $inscricao->curriculo ])}}" target="_blank">Abrir arquivo</a>
-                      </td>
-                    </div>
-                  </tr>
-                  <tr <?php if($inscricao->enem == ''){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
-                      <td>
-                        <label for="enem" >{{ __('ENEM') }}</label>
-                      </td>
-                      <td>
-                        <a href="{{ route('download', ['file' => $inscricao->enem ])}}" target="_blank">Abrir arquivo</a>
-                      </td>
-                    </div>
-                  </tr>
-
-
-                  @if($tipo == 'homologacao')
+                  <thead>
                     <tr>
-                      <div class="form-group row" >
-                        <td>
-                          <label for="comprovante" >{{ __('Comprovante') }}</label>
-                        </td>
-                        <td>
-                          @if($inscricao->comprovante == 'isento')
-                            <a>Isento</a>
-                          @else
-                            <a href="{{ route('download', ['file' => $inscricao->comprovante ])}}" target="_blank">Abrir arquivo</a>
-                          @endif
-                        </td>
-
+                      <th>Requisito</th>
+                      <th>Dados</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr <?php if($inscricao->declaracaoDeVinculo == ''){echo('style="display: none"');} ?> >
+                      <div>
+                          <td>
+                            <label for="declaracaoDeVinculo" >{{ __('Declaração de Vínculo') }}</label>
+                          </td>
+                          <td>
+                            <a href="{{ route('download', ['file' => $inscricao->declaracaoDeVinculo])}}" target="_blank">Abrir arquivo</a>
+                          </td>
                       </div>
                     </tr>
-                  @endif
+                    <tr <?php if($inscricao->historicoEnsinoMedio == null){echo('style="display: none"');} ?> >
+                      <div>
+                          <td>
+                            <label for="historicoEnsinoMedio" >{{ __('Histórico e Certificado de conclusão do ensino médio') }}</label>
+                          </td>
+                          <td>
+                            <a href="{{ route('download', ['file' => $inscricao->historicoEnsinoMedio])}}" target="_blank">Abrir arquivo</a>
+                          </td>
+                      </div>
+                    </tr>
+                    <tr <?php if($inscricao->certidaoNascimento == null){echo('style="display: none"');} ?> >
+                      <div>
+                          <td>
+                            <label for="certidaoNascimento" >{{ __('Certidão de nascimento ou registro de casamento') }}</label>
+                          </td>
+                          <td>
+                            <a href="{{ route('download', ['file' => $inscricao->certidaoNascimento])}}" target="_blank">Abrir arquivo</a>
+                          </td>
+                      </div>
+                    </tr>
+                    <tr <?php if($inscricao->reservista == null){echo('style="display: none"');} ?> >
+                      <div>
+                          <td>
+                            <label for="reservista" >{{ __('Reservista') }}</label>
+                          </td>
+                          <td>
+                            <a href="{{ route('download', ['file' => $inscricao->reservista])}}" target="_blank">Abrir arquivo</a>
+                          </td>
+                      </div>
+                    </tr>
+                    <tr <?php if($inscricao->quitacaoEleitoral == null){echo('style="display: none"');} ?> >
+                      <div>
+                          <td>
+                            <label for="quitacaoEleitoral" >{{ __('Certidão de quitação eleitoral') }}</label>
+                          </td>
+                          <td>
+                            <a href="{{ route('download', ['file' => $inscricao->quitacaoEleitoral])}}" target="_blank">Abrir arquivo</a>
+                          </td>
+                      </div>
+                    </tr>
+                    <tr <?php if($inscricao->diploma == null){echo('style="display: none"');} ?> >
+                      <div>
+                          <td>
+                            <label for="quitacaoEleitoral" >{{ __('Diploma  de  curso  de  graduação') }}</label>
+                          </td>
+                          <td>
+                            <a href="{{ route('download', ['file' => $inscricao->diploma])}}" target="_blank">Abrir arquivo</a>
+                          </td>
+                      </div>
+                    </tr>
+                    <tr <?php if($inscricao->cpf == null){echo('style="display: none"');} ?> >
+                      <div>
+                          <td>
+                            <label for="cpf" >{{ __('CPF') }}</label>
+                          </td>
+                          <td>
+                            <a href="{{ route('download', ['file' => $inscricao->cpf])}}" target="_blank">Abrir arquivo</a>
+                          </td>
+                      </div>
+                    </tr>
+                    <tr <?php if($inscricao->rg == null){echo('style="display: none"');} ?> >
+                      <div>
+                          <td>
+                            <label for="rg" >{{ __('RG') }}</label>
+                          </td>
+                          <td>
+                            <a href="{{ route('download', ['file' => $inscricao->rg])}}" target="_blank">Abrir arquivo</a>
+                          </td>
+                      </div>
+                    </tr>
+                    <tr <?php if($inscricao->declaracaoENADE == null){echo('style="display: none"');} ?> >
+                      <div>
+                          <td>
+                            <label for="declaracaoENADE" >{{ __('Declaração de regularidade com o Exame Nacional de Desempenho dos Estudantes (ENADE).') }}</label>
+                          </td>
+                          <td>
+                            <a href="{{ route('download', ['file' => $inscricao->declaracaoENADE])}}" target="_blank">Abrir arquivo</a>
+                          </td>
+                      </div>
+                    </tr>
+                    <tr <?php if($inscricao->historicoEscolar == ''){echo('style="display: none"');} ?> >
+                      <div>
+                        <td>
+                          <label for="historicoEscolar" >{{ __('Histórico escolar do curso de graduação') }}</label>
+                        </td>
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->historicoEscolar])}}" target="_new">Abrir arquivo</a>
+                        </td>
+                      </div>
+                    </tr>
+                    <tr <?php if($inscricao->programaDasDisciplinas == ''){echo('style="display: none"');} ?> >
 
+                      <div>
+                        <td>
+                          <label for="programaDasDisciplinas" >{{ __('Programa das Disciplinas') }}</label>
+                        </td>
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->programaDasDisciplinas])}}" target="_blank">Abir arquivo</a>
+                        </td>
+                      </div>
+                    </tr>
+                    <tr <?php if($inscricao->curriculo == ''){echo('style="display: none"');} ?> >
+                      <div>
+                        <td>
+                          <label for="curriculo" >{{ __('Curriculo') }}</label>
+                        </td>
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->curriculo ])}}" target="_blank">Abrir arquivo</a>
+                        </td>
+                      </div>
+                    </tr>
+                    <tr <?php if($inscricao->enem == ''){echo('style="display: none"');} ?> >
+                      <div>
+                        <td>
+                          <label for="enem" >{{ __('ENEM') }}</label>
+                        </td>
+                        <td>
+                          <a href="{{ route('download', ['file' => $inscricao->enem ])}}" target="_blank">Abrir arquivo</a>
+                        </td>
+                      </div>
+                    </tr>
+
+
+                    @if($inscricao->tipo == 'homologacao')
+                      <tr>
+                        <div>
+                          <td>
+                            <label for="comprovante" >{{ __('Comprovante') }}</label>
+                          </td>
+                          <td>
+                            @if($inscricao->comprovante == 'isento')
+                              <a>Isento</a>
+                            @else
+                              <a href="{{ route('download', ['file' => $inscricao->comprovante ])}}" target="_blank">Abrir arquivo</a>
+                            @endif
+                          </td>
+
+                        </div>
+                      </tr>
+                    @endif
+
+                  </tbody>
                 </table><!-- end table -->
 
               </div><!-- end col-->
@@ -574,124 +562,47 @@
                 <div class="card" style="width: 100%">
                   <div class="card-header">{{ __('Parecer') }}</div>
                   <div class="card-body">
-                    <div class="row justify-content-center" style="margin-top:20px">
-                      <div class="col-sm-1">
-                        <input id="radioDeferida" onclick="selectCheck('aprovado')" type="radio" name="resultado" value="aprovado">
-                      </div>
-                      <div id="label" class="col-sm-2" style="margin-left:-5%"><h4>Deferida</h4></div>
-                      <div class="col-sm-1">
-                        <input id="radioIndeferida" @error('motivoRejeicao') checked @enderror onclick="selectCheck('rejeitado')" type="radio" name="resultado" value="rejeitado">
-                      </div>
-                      <div id="label" class="col-sm-2" style="margin-left:-5%"><h4>Indeferida</h4></div>
-
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <div class="form-group" id="motivoRejeicao" style="display: none; ">
-                          <div class="row justify-content-left">
-                            <div class="col-sm-6">
-                              <label for="motivoRejeicao" class="col-form-label text-md-right" >{{ __('Justificativa:') }}</label>
+                    @if($inscricao->homologado != 'nao')
+                            <div class="row justify-content-center" style="margin-top:20px">
+                            <div class="col-sm-1">
+                                <input disabled id="radioDeferida" @if($inscricao->homologado == 'aprovado') checked @endif type="radio">
+                            </div>
+                            <div id="label" class="col-sm-2" style="margin-left:-5%"><h4>Deferida</h4></div>
+                            <div class="col-sm-1">
+                                <input disabled id="radioIndeferida" type="radio" @if($inscricao->homologado == 'rejeitado') checked @endif>
+                            </div>
+                            <div id="label" class="col-sm-2" style="margin-left:-5%"><h4>Indeferida</h4></div>
 
                             </div>
-                          </div>
-                          <div class="row justify-content-center">
-                            <div class="col-sm-12">
-                                <textarea class=" form-control @error('motivoRejeicao') is-invalid @enderror" form ="formHomologacao" name="motivoRejeicao" id="taid" style="width:100%" ></textarea>
-                                @error('motivoRejeicao')
-                                <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                                  <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                            @if($inscricao->homologado == 'rejeitado')
+                                <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group" id="motivoRejeicao">
+                                    <div class="row justify-content-left">
+                                        <div class="col-sm-6">
+                                        <label for="motivoRejeicao" class="col-form-label text-md-right" >{{ __('Justificativa:') }}</label>
+
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <div class="col-sm-12">
+                                            <textarea disabled class=" form-control" form ="formHomologacao" name="motivoRejeicao" id="taid" style="width:100%" >{{$inscricao->motivoRejeicao}}</textarea>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            @endif
+                    @else
+                                <h4>Processando</h4>
+                    @endif
 
 
 
                 </div><!-- end card-body -->
               </div><!-- end card-->
-              <div class="row justify-content-center" style="margin-top:20px;">
-                  <input id="homologado" type="hidden" name="homologado" value="{{old('homologado')}}">
-                  <input type="hidden" name="inscricaoId" value="{{$inscricao->id}}">
-                  <input type="hidden" name="tipo" value="{{$tipo}}">
-                  <button id="buttonFinalizar" onclick="event.preventDefault();confirmar();" disabled class="btn btn-primary btn-primary-lmts" >
-                    {{ __('Finalizar') }}
-                  </button>
-              </div>
 
     </div><!-- end row-->
   </form>
 </div><!-- end container-->
-
-
-<script type="text/javascript" >
-
-function confirmar(){
-      if(confirm("Tem certeza que deseja finalizar?") == true) {
-        document.getElementById("formHomologacao").submit();
-     }
-    }
-
-
-function checkFinalizar(){
-    if(document.getElementById("radioIndeferida").checked || document.getElementById("radioDeferida").checked ){
-      document.getElementById("buttonFinalizar").disabled = false;
-    }
-}
-
-function checkAprovado(){
-    if(document.getElementById("radioDeferida").checked){
-      document.getElementById("homologado").value = 'aprovado';
-      document.getElementById("motivoRejeicao").value = '';
-      document.getElementById("motivoRejeicao").style.display = 'none';
-    }
-}
-
-
-function selectCheckDRCA(x){
-  if(x == 'rejeitado'){
-    document.getElementById("motivoRejeicao").style.display = '';
-    document.getElementById("homologado").value = 'rejeitado';
-    document.getElementById("buttonFinalizar").disabled = false;
-  }
-  else{
-    document.getElementById("homologado").value = 'aprovado';
-    document.getElementById("motivoRejeicao").value = '';
-    document.getElementById("motivoRejeicao").style.display = 'none';
-    document.getElementById("buttonFinalizar").disabled = false;
-  }
-}
-
-
-function selectCheck(x){
-  if(x == 'rejeitado'){
-    document.getElementById("motivoRejeicao").style.display = '';
-    document.getElementById("homologado").value = 'rejeitado';
-  }
-  else{
-    document.getElementById("homologado").value = 'aprovado';
-    document.getElementById("motivoRejeicao").value = '';
-    document.getElementById("motivoRejeicao").style.display = 'none';
-    document.getElementById("buttonFinalizar").disabled = false;
-  }
-  checkAprovado();
-  checkFinalizar();
-}
-
-function checkIndeferido(){
-  if(document.getElementById("radioIndeferida").checked == true){
-    document.getElementById("motivoRejeicao").style.display = '';
-
-  }
-}
-
-checkIndeferido();
-checkAprovado();
-checkFinalizar();
-
-
-
-</script>
 @endsection
