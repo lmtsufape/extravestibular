@@ -631,6 +631,22 @@ class InscricaoController extends Controller
     return response()->download(storage_path('app/public/'.$request->file));
 	}
 
+    public function visualizarInscricao(Inscricao $inscricao)
+    {
+        $usuario = User::find($inscricao->usuarioId);
+		$dados = DadosUsuario::find($usuario->dados);
+		$mytime = Carbon::now('America/Recife');
+		$mytime = $mytime->toDateString();
+        $cursos = $this->api->getCursos();
+		$curso = $inscricao->curso;
+		for($j = 0; $j < sizeof($cursos); $j++){
+			if($curso == $cursos[$j]['id']){
+				$curso = $cursos[$j]['nome'];
+			}
+		}
+        return view('visualizarInscricao', compact('usuario', 'dados', 'mytime', 'inscricao', 'curso'));
+    }
+
     public function downloadEdital(Request $request)
     {
         return response()->download(storage_path('app/public/'.$request->file));

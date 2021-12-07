@@ -62,6 +62,7 @@ Route::group(['middleware' => ['lmts']], function(){
   Route::get('/ajax-listar-turnos',          'InscricaoController@ajaxCurso'                    )->name('ajaxListarCurso');
   Route::post('/cadastroDesempate',          'InscricaoController@cadastroDesempate'            )->name('cadastroDesempate');
 
+  Route::get('/visualizarInscricao/{inscricao}', 'InscricaoController@visualizarInscricao')->name('visualizarInscricao');
   Route::post('/cadastroErrata',             'ErrataController@cadastroErrata'                  )->name('cadastroErrata');
   Route::post('/deleteErrata',               'ErrataController@deleteErrata'                    )->name('deleteErrata');
   Route::get('/novaErrata',                  'ErrataController@novaErrata'                      )->name('novaErrata');
