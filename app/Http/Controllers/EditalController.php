@@ -646,10 +646,7 @@ class EditalController extends Controller{
           //
 
           $inscricoesHomologadas = Inscricao::where('editalId', $request->editalId)
-                                              ->orWhere('homologado', 'aprovado')
-                                              ->orWhere('homologado', 'rejeitado')
-                                              ->orWhere('homologadoDrca', 'aprovado')
-                                              ->orWhere('homologadoDrca', 'rejeitado')
+                                              ->where('homologado', '!=', 'nao')
                                               ->get();
           $inscricoesNaoHomologadas = Inscricao::where('editalId', $request->editalId)
                                                  ->where('homologado', 'nao')
