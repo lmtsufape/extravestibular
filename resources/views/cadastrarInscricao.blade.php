@@ -614,7 +614,7 @@
 
       document.getElementById("historicoEscolar").style.display = "";
       document.getElementById("declaracaoENADE").style.display = "none";
-      $('#pHistoricoGraduacao').text('Histórico Escolar do curso de graduação (UFAPE  ou  antiga  UAG/UFRPE) atualizado:');
+      document.getElementById('pHistoricoGraduacao').innerHTML = 'Histórico Escolar do curso de graduação (UFAPE  ou  antiga  UAG/UFRPE) atualizado:';
       document.getElementById("curriculo").style.display = "none";
       document.getElementById("declaracaoDeVinculo").style.display = "none";
       document.getElementById("programaDasDisciplinas").style.display = "none";
@@ -647,7 +647,7 @@
 
       document.getElementById("declaracaoENADE").style.display = "";
       document.getElementById("historicoEscolar").style.display = "";
-      $('#pHistoricoGraduacao').text('Histórico Escolar do curso de graduação atualizado, com indicativo da média global, formalmente oficializado pela IFES de origem:');
+      document.getElementById('pHistoricoGraduacao').innerHTML = 'Histórico Escolar do curso de graduação atualizado, com indicativo da média global, formalmente oficializado pela IFES de origem:';
       document.getElementById("curriculo").style.display = "";
       document.getElementById("declaracaoDeVinculo").style.display = "";
       document.getElementById("programaDasDisciplinas").style.display = "";
@@ -666,7 +666,7 @@
 
       document.getElementById("diploma").style.display = "";
       document.getElementById("historicoEscolar").style.display = "";
-      $('#pHistoricoGraduacao').text('Histórico Escolar do curso de graduação, com indicativo da média global:');
+      document.getElementById('pHistoricoGraduacao').innerHTML = 'Histórico Escolar do curso de graduação, com indicativo da média global:';
       document.getElementById("programaDasDisciplinas").style.display = "";
       document.getElementById("declaracaoENADE").style.display = "none";
       document.getElementById("curriculo").style.display = "none";
