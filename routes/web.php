@@ -57,6 +57,7 @@ Route::group(['middleware' => ['lmts']], function(){
   Route::get('/classificarInscricao',        'InscricaoController@inscricaoEscolhida'           )->name('seguirParaClassificacao');
   Route::post('/notificarCoordenador',       'InscricaoController@notificarCoordenador'         )->name('notificarCoordenador');
   Route::get('/homologarInscricao',          'InscricaoController@inscricaoEscolhida'           )->name('inscricaoEscolhida');
+  Route::post('/atualizarCursoTurno/{inscricao}',        'InscricaoController@atualizarCursoTurno'          )->name('atualizarCursoTurno');
   Route::post('/inscricaoHomologada',        'InscricaoController@homologarInscricao'           )->name('homologarInscricao');
   Route::post('/cadastroInscricao',          'InscricaoController@cadastroInscricao'            )->name('cadastroInscricao');
   Route::get('/ajax-listar-turnos',          'InscricaoController@ajaxCurso'                    )->name('ajaxListarCurso');

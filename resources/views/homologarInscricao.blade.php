@@ -301,8 +301,9 @@
                       <span class="a-field__label">Turno</span>
                     </span>
                   </label>
-                  <input disabled id="Turno" type="text" name="Turno" autofocus class="form-control field__input a-field__input" placeholder="Turno" value="{{ $inscricao->turno }}">
+                  <input disabled id="Turno" type="text" autofocus class="form-control field__input a-field__input" placeholder="Turno" value="{{ $inscricao->turno }}">
                 </div>
+                <a class="col-sm-12 pt-0" href="#" onclick="selecionarCurso({{$editalId}})" data-toggle="modal" data-target="#exampleModal1">Modificar curso ou turno</a>
 
 
           </div>
@@ -405,142 +406,116 @@
         <div class="card-body">
 
           <div class="row">
-            <div class="col-sm-12" style="margin-top:-100px; width:100%">
+            <div class="col-sm-12 mt-0" style="width:100%">
               <table class="table table-ordered table-hover">
                   <tr>
                     <th>Requisito</th>
                     <th>Dados</th>
                   </tr>
                   <tr <?php if($inscricao->declaracaoDeVinculo == ''){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
                         <td>
                           <label for="declaracaoDeVinculo" >{{ __('Declaração de Vínculo') }}</label>
                         </td>
                         <td>
                           <a href="{{ route('download', ['file' => $inscricao->declaracaoDeVinculo])}}" target="_blank">Abrir arquivo</a>
                         </td>
-                    </div>
                   </tr>
                   <tr <?php if($inscricao->historicoEnsinoMedio == null){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
                         <td>
                           <label for="historicoEnsinoMedio" >{{ __('Histórico e Certificado de conclusão do ensino médio') }}</label>
                         </td>
                         <td>
                           <a href="{{ route('download', ['file' => $inscricao->historicoEnsinoMedio])}}" target="_blank">Abrir arquivo</a>
                         </td>
-                    </div>
                   </tr>
                   <tr <?php if($inscricao->certidaoNascimento == null){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
                         <td>
                           <label for="certidaoNascimento" >{{ __('Certidão de nascimento ou registro de casamento') }}</label>
                         </td>
                         <td>
                           <a href="{{ route('download', ['file' => $inscricao->certidaoNascimento])}}" target="_blank">Abrir arquivo</a>
                         </td>
-                    </div>
                   </tr>
                   <tr <?php if($inscricao->reservista == null){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
                         <td>
                           <label for="reservista" >{{ __('Reservista') }}</label>
                         </td>
                         <td>
                           <a href="{{ route('download', ['file' => $inscricao->reservista])}}" target="_blank">Abrir arquivo</a>
                         </td>
-                    </div>
                   </tr>
                   <tr <?php if($inscricao->quitacaoEleitoral == null){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
                         <td>
                           <label for="quitacaoEleitoral" >{{ __('Certidão de quitação eleitoral') }}</label>
                         </td>
                         <td>
                           <a href="{{ route('download', ['file' => $inscricao->quitacaoEleitoral])}}" target="_blank">Abrir arquivo</a>
                         </td>
-                    </div>
                   </tr>
                   <tr <?php if($inscricao->diploma == null){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
                         <td>
                           <label for="quitacaoEleitoral" >{{ __('Diploma  de  curso  de  graduação') }}</label>
                         </td>
                         <td>
                           <a href="{{ route('download', ['file' => $inscricao->diploma])}}" target="_blank">Abrir arquivo</a>
                         </td>
-                    </div>
                   </tr>
                   <tr <?php if($inscricao->cpf == null){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
                         <td>
                           <label for="cpf" >{{ __('CPF') }}</label>
                         </td>
                         <td>
                           <a href="{{ route('download', ['file' => $inscricao->cpf])}}" target="_blank">Abrir arquivo</a>
                         </td>
-                    </div>
                   </tr>
                   <tr <?php if($inscricao->rg == null){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
                         <td>
                           <label for="rg" >{{ __('RG') }}</label>
                         </td>
                         <td>
                           <a href="{{ route('download', ['file' => $inscricao->rg])}}" target="_blank">Abrir arquivo</a>
                         </td>
-                    </div>
                   </tr>
                   <tr <?php if($inscricao->declaracaoENADE == null){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
                         <td>
                           <label for="declaracaoENADE" >{{ __('Declaração de regularidade com o Exame Nacional de Desempenho dos Estudantes (ENADE).') }}</label>
                         </td>
                         <td>
                           <a href="{{ route('download', ['file' => $inscricao->declaracaoENADE])}}" target="_blank">Abrir arquivo</a>
                         </td>
-                    </div>
                   </tr>
                   <tr <?php if($inscricao->historicoEscolar == ''){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
                       <td>
                         <label for="historicoEscolar" >{{ __('Histórico escolar do curso de graduação') }}</label>
                       </td>
                       <td>
                         <a href="{{ route('download', ['file' => $inscricao->historicoEscolar])}}" target="_new">Abrir arquivo</a>
                       </td>
-                    </div>
                   </tr>
                   <tr <?php if($inscricao->programaDasDisciplinas == ''){echo('style="display: none"');} ?> >
 
-                    <div class="form-group row" >
                       <td>
                         <label for="programaDasDisciplinas" >{{ __('Programa das Disciplinas') }}</label>
                       </td>
                       <td>
                         <a href="{{ route('download', ['file' => $inscricao->programaDasDisciplinas])}}" target="_blank">Abir arquivo</a>
                       </td>
-                    </div>
                   </tr>
                   <tr <?php if($inscricao->curriculo == ''){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
                       <td>
                         <label for="curriculo" >{{ __('Curriculo') }}</label>
                       </td>
                       <td>
                         <a href="{{ route('download', ['file' => $inscricao->curriculo ])}}" target="_blank">Abrir arquivo</a>
                       </td>
-                    </div>
                   </tr>
                   <tr <?php if($inscricao->enem == ''){echo('style="display: none"');} ?> >
-                    <div class="form-group row" >
                       <td>
                         <label for="enem" >{{ __('ENEM') }}</label>
                       </td>
                       <td>
                         <a href="{{ route('download', ['file' => $inscricao->enem ])}}" target="_blank">Abrir arquivo</a>
                       </td>
-                    </div>
                   </tr>
 
 
@@ -623,11 +598,93 @@
 
     </div><!-- end row-->
   </form>
+  {{-- start modal --}}
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <form method="POST" action="{{ route('atualizarCursoTurno', $inscricao) }}">
+      @csrf
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel1">Modificar curso e turno da inscrição</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <div>
+            <div class="form-group row">                                                   <!-- Curso -->
+                <label for="Curso" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Curso pretendido:') }}</label>
+                <div class="col-sm-8" id="selectCurso">
+                  <select class="form-control col-sm-10" name="curso" style="width: 100%" id="idSelecionarCurso" onChange="selecionarCurso({{$editalId}})">
+                    <?php
+                    foreach ($cursosDisponiveis as $curso) {
+                      if($curso[0] != '#'){
+                        if($curso[0] != ''){
+                          if($curso[2] == old('curso', $inscricao->curso)) {
+                            echo('<option selected value="' . $curso[2] . '">' . $curso[0] . '</option>');
+                          } else {
+                            echo('<option value=' . $curso[2] . '>' . $curso[0] . '</option>');
+                          }
+                        }
+                      }
+                    }
+                    ?>
+                  </select>
+                </div>
+            </div>
+            <div class="form-group row">                                                   <!-- Turno -->
+                <label for="Turno" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Turno:') }}</label>
+                <div class="col-sm-8">
+                  <select class="form-control col-sm-10" name="turno" id="id_turnos">
+                  </select>
+                </div>
+            </div>
+           </div>
+        </div>
+        <div class="modal-footer">
+          <button  type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 50px;">Fechar</button>
+          <button type="submit" class="btn btn-primary btn-primary-lmts" style="border-radius: 50px;">
+            {{ __('Enviar') }}
+          </button>
+        </div>
+      </div>
+    </div>
+    </form>
+  </div> <!-- End Modal -->
 </div><!-- end container-->
 
 
 <script type="text/javascript" >
+    function selecionarCurso(editalId){
+        var historySelectList = $('select#idSelecionarCurso');
+        var $curso = $('option:selected', historySelectList).val();
+        limparTurnos();
 
+        $.ajax({
+            url:'ajax-listar-turnos',
+            type:"get",
+            data: {"curso": $curso, "edital" : editalId},
+            dataType:'json',
+
+            complete: function(data) {
+                if(data.responseJSON.success){
+                    for(var i = 0; i < data.responseJSON.valorTurnos.length; i++){
+                        if("{{old('turno', $inscricao->turno)}}" == data.responseJSON.valorTurnos[i]) {
+                            var html = `<option selected value="`+data.responseJSON.valorTurnos[i]+`">`+data.responseJSON.nomesTurnos[i]+`</option>`;
+                        } else {
+                            var html = `<option value="`+data.responseJSON.valorTurnos[i]+`">`+data.responseJSON.nomesTurnos[i]+`</option>`;
+                        }
+                        $('#id_turnos').append(html);
+                    }
+                }
+            }
+        });
+    }
+
+    function limparTurnos() {
+        var turnos = document.getElementById('id_turnos');
+        turnos.innerHTML = "";
+    }
 function confirmar(){
       if(confirm("Tem certeza que deseja finalizar?") == true) {
         document.getElementById("formHomologacao").submit();
