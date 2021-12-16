@@ -474,6 +474,16 @@ class InscricaoController extends Controller
 		return redirect()->route('home')->with('jsAlert', 'Desempate realizado com sucesso!');
 	}
 
+    public function atualizarCursoTurno(Inscricao $inscricao, Request $request)
+    {
+        $inscricao->curso = $request->curso;
+        $inscricao->turno = $request->turno;
+        $inscricao->save();
+        return redirect()->action(
+            [InscricaoController::class, 'inscricaoEscolhida'], ['inscricaoId' => $inscricao->id, 'tipo' => 'homologacao']
+        );
+    }
+
 	public function inscricaoEscolhida(Request $request){
 		$inscricao = Inscricao::find($request->inscricaoId);
 
@@ -484,6 +494,25 @@ class InscricaoController extends Controller
 				$curso = $cursos[$j]['nome'];
 			}
 		}
+        $edital = $inscricao->edital;
+        $cursosDisponiveis = $edital->vagas;
+        $cursosDisponiveis = explode("!", $cursosDisponiveis);
+        for($i = 0; $i < sizeof($cursosDisponiveis); $i++){
+            $cursosDisponiveis[$i] = explode(":",$cursosDisponiveis[$i]);
+        }
+        for($i = 0; $i < (sizeof($cursosDisponiveis)-1); $i++){
+            if($cursosDisponiveis[$i][1] == '#'){
+                $cursosDisponiveis[$i][0] = '#';
+                continue;
+            }
+            $idCurso = $cursosDisponiveis[$i][0];
+            for($j = 0; $j < sizeof($cursos); $j++){
+                if($idCurso == $cursos[$j]['id']){
+                    $cursosDisponiveis[$i][2] = $idCurso;
+                    $cursosDisponiveis[$i][0] = $cursos[$j]['nome'];
+                }
+            }
+        }
 
 		$usuario = User::find($inscricao->usuarioId);
 		$dados = DadosUsuario::find($usuario->dados);
@@ -498,6 +527,7 @@ class InscricaoController extends Controller
 																				 'editalId'								 => $inscricao->editalId,
                                                                                  'user' => $usuario,
 																				 'mytime'									 => $mytime,
+                                                                                 'cursosDisponiveis' => $cursosDisponiveis,
 																			  ]);
 
 		}
