@@ -92,13 +92,13 @@
                             <td>
                                 <form action="{{route('analistas.destroy', $analista)}}"
                                     method="POST"
-                                    id="apagarAnalista">
+                                    id="apagarAnalista{{$analista->id}}">
                                     @csrf
                                     @method('DELETE')
                                 </form>
                                 <button type="button"
                                     class="btn btn-link"
-                                    onclick="event.preventDefault();confirmarApagar();">
+                                    onclick="event.preventDefault();confirmarApagar({{$analista->id}});">
                                     Deletar
                                 </button>
                             </td>
@@ -187,9 +187,9 @@
         </script>
     @endif
     <script type="text/javascript">
-        function confirmarApagar() {
+        function confirmarApagar(id) {
             if (confirm("Tem certeza que deseja excluir?") == true) {
-                document.getElementById('apagarAnalista').submit();
+                document.getElementById('apagarAnalista'+id).submit();
             }
         }
     </script>
