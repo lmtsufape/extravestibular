@@ -360,7 +360,11 @@
                         foreach ($cursosDisponiveis as $curso) {
                           if($curso[0] != '#'){
                             if($curso[0] != ''){
-                              echo('<option value=' . $curso[2] . '>' . $curso[0] . '</option>');
+                              if($curso[2] == old('curso')) {
+                                echo('<option selected value=' . $curso[2] . '>' . $curso[0] . '</option>');
+                              } else {
+                                echo('<option value=' . $curso[2] . '>' . $curso[0] . '</option>');
+                              }
                             }
                           }
                         }
@@ -585,7 +589,11 @@
             complete: function(data) {
                 if(data.responseJSON.success){
                     for(var i = 0; i < data.responseJSON.valorTurnos.length; i++){
-                        var html = `<option value="`+data.responseJSON.valorTurnos[i]+`">`+data.responseJSON.nomesTurnos[i]+`</option>`;
+                        if("{{old('turno')}}" == data.responseJSON.valorTurnos[i]) {
+                            var html = `<option selected value="`+data.responseJSON.valorTurnos[i]+`">`+data.responseJSON.nomesTurnos[i]+`</option>`;
+                        } else {
+                            var html = `<option value="`+data.responseJSON.valorTurnos[i]+`">`+data.responseJSON.nomesTurnos[i]+`</option>`;
+                        }
                         $('#id_turnos').append(html);
                     }
                 }
