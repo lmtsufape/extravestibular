@@ -95,8 +95,10 @@
       @endforeach
     </table>
 
-  {{ $inscricoes->links() }}
-  </div><!-- end tabela -->
+</div><!-- end tabela -->
+<div class="row justify-content-center">
+    {{ $inscricoes->appends(['editalId' => $editalId, 'tipo' => 'homologarInscricoes'])->links() }}
+</div>
 
   @if($tipo == 'homologacao')
     <!-- titulo -->
@@ -151,8 +153,10 @@
       @endforeach
     </table>
 
-    {{ $inscricoes->links() }}
     </div><!-- end tabela -->
+    <div class="row justify-content-center">
+        {{ $homologadas->appends(['editalId' => $editalId, 'tipo' => 'homologarInscricoes'])->links() }}
+    </div>
   @endif
 
   @if($tipo == 'classificacao')
