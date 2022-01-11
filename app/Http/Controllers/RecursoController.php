@@ -99,15 +99,19 @@ class RecursoController extends Controller
       }
       if($recurso->tipo == 'classificacao'){
         $inscricao = Inscricao::where('editalId', $recurso->editalId)->where('usuarioId', $recurso->usuarioId)->first();
-        $inscricao->coeficienteDeRendimento = 0;
-        $inscricao->nota = null;
-        $inscricao->save();
+        if($inscricao != null) {
+            $inscricao->coeficienteDeRendimento = 0;
+            $inscricao->nota = null;
+            $inscricao->save();
+        }
       }
       if ($recurso->tipo == 'resultado') {
         $inscricao = Inscricao::where('usuarioId', $recurso->usuarioId)->where('editalId', $recurso->editalId)->first();
-        $inscricao->coeficienteDeRendimento = 0;
-        $inscricao->nota = null;
-        $inscricao->save();
+        if($inscricao != null) {
+            $inscricao->coeficienteDeRendimento = 0;
+            $inscricao->nota = null;
+            $inscricao->save();
+        }
       }
       return redirect()->route('home')->with('jsAlert', 'Resposta ao recurso cadastrada com sucesso!');
 
