@@ -331,23 +331,20 @@
                     </div>
                 </div>
 
-                <div id="declaracaoDeVeracidade" class="form-group row">      <!-- Arquivo declaracaoDeVeracidade -->
-                  <label for="declaracaoDeVeracidade" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Declaração de veracidade:') }}</label>
-                  <div class="col-sm-7">
-                    <div class="row">
-                      <div class="col-sm-1">
-                        <input type="checkbox" id="declaracaoDeVeracidade" name="declaracaoDeVeracidade" required>
+                <div id="declaracao_veracidade" class="form-group row" style="display: none">                   <!-- Arquivo declaracao veracidade -->
+                    <label for="declaracao_veracidade" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Declaração de veracidade:') }}</label>
+
+                    <div class="col-sm-6">
+                      <div class="custom-file">
+                        <input type="file" class="filestyle" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn-primary-lmts" name="declaracao_veracidade" >
+                        <label style="">Aceito arquivo .pdf de até 64 mb</label>
                       </div>
-                      <div class="col-sm-11" style="position: relative; left: -25px;">
-                        <label for="declaracaoDeVeracidade">Declaro que as informações acima prestadas são verdadeiras, e assumo a inteira responsabilidade pelas mesmas.</label>
-                      </div>
+                      @error('declaracao_veracidade')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
-                    @error('declaracaoDeVeracidade')
-                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                  </div>
                 </div>
 
                 <div class="form-group row">                                                   <!-- Curso -->
@@ -378,6 +375,38 @@
 
                     <div class="col-sm-8">
                       <select class="form-control col-sm-10" name="turno" id="id_turnos">
+                      </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">                                                   <!-- Curso Segunda Opcao -->
+                    <label for="Curso" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Segunda opção:') }}</label>
+
+                    <div class="col-sm-8" id="selectCurso2">
+
+                      <select class="form-control col-sm-10" name="curso_segunda_opcao" style="width: 100%" id="idSelecionarCurso2" onChange="selecionarCurso2({{$editalId}})">
+                        <?php
+                        foreach ($cursosDisponiveis as $curso) {
+                          if($curso[0] != '#'){
+                            if($curso[0] != ''){
+                              if($curso[2] == old('curso')) {
+                                echo('<option selected value=' . $curso[2] . '>' . $curso[0] . '</option>');
+                              } else {
+                                echo('<option value=' . $curso[2] . '>' . $curso[0] . '</option>');
+                              }
+                            }
+                          }
+                        }
+                        ?>
+                      </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">                                                   <!-- Turno Segunda Opcao -->
+                    <label for="Turno" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Turno:') }}</label>
+
+                    <div class="col-sm-8">
+                      <select class="form-control col-sm-10" name="turno_segunda_opcao" id="id_turnos2">
                       </select>
                     </div>
                 </div>
@@ -413,7 +442,7 @@
       </div>
       <div class="row" style="margin-top:5%">
         <div class="card" style=" width: 100%">
-            <div class="card-header">{{ __('Dados da Instituições de Ensino Superior de Origem') }}</div>
+            <div class="card-header">{{ __('Dados da Instituição de Ensino Superior de Origem') }}</div>
             <div class="card-body">
               <div class="card-body">
                 <div class="form-group row">                                                   <!-- Curso de origem -->
@@ -559,6 +588,138 @@
             </div>
         </div>
       </div>
+      <div class="row" style="margin-top:5%">
+        <div class="card" style=" width: 100%">
+            <div class="card-header">{{ __('Dados da Instituição que cursou o Ensino Médio') }}</div>
+            <div class="card-body">
+              <div class="card-body">
+                <div class="form-group row">                                                   <!-- Instituição de origem -->
+                  <label for="escola_em" class="field a-field a-field_a2 page__field" style="width: 100%">
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Nome Completo da Instituição:</span>
+                    </span>
+                  </label>
+                    <input id="escola_em" type="text" name="escola_em" autofocus class="form-control @error('escola_em') is-invalid @enderror field__input a-field__input" placeholder="EX: Universidade Federal Rural de Pernambuco" style="width: 100%;" value="{{ old('escola_em') }}">
+                  @error('escola_em')
+                  <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </div>
+
+                <div class="form-group row">                                                   <!-- Natureza da IES -->
+                  <label for="natureza_em" class="field a-field a-field_a2 page__field" style="width: 100%">
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Natureza da Instituição de Ensino Médio:</span>
+                    </span>
+                  </label>
+                    <select class="form-control col-sm-10" name="natureza_em">
+                      <option <?php if(old('natureza_em') == 'Pública'){ echo('selected'); } ?> value="Pública">Pública</option>
+                      <option <?php if(old('natureza_em') == 'Privada'){ echo('selected'); } ?> value="Privada">Privada</option>
+                    </select>
+                  @error('natureza_em')
+                  <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </div>
+                <div class="form-group row">
+                  <div class="" style="">
+                    <label for="endereco_em" class="field a-field a-field_a3 page__field" style="width: 100%;">
+                      <span class="a-field__label-wrap">
+                        <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>CEP</span>
+                      </span>
+                    </label>
+                      <input onblur="pesquisacep2(this.value);" id="cep" type="text" name="cep" autofocus class="form-control field__input a-field__input" placeholder="CEP" maxlength="9" >
+                  </div>
+                </div>
+                <div class="form-group row">  <!-- Endereço/Nº -->
+
+                  <div class="col-sm-10">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <label for="endereco_em" class="field a-field a-field_a2 page__field" style="width: 100%">
+                          <span class="a-field__label-wrap">
+                            <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Rua</span>
+                          </span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                        <input id="rua_em" type="text" name="endereco_em" autofocus class="form-control @error('endereco_em') is-invalid @enderror field__input a-field__input" placeholder="Rua" style="width: 100%;" value="{{ old('endereco_em') }}">
+                    </div>
+                  </div>
+
+                    @error('endereco_em')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="col-sm-2">
+
+
+                    <label for="num_em" class="field a-field a-field_a2 page__field" style="">
+                        <span class="a-field__label-wrap">
+                          <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Número</span>
+                        </span>
+                    </label>
+                        <input id="num_em" type="text" name="num_em" autofocus class="form-control @error('num_em') is-invalid @enderror field__input a-field__input" placeholder="Número" style="width: 100%;" value="{{ old('num_em') }}">
+                    @error('num_em')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                </div>
+
+                <div class="form-group row">  <!-- Bairro/Cidade/Uf -->
+                  <div class="col-sm-5" id="divBairro">
+                    <label for="bairro_em" class="field a-field a-field_a2 page__field" style="width: 100%">
+                        <span class="a-field__label-wrap">
+                          <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Bairro</span>
+                        </span>
+                    </label>
+                        <input id="bairro_em" type="text" name="bairro_em" autofocus class="form-control @error('bairro_em') is-invalid @enderror field__input a-field__input" placeholder="Bairro" style="width: 100%" value="{{ old('bairro_em') }}">
+                    @error('bairro_em')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="col-sm-5" id="divCidade">
+                    <label for="cidade_em" class="field a-field a-field_a2 page__field" style="width: 100%">
+                        <span class="a-field__label-wrap">
+                          <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>Cidade</span>
+                        </span>
+                    </label>
+                        <input id="cidade_em" type="text" name="cidade_em" autofocus class="form-control @error('cidade_em') is-invalid @enderror field__input a-field__input" placeholder="Cidade" style="width: 100%" value="{{ old('cidade_em') }}">
+                    @error('cidade_em')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                  <div class="col-sm-2" id="divUf">
+                    <label for="uf_em" class="field a-field a-field_a2 page__field" style="width: 100%">
+                        <span class="a-field__label-wrap">
+                          <span class="a-field__label"><span style="color: red; font-weight: bold;">* </span>UF</span>
+                        </span>
+                    </label>
+                        <input id="uf_em" type="text" name="uf_em" autofocus class="form-control @error('uf_em') is-invalid @enderror field__input a-field__input" placeholder="UF" style="width: 100%" value="{{ old('uf_em') }}">
+                    @error('uf_em')
+                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                  </div>
+                </div>
+
+              </div>
+            </div>
+        </div>
+      </div>
     </div>
       <div class="row justify-content-center">
           <div class="">
@@ -606,10 +767,42 @@
         turnos.innerHTML = "";
     }
 
+    function selecionarCurso2(editalId){
+        var historySelectList = $('select#idSelecionarCurso2');
+        var $curso = $('option:selected', historySelectList).val();
+        limparTurnos2();
+
+        $.ajax({
+            url:'ajax-listar-turnos',
+            type:"get",
+            data: {"curso": $curso, "edital" : editalId},
+            dataType:'json',
+
+            complete: function(data) {
+                if(data.responseJSON.success){
+                    for(var i = 0; i < data.responseJSON.valorTurnos.length; i++){
+                        if("{{old('turno_segunda_opcao')}}" == data.responseJSON.valorTurnos[i]) {
+                            var html = `<option selected value="`+data.responseJSON.valorTurnos[i]+`">`+data.responseJSON.nomesTurnos[i]+`</option>`;
+                        } else {
+                            var html = `<option value="`+data.responseJSON.valorTurnos[i]+`">`+data.responseJSON.nomesTurnos[i]+`</option>`;
+                        }
+                        $('#id_turnos2').append(html);
+                    }
+                }
+            }
+        });
+    }
+
+    function limparTurnos2() {
+        var turnos = document.getElementById('id_turnos2');
+        turnos.innerHTML = "";
+    }
+
   function mostrarComuns() {
     document.getElementById("rg").style.display = "";
     document.getElementById("cpf").style.display = "";
     document.getElementById("quitacaoEleitoral").style.display = "";
+    document.getElementById("declaracao_veracidade").style.display = "";
     document.getElementById("reservista").style.display = "";
     document.getElementById("certidaoNascimento").style.display = "";
     document.getElementById("alerta-documentos").style.display = "";
@@ -756,6 +949,74 @@
 
               //Sincroniza com o callback.
               script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+              //Insere script no documento e carrega o conteúdo.
+              document.body.appendChild(script);
+
+          } //end if.
+          else {
+              //cep é inválido.
+              limpa_formulário_cep();
+              alert("Formato de CEP inválido.");
+          }
+      } //end if.
+      else {
+          //cep sem valor, limpa formulário.
+          limpa_formulário_cep();
+      }
+  };
+
+  //cep
+  function limpa_formulário_cep2() {
+          //Limpa valores do formulário de cep.
+          document.getElementById('rua_em').value=("");
+          document.getElementById('bairro_em').value=("");
+          document.getElementById('cidade_em').value=("");
+          document.getElementById('uf_em').value=("");
+  }
+
+  function meu_callback2(conteudo) {
+      if (!("erro" in conteudo)) {
+          //Atualiza os campos com os valores.
+          document.getElementById('rua_em').value=(conteudo.logradouro);
+          document.getElementById('bairro_em').value=(conteudo.bairro);
+          document.getElementById('cidade_em').value=(conteudo.localidade);
+          document.getElementById('uf_em').value=(conteudo.uf);
+
+      } //end if.
+      else {
+          //CEP não Encontrado.
+          limpa_formulário_cep2();
+          alert("CEP não encontrado.");
+      }
+  }
+
+  function pesquisacep2(valor) {
+
+      //Nova variável "cep" somente com dígitos.
+      var cep = valor.replace(/\D/g, '');
+
+      //Verifica se campo cep possui valor informado.
+      if (cep != "") {
+
+          //Expressão regular para validar o CEP.
+          var validacep = /^[0-9]{8}$/;
+
+          //Valida o formato do CEP.
+          if(validacep.test(cep)) {
+
+              //Preenche os campos com "..." enquanto consulta webservice.
+              document.getElementById('rua_em').value="...";
+              document.getElementById('bairro_em').value="...";
+              document.getElementById('cidade_em').value="...";
+              document.getElementById('uf_em').value="...";
+
+
+              //Cria um elemento javascript.
+              var script = document.createElement('script');
+
+              //Sincroniza com o callback.
+              script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback2';
 
               //Insere script no documento e carrega o conteúdo.
               document.body.appendChild(script);

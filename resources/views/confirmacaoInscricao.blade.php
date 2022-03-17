@@ -271,6 +271,24 @@
 
 
           </div>
+          <div class="row">
+              <div class="col-sm-9">
+                  <label class="field a-field a-field_a2 page__field">
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">Segunda opção</span>
+                    </span>
+                  </label>
+                  <input disabled type="text" autofocus class="form-control field__input a-field__input" placeholder="Curso Pretendido" value="{{ $curso2 }}">
+                </div>
+                <div class="col-sm-3">
+                  <label for="Turno" class="field a-field a-field_a2 page__field" >
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">Turno</span>
+                    </span>
+                  </label>
+                  <input disabled id="Turno" type="text" name="Turno" autofocus class="form-control field__input a-field__input" placeholder="Turno" value="{{ $inscricao->turno_segunda_opcao }}">
+                </div>
+          </div>
 
         </div><!-- end card dados inscrição-->
       </div><!-- end card-->
@@ -356,6 +374,79 @@
                       </span>
                     </label>
                     <input disabled id="uf" type="text" name="uf" autofocus class=" form-control field__input a-field__input" placeholder="UF" value="{{ $inscricao->uf }}">
+                </div>
+
+          </div><!-- end row-->
+        </div><!-- end card-body -->
+      </div><!-- end card -->
+    </div><!-- end row-->
+
+    <div class="row" styles="">
+      <div class="card" style="width: 100%">
+        <div class="card-header">{{ __('Dados da Instituição que cursou o Ensino Médio') }}</div>
+        <div class="card-body">
+          <div class="row justify-content-center">
+              <div class="col-sm-9">
+                  <label for="Instituição de Origem" class="field a-field a-field_a2 page__field">
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">Instituição</span>
+                    </span>
+                  </label>
+                  <input disabled id="Instituição de de Origem" type="text" name="Instituição de Pretendido" autofocus class="form-control field__input a-field__input" placeholder="Instituição de de Origem"  value="{{ $inscricao->escola_em }}">
+                </div>
+                <div class="col-sm-3">
+                  <label for="Natureza da IES" class="field a-field a-field_a2 page__field">
+                      <span class="a-field__label-wrap">
+                        <span class="a-field__label">Natureza da Instituição</span>
+                      </span>
+                    </label>
+                    <input disabled id="Natureza da IES" type="text" name="Natureza da IES" autofocus class="form-control field__input a-field__input" placeholder="Natureza da IES" value="{{ $inscricao->natureza_em }}">
+                </div>
+          </div><!-- end row instituicao e IES-->
+
+          <div class="row justify-content-center">
+              <div class="col-sm-10">
+                  <label for="endereco" class="field a-field a-field_a2 page__field">
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">Endereço</span>
+                    </span>
+                  </label>
+                  <input disabled id="endereco" type="text" name="endereco" autofocus class="form-control field__input a-field__input" placeholder="Endereço"  value="{{ $inscricao->endereco_em }}">
+                </div>
+                <div class="col-sm-2">
+                  <label for="num" class="field a-field a-field_a2 page__field" >
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">Nº</span>
+                    </span>
+                  </label>
+                  <input disabled id="num" type="text" name="num" autofocus class=" form-control field__input a-field__input" placeholder="Nº" value="{{ $inscricao->num_em }}">
+                </div>
+          </div><!-- end row -->
+
+          <div class="row justify-content-center">
+              <div class="col-sm-5">
+                  <label for="bairro" class="field a-field a-field_a2 page__field" >
+                    <span class="a-field__label-wrap">
+                      <span class="a-field__label">Bairro</span>
+                    </span>
+                  </label>
+                  <input disabled id="bairro" type="text" name="bairro" autofocus class=" form-control field__input a-field__input" placeholder="Bairro" value="{{ $inscricao->bairro_em }}">
+                </div>
+                <div class="col-sm-5">
+                  <label for="cidade" class="field a-field a-field_a2 page__field" >
+                      <span class="a-field__label-wrap">
+                        <span class="a-field__label">Cidade</span>
+                      </span>
+                    </label>
+                    <input disabled id="cidade" type="text" name="cidade" autofocus class=" form-control field__input a-field__input" placeholder="Cidade" value="{{ $inscricao->cidade_em }}">
+                </div>
+                <div class="col-sm-2">
+                  <label for="uf" class="field a-field a-field_a2 page__field">
+                      <span class="a-field__label-wrap">
+                        <span class="a-field__label">UF</span>
+                      </span>
+                    </label>
+                    <input disabled id="uf" type="text" name="uf" autofocus class=" form-control field__input a-field__input" placeholder="UF" value="{{ $inscricao->uf_em }}">
                 </div>
 
           </div><!-- end row-->

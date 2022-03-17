@@ -50,6 +50,16 @@ class Inscricao extends Model
         'certidaoNascimento',
         'historicoEnsinoMedio',
         'declaracaoENADE',
+        'declaracao_veracidade',
+        'escola_em',
+        'natureza_em',
+        'endereco_em',
+        'num_em',
+        'bairro_em',
+        'cidade_em',
+        'uf_em',
+        'curso_segunda_opcao',
+        'turno_segunda_opcao',
     ];
 
     public function user()
