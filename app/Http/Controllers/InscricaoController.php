@@ -44,12 +44,21 @@ class InscricaoController extends Controller
         }
         // campos comuns a todos
         $request->validate([
-            'declaracaoDeVeracidade' => ['required'],
+            'declaracao_veracidade' => ['required', 'mimes:pdf','max:65536'],
             'rg'                     => ['required', 'mimes:pdf','max:65536'],
             'cpf'                    => ['nullable', 'mimes:pdf','max:65536'],
             'quitacaoEleitoral'      => ['required', 'mimes:pdf','max:65536'],
             'reservista'             => ['nullable', 'mimes:pdf','max:65536'],
             'certidaoNascimento'     => ['required', 'mimes:pdf','max:65536'],
+			'escola_em'                 => ['required', 'string'],
+			'natureza_em'                 => ['required', 'string'],
+			'endereco_em'            => ['required', 'string', 'max:255'],
+			'num_em'                 => ['required', 'string'],
+			'bairro_em'              => ['required', 'max:255'],
+			'cidade_em'              => ['required', 'max:255'],
+			'uf_em'                  => ['required', 'size:2'],
+			'curso_segunda_opcao'    => ['required', 'string'],
+			'turno_segunda_opcao'    => ['required', 'string'],
         ]);
 
         if($request->tipo == 'reintegracao'){
@@ -161,7 +170,7 @@ class InscricaoController extends Controller
             $reservista = $path . '/reservista.pdf';
         }
         Storage::putFileAs($path, $request->rg, 'rg.pdf');
-        // Storage::putFileAs($path, $request->declaracaoDeVeracidade, 'declaracaoDeVeracidade.pdf');
+        Storage::putFileAs($path, $request->declaracao_veracidade, 'declaracao_veracidade.pdf');
         Storage::putFileAs($path, $request->quitacaoEleitoral, 'quitacaoEleitoral.pdf');
         Storage::putFileAs($path, $request->certidaoNascimento, 'certidaoNascimento.pdf');
 
@@ -204,6 +213,16 @@ class InscricaoController extends Controller
                 'certidaoNascimento'     => $path . '/certidaoNascimento.pdf',
                 'cpf'                    => $cpf,
                 'reservista'             => $reservista,
+                'declaracao_veracidade' => $path . '/declaracao_veracidade.pdf',
+				'escola_em' => $request->escola_em,
+				'natureza_em' => $request->natureza_em,
+				'endereco_em' => $request->endereco_em,
+				'num_em' => $request->num_em,
+				'bairro_em' => $request->bairro_em,
+				'cidade_em' => $request->cidade_em,
+				'uf_em' => $request->uf_em,
+				'curso_segunda_opcao' => $request->curso_segunda_opcao,
+				'turno_segunda_opcao' => $request->turno_segunda_opcao,
             ]);
         }
         elseif(!strcmp($request->tipo, 'transferenciaInterna')) {
@@ -247,6 +266,16 @@ class InscricaoController extends Controller
                 'certidaoNascimento'     => $path . '/certidaoNascimento.pdf',
                 'cpf'                    => $cpf,
                 'reservista'             => $reservista,
+                'declaracao_veracidade' => $path . '/declaracao_veracidade.pdf',
+				'escola_em' => $request->escola_em,
+				'natureza_em' => $request->natureza_em,
+				'endereco_em' => $request->endereco_em,
+				'num_em' => $request->num_em,
+				'bairro_em' => $request->bairro_em,
+				'cidade_em' => $request->cidade_em,
+				'uf_em' => $request->uf_em,
+				'curso_segunda_opcao' => $request->curso_segunda_opcao,
+				'turno_segunda_opcao' => $request->turno_segunda_opcao,
             ]);
         }
         elseif(!strcmp($request->tipo, 'transferenciaExterna')) {
@@ -306,6 +335,16 @@ class InscricaoController extends Controller
                 'certidaoNascimento'     => $path . '/certidaoNascimento.pdf',
                 'cpf'                    => $cpf,
                 'reservista'             => $reservista,
+                'declaracao_veracidade' => $path . '/declaracao_veracidade.pdf',
+				'escola_em' => $request->escola_em,
+				'natureza_em' => $request->natureza_em,
+				'endereco_em' => $request->endereco_em,
+				'num_em' => $request->num_em,
+				'bairro_em' => $request->bairro_em,
+				'cidade_em' => $request->cidade_em,
+				'uf_em' => $request->uf_em,
+				'curso_segunda_opcao' => $request->curso_segunda_opcao,
+				'turno_segunda_opcao' => $request->turno_segunda_opcao,
         ]);
 
         } elseif(!strcmp($request->tipo, 'portadorDeDiploma')) {
@@ -355,6 +394,16 @@ class InscricaoController extends Controller
                 'certidaoNascimento'     => $path . '/certidaoNascimento.pdf',
                 'cpf'                    => $cpf,
                 'reservista'             => $reservista,
+                'declaracao_veracidade' => $path . '/declaracao_veracidade.pdf',
+				'escola_em' => $request->escola_em,
+				'natureza_em' => $request->natureza_em,
+				'endereco_em' => $request->endereco_em,
+				'num_em' => $request->num_em,
+				'bairro_em' => $request->bairro_em,
+				'cidade_em' => $request->cidade_em,
+				'uf_em' => $request->uf_em,
+				'curso_segunda_opcao' => $request->curso_segunda_opcao,
+				'turno_segunda_opcao' => $request->turno_segunda_opcao,
             ]);
         }
 
@@ -370,11 +419,15 @@ class InscricaoController extends Controller
         $dados = DadosUsuario::find(Auth::user()->dados);
         $cursos = $this->api->getCursos();
         $curso = $inscricao->curso;
+		$curso2 = $inscricao->curso_segunda_opcao;
         $inscricao->situacao = 'processando';
         $inscricao->save();
         for($j = 0; $j < sizeof($cursos); $j++){
             if($curso == $cursos[$j]['id']){
                 $curso = $cursos[$j]['nome'];
+            }
+			if($curso2 == $cursos[$j]['id']){
+                $curso2 = $cursos[$j]['nome'];
             }
         }
         return view('confirmacaoInscricao', [
@@ -383,6 +436,7 @@ class InscricaoController extends Controller
             'inscricao'=> $inscricao,
             'dados'		 => $dados,
             'curso'	   => $curso,
+			'curso2' => $curso2,
         ]);
 
         return redirect()->route('home')->with('jsAlert', 'Inscrição realizada com sucesso!');
@@ -489,9 +543,13 @@ class InscricaoController extends Controller
 
 		$cursos = $this->api->getCursos();
 		$curso = $inscricao->curso;
+		$curso2 = $inscricao->curso_segunda_opcao;
 		for($j = 0; $j < sizeof($cursos); $j++){
 			if($curso == $cursos[$j]['id']){
 				$curso = $cursos[$j]['nome'];
+			}
+			if($curso2 == $cursos[$j]['id']){
+				$curso2 = $cursos[$j]['nome'];
 			}
 		}
         $edital = $inscricao->edital;
@@ -523,6 +581,7 @@ class InscricaoController extends Controller
 			return view('homologarInscricao', ['inscricao'  						 => $inscricao,
 																				 'tipo'										 => 'homologacao',
 																				 'curso'									 => $curso,
+																				 'curso2'									 => $curso2,
 																				 'dados'									 => $dados,
 																				 'editalId'								 => $inscricao->editalId,
                                                                                  'user' => $usuario,
@@ -669,12 +728,16 @@ class InscricaoController extends Controller
 		$mytime = $mytime->toDateString();
         $cursos = $this->api->getCursos();
 		$curso = $inscricao->curso;
+		$curso2 = $inscricao->curso_segunda_opcao;
 		for($j = 0; $j < sizeof($cursos); $j++){
 			if($curso == $cursos[$j]['id']){
 				$curso = $cursos[$j]['nome'];
 			}
+			if($curso2 == $cursos[$j]['id']){
+				$curso2 = $cursos[$j]['nome'];
+			}
 		}
-        return view('visualizarInscricao', compact('usuario', 'dados', 'mytime', 'inscricao', 'curso'));
+        return view('visualizarInscricao', compact('usuario', 'dados', 'mytime', 'inscricao', 'curso', 'curso2'));
     }
 
     public function downloadEdital(Request $request)
