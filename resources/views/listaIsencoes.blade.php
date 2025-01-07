@@ -96,7 +96,7 @@
           </tr>
           @endforelse
 
-          {{ $isencoes->links() }}
+          {{-- $isencoes->links() --}}
         </table>
       </div><!-- end col tabela -->
     </div><!-- end row -->
@@ -145,7 +145,7 @@
               </td>
             </tr>
             @endforeach
-            {{ $isencoes->links() }}
+            {{-- $isencoes->links() --}}
           </table>
         </div><!-- end col tabela -->
       </div><!-- end row -->
