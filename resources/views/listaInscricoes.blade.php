@@ -97,7 +97,7 @@
 
 </div><!-- end tabela -->
 <div class="row justify-content-center">
-    {{ $inscricoes->appends(['editalId' => $editalId, 'tipo' => 'homologarInscricoes'])->links() }}
+    {{-- $inscricoes->appends(['editalId' => $editalId, 'tipo' => 'homologarInscricoes'])->links() --}}
 </div>
 
   @if($tipo == 'homologacao')
@@ -155,7 +155,7 @@
 
     </div><!-- end tabela -->
     <div class="row justify-content-center">
-        {{ $homologadas->appends(['editalId' => $editalId, 'tipo' => 'homologarInscricoes'])->links() }}
+        {{-- $homologadas->appends(['editalId' => $editalId, 'tipo' => 'homologarInscricoes'])->links() --}}
     </div>
   @endif
 
