@@ -425,11 +425,9 @@ class EditalController extends Controller{
         }
         if($request->tipo == 'homologarInscricoes'){
           $inscricoesDisponiveis = Inscricao::where('editalId', $request->editalId)
-                                              ->where('homologado', 'nao')
-                                              ->paginate(10);
+                                              ->where('homologado', 'nao')->get();
           $inscricoesHomologadas = Inscricao::where('editalId', $request->editalId)
-                                              ->where('homologado', '!=','nao')
-                                              ->paginate(10);
+                                              ->where('homologado', '!=','nao')->get();
           return view('listaInscricoes', ['inscricoes'  => $inscricoesDisponiveis,
                                           'homologadas' => $inscricoesHomologadas,
                                           'tipo'        => 'homologacao',
@@ -441,8 +439,7 @@ class EditalController extends Controller{
           $inscricoesDisponiveis = Inscricao::where('editalId', $request->editalId)
                                               ->where('homologado', 'aprovado')
                                               ->where('tipo', 'reintegracao')
-                                              ->where('homologadoDrca', 'nao')
-                                              ->paginate(10);
+                                              ->where('homologadoDrca', 'nao')->get();
           return view('listaInscricoes', ['inscricoes' => $inscricoesDisponiveis,
                                           'tipo'       => 'drca',
                                           'editalId'   => $request->editalId,
@@ -455,14 +452,12 @@ class EditalController extends Controller{
                                                 ->where('homologado', 'aprovado')
                                                 ->where('homologadoDrca', 'aprovado')
                                                 ->where('situacao', '!=', 'processando')
-                                                ->orderBy('classificacao', 'asc')
-                                                ->paginate(20);
+                                                ->orderBy('classificacao', 'asc')->get();
           $inscricoesDisponiveis = Inscricao::where('editalId', $request->editalId)
                                               ->where('homologado', 'aprovado')
                                               ->where('homologadoDrca', 'aprovado')
                                               ->where('situacao', 'processando')
-                                              ->where('curso', session('cursoId'))
-                                              ->paginate(20);
+                                              ->where('curso', session('cursoId'))->get();
           return view('listaInscricoes', [
                                           'inscricoes'              => $inscricoesDisponiveis,
                                           'inscricoesClassificadas' => $inscricoesClassificadas,
@@ -481,8 +476,7 @@ class EditalController extends Controller{
         }
         if($request->tipo == 'homologarRecursosIsencao'){
           $recursosDisponiveis = Recurso::where('editalId', $request->editalId)
-                                          ->where([['homologado', 'nao'], ['tipo', 'taxa']])
-                                          ->paginate(10);
+                                          ->where([['homologado', 'nao'], ['tipo', 'taxa']])->get();
           return view('listaRecursos', ['titulo_da_pagina' => 'Recursos ao resultado para avaliação de isenção',
                                         'recursos' => $recursosDisponiveis,
                                         'mytime'            => $mytime,
@@ -490,8 +484,7 @@ class EditalController extends Controller{
         }
         if($request->tipo == 'homologarRecursosResultado'){
           $recursosDisponiveis = Recurso::where('editalId', $request->editalId)
-                                          ->where([['homologado', 'nao'], ['tipo', 'resultado']])
-                                          ->paginate(10);
+                                          ->where([['homologado', 'nao'], ['tipo', 'resultado']])->get();
           return view('listaRecursos', ['titulo_da_pagina' => 'Recursos ao resultado parcial',
                                         'recursos' => $recursosDisponiveis,
                                         'mytime'            => $mytime,
@@ -499,8 +492,7 @@ class EditalController extends Controller{
         }
         if($request->tipo == 'homologarRecursosInscricao'){
           $recursosDisponiveis = Recurso::where('editalId', $request->editalId)
-                                          ->where([['homologado', 'nao'], ['tipo', 'classificacao']])
-                                          ->paginate(10);
+                                          ->where([['homologado', 'nao'], ['tipo', 'classificacao']])->get();
           return view('listaRecursos', ['titulo_da_pagina' => 'Recursos ao resultado para avaliação de inscrições',
                                         'recursos' => $recursosDisponiveis,
                                         'mytime'            => $mytime,
@@ -512,8 +504,7 @@ class EditalController extends Controller{
         }
         if($request->tipo == 'homologarIsencao'){
           $isencoesDisponiveis = Isencao::where('editalId', $request->editalId)
-                                          ->where('parecer', 'nao')
-                                          ->paginate(10);
+                                          ->where('parecer', 'nao')->get();
           $isencoesHomologadas = Isencao::where('editalId', $request->editalId)
                                           ->where('parecer', 'deferida')
                                           ->orWhere('parecer', 'indeferida')
