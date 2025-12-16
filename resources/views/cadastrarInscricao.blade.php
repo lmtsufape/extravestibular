@@ -115,7 +115,8 @@
                   <label for="tipoInscricao" class="col-sm-4 col-form-label text-sm-right" ><span style="color: red; font-weight: bold;">* </span>Tipo de Inscrição:</label>
                   <div class="col-sm-8">
                     <input <?php if(old('tipo') == 'reintegracao')        {echo('checked');} ?> onclick="escolherTipo('reintegracao')" 			   type="radio" name="tipoInscricao" > Reintegração <br>
-                    <input <?php if(old('tipo') == 'transferenciaExterna'){echo('checked');} ?> onclick="escolherTipo('transferenciaExterna')"  type="radio" name="tipoInscricao" > Transferencia Externa <br>
+                    <input <?php if(old('tipo') == 'transferenciaInterna')        {echo('checked');} ?> onclick="escolherTipo('transferenciaInterna')" 			   type="radio" name="tipoInscricao" > Transferência Interna <br>
+                    <input <?php if(old('tipo') == 'transferenciaExterna'){echo('checked');} ?> onclick="escolherTipo('transferenciaExterna')"  type="radio" name="tipoInscricao" > Transferência Externa <br>
                     <input <?php if(old('tipo') == 'portadorDeDiploma')   {echo('checked');} ?> onclick="escolherTipo('portadorDeDiploma')" 		 type="radio" name="tipoInscricao" > Portador de Diploma <br>
                   </div>
                 </div>
@@ -331,7 +332,7 @@
                     </div>
                 </div>
 
-                <div id="declaracao_veracidade" class="form-group row" style="display: none">                   <!-- Arquivo declaracao veracidade -->
+                {{-- <div id="declaracao_veracidade" class="form-group row" style="display: none">                   <!-- Arquivo declaracao veracidade -->
                     <label for="declaracao_veracidade" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Declaração de veracidade:') }}</label>
 
                     <div class="col-sm-6">
@@ -345,7 +346,7 @@
                       </span>
                       @enderror
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="form-group row">                                                   <!-- Curso -->
                     <label for="Curso" class="col-sm-4 col-form-label text-md-right"><span style="color: red; font-weight: bold;">* </span>{{ __('Curso pretendido:') }}</label>
@@ -353,19 +354,13 @@
                     <div class="col-sm-8" id="selectCurso">
 
                       <select class="form-control col-sm-10" name="curso" style="width: 100%" id="idSelecionarCurso" onChange="selecionarCurso({{$editalId}})">
-                        <?php
-                        foreach ($cursosDisponiveis as $curso) {
-                          if($curso[0] != '#'){
-                            if($curso[0] != ''){
-                              if($curso[2] == old('curso')) {
-                                echo('<option selected value=' . $curso[2] . '>' . $curso[0] . '</option>');
-                              } else {
-                                echo('<option value=' . $curso[2] . '>' . $curso[0] . '</option>');
-                              }
-                            }
-                          }
-                        }
-                        ?>
+                            @foreach ($cursosDisponiveis as $curso)
+                                @if($curso[0] != '#')
+                                    @if($curso[0] != '')
+                                        <option value="{{   $curso[2]  }}" @selected($curso[2] == old('curso'))> {{$curso[0]}}</option>
+                                    @endif
+                                @endif
+                            @endforeach
                       </select>
                     </div>
                 </div>
@@ -385,19 +380,13 @@
                     <div class="col-sm-8" id="selectCurso2">
 
                       <select class="form-control col-sm-10" name="curso_segunda_opcao" style="width: 100%" id="idSelecionarCurso2" onChange="selecionarCurso2({{$editalId}})">
-                        <?php
-                        foreach ($cursosDisponiveis as $curso) {
-                          if($curso[0] != '#'){
-                            if($curso[0] != ''){
-                              if($curso[2] == old('curso')) {
-                                echo('<option selected value=' . $curso[2] . '>' . $curso[0] . '</option>');
-                              } else {
-                                echo('<option value=' . $curso[2] . '>' . $curso[0] . '</option>');
-                              }
-                            }
-                          }
-                        }
-                        ?>
+                            @foreach ($cursosDisponiveis as $curso)
+                                @if($curso[0] != '#')
+                                    @if($curso[0] != '')
+                                        <option value="{{   $curso[2]  }}" @selected($curso[2] == old('curso_segunda_opcao'))> {{$curso[0]}}</option>
+                                    @endif
+                                @endif
+                            @endforeach
                       </select>
                     </div>
                 </div>
@@ -720,7 +709,41 @@
             </div>
         </div>
       </div>
+      <div class="card alert alert-warning border-0 shadow-sm">
+        <div class="card-body">
+
+            <h6 class="card-title text-uppercase mb-3">
+                Declaração de veracidade
+            </h6>
+
+            <p class="mb-3 ">
+                Declaro que todas as informações e documentos apresentados no Processo Seletivo Extra SISU (Edital nº 019/2025/PREG) são verdadeiros. Estou ciente de que qualquer falsidade implicará penalidades legais e poderá resultar no cancelamento do meu registro na Universidade Federal do Agreste de Pernambuco. Firmo o presente por ser expressão da verdade.
+            </p>
+
+            <div class="form-check">
+                <input
+                    type="checkbox"
+                    name="declaracaoDeVeracidade"
+                    value="1"
+                    id="declaracaoDeVeracidade"
+                    class="form-check-input @error('declaracaoDeVeracidade') is-invalid @enderror"
+                    {{ old('declaracaoDeVeracidade') ? 'checked' : '' }} required
+                >
+                <label class="form-check-label" for="declaracaoDeVeracidade">
+                    Confirmo que li e concordo com a declaração acima.
+                </label>
+
+                @error('declaracaoDeVeracidade')
+                    <div class="invalid-feedback d-block">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+        </div>
     </div>
+    </div>
+
       <div class="row justify-content-center">
           <div class="">
             <button id="button" onclick="event.preventDefault();confirmar();" class="btn btn-primary btn-primary-lmts" style="margin-top:20px;">
@@ -735,7 +758,15 @@
 </div>
 
 <script type="text/javascript" >
+    document.addEventListener('DOMContentLoaded', function () {
+        @if(old('curso'))
+            selecionarCurso({{ $editalId }});
+        @endif
 
+        @if(old('curso_segunda_opcao'))
+            selecionarCurso2({{ $editalId }});
+        @endif
+    });
     function selecionarCurso(editalId){
         var historySelectList = $('select#idSelecionarCurso');
         var $curso = $('option:selected', historySelectList).val();
@@ -802,10 +833,12 @@
     document.getElementById("rg").style.display = "";
     document.getElementById("cpf").style.display = "";
     document.getElementById("quitacaoEleitoral").style.display = "";
-    document.getElementById("declaracao_veracidade").style.display = "";
+    // document.getElementById("declaracao_veracidade").style.display = "";
     document.getElementById("reservista").style.display = "";
     document.getElementById("certidaoNascimento").style.display = "";
     document.getElementById("alerta-documentos").style.display = "";
+    document.getElementById("historicoEnsinoMedio").style.display = "";
+
   }
 
   function escolherTipo(x) {
@@ -819,7 +852,6 @@
       document.getElementById("curriculo").style.display = "none";
       document.getElementById("declaracaoDeVinculo").style.display = "none";
       document.getElementById("programaDasDisciplinas").style.display = "none";
-      document.getElementById("historicoEnsinoMedio").style.display = "none";
       document.getElementById("enem").style.display = "none";
       document.getElementById("diploma").style.display = "none";
 
@@ -828,20 +860,22 @@
       }
 
     }
-    // if (x == "transferenciaInterna") {
-    //   document.getElementById("tipo").value = "transferenciaInterna";
-    //   document.getElementById("historicoEscolar").style.display = "";
-    //   document.getElementById("declaracaoDeVinculo").style.display = "";
-    //   document.getElementById("enem").style.display = "none";
-    //   document.getElementById("curriculo").style.display = "none";
-    //   document.getElementById("programaDasDisciplinas").style.display = "none";
-    //   document.getElementById("diploma").style.display = "none";
+    if (x == "transferenciaInterna") {
+      mostrarComuns();
+
+      document.getElementById("tipo").value = "transferenciaInterna";
+      document.getElementById("historicoEscolar").style.display = "";
+      document.getElementById("declaracaoDeVinculo").style.display = "";
+      document.getElementById("enem").style.display = "none";
+      document.getElementById("curriculo").style.display = "none";
+      document.getElementById("programaDasDisciplinas").style.display = "none";
+      document.getElementById("diploma").style.display = "none";
 
 
-    //   if(document.getElementById("comprovante").value == 'isento'){
-    //     document.getElementById("formulario").style.display = "";
-    //   }
-    // }
+      if(document.getElementById("comprovante").value == 'isento'){
+        document.getElementById("formulario").style.display = "";
+      }
+    }
     if (x == "transferenciaExterna") {
       mostrarComuns();
       document.getElementById("tipo").value = "transferenciaExterna";
@@ -852,7 +886,6 @@
       document.getElementById("curriculo").style.display = "";
       document.getElementById("declaracaoDeVinculo").style.display = "";
       document.getElementById("programaDasDisciplinas").style.display = "";
-      document.getElementById("historicoEnsinoMedio").style.display = "";
       document.getElementById("enem").style.display = "none";
       document.getElementById("diploma").style.display = "none";
 
@@ -873,7 +906,6 @@
       document.getElementById("curriculo").style.display = "none";
       document.getElementById("declaracaoDeVinculo").style.display = "none";
       document.getElementById("enem").style.display = "none";
-      document.getElementById("historicoEnsinoMedio").style.display = "none";
 
       if(document.getElementById("comprovante").value == 'isento'){
         document.getElementById("formulario").style.display = "";

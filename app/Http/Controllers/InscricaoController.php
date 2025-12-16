@@ -44,7 +44,7 @@ class InscricaoController extends Controller
         }
         // campos comuns a todos
         $request->validate([
-            'declaracao_veracidade' => ['required', 'mimes:pdf','max:65536'],
+            // 'declaracao_veracidade' => ['required', 'mimes:pdf','max:65536'],
             'rg'                     => ['required', 'mimes:pdf','max:65536'],
             'cpf'                    => ['nullable', 'mimes:pdf','max:65536'],
             'quitacaoEleitoral'      => ['required', 'mimes:pdf','max:65536'],
@@ -59,6 +59,8 @@ class InscricaoController extends Controller
 			'uf_em'                  => ['required', 'size:2'],
 			'curso_segunda_opcao'    => ['required', 'string'],
 			'turno_segunda_opcao'    => ['required', 'string'],
+            'historicoEnsinoMedio'   => ['required', 'mimes:pdf','max:65536'],
+            'declaracaoDeVeracidade' => ['required', 'accepted'],
         ]);
 
         if($request->tipo == 'reintegracao'){
@@ -107,7 +109,6 @@ class InscricaoController extends Controller
                 'declaracaoDeVinculo'    => ['required', 'mimes:pdf','max:65536'],
                 'declaracaoENADE'        => ['required', 'mimes:pdf','max:65536'],
                 'historicoEscolar'       => ['required', 'mimes:pdf','max:65536'],
-                'historicoEnsinoMedio'   => ['required', 'mimes:pdf','max:65536'],
                 'programaDasDisciplinas' => ['nullable', 'mimes:pdf','max:65536'],
                 'curriculo'              => ['required', 'mimes:pdf','max:65536'],
                 'enem'                   => ['nullable', 'mimes:pdf','max:65536'],
@@ -170,7 +171,7 @@ class InscricaoController extends Controller
             $reservista = $path . '/reservista.pdf';
         }
         Storage::putFileAs($path, $request->rg, 'rg.pdf');
-        Storage::putFileAs($path, $request->declaracao_veracidade, 'declaracao_veracidade.pdf');
+        Storage::putFileAs($path, $request->historicoEnsinoMedio, 'historicoEnsinoMedio.pdf');
         Storage::putFileAs($path, $request->quitacaoEleitoral, 'quitacaoEleitoral.pdf');
         Storage::putFileAs($path, $request->certidaoNascimento, 'certidaoNascimento.pdf');
 
@@ -193,6 +194,7 @@ class InscricaoController extends Controller
                 'tipo'					 => $request->tipo,
                 'editalId'               => $request->editalId,
                 'historicoEscolar'       => $path . '/historicoEscolar.pdf',
+                'historicoEnsinoMedio'   => $path . '/historicoEnsinoMedio.pdf',
                 'curso'					 => $request->curso,
                 'polo'					 => $request->polo,
                 'turno'					 => $request->turno,
@@ -208,12 +210,11 @@ class InscricaoController extends Controller
                 'homologadoDrca'		 => 'nao',
                 'comprovante'			 => $comprovante,
                 'rg'                     => $path . '/rg.pdf',
-                'declaracaoDeVeracidade' => true,
+                'declaracaoDeVeracidade' => $request->declaracaoDeVeracidade,
                 'quitacaoEleitoral'      => $path . '/quitacaoEleitoral.pdf',
                 'certidaoNascimento'     => $path . '/certidaoNascimento.pdf',
                 'cpf'                    => $cpf,
                 'reservista'             => $reservista,
-                'declaracao_veracidade' => $path . '/declaracao_veracidade.pdf',
 				'escola_em' => $request->escola_em,
 				'natureza_em' => $request->natureza_em,
 				'endereco_em' => $request->endereco_em,
@@ -246,6 +247,7 @@ class InscricaoController extends Controller
                 'editalId'               => $request->editalId,
                 'historicoEscolar'       => $path . '/historicoEscolar.pdf',
                 'declaracaoDeVinculo'    => $path . '/declaracaoDeVinculo.pdf',
+                'historicoEnsinoMedio'   => $path . '/historicoEnsinoMedio.pdf',
                 'curso'									 => $request->curso,
                 'polo'									 => $request->polo,
                 'turno'									 => $request->turno,
@@ -261,12 +263,11 @@ class InscricaoController extends Controller
                 'homologadoDrca'			 	 => 'nao',
                 'comprovante'						 => $comprovante,
                 'rg'                     => $path . '/rg.pdf',
-                'declaracaoDeVeracidade' => true,
+                'declaracaoDeVeracidade' => $request->declaracaoDeVeracidade,
                 'quitacaoEleitoral'      => $path . '/quitacaoEleitoral.pdf',
                 'certidaoNascimento'     => $path . '/certidaoNascimento.pdf',
                 'cpf'                    => $cpf,
                 'reservista'             => $reservista,
-                'declaracao_veracidade' => $path . '/declaracao_veracidade.pdf',
 				'escola_em' => $request->escola_em,
 				'natureza_em' => $request->natureza_em,
 				'endereco_em' => $request->endereco_em,
@@ -284,7 +285,6 @@ class InscricaoController extends Controller
             $file = $request->declaracaoDeVinculo;
             Storage::putFileAs($path, $file, 'declaracaoDeVinculo.pdf');
             Storage::putFileAs($path, $request->declaracaoENADE, 'declaracaoENADE.pdf');
-            Storage::putFileAs($path, $request->historicoEnsinoMedio, 'historicoEnsinoMedio.pdf');
             $programaDasDisciplinas = null;
             if ($request->hasFile('programaDasDisciplinas')) {
                 Storage::putFileAs($path, $file, 'programaDasDisciplinas.pdf');
@@ -330,12 +330,11 @@ class InscricaoController extends Controller
                 'declaracaoENADE'        => $declaracaoENADE,
                 'historicoEnsinoMedio'   => $path . '/historicoEnsinoMedio.pdf',
                 'rg'                     => $path . '/rg.pdf',
-                'declaracaoDeVeracidade' => true,
+                'declaracaoDeVeracidade' => $request->declaracaoDeVeracidade,
                 'quitacaoEleitoral'      => $path . '/quitacaoEleitoral.pdf',
                 'certidaoNascimento'     => $path . '/certidaoNascimento.pdf',
                 'cpf'                    => $cpf,
                 'reservista'             => $reservista,
-                'declaracao_veracidade' => $path . '/declaracao_veracidade.pdf',
 				'escola_em' => $request->escola_em,
 				'natureza_em' => $request->natureza_em,
 				'endereco_em' => $request->endereco_em,
@@ -372,6 +371,7 @@ class InscricaoController extends Controller
                 'tipo'					 => $request->tipo,
                 'editalId'               => $request->editalId,
                 'historicoEscolar'       => $path . '/historicoEscolar.pdf',
+                'historicoEnsinoMedio'   => $path . '/historicoEnsinoMedio.pdf',
                 'programaDasDisciplinas' => $programaDasDisciplinas,
                 'diploma'                => $path . '/diploma.pdf',
                 'curso'					 => $request->curso,
@@ -389,12 +389,11 @@ class InscricaoController extends Controller
                 'homologadoDrca'		 => 'nao',
                 'comprovante'			 => $comprovante,
                 'rg'                     => $path . '/rg.pdf',
-                'declaracaoDeVeracidade' => true,
+                'declaracaoDeVeracidade' => $request->declaracaoDeVeracidade,
                 'quitacaoEleitoral'      => $path . '/quitacaoEleitoral.pdf',
                 'certidaoNascimento'     => $path . '/certidaoNascimento.pdf',
                 'cpf'                    => $cpf,
                 'reservista'             => $reservista,
-                'declaracao_veracidade' => $path . '/declaracao_veracidade.pdf',
 				'escola_em' => $request->escola_em,
 				'natureza_em' => $request->natureza_em,
 				'endereco_em' => $request->endereco_em,
