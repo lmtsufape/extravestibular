@@ -1113,10 +1113,10 @@ class InscricaoController extends Controller
 		$aux    = Carbon::parse($edital->resultadoFinal);
 
 		$diasRestantes =  $aux->diffInDays($mytime);
-		// $emails = $this->api->getEmailsCoordenadorPorCurso($request->cursoId);
-		// foreach ($emails as $key) {
-		// 	Mail::to($key)->send(new LembreteCoordenador($nomeEdital[0], $diasRestantes));
-		// }
+		$emails = $this->api->getEmailsCoordenadorPorCurso($request->cursoId);
+			foreach ($emails as $key) {
+			Mail::to($key)->send(new LembreteCoordenador($nomeEdital[0], $diasRestantes));
+		}
 		return 'Notificação enviada com sucesso!';
 	}
 
